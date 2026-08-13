@@ -1,0 +1,14 @@
+{
+  "id": "query",
+  "text": "已知函数 y = x^2 - 4x + 7，求该函数的最小值。",
+  "knowledge_points": ["二次函数", "最值"],
+  "question_type": "求最小值",
+  "method": ["配方法", "顶点"],
+  "solution_steps": ["识别二次函数", "完成平方", "读取最小值"],
+  "math_structure": {
+    "type": "quadratic_function",
+    "template": "y = x^2 - 4x + 7",
+    "variable_count": 1
+  },
+  "difficulty": 2
+}

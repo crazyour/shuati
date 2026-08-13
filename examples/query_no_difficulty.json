@@ -1,0 +1,7 @@
+{
+  "id": "query-partial",
+  "knowledge_points": ["二次函数", "最值"],
+  "question_type": "求最小值",
+  "method": ["配方法", "顶点"],
+  "math_structure": "y=ax^2+bx+c"
+}

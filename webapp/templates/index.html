@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>相似题匹配</title>
+  <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+  <main>
+    <header>
+      <h1>相似题匹配</h1>
+      <p class="sub">上传题目图片，自动 OCR 并交给 {{ model_name }} 结构化，然后在题库里找最像的题。</p>
+    </header>
+
+    <section class="panel">
+      <div class="tabs" role="tablist">
+        <button type="button" class="tab active" data-mode="image" role="tab">图片</button>
+        <button type="button" class="tab" data-mode="json" role="tab">题目 JSON</button>
+      </div>
+
+      <div id="pane-image" class="pane">
+        {% if not ocr_ready %}
+        <p class="message">没有可用的 OCR 后端。macOS 执行 <code>pip install ocrmac</code>，或 <code>brew install tesseract tesseract-lang</code>。</p>
+        {% endif %}
+        <label id="drop" for="file" class="drop">
+          <input type="file" id="file" accept="image/*" hidden>
+          <img id="preview" alt="" hidden>
+          <span id="drop-hint">点击选择图片，或把图片拖到这里，也可以直接 Cmd+V 粘贴</span>
+        </label>
+      </div>
+
+      <div id="pane-json" class="pane" hidden>
+        <div class="panel-head">
+          <label for="query">题目 JSON</label>
+          <button type="button" id="fill-example" class="link">填入示例</button>
+        </div>
+        <textarea id="query" spellcheck="false" rows="16" placeholder='{"knowledge_points": ["二次函数", "最值"], "question_type": "求最小值", "method": ["配方法", "顶点"]}'></textarea>
+      </div>
+
+      <div class="controls">
+        <label for="topk">返回条数</label>
+        <input type="number" id="topk" value="5" min="1" max="50">
+        <button type="button" id="submit" class="primary">开始匹配</button>
+      </div>
+
+      <p id="message" class="message" hidden></p>
+    </section>
+
+    <section id="results-panel" class="panel" hidden>
+      <h2>匹配到的题目</h2>
+      <ol id="results"></ol>
+      <details id="detail" hidden>
+        <summary>提取过程（OCR 文本与生成的 JSON）</summary>
+        <h3>OCR 文本<span id="ocr-backend" class="tag"></span></h3>
+        <pre id="ocr-text"></pre>
+        <h3>模型生成的题目 JSON</h3>
+        <pre id="question-json"></pre>
+      </details>
+    </section>
+
+    <footer>
+      题库：{{ db_name }}（{{ db_size }} 题）
+    </footer>
+  </main>
+
+  <script id="example-json" type="application/json">{{ example | safe }}</script>
+  <script src="{{ url_for('static', filename='app.js') }}"></script>
+</body>
+</html>

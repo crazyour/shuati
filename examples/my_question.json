@@ -1,0 +1,14 @@
+{
+  "id": "my-question",
+  "text": "已知 y = -2x^2 + 4x + 1，求 y 的最大值。",
+  "knowledge_points": ["二次函数", "最值"],
+  "question_type": "求最大值",
+  "method": ["配方法", "顶点"],
+  "solution_steps": ["识别二次函数", "完成平方", "读取最大值"],
+  "math_structure": {
+    "type": "quadratic_function",
+    "template": "y = a*x^2 + b*x + c",
+    "variable_count": 1
+  },
+  "difficulty": 2
+}

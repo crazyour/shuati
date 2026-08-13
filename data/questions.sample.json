@@ -1,0 +1,170 @@
+[
+  {
+    "id": "q-0001",
+    "text": "求二次函数 f(x) = 2x^2 + 8x - 3 的最小值是多少？",
+    "knowledge_points": ["二次函数", "函数最值", "顶点"],
+    "question_type": "求最小值",
+    "method": ["配方法", "顶点式", "判断最值"],
+    "solution_steps": ["识别二次函数", "完成平方", "得到顶点", "读取最小值"],
+    "math_structure": {
+      "type": "quadratic_function",
+      "template": "y = a*x^2 + b*x + c",
+      "variable_count": 1
+    },
+    "difficulty": 2
+  },
+  {
+    "id": "q-0002",
+    "text": "已知函数 y = x^2 - 4x + 7，求该函数图象的对称轴。",
+    "knowledge_points": ["二次函数", "对称轴"],
+    "question_type": "求对称轴",
+    "method": ["配方法", "对称轴公式"],
+    "solution_steps": ["识别二次函数", "代入对称轴公式", "写出对称轴"],
+    "math_structure": {
+      "type": "quadratic_function",
+      "template": "y = x^2 - 4x + 7",
+      "variable_count": 1
+    },
+    "difficulty": 2
+  },
+  {
+    "id": "q-0003",
+    "text": "解一元二次方程 x^2 - 4x + 7 = 0，若无实根请说明理由。",
+    "knowledge_points": ["一元二次方程", "判别式"],
+    "question_type": "解方程",
+    "method": ["求根公式", "判别式"],
+    "solution_steps": ["计算判别式", "判断根的情况", "求根"],
+    "math_structure": {
+      "type": "quadratic_equation",
+      "template": "a*x^2 + b*x + c = 0",
+      "variable_count": 1
+    },
+    "difficulty": 2
+  },
+  {
+    "id": "q-0004",
+    "text": "已知 y = -3x^2 + 12x + 1，求 y 的最大值。",
+    "knowledge_points": ["二次函数", "函数最值", "顶点"],
+    "question_type": "求最大值",
+    "method": ["配方法", "顶点式", "判断最值"],
+    "solution_steps": ["识别二次函数", "配成完全平方", "求顶点", "读取最大值"],
+    "math_structure": {
+      "type": "quadratic_function",
+      "template": "y = a*x^2 + b*x + c",
+      "variable_count": 1
+    },
+    "difficulty": 2
+  },
+  {
+    "id": "q-0005",
+    "text": "求函数 f(x) = x^2 - 2x + 5 在区间 [0, 3] 上的最小值。",
+    "knowledge_points": ["二次函数", "函数最值", "区间最值", "对称轴"],
+    "question_type": "求最小值",
+    "method": ["配方法", "顶点式", "讨论区间与对称轴位置"],
+    "solution_steps": ["配成完全平方", "求对称轴", "判断对称轴是否在区间内", "计算最小值"],
+    "math_structure": {
+      "type": "quadratic_function",
+      "template": "y = a*x^2 + b*x + c",
+      "variable_count": 1
+    },
+    "difficulty": 3
+  },
+  {
+    "id": "q-0006",
+    "text": "利用导数求 f(x) = x^3 - 3x 的极小值。",
+    "knowledge_points": ["导数", "函数最值", "极值点"],
+    "question_type": "求最小值",
+    "method": ["导数法", "判断最值"],
+    "solution_steps": ["求导", "解导数为零", "判断单调性", "求极小值"],
+    "math_structure": {
+      "type": "cubic_function",
+      "template": "y = a*x^3 + b*x",
+      "variable_count": 1
+    },
+    "difficulty": 3
+  },
+  {
+    "id": "q-0007",
+    "text": "已知一次函数 y = 2x + 1 在 [1, 4] 上的最小值。",
+    "knowledge_points": ["一次函数", "函数最值", "单调性"],
+    "question_type": "求最小值",
+    "method": ["单调性判断", "端点代入"],
+    "solution_steps": ["判断单调性", "代入左端点", "得到最小值"],
+    "math_structure": {
+      "type": "linear_function",
+      "template": "y = a*x + b",
+      "variable_count": 1
+    },
+    "difficulty": 1
+  },
+  {
+    "id": "q-0008",
+    "text": "某矩形周长为 20，求其面积的最大值。",
+    "knowledge_points": ["二次函数", "函数最值", "应用题建模"],
+    "question_type": "求最大值",
+    "method": ["建立二次函数模型", "配方法", "顶点式"],
+    "solution_steps": ["设边长为 x", "写出面积表达式", "配成完全平方", "读取最大值"],
+    "math_structure": {
+      "type": "quadratic_function",
+      "template": "S = -x^2 + 10*x",
+      "variable_count": 1
+    },
+    "difficulty": 3
+  },
+  {
+    "id": "q-0009",
+    "text": "求 y = 2sin(x) + 1 的最大值和最小值。",
+    "knowledge_points": ["三角函数", "函数最值", "值域"],
+    "question_type": "求最值",
+    "method": ["有界性", "判断最值"],
+    "solution_steps": ["确定 sin(x) 的范围", "线性变换", "读取最值"],
+    "math_structure": {
+      "type": "trigonometric_function",
+      "template": "y = a*sin(x) + b",
+      "variable_count": 1
+    },
+    "difficulty": 2
+  },
+  {
+    "id": "q-0010",
+    "text": "抛物线 y = x^2 - 4x + 7 与直线 y = 3 的交点坐标是什么？",
+    "knowledge_points": ["抛物线", "一元二次方程", "交点"],
+    "question_type": "求交点",
+    "method": ["联立方程", "求根公式"],
+    "solution_steps": ["联立两式", "整理成一元二次方程", "解方程", "写出交点"],
+    "math_structure": {
+      "type": "quadratic_equation",
+      "template": "x^2 - 4x + 4 = 0",
+      "variable_count": 1
+    },
+    "difficulty": 2
+  },
+  {
+    "id": "q-0011",
+    "text": "已知二次函数 y = x^2 + 2mx + 3 的最小值为 -1，求 m 的值。",
+    "knowledge_points": ["二次函数", "函数最值", "顶点", "参数讨论"],
+    "question_type": "求参数值",
+    "method": ["配方法", "顶点式", "列方程求参数"],
+    "solution_steps": ["配成完全平方", "写出顶点纵坐标", "令其等于 -1", "解出 m"],
+    "math_structure": {
+      "type": "quadratic_function",
+      "template": "y = x^2 + 2*m*x + c",
+      "variable_count": 1
+    },
+    "difficulty": 4
+  },
+  {
+    "id": "q-0012",
+    "text": "求二元函数 z = x^2 + y^2 - 2x - 4y 的最小值。",
+    "knowledge_points": ["二次函数", "函数最值", "多元函数"],
+    "question_type": "求最小值",
+    "method": ["配方法", "判断最值"],
+    "solution_steps": ["对 x 配方", "对 y 配方", "读取最小值"],
+    "math_structure": {
+      "type": "quadratic_function",
+      "template": "z = x^2 + y^2 + a*x + b*y",
+      "variable_count": 2
+    },
+    "difficulty": 3
+  }
+]

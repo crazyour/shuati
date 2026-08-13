@@ -1,0 +1,52 @@
+{
+  "encoder": "hashing",
+
+  "weights": {
+    "knowledge_points": 0.35,
+    "method": 0.35,
+    "math_structure": 0.15,
+    "question_type": 0.10,
+    "difficulty": 0.05,
+    "solution_steps": 0.0
+  },
+
+  "set_similarity": {
+    "knowledge_points": { "mode": "query_biased" },
+    "method": { "mode": "query_biased" },
+    "solution_steps": { "mode": "lcs" },
+    "default": { "mode": "f1", "sim_floor": 0.0 }
+  },
+
+  "difficulty": {
+    "scale": 5
+  },
+
+  "structure": {
+    "type_w": 0.5,
+    "form_w": 0.35,
+    "varcount_w": 0.15
+  },
+
+  "recall": {
+    "use_inverted_index": true,
+    "knn_prefilter": 50,
+    "min_pool": 20
+  },
+
+  "ocr": {
+    "backend": "auto",
+    "languages": ["zh-Hans", "en-US"]
+  },
+
+  "llm": {
+    "base_url": "https://agent.minimaxi.com/mavis/api/v1/llm/v1",
+    "model": "MiniMax-M2.7",
+    "api_style": "anthropic",
+    "max_tokens": 4096,
+    "temperature": null,
+    "timeout": 120,
+    "api_key_env": "MINIMAX_API_KEY"
+  },
+
+  "aliases_path": "config/aliases.json"
+}
