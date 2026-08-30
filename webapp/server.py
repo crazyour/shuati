@@ -63,6 +63,19 @@ MAX_UPLOAD_BYTES = 16 * 1024 * 1024
 ALLOWED_IMAGE_SUFFIXES = {".png", ".jpg", ".jpeg", ".webp", ".heic", ".heif", ".gif", ".bmp", ".tiff"}
 
 
+def filename_hierarchy(path: Path) -> tuple[str, str, str]:
+    """从 `年份_一级专攻_二级专攻_题目.json` 提取三级文件名分类。"""
+    stem = path.stem
+    parts = stem.split("_")
+    if parts and parts[0].isdigit() and len(parts) >= 3:
+        primary = parts[1]
+        secondary = parts[2]
+        question = "_".join(parts[3:]) or stem
+        return primary, secondary, question
+    # 不符合新命名法的文件仍可浏览，不把它们丢掉。
+    return stem, "", stem
+
+
 def question_text(q: Question) -> str:
     """结果只显示题目，所以要尽量找到题目原文；实在没有就用考点凑一句。"""
     for key in TEXT_KEYS:
@@ -177,40 +190,30 @@ class Library:
         每个 scope 都按 (科目, 学习, 专业, 学校) 4 段标识，scope.group 是「同一科目」标签。
         """
         tree: List[Dict[str, Any]] = []
-        # 先处理顶层
         for scope in self._state[0]:
             option = scope.as_option()
             parts = scope.key.split("/")
-            if not scope.group:                       # 全部题目 / 默认题库（无 group）
-                tree.append({**option, "children": [], "_parts": parts})
-            else:
-                # scope.group 是科目名；scope.key 是科目/学习[/专业[/学校]]
-                # 找到科目节点（按 key 的第 1 段匹配）
-                subj = parts[0]
-                subj_node = next((n for n in tree if n.get("_parts") == [subj]), None)
-                if subj_node is None:
-                    # 创建新科目节点（先放一个占位，全部在最前）
-                    subj_node = {**option, "label": subj, "children": [], "_parts": [subj]}
-                    tree.append(subj_node)
-                # 在 subj_node 的 children 中放「全部」在最前
-                if len(parts) == 1:
-                    # 科目/全部
-                    subj_node["children"].insert(0, {**option, "label": "全部", "children": []})
-                elif len(parts) == 2:
-                    # 科目/学校
-                    subj_node["children"].append({**option, "label": parts[1], "children": [], "_parts": parts})
-                else:  # 3 段：科目/学校/专攻
-                    school_node = next((n for n in subj_node["children"] if n.get("_parts") == parts[:2]), None)
-                    if school_node is None:
-                        continue
-                    school_node["children"].append({**option, "children": [], "_parts": parts})
-        # 移除内部字段
-        for n in tree:
-            n.pop("_parts", None)
-            for c in n.get("children", []):
-                c.pop("_parts", None)
-                for cc in c.get("children", []):
-                    cc.pop("_parts", None)
+            if not scope.group:
+                tree.append({**option, "children": []})
+                continue
+            siblings = tree
+            for depth, part in enumerate(parts):
+                prefix = "/".join(parts[: depth + 1])
+                child = next((item for item in siblings if item["value"] == prefix), None)
+                if child is None:
+                    child = {
+                        "value": prefix,
+                        "label": part,
+                        "group": scope.group,
+                        "count": option["count"],
+                        "error": None,
+                        "children": [],
+                    }
+                    siblings.append(child)
+                if depth == len(parts) - 1:
+                    child["count"] = option["count"]
+                    child["error"] = option["error"]
+                siblings = child["children"]
         return tree
 
     # ---------- 热加载 ----------
@@ -247,7 +250,7 @@ class Library:
 
     def _build_scopes(self) -> List[Scope]:
         """顺序 = 全部题目 -> 每科目的层级树（全部 → 学校 → 专攻）-> 默认题库。"""
-        # StructuredPath = (subject, school, senkou)，取第一项比较 hidden
+        # StructuredPath = (subject, school, filename)，取第一项比较 hidden
         all_files = [p for (subj, _, _), p in structured_files(ALL_SUBJECTS, self.data_root)
                      if subj not in self.hidden]
         scopes = [self._load_scope(ALL_SUBJECTS, "全部题目", all_files)]
@@ -263,10 +266,7 @@ class Library:
         return scopes
 
     def _subject_scopes(self, subject: str) -> List[Scope]:
-        """一个科目 -> 3 级 scope：
-
-        科目 → 科目/学校 → 科目/学校/专攻
-        """
+        """一个科目 -> 学校 -> 一级专攻 -> 二级专攻 -> 题目。"""
         paths = [p for _, p in structured_files(subject, self.data_root)]
         if not paths:
             return []
@@ -282,12 +282,22 @@ class Library:
             school_paths = [p for ((_, sc, _), p) in structured_files(subject, self.data_root) if sc == school]
             school_q = load_question_files(school_paths, self.aliases, base=self.data_root)
             scopes.append(Scope(f"{subject}/{school}", f"{school}", subject, school_q))
-            for senkou in list_senkou(subject, school, self.data_root):
-                senkou_paths = [p for ((_, sc, sk), p) in structured_files(subject, self.data_root)
-                                 if sc == school and sk == senkou]
-                senkou_q = load_question_files(senkou_paths, self.aliases, base=self.data_root)
-                scopes.append(Scope(f"{subject}/{school}/{senkou}",
-                                      f"{senkou}", subject, senkou_q))
+            grouped: Dict[tuple[str, str], List[Path]] = {}
+            for path in school_paths:
+                primary, secondary, _ = filename_hierarchy(path)
+                grouped.setdefault((primary, secondary), []).append(path)
+            for (primary, secondary), category_paths in sorted(grouped.items()):
+                primary_key = f"{subject}/{school}/{primary}"
+                scopes.append(Scope(primary_key, primary, subject,
+                                    load_question_files(category_paths, self.aliases, base=self.data_root)))
+                secondary_key = f"{primary_key}/{secondary or primary}"
+                scopes.append(Scope(secondary_key, secondary or primary, subject,
+                                    load_question_files(category_paths, self.aliases, base=self.data_root)))
+                for path in sorted(category_paths):
+                    _, _, question = filename_hierarchy(path)
+                    question_key = f"{secondary_key}/{question}"
+                    scopes.append(Scope(question_key, question, subject,
+                                        load_question_files([path], self.aliases, base=self.data_root)))
         return scopes
 
     def _load_scope(self, key: str, label: str, paths: List[Path]) -> Scope:
@@ -501,10 +511,14 @@ def create_app(
         subject, failure = resolve_subject(payload.get("subject"))
         if failure:
             return jsonify(failure[0]), failure[1]
+        # 题目 ID 从当前下拉层级定位；相似题则提升到当前科目，避免只在当前文件中排除自身后变成 0 条。
         query = next((q for q in library.questions(subject) if q.qid == qid), None)
+        search_subject = subject.split("/")[0] if "/" in subject else subject
+        if query is None and search_subject != subject:
+            query = next((q for q in library.questions(search_subject) if q.qid == qid), None)
         if query is None:
             return jsonify({"error": "题目不存在或不属于当前检索范围。"}), 404
-        return jsonify(run_match(query, payload.get("topk"), subject, payload.get("min_score")))
+        return jsonify(run_match(query, payload.get("topk"), search_subject, payload.get("min_score")))
 
     @app.post("/api/match-image")
     def api_match_image():

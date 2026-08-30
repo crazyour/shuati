@@ -3,13 +3,17 @@ const backend = String(window.BACKEND_URL || "").replace(/\/$/, "").replace(/\/a
 const $ = (id) => document.getElementById(id);
 const subjectEl = $("subject");
 const schoolEl = $("school");
-const senkouEl = $("senkou");
+const facultyEl = $("faculty");
+const majorEl = $("major");
+const questionEl = $("question");
 const schoolWrap = $("school-wrap");
-const senkouWrap = $("senkou-wrap");
+const facultyWrap = $("faculty-wrap");
+const majorWrap = $("major-wrap");
+const questionWrap = $("question-wrap");
 const questionList = $("questions");
 const cache = new Map();
 let tree = [];
-let current = { subject: "", school: "", senkou: "" };
+let current = { subject: "", school: "", faculty: "", major: "", question: "" };
 let selectedQuestionId = "";
 
 function api(path) { return `${backend}${path}`; }
@@ -32,16 +36,18 @@ function populateFilters() {
   const subjects = tree.filter((item) => Array.isArray(item.children) && item.children.length);
   setOptions(subjectEl, subjects, current.subject);
   current.subject = subjectEl.value;
-  const subjectNode = node(current.subject);
-  const schools = (subjectNode?.children || []).filter((item) => item.label !== "全部");
-  setOptions(schoolEl, schools.map((item) => ({ ...item, value: item.value.split("/").slice(1).join("/") })), current.school);
-  current.school = schoolEl.value;
-  const schoolNode = (subjectNode?.children || []).find((item) => item.value.endsWith("/" + current.school));
-  const senkous = (schoolNode?.children || []).filter((item) => item.label !== "全部");
-  setOptions(senkouEl, senkous.map((item) => ({ ...item, value: item.value.split("/").slice(2).join("/") })), current.senkou);
-  current.senkou = senkouEl.value;
-  schoolWrap.hidden = !schools.length;
-  senkouWrap.hidden = !senkous.length;
+  const levels = [[schoolEl, schoolWrap, "school"], [facultyEl, facultyWrap, "faculty"], [majorEl, majorWrap, "major"], [questionEl, questionWrap, "question"]];
+  let parent = node(current.subject);
+  let prefix = current.subject;
+  levels.forEach(([select, wrap, key]) => {
+    const options = (parent?.children || []).filter((item) => item.label !== "全部");
+    const mapped = options.map((item) => ({ ...item, value: item.value.slice(prefix.length + 1) }));
+    setOptions(select, mapped, current[key]);
+    current[key] = select.value;
+    wrap.hidden = !options.length;
+    parent = options.find((item) => item.value === `${prefix}/${current[key]}`);
+    prefix = parent?.value || `${prefix}/${current[key]}`;
+  });
 }
 function paragraphs(text) { return String(text || "").split(/\n+/).map((part) => part.trim()).filter(Boolean); }
 function openDrawer() { $("drawer").hidden = false; $("backdrop").hidden = false; }
@@ -107,9 +113,11 @@ async function init() {
   tree = data.tree || [];
   populateFilters(); await loadQuestions();
 }
-subjectEl.onchange = () => { current = { subject: subjectEl.value, school: "", senkou: "" }; populateFilters(); loadQuestions().catch(showError); };
-schoolEl.onchange = () => { current.school = schoolEl.value; current.senkou = ""; populateFilters(); loadQuestions().catch(showError); };
-senkouEl.onchange = () => { current.senkou = senkouEl.value; loadQuestions().catch(showError); };
+subjectEl.onchange = () => { current = { subject: subjectEl.value, school: "", faculty: "", major: "", question: "" }; populateFilters(); loadQuestions().catch(showError); };
+schoolEl.onchange = () => { current.school = schoolEl.value; current.faculty = ""; current.major = ""; current.question = ""; populateFilters(); loadQuestions().catch(showError); };
+facultyEl.onchange = () => { current.faculty = facultyEl.value; current.major = ""; current.question = ""; populateFilters(); loadQuestions().catch(showError); };
+majorEl.onchange = () => { current.major = majorEl.value; current.question = ""; populateFilters(); loadQuestions().catch(showError); };
+questionEl.onchange = () => { current.question = questionEl.value; loadQuestions().catch(showError); };
 $("close").onclick = closeDrawer; $("backdrop").onclick = closeDrawer;
 $("rerun").onclick = () => { if (selectedQuestionId) findSimilar(selectedQuestionId); };
 function showError(error) { $("empty").textContent = error.message; $("empty").hidden = false; }
