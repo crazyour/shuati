@@ -21,7 +21,7 @@
         <label id="question-wrap" hidden>题目<select id="question"></select></label>
       </aside>
       <section>
-        <div class="panel summary"><span id="scope"></span><span id="count"></span></div>
+        <div class="panel summary"><span id="scope"></span><span id="count"></span><button id="reopen" type="button" hidden>查看上次相似题</button></div>
         <p id="empty" class="empty" hidden></p>
         <ol id="questions" class="questions"></ol>
       </section>
@@ -31,8 +31,8 @@
     <button id="close" class="close" type="button">×</button>
     <h2>相似题目</h2>
     <p id="similar-status" class="muted"></p>
-    <label class="threshold">相似度阈值
-      <input id="threshold" type="number" min="0" max="1" step="0.05" value="0.35">
+    <label class="threshold">返回题目数
+      <input id="result-count" type="number" min="1" max="50" step="1" value="5">
       <button id="rerun" type="button">重新检索</button>
     </label>
     <ol id="similar" class="similar"></ol>

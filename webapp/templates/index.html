@@ -31,9 +31,17 @@
             <label for="browse-school">学校</label>
             <select id="browse-school" disabled></select>
           </div>
-          <div class="field" id="browse-senkou-block" hidden>
-            <label for="browse-senkou">专攻</label>
-            <select id="browse-senkou" disabled></select>
+          <div class="field" id="browse-faculty-block" hidden>
+            <label for="browse-faculty">学院</label>
+            <select id="browse-faculty" disabled></select>
+          </div>
+          <div class="field" id="browse-major-block" hidden>
+            <label for="browse-major">专攻</label>
+            <select id="browse-major" disabled></select>
+          </div>
+          <div class="field" id="browse-question-block" hidden>
+            <label for="browse-question">题目</label>
+            <select id="browse-question" disabled></select>
           </div>
         </aside>
 
@@ -42,6 +50,7 @@
             <div class="browse-summary">
               <span id="browse-scope" class="tag"></span>
               <span id="browse-count"></span>
+              <button type="button" id="reopen-similar" class="link" hidden>查看上次相似题</button>
             </div>
           </div>
 
@@ -60,17 +69,13 @@
         <button type="button" id="close-similar" class="drawer-close" aria-label="关闭">×</button>
       </div>
       <p id="similar-status" class="drawer-status" hidden></p>
-      <label class="drawer-threshold">相似度阈值
-        <input id="similar-threshold" type="number" min="0" max="1" step="0.05" value="0.35">
+      <label class="drawer-threshold">返回题目数
+        <input id="similar-count" type="number" min="1" max="50" step="1" value="5">
         <button type="button" id="rerun-similar" class="jump-button">重新检索</button>
       </label>
       <ol id="similar-results" class="similar-results"></ol>
     </aside>
     <div id="similar-backdrop" class="similar-backdrop" hidden></div>
-
-    <footer>
-      题库 · {{ subject_count }} 个科目 / 共 {{ total_count }} 题 · 阈值 {{ default_min_score }}
-    </footer>
   </main>
 
   <script id="example-json" type="application/json">{{ example | safe }}</script>

@@ -3,8 +3,12 @@ const el = (id) => document.getElementById(id);
 const browseSubjectEl = el("browse-subject");
 const browseSchoolEl = el("browse-school");
 const browseSchoolBlockEl = el("browse-school-block");
-const browseSenkouEl = el("browse-senkou");
-const browseSenkouBlockEl = el("browse-senkou-block");
+const browseFacultyEl = el("browse-faculty");
+const browseFacultyBlockEl = el("browse-faculty-block");
+const browseMajorEl = el("browse-major");
+const browseMajorBlockEl = el("browse-major-block");
+const browseQuestionEl = el("browse-question");
+const browseQuestionBlockEl = el("browse-question-block");
 const browseScopeEl = el("browse-scope");
 const browseCountEl = el("browse-count");
 const browseListEl = el("browse-list");
@@ -13,7 +17,9 @@ const browseEmptyEl = el("browse-empty");
 let scopeTree = JSON.parse(el("scope-tree").textContent || "[]");
 let browseSubject = "__all__";// 当前选中的科目（"__all__" 或科目名，如 "线性代数"）
 let browseSchool = "";        // 当前选中的学校（"" = 全部）
-let browseSenkou = "";        // 当前选中的专攻（"" = 全部）
+let browseFaculty = "";
+let browseMajor = "";
+let browseQuestion = "";
 let browseReady = false;      // 是否已经点过专攻（页面打开时默认 false，点了专攻才 fetch）
 
 // ?subject=线性代数/九州大学 可以直接带着范围打开
@@ -75,7 +81,7 @@ function schoolExists(subjectValue, schoolLabel) {
 function apiSubjectParam() {
   // 拼成 API 接受的 subject 字符串：__all__ / 科目[/学校[/专攻]]
   if (browseSubject === "__all__") return "__all__";
-  const parts = [browseSubject, browseSchool, browseSenkou].filter((p) => p !== "");
+  const parts = [browseSubject, browseSchool, browseFaculty, browseMajor, browseQuestion].filter((p) => p !== "");
   return parts.join("/");
 }
 
@@ -104,53 +110,29 @@ function populateBrowseSubject() {
   browseSubjectEl.disabled = browseSubjectEl.options.length === 0;
 }
 
-// 学校下拉：根据当前科目筛选
+// 四级下拉：学校 → 学院 → 专攻 → 题目
 function populateBrowseSchool() {
-  browseSchoolEl.replaceChildren();
-  const subjNode = findNode(browseSubject);
-  const schools = isSubjectNode(subjNode) ? subjNode.children.filter((c) => c.label !== "全部") : [];
-  schools.forEach((schoolNode) => {
-    const opt = document.createElement("option");
-    opt.value = schoolNode.value.split("/").slice(1).join("/");
-    opt.textContent = `${schoolNode.label}（${schoolNode.count}）`;
-    browseSchoolEl.appendChild(opt);
+  const levels = [[browseSchoolEl, browseSchoolBlockEl, "school"], [browseFacultyEl, browseFacultyBlockEl, "faculty"], [browseMajorEl, browseMajorBlockEl, "major"], [browseQuestionEl, browseQuestionBlockEl, "question"]];
+  const selected = [browseSchool, browseFaculty, browseMajor, browseQuestion];
+  let parent = findNode(browseSubject);
+  let prefix = browseSubject;
+  levels.forEach(([select, block], index) => {
+    const options = (parent?.children || []).filter((c) => c.label !== "全部");
+    select.replaceChildren(...options.map((item) => {
+      const option = document.createElement("option");
+      option.value = item.value.slice(prefix.length + 1);
+      option.textContent = `${item.label}（${item.count}）`;
+      return option;
+    }));
+    const values = [...select.options].map((option) => option.value);
+    select.value = values.includes(selected[index]) ? selected[index] : (values[0] || "");
+    selected[index] = select.value;
+    select.disabled = !values.length;
+    block.hidden = !values.length;
+    parent = options.find((item) => item.value === `${prefix}/${select.value}`);
+    prefix = parent?.value || `${prefix}/${select.value}`;
   });
-  const available = [...browseSchoolEl.options].map((o) => o.value);
-  browseSchoolEl.value = available.includes(browseSchool) ? browseSchool : (available[0] || "");
-  browseSchool = browseSchoolEl.value;
-  browseSchoolEl.disabled = browseSchoolEl.options.length === 0;
-  browseSchoolBlockEl.hidden = browseSchoolEl.options.length === 0;
-}
-
-// 专攻下拉：根据当前 (科目, 学校) 筛选
-function populateBrowseSenkou() {
-  browseSenkouEl.replaceChildren();
-  if (!browseSchool) {
-    browseSenkouBlockEl.hidden = true;
-    return;
-  }
-  const subjNode = findNode(browseSubject);
-  if (!subjNode || !isSubjectNode(subjNode)) {
-    browseSenkouBlockEl.hidden = true;
-    return;
-  }
-  const schoolNode = subjNode.children.find((c) => c.value.endsWith("/" + browseSchool));
-  if (!schoolNode) {
-    browseSenkouBlockEl.hidden = true;
-    return;
-  }
-  const senkou_list = schoolNode.children.filter((c) => c.label !== "全部");
-  senkou_list.forEach((senkouNode) => {
-    const opt = document.createElement("option");
-    opt.value = senkouNode.value.split("/").slice(2).join("/");
-    opt.textContent = `${senkouNode.label}（${senkouNode.count}）`;
-    browseSenkouEl.appendChild(opt);
-  });
-  const available = [...browseSenkouEl.options].map((o) => o.value);
-  browseSenkouEl.value = available.includes(browseSenkou) ? browseSenkou : (available[0] || "");
-  browseSenkou = browseSenkouEl.value;
-  browseSenkouEl.disabled = browseSenkouEl.options.length === 0;
-  browseSenkouBlockEl.hidden = browseSenkouEl.options.length === 0;
+  [browseSchool, browseFaculty, browseMajor, browseQuestion] = selected;
 }
 
 // 用户没选完时，右侧显示提示而不调 API
@@ -165,12 +147,11 @@ function showBrowsePrompt(text) {
 function selectBrowseSubject(value) {
   browseSubject = value;
   browseSchool = "";
-  browseSenkou = "";
+  browseFaculty = browseMajor = browseQuestion = "";
   populateBrowseSchool();
-  populateBrowseSenkou();
   updateUrl();
   // 选完科目后自动选中第一个专攻 → 立即 fetch
-  if (browseSenkou) {
+  if (browseQuestion) {
     browseReady = true;
     fetchBrowse();
   } else {
@@ -180,10 +161,10 @@ function selectBrowseSubject(value) {
 
 function selectBrowseSchool(value) {
   browseSchool = value;
-  browseSenkou = "";
-  populateBrowseSenkou();
+  browseFaculty = browseMajor = browseQuestion = "";
+  populateBrowseSchool();
   updateUrl();
-  if (browseSenkou) {
+  if (browseQuestion) {
     browseReady = true;
     fetchBrowse();
   } else {
@@ -191,8 +172,26 @@ function selectBrowseSchool(value) {
   }
 }
 
-function selectBrowseSenkou(value) {
-  browseSenkou = value;
+function selectBrowseFaculty(value) {
+  browseFaculty = value;
+  browseMajor = browseQuestion = "";
+  populateBrowseSchool();
+  browseReady = Boolean(browseQuestion);
+  updateUrl();
+  if (browseQuestion) fetchBrowse(); else showBrowsePrompt();
+}
+
+function selectBrowseMajor(value) {
+  browseMajor = value;
+  browseQuestion = "";
+  populateBrowseSchool();
+  browseReady = Boolean(browseQuestion);
+  updateUrl();
+  if (browseQuestion) fetchBrowse(); else showBrowsePrompt();
+}
+
+function selectBrowseQuestion(value) {
+  browseQuestion = value;
   browseReady = true;
   updateUrl();
   fetchBrowse();
@@ -315,7 +314,7 @@ async function refreshScope() {
     if (!scopeTree.some((n) => n.value === browseSubject)) browseSubject = "";
     populateBrowseSubject();
     populateBrowseSchool();
-    populateBrowseSenkou();
+    populateBrowseSchool();
     if (browseReady) fetchBrowse(); else showBrowsePrompt();
   } catch (err) {
     /* 拿不到就保持现状 */
@@ -507,9 +506,10 @@ async function match() {
 
 const similarCache = new Map();
 let similarSourceId = "";
+let lastSimilar = null;
 
 function similarCacheKey(question) {
-  return JSON.stringify([apiSubjectParam(), question.id, Number(el("similar-threshold").value)]);
+  return JSON.stringify([apiSubjectParam(), question.id, Number(el("similar-count").value)]);
 }
 
 function openSimilarDrawer() {
@@ -525,12 +525,14 @@ function closeSimilarDrawer() {
 }
 
 function renderSimilar(data, source) {
+  lastSimilar = { data, source };
+  el("reopen-similar").hidden = false;
   const list = el("similar-results");
   const status = el("similar-status");
   const matches = data.matches || [];
   list.replaceChildren();
   el("similar-scope").textContent = `${source.id} · ${data.subject_label || "题库"}`;
-  status.textContent = matches.length ? `按相似度从高到低，共 ${matches.length} 题` : "没有找到达到阈值的相似题目。";
+  status.textContent = matches.length ? `按相似度从高到低，共 ${matches.length} 题` : "没有找到相似题目。";
   status.hidden = false;
   matches.forEach((match, index) => {
     const item = document.createElement("li");
@@ -570,7 +572,8 @@ function renderSimilar(data, source) {
 async function findSimilar(question) {
   openSimilarDrawer();
   similarSourceId = question.id;
-  const threshold = Number(el("similar-threshold").value);
+  const topk = Math.max(1, Math.min(50, Number(el("similar-count").value) || 5));
+  el("similar-count").value = topk;
   const key = similarCacheKey(question);
   const cached = similarCache.get(key);
   if (cached) {
@@ -585,7 +588,7 @@ async function findSimilar(question) {
     const { ok, data } = await post("/api/similar", {
       method: "POST",
       headers: { "Content-Type": "application/json" },
-      body: JSON.stringify({ id: question.id, subject: apiSubjectParam(), topk: 5, min_score: threshold }),
+      body: JSON.stringify({ id: question.id, subject: apiSubjectParam(), topk, min_score: 0 }),
     });
     if (!ok) throw new Error(data.error || "匹配失败。");
     similarCache.set(key, data);
@@ -600,6 +603,9 @@ el("close-similar").addEventListener("click", closeSimilarDrawer);
 el("similar-backdrop").addEventListener("click", closeSimilarDrawer);
 el("rerun-similar").addEventListener("click", () => {
   if (similarSourceId) findSimilar({ id: similarSourceId });
+});
+el("reopen-similar").addEventListener("click", () => {
+  if (lastSimilar) { openSimilarDrawer(); renderSimilar(lastSimilar.data, lastSimilar.source); }
 });
 
 window.addEventListener("focus", refreshScope);
@@ -627,11 +633,15 @@ if (wanted) {
       const parts = wanted.split("/");
       const subj = parts[0];
       const school = parts[1] || "";
-      const senkou = parts[2] || "";
+      const faculty = parts[2] || "";
+      const major = parts[3] || "";
+      const question = parts[4] || "";
       if (scopeTree.some((n) => n.value === subj)) {
         browseSubject = subj;
         browseSchool = school;
-        browseSenkou = senkou;
+        browseFaculty = faculty;
+        browseMajor = major;
+        browseQuestion = question;
         if (senkou) browseReady = true;
       }
     } else if (scopeTree.some((n) => n.value === wanted)) {
@@ -644,10 +654,11 @@ const wantedYear = urlParams.get("year");
 
 browseSubjectEl.addEventListener("change", () => selectBrowseSubject(browseSubjectEl.value));
 browseSchoolEl.addEventListener("change", () => selectBrowseSchool(browseSchoolEl.value));
-browseSenkouEl.addEventListener("change", () => selectBrowseSenkou(browseSenkouEl.value));
+browseFacultyEl.addEventListener("change", () => selectBrowseFaculty(browseFacultyEl.value));
+browseMajorEl.addEventListener("change", () => selectBrowseMajor(browseMajorEl.value));
+browseQuestionEl.addEventListener("change", () => selectBrowseQuestion(browseQuestionEl.value));
 
 populateBrowseSubject();
 populateBrowseSchool();
-populateBrowseSenkou();
-if (browseSenkou && browseReady) fetchBrowse(); else showBrowsePrompt();
+if (browseQuestion && browseReady) fetchBrowse(); else showBrowsePrompt();
 updateUrl();
