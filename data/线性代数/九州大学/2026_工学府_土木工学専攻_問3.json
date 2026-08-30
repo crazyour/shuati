@@ -1,0 +1,51 @@
+{
+  "id": "2026_工学府_土木工学専攻_問3",
+  "school": "九州大学",
+  "year": 2026,
+  "subject": "工学府_土木工学専攻_問3",
+  "text": "回答下列 (1) 和 (2) 的问题。（25 分）\n\n(1) 求下列矩阵 $A$ 的逆矩阵。其中 $a, b, c$ 为实数。\n$$A = \\begin{pmatrix} 1 & 0 & 0 & 0 \\\\ a & 1 & 0 & 0 \\\\ 0 & b & 1 & 0 \\\\ 0 & 0 & c & 4 \\end{pmatrix}$$\n\n(2) 对矩阵 $B = \\begin{pmatrix} 5 & -1 & 1 \\\\ 2 & -1 & 2 \\\\ 3 & 4 & -1 \\\\ -1 & 1 & 9 \\end{pmatrix}$，回答下列 ①、② 问题：\n\n① 求 $B$ 的所有特征值（注：B 是 4×3 矩阵，按 $B^T B$ 求特征值）。\n\n② 对①中求出的最大特征值，求对应的单位（归一化）特征向量。",
+  "knowledge_points": [
+    "线性代数",
+    "下三角矩阵",
+    "逆矩阵",
+    "特征值",
+    "特征向量",
+    "归一化"
+  ],
+  "question_type": "下三角矩阵的逆矩阵与4阶矩阵的特征值",
+  "method": [
+    "对 (1)：下三角矩阵的逆矩阵也是下三角，逐行求解",
+    "对 (2)：计算 B^T B 求特征值，再求最大特征值的特征向量并归一化"
+  ],
+  "solution_steps": [
+    "对 (1)：用行变换法或伴随矩阵法求下三角矩阵的逆矩阵",
+    "对 (2)：计算 det(B^T B - λI) 求特征值，再求最大特征值的特征向量"
+  ],
+  "math_structure": {
+    "type": "lower_triangular_inverse_eigenvalue_problem",
+    "template": "A^{-1} for lower triangular A; det(B^T B - λI)=0; normalize eigenvector",
+    "variable_count": 4
+  },
+  "difficulty": 4,
+  "answer": [
+    {
+      "label": "(1) 求 $A^{-1}$",
+      "steps": [
+        "利用下三角矩阵逐列回代，得到 $A^{-1}=\\begin{pmatrix}1 & 0 & 0 & 0 \\\\ -a & 1 & 0 & 0 \\\\ ab & -b & 1 & 0 \\\\ -abc/4 & bc/4 & -c/4 & 1/4\\end{pmatrix}$。直接相乘可验证 $AA^{-1}=I$。"
+      ]
+    },
+    {
+      "label": "(2)① 求 $B^{\\mathsf T}B$ 的特征值",
+      "steps": [
+        "由于 $B$ 是$4\\times 3$矩阵，按题目注释计算 $B^{\\mathsf T}B=\\begin{pmatrix}39 & 4 & -3 \\\\ 4 & 19 & 2 \\\\ -3 & 2 & 87\\end{pmatrix}$。",
+        "其特征多项式为 $\\lambda ^{3}-145\\lambda ^{2}+5758\\lambda -62700$。三个特征值数值为 $18.13621586$、$39.63202010$、$87.23176404$。"
+      ]
+    },
+    {
+      "label": "(2)② 最大特征值对应的单位特征向量",
+      "steps": [
+        "最大特征值 $\\lambda _max\\approx 87.23176404$。解 $(B^{\\mathsf T}B-\\lambda _max I)v=0$ 并归一化，可取 $v\\approx (-0.05993287,0.02573596,0.99787059)^{\\mathsf T}$。其相反数同样是正确答案。"
+      ]
+    }
+  ]
+}

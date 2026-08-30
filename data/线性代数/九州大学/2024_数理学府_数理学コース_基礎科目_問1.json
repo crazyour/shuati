@@ -1,0 +1,47 @@
+{
+  "id": "2024_数理学府_数理学コース_基礎科目_問1",
+  "school": "九州大学",
+  "year": 2024,
+  "subject": "数理学府_数理学コース_基礎科目_問1",
+  "text": "设 $a \\in \\mathbb{R}$，$A = \\begin{pmatrix} a & a & 1 \\\\ a & 1 & a \\\\ 1 & a & a \\end{pmatrix}$。回答下列问题。\n\n(1) 求 $A$ 的所有特征值。\n\n(2) 选择 $a$ 使得 $A$ 的特征值为 $3, -3, -3$。用正交矩阵对角化 $A$。",
+  "knowledge_points": [
+    "线性代数",
+    "特征值",
+    "特征向量",
+    "正交矩阵",
+    "对角化",
+    "对称矩阵"
+  ],
+  "question_type": "对称矩阵的特征值与正交对角化",
+  "method": [
+    "利用行和构造第一特征向量",
+    "利用对称性构造其他特征向量",
+    "Gram-Schmidt 正交化",
+    "实对称矩阵的正交对角化"
+  ],
+  "solution_steps": [
+    "对 (1)：构造特征向量求特征值",
+    "对 (2)：根据特征值反推 a，构造正交矩阵"
+  ],
+  "math_structure": {
+    "type": "symmetric_matrix_orthogonal_diagonalization_problem",
+    "template": "A=Q diag(λ1,λ2,λ3) Q^T with Q orthogonal",
+    "variable_count": 2
+  },
+  "difficulty": 3,
+  "answer": [
+    {
+      "label": "(1) 求所有特征值",
+      "steps": [
+        "特征多项式可分解为 $(\\lambda -(1-a))(\\lambda -(a-1))(\\lambda -(2a+1))$。因此特征值为 $1-a$、$a-1$、$2a+1$（按重数计）。"
+      ]
+    },
+    {
+      "label": "(2) 选择 $a$ 并正交对角化",
+      "steps": [
+        "目标特征值之和为$-3$，而 $\\operatorname{tr}(A)=2a+1$，所以 $a=-2$。此时特征值为$3$、$-3$、$-3$。",
+        "取 $q_{1}=(1,-2,1)^{\\mathsf T}/\\sqrt{6}$（特征值$3$），$q_{2}=(-1,0,1)^{\\mathsf T}/\\sqrt{2}$、$q_{3}=(1,1,1)^{\\mathsf T}/\\sqrt{3}$（均对应$-3$）。令 $Q=(q_{1},q_{2},q_{3})$，则 $Q^{\\mathsf T}Q=I$，且 $Q^{\\mathsf T}AQ=\\operatorname{diag}(3,-3,-3)$。"
+      ]
+    }
+  ]
+}

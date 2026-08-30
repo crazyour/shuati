@@ -1,0 +1,60 @@
+{
+  "id": "2022_数理学府_MMAコース_問4",
+  "school": "九州大学",
+  "year": 2022,
+  "subject": "数理学府_MMAコース_問4",
+  "text": "独立重复进行获胜概率为 $\\theta \\in (0,1)$ 的游戏。设 $X$ 为首次获胜前已输的次数，$Y = \\cos(\\pi X / 2)$。回答下列问题。\n\n(1) 求 $X$ 的分布。\n\n(2) 求 $Y$ 的分布。\n\n(3) 求 $Y$ 的期望。",
+  "knowledge_points": [
+    "概率统计",
+    "几何分布",
+    "离散随机变量变换",
+    "期望"
+  ],
+  "question_type": "几何分布及其三角函数变换",
+  "method": [
+    "几何分布",
+    "离散变换",
+    "三角恒等式",
+    "期望计算"
+  ],
+  "solution_steps": [
+    "(1) X~Geometric(θ), P(X=k)=(1-θ)^k θ, k=0,1,2,...",
+    "(2) Y 取值 ±1, 0",
+    "(3) E[Y] = Σ P(Y=y) y"
+  ],
+  "math_structure": {
+    "type": "geometric_distribution_transform",
+    "template": "X~Geometric(θ); Y=g(X); E[Y]=Σg(k)P(X=k)",
+    "variable_count": 1
+  },
+  "difficulty": 2,
+  "answer": [
+    {
+      "label": "(1) X 的分布",
+      "steps": [
+        "$X$ 服从参数 $\\theta$ 的几何分布：$P(X=k) = (1-\\theta)^k \\theta$，$k=0,1,2,\\ldots$。"
+      ]
+    },
+    {
+      "label": "(2) Y 的分布",
+      "steps": [
+        "$Y = \\cos(\\pi X / 2)$：当 $X=0$ 时 $Y=1$；当 $X=1$ 时 $Y=0$；当 $X=2$ 时 $Y=-1$；当 $X=3$ 时 $Y=0$；... 周期 $4$。",
+        "$P(Y=1) = P(X=0) = \\theta$",
+        "$P(Y=0) = P(X \\in \\{1,3\\}) = \\theta(1-\\theta) + \\theta(1-\\theta)^3 = \\theta(1-\\theta)(1+(1-\\theta)^2)$",
+        "$P(Y=-1) = P(X=2) + P(X=6) + P(X=10) + \\ldots = \\theta(1-\\theta)^2 / (1 - (1-\\theta)^4)$",
+        "化简：$1-(1-\\theta)^4 = \\theta(4-6\\theta+4\\theta^2-\\theta^3)$，",
+        "$P(Y=-1) = \\theta(1-\\theta)^2 / (\\theta(4-6\\theta+4\\theta^2-\\theta^3)) = (1-\\theta)^2 / (4-6\\theta+4\\theta^2-\\theta^3)$"
+      ]
+    },
+    {
+      "label": "(3) E[Y]",
+      "steps": [
+        "$E[Y] = 1 \\cdot P(Y=1) + 0 \\cdot P(Y=0) + (-1) \\cdot P(Y=-1)$",
+        "$= \\theta - (1-\\theta)^2 / (4-6\\theta+4\\theta^2-\\theta^3)$",
+        "或更简单：$E[Y] = E[\\cos(\\pi X/2)]$。利用 $\\cos(\\pi X/2) = \\text{Re}(e^{i\\pi X/2})$，",
+        "$E[e^{i\\pi X/2}] = \\sum_{k=0}^\\infty e^{ik\\pi/2} (1-\\theta)^k \\theta = \\theta \\sum (e^{i\\pi/2}(1-\\theta))^k = \\theta / (1 - e^{i\\pi/2}(1-\\theta))$ 当 $|1-\\theta| < 1$。",
+        "化简后取实部即得 $E[Y]$。"
+      ]
+    }
+  ]
+}

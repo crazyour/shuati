@@ -1,0 +1,67 @@
+{
+  "id": "2025_経済学府_経済工学専攻_第2期_計量経済学",
+  "school": "九州大学",
+  "year": 2025,
+  "subject": "経済学府_経済工学専攻_第2期_計量経済学",
+  "text": "从以下两题中选一题作答。\n\n问题 1：对储蓄与所得的关系感兴趣。用家庭数据估计储蓄函数（$S_i$ 为被解释变量，$Y_i$ 为解释变量）。\n\n(1) 回归式 $S_i = \\beta_0 + \\beta_1 Y_i + u_i$ 中，误差项 $u_i = \\varepsilon_i Y_i$（$\\varepsilon_i$ 随机变量，$E[\\varepsilon_i] = 0$，$\\text{Var}(\\varepsilon_i) = \\sigma_\\varepsilon^2$ 常数，且 $\\varepsilon_i$ 与 $Y_i$ 独立）。证明 $E[u_i | Y_i] = 0$，$\\text{Var}(u_i | Y_i) = \\sigma_\\varepsilon^2 Y_i^2$。\n\n(2) (1) 的结果表明误差项方差是解释变量的函数。这对 $\\beta_1$ 的 OLS 估计量及其标准误的性质有何影响？\n\n(3) 当 (2) 的影响成为问题时，可考虑哪些应对方法？\n\n(4) 个人 $i$ 的时间偏好（现在与未来的相对权重）用 $T_i$ 表示。储蓄取决于时间偏好但 $T_i$ 不能直接观测。这种遗漏变量在估计所得对储蓄的因果效应时会产生什么问题？\n\n(5) 父亲的死亡用虚拟变量 $D_i$ 表示（父亲去世为 1）。父亲死亡与个人时间偏好无关但因遗产可能与所得相关。此时如何用 $D_i$ 估计所得对储蓄的因果效应？\n\n(6) (5) 中估计的因果效应是对什么人的效应？\n\n问题 2：考虑以下条件异方差模型：\n$e_t = w_0 + w_1 e_{t-1}$，其中 $w_t$ 是方差 1 的白噪声，$e_t$ 与 $e_{t-1}$ 独立，$w_0 > 0$，$0 < w_1 < 1$。\n\n(1) 计算 $\\{e_t\\}$ 的无条件期望 $E[e_t]$。\n\n(2) 计算 $\\{e_t\\}$ 的无条件方差 $\\text{Var}(e_t)$。\n\n(3) 计算 $\\{e_t\\}$ 的自协方差 $\\text{Cov}(e_t, e_{t-j})$（$j \\geq 0$）。\n\n(4) 求在 $t-1$ 信息下 $\\{e_t\\}$ 的条件期望 $E[e_t | e_{t-1}]$。\n\n(5) 求条件方差 $\\text{Var}(e_t | e_{t-1})$。\n\n(6) 若 $w_0 > 0$ 或 $0 < w_1 < 1$ 不满足，会有什么问题？",
+  "knowledge_points": [
+    "概率统计",
+    "异方差",
+    "工具变量",
+    "ARCH",
+    "因果效应",
+    "遗漏变量",
+    "Zellner 回归"
+  ],
+  "question_type": "异方差回归与 ARCH 模型",
+  "method": [
+    "条件期望/方差",
+    "White稳健标准误",
+    "工具变量法",
+    "GARCH 模型"
+  ],
+  "solution_steps": [
+    "对 (1)：条件期望和方差",
+    "对 (2)：异方差 → 标准误错误",
+    "对 (3)：WLS/GLS",
+    "对 (4)：遗漏变量 → 偏误",
+    "对 (5)：IV 估计",
+    "对 (6)：LATE",
+    "对 (1-3)：ARCH 性质",
+    "对 (4-5)：ARCH 条件期望/方差",
+    "对 (6)：ARCH 平稳性"
+  ],
+  "math_structure": {
+    "type": "heteroskedasticity_arch_model",
+    "template": "Var(u|Y)=σ²Y²; GLS; ARCH(1): e_t=w_0+w_1 e_{t-1}+v_t",
+    "variable_count": 4
+  },
+  "difficulty": 4,
+  "answer": [
+    {
+      "label": "问题 $1$",
+      "steps": [
+        "(1) $E[u_i | Y_i] = E[\\varepsilon_i Y_i | Y_i] = Y_i E[\\varepsilon_i] = 0$。$\\text{Var}(u_i | Y_i) = E[u_i^2 | Y_i] = Y_i^2 E[\\varepsilon_i^2] = \\sigma_\\varepsilon^2 Y_i^2$。",
+        "(2) OLS 仍无偏一致，但标准误错误：$\\text{Var}(\\hat\\beta_1)$ 不再有 $\\sigma^2 / \\sum(Y_i - \\bar Y)^2$ 的形式。",
+        "$t$ 检验和 $F$ 检验失效。需用 White 稳健标准误。",
+        "(3) 方法：(a) WLS（加权最小二乘），权重 $1/Y_i$；(b) 对数变换 $\\ln S_i = \\beta_0 + \\beta_1 \\ln Y_i + u_i$（异方差变小）；(c) White 稳健标准误。",
+        "(4) 遗漏变量 $T_i$ 与 $\\varepsilon_i$（误差项）相关时，OLS 不一致。$T_i$ 是遗漏的解释变量，$T_i$ 影响储蓄但不观测。",
+        "(5) $D_i$ 是工具变量：与 $Y_i$ 相关（父亲死亡影响遗产$\\to$所得），与 $T_i$ 不相关（外生）。",
+        "用 IV 估计：$\\hat\\beta_{IV} = \\frac{\\sum (Y_i - \\bar Y)(D_i - \\bar D)}{\\sum (Y_i - \\bar Y)^2 \\cdot \\frac{\\sum (D_i - \\bar D)^2}{\\sum (D_i - \\bar D)^2}}$",
+        "(6) (5) 中估计的因果效应是 LATE（局部平均处理效应）：对 $D_i = 1$ 的子群体（父亲去世的人）的因果效应。不是整个人群的平均效应。"
+      ]
+    },
+    {
+      "label": "问题 2 ARCH",
+      "steps": [
+        "(1) $E[e_t] = w_0 + w_1 E[e_{t-1}]$。平稳时 $E[e_t] = \\mu$，$\\mu = w_0 + w_1 \\mu$，$\\mu = w_0 / (1 - w_1)$。",
+        "(2) $\\text{Var}(e_t) = w_1^2 \\text{Var}(e_{t-1}) + \\text{Var}(w_t)$。平稳时 $\\sigma^2 = w_1^2 \\sigma^2 + 1$，$\\sigma^2 = 1/(1 - w_1^2)$。",
+        "(3) $\\text{Cov}(e_t, e_{t-j}) = w_1^j \\sigma^2 / (1 - w_1^2)$（只依赖 $j$）。",
+        "(4) $E[e_t | e_{t-1}] = w_0 + w_1 e_{t-1}$。",
+        "(5) $\\text{Var}(e_t | e_{t-1}) = \\text{Var}(w_t) = 1$。",
+        "(6) 若 $w_0 > 0$ 不满足：$e_t = w_1 e_{t-1} + w_t$，$E[e_t | e_{t-1}] = w_1 e_{t-1}$，但 ARCH 模型常数项缺失。",
+        "若 $0 < w_1 < 1$ 不满足：$w_1 \\geq 1$ 时 ARCH 过程不平稳（异方差爆炸）。$w_1 \\leq 0$ 时 ARCH 效应消失。"
+      ]
+    }
+  ]
+}

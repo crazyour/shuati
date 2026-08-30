@@ -1,0 +1,61 @@
+{
+  "id": "2026_数理学府_数理学コース_基礎科目_問3",
+  "school": "九州大学",
+  "year": 2026,
+  "subject": "数理学府_数理学コース_基礎科目_問3",
+  "text": "设 $V$ 是 $\\mathbb{R}$ 上的有限维线性空间，$f: V \\to V$ 是线性映射。设 $f^0: V \\to V$ 为 $f^0(x) = x$，对 $n \\in \\mathbb{N}$ 递归定义 $f^n: V \\to V$ 为 $f^n(x) = f(f^{n-1}(x))$。回答下列问题。\n\n(1) 证明对任意自然数 $n$，$f^n(V) \\subset f^{n-1}(V)$。\n\n(2) 证明存在自然数 $N$ 使得 $f^N(V) = f^{2N}(V)$。\n\n(3) 设 $N$ 是 (2) 中所求的自然数，证明以下等式成立：\n   (i) $V = f^N(V) + \\operatorname{Ker}(f^N)$\n   (ii) $f^N(V) \\cap \\operatorname{Ker}(f^N) = \\{0\\}$",
+  "knowledge_points": [
+    "线性代数",
+    "线性映射",
+    "像空间",
+    "核空间",
+    "维数公式",
+    "直和分解"
+  ],
+  "question_type": "线性映射的像空间链与核空间分解",
+  "method": [
+    "对 (1)：归纳法证明 f^n(V) ⊂ f^{n-1}(V)",
+    "对 (2)：利用维数公式 f^n(V) 维数递减必有稳定",
+    "对 (3)：直和分解 V = f^N(V) + Ker(f^N)"
+  ],
+  "solution_steps": [
+    "对 (1)：归纳，f^n(V) = f(f^{n-1}(V)) ⊂ f^{n-1}(V)",
+    "对 (2)：dim f^n(V) 单调递减且下界为 0",
+    "对 (3)：用维数公式验证直和分解"
+  ],
+  "math_structure": {
+    "type": "linear_map_image_kernel_decomposition_problem",
+    "template": "f^n(V)⊂f^{n-1}(V); dim stabilizes; V = f^N(V) ⊕ Ker(f^N)",
+    "variable_count": 2
+  },
+  "difficulty": 4,
+  "answer": [
+    {
+      "label": "(1) 证明像空间递减",
+      "steps": [
+        "$f^n(V)=f^{n-1}(f(V))$，而 $f(V)\\subseteq V$，所以 $f^n(V)\\subseteq f^{n-1}(V)$。"
+      ]
+    },
+    {
+      "label": "(2) 证明存在 $N$",
+      "steps": [
+        "降链 $V\\supseteq f(V)\\supseteq f^{2}(V)\\supseteq \\ldots$ 的维数是非负整数的单调不增序列，因此存在 $N$ 使 $\\dim f^N(V)=\\dim f^{N+1}(V)$。结合包含关系得 $f^N(V)=f^{N+1}(V)$。",
+        "继续作用 $f$ 可知 $f^{N+k}(V)=f^N(V)$ 对所有 $k\\ge 0$ 成立，特别地 $f^{2N}(V)=f^N(V)$。"
+      ]
+    },
+    {
+      "label": "(3)(i) 证明 $V=f^N(V)+\\operatorname{Ker}(f^N)$",
+      "steps": [
+        "任取 $v\\in V$。因为 $f^Nv\\in f^N(V)=f^{2N}(V)$，存在 $u\\in V$ 使 $f^Nv=f^{2N}u$。",
+        "于是 $v=f^Nu+(v-f^Nu)$，其中第一项属于 $f^N(V)$，且 $f^N(v-f^Nu)=0$，所以第二项属于 $\\operatorname{Ker}(f^N)$。故所求和等于 $V$。"
+      ]
+    },
+    {
+      "label": "(3)(ii) 证明交为 {0}",
+      "steps": [
+        "限制映射 $f^N|_{f^N(V)}:f^N(V)\\to f^{2N}(V)=f^N(V)$ 是满射。有限维空间上的满射必为单射。",
+        "因此它在 $f^N(V)$ 中的核只有$0$，即 $f^N(V)\\cap \\operatorname{Ker}(f^N)=\\left\\{0\\right\\}$。结合上一问，$V=f^N(V)\\oplus \\operatorname{Ker}(f^N)$。"
+      ]
+    }
+  ]
+}

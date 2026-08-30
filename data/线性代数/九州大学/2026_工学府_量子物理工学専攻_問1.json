@@ -1,0 +1,73 @@
+{
+  "id": "2026_工学府_量子物理工学専攻_問1",
+  "school": "九州大学",
+  "year": 2026,
+  "subject": "工学府_量子物理工学専攻_問1",
+  "text": "问题 1（必答）\n\n设 $\\mathbf{a}=(3,-1,-2)^T$, $\\mathbf{b}=(-2,-1,0)^T$, $\\mathbf{c}=(-1,2,3)^T$ 为列向量，矩阵 $A=[\\mathbf{a},\\mathbf{b},\\mathbf{c}]$。\n\n(1) 求矩阵 $A$ 的特征值。\n\n$$A=\\begin{pmatrix} 3 & -2 & -1 \\\\ -1 & -1 & 2 \\\\ -2 & 0 & 3 \\end{pmatrix}$$\n\n(2) 求对角化矩阵 $P$ 及其逆矩阵 $P^{-1}$，并利用它们对角化矩阵 $A$。\n\n(3) 对 $\\mathbf{a}, \\mathbf{b}$ 张成的平面，求其法向量 $\\mathbf{n}$，以及平面上含点 $\\mathbf{c}$ 的平面方程。\n\n(4) 对向量 $\\mathbf{p} = (p_1, p_2, p_3)$，求使 $|\\mathbf{p}|$ 最小的 $\\mathbf{p}$ 的值 $\\mathbf{p}_*$。\n\n(5) 论述向量 $\\mathbf{p} = \\mathbf{a} + t \\mathbf{b}$ 与 $\\mathbf{c}$ 的位置关系。",
+  "knowledge_points": [
+    "线性代数",
+    "特征值",
+    "对角化",
+    "向量叉积",
+    "法向量",
+    "平面方程",
+    "最小范数"
+  ],
+  "question_type": "矩阵特征值、对角化、平面方程与向量几何综合题",
+  "method": [
+    "特征多项式求根",
+    "求特征向量构造 P",
+    "叉积求法向量",
+    "平移平面方程",
+    "求最近零向量（线性组合系数）"
+  ],
+  "solution_steps": [
+    "对 (1)：det(A-λI) 展开求根",
+    "对 (2)：求每个特征值的特征向量，构造 P 和 P^{-1}",
+    "对 (3)：法向量 = a × b，平面过 c 写出方程",
+    "对 (4)：p* = A^T(AA^T)^{-1} b 或直接求线性组合",
+    "对 (5)：讨论 p 与 c 的关系（共线、平行、垂直等）"
+  ],
+  "math_structure": {
+    "type": "matrix_eigenvalue_plane_geometry_problem",
+    "template": "det(A-λI)=0; P^{-1}AP=D; n=a×b; plane equation",
+    "variable_count": 4
+  },
+  "difficulty": 4,
+  "answer": [
+    {
+      "label": "(1) 求特征值",
+      "steps": [
+        "$\\det(A-\\lambda I)=-(\\lambda -5)(\\lambda -1)(\\lambda +1)$，故特征值为$5$、$1$、$-1$。"
+      ]
+    },
+    {
+      "label": "(2) 对角化",
+      "steps": [
+        "对应 $\\lambda =5$、$1$、$-1$，可分别取特征向量 $(-2,1,2)^{\\mathsf T}$、$(2,1,2)^{\\mathsf T}$、$(4,7,2)^{\\mathsf T}$。",
+        "令 $P=\\begin{pmatrix}-2 & 2 & 4 \\\\ 1 & 1 & 7 \\\\ 2 & 2 & 2\\end{pmatrix}$，则 $P^{-1}=\\begin{pmatrix}-1/4 & 1/12 & 5/24 \\\\ 1/4 & -1/4 & 3/8 \\\\ 0 & 1/6 & -1/12\\end{pmatrix}$。",
+        "因此 $P^{-1}AP=\\operatorname{diag}(5,1,-1)$。"
+      ]
+    },
+    {
+      "label": "(3) 求法向量与平面方程",
+      "steps": [
+        "$a\\times b=(-2,4,-5)^{\\mathsf T}$，可作为由 $a,b$ 张成方向的平面的法向量。过点 $c$ 且平行于 $\\operatorname{span}\\left\\{a,b\\right\\}$ 的平面满足 $n\\cdot (r-c)=0$，即 $2x-4y+5z=5$。"
+      ]
+    },
+    {
+      "label": "(4) 求最小范数向量",
+      "steps": [
+        "严格按当前题面，$p$ 没有任何约束，因此 |p| 的最小值为$0$，在 $p_*=(0,0,0)$ 时取得。",
+        "若原题此处遗漏了约束 $p=a+tb$，则 $\\lVert p\\rVert^{2}$ 对 $t$ 求极值得 $t=-(a\\cdot b)/\\lVert b\\rVert^{2}=1$，从而 $p_*=a+b=(1,-2,-2)^{\\mathsf T}$。"
+      ]
+    },
+    {
+      "label": "(5) 直线 $p=a+tb$ 与 $c$ 的位置关系",
+      "steps": [
+        "$c$ 不在直线 $L=\\left\\{a+tb\\right\\}$ 上。点 $c$ 到 $L$ 的垂足由 $(a+tb-c)\\cdot b=0$ 求得 $t=1$，即 $p_*=(1,-2,-2)^{\\mathsf T}$。",
+        "$c-p_*=(-2,4,5)^{\\mathsf T}$ 与 $b$ 正交，故最短距离为 $\\lVert c-p_*\\rVert=3\\sqrt{5}$。"
+      ]
+    }
+  ]
+}

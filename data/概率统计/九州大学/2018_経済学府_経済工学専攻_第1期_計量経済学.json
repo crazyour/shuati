@@ -1,0 +1,64 @@
+{
+  "id": "2018_経済学府_経済工学専攻_第1期_計量経済学",
+  "school": "九州大学",
+  "year": 2018,
+  "subject": "経済学府_経済工学専攻_第1期_計量経済学",
+  "text": "从以下两题中选一题作答。\n\n问题 1：考虑以下时序过程（MA(1) 过程）：\n$Y_t = 0.5 + \\varepsilon_t + 0.4 \\varepsilon_{t-1}$\n\n其中 $\\varepsilon_t$ 是白噪声，满足：(1) 所有 $t$ 有 $E[\\varepsilon_t] = 0$，$E[\\varepsilon_t^2] = \\sigma^2$；(2) 所有 $t \\neq s$ 有 $E[\\varepsilon_t \\varepsilon_s] = 0$。回答下列问题。\n\n(1) 求 $Y_t$ 的均值 $\\mu = E[Y_t]$。\n\n(2) $Y_t$ 的 $j$ 阶自协方差 $\\gamma_j = \\text{Cov}(Y_t, Y_{t-j})$，分别求 $\\gamma_0$ 和 $\\gamma_1$。\n\n(3) 当 $j \\geq 2$ 时，证明 $\\gamma_j = 0$。\n\n(4) 设 $\\tilde Y_t = \\frac{1}{2}(Y_t + Y_{t-1})$，求 $\\text{Var}(\\tilde Y_t)$。\n\n(5) 求 $\\lim_{T \\to \\infty} \\frac{1}{T}\\sum_{t=1}^T \\text{Var}(Y_t)$。\n\n问题 2：通过举例说明联立方程模型。",
+  "knowledge_points": [
+    "概率统计",
+    "MA(1) 模型",
+    "自协方差",
+    "白噪声",
+    "均值",
+    "方差",
+    "联立方程模型"
+  ],
+  "question_type": "MA(1) 时间序列的统计量与联立方程模型",
+  "method": [
+    "MA 模型期望和协方差计算",
+    "白噪声性质",
+    "联立方程识别"
+  ],
+  "solution_steps": [
+    "(1) E[Y_t] = 0.5 + E[ε_t] + 0.4E[ε_{t-1}] = 0.5",
+    "(2) γ_0 = Var(Y_t), γ_1 = Cov(Y_t, Y_{t-1})",
+    "(3) 2阶以上协方差为 0",
+    "(4) Var(Ỹ_t) 计算",
+    "(5) 极限",
+    "(2) 联立方程模型说明"
+  ],
+  "math_structure": {
+    "type": "ma1_time_series_problem",
+    "template": "γ_0=σ²(1+θ²), γ_1=θσ², γ_j=0 for j≥2; simultaneous equations",
+    "variable_count": 3
+  },
+  "difficulty": 3,
+  "answer": [
+    {
+      "label": "问题 1 MA(1)",
+      "steps": [
+        "(1) $E[Y_t] = 0.5 + E[\\varepsilon_t] + 0.4 E[\\varepsilon_{t-1}] = 0.5 + 0 + 0 = 0.5$。",
+        "(2) $\\gamma_0 = \\text{Var}(Y_t) = \\text{Var}(\\varepsilon_t + 0.4\\varepsilon_{t-1}) = \\sigma^2 + 0.16\\sigma^2 = 1.16\\sigma^2$。",
+        "$\\gamma_1 = \\text{Cov}(Y_t, Y_{t-1}) = \\text{Cov}(\\varepsilon_t + 0.4\\varepsilon_{t-1}, \\varepsilon_{t-1} + 0.4\\varepsilon_{t-2}) = 0.4 \\text{Var}(\\varepsilon_{t-1}) = 0.4\\sigma^2$。",
+        "(3) $j \\geq 2$ 时：$Y_t$ 涉及 $\\varepsilon_t, \\varepsilon_{t-1}$；$Y_{t-j}$ 涉及 $\\varepsilon_{t-j}, \\varepsilon_{t-j-1}$。当 $j \\geq 2$，这些不相交，协方差为 $0$。",
+        "(4) $\\tilde Y_t = \\frac{1}{2}(Y_t + Y_{t-1}) = \\frac{1}{2}(\\varepsilon_t + 0.4\\varepsilon_{t-1} + \\varepsilon_{t-1} + 0.4\\varepsilon_{t-2}) = \\frac{1}{2}(\\varepsilon_t + 1.4\\varepsilon_{t-1} + 0.4\\varepsilon_{t-2})$。",
+        "$\\text{Var}(\\tilde Y_t) = \\frac{1}{4}(\\sigma^2 + 1.96\\sigma^2 + 0.16\\sigma^2) = \\frac{3.12}{4}\\sigma^2 = 0.78\\sigma^2$。",
+        "(5) $\\frac{1}{T}\\sum_{t=1}^T \\text{Var}(Y_t) = \\frac{1}{T} \\sum 1.16\\sigma^2 = 1.16\\sigma^2$。极限为 $1.16\\sigma^2$。"
+      ]
+    },
+    {
+      "label": "问题 $2$ 联立方程模型",
+      "steps": [
+        "联立方程模型：多个方程同时描述经济变量间的关系，每个方程包含内生变量和外生变量。",
+        "例：凯恩斯宏观模型。",
+        "$C_t = \\alpha + \\beta Y_t$（消费函数）",
+        "$Y_t = C_t + I_t$（国民收入恒等式）",
+        "$I_t = \\gamma + \\delta r_t$（投资函数）",
+        "$M_t = L(Y_t, r_t)$（货币需求）",
+        "$M_t = M^*$（货币供给）",
+        "$Y_t, C_t, I_t$ 是内生变量，$M^*, r_t$ 是外生变量。",
+        "OLS 不一致（$Y_t$ 与误差项相关）：识别问题与两阶段最小二乘。"
+      ]
+    }
+  ]
+}

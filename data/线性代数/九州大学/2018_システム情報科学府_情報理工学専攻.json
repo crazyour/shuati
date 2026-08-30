@@ -1,0 +1,54 @@
+{
+  "id": "2018_システム情報科学府_情報理工学専攻",
+  "school": "九州大学",
+  "year": 2018,
+  "subject": "システム情報科学府_情報理工学専攻",
+  "text": "称方阵 $A$ 为交错的（alternating），若 $A$ 满足 $A^{\\mathsf{T}} = -A$，其中 $A^{\\mathsf{T}}$ 表示 $A$ 的转置。求以下各问：\n(1) 对任意 $n \\times n$ 方阵 $A \\in \\mathbb{R}^{n \\times n}$ 和整数 $i, j$（$1 \\le i, j \\le n$），证明存在向量 $x, y \\in \\mathbb{R}^n$ 使得 $x^{\\mathsf{T}} A y = A_{ij}$，其中 $A_{ij}$ 是 $A$ 的 $(i, j)$ 分量。\n(2) 证明 $n \\times n$ 方阵 $A \\in \\mathbb{R}^{n \\times n}$ 是交错的当且仅当\n$$y^{\\mathsf{T}} A x = -x^{\\mathsf{T}} A y \\quad (\\forall x, y \\in \\mathbb{R}^n)$$\n(3) 证明若交错矩阵 $A$ 有特征值 $\\lambda$，则 $-\\lambda$ 也是 $A$ 的特征值。提示：任意方阵 $X$ 满足 $|X| = |X^{\\mathsf{T}}|$，其中 $|X|$ 是 $X$ 的行列式。",
+  "knowledge_points": [
+    "线性代数",
+    "交错矩阵",
+    "反对称矩阵",
+    "标准基",
+    "转置恒等式",
+    "特征多项式",
+    "行列式"
+  ],
+  "question_type": "交错矩阵的等价刻画与特征值成对性证明题",
+  "method": [
+    "标准基向量选取",
+    "标量转置等于自身",
+    "行列式与转置关系"
+  ],
+  "solution_steps": [
+    "取 $x = e_i$、$y = e_j$，利用矩阵-向量乘法提取 $A_{ij}$",
+    "由 $y^{\\mathsf{T}} A x$ 为标量，其转置等于自身，推出双向等价",
+    "比较 $\\det(\\lambda I - A)$ 与 $\\det(\\lambda I - A)^{\\mathsf{T}} = \\det(\\lambda I + A)$，得 $\\lambda$ 与 $-\\lambda$ 同时为特征值"
+  ],
+  "math_structure": {
+    "type": "skew_symmetric_matrix_eigenvalue_problem",
+    "template": "A^T=-A, y^T A x=-x^T A y, det(λI-A)=0 ⇔ det(λI+A)=0",
+    "variable_count": 3
+  },
+  "difficulty": 3,
+  "answer": [
+    {
+      "label": "(1) 构造 $x,y$",
+      "steps": [
+        "取标准基向量 $x=e_i$、$y=e_j$，则 $x^{\\mathsf T}Ay=e_i^{\\mathsf T}Ae_j=A_{ij}$。"
+      ]
+    },
+    {
+      "label": "(2) 证明等价性",
+      "steps": [
+        "若 $A^{\\mathsf T}=-A$，则 $y^{\\mathsf T}Ax=(y^{\\mathsf T}Ax)^{\\mathsf T}=x^{\\mathsf T}A^{\\mathsf T}y=-x^{\\mathsf T}Ay$。",
+        "反之，条件给出 $x^{\\mathsf T}(A^{\\mathsf T}+A)y=0$ 对所有 $x,y$ 成立。取 $x=e_i$、$y=e_j$ 可知 $A^{\\mathsf T}+A$ 的每个分量均为$0$，所以 $A^{\\mathsf T}=-A$。"
+      ]
+    },
+    {
+      "label": "(3) 证明特征值成 $\\pm$ 对出现",
+      "steps": [
+        "特征多项式满足 $\\det(A-\\lambda I)=\\det((A-\\lambda I)^{\\mathsf T})=\\det(-A-\\lambda I)=(-1)^n \\det(A+\\lambda I)$。因此 $\\det(A-\\lambda I)=0$ 时 $\\det(A+\\lambda I)=0$，故若 $\\lambda$ 是特征值，则 $-\\lambda$ 也是特征值。"
+      ]
+    }
+  ]
+}

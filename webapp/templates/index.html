@@ -3,68 +3,76 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>相似题匹配</title>
-  <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+  <title>题库</title>
+  <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}?v={{ asset_version }}">
+  <!-- 公式渲染：题目里的 $...$ / $$...$$ 交给 KaTeX；CDN 拿不到就原样显示 LaTeX -->
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.css">
+  <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.js"></script>
+  <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/contrib/auto-render.min.js"></script>
 </head>
 <body>
   <main>
     <header>
-      <h1>相似题匹配</h1>
-      <p class="sub">上传题目图片，自动 OCR 并交给 {{ model_name }} 结构化，然后在题库里找最像的题。</p>
+      <div class="header-row">
+        <div>
+          <h1>题库</h1>
+          <p class="sub">按科目、学校和专攻浏览题目。</p>
+        </div>
+      </div>
     </header>
 
-    <section class="panel">
-      <div class="tabs" role="tablist">
-        <button type="button" class="tab active" data-mode="image" role="tab">图片</button>
-        <button type="button" class="tab" data-mode="json" role="tab">题目 JSON</button>
-      </div>
+    <section id="view-browse" class="view">
+      <div class="browse-layout">
+        <aside class="panel browse-sidebar">
+          <div class="field">
+            <label for="browse-subject">科目</label>
+            <select id="browse-subject" disabled></select>
+          </div>
+          <div class="field" id="browse-school-block" hidden>
+            <label for="browse-school">学校</label>
+            <select id="browse-school" disabled></select>
+          </div>
+          <div class="field" id="browse-senkou-block" hidden>
+            <label for="browse-senkou">专攻</label>
+            <select id="browse-senkou" disabled></select>
+          </div>
+        </aside>
 
-      <div id="pane-image" class="pane">
-        {% if not ocr_ready %}
-        <p class="message">没有可用的 OCR 后端。macOS 执行 <code>pip install ocrmac</code>，或 <code>brew install tesseract tesseract-lang</code>。</p>
-        {% endif %}
-        <label id="drop" for="file" class="drop">
-          <input type="file" id="file" accept="image/*" hidden>
-          <img id="preview" alt="" hidden>
-          <span id="drop-hint">点击选择图片，或把图片拖到这里，也可以直接 Cmd+V 粘贴</span>
-        </label>
-      </div>
+        <div class="browse-main">
+          <div class="panel browse-controls">
+            <div class="browse-summary">
+              <span id="browse-scope" class="tag"></span>
+              <span id="browse-count"></span>
+            </div>
+          </div>
 
-      <div id="pane-json" class="pane" hidden>
-        <div class="panel-head">
-          <label for="query">题目 JSON</label>
-          <button type="button" id="fill-example" class="link">填入示例</button>
+          <p id="browse-empty" class="empty" hidden></p>
+          <ol id="browse-list" class="browse-list"></ol>
         </div>
-        <textarea id="query" spellcheck="false" rows="16" placeholder='{"knowledge_points": ["二次函数", "最值"], "question_type": "求最小值", "method": ["配方法", "顶点"]}'></textarea>
       </div>
-
-      <div class="controls">
-        <label for="topk">返回条数</label>
-        <input type="number" id="topk" value="5" min="1" max="50">
-        <button type="button" id="submit" class="primary">开始匹配</button>
-      </div>
-
-      <p id="message" class="message" hidden></p>
     </section>
 
-    <section id="results-panel" class="panel" hidden>
-      <h2>匹配到的题目</h2>
-      <ol id="results"></ol>
-      <details id="detail" hidden>
-        <summary>提取过程（OCR 文本与生成的 JSON）</summary>
-        <h3>OCR 文本<span id="ocr-backend" class="tag"></span></h3>
-        <pre id="ocr-text"></pre>
-        <h3>模型生成的题目 JSON</h3>
-        <pre id="question-json"></pre>
-      </details>
-    </section>
+    <aside id="similar-drawer" class="similar-drawer" hidden aria-label="相似题目">
+      <div class="similar-drawer-head">
+        <div>
+          <h2>相似题目</h2>
+          <p id="similar-scope" class="drawer-meta"></p>
+        </div>
+        <button type="button" id="close-similar" class="drawer-close" aria-label="关闭">×</button>
+      </div>
+      <p id="similar-status" class="drawer-status" hidden></p>
+      <ol id="similar-results" class="similar-results"></ol>
+    </aside>
+    <div id="similar-backdrop" class="similar-backdrop" hidden></div>
 
     <footer>
-      题库：{{ db_name }}（{{ db_size }} 题）
+      题库 · {{ subject_count }} 个科目 / 共 {{ total_count }} 题 · 阈值 {{ default_min_score }}
     </footer>
   </main>
 
   <script id="example-json" type="application/json">{{ example | safe }}</script>
-  <script src="{{ url_for('static', filename='app.js') }}"></script>
+  <script id="scope-tree" type="application/json">{{ scope_tree | tojson }}</script>
+  <script id="default-subject" type="application/json">{{ default_subject | tojson }}</script>
+  <script src="{{ url_for('static', filename='app.js') }}?v={{ asset_version }}"></script>
 </body>
 </html>

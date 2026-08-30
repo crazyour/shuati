@@ -1,0 +1,60 @@
+{
+  "id": "2011_経済学府_経済工学専攻_第2期_計量経済学",
+  "school": "九州大学",
+  "year": 2011,
+  "subject": "経済学府_経済工学専攻_第2期_計量経済学",
+  "text": "从以下两题中选一题作答。\n\n问题 1：考虑线性回归模型 $y_i = \\alpha + \\beta x_i + \\gamma z_i + u_i$（$i=1,2,\\ldots,n$），其中 $y_i$ 是被解释变量，$x_i, z_i$ 是解释变量，$u_i$ 是误差项。$\\alpha, \\beta, \\gamma$ 是参数。假设有 $n$ 个观测值。\n\n(i) 求参数 $\\beta, \\gamma$ 的最小二乘估计量。\n\n(ii) 设 $u_i \\sim N(0, \\sigma^2)$，$i=1,2,\\ldots,n$，且 $\\text{Cov}(x_i, u_i) = 0$。求参数 $\\beta, \\gamma$ 的最大似然估计量。\n\n(iii) 当解释变量 $x_i$ 与误差项之间存在 $\\text{Cov}(x_i, u_i) \\neq 0$ 时，讨论 $\\beta$ 的估计。\n\n问题 2：解释以下术语。\n(i) 「第一类错误」和「第二类错误」\n(ii) 「中心极限定理」和「大数定律」\n(iii) 「一致性」和「无偏性」\n(iv) 「最佳线性无偏估计量」",
+  "knowledge_points": [
+    "概率统计",
+    "OLS",
+    "ML",
+    "内生性",
+    "假设检验",
+    "大数定律",
+    "中心极限定理",
+    "BLUE"
+  ],
+  "question_type": "线性回归模型的 OLS/ML 估计与基本统计概念",
+  "method": [
+    "OLS 矩阵公式",
+    "ML 对数似然",
+    "工具变量法",
+    "假设检验",
+    "大数定律",
+    "中心极限定理"
+  ],
+  "solution_steps": [
+    "对 (i)：用矩阵形式写 OLS 解",
+    "对 (ii)：对数似然最大化",
+    "对 (iii)：识别内生性问题",
+    "对 (2)：逐一解释统计概念"
+  ],
+  "math_structure": {
+    "type": "linear_regression_estimation_with_terms",
+    "template": "β̂=(X'X)⁻¹X'y; β̂_ML=β̂_OLS under normality",
+    "variable_count": 4
+  },
+  "difficulty": 3,
+  "answer": [
+    {
+      "label": "问题 $1$",
+      "steps": [
+        "(i) 矩阵形式：$X = [\\mathbf{1}, x, z]$（$n \\times 3$ 矩阵），$\\theta = (\\alpha, \\beta, \\gamma)^T$。",
+        "$\\hat\\theta = (X^TX)^{-1} X^T y$。",
+        "(ii) ML：对数似然 $\\ell = -\\frac{n}{2}\\ln(2\\pi\\sigma^2) - \\frac{1}{2\\sigma^2} \\sum (y_i - \\alpha - \\beta x_i - \\gamma z_i)^2$。",
+        "对 $\\theta$ 最大化（$\\sigma^2$ 固定）等价于 OLS：$\\hat\\theta_{ML} = \\hat\\theta_{OLS}$。",
+        "(iii) 内生性 $\\text{Cov}(x_i, u_i) \\neq 0$：OLS 不一致（$E[\\hat\\beta] \\neq \\beta$ 当 $n \\to \\infty$）。",
+        "解决方法：工具变量法（找外生变量 $z$ 与 $x$ 相关但与 $u$ 无关）。"
+      ]
+    },
+    {
+      "label": "问题 $2$ 统计概念",
+      "steps": [
+        "(i) 第一类错误：拒绝真的零假设（假阳性）；第二类错误：接受假的零假设（假阴性）。",
+        "(ii) 中心极限定理：独立同分布随机变量和标准化后趋于标准正态；大数定律：独立同分布随机变量样本均值趋于期望。",
+        "(iii) 一致性：估计量随样本量趋于真值（$n \\to \\infty$）；无偏性：估计量的期望等于真值。",
+        "(iv) 最佳线性无偏估计量：在所有线性无偏估计量中方差最小，由高斯-马尔可夫定理保证 OLS 估计量。"
+      ]
+    }
+  ]
+}

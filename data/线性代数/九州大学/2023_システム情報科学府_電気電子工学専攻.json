@@ -1,0 +1,60 @@
+{
+  "id": "2023_システム情報科学府_電気電子工学専攻",
+  "school": "九州大学",
+  "year": 2023,
+  "subject": "システム情報科学府_電気電子工学専攻",
+  "text": "设 $A=[a_{ij}]_{n\\times n}\\in\\mathbb{R}^{n\\times n}$ 是 $n\\times n$ 实对称矩阵，其元素满足 $a_{ij}\\in\\{0,1\\}$（$1\\le i,j\\le n$）且 $a_{ii}=0$（$1\\le i\\le n$）。对 $A$ 定义 $D=\\bigl[\\delta_{ij}\\bigl(\\sum_{k=1}^{n}a_{ik}\\bigr)\\bigr]_{n\\times n}$，其中 $\\delta_{ij}$ 是 Kronecker 符号（$i=j$ 时为 $1$，否则为 $0$）。再定义 $L=D-A$。回答下列各问：\n(1) 对以下矩阵 $A$ 求 $L=D-A$：\n$$A=\\begin{pmatrix}0&1&1&0\\\\1&0&1&0\\\\1&1&0&0\\\\0&0&0&0\\end{pmatrix}$$\n(2) 求 (1) 中 $L$ 的所有特征值。\n(3) 求 (2) 中各特征值对应的特征空间。\n(4) 一般地证明 $L$ 必有特征值 $0$。",
+  "knowledge_points": [
+    "线性代数",
+    "图的邻接矩阵",
+    "图拉普拉斯矩阵",
+    "特征值",
+    "零空间"
+  ],
+  "question_type": "图拉普拉斯矩阵特征分析题",
+  "method": [
+    "度矩阵构造",
+    "分块特征多项式",
+    "全一向量",
+    "行列式恒等式"
+  ],
+  "solution_steps": [
+    "由每行元素和构造 D 并计算 L",
+    "计算给定 L 的特征多项式",
+    "逐个求解 (L-λI)x=0 得到特征空间",
+    "一般情形验证 L·1=0"
+  ],
+  "math_structure": {
+    "type": "graph_laplacian_eigenproblem",
+    "template": "A=A^T ∈ {0,1}^{n×n}, D=diag(A·1), L=D-A, L·1=0",
+    "variable_count": 3
+  },
+  "difficulty": 3,
+  "answer": [
+    {
+      "label": "(1) 求 $L$",
+      "steps": [
+        "各行度数为 $(2,2,2,0)$，故 $D=\\operatorname{diag}(2,2,2,0)$，$L=\\begin{pmatrix}2 & -1 & -1 & 0 \\\\ -1 & 2 & -1 & 0 \\\\ -1 & -1 & 2 & 0 \\\\ 0 & 0 & 0 & 0\\end{pmatrix}$。"
+      ]
+    },
+    {
+      "label": "(2) 求特征值",
+      "steps": [
+        "左上$3$阶块为 $3I-J$，故在 $(1,1,1)$ 方向特征值为$0$，在与其正交的二维子空间上特征值为$3$；第$4$坐标再贡献一个$0$。故特征值为$0$（重数$2$）和$3$（重数$2$）。"
+      ]
+    },
+    {
+      "label": "(3) 求特征空间",
+      "steps": [
+        "$E_{0}=\\operatorname{span}\\left\\{(1,1,1,0)^{\\mathsf T},(0,0,0,1)^{\\mathsf T}\\right\\}$。",
+        "$E_{3}=\\left\\{(x,y,z,0)^{\\mathsf T}:x+y+z=0\\right\\}=\\operatorname{span}\\left\\{(1,-1,0,0)^{\\mathsf T},(1,0,-1,0)^{\\mathsf T}\\right\\}$。"
+      ]
+    },
+    {
+      "label": "(4) 一般证明$0$为特征值",
+      "steps": [
+        "令 $\\mathbf{1}=(1,\\ldots ,1)^{\\mathsf T}$。第 $i$ 个分量为 $(L\\mathbf{1})_i=\\sum_k a_{ik}-\\sum_j a_{ij}=0$，所以 $L\\mathbf{1}=0$。由于 $1\\ne 0$，$0$ 是 $L$ 的特征值。"
+      ]
+    }
+  ]
+}

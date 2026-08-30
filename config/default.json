@@ -33,6 +33,11 @@
     "min_pool": 20
   },
 
+  "match": {
+    "min_score": 0.35,
+    "topk": 5
+  },
+
   "ocr": {
     "backend": "auto",
     "languages": ["zh-Hans", "en-US"]

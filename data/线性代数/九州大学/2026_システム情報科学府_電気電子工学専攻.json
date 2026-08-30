@@ -1,0 +1,59 @@
+{
+  "id": "2026_システム情報科学府_電気電子工学専攻",
+  "school": "九州大学",
+  "year": 2026,
+  "subject": "システム情報科学府_電気電子工学専攻",
+  "text": "(1) 考虑以下三个向量 $a_1,a_2,a_3$（$x,y,z$ 为实数）：\n$$a_1=\\begin{pmatrix}x\\\\0\\\\-3\\end{pmatrix},\\quad a_2=\\begin{pmatrix}-1\\\\y\\\\3\\end{pmatrix},\\quad a_3=\\begin{pmatrix}4\\\\4\\\\z\\end{pmatrix}$$\n(a) 求 $a_1,a_2,a_3$ 两两正交时 $x,y,z$ 的值。\n(b) 取 $x=2,y=1,z=-1$，令 $A=[a_1\\ a_2\\ a_3]$。对任意正整数 $n$，求 $A^{n}$。\n(2) 设 $E_d$ 为所有分量为 $1$ 的 $d$ 阶方阵，$I_d$ 为 $d$ 阶单位矩阵。对 $d=2,3,4$ 分别求 $\\operatorname{rank}(E_d-dI_d)$。",
+  "knowledge_points": [
+    "线性代数",
+    "向量正交性",
+    "矩阵对角化",
+    "矩阵幂",
+    "特征值",
+    "秩",
+    "全 1 矩阵"
+  ],
+  "question_type": "向量正交条件、矩阵幂与全 1 矩阵秩综合题",
+  "method": [
+    "内积方程组",
+    "特征多项式",
+    "对角化",
+    "谱分解",
+    "全 1 矩阵特征值"
+  ],
+  "solution_steps": [
+    "由两两正交列内积方程求 x,y,z",
+    "对 A 求特征多项式与特征向量",
+    "对角化 A 写出 A^n",
+    "求 E_d 的特征值并推出 rank(E_d - dI_d)"
+  ],
+  "math_structure": {
+    "type": "orthogonal_diag_power_rank_problem",
+    "template": "a_i ⊥ a_j, A=[a_i] diagonalize, A^n=P D^n P^{-1}, rank(E_d - dI_d)",
+    "variable_count": 4
+  },
+  "difficulty": 3,
+  "answer": [
+    {
+      "label": "(1)(a) 求 $x,y,z$",
+      "steps": [
+        "两两正交给出 $-x-9=0$、$4x-3z=0$、$-4+4y+3z=0$。依次解得 $x=-9$、$z=-12$、$y=10$。"
+      ]
+    },
+    {
+      "label": "(1)(b) 求 $A^n$",
+      "steps": [
+        "此时 $A=\\begin{pmatrix}2 & -1 & 4 \\\\ 0 & 1 & 4 \\\\ -3 & 3 & -1\\end{pmatrix}$，特征值为 $-1$、$1$、$2$，可分别取特征向量 $(-2,-2,1)^{\\mathsf T}$、$(1,1,0)^{\\mathsf T}$、$(3,4,1)^{\\mathsf T}$。",
+        "令 $P=\\begin{pmatrix}-2 & 1 & 3 \\\\ -2 & 1 & 4 \\\\ 1 & 0 & 1\\end{pmatrix}$，则 $\\det P=1$，$P^{-1}=\\begin{pmatrix}1 & -1 & 1 \\\\ 6 & -5 & 2 \\\\ -1 & 1 & 0\\end{pmatrix}$，且 $A=P \\operatorname{diag}(-1,1,2)P^{-1}$。",
+        "因此 $A^n=\\begin{pmatrix}-2(-1)^n-3\\cdot 2^n+6 & 2(-1)^n+3\\cdot 2^n-5 & 2-2(-1)^n \\\\ -2(-1)^n-4\\cdot 2^n+6 & 2(-1)^n+4\\cdot 2^n-5 & 2-2(-1)^n \\\\ (-1)^n-2^n & -(-1)^n+2^n & (-1)^n\\end{pmatrix}$。"
+      ]
+    },
+    {
+      "label": "(2) 求秩",
+      "steps": [
+        "$E_d$ 在全一向量方向的特征值为 $d$，在其正交补上的特征值为$0$。因此 $E_d-dI_d$ 的零空间是一维，其余 $d-1$ 个特征值均为$-d$，故秩为 $d-1$。",
+        "所以 $d=2,3,4$ 时的秩分别为$1$、$2$、$3$。"
+      ]
+    }
+  ]
+}

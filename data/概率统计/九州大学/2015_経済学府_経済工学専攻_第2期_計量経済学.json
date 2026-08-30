@@ -1,0 +1,62 @@
+{
+  "id": "2015_経済学府_経済工学専攻_第2期_計量経済学",
+  "school": "九州大学",
+  "year": 2015,
+  "subject": "経済学府_経済工学専攻_第2期_計量経済学",
+  "text": "从以下两题中选一题作答。\n\n问题 1：考虑以下多元回归模型\n$Y_i = \\beta_0 + \\beta_1 X_{1i} + \\beta_2 X_{2i} + u_i$，$i=1,2,\\ldots,n$ (1)\n\n其中 $Y$ 是被解释变量，$(X_1, X_2)$ 是解释变量，$u$ 是误差项，$(\\beta_0, \\beta_1, \\beta_2)$ 是系数参数。误差项假设 $u \\sim N(0, \\sigma^2)$，无序列相关，且解释变量与误差无关。\n\n设问 1-1：用普通最小二乘法 (OLS) 估计 (1)。设 OLS 残差为 $e_i$，说明：(1) $E[e_i] = 0$；(2) $\\sum e_i X_{1i} = 0$；(3) $\\text{Cov}(Y_i, e_i) = 0$。\n\n设问 1-2：考虑 $X_1$ 对常数项的回归。即 $X_1 = \\alpha + \\beta X_2 + v$，设残差为 $r_i$。用此残差求 $\\beta_1$ 的 OLS 估计量。\n\n设问 1-3：证明 1-2 中求得的估计量是无偏估计量。\n\n设问 1-4：说明 1-2 中求得的估计量服从什么分布。\n\n设问 1-5：假设 (1) 是解释 $Y$ 变动的真实模型。误将变量 $X_2$ 略去的简单回归估计会出现什么问题？\n\n问题 2：考虑无漂移随机游走模型 $Y_t = Y_{t-1} + \\varepsilon_t$。其中 $\\varepsilon_t$ 是白噪声。\n\n设问 2-1：解释什么是「白噪声」。\n\n设问 2-2：考虑从 $t=0$ 开始，$Y_0=0$。说明你是否同意「该模型的方差为无穷大」的主张。",
+  "knowledge_points": [
+    "概率统计",
+    "OLS 性质",
+    "Frisch-Waugh-Lovell",
+    "省略变量",
+    "白噪声",
+    "随机游走",
+    "单位根"
+  ],
+  "question_type": "OLS 残差性质与随机游走模型",
+  "method": [
+    "OLS 一阶条件",
+    "FWL 定理",
+    "正态分布假设",
+    "白噪声",
+    "方差计算"
+  ],
+  "solution_steps": [
+    "对 (1-1)：利用 OLS 残差的性质",
+    "对 (1-2)：FWL 定理应用",
+    "对 (1-3)：证明无偏性",
+    "对 (1-4)：正态分布假设下 OLS 估计量服从正态",
+    "对 (1-5)：省略变量偏误",
+    "对 (2-1)：白噪声定义",
+    "对 (2-2)：随机游走方差计算"
+  ],
+  "math_structure": {
+    "type": "ols_properties_random_walk",
+    "template": "E[e]=0, ΣeX=0; FWL theorem; Var(Y_t)=tσ²→∞",
+    "variable_count": 4
+  },
+  "difficulty": 4,
+  "answer": [
+    {
+      "label": "问题 $1$ 全部设问",
+      "steps": [
+        "1-1：(1) $E[e_i] = \\bar Y - \\hat\\beta_0 - \\hat\\beta_1 \\bar X_1 - \\hat\\beta_2 \\bar X_2 = 0$（最小二乘一阶条件）。",
+        "(2) $\\sum e_i X_{1i} = 0$（最小二乘对 $X_1$ 偏导为零）。",
+        "(3) $\\text{Cov}(Y_i, e_i) = \\frac{1}{n}\\sum Y_i e_i = \\frac{1}{n}\\sum(\\hat Y_i + e_i)e_i = \\frac{1}{n}\\sum \\hat Y_i e_i + \\frac{1}{n}\\sum e_i^2$。",
+        "$\\hat Y_i$ 是 $X$ 的线性组合，与 $e_i$ 正交：$\\sum \\hat Y_i e_i = 0$。所以 $\\text{Cov}(Y_i, e_i) = \\frac{1}{n}\\sum e_i^2 \\neq 0$（虽然 $\\sum e_i Y_i \\neq 0$，但平均来看不为零）。",
+        "1-2：FWL 定理：$\\hat\\beta_1 = \\sum r_i Y_i / \\sum r_i^2$，其中 $r_i$ 是 $X_1$ 对 $X_2$ 回归的残差。",
+        "1-3：$E[\\hat\\beta_1] = \\beta_1 + \\beta_1 \\sum r_i X_{1i}/\\sum r_i^2 + \\sum r_i E[u_i]/\\sum r_i^2 = \\beta_1$（$\\sum r_i X_{1i} = 0$, $E[u_i]=0$）。",
+        "1-4：正态分布下，$\\hat\\beta_1 \\sim N(\\beta_1, \\sigma^2 / \\sum r_i^2)$。",
+        "1-5：若 $X_2$ 与 $X_1$ 相关且真实系数 $\\beta_2 \\neq 0$，则省略 $X_2$ 引起偏误：$E[\\hat\\beta_1] = \\beta_1 + \\beta_2 \\cdot \\delta$，其中 $\\delta$ 是 $X_2$ 对 $X_1$ 回归系数。"
+      ]
+    },
+    {
+      "label": "问题 $2$ 全部设问",
+      "steps": [
+        "2-1：白噪声 $\\{u_t\\}$：$E[u_t] = 0$，$\\text{Var}(u_t) = \\sigma^2$（常数），$E[u_t u_s] = 0$（$t \\neq s$）。",
+        "2-2：$Y_t = Y_{t-1} + u_t = Y_{t-2} + u_{t-1} + u_t = \\ldots = u_1 + u_2 + \\ldots + u_t$。",
+        "$\\text{Var}(Y_t) = t \\sigma^2 \\to \\infty$（当 $t \\to \\infty$）。所以同意方差无穷。"
+      ]
+    }
+  ]
+}

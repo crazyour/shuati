@@ -1,0 +1,54 @@
+{
+  "id": "2016_システム情報科学府_情報理工学専攻",
+  "school": "九州大学",
+  "year": 2016,
+  "subject": "システム情報科学府_情報理工学専攻",
+  "text": "考虑如下函数：对任意矩阵 $A$，\n$$f(A) = \\frac{1}{\\sqrt{2}} \\begin{pmatrix} A & A \\\\ A & -A \\end{pmatrix}$$\n求以下各问：\n(1) 证明若 $A$ 是正交矩阵，则 $f(A)$ 也是正交矩阵。\n(2) 令 $A_0 = (1)$ 为 $1 \\times 1$ 矩阵。对任意整数 $n \\geq 1$，定义 $2^n \\times 2^n$ 矩阵 $A_n = f(A_{n-1})$。求所有分量为 $1$ 的 $2^n$ 维行向量 $\\mathbf{1} = (1, 1, \\ldots, 1)$ 与矩阵 $A_n$ 的乘积 $\\mathbf{1} A_n$。\n(3) 设 $\\{v_1, v_2, \\ldots, v_d\\}$ 是 $A$ 的列空间（即 $A$ 的列向量张成的子空间）的基。证明\n$$\\left\\{ \\begin{pmatrix} v_1 \\\\ v_1 \\end{pmatrix}, \\ldots, \\begin{pmatrix} v_d \\\\ v_d \\end{pmatrix}, \\begin{pmatrix} v_1 \\\\ -v_1 \\end{pmatrix}, \\ldots, \\begin{pmatrix} v_d \\\\ -v_d \\end{pmatrix} \\right\\}$$\n是 $f(A)$ 的列空间的一组基。",
+  "knowledge_points": [
+    "线性代数",
+    "分块矩阵",
+    "正交矩阵",
+    "递归矩阵",
+    "列空间",
+    "基与维数"
+  ],
+  "question_type": "分块矩阵性质与列空间证明题",
+  "method": [
+    "分块矩阵乘法",
+    "数学归纳法",
+    "线性无关与张成性证明"
+  ],
+  "solution_steps": [
+    "计算 $f(A)^{\\mathsf{T}} f(A)$ 利用 $A^{\\mathsf{T}} A = I$ 验证为单位矩阵",
+    "分析 $A_n$ 的递归分块结构并归纳证明 $\\mathbf{1} A_n$ 的形式",
+    "写出 $f(A)$ 的列向量分解式",
+    "分别证明所给向量组线性无关且张成 $f(A)$ 的列空间"
+  ],
+  "math_structure": {
+    "type": "recursive_block_matrix_problem",
+    "template": "f(A)=2^{-1/2}[[A,A],[A,-A]], A_n=f(A_{n-1}), 1 A_n, Col(f(A))",
+    "variable_count": 3
+  },
+  "difficulty": 4,
+  "answer": [
+    {
+      "label": "(1) 证明 f(A) 正交",
+      "steps": [
+        "直接分块相乘：$f(A)^{\\mathsf T}f(A)=\\operatorname{diag}(A^{\\mathsf T}A,A^{\\mathsf T}A)$。若 $A^{\\mathsf T}A=I$，则 $f(A)^{\\mathsf T}f(A)=I$，因此 f(A) 正交。"
+      ]
+    },
+    {
+      "label": "(2) 求全一行向量与 $A_n$ 的乘积",
+      "steps": [
+        "记 $1_n$ 为长度 $2^n$ 的全一行向量。由分块结构，$1_nA_n=(\\sqrt{2}\\cdot 1_{n-1}A_{n-1},0)$。从 $A_{0}=(1)$ 递推可得 $1_nA_n=2^{n/2}(1,0,\\ldots ,0)$。"
+      ]
+    },
+    {
+      "label": "(3) 证明所给向量构成列空间的基",
+      "steps": [
+        "令 $V=\\operatorname{Col}(A)$。对任意分块向量 $(x^{\\mathsf T},y^{\\mathsf T})^{\\mathsf T}$，有 $f(A)(x^{\\mathsf T},y^{\\mathsf T})^{\\mathsf T}=2^{-1/2}(A(x+y),A(x-y))^{\\mathsf T}$，因此 $\\operatorname{Col}(f(A))=V\\times V$，维数为 $2d$。",
+        "所列 $2d$ 个向量都属于 $V\\times V$。若 $\\sum_{i}\\alpha _{i}(v_{i},v_{i})+\\sum_{i}\\beta _{i}(v_{i},-v_{i})=0$，则由上下两块分别得到 $\\alpha _{i}+\\beta _{i}=0$、$\\alpha _{i}-\\beta _{i}=0$，故所有系数为$0$。它们线性无关且数量等于维数，所以是一组基。"
+      ]
+    }
+  ]
+}

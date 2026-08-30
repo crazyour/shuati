@@ -1,0 +1,54 @@
+{
+  "id": "2016_経済学府_経済工学専攻_第1期_計量経済学",
+  "school": "九州大学",
+  "year": 2016,
+  "subject": "経済学府_経済工学専攻_第1期_計量経済学",
+  "text": "从以下两题中选一题作答。\n\n问题 1：明确说明所需条件的基础上，主体性地解释「最小二乘估计量是最良线性无偏估计量」（高斯-马尔可夫定理）。\n\n问题 2：系列相关是时序数据分析中经常出现的问题。回答下列关于系列相关的问题。\n\n(1) 说明在存在系列相关的计量模型中使用最小二乘法会产生什么后果。\n\n(2) 具体说明系列相关存在的检验方法。\n\n(3) 通过设定模型式，具体说明应对系列相关的方法。",
+  "knowledge_points": [
+    "概率统计",
+    "高斯-马尔可夫定理",
+    "BLUE",
+    "序列相关",
+    "Durbin-Watson",
+    "GLS",
+    "Newey-West"
+  ],
+  "question_type": "高斯-马尔可夫定理与时间序列自相关",
+  "method": [
+    "高斯-马尔可夫定理证明",
+    "Durbin-Watson 检验",
+    "GLS",
+    "Cochrane-Orcutt"
+  ],
+  "solution_steps": [
+    "对 (1)：列出 BLUE 定理条件，叙述定理",
+    "对 (2)：DW 检验和 BG 检验",
+    "对 (3)：用 GLS 或 Newey-West"
+  ],
+  "math_structure": {
+    "type": "gauss_markov_serial_correlation",
+    "template": "BLUE conditions + theorem; DW test; GLS or Newey-West",
+    "variable_count": 3
+  },
+  "difficulty": 3,
+  "answer": [
+    {
+      "label": "问题 $1$ 高斯-马尔可夫定理",
+      "steps": [
+        "条件：(1) 线性于参数；(2) 误差零均值 $E[u_i]=0$；(3) 同方差 $\\text{Var}(u_i)=\\sigma^2$；(4) 无自相关 $\\text{Cov}(u_i, u_j)=0$ ($i \\neq j$)；(5) 解释变量与误差无关 $\\text{Cov}(X, u)=0$。",
+        "定理：在上述条件下，OLS 估计量是 BLUE（最佳线性无偏估计量）。",
+        "证明思路：设其他线性无偏估计量为 $\\tilde\\beta = \\hat\\beta + \\sum c_i u_i$（偏差条件要求 $E[\\tilde\\beta] = \\beta$，即 $\\sum c_i X_i = 0$）。",
+        "$\\text{Var}(\\tilde\\beta) = \\text{Var}(\\hat\\beta) + \\sigma^2 \\sum c_i^2 \\geq \\text{Var}(\\hat\\beta)$。",
+        "等号成立当 $c_i = 0$，即 $\\tilde\\beta = \\hat\\beta$。"
+      ]
+    },
+    {
+      "label": "问题 $2$ 系列相关",
+      "steps": [
+        "(1) OLS 在自相关下仍无偏但不再有效（方差不是最小）；t/F 检验失效。",
+        "(2) Durbin-Watson $d = \\sum(\\hat u_t - \\hat u_{t-1})^2 / \\sum \\hat u_t^2$；Breusch-Godfrey LM 检验。",
+        "(3) 方法：(a) GLS（已知自相关结构）或 FGLS（迭代）；(b) Cochrane-Orcutt 迭代；(c) Newey-West HAC 标准误。"
+      ]
+    }
+  ]
+}

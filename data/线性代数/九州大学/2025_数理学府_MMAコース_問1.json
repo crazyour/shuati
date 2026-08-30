@@ -1,0 +1,47 @@
+{
+  "id": "2025_数理学府_MMAコース_問1",
+  "school": "九州大学",
+  "year": 2025,
+  "subject": "数理学府_MMAコース_問1",
+  "text": "设 $M(2, \\mathbb{R})$ 为所有 2 阶实方阵构成的 $\\mathbb{R}$ 上的线性空间。对 $A \\in M(2, \\mathbb{R})$，定义映射 $f_A: M(2, \\mathbb{R}) \\to M(2, \\mathbb{R})$ 为 $f_A(X) = AX + XA$。回答下列问题。\n\n(1) 证明 $f_A$ 是线性映射。\n\n(2) 设 $A = \\begin{pmatrix} 0 & 1 \\\\ 1 & 0 \\end{pmatrix}$。求 $f_A$ 的所有特征值，并求每个特征值对应的特征空间。",
+  "knowledge_points": [
+    "线性代数",
+    "线性映射",
+    "特征值",
+    "特征空间",
+    "矩阵线性空间",
+    "对称矩阵",
+    "正交对角化"
+  ],
+  "question_type": "矩阵线性空间上的线性映射及其特征值",
+  "method": [
+    "验证线性映射定义",
+    "用 A 的特征分解简化 f_A",
+    "在特征基下计算 f_A 的特征值与特征空间"
+  ],
+  "solution_steps": [
+    "对 (1)：验证 f_A(X+Y) = f_A(X) + f_A(Y) 和 f_A(cX) = c f_A(X)",
+    "对 (2)：用 P^T A P = D 简化 f_A，求 f_A 的矩阵表示，解特征方程"
+  ],
+  "math_structure": {
+    "type": "linear_map_on_matrix_space_eigenvalue_problem",
+    "template": "f_A(X) = AX+XA; diagonalize A=PDP^T; f_A acts on PYP^T as D Y + Y D",
+    "variable_count": 3
+  },
+  "difficulty": 4,
+  "answer": [
+    {
+      "label": "(1) 证明线性",
+      "steps": [
+        "对实数 $\\alpha ,\\beta$ 及矩阵 $X,Y$，有 $f_A(\\alpha X+\\beta Y)=A(\\alpha X+\\beta Y)+(\\alpha X+\\beta Y)A=\\alpha f_A(X)+\\beta f_A(Y)$，所以 $f_A$ 是线性映射。"
+      ]
+    },
+    {
+      "label": "(2) 求特征值与特征空间",
+      "steps": [
+        "写 $X=\\begin{pmatrix}x & y \\\\ z & w\\end{pmatrix}$，则 $f_A(X)=\\begin{pmatrix}y+z & x+w \\\\ x+w & y+z\\end{pmatrix}$。解 $f_A(X)=\\lambda X$ 可得特征值$2$、$0$、$-2$。",
+        "$E_{2}=\\operatorname{span}\\left\\{\\begin{pmatrix}1 & 1 \\\\ 1 & 1\\end{pmatrix}\\right\\}$；$E_{-2}=\\operatorname{span}\\left\\{\\begin{pmatrix}1 & -1 \\\\ -1 & 1\\end{pmatrix}\\right\\}$；$E_{0}=\\left\\{\\begin{pmatrix}x & y \\\\ -y & -x\\end{pmatrix}:x,y\\in \\mathbb{R}\\right\\}=\\operatorname{span}\\left\\{\\begin{pmatrix}1 & 0 \\\\ 0 & -1\\end{pmatrix},\\begin{pmatrix}0 & 1 \\\\ -1 & 0\\end{pmatrix}\\right\\}$。"
+      ]
+    }
+  ]
+}

@@ -1,0 +1,56 @@
+{
+  "id": "2022_数理学府_数理学コース_基礎科目_問2",
+  "school": "九州大学",
+  "year": 2022,
+  "subject": "数理学府_数理学コース_基礎科目_問2",
+  "text": "设 $n \\geq 2$ 为自然数，$M_n(\\mathbb{C})$ 为 $n$ 阶复方阵全体组成的集合，$I_n$ 为 $n$ 阶单位矩阵。对下列矩阵 $A, B, C$，判断它们是否可对角化。\n\n(1) 对某个 $n \\geq 2$ 的自然数 $m$，满足 $A^m = A$ 的 $A \\in M_n(\\mathbb{C})$。\n\n(2) 对某个非零 $\\mathbf{x} \\in \\mathbb{C}^n$，满足 $B^k \\mathbf{x} \\neq 0$（$1 \\leq k \\leq n-1$）且 $B^n \\mathbf{x} = 0$ 的 $B \\in M_n(\\mathbb{C})$。\n\n(3) 满足 $D = C^2 + 2C + 2I_n$ 既可对角化，又不以 $1$ 为特征值的 $C \\in M_n(\\mathbb{C})$。",
+  "knowledge_points": [
+    "线性代数",
+    "对角化可能性",
+    "幂等矩阵",
+    "幂零矩阵",
+    "Jordan标准形",
+    "循环向量",
+    "矩阵多项式"
+  ],
+  "question_type": "矩阵对角化可能性判断",
+  "method": [
+    "幂等矩阵的对角化（最小多项式无重根）",
+    "幂零矩阵与Jordan标准形",
+    "循环向量判定",
+    "多项式变换的特征值映射"
+  ],
+  "solution_steps": [
+    "对 (1)：分析 A^m=A 的最小多项式形式，判断无重根",
+    "对 (2)：构造 Jordan 块分析循环向量",
+    "对 (3)：分析 D 与 C 的特征值关系"
+  ],
+  "math_structure": {
+    "type": "matrix_diagonalizability_judgment_problem",
+    "template": "idempotent A^m=A → diag; cyclic vector → 1 Jordan block; p(C) diag ⇔ C diag",
+    "variable_count": 3
+  },
+  "difficulty": 4,
+  "answer": [
+    {
+      "label": "(1) 判断 $A$",
+      "steps": [
+        "$A$ 满足多项式 $p(t)=t^m-t$。$p$ 的根为$0$及所有 $(m-1)$ 次单位根，且均为单根。因此 $A$ 的最小多项式无重根，$A$ 可在复数域上对角化。"
+      ]
+    },
+    {
+      "label": "(2) 判断 $B$",
+      "steps": [
+        "向量 $x,Bx,\\ldots ,B^{n-1}x$ 线性无关：若存在最短线性关系，左乘适当次 $B$ 并利用 $B^nx=0$，会迫使最低次的非零系数为$0$，矛盾。它们构成一组基。",
+        "在这组基下，$B$ 是大小 $n$ 的零特征值 Jordan 块，$B\\ne 0$ 而唯一特征值为$0$，因此 $B$ 不可对角化。"
+      ]
+    },
+    {
+      "label": "(3) 判断 $\\mathbb{C}$",
+      "steps": [
+        "设 $D=\\mathbb{C}^{2}+2C+2I$，则 $D-I=(\\mathbb{C}+I)^{2}$。因为$1$不是 $D$ 的特征值，$D-I$ 可逆。",
+        "$D$ 可对角化，故空间是各 D-特征空间的直和；因 $\\mathbb{C}$ 与 $D$ 交换，每个特征空间都在 $\\mathbb{C}$ 下不变。在 $D$ 的特征值 $\\mu$ 对应的子空间上，$\\mathbb{C}$ 满足 $(\\mathbb{C}+I)^{2}=(\\mu -1)I$。$\\mu \\ne 1$，所以该二次多项式有两个不同复根，$\\mathbb{C}$ 在每个子空间上均可对角化。故 $\\mathbb{C}$ 可对角化。"
+      ]
+    }
+  ]
+}

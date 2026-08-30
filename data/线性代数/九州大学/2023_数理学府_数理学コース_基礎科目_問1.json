@@ -1,0 +1,43 @@
+{
+  "id": "2023_数理学府_数理学コース_基礎科目_問1",
+  "school": "九州大学",
+  "year": 2023,
+  "subject": "数理学府_数理学コース_基礎科目_問1",
+  "text": "设 $V = \\mathbb{R}^7$，$W$ 为 $V$ 的 3 维子空间，$f: V \\to V$ 是线性映射，且 $\\operatorname{Im} f$ 为 2 维。令 $W$ 与 $f$ 自由变化（即 $W$ 和 $f$ 可以独立选取），求子空间 $(W + \\operatorname{Im} f) \\cap \\operatorname{Ker} f$ 的维数能取的所有值。",
+  "knowledge_points": [
+    "线性代数",
+    "子空间维数",
+    "线性映射",
+    "核与像",
+    "子空间交与和"
+  ],
+  "question_type": "线性映射下子空间交集维数范围",
+  "method": [
+    "利用维数公式",
+    "分析 X = W ∩ Im f 的可能维数",
+    "考虑 U = (W + Im f) ∩ Ker f 与 X 的关系"
+  ],
+  "solution_steps": [
+    "设 X = W ∩ Im f，X 是 Im f 的子空间，所以 dim X ≤ 2",
+    "dim(W + Im f) = 3 + 2 - dim X = 5 - dim X",
+    "考虑自然映射 W + Im f → V/Ker f ≅ Im f（这是满射）",
+    "纤维是 (W + Im f) ∩ Ker f，所以 dim U = dim(W + Im f) - dim Im f = (5 - dim X) - 2 = 3 - dim X",
+    "dim X ∈ {0, 1, 2}，所以 dim U ∈ {1, 2, 3}"
+  ],
+  "math_structure": {
+    "type": "subspace_intersection_dimension_problem",
+    "template": "dim((W+Im f)∩Ker f) = dim(W+Im f) - dim Im f + dim(W∩Im f∩Ker f)",
+    "variable_count": 3
+  },
+  "difficulty": 3,
+  "answer": [
+    {
+      "label": "求所有可能维数",
+      "steps": [
+        "记 $I=\\operatorname{Im} f$、$K=\\operatorname{Ker} f$，则 $\\dim I=2$、$\\dim K=5$。令 $U=W+I$。由于 $\\dim(W\\cap I)$ 可为$0$、$1$、$2$，$\\dim U$ 可为$5$、$4$、$3$；结合 $\\dim K=5$，可知 $\\dim(U\\cap K)$ 只能落在$1$到$5$之间。",
+        "这些值均可实现。取标准基 $e_{1},\\ldots ,e_{7}$，令 $K=\\operatorname{span}(e_{1},\\ldots ,e_{5})$，并通过指定 $f(e_{6}),f(e_{7})$ 为 $I$ 的一组基来构造 $f$。例：维数$1$、$2$、$3$时取 $I=\\operatorname{span}(e_{6},e_{7})$，$W$ 分别取 $\\operatorname{span}(e_{1},e_{6},e_{7})$、$\\operatorname{span}(e_{1},e_{2},e_{6})$、$\\operatorname{span}(e_{1},e_{2},e_{3})$；维数$4$时取 $I=\\operatorname{span}(e_{1},e_{6})$、$W=\\operatorname{span}(e_{2},e_{3},e_{4})$；维数$5$时取 $I=\\operatorname{span}(e_{1},e_{2})$、$W=\\operatorname{span}(e_{3},e_{4},e_{5})$。",
+        "因此可能值恰为 ${1,2,3,4,5}$。"
+      ]
+    }
+  ]
+}

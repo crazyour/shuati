@@ -1,0 +1,27 @@
+{
+  "id": "jakuten-kokufuku-linear-algebra-revised",
+  "slug": "linear-algebra",
+  "title": {
+    "ja": "弱点克服 大学生の線形代数 改訂版",
+    "zh": "弱点克服：大学线性代数（修订版）"
+  },
+  "author": "江川博康",
+  "edition": "改訂版",
+  "source_language": "ja",
+  "chapter_count": 9,
+  "unit_count": 80,
+  "chapters": [
+    {
+      "id": "chapter-01",
+      "order": 1,
+      "title": {
+        "ja": "矢線ベクトルと2次元・3次元の幾何学",
+        "zh": "向量与二维、三维几何"
+      },
+      "unit_count": 8,
+      "printed_pages": [2, 17],
+      "pdf_pages": [18, 33],
+      "path": "chapter-01.json"
+    }
+  ]
+}

@@ -1,0 +1,46 @@
+{
+  "id": "2025_数理学府_数理学コース_基礎科目_問3",
+  "school": "九州大学",
+  "year": 2025,
+  "subject": "数理学府_数理学コース_基礎科目_問3",
+  "text": "设 $n \\in \\mathbb{N}$，$M(n, \\mathbb{C})$ 为 $n$ 阶复方阵全体构成的集合。定义映射 $r: M(n, \\mathbb{C}) \\to [0, \\infty)$ 为\n$$r(X) = \\max\\{ |\\lambda| : \\lambda \\text{ 是 } X \\text{ 的特征值} \\}$$\n回答下列问题。\n\n(1) 是否存在 $X \\in M(2, \\mathbb{C})$ 使得 $r(X) = 0$ 但 $r(X^* X) > 0$？给出理由。其中 $X^*$ 是 $X$ 的伴随矩阵（共轭转置）。\n\n(2) 证明对任意 $X \\in M(n, \\mathbb{C})$，$r(X)^2 \\leq r(X^* X)$。",
+  "knowledge_points": [
+    "线性代数",
+    "特征值",
+    "谱半径",
+    "伴随矩阵",
+    "Hermitian矩阵",
+    "矩阵范数"
+  ],
+  "question_type": "矩阵的谱半径与伴随矩阵",
+  "method": [
+    "理解 r(X)=0 意味着 X 是零矩阵",
+    "利用 X^*X 的特征值非负",
+    "利用矩阵范数与谱半径的关系"
+  ],
+  "solution_steps": [
+    "对 (1)：分析 X=0 时 X^*X=0",
+    "对 (2)：利用算子范数 ||X||² = ρ(X*X) 和 ρ(X) ≤ ||X||"
+  ],
+  "math_structure": {
+    "type": "spectral_radius_adjoint_problem",
+    "template": "r(X) = 0 ⟺ X = 0; r(X) ≤ ||X||; ||X||² = r(X*X)",
+    "variable_count": 2
+  },
+  "difficulty": 3,
+  "answer": [
+    {
+      "label": "(1) 构造反例",
+      "steps": [
+        "存在。取 $X=\\begin{pmatrix}0 & 1 \\\\ 0 & 0\\end{pmatrix}$。$X$ 的两个特征值均为$0$，所以 $r(X)=0$；而 $X*X=\\operatorname{diag}(0,1)$，故 $r(X*X)=1>0$。"
+      ]
+    },
+    {
+      "label": "(2) 证明不等式",
+      "steps": [
+        "设 $\\lambda$ 是 $X$ 的任一特征值，取单位特征向量 $v$，则 $Xv=\\lambda v$，从而 $|\\lambda |^{2}=\\lVert Xv\\rVert^{2}=v*X*Xv$。",
+        "X*X 是 Hermite 半正定矩阵，其 Rayleigh 商不超过最大特征值 r(X*X)，故 $|\\lambda |^{2}\\le r(X*X)$。对所有 $\\lambda$ 取最大值得 $r(X)^{2}\\le r(X*X)$。"
+      ]
+    }
+  ]
+}
