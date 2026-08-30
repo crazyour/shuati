@@ -539,6 +539,8 @@ footer {
 .drawer-close { border: 0; background: none; color: var(--ink-soft); font-size: 26px; line-height: 1; }
 .similar-backdrop { position: fixed; z-index: 19; inset: 0; background: rgba(20, 24, 30, .28); }
 .drawer-open { overflow: hidden; }
+.drawer-threshold { display: block; margin-bottom: 14px; color: var(--ink-soft); font-size: 13px; }
+.drawer-threshold input { width: 72px; margin: 0 6px; padding: 5px; }
 .similar-results { display: flex; flex-direction: column; gap: 12px; margin: 0; padding-left: 24px; }
 .similar-result { padding: 12px 14px; border: 1px solid var(--line); border-radius: 8px; background: #fbfcfd; }
 .similar-result-head { display: flex; justify-content: space-between; gap: 10px; margin-bottom: 8px; color: var(--ink-soft); font-size: 12px; }

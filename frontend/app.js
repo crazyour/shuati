@@ -10,6 +10,7 @@ const questionList = $("questions");
 const cache = new Map();
 let tree = [];
 let current = { subject: "", school: "", senkou: "" };
+let selectedQuestionId = "";
 
 function api(path) { return `${backend}${path}`; }
 function node(value) {
@@ -72,11 +73,13 @@ async function loadQuestions() {
 }
 async function findSimilar(id) {
   openDrawer();
-  const key = `${subjectParam()}::${id}`;
+  selectedQuestionId = id;
+  const threshold = Number($("threshold").value);
+  const key = `${subjectParam()}::${id}::${threshold}`;
   if (cache.has(key)) return renderSimilar(cache.get(key), id);
   $("similar-status").textContent = "正在检索相似题目…";
   try {
-    const response = await fetch(api("/api/similar"), { method: "POST", headers: { "Content-Type": "application/json" }, body: JSON.stringify({ id, subject: subjectParam(), topk: 5 }) });
+    const response = await fetch(api("/api/similar"), { method: "POST", headers: { "Content-Type": "application/json" }, body: JSON.stringify({ id, subject: subjectParam(), topk: 5, min_score: threshold }) });
     const data = await response.json();
     if (!response.ok) throw new Error(data.error || `匹配失败（HTTP ${response.status}）`);
     cache.set(key, data);
@@ -84,7 +87,7 @@ async function findSimilar(id) {
   } catch (error) { $("similar-status").textContent = error.message; }
 }
 function renderSimilar(data, sourceId) {
-  $("similar-status").textContent = `${sourceId} · 按相似度从高到低，共 ${(data.matches || []).length} 题`;
+  $("similar-status").textContent = `${sourceId} · 阈值 ${data.min_score} · 按相似度从高到低，共 ${(data.matches || []).length} 题`;
   $("similar").replaceChildren(...(data.matches || []).map((match) => {
     const li = document.createElement("li"); li.className = "similar-item";
     const score = document.createElement("strong"); score.textContent = `${(match.score * 100).toFixed(1)}%`;
@@ -99,12 +102,15 @@ async function init() {
   if (!backend || backend.includes("你的后端域名")) throw new Error("请先在 frontend/config.js 设置后端地址。");
   const response = await fetch(api("/api/subjects"));
   if (!response.ok) throw new Error(`后端连接失败（HTTP ${response.status}）`);
-  tree = (await response.json()).tree || [];
+  const data = await response.json();
+  $("threshold").value = data.min_score ?? 0.35;
+  tree = data.tree || [];
   populateFilters(); await loadQuestions();
 }
 subjectEl.onchange = () => { current = { subject: subjectEl.value, school: "", senkou: "" }; populateFilters(); loadQuestions().catch(showError); };
 schoolEl.onchange = () => { current.school = schoolEl.value; current.senkou = ""; populateFilters(); loadQuestions().catch(showError); };
 senkouEl.onchange = () => { current.senkou = senkouEl.value; loadQuestions().catch(showError); };
 $("close").onclick = closeDrawer; $("backdrop").onclick = closeDrawer;
+$("rerun").onclick = () => { if (selectedQuestionId) findSimilar(selectedQuestionId); };
 function showError(error) { $("empty").textContent = error.message; $("empty").hidden = false; }
 init().catch(showError);

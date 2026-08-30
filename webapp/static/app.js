@@ -506,9 +506,10 @@ async function match() {
 }
 
 const similarCache = new Map();
+let similarSourceId = "";
 
 function similarCacheKey(question) {
-  return JSON.stringify([apiSubjectParam(), question.id]);
+  return JSON.stringify([apiSubjectParam(), question.id, Number(el("similar-threshold").value)]);
 }
 
 function openSimilarDrawer() {
@@ -568,6 +569,8 @@ function renderSimilar(data, source) {
 
 async function findSimilar(question) {
   openSimilarDrawer();
+  similarSourceId = question.id;
+  const threshold = Number(el("similar-threshold").value);
   const key = similarCacheKey(question);
   const cached = similarCache.get(key);
   if (cached) {
@@ -582,7 +585,7 @@ async function findSimilar(question) {
     const { ok, data } = await post("/api/similar", {
       method: "POST",
       headers: { "Content-Type": "application/json" },
-      body: JSON.stringify({ id: question.id, subject: apiSubjectParam(), topk: 5 }),
+      body: JSON.stringify({ id: question.id, subject: apiSubjectParam(), topk: 5, min_score: threshold }),
     });
     if (!ok) throw new Error(data.error || "匹配失败。");
     similarCache.set(key, data);
@@ -595,6 +598,9 @@ async function findSimilar(question) {
 
 el("close-similar").addEventListener("click", closeSimilarDrawer);
 el("similar-backdrop").addEventListener("click", closeSimilarDrawer);
+el("rerun-similar").addEventListener("click", () => {
+  if (similarSourceId) findSimilar({ id: similarSourceId });
+});
 
 window.addEventListener("focus", refreshScope);
 

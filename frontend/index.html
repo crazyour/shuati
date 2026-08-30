@@ -29,6 +29,10 @@
     <button id="close" class="close" type="button">×</button>
     <h2>相似题目</h2>
     <p id="similar-status" class="muted"></p>
+    <label class="threshold">相似度阈值
+      <input id="threshold" type="number" min="0" max="1" step="0.05" value="0.35">
+      <button id="rerun" type="button">重新检索</button>
+    </label>
     <ol id="similar" class="similar"></ol>
   </aside>
   <div id="backdrop" class="backdrop" hidden></div>
