@@ -1,0 +1,38 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>题库</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <main>
+    <header>
+      <h1>题库</h1>
+      <p class="sub">按科目、学校和专攻浏览题目。</p>
+    </header>
+    <section class="layout">
+      <aside class="panel filters">
+        <label>科目<select id="subject"></select></label>
+        <label id="school-wrap" hidden>学校<select id="school"></select></label>
+        <label id="senkou-wrap" hidden>专攻<select id="senkou"></select></label>
+      </aside>
+      <section>
+        <div class="panel summary"><span id="scope"></span><span id="count"></span></div>
+        <p id="empty" class="empty" hidden></p>
+        <ol id="questions" class="questions"></ol>
+      </section>
+    </section>
+  </main>
+  <aside id="drawer" class="drawer" hidden>
+    <button id="close" class="close" type="button">×</button>
+    <h2>相似题目</h2>
+    <p id="similar-status" class="muted"></p>
+    <ol id="similar" class="similar"></ol>
+  </aside>
+  <div id="backdrop" class="backdrop" hidden></div>
+  <script src="config.js"></script>
+  <script src="app.js"></script>
+</body>
+</html>

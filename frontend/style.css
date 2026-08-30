@@ -1,0 +1,10 @@
+:root { --bg:#f6f7f9; --panel:#fff; --ink:#1b1f24; --muted:#6b7280; --line:#e3e6ea; --accent:#2f6feb; }
+* { box-sizing:border-box; }
+body { margin:0; padding:36px 20px 64px; background:var(--bg); color:var(--ink); font:15px/1.7 -apple-system,BlinkMacSystemFont,"PingFang SC","Microsoft YaHei",sans-serif; }
+main { max-width:1080px; margin:auto; } h1 { margin:0 0 6px; } .sub,.muted { color:var(--muted); }
+.layout { display:grid; grid-template-columns:240px 1fr; gap:16px; margin-top:24px; } .panel,.question { background:var(--panel); border:1px solid var(--line); border-radius:10px; padding:16px; }
+.filters { height:max-content; position:sticky; top:16px; } label { display:block; margin-bottom:14px; color:var(--muted); font-size:13px; } select { display:block; width:100%; margin-top:5px; padding:8px; border:1px solid var(--line); border-radius:7px; background:var(--panel); color:var(--ink); font:inherit; }
+.summary { display:flex; justify-content:space-between; color:var(--muted); font-size:13px; } .questions,.similar { display:flex; flex-direction:column; gap:14px; margin:14px 0 0; padding:0; list-style:none; } .question header { padding-bottom:10px; margin-bottom:12px; border-bottom:1px dashed var(--line); color:var(--muted); font-size:12px; } .question p,.similar-item p { margin:6px 0; }
+button { padding:5px 10px; border:1px solid var(--line); border-radius:6px; background:var(--panel); color:var(--accent); cursor:pointer; } button:hover { border-color:var(--accent); }
+.empty { padding:14px; border:1px dashed var(--line); border-radius:8px; color:var(--muted); } .drawer { position:fixed; z-index:2; top:0; right:0; width:min(430px,100vw); height:100vh; overflow:auto; padding:22px; background:var(--panel); box-shadow:-10px 0 30px #0002; } .backdrop { position:fixed; z-index:1; inset:0; background:#14181e48; } .close { float:right; border:0; font-size:24px; } .similar-item { padding:12px; border:1px solid var(--line); border-radius:8px; } .similar-item strong { color:var(--accent); } 
+@media (max-width:720px) { .layout { grid-template-columns:1fr; } .filters { position:static; } }

@@ -30,6 +30,15 @@ def aliases_from_config(config: Dict) -> Dict[str, Dict[str, str]]:
     return load_aliases(config.get("aliases_path"))
 
 
+def match_defaults(config: Dict) -> Dict[str, float]:
+    """检索阈值和默认条数：低于 min_score 的结果直接不要（挡掉跨科目的凑数题）。"""
+    cfg = config.get("match", {}) or {}
+    return {
+        "min_score": max(0.0, min(1.0, float(cfg.get("min_score", 0.0)))),
+        "topk": int(cfg.get("topk", 5)),
+    }
+
+
 @dataclass
 class Match:
     qid: str

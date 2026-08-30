@@ -138,7 +138,10 @@ def load_questions(
         records = [json.loads(line) for line in p.read_text(encoding="utf-8").splitlines() if line.strip()]
     else:
         data = _read_json(p)
-        records = data["questions"] if isinstance(data, dict) else data
+        if isinstance(data, dict):
+            records = data["questions"] if "questions" in data else [data]
+        else:
+            records = data
 
     questions = [
         question_from_dict(rec, aliases, default_id=f"q-{i:04d}")
