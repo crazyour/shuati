@@ -1,0 +1,219 @@
+{
+  "id": "osaka-2024-bc3583b02c-q04",
+  "school": "大阪大学",
+  "year": "2024",
+  "subject": "情报科学研究科_情报基础数学",
+  "text": "设 $A$ 是 $n$ 阶正则（可逆）实方阵，回答以下问题：\n(1) 证明存在正交矩阵 $Q$ 与上三角矩阵 $R$，使得 $A=QR$，且 $R$ 的对角元全为正；\n(2) 证明(1)中的分解是唯一的；\n(3) 对(1)中的 $Q,R$，证明 $RQ$ 的特征值与 $A$ 的特征值一致。",
+  "knowledge_points": [
+    "QR分解",
+    "Gram-Schmidt正交化",
+    "正交矩阵性质",
+    "上三角矩阵的逆与乘积",
+    "相似矩阵与特征值不变性"
+  ],
+  "question_type": "矩阵分解与特征值证明",
+  "method": [
+    "Gram-Schmidt正交化构造QR分解",
+    "用正交且上三角矩阵必为单位矩阵的引理证明唯一性",
+    "用相似变换 $RQ=Q^{-1}AQ$ 证明特征值一致"
+  ],
+  "solution_steps": [
+    "对 $A$ 的列向量做Gram-Schmidt正交化，构造 $Q$ 与 $R$",
+    "验证 $R$ 上三角且对角元为正，得到 $A=QR$",
+    "假设两组分解，证明比值矩阵既正交又上三角对角为正，从而为单位矩阵",
+    "利用 $Q$ 正交（$Q^{-1}=Q^T$）把 $RQ$ 写成 $Q^{-1}AQ$，说明二者相似"
+  ],
+  "math_structure": {
+    "type": "qr_decomposition_existence_uniqueness_eigenvalue",
+    "template": "A=QR,\\ Q^TQ=I,\\ R\\ \\text{upper triangular},\\ \\text{diag}(R)>0,\\ \\det A\\ne0",
+    "variable_count": 1
+  },
+  "difficulty": 4,
+  "answer": [
+    {
+      "label": "(1)",
+      "steps": [
+        "设 $A$ 的列向量为 $a_1,\\dots,a_n$。因 $A$ 可逆，$a_1,\\dots,a_n$ 线性无关。对其做Gram-Schmidt正交化：令 $q_1=a_1/\\|a_1\\|$；对 $k=2,\\dots,n$，令 $\\tilde q_k=a_k-\\sum_{i=1}^{k-1}(a_k\\cdot q_i)q_i$，再令 $q_k=\\tilde q_k/\\|\\tilde q_k\\|$。",
+        "由线性无关性，每个 $\\tilde q_k\\ne0$（否则 $a_k$ 落在 $a_1,\\dots,a_{k-1}$ 张成的空间中，与线性无关矛盾），故 $\\|\\tilde q_k\\|>0$，构造合法。",
+        "记 $r_{ik}=a_k\\cdot q_i$（$i<k$），$r_{kk}=\\|\\tilde q_k\\|>0$，则由构造 $a_k=\\sum_{i=1}^{k}r_{ik}q_i$。令 $Q=[q_1,\\dots,q_n]$，$R=(r_{ik})$（$r_{ik}=0$ 当 $i>k$）。",
+        "$Q$ 的列 $q_1,\\dots,q_n$ 是标准正交基（由Gram-Schmidt构造保证两两正交且单位化），故 $Q^TQ=I$，即 $Q$ 是正交矩阵；$R$ 由构造为上三角矩阵且对角元 $r_{kk}=\\|\\tilde q_k\\|>0$。",
+        "由 $a_k=\\sum_i r_{ik}q_i$ 对所有 $k$ 成立，写成矩阵形式即 $A=QR$，即得所需分解。"
+      ]
+    },
+    {
+      "label": "(2)",
+      "steps": [
+        "设 $A=Q_1R_1=Q_2R_2$ 为两组满足条件的分解（$Q_1,Q_2$ 正交，$R_1,R_2$ 上三角、对角元为正）。由 $A$ 可逆知 $R_1,R_2$ 均可逆（上三角且对角元非零）。",
+        "由 $Q_1R_1=Q_2R_2$ 得 $U:=Q_2^{-1}Q_1=R_2R_1^{-1}$。左边 $U=Q_2^TQ_1$ 是两个正交矩阵之积，故 $U$ 为正交矩阵；右边 $R_2R_1^{-1}$ 是两个上三角矩阵之积（上三角矩阵的逆仍是上三角），故 $U$ 也是上三角矩阵，且其对角元为 $R_2,R_1^{-1}$ 对角元之积，均为正数（$R_1^{-1}$ 对角元是 $1/r_{ii}(R_1)>0$）。",
+        "断言：既是正交矩阵又是对角元为正的上三角矩阵，必为单位矩阵。证明：设 $U=(u_{ij})$。第一列 $(u_{11},0,\\dots,0)^T$ 的范数为 $|u_{11}|=1$（正交矩阵列向量单位长度），又 $u_{11}>0$，故 $u_{11}=1$。第二列 $(u_{12},u_{22},0,\\dots)^T$ 与第一列正交给出 $u_{12}\\cdot1=0\\Rightarrow u_{12}=0$，其范数为 $|u_{22}|=1$ 且 $u_{22}>0$ 故 $u_{22}=1$。依此归纳，第 $k$ 列与前 $k-1$ 列正交依次消去所有 $u_{ik}=0$（$i<k$），再由单位范数与正对角元得 $u_{kk}=1$。故 $U=I$。",
+        "由 $U=I$ 得 $Q_2^{-1}Q_1=I\\Rightarrow Q_1=Q_2$；同时 $R_2R_1^{-1}=I\\Rightarrow R_1=R_2$。故分解唯一。"
+      ]
+    },
+    {
+      "label": "(3)",
+      "steps": [
+        "由(1)，$A=QR$，且 $Q$ 为正交矩阵，故 $Q^{-1}=Q^T$ 存在。",
+        "计算 $Q^{-1}AQ=Q^{-1}(QR)Q=(Q^{-1}Q)RQ=RQ$，即 $RQ=Q^{-1}AQ$。",
+        "这说明 $RQ$ 是 $A$ 通过相似变换（以 $Q$ 为变换矩阵）得到的矩阵，即 $A$ 与 $RQ$ 相似。",
+        "相似矩阵具有相同的特征多项式：$\\det(RQ-\\lambda I)=\\det(Q^{-1}AQ-\\lambda I)=\\det(Q^{-1}(A-\\lambda I)Q)=\\det(Q^{-1})\\det(A-\\lambda I)\\det(Q)=\\det(A-\\lambda I)$（因 $\\det(Q^{-1})\\det(Q)=1$），故 $RQ$ 与 $A$ 的特征多项式相同，从而特征值（含重数）完全一致。"
+      ]
+    }
+  ],
+  "practice_questions": [
+    {
+      "text": "对矩阵 $A=\\begin{pmatrix}3&1\\\\4&3\\end{pmatrix}$ 求QR分解（要求 $R$ 对角元为正）。",
+      "knowledge_points": [
+        "Gram-Schmidt正交化",
+        "QR分解的具体计算"
+      ],
+      "question_type": "QR分解的数值计算",
+      "method": [
+        "对列向量做Gram-Schmidt正交化"
+      ],
+      "solution_steps": [
+        "单位化第一列得 $q_1$",
+        "第二列减去在 $q_1$ 方向的分量并单位化得 $q_2$",
+        "写出 $Q,R$ 并验证 $QR=A$"
+      ],
+      "math_structure": {
+        "type": "qr_decomposition_concrete",
+        "template": "A=\\begin{pmatrix}a&b\\\\c&d\\end{pmatrix}=QR",
+        "variable_count": 4
+      },
+      "difficulty": 1,
+      "estimated_minutes": 8,
+      "answer": [
+        {
+          "label": "Q, R",
+          "steps": [
+            "第一列 $a_1=(3,4)^T$，$\\|a_1\\|=5$，故 $q_1=(3/5,4/5)^T$，$r_{11}=5$。",
+            "第二列 $a_2=(1,3)^T$，$r_{12}=a_2\\cdot q_1=1\\cdot\\frac35+3\\cdot\\frac45=\\frac{3}{5}+\\frac{12}{5}=3$。正交化：$\\tilde q_2=a_2-r_{12}q_1=(1,3)-3(3/5,4/5)=(1-9/5,3-12/5)=(-4/5,3/5)$，其范数 $=\\sqrt{16/25+9/25}=1$，故 $r_{22}=1,\\ q_2=(-4/5,3/5)^T$。",
+            "$Q=\\begin{pmatrix}3/5&-4/5\\\\4/5&3/5\\end{pmatrix},\\ R=\\begin{pmatrix}5&3\\\\0&1\\end{pmatrix}$。",
+            "验算：$QR=\\begin{pmatrix}3/5\\cdot5&3/5\\cdot3-4/5\\cdot1\\\\4/5\\cdot5&4/5\\cdot3+3/5\\cdot1\\end{pmatrix}=\\begin{pmatrix}3&9/5-4/5\\\\4&12/5+3/5\\end{pmatrix}=\\begin{pmatrix}3&1\\\\4&3\\end{pmatrix}=A$，且 $Q^TQ=I$（可验证列正交单位），分解正确。"
+          ]
+        }
+      ],
+      "id": "osaka-2024-bc3583b02c-q04-practice-01",
+      "school": "大阪大学",
+      "year": "2024"
+    },
+    {
+      "text": "证明：若 $n$ 阶实矩阵 $U$ 既是正交矩阵，又是上三角矩阵且对角元全为正，则 $U$ 必为单位矩阵。",
+      "knowledge_points": [
+        "正交矩阵性质",
+        "上三角矩阵结构",
+        "归纳法证明"
+      ],
+      "question_type": "矩阵结构性质证明",
+      "method": [
+        "逐列利用正交性（单位范数、两两正交）归纳证明每列即为标准基向量"
+      ],
+      "solution_steps": [
+        "证明第一列必为 $e_1$",
+        "归纳证明第 $k$ 列必为 $e_k$"
+      ],
+      "math_structure": {
+        "type": "orthogonal_upper_triangular_identity_lemma",
+        "template": "U^TU=I,\\ U\\ \\text{upper triangular},\\ \\text{diag}(U)>0\\Rightarrow U=I",
+        "variable_count": 0
+      },
+      "difficulty": 2,
+      "estimated_minutes": 10,
+      "answer": [
+        {
+          "label": "证明",
+          "steps": [
+            "设 $U=(u_{ij})$ 上三角，即 $u_{ij}=0$ 对 $i>j$。第一列为 $(u_{11},0,\\dots,0)^T$。由正交矩阵列向量单位长度，$|u_{11}|=1$；又 $u_{11}>0$，故 $u_{11}=1$。",
+            "假设已证第 $1,\\dots,k-1$ 列均为标准基向量 $e_1,\\dots,e_{k-1}$。第 $k$ 列为 $(u_{1k},\\dots,u_{kk},0,\\dots,0)^T$（因上三角，$k$ 以下分量为0）。它与第 $j$ 列（$j<k$，即 $e_j$）正交：$e_j\\cdot(\\text{第}k\\text{列})=u_{jk}=0$。故 $u_{1k}=\\cdots=u_{k-1,k}=0$。",
+            "此时第 $k$ 列为 $(0,\\dots,0,u_{kk},0,\\dots,0)^T$，其范数为 $|u_{kk}|=1$，又 $u_{kk}>0$，故 $u_{kk}=1$，即第 $k$ 列为 $e_k$。",
+            "由数学归纳法，所有列均为标准基向量，故 $U=I$，证毕。"
+          ]
+        }
+      ],
+      "id": "osaka-2024-bc3583b02c-q04-practice-02",
+      "school": "大阪大学",
+      "year": "2024"
+    },
+    {
+      "text": "沿用上一题的QR分解 $A=\\begin{pmatrix}3&1\\\\4&3\\end{pmatrix}=QR$（$Q=\\begin{pmatrix}3/5&-4/5\\\\4/5&3/5\\end{pmatrix},R=\\begin{pmatrix}5&3\\\\0&1\\end{pmatrix}$），直接计算 $RQ$ 并验证其特征值与 $A$ 的特征值相同。",
+      "knowledge_points": [
+        "矩阵乘法",
+        "特征值计算（迹与行列式）",
+        "相似矩阵特征值不变性验证"
+      ],
+      "question_type": "特征值一致性验证",
+      "method": [
+        "直接计算 $RQ$",
+        "比较 $A$ 与 $RQ$ 的迹与行列式"
+      ],
+      "solution_steps": [
+        "计算 $A$ 的迹与行列式得特征值",
+        "计算 $RQ$",
+        "比较迹与行列式确认特征值相同"
+      ],
+      "math_structure": {
+        "type": "qr_similarity_eigenvalue_check",
+        "template": "A=QR,\\ \\text{compare eigenvalues of }A\\text{ and }RQ",
+        "variable_count": 0
+      },
+      "difficulty": 3,
+      "estimated_minutes": 10,
+      "answer": [
+        {
+          "label": "特征值比较",
+          "steps": [
+            "$A$ 的迹 $=3+3=6$，行列式 $=9-4=5$，特征方程 $\\lambda^2-6\\lambda+5=0\\Rightarrow\\lambda=1,5$。",
+            "计算 $RQ=\\begin{pmatrix}5&3\\\\0&1\\end{pmatrix}\\begin{pmatrix}3/5&-4/5\\\\4/5&3/5\\end{pmatrix}$：第一行 $[5\\cdot\\frac35+3\\cdot\\frac45,\\ 5\\cdot(-\\frac45)+3\\cdot\\frac35]=[3+\\frac{12}{5},\\ -4+\\frac95]=[\\frac{27}{5},-\\frac{11}{5}]$；第二行 $[\\frac45,\\frac35]$。",
+            "故 $RQ=\\begin{pmatrix}27/5&-11/5\\\\4/5&3/5\\end{pmatrix}$，迹 $=27/5+3/5=6$，行列式 $=\\frac{27}{5}\\cdot\\frac35-\\left(-\\frac{11}{5}\\right)\\cdot\\frac45=\\frac{81}{25}+\\frac{44}{25}=\\frac{125}{25}=5$。",
+            "$RQ$ 的迹与行列式均与 $A$ 相同（$6$ 和 $5$），故其特征方程同为 $\\lambda^2-6\\lambda+5=0$，特征值同为 $1,5$，验证了 $A$ 与 $RQ$ 特征值一致。"
+          ]
+        }
+      ],
+      "id": "osaka-2024-bc3583b02c-q04-practice-03",
+      "school": "大阪大学",
+      "year": "2024"
+    },
+    {
+      "text": "设 $A$ 为 $n$ 阶可逆实矩阵，且 $A=BC$，其中 $B$ 为正交矩阵，$C$ 为可逆矩阵（不要求上三角）。证明 $CB$ 与 $A$ 相似，从而特征值相同。这一结论是原题(3)的推广。",
+      "knowledge_points": [
+        "相似矩阵定义",
+        "正交矩阵的逆",
+        "特征值的相似不变性"
+      ],
+      "question_type": "一般化的相似性证明",
+      "method": [
+        "用 $B^{-1}=B^T$ 构造相似变换"
+      ],
+      "solution_steps": [
+        "写出 $B^{-1}AB$ 并化简为 $CB$",
+        "说明这就是相似关系",
+        "由相似矩阵特征多项式相同得出结论"
+      ],
+      "math_structure": {
+        "type": "general_orthogonal_conjugation_eigenvalue",
+        "template": "A=BC,\\ B^TB=I\\Rightarrow CB=B^{-1}AB",
+        "variable_count": 0
+      },
+      "difficulty": 4,
+      "estimated_minutes": 10,
+      "answer": [
+        {
+          "label": "证明",
+          "steps": [
+            "因 $B$ 为正交矩阵，$B^{-1}=B^T$ 存在。计算 $B^{-1}AB=B^{-1}(BC)B=(B^{-1}B)CB=CB$，即 $CB=B^{-1}AB$。",
+            "这说明 $CB$ 是 $A$ 经过相似变换（变换矩阵为 $B$）得到的矩阵，即 $A$ 与 $CB$ 相似。此结论对任意可逆 $C$ 均成立，不要求 $C$ 上三角，故是原题(3)（$C=R$ 上三角情形）的直接推广。",
+            "由相似矩阵的性质：$\\det(CB-\\lambda I)=\\det(B^{-1}AB-\\lambda I)=\\det(B^{-1}(A-\\lambda I)B)=\\det(B^{-1})\\det(A-\\lambda I)\\det(B)=\\det(A-\\lambda I)$（因 $\\det(B^{-1})\\det(B)=1$）。",
+            "故 $CB$ 与 $A$ 的特征多项式完全相同，从而特征值（含代数重数）一致。这与原题(3)中 $RQ$ 与 $A$ 特征值相同的结论本质上是同一原理的体现，只是原题中额外要求 $Q$ 正交、$R$ 上三角以保证QR分解的唯一性，而这里只需 $B$ 正交即可保证相似关系。"
+          ]
+        }
+      ],
+      "id": "osaka-2024-bc3583b02c-q04-practice-04",
+      "school": "大阪大学",
+      "year": "2024"
+    }
+  ],
+  "source_question": "4",
+  "source_pdf": "大阪大学/情报科学研究科/情报基础数学/大阪大学_情报科学研究科_情报基础数学_2024_数学过去问.pdf",
+  "source_type": "官方过去问",
+  "subject_category": "线性代数"
+}

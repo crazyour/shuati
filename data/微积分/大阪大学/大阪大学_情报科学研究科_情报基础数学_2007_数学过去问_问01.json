@@ -1,0 +1,136 @@
+{
+  "id": "osaka-2007-7f6c301d96-q01",
+  "school": "大阪大学",
+  "year": "2007",
+  "subject": "情报科学研究科_情报基础数学",
+  "text": "设 $\\mathbb{R}$ 为实数的全体。求椭圆体 $$E = \\left\\{(x,y,z) \\in \\mathbb{R}^3 \\mid \\left(\\frac{x}{a}\\right)^2 + \\left(\\frac{y}{b}\\right)^2 + \\left(\\frac{z}{c}\\right)^2 \\leq 1\\right\\}$$的体积 $V$，其中 $a > 0, b > 0, c > 0$。",
+  "knowledge_points": [
+    "三重积分",
+    "坐标变换",
+    "雅可比行列式"
+  ],
+  "question_type": "计算题",
+  "method": [
+    "坐标变换法"
+  ],
+  "solution_steps": [
+    "建立坐标变换",
+    "计算雅可比行列式",
+    "利用单位球体积"
+  ],
+  "math_structure": {
+    "type": "ellipsoid_volume",
+    "template": "$$V = \\frac{4\\pi abc}{3}$$",
+    "variable_count": 3
+  },
+  "difficulty": 3,
+  "answer": [
+    {
+      "label": "椭圆体体积",
+      "steps": [
+        "令 $u=x/a, v=y/b, w=z/c$，雅可比行列式为 $abc$",
+        "单位球体积为 $4\\pi/3$",
+        "答案：$V = \\frac{4\\pi abc}{3}$"
+      ]
+    }
+  ],
+  "practice_questions": [
+    {
+      "text": "求单位球体积",
+      "knowledge_points": [
+        "球面坐标"
+      ],
+      "question_type": "计算题",
+      "method": [
+        "球面坐标法"
+      ],
+      "solution_steps": [
+        "用球坐标"
+      ],
+      "math_structure": {
+        "type": "sphere_volume",
+        "template": "$$V = \\frac{4\\pi}{3}$$",
+        "variable_count": 1
+      },
+      "difficulty": 2,
+      "estimated_minutes": 3,
+      "answer": [
+        {
+          "label": "体积",
+          "steps": [
+            "$\\frac{4\\pi}{3}$"
+          ]
+        }
+      ],
+      "id": "osaka-2007-7f6c301d96-q01-practice-01",
+      "school": "大阪大学",
+      "year": "2007"
+    },
+    {
+      "text": "求椭圆体 $\\frac{x^2}{4}+\\frac{y^2}{9}+\\frac{z^2}{16} \\leq 1$ 的体积",
+      "knowledge_points": [
+        "椭圆体"
+      ],
+      "question_type": "计算题",
+      "method": [
+        "公式法"
+      ],
+      "solution_steps": [
+        "$a=2,b=3,c=4$"
+      ],
+      "math_structure": {
+        "type": "ellipsoid_formula",
+        "template": "$$V = \\frac{4\\pi abc}{3}$$",
+        "variable_count": 3
+      },
+      "difficulty": 1,
+      "estimated_minutes": 2,
+      "answer": [
+        {
+          "label": "体积",
+          "steps": [
+            "$32\\pi$"
+          ]
+        }
+      ],
+      "id": "osaka-2007-7f6c301d96-q01-practice-02",
+      "school": "大阪大学",
+      "year": "2007"
+    },
+    {
+      "text": "求圆柱 $x^2+y^2 \\leq 4, 0 \\leq z \\leq 3$ 的体积",
+      "knowledge_points": [
+        "圆柱坐标"
+      ],
+      "question_type": "计算题",
+      "method": [
+        "圆柱坐标法"
+      ],
+      "solution_steps": [
+        "$V = \\pi r^2 h$"
+      ],
+      "math_structure": {
+        "type": "cylinder_volume",
+        "template": "$$V = \\pi R^2 h$$",
+        "variable_count": 2
+      },
+      "difficulty": 2,
+      "estimated_minutes": 3,
+      "answer": [
+        {
+          "label": "体积",
+          "steps": [
+            "$12\\pi$"
+          ]
+        }
+      ],
+      "id": "osaka-2007-7f6c301d96-q01-practice-03",
+      "school": "大阪大学",
+      "year": "2007"
+    }
+  ],
+  "source_question": "問2",
+  "source_pdf": "大阪大学/情报科学研究科/情报基础数学/大阪大学_情报科学研究科_情报基础数学_2007_数学过去问.pdf",
+  "source_type": "官方过去问",
+  "subject_category": "微积分"
+}

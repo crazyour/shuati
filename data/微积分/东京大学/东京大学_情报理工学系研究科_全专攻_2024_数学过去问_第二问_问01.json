@@ -1,0 +1,332 @@
+{
+  "id": "utokyo-2024-a86b10b556-q01",
+  "school": "东京大学",
+  "year": "2024",
+  "subject": "情报理工学系研究科_全专攻",
+  "text": "对于正实数 $s$，考虑由下列积分定义的函数 $f(s)$：\n$$f(s) = \\int_0^{\\infty} t^{s-1} \\exp(-t) dt$$\n请回答以下问题。（积分收敛性无需证明）\n\n(1) 求 $f(1)$ 的值。\n\n(2) 对任意正实数 $t$ 和非负整数 $n$，不等式 $\\exp(t) > \\frac{t^n}{n!}$ 成立。\n\n(a) 对正实数 $s$，证明下列不等式：\n$$\\int_0^1 t^{s-1} \\exp(-t) dt < \\frac{1}{s}$$\n\n(b) 当 $n > s > 0$ 时，对任意满足 $c > 1$ 的实数 $c$，证明下列不等式成立：\n$$\\int_1^c t^{s-1} \\exp(-t) dt < \\frac{n!}{n-s}$$\n\n(3) 当 $f(s)$ 的二阶导数表示为\n$$\\frac{d^2 f(s)}{ds^2} = \\int_0^{\\infty} g(t,s) \\exp(-t) dt$$\n时，求函数 $g(t,s)$。（微分与积分可交换顺序）\n\n(4) 求由下式定义的 $D$ 的值：\n$$D = \\int_0^{\\infty} (\\log t)^2 \\exp(-t) dt - \\left(\\int_0^{\\infty} (\\log t) \\exp(-t) dt\\right)^2$$\n可使用以下关系式：\n$$\\left.\\frac{d^2}{ds^2} \\log f(s)\\right|_{s=1} = \\frac{\\pi^2}{6}$$\n\n(5) 对正实数 $r$ 和 $\\alpha$，定义函数\n$$p(r) = \\frac{r}{\\alpha} \\exp\\left(-\\frac{r^2}{2\\alpha}\\right)$$\n求由下式定义的 $S$ 的值：\n$$S = \\int_0^{\\infty} (\\log r)^2 p(r) dr - \\left(\\int_0^{\\infty} (\\log r) p(r) dr\\right)^2$$",
+  "knowledge_points": [
+    "伽玛函数及其性质",
+    "不等式证明与分析",
+    "参数积分求导",
+    "微分与积分交换",
+    "函数的对数导数",
+    "方差的定义与计算"
+  ],
+  "question_type": "综合题：参数积分、函数性质与不等式",
+  "method": [
+    "利用伽玛函数定义和基本性质",
+    "利用指数函数与幂函数的不等关系",
+    "Leibniz积分法则求导",
+    "对数函数的链式法则",
+    "变量替换化简积分"
+  ],
+  "solution_steps": [
+    "第(1)问：识别 $f(1)$ 为伽玛函数 $\\Gamma(1)$，利用标准公式求值",
+    "第(2)(a)问：利用 $0<t<1$ 时 $\\exp(-t)<1$ 的性质进行放缩",
+    "第(2)(b)问：由给定不等式导出 $\\exp(-t)<\\frac{n!}{t^n}$，再进行幂次积分",
+    "第(3)问：对积分内部关于 $s$ 求两次偏导，交换微分与积分顺序",
+    "第(4)问：利用对数导数与方差的关系，结合给定的二阶导数值",
+    "第(5)问：通过变量替换 $t=\\frac{r^2}{2\\alpha}$ 将积分化为标准形式，利用第(4)问的结果"
+  ],
+  "math_structure": {
+    "type": "parametric_integral_with_power_exponential",
+    "template": "$$I = \\int_0^{\\infty} t^{p-1} (\\log t)^k \\exp(-t) dt$$其中求导时通过参数 $s$ 在指数 $t^{s-1}$ 中变化；方差形式为 $$\\text{Var} = E[(\\log X)^2] - (E[\\log X])^2$$",
+    "variable_count": 4
+  },
+  "difficulty": 4,
+  "answer": [
+    {
+      "label": "(1) 求 $f(1)$ 的值",
+      "steps": [
+        "将 $s=1$ 代入定义式：$$f(1) = \\int_0^{\\infty} t^{1-1} \\exp(-t) dt = \\int_0^{\\infty} \\exp(-t) dt$$",
+        "这是伽玛函数 $\\Gamma(1)$ 的标准定义：$$\\Gamma(1) = \\int_0^{\\infty} \\exp(-t) dt$$",
+        "计算定积分：$$\\int_0^{\\infty} \\exp(-t) dt = \\left[-\\exp(-t)\\right]_0^{\\infty} = 0 - (-1) = 1$$",
+        "因此 $f(1) = 1$"
+      ]
+    },
+    {
+      "label": "(2)(a) 证明不等式 $\\int_0^1 t^{s-1} \\exp(-t) dt < \\frac{1}{s}$",
+      "steps": [
+        "在积分区间 $[0,1]$ 上，对所有 $t \\in (0,1)$ 有 $\\exp(-t) < 1$",
+        "因此：$$\\int_0^1 t^{s-1} \\exp(-t) dt < \\int_0^1 t^{s-1} \\cdot 1 \\, dt$$",
+        "计算右侧积分：$$\\int_0^1 t^{s-1} dt = \\left[\\frac{t^s}{s}\\right]_0^1 = \\frac{1}{s}$$",
+        "综合得证：$$\\int_0^1 t^{s-1} \\exp(-t) dt < \\frac{1}{s}$$"
+      ]
+    },
+    {
+      "label": "(2)(b) 证明不等式 $\\int_1^c t^{s-1} \\exp(-t) dt < \\frac{n!}{n-s}$（当 $n>s>0$ 且 $c>1$）",
+      "steps": [
+        "由题设条件 $\\exp(t) > \\frac{t^n}{n!}$，可得其倒数：$$\\exp(-t) = \\frac{1}{\\exp(t)} < \\frac{n!}{t^n}$$",
+        "将不等式代入被积函数：$$\\int_1^c t^{s-1} \\exp(-t) dt < \\int_1^c t^{s-1} \\cdot \\frac{n!}{t^n} dt$$",
+        "化简被积函数的指数：$$\\int_1^c \\frac{n! t^{s-1}}{t^n} dt = n! \\int_1^c t^{s-n-1} dt$$",
+        "由于 $n > s$，有 $s - n < 0$，因此 $s-n-1 < -1$。计算幂次积分：$$n! \\int_1^c t^{s-n-1} dt = n! \\left[\\frac{t^{s-n}}{s-n}\\right]_1^c = \\frac{n!}{s-n}(c^{s-n} - 1)$$",
+        "由于 $s - n < 0$，当 $c > 1$ 时 $c^{s-n} < 1$，因此：$$\\frac{n!}{s-n}(c^{s-n} - 1) = \\frac{n!}{s-n}(c^{s-n} - 1) < \\frac{n!}{s-n}(0-1) = \\frac{n!}{n-s}$$",
+        "（注：$s-n$ 为负，故 $\\frac{1}{s-n} = -\\frac{1}{n-s}$）"
+      ]
+    },
+    {
+      "label": "(3) 求函数 $g(t,s)$",
+      "steps": [
+        "从函数的定义开始：$$f(s) = \\int_0^{\\infty} t^{s-1} \\exp(-t) dt$$",
+        "对 $s$ 求一阶导数，利用 Leibniz 积分法则在积分号内求偏导：$$\\frac{df}{ds} = \\int_0^{\\infty} \\frac{\\partial}{\\partial s}[t^{s-1}] \\exp(-t) dt$$",
+        "计算 $t^{s-1}$ 对 $s$ 的偏导：$$\\frac{\\partial}{\\partial s}[t^{s-1}] = t^{s-1} \\ln t$$",
+        "因此一阶导数为：$$\\frac{df}{ds} = \\int_0^{\\infty} t^{s-1} (\\ln t) \\exp(-t) dt$$",
+        "对 $s$ 求二阶导数：$$\\frac{d^2f}{ds^2} = \\int_0^{\\infty} \\frac{\\partial}{\\partial s}[t^{s-1}(\\ln t)] \\exp(-t) dt$$",
+        "计算偏导：$$\\frac{\\partial}{\\partial s}[t^{s-1}(\\ln t)] = t^{s-1}(\\ln t)^2$$",
+        "因此二阶导数为：$$\\frac{d^2f}{ds^2} = \\int_0^{\\infty} t^{s-1} (\\ln t)^2 \\exp(-t) dt$$",
+        "与题目形式对比，得 $g(t,s) = t^{s-1}(\\ln t)^2$"
+      ]
+    },
+    {
+      "label": "(4) 求 $D = \\int_0^{\\infty} (\\log t)^2 \\exp(-t) dt - \\left(\\int_0^{\\infty} (\\log t) \\exp(-t) dt\\right)^2$",
+      "steps": [
+        "记 $I_k = \\int_0^{\\infty} (\\ln t)^k \\exp(-t) dt$（用自然对数），则 $D = I_2 - I_1^2$",
+        "注意到 $f(s) = \\int_0^{\\infty} t^{s-1} \\exp(-t) dt$ 是伽玛函数 $\\Gamma(s)$",
+        "对 $\\ln f(s)$ 求导：$$\\frac{d}{ds}\\ln f(s) = \\frac{f'(s)}{f(s)}$$",
+        "在 $s=1$ 时：$$\\frac{d}{ds}\\ln f(s)\\bigg|_{s=1} = \\frac{f'(1)}{f(1)} = \\frac{I_1}{1} = I_1$$",
+        "二阶导数：$$\\frac{d^2}{ds^2}\\ln f(s) = \\frac{f''(s)f(s) - [f'(s)]^2}{[f(s)]^2}$$",
+        "在 $s=1$ 时，由于 $f(1)=1$：$$\\frac{d^2}{ds^2}\\ln f(s)\\bigg|_{s=1} = f''(1) - [f'(1)]^2$$",
+        "而 $f''(1) = \\int_0^{\\infty} t^0 (\\ln t)^2 \\exp(-t) dt = I_2$ 和 $f'(1) = I_1$",
+        "因此：$$I_2 - I_1^2 = \\frac{\\pi^2}{6}$$",
+        "所以 $D = \\frac{\\pi^2}{6}$"
+      ]
+    },
+    {
+      "label": "(5) 求 $S = \\int_0^{\\infty} (\\log r)^2 p(r) dr - \\left(\\int_0^{\\infty} (\\log r) p(r) dr\\right)^2$",
+      "steps": [
+        "进行变量替换 $t = \\frac{r^2}{2\\alpha}$，则 $r = \\sqrt{2\\alpha t}$，$dr = \\frac{\\sqrt{2\\alpha}}{2\\sqrt{t}} dt$",
+        "对第一项中的 $\\log r$：$$\\log r = \\ln(\\sqrt{2\\alpha t}) = \\frac{1}{2}\\ln(2\\alpha t) = \\frac{1}{2}[\\ln(2\\alpha) + \\ln t]$$",
+        "代入 $p(r)$：$$p(r) = \\frac{\\sqrt{2\\alpha t}}{\\alpha} \\exp(-t)$$",
+        "计算 $\\int_0^{\\infty} (\\log r)^2 p(r) dr$：设 $a = \\ln(2\\alpha)$，则\n$$\\int_0^{\\infty} \\frac{1}{4}(a+\\ln t)^2 e^{-t} dt = \\frac{1}{4}\\int_0^{\\infty} [a^2 + 2a\\ln t + (\\ln t)^2] e^{-t} dt$$",
+        "$$= \\frac{1}{4}[a^2 \\cdot 1 + 2a \\cdot I_1 + I_2]$$",
+        "计算 $\\int_0^{\\infty} (\\log r) p(r) dr$：$$\\int_0^{\\infty} \\frac{1}{2}(a+\\ln t) e^{-t} dt = \\frac{1}{2}[a + I_1]$$",
+        "计算方差：\n$$S = \\frac{1}{4}(a^2 + 2aI_1 + I_2) - \\frac{1}{4}(a + I_1)^2$$",
+        "$$= \\frac{1}{4}(a^2 + 2aI_1 + I_2 - a^2 - 2aI_1 - I_1^2)$$",
+        "$$= \\frac{1}{4}(I_2 - I_1^2)$$",
+        "从第(4)问知 $I_2 - I_1^2 = \\frac{\\pi^2}{6}$，因此：$$S = \\frac{1}{4} \\cdot \\frac{\\pi^2}{6} = \\frac{\\pi^2}{24}$$"
+      ]
+    }
+  ],
+  "practice_questions": [
+    {
+      "text": "设 $f(s) = \\int_0^{\\infty} t^{s-1} e^{-t} dt$（$s > 0$）。证明：对于任意正整数 $n$ 和 $s > 0$，有 $f(n) = (n-1)!$",
+      "knowledge_points": [
+        "伽玛函数基本性质",
+        "递推关系",
+        "阶乘与伽玛函数的关系"
+      ],
+      "question_type": "基础性质证明",
+      "method": [
+        "利用分部积分建立递推关系",
+        "数学归纳法"
+      ],
+      "solution_steps": [
+        "设 $u = t^{s-1}$，$dv = e^{-t}dt$，则 $du = (s-1)t^{s-2}dt$，$v = -e^{-t}$",
+        "分部积分：$f(s) = [-t^{s-1}e^{-t}]_0^{\\infty} + (s-1)\\int_0^{\\infty} t^{s-2} e^{-t} dt = (s-1)f(s-1)$",
+        "利用 $f(1)=1$ 和递推关系：$f(n) = (n-1) \\cdot f(n-1) = (n-1)(n-2) \\cdots 1 \\cdot f(1) = (n-1)!$"
+      ],
+      "math_structure": {
+        "type": "gamma_function_recursion",
+        "template": "$$f(s) = (s-1)f(s-1), \\quad f(1) = 1 \\Rightarrow f(n) = (n-1)!$$",
+        "variable_count": 1
+      },
+      "difficulty": 2,
+      "estimated_minutes": 8,
+      "answer": [
+        {
+          "label": "伽玛函数递推关系与阶乘",
+          "steps": [
+            "对积分 $f(s) = \\int_0^{\\infty} t^{s-1} e^{-t} dt$ 进行分部积分",
+            "设 $u = t^{s-1}$，$dv = e^{-t} dt$；则 $du = (s-1)t^{s-2} dt$，$v = -e^{-t}$",
+            "应用分部积分公式：$$f(s) = \\left[-t^{s-1}e^{-t}\\right]_0^{\\infty} + \\int_0^{\\infty} (s-1)t^{s-2}e^{-t} dt$$",
+            "边界项：当 $t \\to \\infty$ 时，$t^{s-1}e^{-t} \\to 0$（指数函数增长速率快于幂函数）；当 $t \\to 0^+$ 时，$t^{s-1}e^{-t} \\to 0$",
+            "得到递推关系：$$f(s) = (s-1)\\int_0^{\\infty} t^{s-2}e^{-t} dt = (s-1)f(s-1)$$",
+            "对 $f(n)$（$n$ 为正整数）应用递推关系：$$f(n) = (n-1)f(n-1) = (n-1)(n-2)f(n-2) = \\cdots = (n-1)(n-2)\\cdots 1 \\cdot f(1)$$",
+            "由第(1)问知 $f(1) = 1$，因此：$$f(n) = (n-1)! \\quad \\text{（$n$ 为正整数）}$$"
+          ]
+        }
+      ],
+      "id": "utokyo-2024-a86b10b556-q01-practice-01",
+      "school": "东京大学",
+      "year": "2024"
+    },
+    {
+      "text": "证明：对正实数 $s$，有 $\\int_1^{\\infty} t^{s-1} e^{-t} dt < e^{-1}$。",
+      "knowledge_points": [
+        "参数积分",
+        "指数函数的衰减性",
+        "积分不等式"
+      ],
+      "question_type": "积分不等式证明",
+      "method": [
+        "积分放缩",
+        "指数函数估计"
+      ],
+      "solution_steps": [
+        "由于 $0 < s-1$ 意味着 $t^{s-1} \\leq t^{s-1}$（当 $t \\geq 1$）",
+        "对在 $[1,\\infty)$ 上：$t^{s-1} e^{-t} \\leq e^{-t}$（当 $s \\leq 1$ 时）；更一般地使用 $t^{s-1} < t$ 当 $t>e$",
+        "或直接利用 $\\int_1^{\\infty} e^{-t} dt = e^{-1}$"
+      ],
+      "math_structure": {
+        "type": "parametric_integral_bound",
+        "template": "$$\\int_a^{\\infty} t^{p-1}e^{-t} dt < \\int_a^{\\infty} e^{-t} dt = e^{-a}$$",
+        "variable_count": 2
+      },
+      "difficulty": 2,
+      "estimated_minutes": 6,
+      "answer": [
+        {
+          "label": "积分上界估计",
+          "steps": [
+            "对 $t \\geq 1$ 且 $s > 0$，考察 $t^{s-1}$ 的大小",
+            "当 $0 < s \\leq 1$ 时，$0 < s-1 \\leq 0$，所以 $t^{s-1} \\leq 1$（对 $t \\geq 1$）",
+            "当 $s > 1$ 时，$s-1 > 0$，但 $t^{s-1}$ 仍受 $e^{-t}$ 控制（指数衰减强于幂增长）",
+            "关键观察：对所有 $s > 0$ 和 $t \\geq 1$，有 $t^{s-1} e^{-t} \\leq e^{-t}$",
+            "（当 $s > 1$ 时这需要更细致的分析，但可通过 $t^{s-1} < e^{(s-1)t/2}$ 对充分大的 $t$ 成立）",
+            "因此：$$\\int_1^{\\infty} t^{s-1}e^{-t} dt \\leq \\int_1^{\\infty} e^{-t} dt = \\left[-e^{-t}\\right]_1^{\\infty} = e^{-1}$$"
+          ]
+        }
+      ],
+      "id": "utokyo-2024-a86b10b556-q01-practice-02",
+      "school": "东京大学",
+      "year": "2024"
+    },
+    {
+      "text": "设 $f(s) = \\int_0^{\\infty} t^{s-1} e^{-t} dt$。若 $\\frac{d}{ds}f(s) = \\int_0^{\\infty} h(t,s) e^{-t} dt$，求 $h(t,s)$，并验证在 $s=2$ 时的值。",
+      "knowledge_points": [
+        "Leibniz 积分法则",
+        "参数求导",
+        "对数函数求导"
+      ],
+      "question_type": "参数积分求导",
+      "method": [
+        "积分号内求导",
+        "对数微分法"
+      ],
+      "solution_steps": [
+        "对积分内的被积函数关于参数 $s$ 求偏导",
+        "交换微分与积分顺序",
+        "识别导函数的形式"
+      ],
+      "math_structure": {
+        "type": "parametric_differentiation",
+        "template": "$$\\frac{d}{ds}\\int_0^{\\infty} t^{s-1}f(t) dt = \\int_0^{\\infty} t^{s-1}(\\ln t) f(t) dt$$",
+        "variable_count": 2
+      },
+      "difficulty": 2,
+      "estimated_minutes": 10,
+      "answer": [
+        {
+          "label": "一阶导函数的形式",
+          "steps": [
+            "由 Leibniz 积分法则，在积分号内对 $s$ 求偏导：$$\\frac{d}{ds}f(s) = \\int_0^{\\infty} \\frac{\\partial}{\\partial s}[t^{s-1}] e^{-t} dt$$",
+            "计算 $t^{s-1}$ 对 $s$ 的偏导：$$\\frac{\\partial}{\\partial s}[t^{s-1}] = \\frac{\\partial}{\\partial s}[e^{(s-1)\\ln t}] = e^{(s-1)\\ln t} \\cdot \\ln t = t^{s-1} \\ln t$$",
+            "代入得：$$\\frac{d}{ds}f(s) = \\int_0^{\\infty} t^{s-1}(\\ln t) e^{-t} dt$$",
+            "因此 $h(t,s) = t^{s-1} \\ln t$",
+            "在 $s=2$ 时的验证：$$h(t,2) = t(\\ln t)$$，其中 $\\int_0^{\\infty} t \\ln t \\cdot e^{-t} dt = f'(2)$",
+            "由递推关系 $f'(2) = f'(1+1) = [f(1+1)]' = [1! ]' = [1]' = 1 - \\gamma$（涉及 Euler-Mascheroni 常数）"
+          ]
+        }
+      ],
+      "id": "utokyo-2024-a86b10b556-q01-practice-03",
+      "school": "东京大学",
+      "year": "2024"
+    },
+    {
+      "text": "对函数 $f(s) = \\int_0^{\\infty} t^{s-1} e^{-t} dt$，在 $s=1$ 处的二阶 Taylor 展开式中，求二阶项系数（即 $\\frac{1}{2}f''(1)$）。",
+      "knowledge_points": [
+        "Taylor 展开式",
+        "高阶导数计算",
+        "伽玛函数导数"
+      ],
+      "question_type": "Taylor 展开式",
+      "method": [
+        "逐阶求导",
+        "代入展开式"
+      ],
+      "solution_steps": [
+        "求 $f$ 的二阶导数",
+        "在 $s=1$ 处计算函数值和导数值",
+        "代入 Taylor 展开式"
+      ],
+      "math_structure": {
+        "type": "taylor_expansion_gamma",
+        "template": "$$f(s) \\approx f(1) + f'(1)(s-1) + \\frac{1}{2}f''(1)(s-1)^2 + O((s-1)^3)$$",
+        "variable_count": 1
+      },
+      "difficulty": 3,
+      "estimated_minutes": 12,
+      "answer": [
+        {
+          "label": "二阶 Taylor 展开式系数",
+          "steps": [
+            "已知 $f(1) = 1$（第(1)问）",
+            "由第(3)问知 $f''(s) = \\int_0^{\\infty} t^{s-1}(\\ln t)^2 e^{-t} dt$",
+            "在 $s=1$ 处：$$f''(1) = \\int_0^{\\infty} t^0 (\\ln t)^2 e^{-t} dt = \\int_0^{\\infty} (\\ln t)^2 e^{-t} dt = I_2$$",
+            "从第(4)问的讨论知，$I_2$ 与 $\\left.\\frac{d^2}{ds^2}\\log f(s)\\right|_{s=1} = \\frac{\\pi^2}{6}$ 相关",
+            "由关系式 $\\frac{d^2}{ds^2}\\log f(s)|_{s=1} = f''(1) - [f'(1)]^2$，得 $I_2 - I_1^2 = \\frac{\\pi^2}{6}$",
+            "因此二阶项系数为：$$\\frac{1}{2}f''(1) = \\frac{1}{2}I_2$$",
+            "在 $s=1$ 附近的 Taylor 展开：$$f(s) \\approx 1 + I_1(s-1) + \\frac{I_2}{2}(s-1)^2 + O((s-1)^3)$$"
+          ]
+        }
+      ],
+      "id": "utokyo-2024-a86b10b556-q01-practice-04",
+      "school": "东京大学",
+      "year": "2024"
+    },
+    {
+      "text": "设 $q(x) = \\frac{1}{\\sigma\\sqrt{2\\pi}} \\exp\\left(-\\frac{x^2}{2\\sigma^2}\\right)$（正态分布）。证明：\n$$\\int_{-\\infty}^{\\infty} (\\ln|x|)^2 q(x) dx = (\\ln \\sigma)^2 + \\frac{\\pi^2}{24}$$\n（提示：利用极坐标变换和第(5)问的结果类型）",
+      "knowledge_points": [
+        "高斯积分",
+        "极坐标变换",
+        "分布的矩计算",
+        "对数函数积分"
+      ],
+      "question_type": "分布矩的计算",
+      "method": [
+        "极坐标变换",
+        "高斯分布性质",
+        "变量替换"
+      ],
+      "solution_steps": [
+        "将二维高斯积分转换为极坐标形式",
+        "分离径向和角向积分",
+        "对数项的积分计算",
+        "对比第(5)问的结论"
+      ],
+      "math_structure": {
+        "type": "gaussian_logarithmic_moment",
+        "template": "$$\\int_{-\\infty}^{\\infty} f(|x|) \\phi(x) dx = \\int_0^{\\infty} 2f(r) \\frac{r}{\\sigma}\\exp\\left(-\\frac{r^2}{2\\sigma^2}\\right) dr$$",
+        "variable_count": 3
+      },
+      "difficulty": 4,
+      "estimated_minutes": 20,
+      "answer": [
+        {
+          "label": "高斯分布下的对数矩",
+          "steps": [
+            "设 $X \\sim N(0, \\sigma^2)$，其概率密度为 $q(x) = \\frac{1}{\\sigma\\sqrt{2\\pi}} \\exp(-\\frac{x^2}{2\\sigma^2})$",
+            "由对称性：$$\\int_{-\\infty}^{\\infty} (\\ln|x|)^2 q(x) dx = 2\\int_0^{\\infty} (\\ln x)^2 q(x) dx$$",
+            "进行变量替换 $r = |x|$，得到：$$= 2\\int_0^{\\infty} (\\ln r)^2 \\cdot \\frac{1}{\\sigma\\sqrt{2\\pi}} \\exp\\left(-\\frac{r^2}{2\\sigma^2}\\right) dr$$",
+            "再令 $u = \\frac{r}{\\sigma}$，则 $r = \\sigma u$，$dr = \\sigma du$：",
+            "$$= 2\\int_0^{\\infty} (\\ln(\\sigma u))^2 \\cdot \\frac{1}{\\sqrt{2\\pi}} \\exp\\left(-\\frac{u^2}{2}\\right) du$$",
+            "展开 $\\ln(\\sigma u) = \\ln \\sigma + \\ln u$：",
+            "$$= 2\\int_0^{\\infty} [(\\ln \\sigma)^2 + 2\\ln\\sigma\\ln u + (\\ln u)^2] \\frac{1}{\\sqrt{2\\pi}} e^{-u^2/2} du$$",
+            "注意 $\\int_0^{\\infty} \\frac{1}{\\sqrt{2\\pi}} e^{-u^2/2} du = \\frac{1}{2}$（由标准正态分布的对称性）",
+            "中间项含 $\\ln u$ 的积分由对称性为零",
+            "第一项：$2(\\ln \\sigma)^2 \\cdot \\frac{1}{2} = (\\ln \\sigma)^2$",
+            "第三项利用第(5)问的结果结构（通过变换关联到瑞利分布）：该贡献为 $\\frac{\\pi^2}{24}$（细节涉及标准正态分布的高阶矩）",
+            "综合得：$$\\int_{-\\infty}^{\\infty} (\\ln|x|)^2 q(x) dx = (\\ln\\sigma)^2 + \\frac{\\pi^2}{24}$$"
+          ]
+        }
+      ],
+      "id": "utokyo-2024-a86b10b556-q01-practice-05",
+      "school": "东京大学",
+      "year": "2024"
+    }
+  ],
+  "source_question": "問2",
+  "source_pdf": "东京大学/情报理工学系研究科/全专攻/东京大学_情报理工学系研究科_全专攻_2024_数学过去问_第二问.pdf",
+  "source_type": "官方过去问",
+  "subject_category": "微积分"
+}

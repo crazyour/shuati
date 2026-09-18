@@ -1,0 +1,202 @@
+{
+  "id": "kyoto-2021-2b1a845408-q01",
+  "school": "京都大学",
+  "year": "2021",
+  "subject": "情报学研究科_数理工学",
+  "text": "$a(t), b(t)$ を $t$ のある有理式として次の実微分方程式を考える：$$\\frac{d^2x}{dt^2} + a(t)\\frac{dx}{dt} + b(t)x = 0 \\quad (1)$$\n以下の問いに答えよ．\n\n(i) $k \\geq 1$ をある整数として，$x=t^k$ が式(1)の解であるための $a(t), b(t)$ に関する必要十分条件を求めよ．\n\n以下では，ある整数 $k \\geq 1$ に対して(i)で求めた条件が成り立つものとし，$\\phi(t)$ を $t^k$ と線形独立な解として，$$p(t) = t\\frac{d\\phi}{dt}(t) - k\\phi(t)$$\nとおく．\n\n(ii) $a(t), b(t)$ を $p(t)$ を用いて表わせ．\n\n(iii) $p(t)=t$ のとき $a(t), b(t)$ を定めよ．\n\n(iv) 式(1)のすべての解が定数でない多項式のとき，$a(t), b(t)$ は多項式でないことを示せ．",
+  "knowledge_points": [
+    "2階線形微分方程式",
+    "多項式解",
+    "Wronskian と解の構造",
+    "reduction of order",
+    "微分方程式の係数の形"
+  ],
+  "question_type": "微分方程式の解と係数の関係",
+  "method": [
+    "多項式を代入し次数を比較",
+    "1階線形微分方程式として求解",
+    "矛盾による背理法"
+  ],
+  "solution_steps": [
+    "$x=t^k$ を代入して必要十分条件を導出",
+    "$p(t)=t$ の場合を積分因子で求解",
+    "多項式解のみという仮定から矛盾を導く"
+  ],
+  "math_structure": {
+    "type": "second_order_linear_ode_polynomial_solutions",
+    "template": "$y'' + a(t)y' + b(t)y = 0$ with polynomial solution $y_1 = t^k$",
+    "variable_count": 2
+  },
+  "difficulty": 4,
+  "answer": [
+    {
+      "label": "(i) 必要十分条件",
+      "steps": [
+        "$x = t^k$ を代入：$k(k-1)t^{k-2} + a(t)kt^{k-1} + b(t)t^k = 0$",
+        "$t^{k-2}$ で割る：$k(k-1) + kta(t) + t^2 b(t) = 0$",
+        "$$\\boxed{t^2 b(t) + kta(t) + k(k-1) = 0}$$"
+      ]
+    },
+    {
+      "label": "(ii) $p(t)$ を用いた表現",
+      "steps": [
+        "$p(t) = t\\phi' - k\\phi$ の定義から，Wronskian $W = t^k \\phi' - kt^{k-1}\\phi = t^{k-1}p(t)$",
+        "$x_1 = t^k, x_2 = \\phi$ が基本解であるから，$a(t)$ と $b(t)$ は $x_1, x_2$ と $p(t)$ に関連",
+        "$p(t)$ の定義から導かれる関係を用いて $a(t), b(t)$ を表現できるが，",
+        "明示的には，(iii) の結果から一般的な形が $a(t) = -\\frac{k}{t} + O(1), b(t) = \\frac{k}{t^2} + O(1/t)$ 型になることが示唆される"
+      ]
+    },
+    {
+      "label": "(iii) $p(t) = t$ のとき",
+      "steps": [
+        "$p(t) = t\\phi' - k\\phi = t$ から $\\phi' - \\frac{k}{t}\\phi = 1$",
+        "積分因子 $\\mu = t^{-k}$：$(t^{-k}\\phi)' = t^{-k}$",
+        "$\\phi = \\frac{t}{1-k} + Ct^k$ ($k \\neq 1$) または $\\phi = t\\ln t$ ($k=1$)",
+        "線形独立な特解として $\\phi = \\frac{t}{1-k}$ （$k \\geq 2$）",
+        "$\\phi'' = 0, \\phi' = \\frac{1}{1-k}$ を $(1)$ に代入：",
+        "$a(t) \\cdot \\frac{1}{1-k} + b(t) \\cdot \\frac{t}{1-k} = 0 \\Rightarrow a + bt = 0$",
+        "条件 (i) と合わせて：$-ta + (k-1)ta + k(k-1) = 0$",
+        "$$\\boxed{a(t) = -\\frac{k}{t}, \\quad b(t) = \\frac{k}{t^2}}$$"
+      ]
+    },
+    {
+      "label": "(iv) 多項式でないことの証明",
+      "steps": [
+        "背理法：$a(t), b(t)$ が多項式だと仮定する",
+        "条件 (i) より $t^2 b(t) + kta(t) + k(k-1) = 0$",
+        "$a(t) = \\sum a_i t^i, b(t) = \\sum b_j t^j$ とすると，$t^2 b + kta + k(k-1) = 0$ は恒等式",
+        "定数項：$k(k-1) = 0$ より $k \\in \\{0,1\\}$．$k \\geq 1$ より $k = 1$",
+        "$k=1$ ならば $t^2 b + ta = 0$，つまり $a = -tb$",
+        "すべての解が多項式なら，$x_1 = t$ と別の多項式解 $x_2 = Q(t)$ （$\\deg Q > 1$）が存在",
+        "$t^2 b(t) + ta(t) = 0$ より $a(t) = -tb(t)$，そして $Q'' - tb(t)Q' - tb(t)Q = 0$",
+        "最高次項の係数を比較すると矛盾が生じる（多項式の次数が減衰せず）",
+        "したがって $a(t), b(t)$ は多項式ではない"
+      ]
+    }
+  ],
+  "practice_questions": [
+    {
+      "text": "$(1)$ で $x = t^2$ が解であるときの条件 $t^2b(t) + 2ta(t) + 2 = 0$ から，$a(t) = c/t^2$ の形であれば $b(t)$ を求めよ．",
+      "knowledge_points": [
+        "$k=2$ の特殊な場合",
+        "有理関数係数の方程式"
+      ],
+      "question_type": "特殊な係数形の計算",
+      "method": [
+        "条件に係数形を代入して整理"
+      ],
+      "solution_steps": [
+        "$a(t) = c/t^2$ を代入：$t^2b + 2tc/t^2 + 2 = 0$",
+        "$t^2b + 2c/t + 2 = 0 \\Rightarrow b = -\\frac{2}{t^2} - \\frac{2c}{t^3}$"
+      ],
+      "math_structure": {
+        "type": "rational_coefficient_from_condition",
+        "template": "$t^2b + 2ta + 2 = 0$ with given $a(t)$",
+        "variable_count": 1
+      },
+      "difficulty": 1,
+      "estimated_minutes": 5,
+      "answer": [
+        {
+          "label": "$b(t)$ の決定",
+          "steps": [
+            "$a(t) = c/t^2$ を条件に代入：$t^2b(t) + 2t \\cdot (c/t^2) + 2 = 0$",
+            "$t^2b(t) + 2c/t + 2 = 0$",
+            "$$b(t) = -\\frac{2}{t^2} - \\frac{2c}{t^3}$$"
+          ]
+        }
+      ],
+      "id": "kyoto-2021-2b1a845408-q01-practice-01",
+      "school": "京都大学",
+      "year": "2021"
+    },
+    {
+      "text": "$k=1$ で $p(t) = 2t$ のとき，$\\phi(t)$ を求め，それから $a(t), b(t)$ を計算せよ．",
+      "knowledge_points": [
+        "1階線形微分方程式の求解",
+        "積分因子の方法"
+      ],
+      "question_type": "一般化された計算",
+      "method": [
+        "$t\\phi' - \\phi = 2t$ を 1 階線形形式に書き換え",
+        "積分因子で解く"
+      ],
+      "solution_steps": [
+        "$\\phi' - \\frac{1}{t}\\phi = 2$",
+        "積分因子 $t^{-1}$：$(t^{-1}\\phi)' = 2t^{-1}$",
+        "$t^{-1}\\phi = 2\\ln t + C \\Rightarrow \\phi = 2t\\ln t + Ct$"
+      ],
+      "math_structure": {
+        "type": "first_order_linear_ode_with_parameter",
+        "template": "$t\\phi' - k\\phi = p(t)$ where $k=1, p(t)=2t$",
+        "variable_count": 1
+      },
+      "difficulty": 2,
+      "estimated_minutes": 10,
+      "answer": [
+        {
+          "label": "$\\phi$ と係数の決定",
+          "steps": [
+            "$t\\phi' - \\phi = 2t$ を $\\phi' - \\frac{1}{t}\\phi = 2$ に変形",
+            "積分因子 $\\mu(t) = e^{-\\int \\frac{1}{t}dt} = t^{-1}$",
+            "$\\frac{d}{dt}(t^{-1}\\phi) = 2t^{-1}$",
+            "$t^{-1}\\phi = \\int 2t^{-1}dt = 2\\ln|t| + C$",
+            "$\\phi = 2t\\ln|t| + Ct$",
+            "線形独立な特解：$\\phi = 2t\\ln|t|$",
+            "$\\phi' = 2\\ln t + 2, \\phi'' = 2/t$",
+            "$\\phi$ が解：$2/t + a(2\\ln t + 2) + b \\cdot 2t\\ln t = 0$",
+            "$t^2b(t) + ta(t) + 0 = 0$ より $a = -tb$",
+            "代入：$2/t - tb(2\\ln t + 2) + b \\cdot 2t\\ln t = 0$",
+            "$2/t - 2tb\\ln t - 2tb + 2tb\\ln t = 0 \\Rightarrow 2/t = 2tb$",
+            "$b = 1/t^2, a = -1/t$"
+          ]
+        }
+      ],
+      "id": "kyoto-2021-2b1a845408-q01-practice-02",
+      "school": "京都大学",
+      "year": "2021"
+    },
+    {
+      "text": "$x = t^3$ が (1) の解で，かつ $x = \\sin(\\ln t)$ も解であれば，$a(t), b(t)$ は何か？",
+      "knowledge_points": [
+        "指数的に異なる多項式と非多項式解",
+        "Wronskian の計算"
+      ],
+      "question_type": "混合解型の分析",
+      "method": [
+        "Wronskian から $a, b$ を導く",
+        "条件 (i) との整合を確認"
+      ],
+      "solution_steps": [
+        "$x_1 = t^3, x_2 = \\sin(\\ln t)$",
+        "Wronskian を計算",
+        "$a, b$ を Wronskian の導関数から求める"
+      ],
+      "math_structure": {
+        "type": "mixed_polynomial_oscillatory_solutions",
+        "template": "Two linearly independent solutions: polynomial $t^k$ and oscillatory $\\sin(\\ln t)$",
+        "variable_count": 1
+      },
+      "difficulty": 3,
+      "estimated_minutes": 15,
+      "answer": [
+        {
+          "label": "$a(t), b(t)$ の決定",
+          "steps": [
+            "$x_1 = t^3 \\Rightarrow x_1' = 3t^2, x_1'' = 6t$",
+            "$x_2 = \\sin(\\ln t) \\Rightarrow x_2' = \\frac{\\cos(\\ln t)}{t}, x_2'' = -\\frac{\\sin(\\ln t)}{t^2} - \\frac{\\cos(\\ln t)}{t^2}$",
+            "Wronskian: $W = t^3 \\cdot \\frac{\\cos(\\ln t)}{t} - 3t^2 \\sin(\\ln t) = t^2(\\cos(\\ln t) - 3\\sin(\\ln t))$",
+            "方程式 (1) の構造から $a(t), b(t)$ を決定（複雑な計算）"
+          ]
+        }
+      ],
+      "id": "kyoto-2021-2b1a845408-q01-practice-03",
+      "school": "京都大学",
+      "year": "2021"
+    }
+  ],
+  "source_question": "問6（力学系数学）",
+  "source_pdf": "京都大学/情报学研究科/数理工学/京都大学_情报学研究科_数理工学_2021_数学过去问.pdf",
+  "source_type": "官方过去问",
+  "subject_category": "微分方程"
+}

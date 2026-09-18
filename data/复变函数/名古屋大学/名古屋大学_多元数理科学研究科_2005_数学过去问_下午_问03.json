@@ -1,0 +1,221 @@
+{
+  "id": "nagoya-2005-6554a6045f-q03",
+  "school": "名古屋大学",
+  "year": "2005",
+  "subject": "多元数理科学研究科_全专攻",
+  "text": "设 $f(z)$ 是在包含原点为中心、半径为 1 的闭圆盘的区域上全纯的复变函数。以下问题解答之。\n\n(1) 通过变量替换 $z=e^{i\\theta}\\ (0\\le\\theta\\le2\\pi)$ 将左边化为关于 $z$ 的复积分，证明\n$$\\int_0^{2\\pi}f(e^{i\\theta})\\cos\\theta\\,d\\theta=\\pi f'(0).$$\n\n以下问题(2)(3)中 $n$ 为任意正整数。\n\n(2) $[n/2]$ 表示不超过 $n/2$ 的最大整数。证明\n$$\\int_0^{2\\pi}f(e^{i\\theta})\\cos^n\\theta\\,d\\theta=\\frac{\\pi}{2^{n-1}}\\sum_{j=0}^{[n/2]}\\binom{n}{j}\\frac{f^{(n-2j)}(0)}{(n-2j)!}.$$\n\n(3) 求积分\n$$\\int_0^{2\\pi}\\cos(n\\theta)\\cos^n\\theta\\,d\\theta$$\n的值。",
+  "knowledge_points": [
+    "柯西积分公式",
+    "留数定理",
+    "洛朗展开",
+    "复积分变量替换",
+    "二项式展开",
+    "解析函数泰勒系数"
+  ],
+  "question_type": "复积分公式的证明与计算",
+  "method": [
+    "单位圆参数化变量替换",
+    "欧拉公式展开cosθ",
+    "留数定理提取Laurent系数",
+    "二项式定理展开cos^nθ"
+  ],
+  "solution_steps": [
+    "令z=e^{iθ}，dθ=dz/(iz)，cosθ=(z+1/z)/2，化积分为关于z的复积分",
+    "利用留数定理，∮f(z)dz=0，∮f(z)/z^2 dz=2πi f'(0)，得到(1)的结果",
+    "将cos^nθ用(z+1/z)^n/2^n二项式展开，逐项用留数定理计算∮f(z)z^{2k-n-1}dz",
+    "取f(z)=z^n代入(2)的公式，利用z^n的高阶导数在0处的取值，计算得(3)的结果"
+  ],
+  "math_structure": {
+    "type": "contour_integral_binomial_residue",
+    "template": "For f analytic on closed unit disk, compute int_0^{2pi} f(e^{i theta}) cos^n(theta) d theta via residue theorem, then evaluate int cos(n theta) cos^n(theta) d theta by choosing f(z)=z^n",
+    "variable_count": 1
+  },
+  "difficulty": 4,
+  "answer": [
+    {
+      "label": "(1)",
+      "steps": [
+        "令 $z=e^{i\\theta}$，则 $dz=ie^{i\\theta}d\\theta=iz\\,d\\theta$，故 $d\\theta=\\dfrac{dz}{iz}$；同时 $\\cos\\theta=\\dfrac{z+z^{-1}}{2}$。",
+        "代入积分：$\\int_0^{2\\pi}f(e^{i\\theta})\\cos\\theta\\,d\\theta=\\oint_{|z|=1}f(z)\\cdot\\dfrac{z+z^{-1}}{2}\\cdot\\dfrac{dz}{iz}=\\dfrac{1}{2i}\\oint f(z)\\left(1+\\dfrac{1}{z^2}\\right)dz$。",
+        "由于 $f$ 在闭圆盘上全纯，$\\oint f(z)\\,dz=0$（无极点）；而 $\\oint f(z)z^{-2}dz=2\\pi i\\,\\mathrm{Res}_{z=0}\\dfrac{f(z)}{z^2}$，由 $f(z)=f(0)+f'(0)z+\\cdots$ 展开得该留数为 $f'(0)$。",
+        "代入得 $\\int_0^{2\\pi}f(e^{i\\theta})\\cos\\theta\\,d\\theta=\\dfrac{1}{2i}\\cdot2\\pi i\\,f'(0)=\\pi f'(0)$，证毕。"
+      ]
+    },
+    {
+      "label": "(2)",
+      "steps": [
+        "由二项式定理，$\\cos^n\\theta=\\left(\\dfrac{z+z^{-1}}{2}\\right)^n=\\dfrac{1}{2^n}\\sum_{k=0}^n\\binom{n}{k}z^{2k-n}$（其中 $z=e^{i\\theta}$）。",
+        "于是 $\\int_0^{2\\pi}f(e^{i\\theta})\\cos^n\\theta\\,d\\theta=\\dfrac{1}{2^n}\\sum_{k=0}^n\\binom{n}{k}\\oint_{|z|=1}f(z)z^{2k-n}\\cdot\\dfrac{dz}{iz}=\\dfrac{1}{2^n i}\\sum_{k=0}^n\\binom{n}{k}\\oint f(z)z^{2k-n-1}dz$。",
+        "由 $f$ 全纯，$\\oint f(z)z^{m}dz=0$ 当 $m\\ge0$；当 $m=2k-n-1\\le-1$（即 $k\\le n/2$）时，$\\oint f(z)z^mdz=2\\pi i\\cdot\\dfrac{f^{(n-2k)}(0)}{(n-2k)!}$（取 $f(z)$ 的泰勒展开中 $z^{n-2k}$ 系数）。",
+        "只有 $k=0,1,\\dots,[n/2]$ 项非零，代入得 $\\int_0^{2\\pi}f(e^{i\\theta})\\cos^n\\theta\\,d\\theta=\\dfrac{1}{2^n i}\\sum_{k=0}^{[n/2]}\\binom{n}{k}\\cdot2\\pi i\\dfrac{f^{(n-2k)}(0)}{(n-2k)!}=\\dfrac{\\pi}{2^{n-1}}\\sum_{k=0}^{[n/2]}\\binom{n}{k}\\dfrac{f^{(n-2k)}(0)}{(n-2k)!}$，证毕（把 $k$ 换名为 $j$ 即得原式）。"
+      ]
+    },
+    {
+      "label": "(3)",
+      "steps": [
+        "取 $f(z)=z^n$（在全平面全纯），则 $f(e^{i\\theta})=e^{in\\theta}=\\cos(n\\theta)+i\\sin(n\\theta)$。",
+        "对该 $f$，$f^{(m)}(0)=n!$ 当 $m=n$，否则为0（因为 $z^n$ 的泰勒系数仅在 $z^n$ 项非零）。在(2)的和式中，$f^{(n-2j)}(0)\\neq0$ 仅当 $n-2j=n$，即 $j=0$，此时 $f^{(n)}(0)=n!$。",
+        "代入(2)的公式：$\\int_0^{2\\pi}e^{in\\theta}\\cos^n\\theta\\,d\\theta=\\dfrac{\\pi}{2^{n-1}}\\binom{n}{0}\\dfrac{n!}{n!}=\\dfrac{\\pi}{2^{n-1}}$，这是一个实数。",
+        "由于 $\\cos^n\\theta$ 是实值函数，$\\int_0^{2\\pi}e^{in\\theta}\\cos^n\\theta\\,d\\theta=\\int_0^{2\\pi}\\cos(n\\theta)\\cos^n\\theta\\,d\\theta+i\\int_0^{2\\pi}\\sin(n\\theta)\\cos^n\\theta\\,d\\theta$，实部即为所求积分，虚部为0（与右边为实数一致）。",
+        "故 $\\int_0^{2\\pi}\\cos(n\\theta)\\cos^n\\theta\\,d\\theta=\\dfrac{\\pi}{2^{n-1}}$。验证 $n=1$：左边 $=\\int_0^{2\\pi}\\cos^2\\theta\\,d\\theta=\\pi$，右边 $=\\pi/2^0=\\pi$✓；$n=2$：左边$=\\int\\cos2\\theta\\cos^2\\theta\\,d\\theta=\\pi/2$，右边$=\\pi/2^1=\\pi/2$✓。"
+      ]
+    }
+  ],
+  "practice_questions": [
+    {
+      "text": "设 $f(z)$ 在闭单位圆盘上全纯，证明 $\\displaystyle\\int_0^{2\\pi}f(e^{i\\theta})\\,d\\theta=2\\pi f(0)$（均值性质）。",
+      "knowledge_points": [
+        "柯西积分公式",
+        "解析函数均值性质"
+      ],
+      "question_type": "均值公式证明",
+      "method": [
+        "单位圆参数化",
+        "柯西积分公式"
+      ],
+      "solution_steps": [
+        "变量替换z=e^{iθ}",
+        "化为复积分",
+        "用柯西积分公式求值"
+      ],
+      "math_structure": {
+        "type": "mean_value_property",
+        "template": "prove int_0^{2pi} f(e^{i theta}) d theta = 2 pi f(0) via Cauchy integral formula",
+        "variable_count": 0
+      },
+      "difficulty": 1,
+      "estimated_minutes": 6,
+      "answer": [
+        {
+          "label": "证明",
+          "steps": [
+            "令 $z=e^{i\\theta}$，$d\\theta=dz/(iz)$，积分化为 $\\oint_{|z|=1}f(z)\\dfrac{dz}{iz}=\\dfrac{1}{i}\\oint\\dfrac{f(z)}{z}dz$。",
+            "由柯西积分公式，$\\oint_{|z|=1}\\dfrac{f(z)}{z}dz=2\\pi i f(0)$。",
+            "代入得 $\\int_0^{2\\pi}f(e^{i\\theta})d\\theta=\\dfrac{1}{i}\\cdot2\\pi i f(0)=2\\pi f(0)$，证毕。"
+          ]
+        }
+      ],
+      "id": "nagoya-2005-6554a6045f-q03-practice-01",
+      "school": "名古屋大学",
+      "year": "2005"
+    },
+    {
+      "text": "设 $f(z)$ 在闭单位圆盘上全纯，证明 $\\displaystyle\\int_0^{2\\pi}f(e^{i\\theta})\\sin\\theta\\,d\\theta=\\pi i f'(0)$。",
+      "knowledge_points": [
+        "留数定理",
+        "Laurent展开",
+        "复积分变量替换"
+      ],
+      "question_type": "含sinθ的积分公式证明",
+      "method": [
+        "欧拉公式展开sinθ",
+        "留数定理"
+      ],
+      "solution_steps": [
+        "令z=e^{iθ}并替换sinθ",
+        "化为复积分",
+        "用留数定理求解"
+      ],
+      "math_structure": {
+        "type": "contour_integral_sin",
+        "template": "prove int_0^{2pi} f(e^{i theta}) sin(theta) d theta = pi i f'(0)",
+        "variable_count": 0
+      },
+      "difficulty": 2,
+      "estimated_minutes": 8,
+      "answer": [
+        {
+          "label": "证明",
+          "steps": [
+            "$\\sin\\theta=\\dfrac{z-z^{-1}}{2i}$，代入得积分$=\\oint f(z)\\dfrac{z-z^{-1}}{2i}\\cdot\\dfrac{dz}{iz}=\\dfrac{1}{2i^2}\\oint f(z)\\left(1-\\dfrac{1}{z^2}\\right)dz=-\\dfrac{1}{2}\\oint f(z)(1-z^{-2})dz$。",
+            "$\\oint f(z)dz=0$；$\\oint f(z)z^{-2}dz=2\\pi i f'(0)$（同(1)推导）。",
+            "代入得 $-\\dfrac{1}{2}(0-2\\pi i f'(0))=\\pi i f'(0)$，证毕。"
+          ]
+        }
+      ],
+      "id": "nagoya-2005-6554a6045f-q03-practice-02",
+      "school": "名古屋大学",
+      "year": "2005"
+    },
+    {
+      "text": "利用(2)的公式，取 $n=3$，写出 $\\int_0^{2\\pi}f(e^{i\\theta})\\cos^3\\theta\\,d\\theta$ 关于 $f(0),f'(0),f''(0),f'''(0)$ 的具体表达式。",
+      "knowledge_points": [
+        "二项式展开公式应用",
+        "组合数计算"
+      ],
+      "question_type": "公式具体化",
+      "method": [
+        "直接代入n=3到公式"
+      ],
+      "solution_steps": [
+        "计算[n/2]",
+        "列出j=0,1对应项",
+        "化简系数"
+      ],
+      "math_structure": {
+        "type": "formula_instantiation",
+        "template": "instantiate int f(e^{i theta}) cos^n theta d theta formula at n=3",
+        "variable_count": 0
+      },
+      "difficulty": 2,
+      "estimated_minutes": 7,
+      "answer": [
+        {
+          "label": "结果",
+          "steps": [
+            "$n=3$，$[n/2]=1$，公式为 $\\dfrac{\\pi}{2^2}\\sum_{j=0}^1\\binom{3}{j}\\dfrac{f^{(3-2j)}(0)}{(3-2j)!}$。",
+            "$j=0$项：$\\binom{3}{0}\\dfrac{f^{(3)}(0)}{3!}=\\dfrac{f'''(0)}{6}$；$j=1$项：$\\binom{3}{1}\\dfrac{f^{(1)}(0)}{1!}=3f'(0)$。",
+            "总和：$\\dfrac{\\pi}{4}\\left(\\dfrac{f'''(0)}{6}+3f'(0)\\right)=\\dfrac{\\pi f'''(0)}{24}+\\dfrac{3\\pi f'(0)}{4}$，即为所求表达式。"
+          ]
+        }
+      ],
+      "id": "nagoya-2005-6554a6045f-q03-practice-03",
+      "school": "名古屋大学",
+      "year": "2005"
+    },
+    {
+      "text": "用(2)的方法（取 $f(z)=z^{n-2}$，其中 $n\\ge2$），计算 $\\displaystyle\\int_0^{2\\pi}\\cos((n-2)\\theta)\\cos^n\\theta\\,d\\theta$ 的值。",
+      "knowledge_points": [
+        "留数定理",
+        "组合数计算",
+        "解析函数导数取值"
+      ],
+      "question_type": "参数化积分计算",
+      "method": [
+        "选取合适的f(z)代入(2)公式",
+        "只保留非零项"
+      ],
+      "solution_steps": [
+        "确定f(z)=z^{n-2}的导数信息",
+        "代入(2)公式找到非零项对应j值",
+        "化简得到结果"
+      ],
+      "math_structure": {
+        "type": "contour_integral_generalization",
+        "template": "compute int_0^{2pi} cos((n-2)theta) cos^n(theta) d theta by choosing f(z)=z^{n-2} in formula (2)",
+        "variable_count": 1
+      },
+      "difficulty": 3,
+      "estimated_minutes": 12,
+      "answer": [
+        {
+          "label": "结果",
+          "steps": [
+            "取 $f(z)=z^{n-2}$，则 $f^{(m)}(0)=(n-2)!$ 当 $m=n-2$，否则为0。",
+            "在(2)公式的和式中，$f^{(n-2j)}(0)\\neq0$ 要求 $n-2j=n-2$，即 $j=1$（需要$1\\le[n/2]$，即$n\\ge2$成立）。",
+            "此时 $\\binom{n}{1}\\dfrac{f^{(n-2)}(0)}{(n-2)!}=\\binom{n}{1}\\dfrac{(n-2)!}{(n-2)!}=n$。",
+            "代入(2)公式得 $\\int_0^{2\\pi}e^{i(n-2)\\theta}\\cos^n\\theta\\,d\\theta=\\dfrac{\\pi}{2^{n-1}}\\cdot n=\\dfrac{n\\pi}{2^{n-1}}$，该值为实数。",
+            "由于结果为实数，虚部（对应$\\sin((n-2)\\theta)\\cos^n\\theta$的积分）为0，实部即为所求：$\\int_0^{2\\pi}\\cos((n-2)\\theta)\\cos^n\\theta\\,d\\theta=\\dfrac{n\\pi}{2^{n-1}}$。验证$n=2$：左边$=\\int\\cos^2\\theta\\,d\\theta=\\pi$，右边$=2\\pi/2=\\pi$✓。"
+          ]
+        }
+      ],
+      "id": "nagoya-2005-6554a6045f-q03-practice-04",
+      "school": "名古屋大学",
+      "year": "2005"
+    }
+  ],
+  "source_question": "問3",
+  "source_pdf": "名古屋大学/多元数理科学研究科/全专攻/名古屋大学_多元数理科学研究科_2005_数学过去问_下午.pdf",
+  "source_type": "官方过去问",
+  "subject_category": "复变函数"
+}

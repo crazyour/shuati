@@ -1,0 +1,248 @@
+{
+  "id": "nagoya-2003-999b646212-q04",
+  "school": "名古屋大学",
+  "year": "2003",
+  "subject": "多元数理科学研究科_全专攻",
+  "text": "设 $y=\\sin x\\ \\left(-\\dfrac{\\pi}{2}<x<\\dfrac{\\pi}{2}\\right)$ 的反函数为 $g(x)=\\arcsin x$, 令 $f(x)=\\dfrac12 g(x)^2$. 回答以下问题.\n(1) 求 $g'(x)$ 与 $g''(x)$.\n(2) 证明下述等式:\n$$(1-x^2)f''(x)-xf'(x)=1.$$\n(3) 设 $f(x)$ 在 $x=0$ 处的泰勒展开为\n$$f(x)=\\sum_{n=0}^{\\infty}a_nx^n,$$\n证明\n$$(n+2)(n+1)a_{n+2}=n^2a_n\\quad(n\\ge1)$$\n成立, 并求 $a_0,a_1,a_2$.\n(4) 求以下极限值:\n$$\\lim_{x\\to0}\\frac{f(x)-\\left(\\frac12x^2+\\frac16x^4\\right)}{x^6}.$$",
+  "knowledge_points": [
+    "反三角函数求导",
+    "微分方程验证",
+    "幂级数递推关系",
+    "泰勒展开系数计算",
+    "极限的级数方法"
+  ],
+  "question_type": "反函数导数与幂级数综合题",
+  "method": [
+    "反函数求导公式",
+    "复合函数求导验证等式",
+    "幂级数展开代入微分方程比较系数",
+    "利用系数递推确定高阶项从而求极限"
+  ],
+  "solution_steps": [
+    "(1) 用反函数求导公式求 g',再求导得 g''",
+    "(2) 计算 f',f'' 并代入验证等式",
+    "(3) 将幂级数代入 (1-x^2)f''-xf'=1 比较系数得递推式, 结合初值求 a_0,a_1,a_2",
+    "(4) 用递推式求出 a_4,a_6, 结合奇数项为零, 得到极限即为 a_6"
+  ],
+  "math_structure": {
+    "type": "power_series_ode_recursion",
+    "template": "f=(1/2)(arcsin x)^2 satisfies ODE, derive recursion (n+2)(n+1)a_{n+2}=n^2a_n, find limit of remainder over x^6",
+    "variable_count": 0
+  },
+  "difficulty": 4,
+  "answer": [
+    {
+      "label": "(1)",
+      "steps": [
+        "由反函数求导公式, $\\sin(g(x))=x$, 两边求导 $\\cos(g(x))g'(x)=1$, 且 $\\cos(g(x))=\\sqrt{1-x^2}$（因 $g(x)\\in(-\\pi/2,\\pi/2)$ 使余弦为正）, 故 $g'(x)=\\dfrac{1}{\\sqrt{1-x^2}}$.",
+        "对 $g'(x)=(1-x^2)^{-1/2}$ 求导: $g''(x)=-\\dfrac12(1-x^2)^{-3/2}\\cdot(-2x)=\\dfrac{x}{(1-x^2)^{3/2}}$.",
+        "验证: 在 $x=0$ 处 $g'(0)=1$（对应 $\\arcsin$ 的导数为1的已知事实）, $g''(0)=0$，均与展开式一致。"
+      ]
+    },
+    {
+      "label": "(2)",
+      "steps": [
+        "$f'(x)=g(x)g'(x)=\\dfrac{g(x)}{\\sqrt{1-x^2}}$.",
+        "$f''(x)=g'(x)^2+g(x)g''(x)=\\dfrac{1}{1-x^2}+\\dfrac{xg(x)}{(1-x^2)^{3/2}}$.",
+        "计算 $(1-x^2)f''(x)=1+\\dfrac{xg(x)}{\\sqrt{1-x^2}}$, 而 $xf'(x)=\\dfrac{xg(x)}{\\sqrt{1-x^2}}$, 两式相减得 $(1-x^2)f''(x)-xf'(x)=1+\\dfrac{xg(x)}{\\sqrt{1-x^2}}-\\dfrac{xg(x)}{\\sqrt{1-x^2}}=1$, 等式成立."
+      ]
+    },
+    {
+      "label": "(3)",
+      "steps": [
+        "设 $f(x)=\\sum_{n\\ge0}a_nx^n$, 则 $f'(x)=\\sum n a_nx^{n-1}$, $f''(x)=\\sum n(n-1)a_nx^{n-2}$.",
+        "代入方程: $(1-x^2)f''-xf'=\\sum n(n-1)a_nx^{n-2}-\\sum n(n-1)a_nx^n-\\sum na_nx^n=\\sum n(n-1)a_nx^{n-2}-\\sum n^2a_nx^n=1$.",
+        "对第一项换指标 $m=n-2$，得 $\\sum_{n\\ge0}(n+2)(n+1)a_{n+2}x^n-\\sum_{n\\ge0}n^2a_nx^n=1$，比较各次幂系数: $n=0$ 时 $2a_2=1\\Rightarrow a_2=\\dfrac12$; $n\\ge1$ 时 $(n+2)(n+1)a_{n+2}-n^2a_n=0$，即所要证明的递推关系 $(n+2)(n+1)a_{n+2}=n^2a_n$ 成立.",
+        "初值: $a_0=f(0)=\\dfrac12 g(0)^2=0$（因 $g(0)=\\arcsin0=0$）; $a_1=f'(0)=g(0)g'(0)=0\\cdot1=0$; $a_2=\\dfrac12$（已求出）."
+      ]
+    },
+    {
+      "label": "(4)",
+      "steps": [
+        "由 $a_1=0$ 及递推式 $(n+2)(n+1)a_{n+2}=n^2a_n$, 知所有奇数下标系数 $a_1=a_3=a_5=\\cdots=0$.",
+        "计算 $a_4$: 取 $n=2$, $(4)(3)a_4=4a_2=4\\cdot\\frac12=2\\Rightarrow a_4=\\dfrac16$（与题目给出的 $\\frac16x^4$ 项吻合, 验证递推式与初值正确）.",
+        "计算 $a_6$: 取 $n=4$, $(6)(5)a_6=16a_4=16\\cdot\\dfrac16=\\dfrac{8}{3}\\Rightarrow a_6=\\dfrac{8}{3\\cdot30}=\\dfrac{8}{90}=\\dfrac{4}{45}$.",
+        "由于奇数项全为零, $f(x)-\\left(\\frac12x^2+\\frac16x^4\\right)=a_6x^6+a_8x^8+\\cdots$, 故 $\\displaystyle\\lim_{x\\to0}\\frac{f(x)-(\\frac12x^2+\\frac16x^4)}{x^6}=a_6=\\dfrac{4}{45}$."
+      ]
+    }
+  ],
+  "practice_questions": [
+    {
+      "text": "求 $y=\\arccos x$ 的一阶与二阶导数.",
+      "knowledge_points": [
+        "反函数求导",
+        "反三角函数"
+      ],
+      "question_type": "导数计算",
+      "method": [
+        "反函数求导公式"
+      ],
+      "solution_steps": [
+        "用cos(y)=x求导",
+        "再求二阶导数"
+      ],
+      "math_structure": {
+        "type": "inverse_trig_derivative_basic",
+        "template": "derive y'=arccos'(x), y''",
+        "variable_count": 0
+      },
+      "difficulty": 1,
+      "estimated_minutes": 4,
+      "answer": [
+        {
+          "label": "结果",
+          "steps": [
+            "由 $\\cos y=x$ 求导: $-\\sin y\\cdot y'=1\\Rightarrow y'=-\\dfrac{1}{\\sqrt{1-x^2}}$（$\\sin y=\\sqrt{1-x^2}>0$ 在 $y\\in(0,\\pi)$）.",
+            "对 $y'=-(1-x^2)^{-1/2}$ 求导: $y''=-\\dfrac{x}{(1-x^2)^{3/2}}$."
+          ]
+        }
+      ],
+      "id": "nagoya-2003-999b646212-q04-practice-01",
+      "school": "名古屋大学",
+      "year": "2003"
+    },
+    {
+      "text": "设 $\\phi(x)=\\arcsin x$, 验证 $(1-x^2)\\phi''(x)=x\\phi'(x)$.",
+      "knowledge_points": [
+        "复合函数求导",
+        "微分方程验证"
+      ],
+      "question_type": "恒等式证明",
+      "method": [
+        "直接求导代入"
+      ],
+      "solution_steps": [
+        "求phi',phi''",
+        "代入验证"
+      ],
+      "math_structure": {
+        "type": "ode_verification_basic",
+        "template": "verify (1-x^2)phi''=x phi' for arcsin",
+        "variable_count": 0
+      },
+      "difficulty": 2,
+      "estimated_minutes": 5,
+      "answer": [
+        {
+          "label": "结果",
+          "steps": [
+            "$\\phi'(x)=(1-x^2)^{-1/2}$, $\\phi''(x)=x(1-x^2)^{-3/2}$.",
+            "$(1-x^2)\\phi''=x(1-x^2)^{-1/2}=x\\phi'(x)$, 等式成立。"
+          ]
+        }
+      ],
+      "id": "nagoya-2003-999b646212-q04-practice-02",
+      "school": "名古屋大学",
+      "year": "2003"
+    },
+    {
+      "text": "设幂级数 $y=\\sum_{n\\ge0}b_nx^n$ 满足 $y''-xy'-y=0$，$b_0=1,b_1=0$，求递推关系并求 $b_2,b_3,b_4$.",
+      "knowledge_points": [
+        "幂级数解常微分方程",
+        "系数比较"
+      ],
+      "question_type": "递推关系求系数",
+      "method": [
+        "代入幂级数比较系数"
+      ],
+      "solution_steps": [
+        "写出y',y''级数",
+        "代入方程比较系数",
+        "求出前几项"
+      ],
+      "math_structure": {
+        "type": "power_series_ode_basic",
+        "template": "y''-xy'-y=0, find recursion and first coefficients",
+        "variable_count": 0
+      },
+      "difficulty": 3,
+      "estimated_minutes": 8,
+      "answer": [
+        {
+          "label": "结果",
+          "steps": [
+            "$y'=\\sum nb_nx^{n-1}$, $y''=\\sum n(n-1)b_nx^{n-2}$. 代入方程: $\\sum n(n-1)b_nx^{n-2}-\\sum nb_nx^n-\\sum b_nx^n=0$，换指标合并得 $(n+2)(n+1)b_{n+2}=(n+1)b_n$，即 $b_{n+2}=\\dfrac{b_n}{n+2}$.",
+            "由 $b_0=1$: $b_2=\\dfrac{b_0}{2}=\\dfrac12$, $b_4=\\dfrac{b_2}{4}=\\dfrac18$；由 $b_1=0$: $b_3=\\dfrac{b_1}{3}=0$.",
+            "结果: $b_2=\\dfrac12,\\ b_3=0,\\ b_4=\\dfrac18$。"
+          ]
+        }
+      ],
+      "id": "nagoya-2003-999b646212-q04-practice-03",
+      "school": "名古屋大学",
+      "year": "2003"
+    },
+    {
+      "text": "利用 $a_2=\\frac12,\\ a_4=\\frac16$ 的结果, 求 $\\displaystyle\\lim_{x\\to0}\\dfrac{(\\arcsin x)^2-x^2}{x^4}$（提示: 利用 $f(x)=\\frac12(\\arcsin x)^2$ 的展开）.",
+      "knowledge_points": [
+        "泰勒展开求极限",
+        "系数应用"
+      ],
+      "question_type": "极限计算",
+      "method": [
+        "利用已知展开系数直接代入"
+      ],
+      "solution_steps": [
+        "写出f(x)的展开到x^4项",
+        "换算为(arcsin x)^2的展开",
+        "求极限"
+      ],
+      "math_structure": {
+        "type": "taylor_limit_application",
+        "template": "use a2,a4 to compute limit of (arcsin x)^2-x^2 over x^4",
+        "variable_count": 0
+      },
+      "difficulty": 2,
+      "estimated_minutes": 6,
+      "answer": [
+        {
+          "label": "结果",
+          "steps": [
+            "$f(x)=\\frac12(\\arcsin x)^2=\\frac12x^2+\\frac16x^4+O(x^6)$，故 $(\\arcsin x)^2=x^2+\\frac13x^4+O(x^6)$.",
+            "$(\\arcsin x)^2-x^2=\\frac13x^4+O(x^6)$，除以 $x^4$ 取极限得 $\\dfrac13$.",
+            "结果: 极限值为 $\\dfrac13$。"
+          ]
+        }
+      ],
+      "id": "nagoya-2003-999b646212-q04-practice-04",
+      "school": "名古屋大学",
+      "year": "2003"
+    },
+    {
+      "text": "沿用原题递推关系, 求 $a_8$ 的值.",
+      "knowledge_points": [
+        "递推关系应用"
+      ],
+      "question_type": "系数计算",
+      "method": [
+        "利用递推公式逐步计算"
+      ],
+      "solution_steps": [
+        "用n=6代入递推式求a_8"
+      ],
+      "math_structure": {
+        "type": "recursion_application",
+        "template": "use (n+2)(n+1)a_{n+2}=n^2a_n with n=6 to find a8",
+        "variable_count": 0
+      },
+      "difficulty": 2,
+      "estimated_minutes": 5,
+      "answer": [
+        {
+          "label": "结果",
+          "steps": [
+            "取 $n=6$: $(8)(7)a_8=36a_6=36\\cdot\\dfrac{4}{45}=\\dfrac{144}{45}=\\dfrac{16}{5}$.",
+            "解得 $a_8=\\dfrac{16/5}{56}=\\dfrac{16}{280}=\\dfrac{2}{35}$.",
+            "结果: $a_8=\\dfrac{2}{35}$。"
+          ]
+        }
+      ],
+      "id": "nagoya-2003-999b646212-q04-practice-05",
+      "school": "名古屋大学",
+      "year": "2003"
+    }
+  ],
+  "source_question": "問4",
+  "source_pdf": "名古屋大学/多元数理科学研究科/全专攻/名古屋大学_多元数理科学研究科_2003_第1次_数学过去问_上午.pdf",
+  "source_type": "官方过去问",
+  "subject_category": "微积分"
+}

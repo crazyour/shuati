@@ -1,0 +1,161 @@
+{
+  "id": "kyushu-2025-winter-ist-calculus",
+  "school": "九州大学",
+  "year": "2025",
+  "subject": "システム情報科学府_情報理工学専攻",
+  "text": "(1) 对 $0<r<1$ 计算 $\\int_0^{\\pi/2}d\\theta/(1+r^2+2r\\cos\\theta)$。(2) 求 $dy/dx=(y^2+3y+2)/\\sin x$ 的通解。(3) 沿 $|z|=2$ 求 $\\oint_C e^{z^2}/\\sin(2z)\\,dz$。",
+  "knowledge_points": [
+    "三角积分",
+    "可分离变量微分方程",
+    "留数定理"
+  ],
+  "question_type": "冬季分析与微积分综合题",
+  "method": [
+    "半角代换",
+    "部分分式",
+    "简单极点留数"
+  ],
+  "solution_steps": [
+    "使用正切半角代换化为有理积分",
+    "分离变量并对 y 作部分分式",
+    "列出圆内所有零点并求留数和"
+  ],
+  "math_structure": {
+    "type": "trig_integral_separable_ode_residue",
+    "template": "$t=\\tan(\\theta/2)$",
+    "variable_count": 3
+  },
+  "difficulty": 4,
+  "answer": [
+    {
+      "label": "(1)",
+      "steps": [
+        "思路：采用半角代换、部分分式、简单极点留数，先使用正切半角代换化为有理积分。",
+        "令 $t=\\tan(\\theta/2)$，则积分化为 $$2\\int_0^1\\frac{dt}{(1+r)^2+(1-r)^2t^2}.$$ 因而结果为 $$\\frac{2}{1-r^2}\\tan^{-1}\\frac{1-r}{1+r}=\\frac{\\pi/2-2\\tan^{-1}r}{1-r^2}.$$。",
+        "将所得函数及其导数代回原方程，可核对等式成立。"
+      ]
+    },
+    {
+      "label": "(2)",
+      "steps": [
+        "思路：采用半角代换、部分分式、简单极点留数，先分离变量并对 y 作部分分式。",
+        "除常数解 $y=-2$ 外，积分得到 $$\\log\\left|\\frac{y+1}{y+2}\\right|=\\log|\\tan(x/2)|+C.$$ 因而可写成 $\\frac{y+1}{y+2}=C\\tan(x/2)$；",
+        "其中 $C=0$ 包含常数解 $y=-1$。"
+      ]
+    },
+    {
+      "label": "(3)",
+      "steps": [
+        "思路：采用半角代换、部分分式、简单极点留数，先列出圆内所有零点并求留数和。",
+        "圆内极点为 $z=0,\\pm\\pi/2$。",
+        "留数分别为 $1/2,-e^{\\pi^2/4}/2,-e^{\\pi^2/4}/2$。",
+        "故积分为 $$2\\pi i\\left(\\frac12-e^{\\pi^2/4}\\right)=\\pi i(1-2e^{\\pi^2/4}).$$。"
+      ]
+    }
+  ],
+  "practice_questions": [
+    {
+      "id": "kyushu-2025-winter-ist-calc-p1",
+      "school": "九州大学",
+      "year": "2025",
+      "text": "在 $t=\\tan(\\theta/2)$ 下，写出 $\\cos\\theta$ 与 $d\\theta$。",
+      "knowledge_points": [
+        "正切半角代换"
+      ],
+      "question_type": "写出万能代换公式",
+      "method": [
+        "三角恒等式"
+      ],
+      "solution_steps": [
+        "由半角公式表示",
+        "求导"
+      ],
+      "math_structure": {
+        "type": "tangent_half_angle",
+        "template": "$\\cos\\theta=(1-t^2)/(1+t^2)$",
+        "variable_count": 1
+      },
+      "difficulty": 1,
+      "estimated_minutes": 3,
+      "answer": [
+        {
+          "label": "答案",
+          "steps": [
+            "先围绕正切半角代换采用三角恒等式：由半角公式表示。",
+            "$\\cos\\theta=(1-t^2)/(1+t^2)$，$d\\theta=2dt/(1+t^2)$。",
+            "最后按题设的符号、范围和方向检查，得到所列结论。"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "kyushu-2025-winter-ist-calc-p2",
+      "school": "九州大学",
+      "year": "2025",
+      "text": "分解 $1/[(y+1)(y+2)]$ 为部分分式。",
+      "knowledge_points": [
+        "部分分式"
+      ],
+      "question_type": "一次因式分解",
+      "method": [
+        "系数比较"
+      ],
+      "solution_steps": [
+        "设两个简单分式",
+        "解系数"
+      ],
+      "math_structure": {
+        "type": "partial_fraction",
+        "template": "$1/[(y+1)(y+2)]$",
+        "variable_count": 1
+      },
+      "difficulty": 1,
+      "estimated_minutes": 2,
+      "answer": [
+        {
+          "label": "答案",
+          "steps": [
+            "先围绕部分分式采用系数比较：设两个简单分式。",
+            "$1/[(y+1)(y+2)]=1/(y+1)-1/(y+2)$。",
+            "最后按题设的符号、范围和方向检查，得到所列结论。"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "kyushu-2025-winter-ist-calc-p3",
+      "school": "九州大学",
+      "year": "2025",
+      "text": "求 $1/\\sin(2z)$ 在 $z=k\\pi/2$ 的留数。",
+      "knowledge_points": [
+        "留数",
+        "简单零点"
+      ],
+      "question_type": "用分母导数求留数",
+      "method": [
+        "简单极点公式"
+      ],
+      "solution_steps": [
+        "对分母求导",
+        "在零点代入"
+      ],
+      "math_structure": {
+        "type": "reciprocal_sine_residue",
+        "template": "$\\operatorname{Res}=1/[2\\cos(2z_0)]$",
+        "variable_count": 1
+      },
+      "difficulty": 2,
+      "estimated_minutes": 3,
+      "answer": [
+        {
+          "label": "答案",
+          "steps": [
+            "先围绕留数、简单零点采用简单极点公式：对分母求导。",
+            "因 $(\\sin2z)'=2\\cos2z$，留数为 $1/[2\\cos(k\\pi)]=(-1)^k/2$。",
+            "最后按题设的符号、范围和方向检查，得到所列结论。"
+          ]
+        }
+      ]
+    }
+  ]
+}

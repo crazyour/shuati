@@ -1,0 +1,262 @@
+{
+  "id": "nagoya-2010-8a11c2a4d7-q03",
+  "school": "名古屋大学",
+  "year": "2010",
+  "subject": "多元数理科学研究科_全专攻",
+  "text": "回答以下问题：\n(1) 对函数 $f(x)=\\log(\\cos x)$ 应用泰勒定理，证明当 $|x|\\le\\dfrac{\\pi}{4}$ 时，不等式\n$$\\left|f(x)+\\dfrac{x^2}{2}\\right|\\le\\dfrac{2}{3}|x|^3$$\n成立。\n(2) 设 $f(x,y)$ 是 $\\mathbb{R}^2$ 上的 $C^2$ 类函数。定义 $g(x,t)=\\displaystyle\\int_0^t f(x,y)\\,dy$（已知 $g$ 在 $\\mathbb{R}^2$ 上是 $C^2$ 类函数）。设 $F(x)=g(x,x)$，求使恒等式\n$$F''(x)=a\\,f_x(x,x)+b\\,f_y(x,x)+c\\,g_{xx}(x,x)$$\n成立的常数 $a,b,c$。\n(3) 计算积分\n$$\\int_0^\\pi\\int_0^{\\sqrt{\\pi^2-x^2}}\\sin\\!\\left(\\sqrt{x^2+y^2}\\right)dy\\,dx$$",
+  "knowledge_points": [
+    "泰勒定理与拉格朗日余项",
+    "不等式估计",
+    "多元函数的链式法则",
+    "参数积分求导",
+    "二重积分的极坐标变换"
+  ],
+  "question_type": "微积分综合大题",
+  "method": [
+    "泰勒展开求余项估计",
+    "链式法则求复合函数二阶导数",
+    "极坐标变换计算二重积分"
+  ],
+  "solution_steps": [
+    "对f(x)=log(cos x)求各阶导数并在0处展开，用拉格朗日型余项估计误差",
+    "分析余项函数在|x|≤π/4上的最大绝对值",
+    "利用多元链式法则对F(x)=g(x,x)求一阶、二阶导数，结合g_t=f及g_xt=f_x的关系化简",
+    "识别积分区域为第一象限内半径为π的四分之一圆盘，转换为极坐标",
+    "分离变量积分，先对r积分（分部积分），再对θ积分"
+  ],
+  "math_structure": {
+    "type": "taylor_remainder_chain_rule_polar_integral",
+    "template": "prove Taylor remainder inequality for log(cos x); find chain rule constants for F(x)=g(x,x); compute polar double integral of sin(sqrt(x^2+y^2)) over quarter disk",
+    "variable_count": 0
+  },
+  "difficulty": 4,
+  "answer": [
+    {
+      "label": "(1)",
+      "steps": [
+        "计算f的各阶导数：$f(x)=\\log\\cos x$，$f(0)=0$；$f'(x)=-\\tan x$，$f'(0)=0$；$f''(x)=-\\sec^2x$，$f''(0)=-1$；$f'''(x)=-2\\sec^2x\\tan x$。",
+        "由泰勒定理（拉格朗日余项，展开到3阶），存在c在0与x之间使得 $f(x)=f(0)+f'(0)x+\\dfrac{f''(0)}{2}x^2+\\dfrac{f'''(c)}{6}x^3=-\\dfrac{x^2}{2}+\\dfrac{f'''(c)}{6}x^3$。",
+        "移项得 $f(x)+\\dfrac{x^2}{2}=\\dfrac{f'''(c)}{6}x^3$，故只需证明当$|c|\\le\\pi/4$时$|f'''(c)|\\le4$。",
+        "$f'''(x)=-\\dfrac{2\\tan x}{\\cos^2x}$，对$x\\in[0,\\pi/4]$，$\\tan x$与$\\sec^2x$均单调递增且非负，故$|f'''(x)|$在该区间单调递增，最大值在$x=\\pi/4$处取得：$|f'''(\\pi/4)|=\\dfrac{2\\cdot1}{1/2}=4$（因$\\tan(\\pi/4)=1,\\cos^2(\\pi/4)=1/2$）。",
+        "故对$|c|\\le\\pi/4$恒有$|f'''(c)|\\le4$，于是$\\left|f(x)+\\dfrac{x^2}{2}\\right|=\\dfrac{|f'''(c)|}{6}|x|^3\\le\\dfrac{4}{6}|x|^3=\\dfrac{2}{3}|x|^3$，不等式得证。"
+      ]
+    },
+    {
+      "label": "(2)",
+      "steps": [
+        "由复合函数求导（多元链式法则），$F'(x)=\\dfrac{d}{dx}g(x,x)=g_x(x,x)+g_t(x,x)$。",
+        "由微积分基本定理，$g_t(x,t)=f(x,t)$，故$g_t(x,x)=f(x,x)$；同时$g_x(x,t)=\\int_0^tf_x(x,y)dy$。",
+        "对$F'(x)=g_x(x,x)+f(x,x)$再求导：$F''(x)=\\dfrac{d}{dx}[g_x(x,x)]+\\dfrac{d}{dx}[f(x,x)]$。",
+        "对第一项按链式法则展开：$\\dfrac{d}{dx}[g_x(x,x)]=g_{xx}(x,x)+g_{xt}(x,x)$；由$g_{xt}(x,t)=\\dfrac{\\partial}{\\partial t}\\int_0^tf_x(x,y)dy=f_x(x,t)$，故$g_{xt}(x,x)=f_x(x,x)$。",
+        "对第二项：$\\dfrac{d}{dx}[f(x,x)]=f_x(x,x)+f_y(x,x)$。",
+        "合并：$F''(x)=g_{xx}(x,x)+f_x(x,x)+f_x(x,x)+f_y(x,x)=2f_x(x,x)+f_y(x,x)+g_{xx}(x,x)$。",
+        "故 $a=2,\\ b=1,\\ c=1$。"
+      ]
+    },
+    {
+      "label": "(3)",
+      "steps": [
+        "积分区域为$\\{(x,y):0\\le x\\le\\pi,\\ 0\\le y\\le\\sqrt{\\pi^2-x^2}\\}$，即第一象限内以原点为中心、半径为$\\pi$的四分之一圆盘。",
+        "换成极坐标：$x=r\\cos\\theta,y=r\\sin\\theta$，区域变为$0\\le\\theta\\le\\pi/2,\\ 0\\le r\\le\\pi$，且$\\sqrt{x^2+y^2}=r$，$dxdy=r\\,dr\\,d\\theta$。",
+        "积分化为 $\\displaystyle\\int_0^{\\pi/2}\\int_0^\\pi\\sin(r)\\cdot r\\,dr\\,d\\theta=\\dfrac{\\pi}{2}\\int_0^\\pi r\\sin r\\,dr$。",
+        "分部积分计算$\\int r\\sin r\\,dr=-r\\cos r+\\sin r+C$，代入上下限：$[-r\\cos r+\\sin r]_0^\\pi=(-\\pi\\cos\\pi+\\sin\\pi)-(0)=(-\\pi\\cdot(-1)+0)=\\pi$。",
+        "故原积分$=\\dfrac{\\pi}{2}\\times\\pi=\\dfrac{\\pi^2}{2}$。"
+      ]
+    }
+  ],
+  "practice_questions": [
+    {
+      "text": "对函数$h(x)=\\sin x$在$x=0$处应用泰勒定理（展开到2阶，拉格朗日余项），估计$|h(x)-x|$在$|x|\\le\\pi/6$上的上界。",
+      "knowledge_points": [
+        "泰勒定理",
+        "拉格朗日余项",
+        "三角函数导数"
+      ],
+      "question_type": "泰勒余项估计",
+      "method": [
+        "求各阶导数",
+        "拉格朗日余项公式",
+        "在给定区间上求余项系数的最大值"
+      ],
+      "solution_steps": [
+        "求h的各阶导数在0处的值",
+        "写出泰勒展开式与余项",
+        "估计余项系数的最大绝对值"
+      ],
+      "math_structure": {
+        "type": "taylor_remainder_basic",
+        "template": "estimate |sin x - x| using Taylor remainder on |x|<=pi/6",
+        "variable_count": 0
+      },
+      "difficulty": 2,
+      "estimated_minutes": 8,
+      "answer": [
+        {
+          "label": "上界估计",
+          "steps": [
+            "h(x)=sin x，h(0)=0，h'(x)=cos x，h'(0)=1，h''(x)=-sin x，h''(0)=0，h'''(x)=-cos x。",
+            "泰勒展开（3阶，拉格朗日余项）：$h(x)=x+\\dfrac{h'''(c)}{6}x^3$（因h''(0)=0），故$h(x)-x=\\dfrac{-\\cos c}{6}x^3$。",
+            "对$|c|\\le\\pi/6$，$|\\cos c|\\le1$，故$|h(x)-x|\\le\\dfrac{1}{6}|x|^3$。"
+          ]
+        }
+      ],
+      "id": "nagoya-2010-8a11c2a4d7-q03-practice-01",
+      "school": "名古屋大学",
+      "year": "2010"
+    },
+    {
+      "text": "对函数$k(x)=e^x$在$x=0$处应用泰勒定理，证明当$0\\le x\\le1$时，$\\left|k(x)-1-x-\\dfrac{x^2}{2}\\right|\\le\\dfrac{e}{6}x^3$。",
+      "knowledge_points": [
+        "泰勒定理",
+        "拉格朗日余项",
+        "指数函数性质"
+      ],
+      "question_type": "泰勒余项估计",
+      "method": [
+        "3阶泰勒展开",
+        "对余项系数取区间上的最大值"
+      ],
+      "solution_steps": [
+        "求各阶导数",
+        "写出拉格朗日型余项",
+        "用e^c≤e（c∈[0,1]）估计余项上界"
+      ],
+      "math_structure": {
+        "type": "taylor_remainder_basic",
+        "template": "estimate |e^x - (1+x+x^2/2)| using Taylor remainder on [0,1]",
+        "variable_count": 0
+      },
+      "difficulty": 2,
+      "estimated_minutes": 6,
+      "answer": [
+        {
+          "label": "证明",
+          "steps": [
+            "k(x)=e^x，各阶导数均为e^x，k(0)=k'(0)=k''(0)=1，k'''(x)=e^x。",
+            "泰勒展开（3阶，拉格朗日余项）：$k(x)=1+x+\\dfrac{x^2}{2}+\\dfrac{e^c}{6}x^3$，其中c介于0和x之间。",
+            "对$c\\in[0,1]$，$e^c\\le e^1=e$，故$\\left|k(x)-1-x-\\dfrac{x^2}{2}\\right|=\\dfrac{e^c}{6}x^3\\le\\dfrac{e}{6}x^3$（因x≥0）。"
+          ]
+        }
+      ],
+      "id": "nagoya-2010-8a11c2a4d7-q03-practice-02",
+      "school": "名古屋大学",
+      "year": "2010"
+    },
+    {
+      "text": "设$f(x,y)$为$C^2$类函数，$g(x,t)=\\int_0^tf(x,y)dy$，令$H(x)=g(2x,x)$。用链式法则求$H'(x)$（用$g_x,g_t,f$表示）。",
+      "knowledge_points": [
+        "多元链式法则",
+        "参数积分求导"
+      ],
+      "question_type": "链式法则基础应用",
+      "method": [
+        "多元复合函数求导链式法则"
+      ],
+      "solution_steps": [
+        "设u=2x,v=x，用链式法则展开dH/dx",
+        "代入g_t=f化简"
+      ],
+      "math_structure": {
+        "type": "chain_rule_basic",
+        "template": "given H(x)=g(2x,x), find H'(x) via chain rule with g_t(x,t)=f(x,t)",
+        "variable_count": 0
+      },
+      "difficulty": 2,
+      "estimated_minutes": 6,
+      "answer": [
+        {
+          "label": "结果",
+          "steps": [
+            "由链式法则，$H'(x)=g_x(2x,x)\\cdot2+g_t(2x,x)\\cdot1=2g_x(2x,x)+g_t(2x,x)$。",
+            "由$g_t(x,t)=f(x,t)$，故$g_t(2x,x)=f(2x,x)$。",
+            "最终$H'(x)=2g_x(2x,x)+f(2x,x)$。"
+          ]
+        }
+      ],
+      "id": "nagoya-2010-8a11c2a4d7-q03-practice-03",
+      "school": "名古屋大学",
+      "year": "2010"
+    },
+    {
+      "text": "沿用上一题的设置，继续求$H''(x)$（用$f_x,f_y,g_{xx}$在$(2x,x)$处的取值表示，需展开链式法则）。",
+      "knowledge_points": [
+        "多元链式法则的二次应用",
+        "混合偏导数"
+      ],
+      "question_type": "链式法则二阶导数应用",
+      "method": [
+        "对H'(x)=2g_x(2x,x)+f(2x,x)再次用链式法则求导"
+      ],
+      "solution_steps": [
+        "对2g_x(2x,x)求导",
+        "对f(2x,x)求导",
+        "利用g_xt=f_x化简合并"
+      ],
+      "math_structure": {
+        "type": "chain_rule_second_derivative",
+        "template": "given H(x)=g(2x,x), find H''(x) in terms of f_x,f_y,g_xx at (2x,x)",
+        "variable_count": 0
+      },
+      "difficulty": 3,
+      "estimated_minutes": 10,
+      "answer": [
+        {
+          "label": "结果",
+          "steps": [
+            "对$2g_x(2x,x)$求导：$\\dfrac{d}{dx}[2g_x(2x,x)]=2[g_{xx}(2x,x)\\cdot2+g_{xt}(2x,x)\\cdot1]=4g_{xx}(2x,x)+2g_{xt}(2x,x)$。",
+            "由$g_{xt}(x,t)=f_x(x,t)$，得$g_{xt}(2x,x)=f_x(2x,x)$，故此项为$4g_{xx}(2x,x)+2f_x(2x,x)$。",
+            "对$f(2x,x)$求导：$\\dfrac{d}{dx}[f(2x,x)]=f_x(2x,x)\\cdot2+f_y(2x,x)\\cdot1=2f_x(2x,x)+f_y(2x,x)$。",
+            "合并：$H''(x)=4g_{xx}(2x,x)+2f_x(2x,x)+2f_x(2x,x)+f_y(2x,x)=4g_{xx}(2x,x)+4f_x(2x,x)+f_y(2x,x)$。"
+          ]
+        }
+      ],
+      "id": "nagoya-2010-8a11c2a4d7-q03-practice-04",
+      "school": "名古屋大学",
+      "year": "2010"
+    },
+    {
+      "text": "计算二重积分$\\displaystyle\\int_0^{\\pi/2}\\int_0^{\\sqrt{(\\pi/2)^2-x^2}}\\cos\\!\\left(\\sqrt{x^2+y^2}\\right)dy\\,dx$。",
+      "knowledge_points": [
+        "极坐标变换",
+        "二重积分",
+        "分部积分"
+      ],
+      "question_type": "极坐标积分计算",
+      "method": [
+        "识别积分区域为四分之一圆盘",
+        "转换为极坐标",
+        "分部积分计算径向积分"
+      ],
+      "solution_steps": [
+        "确定积分区域为半径π/2的第一象限四分之一圆盘",
+        "转换为极坐标形式",
+        "计算径向积分∫r cos(r)dr",
+        "乘以角度积分范围得结果"
+      ],
+      "math_structure": {
+        "type": "polar_double_integral",
+        "template": "compute integral of cos(sqrt(x^2+y^2)) over quarter disk of radius pi/2 in first quadrant",
+        "variable_count": 0
+      },
+      "difficulty": 3,
+      "estimated_minutes": 10,
+      "answer": [
+        {
+          "label": "结果",
+          "steps": [
+            "区域为$0\\le\\theta\\le\\pi/2,\\ 0\\le r\\le\\pi/2$，积分化为$\\int_0^{\\pi/2}\\int_0^{\\pi/2}\\cos(r)\\cdot r\\,dr\\,d\\theta=\\dfrac{\\pi}{2}\\int_0^{\\pi/2}r\\cos r\\,dr$。",
+            "分部积分：$\\int r\\cos r\\,dr=r\\sin r+\\cos r+C$。代入上下限：$[r\\sin r+\\cos r]_0^{\\pi/2}=\\left(\\dfrac{\\pi}{2}\\cdot1+0\\right)-(0+1)=\\dfrac{\\pi}{2}-1$。",
+            "最终结果：$\\dfrac{\\pi}{2}\\times\\left(\\dfrac{\\pi}{2}-1\\right)=\\dfrac{\\pi^2}{4}-\\dfrac{\\pi}{2}$。"
+          ]
+        }
+      ],
+      "id": "nagoya-2010-8a11c2a4d7-q03-practice-05",
+      "school": "名古屋大学",
+      "year": "2010"
+    }
+  ],
+  "source_question": "3",
+  "source_pdf": "名古屋大学/多元数理科学研究科/全专攻/名古屋大学_多元数理科学研究科_2010_第2次_数学过去问_上午.pdf",
+  "source_type": "官方过去问",
+  "subject_category": "微积分"
+}

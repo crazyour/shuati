@@ -1,0 +1,175 @@
+{
+  "id": "hokkaido-2025-5fa11c15a1-q01",
+  "school": "北海道大学",
+  "year": "2025",
+  "subject": "情报科学院_情报理工学",
+  "text": "设 $e$ 为自然对数的底数。证明微分形式 $2xye^y dx + x^2(1+y)e^y dy$ 在 $\\mathbb{R}^2$ 上是完全微分。并证明存在函数 $F(x,y)$ 满足：$\\frac{\\partial F}{\\partial x} = 2xye^y$ 和 $\\frac{\\partial F}{\\partial y} = x^2(1+y)e^y$。",
+  "knowledge_points": [
+    "完全微分形式",
+    "偏导数",
+    "全微分存在条件",
+    "混合偏导相等性",
+    "势函数求解"
+  ],
+  "question_type": "证明题+求解",
+  "method": [
+    "验证完全性条件",
+    "分别对两个偏导数关系进行积分"
+  ],
+  "solution_steps": [
+    "计算 $\\partial M/\\partial y$ 和 $\\partial N/\\partial x$",
+    "验证完全性条件 $\\partial M/\\partial y = \\partial N/\\partial x$",
+    "从 $\\partial F/\\partial x = 2xye^y$ 对 $x$ 积分求 $F$",
+    "对 $y$ 求偏导确定任意函数"
+  ],
+  "math_structure": {
+    "type": "exact_differential_form",
+    "template": "$Pdx + Qdy$ where $\\frac{\\partial P}{\\partial y} = \\frac{\\partial Q}{\\partial x}$ on $\\mathbb{R}^2$",
+    "variable_count": 2
+  },
+  "difficulty": 3,
+  "answer": [
+    {
+      "label": "完全性证明",
+      "steps": [
+        "设 $M(x,y) = 2xye^y$，$N(x,y) = x^2(1+y)e^y$",
+        "计算 $\\frac{\\partial M}{\\partial y} = \\frac{\\partial}{\\partial y}(2xye^y) = 2xe^y + 2xye^y = 2xe^y(1+y)$",
+        "计算 $\\frac{\\partial N}{\\partial x} = \\frac{\\partial}{\\partial x}[x^2(1+y)e^y] = 2x(1+y)e^y$",
+        "因为 $\\frac{\\partial M}{\\partial y} = \\frac{\\partial N}{\\partial x}$，所以微分形式在 $\\mathbb{R}^2$ 上是完全的"
+      ]
+    },
+    {
+      "label": "势函数 $F(x,y)$ 的求解",
+      "steps": [
+        "由 $\\frac{\\partial F}{\\partial x} = 2xye^y$，对 $x$ 积分：$F(x,y) = \\int 2xye^y dx = x^2ye^y + g(y)$，其中 $g(y)$ 为任意函数",
+        "对上式关于 $y$ 求偏导：$\\frac{\\partial F}{\\partial y} = x^2e^y + x^2ye^y + g'(y) = x^2e^y(1+y) + g'(y)$",
+        "与题目给定的 $\\frac{\\partial F}{\\partial y} = x^2(1+y)e^y$ 比较，得 $g'(y) = 0$，即 $g(y) = C$（常数）",
+        "因此 $F(x,y) = x^2ye^y + C$"
+      ]
+    }
+  ],
+  "practice_questions": [
+    {
+      "text": "判断微分形式 $3x^2y dx + x^3 dy$ 在 $\\mathbb{R}^2$ 上是否完全，若完全，求其势函数。",
+      "knowledge_points": [
+        "完全微分形式判定",
+        "势函数求解"
+      ],
+      "question_type": "判断与求解",
+      "method": [
+        "验证 $\\partial P/\\partial y = \\partial Q/\\partial x$",
+        "积分法求势函数"
+      ],
+      "solution_steps": [
+        "计算偏导数并验证完全性",
+        "对 $P$ 关于 $x$ 积分",
+        "利用 $Q$ 确定任意函数"
+      ],
+      "math_structure": {
+        "type": "exact_differential_check",
+        "template": "$Pdx + Qdy$ exactness verification",
+        "variable_count": 2
+      },
+      "difficulty": 2,
+      "estimated_minutes": 8,
+      "answer": [
+        {
+          "label": "完全性与势函数",
+          "steps": [
+            "$P = 3x^2y$，$Q = x^3$",
+            "$\\frac{\\partial P}{\\partial y} = 3x^2$，$\\frac{\\partial Q}{\\partial x} = 3x^2$，完全",
+            "由 $\\frac{\\partial F}{\\partial x} = 3x^2y$，积分得 $F = x^3y + g(y)$",
+            "由 $\\frac{\\partial F}{\\partial y} = x^3$，得 $g'(y) = 0$，故 $g(y) = C$",
+            "势函数：$F(x,y) = x^3y + C$"
+          ]
+        }
+      ],
+      "id": "hokkaido-2025-5fa11c15a1-q01-practice-01",
+      "school": "北海道大学",
+      "year": "2025"
+    },
+    {
+      "text": "微分形式 $(y + e^x) dx + x dy$ 在 $\\mathbb{R}^2$ 上是否完全？若是，求其势函数。",
+      "knowledge_points": [
+        "指数函数微分",
+        "完全微分形式",
+        "势函数"
+      ],
+      "question_type": "判断与求解",
+      "method": [
+        "验证完全性条件",
+        "分部积分法求势函数"
+      ],
+      "solution_steps": [
+        "验证 $\\partial P/\\partial y$ 与 $\\partial Q/\\partial x$ 的关系",
+        "对 $P$ 积分",
+        "确定任意函数"
+      ],
+      "math_structure": {
+        "type": "exact_differential_exponential",
+        "template": "完全形式含指数函数",
+        "variable_count": 2
+      },
+      "difficulty": 2,
+      "estimated_minutes": 10,
+      "answer": [
+        {
+          "label": "完全性与势函数",
+          "steps": [
+            "$P = y + e^x$，$Q = x$",
+            "$\\frac{\\partial P}{\\partial y} = 1$，$\\frac{\\partial Q}{\\partial x} = 1$，所以形式完全",
+            "由 $\\frac{\\partial F}{\\partial x} = y + e^x$，积分：$F = xy + e^x + g(y)$",
+            "由 $\\frac{\\partial F}{\\partial y} = x$，得 $g'(y) = 0$",
+            "势函数：$F(x,y) = xy + e^x + C$"
+          ]
+        }
+      ],
+      "id": "hokkaido-2025-5fa11c15a1-q01-practice-02",
+      "school": "北海道大学",
+      "year": "2025"
+    },
+    {
+      "text": "判断微分形式 $x^2y dx + (x^3 + 1) dy$ 是否完全。若不完全，求一个积分因子使之完全。",
+      "knowledge_points": [
+        "完全微分形式",
+        "积分因子",
+        "恰当方程"
+      ],
+      "question_type": "判断与求解",
+      "method": [
+        "验证完全性",
+        "寻找积分因子"
+      ],
+      "solution_steps": [
+        "计算偏导数检验",
+        "若不完全则寻找形如 $\\mu(x)$ 或 $\\mu(y)$ 的积分因子"
+      ],
+      "math_structure": {
+        "type": "inexact_with_integrating_factor",
+        "template": "寻找积分因子使 $\\mu Pdx + \\mu Qdy$ 完全",
+        "variable_count": 2
+      },
+      "difficulty": 3,
+      "estimated_minutes": 12,
+      "answer": [
+        {
+          "label": "完全性检验与积分因子",
+          "steps": [
+            "$P = x^2y$，$Q = x^3 + 1$",
+            "$\\frac{\\partial P}{\\partial y} = x^2$，$\\frac{\\partial Q}{\\partial x} = 3x^2$，不相等，形式不完全",
+            "尝试 $\\mu = \\mu(y)$：$\\frac{1}{\\mu}\\frac{d\\mu}{dy} = \\frac{\\frac{\\partial Q}{\\partial x} - \\frac{\\partial P}{\\partial y}}{P} = \\frac{3x^2 - x^2}{x^2y} = \\frac{2}{y}$",
+            "所以 $\\frac{d\\mu}{\\mu} = \\frac{2dy}{y}$，得 $\\mu(y) = y^2$",
+            "积分因子：$\\mu(y) = y^2$；乘以后的形式 $x^2y^3 dx + (x^3y^2 + y^2) dy$ 是完全的"
+          ]
+        }
+      ],
+      "id": "hokkaido-2025-5fa11c15a1-q01-practice-03",
+      "school": "北海道大学",
+      "year": "2025"
+    }
+  ],
+  "source_question": "問4[1]",
+  "source_pdf": "北海道大学/情报科学院/情报理工学/北海道大学_情报科学院_情报理工学_2025_数学过去问_专业科目2.pdf",
+  "source_type": "官方过去问",
+  "subject_category": "微积分"
+}

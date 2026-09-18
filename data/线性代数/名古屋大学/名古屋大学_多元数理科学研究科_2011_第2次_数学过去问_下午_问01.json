@@ -1,0 +1,240 @@
+{
+  "id": "nagoya-2011-95fc9d2a71-q01",
+  "school": "名古屋大学",
+  "year": "2011",
+  "subject": "多元数理科学研究科_全专攻",
+  "text": "设 $V$ 是 $\\mathbb{C}$ 上的 $n$ 维线性空间，$I:V\\to V$ 为恒等映射，$O:V\\to V$ 为零映射。回答以下问题：\n\n(1) 设线性映射 $p,q:V\\to V$ 满足\n$$p+q=I,\\qquad p^2=p,\\ q^2=q.$$\n证明 $pq=qp=O$。又设 $U=\\ker(p-I)$，$W=\\ker(q-I)$，证明 $V$ 是子空间 $U,W$ 的直和。\n\n(2) 设线性映射 $f:V\\to V$ 可对角化，且恰有两个不同的特征值 $\\alpha,\\beta$。证明存在满足 (1) 中条件的 $p,q$，使得 $f=\\alpha p+\\beta q$。",
+  "knowledge_points": [
+    "幂等算子（投影算子）",
+    "直和分解",
+    "特征值与特征空间",
+    "可对角化线性变换",
+    "恒等映射的分解"
+  ],
+  "question_type": "证明题",
+  "method": [
+    "利用 $q=I-p$ 代入化简",
+    "验证子空间交为零",
+    "利用特征空间构造投影算子",
+    "极小多项式法构造投影"
+  ],
+  "solution_steps": [
+    "由 $p+q=I$ 得 $q=I-p$，结合 $p^2=p$ 计算 $pq,qp$",
+    "证明任意 $v$ 可写成 $p(v)+q(v)$，并验证 $p(v)\\in U$，$q(v)\\in W$",
+    "证明 $U\\cap W=\\{0\\}$，从而得直和",
+    "利用特征子空间 $V_\\alpha,V_\\beta$ 定义投影 $p,q$",
+    "验证 $f=\\alpha p+\\beta q$ 且满足条件(1)"
+  ],
+  "math_structure": {
+    "type": "idempotent_projection_decomposition",
+    "template": "p+q=I, p^2=p, q^2=q \\Rightarrow V=U\\oplus W; f=\\alpha p+\\beta q",
+    "variable_count": 3
+  },
+  "difficulty": 3,
+  "answer": [
+    {
+      "label": "(1)",
+      "steps": [
+        "由 $p+q=I$，得 $q=I-p$。计算 $pq=p(I-p)=p-p^2=p-p=O$（用到 $p^2=p$）；同理 $qp=(I-p)p=p-p^2=O$。故 $pq=qp=O$。",
+        "对任意 $v\\in V$，设 $u=p(v)$，$w=q(v)$，则 $v=u+w$（因为 $p+q=I$）。计算 $p(u)=p(p(v))=p^2(v)=p(v)=u$，故 $u\\in U=\\ker(p-I)$；同理 $q(w)=q(q(v))=q^2(v)=q(v)=w$，故 $w\\in W=\\ker(q-I)$。这说明 $V=U+W$。",
+        "设 $v\\in U\\cap W$，即 $p(v)=v$ 且 $q(v)=v$。对等式 $p(v)=v$ 两边作用 $q$，得 $q(p(v))=q(v)=v$；但 $qp=O$，故 $q(p(v))=0$。于是 $v=0$。因此 $U\\cap W=\\{0\\}$，结合 $V=U+W$ 得 $V=U\\oplus W$。"
+      ]
+    },
+    {
+      "label": "(2)",
+      "steps": [
+        "由于 $f$ 可对角化且只有特征值 $\\alpha,\\beta$，$V$ 分解为特征子空间的直和 $V=V_\\alpha\\oplus V_\\beta$，其中 $V_\\alpha=\\ker(f-\\alpha I)$，$V_\\beta=\\ker(f-\\beta I)$。",
+        "定义 $p:V\\to V$ 为关于分解 $V=V_\\alpha\\oplus V_\\beta$ 沿 $V_\\beta$ 到 $V_\\alpha$ 的投影，$q=I-p$ 为沿 $V_\\alpha$ 到 $V_\\beta$ 的投影。则显然 $p+q=I$，$p^2=p$，$q^2=q$，符合(1)的条件。",
+        "对 $v=v_\\alpha+v_\\beta\\in V_\\alpha\\oplus V_\\beta$，有 $f(v)=\\alpha v_\\alpha+\\beta v_\\beta=\\alpha p(v)+\\beta q(v)$。因此 $f=\\alpha p+\\beta q$。",
+        "验证：因为 $(f-\\alpha I)(f-\\beta I)=O$（$f$ 在 $V_\\alpha$ 上作用为 $\\alpha$，在 $V_\\beta$ 上为 $\\beta$，极小多项式整除 $(t-\\alpha)(t-\\beta)$），可显式写出 $p=\\dfrac{f-\\beta I}{\\alpha-\\beta}$，$q=\\dfrac{f-\\alpha I}{\\beta-\\alpha}$，直接验证满足 $p+q=I$ 及 $f=\\alpha p+\\beta q$。"
+      ]
+    }
+  ],
+  "practice_questions": [
+    {
+      "text": "设 $p:V\\to V$ 是幂等线性映射，即 $p^2=p$。证明 $V=\\operatorname{Im}(p)\\oplus\\ker(p)$。",
+      "knowledge_points": [
+        "幂等算子",
+        "直和分解"
+      ],
+      "question_type": "证明题",
+      "method": [
+        "直接验证像与核的交与和"
+      ],
+      "solution_steps": [
+        "证明任意 $v=p(v)+(v-p(v))$",
+        "验证两部分分别属于 $\\operatorname{Im}(p)$ 与 $\\ker(p)$",
+        "证明交为零"
+      ],
+      "math_structure": {
+        "type": "idempotent_basic_decomposition",
+        "template": "p^2=p \\Rightarrow V=\\operatorname{Im}(p)\\oplus\\ker(p)",
+        "variable_count": 1
+      },
+      "difficulty": 1,
+      "estimated_minutes": 8,
+      "answer": [
+        {
+          "label": "证明",
+          "steps": [
+            "对任意 $v\\in V$，写 $v=p(v)+(v-p(v))$。因为 $p(p(v))=p^2(v)=p(v)$，所以 $p(v)\\in\\operatorname{Im}(p)$；且 $p(v-p(v))=p(v)-p^2(v)=0$，所以 $v-p(v)\\in\\ker(p)$。故 $V=\\operatorname{Im}(p)+\\ker(p)$。",
+            "设 $u\\in \\operatorname{Im}(p)\\cap\\ker(p)$，则存在 $x$ 使 $u=p(x)$，且 $p(u)=0$。但 $p(u)=p(p(x))=p^2(x)=p(x)=u$，故 $u=0$。",
+            "因此交为 $\\{0\\}$，结合和为 $V$，得 $V=\\operatorname{Im}(p)\\oplus\\ker(p)$。"
+          ]
+        }
+      ],
+      "id": "nagoya-2011-95fc9d2a71-q01-practice-01",
+      "school": "名古屋大学",
+      "year": "2011"
+    },
+    {
+      "text": "设 $p:V\\to V$ 满足 $p^2=p$。证明 $I-p$ 也是幂等映射，并说明 $\\ker(p)=\\operatorname{Im}(I-p)$。",
+      "knowledge_points": [
+        "幂等算子的性质"
+      ],
+      "question_type": "证明题",
+      "method": [
+        "直接代数验证"
+      ],
+      "solution_steps": [
+        "计算 $(I-p)^2$",
+        "证明 $\\ker(p)=\\operatorname{Im}(I-p)$"
+      ],
+      "math_structure": {
+        "type": "complementary_idempotent",
+        "template": "p^2=p \\Rightarrow (I-p)^2=I-p",
+        "variable_count": 1
+      },
+      "difficulty": 1,
+      "estimated_minutes": 6,
+      "answer": [
+        {
+          "label": "证明",
+          "steps": [
+            "$(I-p)^2=I-2p+p^2=I-2p+p=I-p$，故 $I-p$ 幂等。",
+            "若 $v\\in\\ker(p)$，则 $p(v)=0$，故 $(I-p)(v)=v-0=v\\in\\operatorname{Im}(I-p)$，反之若 $v=(I-p)(x)$ 则 $p(v)=p(x)-p^2(x)=0$，故 $v\\in\\ker(p)$。",
+            "两者互相包含，即 $\\ker(p)=\\operatorname{Im}(I-p)$。"
+          ]
+        }
+      ],
+      "id": "nagoya-2011-95fc9d2a71-q01-practice-02",
+      "school": "名古屋大学",
+      "year": "2011"
+    },
+    {
+      "text": "设 $p,q:V\\to V$ 满足 $p+q=I$ 及 $pq=qp=O$，且 $p^2=p$。证明由此可推出 $q^2=q$。",
+      "knowledge_points": [
+        "幂等算子的等价条件"
+      ],
+      "question_type": "证明题",
+      "method": [
+        "代入 $q=I-p$ 直接计算"
+      ],
+      "solution_steps": [
+        "用 $q=I-p$ 展开 $q^2$",
+        "利用 $p^2=p$ 化简"
+      ],
+      "math_structure": {
+        "type": "idempotent_equivalence",
+        "template": "p+q=I, p^2=p \\Rightarrow q^2=q",
+        "variable_count": 2
+      },
+      "difficulty": 2,
+      "estimated_minutes": 8,
+      "answer": [
+        {
+          "label": "证明",
+          "steps": [
+            "由 $p+q=I$ 得 $q=I-p$。",
+            "计算 $q^2=(I-p)^2=I-2p+p^2=I-2p+p=I-p=q$（用到 $p^2=p$）。",
+            "故 $q^2=q$，命题得证；同时也说明 $pq=qp=O$ 可由 $p^2=p$、$q=I-p$ 自动得出（无需单独假设）。"
+          ]
+        }
+      ],
+      "id": "nagoya-2011-95fc9d2a71-q01-practice-03",
+      "school": "名古屋大学",
+      "year": "2011"
+    },
+    {
+      "text": "设 $f:V\\to V$ 可对角化，恰有三个不同的特征值 $\\alpha,\\beta,\\gamma$。类比原题构造三个投影算子 $p,q,r$，满足 $p+q+r=I$，两两乘积为 $O$，各自幂等，并使 $f=\\alpha p+\\beta q+\\gamma r$。",
+      "knowledge_points": [
+        "谱分解",
+        "多特征值的投影分解"
+      ],
+      "question_type": "证明与构造题",
+      "method": [
+        "利用三个特征子空间的直和分解",
+        "拉格朗日插值构造投影多项式"
+      ],
+      "solution_steps": [
+        "写出 $V=V_\\alpha\\oplus V_\\beta\\oplus V_\\gamma$",
+        "定义对应投影",
+        "验证幂等性、正交性与谱分解公式"
+      ],
+      "math_structure": {
+        "type": "spectral_projection_decomposition",
+        "template": "V=V_\\alpha\\oplus V_\\beta\\oplus V_\\gamma,\\ f=\\alpha p+\\beta q+\\gamma r",
+        "variable_count": 3
+      },
+      "difficulty": 3,
+      "estimated_minutes": 15,
+      "answer": [
+        {
+          "label": "构造与证明",
+          "steps": [
+            "因为 $f$ 可对角化，$V$ 分解为三个特征子空间的直和：$V=V_\\alpha\\oplus V_\\beta\\oplus V_\\gamma$。",
+            "定义 $p,q,r$ 分别为沿另外两个子空间到 $V_\\alpha,V_\\beta,V_\\gamma$ 的投影。显然 $p+q+r=I$，且 $p^2=p,q^2=q,r^2=r$，两两乘积（如 $pq$）作用在任意分解 $v=v_\\alpha+v_\\beta+v_\\gamma$ 上给出 $0$，故 $pq=qp=pr=rp=qr=rq=O$。",
+            "利用拉格朗日插值可显式写出 $p=\\dfrac{(f-\\beta I)(f-\\gamma I)}{(\\alpha-\\beta)(\\alpha-\\gamma)}$ 等，直接验证 $f=\\alpha p+\\beta q+\\gamma r$ 对每个特征子空间成立，从而对全空间成立。"
+          ]
+        }
+      ],
+      "id": "nagoya-2011-95fc9d2a71-q01-practice-04",
+      "school": "名古屋大学",
+      "year": "2011"
+    },
+    {
+      "text": "设 $V=\\mathbb{C}^2$，$f$ 的矩阵表示为 $\\begin{pmatrix}2&1\\\\0&3\\end{pmatrix}$。求出对应特征值 $\\alpha=2,\\beta=3$ 的投影矩阵 $p,q$，并验证 $f=2p+3q$。",
+      "knowledge_points": [
+        "矩阵对角化",
+        "投影矩阵的显式计算"
+      ],
+      "question_type": "计算题",
+      "method": [
+        "求特征向量",
+        "构造投影矩阵",
+        "直接验证"
+      ],
+      "solution_steps": [
+        "求特征值特征向量",
+        "写出变换矩阵及其逆",
+        "计算投影矩阵",
+        "验证分解公式"
+      ],
+      "math_structure": {
+        "type": "explicit_projection_matrix",
+        "template": "f=\\begin{pmatrix}2&1\\\\0&3\\end{pmatrix},\\ f=2p+3q",
+        "variable_count": 1
+      },
+      "difficulty": 2,
+      "estimated_minutes": 12,
+      "answer": [
+        {
+          "label": "计算与验证",
+          "steps": [
+            "特征值为 $2,3$。对 $\\lambda=2$：$(f-2I)v=0\\Rightarrow \\begin{pmatrix}0&1\\\\0&1\\end{pmatrix}v=0\\Rightarrow v=(1,0)^T$。对 $\\lambda=3$：$(f-3I)v=0\\Rightarrow\\begin{pmatrix}-1&1\\\\0&0\\end{pmatrix}v=0\\Rightarrow v=(1,1)^T$。",
+            "取变换矩阵 $P=\\begin{pmatrix}1&1\\\\0&1\\end{pmatrix}$，则 $P^{-1}=\\begin{pmatrix}1&-1\\\\0&1\\end{pmatrix}$，且 $P^{-1}fP=\\operatorname{diag}(2,3)$。",
+            "投影 $p$（对应特征值2）在对角基下为 $\\operatorname{diag}(1,0)$，故 $p=P\\operatorname{diag}(1,0)P^{-1}=\\begin{pmatrix}1&-1\\\\0&0\\end{pmatrix}$；同理 $q=P\\operatorname{diag}(0,1)P^{-1}=\\begin{pmatrix}0&1\\\\0&1\\end{pmatrix}$。",
+            "验证：$2p+3q=\\begin{pmatrix}2&-2\\\\0&0\\end{pmatrix}+\\begin{pmatrix}0&3\\\\0&3\\end{pmatrix}=\\begin{pmatrix}2&1\\\\0&3\\end{pmatrix}=f$，且 $p^2=p,q^2=q,pq=qp=O$，均成立。"
+          ]
+        }
+      ],
+      "id": "nagoya-2011-95fc9d2a71-q01-practice-05",
+      "school": "名古屋大学",
+      "year": "2011"
+    }
+  ],
+  "source_question": "問1",
+  "source_pdf": "名古屋大学/多元数理科学研究科/全专攻/名古屋大学_多元数理科学研究科_2011_第2次_数学过去问_下午.pdf",
+  "source_type": "官方过去问",
+  "subject_category": "线性代数"
+}

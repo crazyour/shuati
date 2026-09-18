@@ -1,0 +1,213 @@
+{
+  "id": "isct-1998-ecc9f1f22d-q06",
+  "school": "东京科学大学",
+  "year": "1998",
+  "subject": "理工学系_数学系",
+  "text": "设 $D=\\{z\\in\\mathbb{C}\\mid |z|<1\\}$，$\\mathrm{Ab}(D)$ 表示 $D$ 上全体有界正则（全纯）函数构成的集合。设 $F:D\\to D$ 是满足以下条件的正则函数：\n(a) $F(0)=0$；\n(b) $F'(0)=0$；\n(c) $\\sup_{z\\in D}|F(z)|<1$。\n(1) 对 $f\\in\\mathrm{Ab}(D)$ 定义 $\\|f\\|=\\sup_{z\\in D}|f(z)|$，证明 $\\mathrm{Ab}(D)$ 以此为范数构成Banach空间。\n(2) 定义 $T:\\mathrm{Ab}(D)\\to\\mathrm{Ab}(D)$ 为 $(Tf)(z)=f(F(z))\\ (z\\in D)$。证明 $T$ 是单射但不是满射。",
+  "knowledge_points": [
+    "有界正则函数空间",
+    "Banach空间的完备性",
+    "一致收敛与全纯性（Weierstrass定理）",
+    "复合算子（composition operator）",
+    "开映射定理",
+    "幂级数系数比较",
+    "解析延拓（唯一性定理）"
+  ],
+  "question_type": "泛函分析与复变函数综合证明",
+  "method": [
+    "用一致Cauchy列证明完备性",
+    "Weierstrass一致极限定理保持全纯性",
+    "用开映射定理与解析延拓证明单射",
+    "用幂级数系数比较构造反例证明非满射"
+  ],
+  "solution_steps": [
+    "(1)验证范数公理，再证完备性：取Cauchy列，逐点收敛+一致收敛，用一致极限的全纯性定理证明极限属于$\\mathrm{Ab}(D)$",
+    "(2)单射性：设 $Tf=Tg$，利用 $F$ 非常数从而 $F(D)$ 为开集，结合解析延拓的唯一性定理证明 $f=g$",
+    "(2)非满射性：利用条件(a)(b)展开 $F(z)=c_2z^2+\\cdots$，说明 $Tf$ 的幂级数展开中一次项系数恒为$0$，而恒等函数 $\\mathrm{id}(z)=z\\in\\mathrm{Ab}(D)$ 不具有此性质，从而不在 $T$ 的值域中"
+  ],
+  "math_structure": {
+    "type": "composition_operator_banach_space",
+    "template": "T f(z)=f(F(z)),\\ F(0)=0,F'(0)=0,\\ \\sup|F|<1,\\ \\mathrm{Ab}(D)=\\{f\\ \\text{bdd holomorphic on}\\ D\\}",
+    "variable_count": 0
+  },
+  "difficulty": 5,
+  "answer": [
+    {
+      "label": "(1)",
+      "steps": [
+        "范数公理：$\\|f\\|\\ge0$且$=0$当且仅当$f\\equiv0$；$\\|\\lambda f\\|=|\\lambda|\\|f\\|$；三角不等式 $\\|f+g\\|\\le\\|f\\|+\\|g\\|$均由sup的性质直接得出，故$\\mathrm{Ab}(D)$为赋范线性空间。",
+        "设 $\\{f_n\\}$ 是 $\\mathrm{Ab}(D)$ 中的Cauchy列：对任意 $\\varepsilon>0$，存在 $N$，当 $m,n>N$ 时 $\\sup_{z\\in D}|f_n(z)-f_m(z)|<\\varepsilon$。这说明 $\\{f_n\\}$ 在 $D$ 上一致Cauchy，故一致收敛到某函数 $f$（因为对每个固定 $z$，$\\{f_n(z)\\}$ 是复数列的Cauchy列，收敛，定义极限为 $f(z)$，且收敛是一致的）。",
+        "由Weierstrass一致收敛定理（全纯函数序列若在开集上局部一致收敛，则极限函数全纯，且导数序列也局部一致收敛于极限的导数），$f$ 在 $D$ 上全纯。",
+        "有界性：因 $\\{f_n\\}$ 是Cauchy列，故 $\\{\\|f_n\\|\\}$ 是Cauchy数列（由$|\\|f_n\\|-\\|f_m\\||\\le\\|f_n-f_m\\|$），从而有界，设 $\\|f_n\\|\\le M$对一切n。固定$z$，$|f(z)|=\\lim_n|f_n(z)|\\le M$，故 $f$ 有界，$f\\in\\mathrm{Ab}(D)$。",
+        "范数收敛：由一致收敛，$\\|f_n-f\\|=\\sup_z|f_n(z)-f(z)|\\to0$。故 $f_n\\to f$ 在 $\\mathrm{Ab}(D)$ 范数下收敛，$\\mathrm{Ab}(D)$ 完备，是Banach空间。"
+      ]
+    },
+    {
+      "label": "(2)-单射性",
+      "steps": [
+        "由条件知 $F$ 是 $D\\to D$ 的非常数正则函数（若 $F$ 恒为常数，由$F(0)=0$知$F\\equiv0$，此为退化情形，讨论中排除，正常情形下$F$非常数）。",
+        "非常数正则函数满足开映射定理：$F(D)$ 是 $\\mathbb{C}$ 中的开集，且 $F(D)\\subset D$（因$F:D\\to D$），故$F(D)$是$D$的非空开子集。",
+        "设 $Tf=Tg$，即对一切 $z\\in D$，$f(F(z))=g(F(z))$，也即 $f=g$ 在开集 $F(D)$ 上成立。",
+        "$D$是连通开集，$f,g$均在$D$上全纯，且在具有非空内部（从而有极限点）的子集$F(D)$上相等，由解析延拓的唯一性定理（identity theorem），$f\\equiv g$ 在整个 $D$ 上成立。",
+        "结论：$Tf=Tg\\Rightarrow f=g$，即 $T$ 是单射。"
+      ]
+    },
+    {
+      "label": "(2)-非满射性",
+      "steps": [
+        "由条件(a)(b)，$F$的Taylor展开为 $F(z)=c_2z^2+c_3z^3+\\cdots$（常数项与一次项系数均为零）。",
+        "对任意 $f\\in\\mathrm{Ab}(D)$，设其Taylor展开 $f(w)=\\sum_{n=0}^\\infty a_nw^n$，则 $(Tf)(z)=f(F(z))=\\sum_{n=0}^\\infty a_n(c_2z^2+c_3z^3+\\cdots)^n$。",
+        "展开后，$n=0$项贡献常数 $a_0$；$n\\ge1$项中 $(c_2z^2+\\cdots)^n$ 的最低次项为 $z^{2n}$（$n\\ge1$时最低次数$\\ge2$），故 $Tf(z)$ 的幂级数展开中不含 $z^1$（一次项系数恒为$0$），即 $(Tf)'(0)=0$ 对一切 $f\\in\\mathrm{Ab}(D)$ 成立。",
+        "考虑函数 $\\mathrm{id}(z)=z$。它在 $D$ 上全纯且有界（$|z|<1$），故 $\\mathrm{id}\\in\\mathrm{Ab}(D)$，但 $\\mathrm{id}'(0)=1\\ne0$。因此不存在 $f\\in\\mathrm{Ab}(D)$ 使 $Tf=\\mathrm{id}$（否则将导致 $(Tf)'(0)=1\\ne0$，与上述结论矛盾）。",
+        "结论：$\\mathrm{id}\\notin T(\\mathrm{Ab}(D))$，故 $T$ 不是满射。"
+      ]
+    }
+  ],
+  "practice_questions": [
+    {
+      "text": "证明：全纯函数序列 $\\{f_n\\}$ 若在开集 $\\Omega\\subset\\mathbb{C}$ 上局部一致收敛于 $f$，则 $f$ 在 $\\Omega$ 上全纯（Weierstrass定理的证明思路概述）。",
+      "knowledge_points": [
+        "一致收敛与全纯性",
+        "Morera定理"
+      ],
+      "question_type": "定理证明",
+      "method": [
+        "利用Morera定理与Cauchy积分定理"
+      ],
+      "solution_steps": [
+        "对任意三角形应用Cauchy定理与一致收敛交换积分与极限",
+        "由Morera定理得出极限函数全纯"
+      ],
+      "math_structure": {
+        "type": "weierstrass_uniform_limit_theorem",
+        "template": "f_n\\to f\\ \\text{locally uniformly on}\\ \\Omega,\\ f_n\\ \\text{holomorphic}\\Rightarrow f\\ \\text{holomorphic}",
+        "variable_count": 0
+      },
+      "difficulty": 3,
+      "estimated_minutes": 10,
+      "answer": [
+        {
+          "label": "证明思路",
+          "steps": [
+            "由局部一致收敛，$f$连续",
+            "对$\\Omega$内任意三角形$\\Delta$，$\\int_{\\partial\\Delta}f_n(z)dz=0$（Cauchy定理），由一致收敛可交换极限与积分，得$\\int_{\\partial\\Delta}f(z)dz=\\lim_n\\int_{\\partial\\Delta}f_n(z)dz=0$",
+            "由Morera定理，$f$在$\\Omega$上全纯"
+          ]
+        }
+      ],
+      "id": "isct-1998-ecc9f1f22d-q06-practice-01",
+      "school": "东京科学大学",
+      "year": "1998"
+    },
+    {
+      "text": "设 $\\varphi(z)=\\dfrac{z}{2}$（$z\\in D$）。验证 $\\varphi:D\\to D$ 满足 $\\varphi(0)=0$，但不满足条件(b) $\\varphi'(0)=0$。定义类似的 $T_\\varphi f(z)=f(\\varphi(z))$，判断 $T_\\varphi$ 的单射性是否仍成立，说明理由（不要求证明满射性）。",
+      "knowledge_points": [
+        "复合算子",
+        "开映射定理",
+        "解析延拓"
+      ],
+      "question_type": "对比分析",
+      "method": [
+        "用开映射定理与解析延拓证明单射性不依赖条件(b)"
+      ],
+      "solution_steps": [
+        "验证$\\varphi$的条件",
+        "分析单射性证明是否仅依赖$\\varphi$非常数"
+      ],
+      "math_structure": {
+        "type": "composition_operator_injectivity",
+        "template": "\\varphi(z)=z/2,\\ T_\\varphi f=f\\circ\\varphi",
+        "variable_count": 0
+      },
+      "difficulty": 2,
+      "estimated_minutes": 6,
+      "answer": [
+        {
+          "label": "分析",
+          "steps": [
+            "$\\varphi(0)=0$成立，但$\\varphi'(0)=1/2\\ne0$，不满足条件(b)",
+            "单射性证明只用到$\\varphi$非常数从而$\\varphi(D)$开集，与条件(b)无关，故$T_\\varphi$依然是单射",
+            "结论：条件(b)只是原题设定的一部分（用于非满射性证明），并非单射性的必要条件"
+          ]
+        }
+      ],
+      "id": "isct-1998-ecc9f1f22d-q06-practice-02",
+      "school": "东京科学大学",
+      "year": "1998"
+    },
+    {
+      "text": "设 $F(z)=z^2$（满足(a)(b)(c)，因$\\sup_{|z|<1}|z^2|=1$不满足严格小于1……）改为 $F(z)=\\frac12z^2$，验证满足(a)(b)(c)。取 $f(w)=w$，计算 $(Tf)(z)$ 的幂级数并验证其一次项系数为零。",
+      "knowledge_points": [
+        "幂级数展开",
+        "复合算子的具体计算"
+      ],
+      "question_type": "具体计算验证",
+      "method": [
+        "直接代入计算复合函数"
+      ],
+      "solution_steps": [
+        "验证F满足三条件",
+        "计算Tf并观察幂级数系数"
+      ],
+      "math_structure": {
+        "type": "composition_operator_concrete_example",
+        "template": "F(z)=\\tfrac12z^2,\\ f(w)=w,\\ Tf(z)=f(F(z))",
+        "variable_count": 0
+      },
+      "difficulty": 1,
+      "estimated_minutes": 5,
+      "answer": [
+        {
+          "label": "验证与计算",
+          "steps": [
+            "$F(0)=0$✓；$F'(z)=z\\Rightarrow F'(0)=0$✓；$\\sup_{|z|<1}|F(z)|=\\sup\\frac12|z|^2<\\frac12<1$✓，三条件均满足",
+            "$Tf(z)=f(F(z))=F(z)=\\frac12z^2$",
+            "幂级数为 $0+0\\cdot z+\\frac12z^2$，一次项系数确实为$0$，与原题结论一致"
+          ]
+        }
+      ],
+      "id": "isct-1998-ecc9f1f22d-q06-practice-03",
+      "school": "东京科学大学",
+      "year": "1998"
+    },
+    {
+      "text": "证明：若 $g\\in\\mathrm{Ab}(D)$ 满足 $g(0)=0$ 且 $g'(0)\\ne0$，则 $g$ 不在算子 $T$（如原题定义）的值域中。",
+      "knowledge_points": [
+        "幂级数系数比较",
+        "值域分析"
+      ],
+      "question_type": "一般性结论证明",
+      "method": [
+        "利用一次项系数恒为零的性质"
+      ],
+      "solution_steps": [
+        "假设g在值域中，导出矛盾"
+      ],
+      "math_structure": {
+        "type": "range_characterization_composition_operator",
+        "template": "g(0)=0,g'(0)\\ne0\\Rightarrow g\\notin \\mathrm{Range}(T)",
+        "variable_count": 0
+      },
+      "difficulty": 2,
+      "estimated_minutes": 6,
+      "answer": [
+        {
+          "label": "证明",
+          "steps": [
+            "假设存在$f\\in\\mathrm{Ab}(D)$使$Tf=g$，即$f(F(z))=g(z)$对一切$z$",
+            "由原题证明知$(Tf)'(0)=0$对一切$f$恒成立（因$F(z)=c_2z^2+\\cdots$，复合后一次项系数消失）",
+            "但$(Tf)'(0)=g'(0)\\ne0$，矛盾",
+            "结论：$g\\notin\\mathrm{Range}(T)$，证毕。此结论是原题(2)非满射性证明的一般化"
+          ]
+        }
+      ],
+      "id": "isct-1998-ecc9f1f22d-q06-practice-04",
+      "school": "东京科学大学",
+      "year": "1998"
+    }
+  ],
+  "source_question": "午後 問9",
+  "source_pdf": "东京科学大学/理工学系/数学系/东京科学大学_理工学系_数学系_1998_数学过去问.pdf",
+  "source_type": "官方过去问",
+  "subject_category": "复变函数"
+}

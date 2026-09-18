@@ -1,0 +1,214 @@
+{
+  "id": "osaka-2024-bc3583b02c-q05",
+  "school": "大阪大学",
+  "year": "2024",
+  "subject": "情报科学研究科_情报基础数学",
+  "text": "设 $a$ 为实数，令\n$$A=\\begin{pmatrix}2&a+1&-a-1\\\\-1&a+3&-a\\\\-1&a+1&-a+2\\end{pmatrix}.$$\n对正整数 $n$，求 $A^n$。",
+  "knowledge_points": [
+    "特征值与特征多项式",
+    "特征向量与广义特征向量",
+    "Jordan标准形",
+    "矩阵幂的对角化/Jordan分解计算",
+    "含参数矩阵的统一表达"
+  ],
+  "question_type": "矩阵的幂（含参数，需要Jordan形）",
+  "method": [
+    "求特征多项式判断特征值（与 $a$ 无关）",
+    "分析特征值 $2$ 的几何重数是否等于代数重数",
+    "求特征向量与广义特征向量构造 $P$",
+    "用 $A=PJP^{-1}$ 计算 $A^n=PJ^nP^{-1}$"
+  ],
+  "solution_steps": [
+    "计算 $\\mathrm{tr}(A),\\det(A)$ 及特征多项式，发现其与 $a$ 无关，得特征值 $2$（二重），$3$（单）",
+    "求特征值3的特征向量（与 $a$ 无关）",
+    "分析 $A-2I$ 的秩，得到特征值2的几何重数依赖 $a+1$ 是否为零，构造对应的特征向量和广义特征向量",
+    "构造过渡矩阵 $P$ 及其逆 $P^{-1}$",
+    "利用Jordan形 $J$ 的幂 $J^n$ 计算 $A^n=PJ^nP^{-1}$，化简为统一（对所有 $a$ 均成立）的显式表达式"
+  ],
+  "math_structure": {
+    "type": "parametric_matrix_power_via_jordan_form",
+    "template": "A=A(a),\\ \\text{eigenvalues independent of }a,\\ A^n=PJ^nP^{-1}",
+    "variable_count": 2
+  },
+  "difficulty": 5,
+  "answer": [
+    {
+      "label": "A^n",
+      "steps": [
+        "计算 $\\mathrm{tr}(A)=2+(a+3)+(-a+2)=7$。用按第一列展开计算 $\\det(A)$：各余子式化简后得 $\\det(A)=12$（与 $a$ 无关）。再计算三个主对角二阶余子式之和为 $16$（与 $a$ 无关，可直接验证）。故特征多项式为 $\\lambda^3-7\\lambda^2+16\\lambda-12$，与参数 $a$ 无关。",
+        "因式分解：$\\lambda=2$ 满足 $8-28+32-12=0$，除去因子 $(\\lambda-2)$ 得 $\\lambda^2-5\\lambda+6=(\\lambda-2)(\\lambda-3)$，故特征多项式 $=(\\lambda-2)^2(\\lambda-3)$，特征值为 $\\lambda=2$（二重）与 $\\lambda=3$（单重），均与 $a$ 无关。",
+        "求 $\\lambda=3$ 的特征向量：解 $(A-3I)v=0$ 得三个方程均化简为 $x=(a+1)(y-z)$ 与 $y=z$，从而 $x=0$；取 $v_3=(0,1,1)^T$，验证 $Av_3=(0,3,3)^T=3v_3$ 成立，且与 $a$ 无关。",
+        "求 $\\lambda=2$ 的特征空间：$A-2I=\\begin{pmatrix}0&a+1&-(a+1)\\\\-1&a+1&-a\\\\-1&a+1&-a\\end{pmatrix}$，第2、3行相同，故秩 $\\le2$。当 $a\\ne-1$ 时可验证秩恰为2，特征空间为1维，取特征向量 $v_1=(1,1,1)^T$（验证 $Av_1=(2,2,2)^T=2v_1$ 恒成立，不依赖 $a$）；此时需补一个广义特征向量 $v_2$ 满足 $(A-2I)v_2=v_1$，解得 $v_2=\\left(0,\\dfrac{1}{a+1},0\\right)^T$（当 $a=-1$ 时特征空间退化为2维，$v_1,(0,1,0)^T$ 均为真特征向量，是前者的极限特殊情形）。",
+        "取 $P=[v_1,v_2,v_3]=\\begin{pmatrix}1&0&0\\\\1&\\frac{1}{a+1}&1\\\\1&0&1\\end{pmatrix}$（$a\\ne-1$），则 $AP=PJ$，其中 $J=\\begin{pmatrix}2&1&0\\\\0&2&0\\\\0&0&3\\end{pmatrix}$（2的Jordan块+3的对角块）。计算得 $P^{-1}=\\begin{pmatrix}1&0&0\\\\0&a+1&-(a+1)\\\\-1&0&1\\end{pmatrix}$（可直接验证 $PP^{-1}=I$）。",
+        "$J^n=\\begin{pmatrix}2^n&n2^{n-1}&0\\\\0&2^n&0\\\\0&0&3^n\\end{pmatrix}$（Jordan块幂的标准公式）。计算 $A^n=PJ^nP^{-1}$，逐项化简（记 $N=n2^{n-1}$），最终所有含 $\\dfrac{1}{a+1}$ 的项都恰好被乘以 $(a+1)$ 而消去奇异性，得到对**所有实数 $a$（包括 $a=-1$）都成立**的统一公式：\n$$A^n=\\begin{pmatrix}2^n & N(a+1) & -N(a+1)\\\\ 2^n-3^n & N(a+1)+2^n & -N(a+1)-2^n+3^n\\\\ 2^n-3^n & N(a+1) & -N(a+1)+3^n\\end{pmatrix},\\quad N=n2^{n-1}.$$",
+        "验算 $n=1$：代入得 $\\begin{pmatrix}2&a+1&-(a+1)\\\\-1&a+3&-a\\\\-1&a+1&-a+2\\end{pmatrix}$，恰为原矩阵 $A$，正确。再验算 $a=0,n=2$：公式给出 $\\begin{pmatrix}4&4&-4\\\\-5&8&1\\\\-5&4&5\\end{pmatrix}$，与直接计算 $A^2$（$a=0$ 时 $A=\\begin{pmatrix}2&1&-1\\\\-1&3&0\\\\-1&1&2\\end{pmatrix}$，逐行相乘得同样结果）完全一致，进一步取 $a=-1,n=2$ 验证也吻合，公式对所有 $a$ 有效。"
+      ]
+    }
+  ],
+  "practice_questions": [
+    {
+      "text": "设 $B=\\begin{pmatrix}4&1\\\\2&3\\end{pmatrix}$，求 $B^n$（$n$ 为正整数）。",
+      "knowledge_points": [
+        "特征值与特征向量",
+        "矩阵对角化",
+        "矩阵幂计算"
+      ],
+      "question_type": "可对角化矩阵的幂",
+      "method": [
+        "求特征值特征向量对角化",
+        "$B^n=PD^nP^{-1}$"
+      ],
+      "solution_steps": [
+        "求特征值",
+        "求特征向量构造 $P$",
+        "计算 $P^{-1}$",
+        "计算 $B^n=PD^nP^{-1}$"
+      ],
+      "math_structure": {
+        "type": "diagonalizable_matrix_power",
+        "template": "B^n=PD^nP^{-1},\\ D=\\text{diag}(\\lambda_1,\\lambda_2)",
+        "variable_count": 0
+      },
+      "difficulty": 2,
+      "estimated_minutes": 10,
+      "answer": [
+        {
+          "label": "B^n",
+          "steps": [
+            "特征多项式：$\\mathrm{tr}=7,\\det=12-2=10$，$\\lambda^2-7\\lambda+10=0\\Rightarrow\\lambda=2,5$。",
+            "$\\lambda=2$：$(4-2)x+y=0\\Rightarrow y=-2x$，取 $v_1=(1,-2)^T$。$\\lambda=5$：$(4-5)x+y=0\\Rightarrow y=x$，取 $v_2=(1,1)^T$。$P=\\begin{pmatrix}1&1\\\\-2&1\\end{pmatrix}$，$\\det P=1+2=3$，$P^{-1}=\\dfrac13\\begin{pmatrix}1&-1\\\\2&1\\end{pmatrix}$。",
+            "$B^n=P\\begin{pmatrix}2^n&0\\\\0&5^n\\end{pmatrix}P^{-1}$。先算 $M=P\\cdot\\text{diag}=\\begin{pmatrix}2^n&5^n\\\\-2^{n+1}&5^n\\end{pmatrix}$，再 $B^n=M\\cdot\\dfrac13\\begin{pmatrix}1&-1\\\\2&1\\end{pmatrix}=\\dfrac13\\begin{pmatrix}2^n+2\\cdot5^n&5^n-2^n\\\\2\\cdot5^n-2^{n+1}&2^{n+1}+5^n\\end{pmatrix}$。",
+            "验算 $n=1$：$\\dfrac13\\begin{pmatrix}2+10&5-2\\\\10-4&4+5\\end{pmatrix}=\\dfrac13\\begin{pmatrix}12&3\\\\6&9\\end{pmatrix}=\\begin{pmatrix}4&1\\\\2&3\\end{pmatrix}=B$，正确。"
+          ]
+        }
+      ],
+      "id": "osaka-2024-bc3583b02c-q05-practice-01",
+      "school": "大阪大学",
+      "year": "2024"
+    },
+    {
+      "text": "设 $C=\\begin{pmatrix}2&1\\\\0&2\\end{pmatrix}$（重特征值且不可对角化），求 $C^n$（$n$ 为正整数）。",
+      "knowledge_points": [
+        "Jordan块的幂",
+        "数学归纳法"
+      ],
+      "question_type": "Jordan块矩阵的幂",
+      "method": [
+        "数学归纳法直接证明 $C^n$ 的形式",
+        "或用二项展开 $C=2I+N,\\ N^2=0$"
+      ],
+      "solution_steps": [
+        "猜测 $C^n$ 的形式",
+        "用归纳法或二项式定理证明"
+      ],
+      "math_structure": {
+        "type": "jordan_block_power",
+        "template": "C=\\begin{pmatrix}\\lambda&1\\\\0&\\lambda\\end{pmatrix}\\Rightarrow C^n=\\begin{pmatrix}\\lambda^n&n\\lambda^{n-1}\\\\0&\\lambda^n\\end{pmatrix}",
+        "variable_count": 1
+      },
+      "difficulty": 2,
+      "estimated_minutes": 8,
+      "answer": [
+        {
+          "label": "C^n",
+          "steps": [
+            "写 $C=2I+N$，其中 $N=\\begin{pmatrix}0&1\\\\0&0\\end{pmatrix}$，满足 $N^2=0$。因 $2I$ 与 $N$ 可交换，由二项式定理：$C^n=(2I+N)^n=\\sum_{k=0}^n\\binom{n}{k}2^{n-k}N^k=2^nI+n2^{n-1}N$（因 $N^k=0$ 当 $k\\ge2$）。",
+            "代入 $N$：$C^n=2^n\\begin{pmatrix}1&0\\\\0&1\\end{pmatrix}+n2^{n-1}\\begin{pmatrix}0&1\\\\0&0\\end{pmatrix}=\\begin{pmatrix}2^n&n2^{n-1}\\\\0&2^n\\end{pmatrix}$。",
+            "验算 $n=1$：$\\begin{pmatrix}2&1\\\\0&2\\end{pmatrix}=C$ ✓；$n=2$：公式给 $\\begin{pmatrix}4&4\\\\0&4\\end{pmatrix}$，直接计算 $C^2=\\begin{pmatrix}2&1\\\\0&2\\end{pmatrix}\\begin{pmatrix}2&1\\\\0&2\\end{pmatrix}=\\begin{pmatrix}4&4\\\\0&4\\end{pmatrix}$，一致。"
+          ]
+        }
+      ],
+      "id": "osaka-2024-bc3583b02c-q05-practice-02",
+      "school": "大阪大学",
+      "year": "2024"
+    },
+    {
+      "text": "设 $D=\\begin{pmatrix}2&0&0\\\\-1&2&1\\\\-1&0&3\\end{pmatrix}$（这是原题在 $a=-1$ 时的特殊情形，特征值2可对角化），求 $D^n$。",
+      "knowledge_points": [
+        "重特征值的可对角化情形",
+        "特征空间维数判断",
+        "矩阵对角化幂计算"
+      ],
+      "question_type": "重特征值可对角化矩阵的幂",
+      "method": [
+        "求特征值",
+        "验证特征值2的几何重数为2（可对角化）",
+        "构造 $P$ 对角化后计算幂"
+      ],
+      "solution_steps": [
+        "求特征多项式与特征值",
+        "求特征值2和3对应的特征向量",
+        "构造 $P,P^{-1}$",
+        "计算 $D^n=PJ^nP^{-1}$"
+      ],
+      "math_structure": {
+        "type": "repeated_eigenvalue_diagonalizable_power",
+        "template": "D^n=P\\,\\text{diag}(\\lambda_1,\\lambda_1,\\lambda_2)^n\\,P^{-1}",
+        "variable_count": 0
+      },
+      "difficulty": 3,
+      "estimated_minutes": 15,
+      "answer": [
+        {
+          "label": "D^n",
+          "steps": [
+            "$\\mathrm{tr}(D)=2+2+3=7$，可验证 $\\det(D)=12$，特征多项式与原题结构一致为 $(\\lambda-2)^2(\\lambda-3)$，特征值 $2$（二重）、$3$（单）。",
+            "$D-2I=\\begin{pmatrix}0&0&0\\\\-1&0&1\\\\-1&0&1\\end{pmatrix}$，秩为1，故特征值2的几何重数 $=3-1=2$，可对角化。解 $-x+z=0\\Rightarrow x=z$，$y$自由，特征空间为 $\\{(x,y,x)\\}=\\text{span}\\{(1,0,1),(0,1,0)\\}$。",
+            "特征值3：解 $(D-3I)v=0$，同原题方法得特征向量 $(0,1,1)^T$。取 $P=\\begin{pmatrix}1&0&0\\\\0&1&1\\\\1&0&1\\end{pmatrix}$（列为 $(1,0,1),(0,1,0),(0,1,1)$），对应对角矩阵 $\\text{diag}(2,2,3)$。计算可得 $P^{-1}=\\begin{pmatrix}1&0&0\\\\1&1&-1\\\\-1&0&1\\end{pmatrix}$（可直接验证 $PP^{-1}=I$）。",
+            "$D^n=P\\,\\text{diag}(2^n,2^n,3^n)\\,P^{-1}$，逐项计算得 $D^n=\\begin{pmatrix}2^n&0&0\\\\2^n-3^n&2^n&3^n-2^n\\\\2^n-3^n&0&3^n\\end{pmatrix}$。",
+            "验算 $n=1$：得到 $\\begin{pmatrix}2&0&0\\\\-1&2&1\\\\-1&0&3\\end{pmatrix}=D$ ✓；$n=2$：$\\begin{pmatrix}4&0&0\\\\-5&4&5\\\\-5&0&9\\end{pmatrix}$，与原题公式代入 $a=-1,n=2$ 得到的结果完全一致。"
+          ]
+        }
+      ],
+      "id": "osaka-2024-bc3583b02c-q05-practice-03",
+      "school": "大阪大学",
+      "year": "2024"
+    },
+    {
+      "text": "在原题矩阵 $A(a)$ 中取 $a=0$，即 $E=\\begin{pmatrix}2&1&-1\\\\-1&3&0\\\\-1&1&2\\end{pmatrix}$，求 $E^n$（$n$ 为正整数）。",
+      "knowledge_points": [
+        "含Jordan块的3阶矩阵幂",
+        "广义特征向量的构造",
+        "矩阵幂的完整计算流程"
+      ],
+      "question_type": "非可对角化矩阵的幂（Jordan形完整应用）",
+      "method": [
+        "求特征值",
+        "判断特征值2几何重数为1需构造广义特征向量",
+        "用Jordan形计算矩阵幂"
+      ],
+      "solution_steps": [
+        "求特征多项式和特征值",
+        "求特征值3的特征向量",
+        "求特征值2的特征向量及广义特征向量",
+        "构造 $P,P^{-1}$ 并计算 $E^n=PJ^nP^{-1}$"
+      ],
+      "math_structure": {
+        "type": "defective_eigenvalue_jordan_power",
+        "template": "E^n=PJ^nP^{-1},\\ J=\\begin{pmatrix}2&1&0\\\\0&2&0\\\\0&0&3\\end{pmatrix}",
+        "variable_count": 0
+      },
+      "difficulty": 4,
+      "estimated_minutes": 20,
+      "answer": [
+        {
+          "label": "E^n",
+          "steps": [
+            "此矩阵即原题 $a=0$ 的情形。特征多项式仍为 $(\\lambda-2)^2(\\lambda-3)$（与原题结论一致），特征值 $2$（二重）、$3$（单）。",
+            "$E-2I=\\begin{pmatrix}0&1&-1\\\\-1&1&0\\\\-1&1&0\\end{pmatrix}$，第2、3行相同，秩为2（第1行与第2行线性无关），故特征值2几何重数仅为1，需要广义特征向量。解得特征向量 $v_1=(1,1,1)^T$；解 $(E-2I)v_2=v_1$ 得 $v_2=(0,1,0)^T$（即原题公式中 $a=0$ 时 $\\frac{1}{a+1}=1$）。",
+            "特征值3的特征向量仍为 $v_3=(0,1,1)^T$（与 $a$ 无关）。取 $P=\\begin{pmatrix}1&0&0\\\\1&1&1\\\\1&0&1\\end{pmatrix}$，$P^{-1}=\\begin{pmatrix}1&0&0\\\\0&1&-1\\\\-1&0&1\\end{pmatrix}$（即原题公式 $a=0$ 情形）。",
+            "$J=\\begin{pmatrix}2&1&0\\\\0&2&0\\\\0&0&3\\end{pmatrix}$，$J^n=\\begin{pmatrix}2^n&n2^{n-1}&0\\\\0&2^n&0\\\\0&0&3^n\\end{pmatrix}$，计算 $E^n=PJ^nP^{-1}$（代入原题一般公式 $a=0$）得：\n$$E^n=\\begin{pmatrix}2^n&n2^{n-1}&-n2^{n-1}\\\\2^n-3^n&n2^{n-1}+2^n&-n2^{n-1}-2^n+3^n\\\\2^n-3^n&n2^{n-1}&-n2^{n-1}+3^n\\end{pmatrix}.$$",
+            "验算 $n=2$：公式给出 $\\begin{pmatrix}4&4&-4\\\\-5&8&1\\\\-5&4&5\\end{pmatrix}$。直接计算 $E^2=E\\cdot E$：第一行 $[2\\cdot2+1\\cdot(-1)+(-1)(-1),\\,2\\cdot1+1\\cdot3+(-1)\\cdot1,\\,2\\cdot(-1)+1\\cdot0+(-1)\\cdot2]=[4,4,-4]$，与公式一致；其余行同样可验证吻合，公式正确。"
+          ]
+        }
+      ],
+      "id": "osaka-2024-bc3583b02c-q05-practice-04",
+      "school": "大阪大学",
+      "year": "2024"
+    }
+  ],
+  "source_question": "5",
+  "source_pdf": "大阪大学/情报科学研究科/情报基础数学/大阪大学_情报科学研究科_情报基础数学_2024_数学过去问.pdf",
+  "source_type": "官方过去问",
+  "subject_category": "线性代数"
+}

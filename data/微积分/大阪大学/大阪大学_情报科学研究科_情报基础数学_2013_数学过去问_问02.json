@@ -1,0 +1,204 @@
+{
+  "id": "osaka-2013-6ff4bc84d8-q02",
+  "school": "大阪大学",
+  "year": "2013",
+  "subject": "情报科学研究科_情报基础数学",
+  "text": "设 $f$ 在 $[a,b]$ 上是 $C^2$ 级函数。证明以下命题：\n(1) 对 $0\\le \\lambda\\le 1$，$c=\\lambda a+(1-\\lambda)b$，有\n$$f(c)=\\lambda f(a)+(1-\\lambda)f(b)+\\lambda\\int_a^c(a-x)f''(x)\\,dx+(1-\\lambda)\\int_c^b(x-b)f''(x)\\,dx.$$\n(2) 若 $f(a)=f(b)=0$，且 $f''(x)\\ge 0\\ (x\\in[a,b])$，则 $f(x)\\le 0\\ (x\\in[a,b])$。",
+  "knowledge_points": [
+    "带积分余项的泰勒公式",
+    "凸组合与函数凹凸性",
+    "分部积分技巧",
+    "不等式证明",
+    "积分限的变量替换"
+  ],
+  "question_type": "泰勒公式恒等式与凹凸性不等式证明",
+  "method": [
+    "在点 c 处对 f(a), f(b) 分别作带积分余项的泰勒展开",
+    "利用凸组合关系消去一次项",
+    "利用被积函数符号判断积分符号完成不等式证明"
+  ],
+  "solution_steps": [
+    "对 f(a), f(b) 分别在 c 处写出带积分余项的泰勒公式",
+    "以 λ, 1-λ 为权重线性组合两式",
+    "利用 c=λa+(1-λ)b 消去一次项 f'(c)(⋯)",
+    "通过交换积分上下限把余项写成题目要求的形式，得到(1)的恒等式",
+    "在(2)中代入 f(a)=f(b)=0，并根据 f''≥0 及 (a-x), (x-b) 的符号判断两个积分均≤0，从而得出 f(c)≤0 对任意 c∈[a,b] 成立"
+  ],
+  "math_structure": {
+    "type": "taylor_integral_remainder_convexity",
+    "template": "f in C^2[a,b], c = lambda*a+(1-lambda)*b; prove identity and sign inequality",
+    "variable_count": 3
+  },
+  "difficulty": 4,
+  "answer": [
+    {
+      "label": "(1)",
+      "steps": [
+        "在点 $c$ 处对 $f$ 作带积分余项的一阶泰勒展开：$f(a)=f(c)+f'(c)(a-c)+\\int_c^a(a-t)f''(t)dt$，$f(b)=f(c)+f'(c)(b-c)+\\int_c^b(b-t)f''(t)dt$",
+        "以 $\\lambda,1-\\lambda$ 为系数组合：$\\lambda f(a)+(1-\\lambda)f(b)=f(c)+f'(c)\\big[\\lambda(a-c)+(1-\\lambda)(b-c)\\big]+\\lambda\\int_c^a(a-t)f''(t)dt+(1-\\lambda)\\int_c^b(b-t)f''(t)dt$",
+        "因为 $c=\\lambda a+(1-\\lambda)b$，所以 $\\lambda(a-c)+(1-\\lambda)(b-c)=\\lambda a+(1-\\lambda)b-c=0$，一次项消失",
+        "利用 $-\\int_c^a(a-t)f''(t)dt=\\int_a^c(a-t)f''(t)dt$ 及 $-\\int_c^b(b-t)f''(t)dt=\\int_c^b(t-b)f''(t)dt=\\int_c^b(x-b)f''(x)dx$，把上式改写为 $f(c)=\\lambda f(a)+(1-\\lambda)f(b)+\\lambda\\int_a^c(a-x)f''(x)dx+(1-\\lambda)\\int_c^b(x-b)f''(x)dx$，即为所证恒等式"
+      ]
+    },
+    {
+      "label": "(2)",
+      "steps": [
+        "将 $f(a)=f(b)=0$ 代入(1)的恒等式，得 $f(c)=\\lambda\\int_a^c(a-x)f''(x)dx+(1-\\lambda)\\int_c^b(x-b)f''(x)dx$",
+        "对 $x\\in[a,c]$，有 $a-x\\le 0$，又 $f''(x)\\ge 0$，故被积函数 $(a-x)f''(x)\\le 0$，从而 $\\int_a^c(a-x)f''(x)dx\\le0$；又 $\\lambda\\ge0$，第一项 $\\le 0$",
+        "对 $x\\in[c,b]$，有 $x-b\\le0$，同理 $(x-b)f''(x)\\le0$，$\\int_c^b(x-b)f''(x)dx\\le0$；又 $1-\\lambda\\ge0$，第二项 $\\le0$",
+        "两项之和 $f(c)\\le0$；由于 $[a,b]$ 中任一点 $x$ 都可表示为 $c=\\lambda a+(1-\\lambda)b$（取 $\\lambda=\\frac{b-x}{b-a}\\in[0,1]$），故对所有 $x\\in[a,b]$ 都有 $f(x)\\le0$"
+      ]
+    }
+  ],
+  "practice_questions": [
+    {
+      "text": "设 $f\\in C^2[a,x]$，用分部积分法证明标准的带积分余项的泰勒公式：$f(x)=f(a)+f'(a)(x-a)+\\int_a^x(x-t)f''(t)\\,dt$。",
+      "knowledge_points": [
+        "分部积分",
+        "泰勒公式（积分余项）"
+      ],
+      "question_type": "基础恒等式证明",
+      "method": [
+        "对余项积分做一次分部积分"
+      ],
+      "solution_steps": [
+        "设 $u=x-t, dv=f''(t)dt$ 做分部积分",
+        "代入边界值化简",
+        "整理得所需恒等式"
+      ],
+      "math_structure": {
+        "type": "taylor_integral_remainder_convexity",
+        "template": "prove f(x)=f(a)+f'(a)(x-a)+int_a^x (x-t)f''(t)dt via integration by parts",
+        "variable_count": 2
+      },
+      "difficulty": 2,
+      "estimated_minutes": 6,
+      "answer": [
+        {
+          "label": "证明",
+          "steps": [
+            "取 $u=x-t,\\ dv=f''(t)dt$，则 $du=-dt,\\ v=f'(t)$",
+            "$\\int_a^x(x-t)f''(t)dt=[(x-t)f'(t)]_a^x+\\int_a^x f'(t)dt$",
+            "$[(x-t)f'(t)]_a^x=0-(x-a)f'(a)=-(x-a)f'(a)$，且 $\\int_a^xf'(t)dt=f(x)-f(a)$",
+            "合并：$\\int_a^x(x-t)f''(t)dt=f(x)-f(a)-(x-a)f'(a)$，移项即得 $f(x)=f(a)+f'(a)(x-a)+\\int_a^x(x-t)f''(t)dt$"
+          ]
+        }
+      ],
+      "id": "osaka-2013-6ff4bc84d8-q02-practice-01",
+      "school": "大阪大学",
+      "year": "2013"
+    },
+    {
+      "text": "在原题(1)的恒等式中取中点情形 $\\lambda=\\dfrac12$（即 $c=\\dfrac{a+b}{2}$），写出对应的具体等式。",
+      "knowledge_points": [
+        "泰勒公式恒等式的特殊情形",
+        "中点公式"
+      ],
+      "question_type": "公式的特例代入",
+      "method": [
+        "直接代入 λ=1/2"
+      ],
+      "solution_steps": [
+        "取 λ=1/2 代入原恒等式",
+        "化简系数"
+      ],
+      "math_structure": {
+        "type": "taylor_integral_remainder_convexity",
+        "template": "special case lambda=1/2 of the identity in problem 2(1)",
+        "variable_count": 2
+      },
+      "difficulty": 2,
+      "estimated_minutes": 4,
+      "answer": [
+        {
+          "label": "代入 $\\lambda=1/2$",
+          "steps": [
+            "原恒等式为 $f(c)=\\lambda f(a)+(1-\\lambda)f(b)+\\lambda\\int_a^c(a-x)f''(x)dx+(1-\\lambda)\\int_c^b(x-b)f''(x)dx$",
+            "取 $\\lambda=\\frac12$，$c=\\frac{a+b}2$，代入得 $f\\!\\left(\\frac{a+b}2\\right)=\\frac{f(a)+f(b)}2+\\frac12\\int_a^{(a+b)/2}(a-x)f''(x)dx+\\frac12\\int_{(a+b)/2}^b(x-b)f''(x)dx$"
+          ]
+        }
+      ],
+      "id": "osaka-2013-6ff4bc84d8-q02-practice-02",
+      "school": "大阪大学",
+      "year": "2013"
+    },
+    {
+      "text": "证明原题(2)的镜像命题：若 $f(a)=f(b)=0$，且 $f''(x)\\le 0\\ (x\\in[a,b])$（即 $f$ 为凹函数），则 $f(x)\\ge 0\\ (x\\in[a,b])$。",
+      "knowledge_points": [
+        "凹函数性质",
+        "符号分析证明不等式"
+      ],
+      "question_type": "镜像不等式证明",
+      "method": [
+        "套用原题(1)的恒等式，反转符号分析"
+      ],
+      "solution_steps": [
+        "代入 f(a)=f(b)=0 到恒等式",
+        "分析 f''≤0 时两个积分的符号",
+        "得出 f(c)≥0"
+      ],
+      "math_structure": {
+        "type": "taylor_integral_remainder_convexity",
+        "template": "f(a)=f(b)=0, f''<=0 implies f(x)>=0 on [a,b]",
+        "variable_count": 3
+      },
+      "difficulty": 3,
+      "estimated_minutes": 8,
+      "answer": [
+        {
+          "label": "证明",
+          "steps": [
+            "由原题(1)恒等式及 $f(a)=f(b)=0$，得 $f(c)=\\lambda\\int_a^c(a-x)f''(x)dx+(1-\\lambda)\\int_c^b(x-b)f''(x)dx$",
+            "对 $x\\in[a,c]$，$a-x\\le0$，此时 $f''(x)\\le0$，故 $(a-x)f''(x)\\ge0$，从而 $\\int_a^c(a-x)f''(x)dx\\ge0$，第一项 $\\ge0$",
+            "对 $x\\in[c,b]$，$x-b\\le0$，$f''(x)\\le0$，故 $(x-b)f''(x)\\ge0$，$\\int_c^b(x-b)f''(x)dx\\ge0$，第二项 $\\ge0$",
+            "两项之和 $f(c)\\ge0$；由于 $[a,b]$ 中任一点均可写成这样的 $c$，故对所有 $x\\in[a,b]$，$f(x)\\ge0$"
+          ]
+        }
+      ],
+      "id": "osaka-2013-6ff4bc84d8-q02-practice-03",
+      "school": "大阪大学",
+      "year": "2013"
+    },
+    {
+      "text": "取 $f(x)=x(1-x)$ 在 $[0,1]$ 上，验证上一问的结论：计算 $f''(x)$，检验 $f(0)=f(1)=0$，并用上一问的不等式在 $x=\\frac12$ 处核对具体数值。",
+      "knowledge_points": [
+        "具体函数验证抽象结论",
+        "二阶导数计算"
+      ],
+      "question_type": "结论的数值验证",
+      "method": [
+        "直接计算并代入验证"
+      ],
+      "solution_steps": [
+        "计算 f''(x)",
+        "验证边界条件",
+        "计算 f(1/2) 并与结论符号核对"
+      ],
+      "math_structure": {
+        "type": "taylor_integral_remainder_convexity",
+        "template": "verify f(x)=x(1-x) satisfies f''<=0, f(0)=f(1)=0, f(x)>=0",
+        "variable_count": 1
+      },
+      "difficulty": 2,
+      "estimated_minutes": 5,
+      "answer": [
+        {
+          "label": "验证",
+          "steps": [
+            "$f(x)=x-x^2$，$f'(x)=1-2x$，$f''(x)=-2\\le 0$，满足凹函数条件",
+            "$f(0)=0,\\ f(1)=1-1=0$，边界条件成立",
+            "计算 $f(1/2)=\\frac12\\left(1-\\frac12\\right)=\\frac14\\ge0$，与上一问结论 $f(x)\\ge0$ 一致",
+            "更一般地，对任意 $x\\in[0,1]$，$f(x)=x(1-x)\\ge0$（因 $0\\le x\\le1$），与结论完全吻合"
+          ]
+        }
+      ],
+      "id": "osaka-2013-6ff4bc84d8-q02-practice-04",
+      "school": "大阪大学",
+      "year": "2013"
+    }
+  ],
+  "source_question": "問2",
+  "source_pdf": "大阪大学/情报科学研究科/情报基础数学/大阪大学_情报科学研究科_情报基础数学_2013_数学过去问.pdf",
+  "source_type": "官方过去问",
+  "subject_category": "微积分"
+}

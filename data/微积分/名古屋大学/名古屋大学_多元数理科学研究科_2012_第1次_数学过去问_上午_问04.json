@@ -1,0 +1,206 @@
+{
+  "id": "nagoya-2012-cf31afabcd-q04",
+  "school": "名古屋大学",
+  "year": "2012",
+  "subject": "多元数理科学研究科_全专攻",
+  "text": "对满足 $a<b$ 的正整数 $a,b,n$，定义\n$$S_n(a,b)=\\frac{1}{an+1}+\\frac{1}{an+2}+\\cdots+\\frac{1}{bn-1}+\\frac{1}{bn}.$$\n回答以下问题：\n(1) 证明 $\\log\\dfrac{bn+1}{an+1}<S_n(a,b)<\\log\\dfrac{b}{a}$。\n(2) 求 $S(a,b)=\\displaystyle\\lim_{n\\to\\infty}S_n(a,b)$。\n(3) 判断用 (2) 中 $S(a,b)$ 表示的级数 $\\displaystyle\\sum_{k=1}^{\\infty}S(k^2,k^2+1)$ 是否收敛。",
+  "knowledge_points": [
+    "调和级数的积分估计",
+    "夹逼定理求极限",
+    "对数函数的单调性放缩",
+    "级数收敛性判别（比较判别法）",
+    "小量展开 log(1+x)~x"
+  ],
+  "question_type": "级数与积分估计综合题",
+  "method": [
+    "用 1/x 的单调递减性将求和与积分作比较得到双边不等式",
+    "对不等式取极限用夹逼定理求出极限值",
+    "把极限表达式化简为对数形式后用比较判别法判断级数收敛性"
+  ],
+  "solution_steps": [
+    "利用 $1/x$ 在区间上的单调性，得 $1/k>\\int_k^{k+1}dx/x$ 及 $1/k<\\int_{k-1}^{k}dx/x$，逐项求和得到题目所要求的双边不等式",
+    "对不等式两端取 $n\\to\\infty$ 极限，两端都趋于 $\\log(b/a)$，由夹逼定理得 $S(a,b)=\\log(b/a)$",
+    "把 $S(k^2,k^2+1)=\\log\\dfrac{k^2+1}{k^2}=\\log(1+1/k^2)$ 与 $1/k^2$ 比较，利用 $p$-级数收敛性判断原级数收敛"
+  ],
+  "math_structure": {
+    "type": "harmonic_sum_log_estimate_and_series",
+    "template": "estimate S_n(a,b)=sum_{k=an+1}^{bn} 1/k via integrals, find limit S(a,b)=log(b/a), determine convergence of sum S(k^2,k^2+1)",
+    "variable_count": 3
+  },
+  "difficulty": 4,
+  "answer": [
+    {
+      "label": "(1)",
+      "steps": [
+        "由于 $f(x)=1/x$ 在 $x>0$ 上单调递减，对任意正整数 $k$ 有 $\\int_k^{k+1}\\frac{dx}{x}<\\frac1k$（因为区间内 $1/x\\le1/k$，等号仅在左端点取得），以及 $\\frac1k<\\int_{k-1}^{k}\\frac{dx}{x}$（因为区间内 $1/x\\ge1/k$）。",
+        "对 $k$ 从 $an+1$ 到 $bn$ 求和：右侧不等式给出 $S_n(a,b)<\\sum_{k=an+1}^{bn}\\int_{k-1}^{k}\\frac{dx}{x}=\\int_{an}^{bn}\\frac{dx}{x}=\\log(bn)-\\log(an)=\\log\\dfrac{b}{a}$。",
+        "左侧不等式给出 $S_n(a,b)>\\sum_{k=an+1}^{bn}\\int_k^{k+1}\\frac{dx}{x}=\\int_{an+1}^{bn+1}\\frac{dx}{x}=\\log(bn+1)-\\log(an+1)=\\log\\dfrac{bn+1}{an+1}$。综合两式即得所证不等式。"
+      ]
+    },
+    {
+      "label": "(2)",
+      "steps": [
+        "对不等式 $\\log\\dfrac{bn+1}{an+1}<S_n(a,b)<\\log\\dfrac{b}{a}$ 取 $n\\to\\infty$ 的极限。",
+        "计算左端极限：$\\lim_{n\\to\\infty}\\log\\dfrac{bn+1}{an+1}=\\log\\lim_{n\\to\\infty}\\dfrac{bn+1}{an+1}=\\log\\dfrac{b}{a}$（分子分母同除以 $n$ 后取极限）。",
+        "右端本身恒为常数 $\\log(b/a)$，故由夹逼定理，$\\lim_{n\\to\\infty}S_n(a,b)$ 也等于 $\\log(b/a)$，即 $S(a,b)=\\log\\dfrac{b}{a}$。"
+      ]
+    },
+    {
+      "label": "(3)",
+      "steps": [
+        "由 (2) 得 $S(k^2,k^2+1)=\\log\\dfrac{k^2+1}{k^2}=\\log\\left(1+\\dfrac{1}{k^2}\\right)$。",
+        "利用不等式 $\\log(1+x)\\le x$（$x>0$），得 $0<\\log\\left(1+\\dfrac1{k^2}\\right)\\le \\dfrac1{k^2}$，同时因 $\\log(1+x)>0$，级数各项均为正。",
+        "由于 $p$-级数 $\\sum_{k=1}^\\infty \\dfrac{1}{k^2}$（$p=2>1$）收敛，由比较判别法，级数 $\\displaystyle\\sum_{k=1}^{\\infty}\\log\\left(1+\\dfrac1{k^2}\\right)=\\sum_{k=1}^\\infty S(k^2,k^2+1)$ 也收敛。"
+      ]
+    }
+  ],
+  "practice_questions": [
+    {
+      "text": "证明对整数 $n\\ge2$，有 $\\log(n+1)-\\log n<\\dfrac1n<\\log n-\\log(n-1)$。",
+      "knowledge_points": [
+        "1/x的单调性",
+        "积分不等式估计"
+      ],
+      "question_type": "基础不等式证明",
+      "method": [
+        "利用单调性比较积分与函数值"
+      ],
+      "solution_steps": [
+        "用 1/x 在区间上的单调性写出积分不等式",
+        "计算相应对数差"
+      ],
+      "math_structure": {
+        "type": "single_term_log_estimate",
+        "template": "prove log(n+1)-log(n) < 1/n < log(n)-log(n-1)",
+        "variable_count": 1
+      },
+      "difficulty": 1,
+      "estimated_minutes": 5,
+      "answer": [
+        {
+          "label": "证明",
+          "steps": [
+            "因 $1/x$ 在 $[n,n+1]$ 上递减，故 $1/x\\le1/n$ 于该区间，从而 $\\int_n^{n+1}\\frac{dx}{x}<\\frac1n\\cdot1=\\frac1n$（不含端点相等情形，严格小于），即 $\\log(n+1)-\\log n<\\frac1n$。",
+            "因 $1/x$ 在 $[n-1,n]$ 上递减，故 $1/x\\ge1/n$ 于该区间，从而 $\\int_{n-1}^{n}\\frac{dx}{x}>\\frac1n$，即 $\\log n-\\log(n-1)>\\frac1n$。",
+            "综合两式即得 $\\log(n+1)-\\log n<\\dfrac1n<\\log n-\\log(n-1)$。"
+          ]
+        }
+      ],
+      "id": "nagoya-2012-cf31afabcd-q04-practice-01",
+      "school": "名古屋大学",
+      "year": "2012"
+    },
+    {
+      "text": "利用夹逼定理求极限 $\\displaystyle\\lim_{n\\to\\infty}\\sum_{k=n+1}^{2n}\\dfrac{1}{k}$。",
+      "knowledge_points": [
+        "调和级数分段和的极限",
+        "夹逼定理"
+      ],
+      "question_type": "经典极限计算",
+      "method": [
+        "用积分估计上下界后取极限"
+      ],
+      "solution_steps": [
+        "建立上下界不等式",
+        "取极限得两端相等",
+        "得出结果"
+      ],
+      "math_structure": {
+        "type": "harmonic_partial_sum_limit",
+        "template": "compute lim_{n->infty} sum_{k=n+1}^{2n} 1/k",
+        "variable_count": 1
+      },
+      "difficulty": 2,
+      "estimated_minutes": 6,
+      "answer": [
+        {
+          "label": "解",
+          "steps": [
+            "由练习1类似方法（或直接用本题(1)中 $a=1,b=2$ 的结果）得 $\\log\\dfrac{2n+1}{n+1}<\\sum_{k=n+1}^{2n}\\frac1k<\\log2$。",
+            "对左端取极限：$\\lim_{n\\to\\infty}\\log\\dfrac{2n+1}{n+1}=\\log2$（分子分母同除 n 后取极限得 2）。",
+            "由夹逼定理，$\\displaystyle\\lim_{n\\to\\infty}\\sum_{k=n+1}^{2n}\\frac1k=\\log2$。"
+          ]
+        }
+      ],
+      "id": "nagoya-2012-cf31afabcd-q04-practice-02",
+      "school": "名古屋大学",
+      "year": "2012"
+    },
+    {
+      "text": "用积分估计法证明 $S(1,3)=\\displaystyle\\lim_{n\\to\\infty}\\sum_{k=n+1}^{3n}\\frac1k=\\log3$。",
+      "knowledge_points": [
+        "一般a,b情形的调和和极限"
+      ],
+      "question_type": "一般情形极限验证",
+      "method": [
+        "套用一般公式 S(a,b)=log(b/a)"
+      ],
+      "solution_steps": [
+        "代入 a=1,b=3 得到不等式",
+        "取极限验证结果"
+      ],
+      "math_structure": {
+        "type": "harmonic_sum_limit_specific",
+        "template": "verify S(a,b)=log(b/a) for a=1,b=3",
+        "variable_count": 0
+      },
+      "difficulty": 2,
+      "estimated_minutes": 6,
+      "answer": [
+        {
+          "label": "解",
+          "steps": [
+            "由一般不等式 $\\log\\dfrac{3n+1}{n+1}<S_n(1,3)<\\log3$（取 $a=1,b=3$）。",
+            "对左端取极限：$\\lim_{n\\to\\infty}\\dfrac{3n+1}{n+1}=3$，故左端极限为 $\\log3$。",
+            "两端极限均为 $\\log3$，由夹逼定理 $S(1,3)=\\log3$，与一般公式 $S(a,b)=\\log(b/a)=\\log(3/1)=\\log3$ 吻合。"
+          ]
+        }
+      ],
+      "id": "nagoya-2012-cf31afabcd-q04-practice-03",
+      "school": "名古屋大学",
+      "year": "2012"
+    },
+    {
+      "text": "判断级数 $\\displaystyle\\sum_{k=1}^{\\infty}S(k,k+2)$ 是否收敛，其中 $S(a,b)=\\log(b/a)$。",
+      "knowledge_points": [
+        "级数收敛性判别",
+        "对数函数小量近似",
+        "比较判别法（发散情形）"
+      ],
+      "question_type": "级数发散性判断（对比原题收敛情形）",
+      "method": [
+        "化简通项",
+        "与调和级数比较判断发散"
+      ],
+      "solution_steps": [
+        "写出通项表达式",
+        "用 log(1+x)~x 近似估计通项量级",
+        "与发散的调和级数比较得出结论"
+      ],
+      "math_structure": {
+        "type": "series_divergence_comparison",
+        "template": "determine convergence of sum log((k+2)/k)",
+        "variable_count": 0
+      },
+      "difficulty": 3,
+      "estimated_minutes": 8,
+      "answer": [
+        {
+          "label": "解",
+          "steps": [
+            "通项为 $S(k,k+2)=\\log\\dfrac{k+2}{k}=\\log\\left(1+\\dfrac2k\\right)$。",
+            "当 $k$ 较大时，$\\log(1+2/k)\\sim 2/k$（一阶近似），故通项与 $1/k$ 同阶。",
+            "由于调和级数 $\\sum 1/k$ 发散，且 $\\log(1+2/k)>0$ 与 $2/k$ 同阶（可用极限比较判别法：$\\lim_{k\\to\\infty}\\dfrac{\\log(1+2/k)}{2/k}=1$），故原级数 $\\sum_{k=1}^\\infty\\log\\left(1+\\dfrac2k\\right)$ 也发散。这与原题中 $S(k^2,k^2+1)\\sim1/k^2$ 收敛的情形形成对比，说明分母增长阶数（$k$ 对 $k^2$）对级数收敛性起决定作用。"
+          ]
+        }
+      ],
+      "id": "nagoya-2012-cf31afabcd-q04-practice-04",
+      "school": "名古屋大学",
+      "year": "2012"
+    }
+  ],
+  "source_question": "問4",
+  "source_pdf": "名古屋大学/多元数理科学研究科/全专攻/名古屋大学_多元数理科学研究科_2012_第1次_数学过去问_上午.pdf",
+  "source_type": "官方过去问",
+  "subject_category": "微积分"
+}

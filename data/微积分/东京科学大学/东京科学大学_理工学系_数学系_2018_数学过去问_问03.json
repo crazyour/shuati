@@ -1,0 +1,197 @@
+{
+  "id": "isct-2018-9607dddc5c-q03",
+  "school": "东京科学大学",
+  "year": "2018",
+  "subject": "理工学系_数学系",
+  "text": "设连续函数 $f:[0,\\infty)\\to\\mathbb{R}$ 有极限值 $\\alpha=\\lim_{x\\to\\infty}f(x)\\in\\mathbb{R}$。\n(1) 对 $g(t)=\\dfrac{1}{t}\\displaystyle\\int_0^t f(x)\\,dx$，证明 $\\lim_{t\\to\\infty}g(t)=\\alpha$。\n(2) 对 $h(t)=\\dfrac{1}{t^2}\\displaystyle\\int_0^t xf(x)\\,dx$，证明极限 $\\lim_{t\\to\\infty}h(t)$ 存在，并求其值。",
+  "knowledge_points": [
+    "极限的ε-δ定义",
+    "积分平均值（Cesàro型均值）",
+    "积分的分割估计",
+    "加权平均的极限"
+  ],
+  "question_type": "极限证明与计算",
+  "method": [
+    "把积分在有限点M处分割为常数部分与尾部估计部分",
+    "用ε-N语言估计尾部"
+  ],
+  "solution_steps": [
+    "对(1)：给定ε，取M使x>M时|f(x)-α|<ε，分割积分为[0,M]与[M,t]两部分估计",
+    "对(2)：先写 $xf(x)=x\\alpha+x(f(x)-\\alpha)$，分离出主项 $\\alpha t^2/2$",
+    "对剩余部分同样用分割法估计其除以t^2后趋于0"
+  ],
+  "math_structure": {
+    "type": "cesaro_mean_limit",
+    "template": "f continuous on [0,\\infty), \\lim_{x\\to\\infty}f(x)=\\alpha; find \\lim (1/t)\\int_0^t f, \\lim(1/t^2)\\int_0^t xf(x)dx",
+    "variable_count": 2
+  },
+  "difficulty": 3,
+  "answer": [
+    {
+      "label": "(1)",
+      "steps": [
+        "设 $\\varepsilon>0$。由 $\\lim_{x\\to\\infty}f(x)=\\alpha$，存在 $M>0$ 使得当 $x>M$ 时 $|f(x)-\\alpha|<\\varepsilon$。",
+        "对 $t>M$：$g(t)-\\alpha=\\frac{1}{t}\\int_0^t (f(x)-\\alpha)dx=\\frac{1}{t}\\int_0^M(f(x)-\\alpha)dx+\\frac{1}{t}\\int_M^t(f(x)-\\alpha)dx$。",
+        "第一项：设 $C=\\int_0^M(f(x)-\\alpha)dx$（有限常数），则 $\\left|\\frac{C}{t}\\right|\\to0$ 当 $t\\to\\infty$；第二项：$\\left|\\frac{1}{t}\\int_M^t(f(x)-\\alpha)dx\\right|\\le\\frac{t-M}{t}\\varepsilon\\le\\varepsilon$。",
+        "故 $\\limsup_{t\\to\\infty}|g(t)-\\alpha|\\le\\varepsilon$，由 $\\varepsilon$ 任意，得 $\\lim_{t\\to\\infty}g(t)=\\alpha$。"
+      ]
+    },
+    {
+      "label": "(2)",
+      "steps": [
+        "写 $xf(x)=\\alpha x+x(f(x)-\\alpha)$，积分得 $\\int_0^t xf(x)dx=\\frac{\\alpha}{2}t^2+\\int_0^t x(f(x)-\\alpha)dx$。",
+        "于是 $h(t)=\\frac{\\alpha}{2}+\\frac{1}{t^2}\\int_0^t x(f(x)-\\alpha)dx$。",
+        "对任意 $\\varepsilon>0$，取 $M$ 使 $x>M\\Rightarrow|f(x)-\\alpha|<\\varepsilon$。分割：$\\int_0^t x(f-\\alpha)dx=\\int_0^M x(f-\\alpha)dx+\\int_M^t x(f-\\alpha)dx$。第一项是常数 $C'$，$C'/t^2\\to0$；第二项估计为 $\\left|\\int_M^t x(f-\\alpha)dx\\right|\\le\\varepsilon\\int_M^t x\\,dx=\\varepsilon\\frac{t^2-M^2}{2}\\le\\varepsilon\\frac{t^2}{2}$，故 $\\frac{1}{t^2}\\left|\\int_M^t x(f-\\alpha)dx\\right|\\le\\varepsilon/2$。",
+        "综合得 $\\limsup_{t\\to\\infty}\\left|\\frac{1}{t^2}\\int_0^t x(f-\\alpha)dx\\right|\\le\\varepsilon/2$，由 $\\varepsilon$ 任意，此极限为0。",
+        "因此 $\\lim_{t\\to\\infty}h(t)=\\frac{\\alpha}{2}$。"
+      ]
+    }
+  ],
+  "practice_questions": [
+    {
+      "text": "设 $f(x)=\\alpha$（常函数）。直接计算 $g(t)=\\frac{1}{t}\\int_0^t f(x)dx$ 与 $h(t)=\\frac{1}{t^2}\\int_0^t xf(x)dx$，验证与一般结论一致。",
+      "knowledge_points": [
+        "特殊情形验证",
+        "积分基本计算"
+      ],
+      "question_type": "计算验证",
+      "method": [
+        "直接积分计算"
+      ],
+      "solution_steps": [
+        "计算g(t)",
+        "计算h(t)",
+        "比较极限"
+      ],
+      "math_structure": {
+        "type": "constant_function_check",
+        "template": "f(x)=\\alpha constant; compute g(t),h(t) explicitly",
+        "variable_count": 1
+      },
+      "difficulty": 1,
+      "estimated_minutes": 5,
+      "answer": [
+        {
+          "label": "验证",
+          "steps": [
+            "$g(t)=\\frac{1}{t}\\int_0^t\\alpha\\,dx=\\frac{\\alpha t}{t}=\\alpha$，恒等于$\\alpha$，极限为$\\alpha$，符合结论。",
+            "$h(t)=\\frac{1}{t^2}\\int_0^t\\alpha x\\,dx=\\frac{1}{t^2}\\cdot\\frac{\\alpha t^2}{2}=\\frac{\\alpha}{2}$，恒等于$\\alpha/2$，极限为$\\alpha/2$，与一般结论 $\\alpha/2$ 一致。"
+          ]
+        }
+      ],
+      "id": "isct-2018-9607dddc5c-q03-practice-01",
+      "school": "东京科学大学",
+      "year": "2018"
+    },
+    {
+      "text": "设 $f(x)=\\alpha+\\dfrac{\\sin x}{x+1}$（$x\\ge0$）。验证 $\\lim_{x\\to\\infty}f(x)=\\alpha$，并说明为何 $g(t)\\to\\alpha$。",
+      "knowledge_points": [
+        "极限计算",
+        "有界振荡项的均值消失"
+      ],
+      "question_type": "极限验证",
+      "method": [
+        "夹逼定理判断极限",
+        "用(1)结论直接得出g(t)极限"
+      ],
+      "solution_steps": [
+        "证明 sin x/(x+1)→0",
+        "应用(1)的结论"
+      ],
+      "math_structure": {
+        "type": "oscillating_perturbation_limit",
+        "template": "f(x)=\\alpha+\\frac{\\sin x}{x+1}; find \\lim f, \\lim g(t)",
+        "variable_count": 1
+      },
+      "difficulty": 2,
+      "estimated_minutes": 6,
+      "answer": [
+        {
+          "label": "验证",
+          "steps": [
+            "因 $\\left|\\frac{\\sin x}{x+1}\\right|\\le\\frac{1}{x+1}\\to0$，由夹逼定理 $\\lim_{x\\to\\infty}\\frac{\\sin x}{x+1}=0$，故 $\\lim_{x\\to\\infty}f(x)=\\alpha$。",
+            "由原题(1)的一般结论，直接得 $\\lim_{t\\to\\infty}g(t)=\\alpha$，无需重新计算积分。"
+          ]
+        }
+      ],
+      "id": "isct-2018-9607dddc5c-q03-practice-02",
+      "school": "东京科学大学",
+      "year": "2018"
+    },
+    {
+      "text": "设 $f(x)\\to\\alpha$。定义 $k(t)=\\dfrac{2}{t^2}\\int_0^t xf(x)\\,dx$（即 $h(t)$ 的两倍）。直接由(2)的结论求 $\\lim_{t\\to\\infty}k(t)$。",
+      "knowledge_points": [
+        "极限的线性性质",
+        "已知结论的直接应用"
+      ],
+      "method": [
+        "利用(2)结果乘以常数"
+      ],
+      "solution_steps": [
+        "k(t)=2h(t)",
+        "取极限"
+      ],
+      "math_structure": {
+        "type": "scaled_limit_application",
+        "template": "k(t)=2h(t); find \\lim k(t) given \\lim h(t)=\\alpha/2",
+        "variable_count": 1
+      },
+      "question_type": "直接应用计算",
+      "difficulty": 1,
+      "estimated_minutes": 3,
+      "answer": [
+        {
+          "label": "计算",
+          "steps": [
+            "由定义 $k(t)=2h(t)$，且由(2)已证 $\\lim_{t\\to\\infty}h(t)=\\alpha/2$。",
+            "由极限的线性性，$\\lim_{t\\to\\infty}k(t)=2\\cdot\\frac{\\alpha}{2}=\\alpha$。"
+          ]
+        }
+      ],
+      "id": "isct-2018-9607dddc5c-q03-practice-03",
+      "school": "东京科学大学",
+      "year": "2018"
+    },
+    {
+      "text": "推广：设 $f\\to\\alpha$，对 $p\\ge0$ 定义 $h_p(t)=\\dfrac{1}{t^{p+1}}\\int_0^t x^p f(x)\\,dx$。猜测并证明 $\\lim_{t\\to\\infty}h_p(t)$ 的值。",
+      "knowledge_points": [
+        "积分均值的一般化",
+        "分割估计法的推广"
+      ],
+      "method": [
+        "模仿(1)(2)的分割估计技巧,处理一般幂函数权重"
+      ],
+      "solution_steps": [
+        "写出主项 $\\alpha\\int_0^t x^p dx/t^{p+1}$",
+        "估计剩余部分趋于0",
+        "得出一般公式"
+      ],
+      "math_structure": {
+        "type": "generalized_weighted_mean_limit",
+        "template": "h_p(t)=\\frac{1}{t^{p+1}}\\int_0^t x^p f(x)dx, p\\ge0; find limit as t\\to\\infty",
+        "variable_count": 2
+      },
+      "question_type": "一般化证明",
+      "difficulty": 3,
+      "estimated_minutes": 10,
+      "answer": [
+        {
+          "label": "结论与证明",
+          "steps": [
+            "猜测 $\\lim_{t\\to\\infty}h_p(t)=\\frac{\\alpha}{p+1}$。",
+            "写 $x^pf(x)=\\alpha x^p+x^p(f(x)-\\alpha)$，则 $\\int_0^t x^pf(x)dx=\\frac{\\alpha}{p+1}t^{p+1}+\\int_0^t x^p(f(x)-\\alpha)dx$，故 $h_p(t)=\\frac{\\alpha}{p+1}+\\frac{1}{t^{p+1}}\\int_0^t x^p(f-\\alpha)dx$。",
+            "对 $\\varepsilon>0$，取$M$使 $x>M\\Rightarrow|f(x)-\\alpha|<\\varepsilon$。分割积分：$[0,M]$部分为常数除以 $t^{p+1}\\to0$；$[M,t]$部分绝对值 $\\le\\varepsilon\\int_M^t x^p dx=\\varepsilon\\frac{t^{p+1}-M^{p+1}}{p+1}\\le\\varepsilon\\frac{t^{p+1}}{p+1}$，除以$t^{p+1}$得 $\\le\\varepsilon/(p+1)$。",
+            "由 $\\varepsilon$ 任意知余项极限为0，故 $\\lim_{t\\to\\infty}h_p(t)=\\frac{\\alpha}{p+1}$（当$p=0$时得(1)，$p=1$时得(2)的结果 $\\alpha/2$，一致）。"
+          ]
+        }
+      ],
+      "id": "isct-2018-9607dddc5c-q03-practice-04",
+      "school": "东京科学大学",
+      "year": "2018"
+    }
+  ],
+  "source_question": "午前[4]",
+  "source_pdf": "东京科学大学/理工学系/数学系/东京科学大学_理工学系_数学系_2018_数学过去问.pdf",
+  "source_type": "官方过去问",
+  "subject_category": "微积分"
+}

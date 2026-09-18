@@ -1,0 +1,236 @@
+{
+  "id": "tohoku-2019-48163c7ac0-q06",
+  "school": "东北大学",
+  "year": "2019",
+  "subject": "情报科学研究科_数学教室",
+  "text": "设 $k$ 为实数常数。关于函数 $y=y(x)$ 的微分方程，回答以下问题：\n(1) 求微分方程 $y''-(k+1)y'+ky=0$ 的通解。\n(2) 求微分方程 $y''-(k+1)y'+ky=2xe^x$ 的一个特解。\n(3) 设 $r(x)$ 是满足 $r(0)=0$ 的光滑函数。已知两个微分方程 $y''-2y'+y=2xe^x$ 与 $y''-3y'+2y=r(x)$ 有公共解，求函数 $r(x)$。",
+  "knowledge_points": [
+    "二阶常系数线性齐次方程",
+    "特征方程与重根情形",
+    "待定系数法（含共振情形）",
+    "含参数微分方程的分类讨论",
+    "两方程公共解的构造"
+  ],
+  "question_type": "含参数二阶常系数线性微分方程的通解、特解与公共解问题",
+  "method": [
+    "求特征方程的根并分情形写通解",
+    "根据共振情形选取试探特解形式并代入求系数",
+    "利用两方程相减消去 $y''$ 项，导出 $r(x)$ 与 $y,y'$ 的关系，再用初始条件 $r(0)=0$ 确定待定常数"
+  ],
+  "solution_steps": [
+    "写出特征方程 $\\lambda^2-(k+1)\\lambda+k=0$，因式分解为 $(\\lambda-1)(\\lambda-k)=0$，按 $k=1$ 与 $k\\ne1$ 分类给出通解",
+    "对方程 $y''-(k+1)y'+ky=2xe^x$，按 $\\lambda=1$ 是否为特征根（即 $k=1$ 或 $k\\ne1$）选取相应次数的多项式乘 $e^x$ 作为试探解，代入方程比较系数求出待定系数",
+    "对 (3)，先由第一个方程（即 $k=1$ 情形）得到其通解 $y=(C_1+C_2x)e^x+\\frac{x^3}{3}e^x$；把两个方程相减消去 $y''$ 得到 $r(x)=y-y'+2xe^x$ 的关系式；代入通解化简，并用条件 $r(0)=0$ 确定常数 $C_2$，从而得出唯一确定的 $r(x)$"
+  ],
+  "math_structure": {
+    "type": "second_order_linear_ode_family",
+    "template": "$y''-(k+1)y'+ky=0$ 及 $=2xe^x$；结合 $y''-2y'+y=2xe^x$ 与 $y''-3y'+2y=r(x)$（$r(0)=0$）有公共解，求 $r(x)$",
+    "variable_count": 1
+  },
+  "difficulty": 4,
+  "answer": [
+    {
+      "label": "(1)",
+      "steps": [
+        "特征方程 $\\lambda^2-(k+1)\\lambda+k=0$ 可因式分解为 $(\\lambda-1)(\\lambda-k)=0$（展开验证：$\\lambda^2-\\lambda-k\\lambda+k=\\lambda^2-(k+1)\\lambda+k$，正确），故特征根为 $\\lambda=1,\\lambda=k$。",
+        "若 $k\\ne1$：两个不同实根，通解为 $y=C_1e^{x}+C_2e^{kx}$（$C_1,C_2$ 为任意常数）。",
+        "若 $k=1$：重根 $\\lambda=1$（二重），通解为 $y=(C_1+C_2x)e^{x}$。"
+      ]
+    },
+    {
+      "label": "(2)",
+      "steps": [
+        "情形 $k\\ne1$：$\\lambda=1$ 是特征方程的单根，故设特解为 $y_p=(Ax^2+Bx)e^x$（乘一次 $x$ 消共振）。逐项求导并代入方程，比较 $x^1,x^0$ 项系数（$x^2$ 项系数自动为零）得：$2A(1-k)=2$，$2A+B(1-k)=0$。",
+        "解得 $A=\\dfrac1{1-k}$，$B=-\\dfrac{2A}{1-k}=-\\dfrac2{(1-k)^2}$，故 $y_p=\\left[\\dfrac{x^2}{1-k}-\\dfrac{2x}{(1-k)^2}\\right]e^x$（$k\\ne1$）。",
+        "情形 $k=1$：方程为 $y''-2y'+y=2xe^x$，$\\lambda=1$ 为二重根，设 $y_p=(Ax^3+Bx^2)e^x$。代入化简（$x^3,x^2$ 项系数自动为零），比较 $x^1,x^0$ 项：$6A=2,\\ 2B=0$，解得 $A=\\dfrac13,B=0$，故 $y_p=\\dfrac{x^3}{3}e^x$（$k=1$）。"
+      ]
+    },
+    {
+      "label": "(3)",
+      "steps": [
+        "第一个方程即为 (2) 中 $k=1$ 的情形，其通解为 $y=(C_1+C_2x)e^x+\\dfrac{x^3}{3}e^x$，其中 $C_1,C_2$ 为任意常数；设公共解即取此形式。",
+        "将两方程相减（第二式减第一式）消去 $y''$：$(-3y'+2y)-(-2y'+y)=r(x)-2xe^x$，即 $-y'+y=r(x)-2xe^x$，故 $r(x)=y-y'+2xe^x$。",
+        "计算 $y-y'$：$y'=[C_1+C_2+C_2x+x^2+\\tfrac{x^3}{3}]e^x$，故 $y-y'=\\left[(C_1+C_2x+\\tfrac{x^3}3)-(C_1+C_2+C_2x+x^2+\\tfrac{x^3}3)\\right]e^x=-(C_2+x^2)e^x$（$C_1$、$C_2x$、$x^3$ 项均相消）。",
+        "于是 $r(x)=[-(C_2+x^2)+2x]e^x=[-x^2+2x-C_2]e^x$。代入条件 $r(0)=0$：$r(0)=-C_2=0\\Rightarrow C_2=0$。",
+        "故唯一确定 $r(x)=(2x-x^2)e^x$。验证：取 $y=C_1e^x+\\tfrac{x^3}3e^x$（$C_2=0$），直接代入 $y''-3y'+2y$ 计算可得恰为 $(2x-x^2)e^x$（$C_1$ 项自动相消，$x^3$ 项相消，$x$ 项为 $2x$，$x^2$ 项为 $-x^2$），与所求一致。"
+      ]
+    }
+  ],
+  "practice_questions": [
+    {
+      "text": "求微分方程 $y''-3y'+2y=0$ 的通解。",
+      "knowledge_points": [
+        "二阶常系数齐次方程"
+      ],
+      "question_type": "基础通解求解",
+      "method": [
+        "特征方程求根"
+      ],
+      "solution_steps": [
+        "写特征方程并因式分解",
+        "写出通解"
+      ],
+      "math_structure": {
+        "type": "second_order_homogeneous_basic",
+        "template": "$y''-3y'+2y=0$",
+        "variable_count": 0
+      },
+      "difficulty": 1,
+      "estimated_minutes": 4,
+      "answer": [
+        {
+          "label": "通解",
+          "steps": [
+            "特征方程 $\\lambda^2-3\\lambda+2=(\\lambda-1)(\\lambda-2)=0$，根 $\\lambda=1,2$",
+            "通解 $y=C_1e^x+C_2e^{2x}$"
+          ]
+        }
+      ],
+      "id": "tohoku-2019-48163c7ac0-q06-practice-01",
+      "school": "东北大学",
+      "year": "2019"
+    },
+    {
+      "text": "求微分方程 $y''-2y'+y=0$ 的通解（重根情形）。",
+      "knowledge_points": [
+        "重根情形的齐次方程通解"
+      ],
+      "question_type": "基础重根通解",
+      "method": [
+        "特征方程求重根"
+      ],
+      "solution_steps": [
+        "写特征方程",
+        "识别重根",
+        "写通解形式 $(C_1+C_2x)e^x$"
+      ],
+      "math_structure": {
+        "type": "repeated_root_ode",
+        "template": "$y''-2y'+y=0$",
+        "variable_count": 0
+      },
+      "difficulty": 1,
+      "estimated_minutes": 4,
+      "answer": [
+        {
+          "label": "通解",
+          "steps": [
+            "特征方程 $\\lambda^2-2\\lambda+1=(\\lambda-1)^2=0$，重根 $\\lambda=1$",
+            "通解 $y=(C_1+C_2x)e^x$"
+          ]
+        }
+      ],
+      "id": "tohoku-2019-48163c7ac0-q06-practice-02",
+      "school": "东北大学",
+      "year": "2019"
+    },
+    {
+      "text": "求微分方程 $y''-2y'+y=e^x$ 的一个特解（注意 $\\lambda=1$ 为重根，存在共振）。",
+      "knowledge_points": [
+        "待定系数法",
+        "共振情形"
+      ],
+      "question_type": "共振型非齐次方程特解",
+      "method": [
+        "设 $y_p=Ax^2e^x$ 代入求解"
+      ],
+      "solution_steps": [
+        "设特解形式",
+        "代入求系数"
+      ],
+      "math_structure": {
+        "type": "resonance_particular_solution",
+        "template": "$y''-2y'+y=e^x$，求特解",
+        "variable_count": 0
+      },
+      "difficulty": 2,
+      "estimated_minutes": 6,
+      "answer": [
+        {
+          "label": "特解",
+          "steps": [
+            "设 $y_p=Ax^2e^x$，求导：$y_p'=(2Ax+Ax^2)e^x,\\ y_p''=(2A+4Ax+Ax^2)e^x$",
+            "代入方程：$(2A+4Ax+Ax^2)-2(2Ax+Ax^2)+Ax^2=2A$（其余项相消），令 $2A=1\\Rightarrow A=1/2$",
+            "特解为 $y_p=\\dfrac{x^2}{2}e^x$"
+          ]
+        }
+      ],
+      "id": "tohoku-2019-48163c7ac0-q06-practice-03",
+      "school": "东北大学",
+      "year": "2019"
+    },
+    {
+      "text": "求微分方程 $y''-3y'+2y=e^x$ 的一个特解（$\\lambda=1$ 是单根，非共振于二重意义但仍是特征根）。",
+      "knowledge_points": [
+        "待定系数法（单根共振）"
+      ],
+      "method": [
+        "设 $y_p=Axe^x$ 代入求解"
+      ],
+      "question_type": "单根共振型特解",
+      "solution_steps": [
+        "设特解形式为 $Axe^x$",
+        "代入求系数"
+      ],
+      "math_structure": {
+        "type": "single_root_resonance",
+        "template": "$y''-3y'+2y=e^x$",
+        "variable_count": 0
+      },
+      "difficulty": 2,
+      "estimated_minutes": 6,
+      "answer": [
+        {
+          "label": "特解",
+          "steps": [
+            "设 $y_p=Axe^x$，$y_p'=(A+Ax)e^x,\\ y_p''=(2A+Ax)e^x$",
+            "代入：$(2A+Ax)-3(A+Ax)+2Ax=2A-3A=-A$（$x$ 项相消），令 $-A=1\\Rightarrow A=-1$",
+            "特解为 $y_p=-xe^x$"
+          ]
+        }
+      ],
+      "id": "tohoku-2019-48163c7ac0-q06-practice-04",
+      "school": "东北大学",
+      "year": "2019"
+    },
+    {
+      "text": "设 $y=C_1e^x+\\dfrac{x^3}{3}e^x$ 满足 $y''-2y'+y=2xe^x$，求 $y'',y''-3y'+2y$ 的表达式（用于验证原题 (3) 的中间步骤）。",
+      "knowledge_points": [
+        "导数计算",
+        "代入验证"
+      ],
+      "question_type": "中间步骤验证练习",
+      "method": [
+        "直接求导并代入"
+      ],
+      "solution_steps": [
+        "计算 $y',y''$",
+        "代入 $y''-3y'+2y$ 化简"
+      ],
+      "math_structure": {
+        "type": "intermediate_verification",
+        "template": "验证 $y=C_1e^x+x^3e^x/3$ 代入 $y''-3y'+2y$",
+        "variable_count": 1
+      },
+      "difficulty": 3,
+      "estimated_minutes": 8,
+      "answer": [
+        {
+          "label": "结果",
+          "steps": [
+            "$y'=[C_1+x^2+\\tfrac{x^3}3]e^x$，$y''=[C_1+2x+x^2+\\tfrac{x^3}3]e^x$",
+            "$y''-3y'+2y=[C_1+2x+x^2+\\tfrac{x^3}3-3C_1-3x^2-x^3+2C_1+\\tfrac{2x^3}3]e^x$，$C_1$项相消，$x^3$项相消",
+            "化简得 $=(2x-x^2)e^x$，与原题 $r(x)$ 一致"
+          ]
+        }
+      ],
+      "id": "tohoku-2019-48163c7ac0-q06-practice-05",
+      "school": "东北大学",
+      "year": "2019"
+    }
+  ],
+  "source_question": "8",
+  "source_pdf": "东北大学/情报科学研究科/数学教室/东北大学_情报科学研究科_数学_2019_数学过去问.pdf",
+  "source_type": "官方过去问",
+  "subject_category": "微分方程"
+}

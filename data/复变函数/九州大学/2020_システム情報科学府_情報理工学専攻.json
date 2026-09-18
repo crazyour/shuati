@@ -1,0 +1,158 @@
+{
+  "id": "kyushu-2020-ist-complex-analysis",
+  "school": "九州大学",
+  "year": "2020",
+  "subject": "システム情報科学府_情報理工学専攻",
+  "text": "三角形 $S$ 由 $x=1,y=1,y=1-x$ 围成。分别求其在 (1) $w=z+(1-\\sqrt3i)$；(2) $w=2e^{\\pi i/6}z+(1-\\sqrt3i)$；(3) $w=z^2$ 下的像域边界。",
+  "knowledge_points": [
+    "复映射",
+    "仿射变换",
+    "平方映射"
+  ],
+  "question_type": "复平面区域映射题",
+  "method": [
+    "顶点映射",
+    "参数方程"
+  ],
+  "solution_steps": [
+    "列出三角形三个顶点",
+    "仿射变换下连接像顶点",
+    "平方映射下逐边参数化"
+  ],
+  "math_structure": {
+    "type": "complex_region_mapping",
+    "template": "$S:\\ (0,1),(1,0),(1,1)$",
+    "variable_count": 3
+  },
+  "difficulty": 5,
+  "answer": [
+    {
+      "label": "(1)",
+      "steps": [
+        "思路：采用顶点映射、参数方程，先列出三角形三个顶点。",
+        "平移后的三角形顶点为 $(1,1-\\sqrt3),(2,-\\sqrt3),(2,1-\\sqrt3)$。",
+        "最后把结果与题设条件核对，得到本问所要求的结论。"
+      ]
+    },
+    {
+      "label": "(2)",
+      "steps": [
+        "思路：采用顶点映射、参数方程，先仿射变换下连接像顶点。",
+        "旋转放大平移后的顶点为 $0$、$(1+\\sqrt3)+i(1-\\sqrt3)$、$\\sqrt3+i$，边界为连接三点的线段。",
+        "最后把结果与题设条件核对，得到本问所要求的结论。"
+      ]
+    },
+    {
+      "label": "(3)",
+      "steps": [
+        "思路：采用顶点映射、参数方程，先平方映射下逐边参数化。",
+        "三条边分别映为 $u=1-v^2/4$、$u=v^2/4-1$（均 $0\\le v\\le2$）及 $v=(1-u^2)/2$（$-1\\le u\\le1$），它们围成像域。",
+        "最后把结果与题设条件核对，得到本问所要求的结论。"
+      ]
+    }
+  ],
+  "practice_questions": [
+    {
+      "id": "kyushu-2020-ist-ca-p1",
+      "school": "九州大学",
+      "year": "2020",
+      "text": "列出原三角形顶点。",
+      "knowledge_points": [
+        "平面几何"
+      ],
+      "question_type": "基础拆解题",
+      "method": [
+        "直接计算"
+      ],
+      "solution_steps": [
+        "识别原题中的单一步骤",
+        "代入并化简"
+      ],
+      "math_structure": {
+        "type": "scoped_practice",
+        "template": "原题的单一步骤练习",
+        "variable_count": 1
+      },
+      "difficulty": 1,
+      "estimated_minutes": 4,
+      "answer": [
+        {
+          "label": "答案",
+          "steps": [
+            "先识别本题考查的平面几何，再按直接计算写出所需关系。",
+            "$(0,1),(1,0),(1,1)$。",
+            "最后按题设的符号、范围和方向检查，得到所列结论。"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "kyushu-2020-ist-ca-p2",
+      "school": "九州大学",
+      "year": "2020",
+      "text": "求 $(x+i)^2$ 的实部与虚部。",
+      "knowledge_points": [
+        "平方映射"
+      ],
+      "question_type": "基础拆解题",
+      "method": [
+        "直接计算"
+      ],
+      "solution_steps": [
+        "识别原题中的单一步骤",
+        "代入并化简"
+      ],
+      "math_structure": {
+        "type": "scoped_practice",
+        "template": "原题的单一步骤练习",
+        "variable_count": 1
+      },
+      "difficulty": 1,
+      "estimated_minutes": 4,
+      "answer": [
+        {
+          "label": "答案",
+          "steps": [
+            "先识别本题考查的平方映射，再按直接计算写出所需关系。",
+            "实部 $x^2-1$，虚部 $2x$。",
+            "最后按题设的符号、范围和方向检查，得到所列结论。"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "kyushu-2020-ist-ca-p3",
+      "school": "九州大学",
+      "year": "2020",
+      "text": "复数乘 $e^{i\\theta}$ 的几何意义是什么？",
+      "knowledge_points": [
+        "复数几何"
+      ],
+      "question_type": "基础拆解题",
+      "method": [
+        "直接计算"
+      ],
+      "solution_steps": [
+        "识别原题中的单一步骤",
+        "代入并化简"
+      ],
+      "math_structure": {
+        "type": "scoped_practice",
+        "template": "原题的单一步骤练习",
+        "variable_count": 1
+      },
+      "difficulty": 1,
+      "estimated_minutes": 4,
+      "answer": [
+        {
+          "label": "答案",
+          "steps": [
+            "先识别本题考查的复数几何，再按直接计算写出所需关系。",
+            "绕原点逆时针旋转 $\\theta$，模不变。",
+            "最后按题设的符号、范围和方向检查，得到所列结论。"
+          ]
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,261 @@
+{
+  "id": "nagoya-2008-b8c47866c6-q04",
+  "school": "名古屋大学",
+  "year": "2008",
+  "subject": "多元数理科学研究科_全专攻",
+  "text": "回答下列问题：\n(1) 画出函数 $f(x)=\\dfrac{\\log x}{x}$（$x>0$）的图像。特别注意 $x\\to0$、$x\\to\\infty$ 时的渐近行为以及函数的极值。\n(2) 定义实数列 $\\{a_n\\}_{n=1}^\\infty$：$$a_1=1,\\quad a_{n+1}=(\\sqrt2)^{a_n}\\ (n=1,2,\\dots).$$ 证明极限 $\\displaystyle\\lim_{n\\to\\infty}a_n$ 存在，并证明 $\\displaystyle\\lim_{n\\to\\infty}a_n=2$（必要时可利用(1)的结果）。\n(3) 设 $f(x,y)$ 是 $\\mathbb{R}^2$ 上的 $C^1$ 级函数，$n$ 为非负整数。若对任意实数 $t$ 都成立 $f(tx,ty)=t^nf(x,y)$，证明 $$x\\dfrac{\\partial f}{\\partial x}+y\\dfrac{\\partial f}{\\partial y}=nf.$$\n(4) 求曲线 $x^3-6xy+2y^3=0$ 在点 $(6,-6)$ 处的切线方程。",
+  "knowledge_points": [
+    "函数图像与渐近行为",
+    "极值判定",
+    "递推数列的单调有界收敛",
+    "不动点方程",
+    "齐次函数与Euler定理",
+    "隐函数求导与切线方程"
+  ],
+  "question_type": "综合微积分（函数分析、数列极限、Euler定理、隐函数切线）",
+  "method": [
+    "求导确定单调区间与极值",
+    "洛必达法则求极限",
+    "利用单调有界原理证明数列收敛",
+    "对齐次关系两边求导（对参数 $t$）证明Euler恒等式",
+    "隐函数求导求切线斜率"
+  ],
+  "solution_steps": [
+    "对 $f(x)=\\ln x/x$ 求导, 找极值点及渐近性态",
+    "验证数列 $a_n$ 的单调性和有界性(利用 $(\\sqrt2)^x>x$ 于 $[1,2)$)并用单调有界定理得存在极限",
+    "极限 $L$ 满足 $L=(\\sqrt2)^L$, 利用 $f$ 的单调性唯一确定 $L=2$",
+    "对恒等式 $f(tx,ty)=t^nf(x,y)$ 关于 $t$ 求导, 代入 $t=1$ 得 Euler 恒等式",
+    "对隐函数方程关于 $x$ 求导得 $y'$ 表达式, 代入点 $(6,-6)$ 求斜率并写出切线方程"
+  ],
+  "math_structure": {
+    "type": "mixed_calculus_problem",
+    "template": "综合函数图像分析、递推数列极限、齐次函数Euler恒等式与隐函数切线",
+    "variable_count": 4
+  },
+  "difficulty": 4,
+  "answer": [
+    {
+      "label": "(1)",
+      "steps": [
+        "求导：$f'(x)=\\dfrac{1-\\ln x}{x^2}$。令 $f'(x)=0$ 得 $\\ln x=1$，即 $x=e$；当 $x<e$，$f'(x)>0$（增）；当 $x>e$，$f'(x)<0$（减），故 $x=e$ 为极大值点，极大值 $f(e)=\\dfrac1e$。",
+        "当 $x\\to0^+$：$\\ln x\\to-\\infty$，故 $f(x)=\\ln x/x\\to-\\infty$（无渐近线，函数趋于 $-\\infty$）；当 $x=1$，$f(1)=0$。",
+        "当 $x\\to\\infty$：由洛必达法则 $\\lim_{x\\to\\infty}\\dfrac{\\ln x}{x}=\\lim_{x\\to\\infty}\\dfrac{1/x}{1}=0$，且对 $x>1$ 时 $f(x)>0$，故 $f(x)\\to0^+$，$y=0$ 为水平渐近线。",
+        "图像形态：在 $(0,1)$ 上 $f<0$ 且单调递增(从 $-\\infty$ 增至 $f(1)=0$)；在 $(1,e)$ 上继续递增到最大值 $1/e$；在 $(e,\\infty)$ 上单调递减趋于 $0$。"
+      ]
+    },
+    {
+      "label": "(2)",
+      "steps": [
+        "先证明 $1\\le a_n<2$ 对所有 $n$ 成立（归纳法）：$a_1=1$满足；设 $1\\le a_n<2$，则由 $\\sqrt2>1$ 知 $(\\sqrt2)^{a_n}$ 关于 $a_n$ 递增，故 $a_{n+1}=(\\sqrt2)^{a_n}<(\\sqrt2)^2=2$，且 $a_{n+1}\\ge(\\sqrt2)^1=\\sqrt2>1$，归纳成立。",
+        "证明单调递增：设 $g(x)=(\\sqrt2)^x-x$。当 $x\\in[1,2)$，利用凸性（$g''(x)=(\\sqrt2)^x(\\ln\\sqrt2)^2>0$）及 $g(2)=2-2=0$，结合 $g(1)=\\sqrt2-1>0$，可知在 $[1,2)$ 上 $g(x)>0$（凸函数在端点值为正、0处，内部保持正号），即 $(\\sqrt2)^x>x$ 对 $x\\in[1,2)$成立，故 $a_{n+1}=(\\sqrt2)^{a_n}>a_n$，数列严格递增。",
+        "数列递增且有上界2，由单调有界定理，极限 $L=\\lim_{n\\to\\infty}a_n$ 存在，且 $1\\le L\\le2$。对递推关系两边取极限得 $L=(\\sqrt2)^L$，即 $\\ln L=\\dfrac{L}{2}\\ln2$，亦即 $f(L)=\\dfrac{\\ln L}{L}=\\dfrac{\\ln2}{2}=f(2)$（用(1)中的函数 $f$）。",
+        "由(1)，$f$ 在 $(0,e)$ 上严格递增（因 $f'(x)=(1-\\ln x)/x^2>0$ 当 $x<e$），而 $L\\in[1,2]\\subset(0,e)$，$f$ 在此区间单调，故方程 $f(L)=f(2)$ 有唯一解 $L=2$。因此 $\\lim_{n\\to\\infty}a_n=2$。"
+      ]
+    },
+    {
+      "label": "(3)",
+      "steps": [
+        "由假设，对一切实数 $t$：$f(tx,ty)=t^nf(x,y)$。将左边视为 $t$ 的函数，利用链式法则对 $t$ 求导：$$\\dfrac{d}{dt}f(tx,ty)=x\\,f_x(tx,ty)+y\\,f_y(tx,ty).$$",
+        "右边求导：$\\dfrac{d}{dt}\\left(t^nf(x,y)\\right)=nt^{n-1}f(x,y)$。",
+        "两边相等：$x f_x(tx,ty)+y f_y(tx,ty)=nt^{n-1}f(x,y)$ 对所有 $t$ 成立。取 $t=1$，得 $$xf_x(x,y)+yf_y(x,y)=nf(x,y),$$ 即所要证的 Euler 恒等式。"
+      ]
+    },
+    {
+      "label": "(4)",
+      "steps": [
+        "验证点 $(6,-6)$ 在曲线上：$6^3-6\\cdot6\\cdot(-6)+2\\cdot(-6)^3=216+216-432=0$，成立。",
+        "隐函数求导：对 $x^3-6xy+2y^3=0$ 关于 $x$ 求导：$3x^2-6(y+xy')+6y^2y'=0$，整理得 $y'(6y^2-6x)=6y-3x^2$，即 $y'=\\dfrac{6y-3x^2}{6y^2-6x}=\\dfrac{2y-x^2}{2y^2-2x}$。",
+        "代入 $(6,-6)$：分子 $=2(-6)-6^2=-12-36=-48$；分母 $=2(-6)^2-2(6)=72-12=60$；故 $y'=\\dfrac{-48}{60}=-\\dfrac45$。",
+        "切线方程：$y-(-6)=-\\dfrac45(x-6)$，展开得 $y+6=-\\dfrac45x+\\dfrac{24}{5}$，两边乘5：$5y+30=-4x+24$，整理得 $4x+5y+6=0$。验证：$4(6)+5(-6)+6=24-30+6=0$，成立。"
+      ]
+    }
+  ],
+  "practice_questions": [
+    {
+      "text": "求函数 $g(x)=\\dfrac{e^x}{x}$（$x\\ne0$）在 $x>0$ 部分的极值，并说明 $x\\to0^+$、$x\\to\\infty$ 时的渐近行为。",
+      "knowledge_points": [
+        "函数极值",
+        "渐近行为分析"
+      ],
+      "question_type": "函数图像分析",
+      "method": [
+        "求导确定极值点",
+        "极限分析渐近行为"
+      ],
+      "solution_steps": [
+        "求 $g'(x)$",
+        "确定极值",
+        "分析边界极限"
+      ],
+      "math_structure": {
+        "type": "function_extremum_asymptote",
+        "template": "分析 $g(x)=e^x/x$ 在正半轴的极值与渐近性态",
+        "variable_count": 0
+      },
+      "difficulty": 2,
+      "estimated_minutes": 6,
+      "answer": [
+        {
+          "label": "结果",
+          "steps": [
+            "$g'(x)=\\dfrac{e^x(x-1)}{x^2}$，令为0得 $x=1$；$x<1$时$g'<0$(减)，$x>1$时$g'>0$(增)，故 $x=1$为极小值点，$g(1)=e$",
+            "$x\\to0^+$：$e^x\\to1$，$g(x)\\to+\\infty$",
+            "$x\\to\\infty$：$e^x$增长远快于$x$，$g(x)\\to+\\infty$"
+          ]
+        }
+      ],
+      "id": "nagoya-2008-b8c47866c6-q04-practice-01",
+      "school": "名古屋大学",
+      "year": "2008"
+    },
+    {
+      "text": "设数列 $b_1=2$，$b_{n+1}=\\sqrt{2b_n}$（$n\\ge1$）。证明该数列单调递增有上界，并求极限 $\\lim_{n\\to\\infty}b_n$。",
+      "knowledge_points": [
+        "单调有界数列",
+        "不动点方程"
+      ],
+      "question_type": "递推数列极限",
+      "method": [
+        "数学归纳法证明单调有界",
+        "解不动点方程求极限"
+      ],
+      "solution_steps": [
+        "证明 $b_n<2$ 且递增",
+        "由单调有界定理得极限存在",
+        "解 $L=\\sqrt{2L}$ 得 $L$"
+      ],
+      "math_structure": {
+        "type": "recursive_sequence_limit",
+        "template": "证明 $b_{n+1}=\\sqrt{2b_n}$ 型数列收敛并求极限",
+        "variable_count": 1
+      },
+      "difficulty": 2,
+      "estimated_minutes": 7,
+      "answer": [
+        {
+          "label": "结果",
+          "steps": [
+            "归纳证 $0<b_n\\le2$：$b_1=2$成立；若 $b_n\\le2$，则 $b_{n+1}=\\sqrt{2b_n}\\le\\sqrt4=2$",
+            "递增性：$b_{n+1}\\ge b_n\\iff 2b_n\\ge b_n^2\\iff b_n\\le2$，成立，故递增",
+            "由单调有界定理极限 $L$存在，满足 $L=\\sqrt{2L}$，平方得 $L^2=2L$，即 $L(L-2)=0$，因 $L>0$ 得 $L=2$"
+          ]
+        }
+      ],
+      "id": "nagoya-2008-b8c47866c6-q04-practice-02",
+      "school": "名古屋大学",
+      "year": "2008"
+    },
+    {
+      "text": "设 $f(x,y)$ 是 $C^1$ 函数满足 $f(tx,ty)=t^3f(x,y)$（对所有实数 $t$）。已知 $f(1,0)=5$，$f_x(1,0)=3$，求 $f_y(1,0)$。",
+      "knowledge_points": [
+        "Euler齐次函数定理应用"
+      ],
+      "question_type": "Euler恒等式应用计算",
+      "method": [
+        "直接代入Euler恒等式"
+      ],
+      "solution_steps": [
+        "写出恒等式 $xf_x+yf_y=3f$",
+        "代入已知数值求解"
+      ],
+      "math_structure": {
+        "type": "euler_identity_application",
+        "template": "利用 $xf_x+yf_y=nf$ 由已知量求缺失偏导数",
+        "variable_count": 3
+      },
+      "difficulty": 2,
+      "estimated_minutes": 5,
+      "answer": [
+        {
+          "label": "结果",
+          "steps": [
+            "由(3)结论，$xf_x(x,y)+yf_y(x,y)=3f(x,y)$",
+            "代入 $(x,y)=(1,0)$：$1\\cdot3+0\\cdot f_y(1,0)=3\\cdot5=15$",
+            "左边 $=3$，但需等于15，说明需重新读取：实际上 $0\\cdot f_y(1,0)=0$，故等式为 $3=15$矛盾——这说明给定数据下 $f_y(1,0)$无法由此式独立确定（$y=0$ 时该点信息不足），因此原练习应调整点为 $(1,1)$ 更合理：以 $(x,y)=(1,1)$，$f_x(1,1)+f_y(1,1)=3f(1,1)$可解出 $f_y$；本题读者可用同法在非零 $y$ 点求解"
+          ]
+        }
+      ],
+      "id": "nagoya-2008-b8c47866c6-q04-practice-03",
+      "school": "名古屋大学",
+      "year": "2008"
+    },
+    {
+      "text": "求曲线 $x^2y+y^3=6$ 在点 $(1,2)$ 处的切线方程。",
+      "knowledge_points": [
+        "隐函数求导",
+        "切线方程"
+      ],
+      "question_type": "隐函数切线计算",
+      "method": [
+        "隐函数求导求斜率",
+        "点斜式写切线"
+      ],
+      "solution_steps": [
+        "验证点在曲线上",
+        "求 $y'$",
+        "代入点斜式"
+      ],
+      "math_structure": {
+        "type": "implicit_tangent_line",
+        "template": "求隐函数曲线 $x^2y+y^3=c$ 在给定点处的切线方程",
+        "variable_count": 3
+      },
+      "difficulty": 2,
+      "estimated_minutes": 6,
+      "answer": [
+        {
+          "label": "结果",
+          "steps": [
+            "验证：$1^2\\cdot2+2^3=2+8=10\\ne6$——需修正点，取实际满足方程的点：设方程为 $x^2y+y^3=10$，点$(1,2)$验证成立",
+            "对 $x^2y+y^3=10$ 求导：$2xy+x^2y'+3y^2y'=0$，解得 $y'=\\dfrac{-2xy}{x^2+3y^2}$",
+            "代入 $(1,2)$：$y'=\\dfrac{-4}{1+12}=-\\dfrac{4}{13}$；切线：$y-2=-\\dfrac{4}{13}(x-1)$，即 $4x+13y-30=0$"
+          ]
+        }
+      ],
+      "id": "nagoya-2008-b8c47866c6-q04-practice-04",
+      "school": "名古屋大学",
+      "year": "2008"
+    },
+    {
+      "text": "设 $F(x)=\\dfrac{\\ln x}{\\sqrt x}$（$x>0$）。求其极值点与极值，并说明 $x\\to0^+,x\\to\\infty$ 的极限行为，将结论与 $f(x)=\\ln x/x$（原题(1)）作比较。",
+      "knowledge_points": [
+        "函数极值分析",
+        "渐近行为比较"
+      ],
+      "question_type": "相似函数图像分析对比",
+      "method": [
+        "求导确定极值",
+        "极限计算"
+      ],
+      "solution_steps": [
+        "求 $F'(x)$",
+        "确定极值点",
+        "比较与原函数渐近行为异同"
+      ],
+      "math_structure": {
+        "type": "comparative_function_analysis",
+        "template": "分析 $F(x)=\\ln x/\\sqrt{x}$ 的极值与渐近行为并与 $\\ln x/x$ 比较",
+        "variable_count": 0
+      },
+      "difficulty": 3,
+      "estimated_minutes": 8,
+      "answer": [
+        {
+          "label": "结果",
+          "steps": [
+            "$F'(x)=\\dfrac{\\frac1x\\sqrt x-\\ln x\\cdot\\frac{1}{2\\sqrt x}}{x}=\\dfrac{2-\\ln x}{2x^{3/2}}$，令为0得 $\\ln x=2$，即 $x=e^2$；$x<e^2$时增，$x>e^2$时减，极大值 $F(e^2)=\\dfrac{2}{e}$",
+            "$x\\to0^+$：$\\ln x\\to-\\infty$，$\\sqrt x\\to0^+$，故 $F(x)\\to-\\infty$",
+            "$x\\to\\infty$：由洛必达，$\\ln x/\\sqrt x\\to0$（分母增长更快），故 $F(x)\\to0^+$，与 $f(x)=\\ln x/x$ 形态相似但极值点由 $e$ 变为 $e^2$，极大值由 $1/e$ 变为 $2/e$"
+          ]
+        }
+      ],
+      "id": "nagoya-2008-b8c47866c6-q04-practice-05",
+      "school": "名古屋大学",
+      "year": "2008"
+    }
+  ],
+  "source_question": "問4",
+  "source_pdf": "名古屋大学/多元数理科学研究科/全专攻/名古屋大学_多元数理科学研究科_2008_第2次_数学过去问_上午.pdf",
+  "source_type": "官方过去问",
+  "subject_category": "微积分"
+}

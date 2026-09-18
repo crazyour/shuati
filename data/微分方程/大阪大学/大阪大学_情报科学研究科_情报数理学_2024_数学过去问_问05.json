@@ -1,0 +1,213 @@
+{
+  "id": "osaka-2024-144813ba62-q05",
+  "school": "大阪大学",
+  "year": "2024",
+  "subject": "情报科学研究科_情报数理学",
+  "text": "考虑微分方程\n$$pq\\frac{d^2x}{dt^2}+(p+q)\\frac{dx}{dt}+x=w(t)$$\n及其解 $x(t)$，其中 $p>0,q>0$，$w(t)$ 是连续函数。回答下列问题。\n\n(1) 当 $w(t)=1-e^{-t}$，$pq=1$ 时，求该方程的一般解。\n\n(2) 令 $y=p\\dfrac{dx}{dt}+x$，把关于 $x$ 的微分方程改写为关于 $y$ 的微分方程。\n\n(3) 证明：若 $\\displaystyle\\lim_{t\\to\\infty}w(t)$ 存在，则 $\\displaystyle\\lim_{t\\to\\infty}x(t)$ 也存在。",
+  "knowledge_points": [
+    "二阶常系数线性微分方程",
+    "微分算子分解 $(pD+1)(qD+1)$",
+    "特解的待定系数法",
+    "共振情形的特解",
+    "一阶线性微分方程的渐近性质",
+    "极限存在性的$\\varepsilon$论证"
+  ],
+  "question_type": "微分方程求解与渐近行为证明",
+  "method": [
+    "把方程按算子分解为 $(pD+1)(qD+1)x=w(t)$ 求齐次解",
+    "对非齐次项分别用待定系数法求特解并叠加",
+    "引入 $y=(pD+1)x$ 把二阶方程降阶为两个一阶方程",
+    "证明并应用引理：$a>0,az'+z=f(t),f(t)\\to L\\Rightarrow z(t)\\to L$"
+  ],
+  "solution_steps": [
+    "验证算子恒等式 $(pD+1)(qD+1)x=pqx''+(p+q)x'+x$，得到齐次解的特征根 $-1/p,-1/q$",
+    "当 $pq=1$ 时特征根化为 $-1/p,-p$，分 $p\\neq1$ 与 $p=1$（共振）两种情形讨论",
+    "对 $w(t)=1-e^{-t}$ 分别求常数项与指数项对应的特解并叠加得通解",
+    "利用算子分解另一种顺序 $(qD+1)(pD+1)x=w$，代入 $y=px'+x$ 得到 $qy'+y=w(t)$",
+    "证明一阶线性方程 $az'+z=f(t)$（$a>0$）在 $f(t)\\to L$ 时 $z(t)\\to L$ 的引理，并依次应用于 $y$ 与 $x$ 得到结论"
+  ],
+  "math_structure": {
+    "type": "second_order_linear_ode_factorization",
+    "template": "pq\\,x''+(p+q)x'+x=w(t),\\ p,q>0",
+    "variable_count": 2
+  },
+  "difficulty": 4,
+  "answer": [
+    {
+      "label": "(1)",
+      "steps": [
+        "注意恒等式 $(pD+1)(qD+1)x=pqD^2x+(p+q)Dx+x$，与原方程系数完全一致，故原方程等价于 $(pD+1)(qD+1)x=w(t)$。齐次方程 $pqx''+(p+q)x'+x=0$ 的特征根为 $r=-1/p$ 与 $r=-1/q$。当 $pq=1$ 时 $q=1/p$，故两根为 $-1/p$ 与 $-p$；此时方程本身化为 $x''+(p+q)x'+x=1-e^{-t}$（因 $pq=1$）。",
+        "【$p\\neq1$ 情形，此时两根 $-1/p\\neq -p$ 不相等】齐次通解 $x_h=C_1e^{-t/p}+C_2e^{-pt}$。对常数项“1”，设特解 $x_{p1}=A$：代入得 $A=1$。对 $-e^{-t}$ 项，因 $-1$ 不是特征根（$p\\neq1$），设 $x_{p2}=Be^{-t}$，代入 $x''+(p+q)x'+x=-e^{-t}$ 得 $[1-(p+q)+1]B=-1$，即 $B=\\dfrac{1}{(p+q)-2}=\\dfrac{1}{p+1/p-2}=\\dfrac{p}{(p-1)^2}$（因 $p+q-2=\\frac{(p-1)^2}{p}>0$ 当 $p\\neq1$）。",
+        "故 $p\\neq1$ 时通解为 $x(t)=C_1e^{-t/p}+C_2e^{-pt}+1+\\dfrac{p}{(p-1)^2}e^{-t}$，$C_1,C_2$ 为任意常数。",
+        "【$p=1$（从而 $q=1$）情形，特征根为 $-1$（二重）】齐次通解 $x_h=(C_1+C_2t)e^{-t}$；常数特解仍为 $x_{p1}=1$；对 $-e^{-t}$（此时与齐次解共振），设 $x_{p2}=Bt^2e^{-t}$，代入 $x''+2x'+x=-e^{-t}$ 计算得 $2Be^{-t}=-e^{-t}$，即 $B=-\\tfrac12$。故 $p=1$ 时通解为 $x(t)=(C_1+C_2t)e^{-t}+1-\\dfrac12t^2e^{-t}$。"
+      ]
+    },
+    {
+      "label": "(2)",
+      "steps": [
+        "由(1)中恒等式，算子乘积可交换次序：$pqx''+(p+q)x'+x=(qD+1)(pD+1)x=(qD+1)y$，其中 $y=(pD+1)x=p\\dfrac{dx}{dt}+x$。",
+        "故原方程 $pqx''+(p+q)x'+x=w(t)$ 等价于 $(qD+1)y=w(t)$，即 $q\\dfrac{dy}{dt}+y=w(t)$。",
+        "直接验证：$y'=px''+x'$，故 $qy'+y=q(px''+x')+(px'+x)=pqx''+(qp)... $展开为 $pqx''+qx'+px'+x=pqx''+(p+q)x'+x$，与原方程左边完全一致，验证无误。故所求方程为 $q\\dfrac{dy}{dt}+y=w(t)$。"
+      ]
+    },
+    {
+      "label": "(3)",
+      "steps": [
+        "引理：设 $a>0$，$z(t)$ 满足 $az'+z=f(t)$，若 $\\lim_{t\\to\\infty}f(t)=L$ 存在，则 $\\lim_{t\\to\\infty}z(t)=L$。证明：通解为 $z(t)=z(0)e^{-t/a}+\\dfrac{1}{a}\\int_0^t e^{-(t-s)/a}f(s)\\,ds$。写 $f(s)=L+\\varepsilon(s)$，其中 $\\varepsilon(s)\\to0$。则 $\\dfrac{1}{a}\\int_0^te^{-(t-s)/a}f(s)ds=L(1-e^{-t/a})+\\dfrac1a\\int_0^te^{-(t-s)/a}\\varepsilon(s)ds$。第一项 $\\to L$；对任意 $\\delta>0$，取 $T$ 使 $s>T$ 时 $|\\varepsilon(s)|<\\delta$，把第二项积分拆为 $[0,T]$ 与 $[T,t]$ 两段：前段绝对值 $\\le\\dfrac1a\\cdot(\\sup|\\varepsilon|)\\cdot ae^{-(t-T)/a}\\to0$；后段绝对值 $\\le\\delta\\cdot\\dfrac1a\\int_T^te^{-(t-s)/a}ds\\le\\delta$。故该积分项的上极限不超过任意 $\\delta$，从而趋于0。结合 $z(0)e^{-t/a}\\to0$，得 $z(t)\\to L$。",
+        "由(2)，$y=px'+x$ 满足 $qy'+y=w(t)$，即取引理中 $a=q>0,f=w(t)$。已知 $\\lim_{t\\to\\infty}w(t)=L$ 存在，由引理得 $\\lim_{t\\to\\infty}y(t)=L$。",
+        "又 $y=px'+x$，即 $x$ 满足一阶线性方程 $px'+x=y(t)$，取引理中 $a=p>0,f=y(t)$。由上一步 $y(t)\\to L$，再次应用引理得 $\\lim_{t\\to\\infty}x(t)=L$。因此只要 $\\lim_{t\\to\\infty}w(t)$ 存在，$\\lim_{t\\to\\infty}x(t)$ 必存在（且两极限相等），证毕。"
+      ]
+    }
+  ],
+  "practice_questions": [
+    {
+      "text": "求一阶线性微分方程 $2z'+z=1-e^{-t}$ 的一般解。",
+      "knowledge_points": [
+        "一阶线性常系数微分方程",
+        "待定系数法"
+      ],
+      "question_type": "计算题",
+      "method": [
+        "齐次解+特解叠加"
+      ],
+      "solution_steps": [
+        "求齐次解",
+        "对常数项和指数项分别求特解",
+        "叠加得通解"
+      ],
+      "math_structure": {
+        "type": "first_order_linear_ode_basic",
+        "template": "az'+z=1-e^{-t},\\ a=2",
+        "variable_count": 1
+      },
+      "difficulty": 1,
+      "estimated_minutes": 6,
+      "answer": [
+        {
+          "label": "结果",
+          "steps": [
+            "齐次方程 $2z'+z=0$ 的特征根为 $r=-1/2$，齐次解 $z_h=Ce^{-t/2}$。",
+            "对常数项1，设特解 $z_{p1}=A$，代入得 $A=1$；对 $-e^{-t}$ 项，设 $z_{p2}=Be^{-t}$，代入 $2(-Be^{-t})+Be^{-t}=-e^{-t}$ 得 $-B=-1\\Rightarrow B=1$，即 $z_{p2}=e^{-t}$。",
+            "通解为 $z(t)=Ce^{-t/2}+1+e^{-t}$，$C$ 为任意常数。"
+          ]
+        }
+      ],
+      "id": "osaka-2024-144813ba62-q05-practice-01",
+      "school": "大阪大学",
+      "year": "2024"
+    },
+    {
+      "text": "设 $p=2,q=3$。将方程 $6x''+5x'+x=w(t)$ 分解为算子形式 $(pD+1)(qD+1)x=w(t)$，并求其齐次通解。",
+      "knowledge_points": [
+        "算子分解",
+        "特征根求解"
+      ],
+      "question_type": "计算题",
+      "method": [
+        "核对算子分解恒等式并求特征根"
+      ],
+      "solution_steps": [
+        "验证 $(2D+1)(3D+1)=6D^2+5D+1$",
+        "求出两个特征根",
+        "写出齐次通解"
+      ],
+      "math_structure": {
+        "type": "operator_factorization_specific",
+        "template": "6x''+5x'+x=w(t),\\ p=2,q=3",
+        "variable_count": 2
+      },
+      "difficulty": 2,
+      "estimated_minutes": 7,
+      "answer": [
+        {
+          "label": "结果",
+          "steps": [
+            "展开 $(2D+1)(3D+1)=6D^2+2D+3D+1=6D^2+5D+1$，与 $6x''+5x'+x$ 系数一致，确认分解成立，即 $p=2,q=3$（满足 $pq=6,p+q=5$）。",
+            "特征根为 $-1/p=-1/2$ 与 $-1/q=-1/3$（分别来自 $2D+1=0$ 和 $3D+1=0$）。",
+            "齐次通解为 $x_h(t)=C_1e^{-t/2}+C_2e^{-t/3}$，$C_1,C_2$ 为任意常数。"
+          ]
+        }
+      ],
+      "id": "osaka-2024-144813ba62-q05-practice-02",
+      "school": "大阪大学",
+      "year": "2024"
+    },
+    {
+      "text": "在 $p=q=1$（共振情形）下，求方程 $x''+2x'+x=e^{-t}$ 的一个特解。",
+      "knowledge_points": [
+        "共振情形的特解",
+        "待定系数法（重根情形）"
+      ],
+      "question_type": "计算题",
+      "method": [
+        "因 $-1$ 是二重特征根，设特解为 $t^2e^{-t}$ 的倍数"
+      ],
+      "solution_steps": [
+        "设 $x_p=Bt^2e^{-t}$ 并求二阶导",
+        "代入方程求 $B$"
+      ],
+      "math_structure": {
+        "type": "resonance_particular_solution",
+        "template": "x''+2x'+x=e^{-t}",
+        "variable_count": 0
+      },
+      "difficulty": 3,
+      "estimated_minutes": 10,
+      "answer": [
+        {
+          "label": "结果",
+          "steps": [
+            "设 $x_p=Bt^2e^{-t}$。求导：$x_p'=B(2t-t^2)e^{-t}$，$x_p''=B(t^2-4t+2)e^{-t}$（对 $x_p'$ 再求导并化简）。",
+            "代入 $x''+2x'+x$：$B(t^2-4t+2)e^{-t}+2B(2t-t^2)e^{-t}+Bt^2e^{-t}=Be^{-t}\\big[(t^2-4t+2)+(4t-2t^2)+t^2\\big]=Be^{-t}\\cdot2=2Be^{-t}$。",
+            "令 $2Be^{-t}=e^{-t}$，得 $B=\\dfrac12$，故特解为 $x_p(t)=\\dfrac12t^2e^{-t}$。"
+          ]
+        }
+      ],
+      "id": "osaka-2024-144813ba62-q05-practice-03",
+      "school": "大阪大学",
+      "year": "2024"
+    },
+    {
+      "text": "设 $a>0$，$z(t)$ 满足一阶线性微分方程 $az'+z=f(t)$，其中 $f(t)$ 连续且 $\\lim_{t\\to\\infty}f(t)=L$ 存在。证明 $\\lim_{t\\to\\infty}z(t)=L$。",
+      "knowledge_points": [
+        "一阶线性微分方程通解公式",
+        "极限的$\\varepsilon$-论证",
+        "稳定性(负特征根)"
+      ],
+      "question_type": "证明题",
+      "method": [
+        "写出通解的积分表达式，分解为常数项贡献与偏差项贡献分别取极限"
+      ],
+      "solution_steps": [
+        "写出 $z(t)$ 的显式解",
+        "把 $f(s)=L+\\varepsilon(s)$ 代入并分离出趋于 $L$ 的主项",
+        "用 $\\varepsilon-T$ 论证证明剩余项趋于0"
+      ],
+      "math_structure": {
+        "type": "first_order_ode_limit_lemma",
+        "template": "az'+z=f(t),\\ a>0,\\ f(t)\\to L",
+        "variable_count": 1
+      },
+      "difficulty": 3,
+      "estimated_minutes": 12,
+      "answer": [
+        {
+          "label": "证明",
+          "steps": [
+            "由一阶线性微分方程的通解公式，$z(t)=z(0)e^{-t/a}+\\dfrac1a\\int_0^te^{-(t-s)/a}f(s)\\,ds$。因 $a>0$，$z(0)e^{-t/a}\\to0\\ (t\\to\\infty)$。",
+            "记 $f(s)=L+\\varepsilon(s)$，其中 $\\varepsilon(s)\\to0$。则 $\\dfrac1a\\int_0^te^{-(t-s)/a}f(s)ds=L\\cdot\\dfrac1a\\int_0^te^{-(t-s)/a}ds+\\dfrac1a\\int_0^te^{-(t-s)/a}\\varepsilon(s)ds=L(1-e^{-t/a})+\\dfrac1a\\int_0^te^{-(t-s)/a}\\varepsilon(s)ds$，第一项当 $t\\to\\infty$ 时趋于 $L$。",
+            "对任意 $\\delta>0$，取 $T$ 使得 $s>T$ 时 $|\\varepsilon(s)|<\\delta$。将第二项积分拆为 $[0,T]$ 与 $[T,t]$：前段满足 $\\left|\\dfrac1a\\int_0^Te^{-(t-s)/a}\\varepsilon(s)ds\\right|\\le\\dfrac{M}{a}\\cdot Te^{-(t-T)/a}\\to0$（$M=\\sup_{[0,T]}|\\varepsilon|$）；后段满足 $\\left|\\dfrac1a\\int_T^te^{-(t-s)/a}\\varepsilon(s)ds\\right|\\le\\delta\\cdot\\dfrac1a\\int_T^te^{-(t-s)/a}ds\\le\\delta(1-e^{-(t-T)/a})\\le\\delta$。",
+            "故对任意 $\\delta>0$，$\\limsup_{t\\to\\infty}\\left|\\dfrac1a\\int_0^te^{-(t-s)/a}\\varepsilon(s)ds\\right|\\le\\delta$，由 $\\delta$ 任意知该极限为0。综合以上，$z(t)\\to0+L+0=L$，即 $\\lim_{t\\to\\infty}z(t)=L$，证毕。"
+          ]
+        }
+      ],
+      "id": "osaka-2024-144813ba62-q05-practice-04",
+      "school": "大阪大学",
+      "year": "2024"
+    }
+  ],
+  "source_question": "数学解析 問3",
+  "source_pdf": "大阪大学/情报科学研究科/情报数理学/大阪大学_情报科学研究科_情报数理学_2024_数学过去问.pdf",
+  "source_type": "官方过去问",
+  "subject_category": "微分方程"
+}

@@ -1,0 +1,210 @@
+{
+  "id": "tohoku-2023-469b59f929-q01",
+  "school": "东北大学",
+  "year": "2023",
+  "subject": "情报科学研究科_数学教室",
+  "text": "对 $x,y\\in\\mathbb{R}$，定义 $$f(x,y)=\\begin{cases}\\dfrac{e^{x}-e^{y}}{x-y}, & x\\neq y,\\\\[4pt] e^{x}, & x=y.\\end{cases}$$ 对任意 $a\\in\\mathbb{R}$，回答下列问题：\n(1) 证明函数 $f(x,y)$ 在 $(a,a)$ 处连续；\n(2) 求偏导数 $f_x(a,a)$ 与 $f_y(a,a)$；\n(3) 证明函数 $f(x,y)$ 在 $(a,a)$ 处全微分可能（全微分可导）。",
+  "knowledge_points": [
+    "多元函数连续性",
+    "偏导数定义",
+    "全微分（可微性）判定",
+    "积分中值表示",
+    "泰勒展开估计余项"
+  ],
+  "question_type": "多元函数连续性与可微性证明",
+  "method": [
+    "利用积分表示 $f(x,y)=\\int_0^1 e^{y+t(x-y)}dt$",
+    "按定义计算偏导数极限",
+    "用泰勒展开估计余项证明可微"
+  ],
+  "solution_steps": [
+    "写出 $f(x,y)=\\int_0^1 e^{y+t(x-y)}dt$ 的积分表示，验证其在 $x=y$ 与 $x\\ne y$ 均与原定义一致",
+    "利用该积分表示证明 $(x,y)\\to(a,a)$ 时 $f(x,y)\\to e^a=f(a,a)$，得到连续性",
+    "按定义 $f_x(a,a)=\\lim_{h\\to0}\\frac{f(a+h,a)-f(a,a)}{h}$ 通过泰勒展开计算极限",
+    "利用对称性 $f(x,y)=f(y,x)$ 得到 $f_y(a,a)=f_x(a,a)$",
+    "将 $f(a+h,a+k)$ 用积分表示展开到二阶，证明余项为 $O(h^2+k^2)$，从而得到全微分可导"
+  ],
+  "math_structure": {
+    "type": "difference_quotient_exponential",
+    "template": "f(x,y)=(e^x-e^y)/(x-y), f(x,x)=e^x; 讨论在对角线上的连续性、偏导数与可微性",
+    "variable_count": 2
+  },
+  "difficulty": 3,
+  "answer": [
+    {
+      "label": "(1)",
+      "steps": [
+        "对任意 $x,y$（含 $x=y$）有恒等式 $f(x,y)=\\displaystyle\\int_0^1 e^{y+t(x-y)}\\,dt$。当 $x\\neq y$ 时，$\\int_0^1 e^{y+t(x-y)}dt=\\left[\\frac{e^{y+t(x-y)}}{x-y}\\right]_0^1=\\frac{e^x-e^y}{x-y}$，与定义一致；当 $x=y$ 时积分等于 $e^x$，也一致。",
+        "被积函数 $e^{y+t(x-y)}$ 关于 $(x,y,t)\\in\\mathbb{R}^2\\times[0,1]$ 连续，且在 $[0,1]$ 上关于 $t$ 一致有界（局部），由控制收敛/一致连续性，$f(x,y)=\\int_0^1 e^{y+t(x-y)}dt$ 关于 $(x,y)$ 连续。",
+        "特别地当 $(x,y)\\to(a,a)$ 时，$e^{y+t(x-y)}\\to e^a$ 对每个 $t$ 一致成立，故 $f(x,y)\\to\\int_0^1 e^a\\,dt=e^a=f(a,a)$，即 $f$ 在 $(a,a)$ 处连续。"
+      ]
+    },
+    {
+      "label": "(2)",
+      "steps": [
+        "计算 $f_x(a,a)=\\lim_{h\\to0}\\dfrac{f(a+h,a)-f(a,a)}{h}=\\lim_{h\\to0}\\dfrac{\\frac{e^{a+h}-e^a}{h}-e^a}{h}=\\lim_{h\\to0}\\dfrac{e^{a+h}-e^a-he^a}{h^2}$。",
+        "将 $e^{a+h}=e^a\\left(1+h+\\frac{h^2}{2}+\\frac{h^3}{6}+\\cdots\\right)$ 代入，分子为 $e^a\\left(\\frac{h^2}{2}+\\frac{h^3}{6}+\\cdots\\right)$，除以 $h^2$ 取极限得 $f_x(a,a)=\\frac{e^a}{2}$。",
+        "由 $f(x,y)=f(y,x)$（对称性），交换 $x,y$ 角色可知 $f_y(a,a)=f_x(a,a)=\\dfrac{e^a}{2}$。"
+      ]
+    },
+    {
+      "label": "(3)",
+      "steps": [
+        "利用积分表示，$f(a+h,a+k)=\\int_0^1 e^{a}\\,e^{k+t(h-k)}dt$，把指数部分展开为 $1+(k+t(h-k))+\\frac{1}{2}(k+t(h-k))^2+O(r^3)$，其中 $r=\\sqrt{h^2+k^2}$。",
+        "逐项积分：$\\int_0^1 1\\,dt=1$，$\\int_0^1(k+t(h-k))dt=k+\\frac{h-k}{2}=\\frac{h+k}{2}$，二次项积分为 $O(r^2)$。",
+        "故 $f(a+h,a+k)=e^a\\left[1+\\frac{h+k}{2}+O(r^2)\\right]=e^a+\\frac{e^a}{2}h+\\frac{e^a}{2}k+O(r^2)$。",
+        "因此 $f(a+h,a+k)-f(a,a)-f_x(a,a)h-f_y(a,a)k=O(r^2)=o(r)$（$r\\to0$），满足全微分定义，故 $f$ 在 $(a,a)$ 处全微分可导。"
+      ]
+    }
+  ],
+  "practice_questions": [
+    {
+      "text": "证明极限 $\\lim_{(x,y)\\to(0,0)}\\dfrac{e^x-e^y}{x-y}=1$（约定 $x\\ne y$）。",
+      "knowledge_points": [
+        "多元函数极限",
+        "积分表示"
+      ],
+      "question_type": "极限计算",
+      "method": [
+        "用积分中值表示"
+      ],
+      "solution_steps": [
+        "写出积分表示",
+        "取极限"
+      ],
+      "math_structure": {
+        "type": "limit_difference_quotient",
+        "template": "计算 $(e^x-e^y)/(x-y)$ 当 $(x,y)\\to(0,0)$ 的极限",
+        "variable_count": 2
+      },
+      "difficulty": 2,
+      "estimated_minutes": 8,
+      "answer": [
+        {
+          "label": "结果",
+          "steps": [
+            "$\\frac{e^x-e^y}{x-y}=\\int_0^1 e^{y+t(x-y)}dt$",
+            "当 $(x,y)\\to(0,0)$，被积函数一致趋于 $e^0=1$，积分趋于 $\\int_0^1 1\\,dt=1$",
+            "故极限为 $1$，与 $f(0,0)=e^0=1$ 一致"
+          ]
+        }
+      ],
+      "id": "tohoku-2023-469b59f929-q01-practice-01",
+      "school": "东北大学",
+      "year": "2023"
+    },
+    {
+      "text": "求函数 $g(x,y)=\\dfrac{\\sin x-\\sin y}{x-y}$（$x\\ne y$，$g(x,x)=\\cos x$）在 $(a,a)$ 处的偏导数 $g_x(a,a)$。",
+      "knowledge_points": [
+        "偏导数定义",
+        "泰勒展开"
+      ],
+      "question_type": "偏导数计算",
+      "method": [
+        "按定义求极限",
+        "泰勒展开"
+      ],
+      "solution_steps": [
+        "写出差商极限",
+        "泰勒展开求极限"
+      ],
+      "math_structure": {
+        "type": "difference_quotient_trig",
+        "template": "$g(x,y)=(\\sin x-\\sin y)/(x-y)$ 在对角线上求偏导数",
+        "variable_count": 2
+      },
+      "difficulty": 2,
+      "estimated_minutes": 10,
+      "answer": [
+        {
+          "label": "结果",
+          "steps": [
+            "$g_x(a,a)=\\lim_{h\\to0}\\frac{g(a+h,a)-g(a,a)}{h}=\\lim_{h\\to0}\\frac{\\frac{\\sin(a+h)-\\sin a}{h}-\\cos a}{h}$",
+            "泰勒展开 $\\sin(a+h)=\\sin a+h\\cos a-\\frac{h^2}{2}\\sin a-\\frac{h^3}{6}\\cos a+\\cdots$，代入化简得分子为 $-\\frac{h^2}{2}\\sin a+O(h^3)$，除以 $h^2$ 再除以 $h$……重新核对：$\\frac{\\sin(a+h)-\\sin a}{h}-\\cos a=-\\frac{h}{2}\\sin a+O(h^2)$，再除以 $h$ 得极限 $-\\frac{1}{2}\\sin a$",
+            "故 $g_x(a,a)=-\\dfrac{\\sin a}{2}$"
+          ]
+        }
+      ],
+      "id": "tohoku-2023-469b59f929-q01-practice-02",
+      "school": "东北大学",
+      "year": "2023"
+    },
+    {
+      "text": "验证函数 $f(x,y)=\\dfrac{e^x-e^y}{x-y}$（$x\\ne y$）满足 $f(x,y)=f(y,x)$，并说明该对称性如何简化 $f_y(a,a)$ 的计算。",
+      "knowledge_points": [
+        "函数对称性",
+        "偏导数"
+      ],
+      "question_type": "性质证明",
+      "method": [
+        "直接代入验证对称性"
+      ],
+      "solution_steps": [
+        "交换变量验证等式",
+        "说明对偏导数计算的简化作用"
+      ],
+      "math_structure": {
+        "type": "symmetry_property",
+        "template": "验证 $f(x,y)=f(y,x)$ 并应用于偏导数",
+        "variable_count": 2
+      },
+      "difficulty": 1,
+      "estimated_minutes": 5,
+      "answer": [
+        {
+          "label": "结果",
+          "steps": [
+            "交换 $x,y$：$f(y,x)=\\frac{e^y-e^x}{y-x}=\\frac{-(e^x-e^y)}{-(x-y)}=\\frac{e^x-e^y}{x-y}=f(x,y)$，对称性成立",
+            "由对称性，$f_y(a,a)=\\lim_{k\\to0}\\frac{f(a,a+k)-f(a,a)}{k}=\\lim_{k\\to0}\\frac{f(a+k,a)-f(a,a)}{k}=f_x(a,a)$（利用 $f(a,a+k)=f(a+k,a)$）",
+            "因此不需要重复计算，直接得 $f_y(a,a)=f_x(a,a)=e^a/2$"
+          ]
+        }
+      ],
+      "id": "tohoku-2023-469b59f929-q01-practice-03",
+      "school": "东北大学",
+      "year": "2023"
+    },
+    {
+      "text": "利用泰勒展开估计余项，证明函数 $h(x)=e^x$ 在 $x=a$ 处的一阶泰勒近似误差为 $O((x-a)^2)$，并说明这与问题(3)中证明可微性的方法有何关联。",
+      "knowledge_points": [
+        "泰勒公式",
+        "可微性",
+        "余项估计"
+      ],
+      "question_type": "误差估计证明",
+      "method": [
+        "泰勒展开",
+        "拉格朗日余项"
+      ],
+      "solution_steps": [
+        "写出泰勒展开式",
+        "估计余项阶数",
+        "联系可微性证明思路"
+      ],
+      "math_structure": {
+        "type": "taylor_remainder",
+        "template": "估计 $e^x$ 在 $x=a$ 附近一阶泰勒余项",
+        "variable_count": 1
+      },
+      "difficulty": 2,
+      "estimated_minutes": 8,
+      "answer": [
+        {
+          "label": "结果",
+          "steps": [
+            "$e^x=e^a+e^a(x-a)+\\frac{e^{\\xi}}{2}(x-a)^2$，$\\xi$ 在 $a,x$ 之间（拉格朗日型余项）",
+            "当 $x\\to a$，$\\xi\\to a$，故余项 $\\frac{e^\\xi}{2}(x-a)^2=O((x-a)^2)$",
+            "问题(3)中同样利用积分表示展开到二阶，余项以 $O(r^2)$ 控制，从而验证全微分定义中要求的 $o(r)$ 条件，方法思路一致"
+          ]
+        }
+      ],
+      "id": "tohoku-2023-469b59f929-q01-practice-04",
+      "school": "东北大学",
+      "year": "2023"
+    }
+  ],
+  "source_question": "問1",
+  "source_pdf": "东北大学/情报科学研究科/数学教室/东北大学_情报科学研究科_数学_2023_数学过去问.pdf",
+  "source_type": "官方过去问",
+  "subject_category": "微积分"
+}

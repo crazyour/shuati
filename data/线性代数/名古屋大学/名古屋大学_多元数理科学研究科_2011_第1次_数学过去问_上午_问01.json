@@ -1,0 +1,251 @@
+{
+  "id": "nagoya-2011-c88d968483-q01",
+  "school": "名古屋大学",
+  "year": "2011",
+  "subject": "多元数理科学研究科_全专攻",
+  "text": "设矩阵 $A=\\begin{pmatrix}1&2&3\\\\1&-2&-1\\\\2&1&-2\\\\3&-1&1\\end{pmatrix}$，$f_A:\\mathbb{R}^3\\to\\mathbb{R}^4$ 是由 $A$ 确定的线性映射。回答以下问题：\n(1) 求 $f_A$ 的像 $U=f_A(\\mathbb{R}^3)$ 的维数，并写出计算过程。\n(2) 对像 $U$，令 $U^{\\perp}=\\{x\\in\\mathbb{R}^4\\mid (x,u)=0\\ (\\forall u\\in U)\\}$，求 $U^{\\perp}$ 的一组基，其中 $(x,u)$ 是 $\\mathbb{R}^4$ 中的内积。\n(3) 对实数 $a,b$，设 $c=\\begin{pmatrix}1\\\\a\\\\-b\\\\1\\end{pmatrix}$，$d=\\begin{pmatrix}a\\\\0\\\\b-3a\\\\2\\end{pmatrix}$。求使 $U$ 与 $c,d$ 一起生成 $\\mathbb{R}^4$ 的关于 $a,b$ 的条件。",
+  "knowledge_points": [
+    "矩阵的秩",
+    "线性映射的像",
+    "正交补空间",
+    "内积",
+    "向量组生成空间的条件"
+  ],
+  "question_type": "线性代数综合计算题",
+  "method": [
+    "行简化求秩",
+    "解线性方程组求正交补",
+    "利用正交补判断张成条件"
+  ],
+  "solution_steps": [
+    "对 A 做行变换求出秩，即为 dim U",
+    "求解 x^T A = 0 得到 U 的正交补的基",
+    "利用 U^⊥ 的基向量与 c, d 做内积，判断是否同时为零来确定张成条件"
+  ],
+  "math_structure": {
+    "type": "linear_map_image_and_orthogonal_complement",
+    "template": "4x3矩阵A，求rank(A)，求ker(A^T)基，求向量c,d与U张成R^4的条件",
+    "variable_count": 2
+  },
+  "difficulty": 3,
+  "answer": [
+    {
+      "label": "(1)",
+      "steps": [
+        "对 A 做行变换：R2-R1=(0,-4,-4)，R3-2R1=(0,-3,-8)，R4-3R1=(0,-7,-8)。",
+        "继续消元：R3-(3/4)R2'=(0,0,-5)，R4-(7/4)R2'=(0,0,-1)，两者成比例（(0,0,-5)=5·(0,0,-1)），故只有两行独立于第二组消元结果，加上第一行共 3 个独立行。",
+        "因此 rank(A)=3，即 dim U = f_A(\\mathbb{R}^3) 的维数为 3。"
+      ]
+    },
+    {
+      "label": "(2)",
+      "steps": [
+        "U^⊥ 是使得 x 与 A 的每一列都正交的向量集合，即满足 x^T A = 0，也就是三个方程：x1+x2+2x3+3x4=0, 2x1-2x2+x3-x4=0, 3x1-x2-2x3+x4=0。",
+        "由第一式 x1=-x2-2x3-3x4；代入第二、第三式并化简可得 5x3+x4=0，即 x4=-5x3；进一步求出 x2=8x3，x1=5x3。",
+        "取 x3=t 得通解 x=t(5,8,1,-5)。经验证代回三个方程均满足（例如 5t+8t+2t-15t=0），故 U^⊥ 的一组基为 $(5,8,1,-5)$。"
+      ]
+    },
+    {
+      "label": "(3)",
+      "steps": [
+        "U 与 c,d 一起张成 R^4 的充要条件是 c,d 不同时属于 U，等价于 c,d 在 U^⊥ 方向 (5,8,1,-5) 上的分量不同时为零。",
+        "计算 c·(5,8,1,-5)=5·1+8a-b-5·1=8a-b；计算 d·(5,8,1,-5)=5a+ (b-3a)-10=2a+b-10。",
+        "解方程组 8a-b=0 与 2a+b-10=0：由第一式 b=8a，代入第二式得 10a=10，a=1，b=8。这是唯一使两个内积同时为零的 (a,b)。",
+        "故所求条件为：$(a,b)\\neq(1,8)$，即除此一点外，U 与 c,d 总能张成 \\mathbb{R}^4。"
+      ]
+    }
+  ],
+  "practice_questions": [
+    {
+      "text": "求矩阵 $B=\\begin{pmatrix}1&0\\\\2&1\\\\0&1\\end{pmatrix}$ 的秩，并说明其列空间的维数。",
+      "knowledge_points": [
+        "矩阵的秩",
+        "列空间维数"
+      ],
+      "question_type": "基础计算题",
+      "method": [
+        "行简化"
+      ],
+      "solution_steps": [
+        "对矩阵做行变换",
+        "确定独立行/列的个数"
+      ],
+      "math_structure": {
+        "type": "matrix_rank_basic",
+        "template": "3x2矩阵B，求rank(B)",
+        "variable_count": 0
+      },
+      "difficulty": 1,
+      "estimated_minutes": 5,
+      "answer": [
+        {
+          "label": "求rank(B)",
+          "steps": [
+            "两列 $(1,2,0)^T$ 与 $(0,1,1)^T$ 显然线性无关（不成比例）。",
+            "故 rank(B)=2，列空间维数为 2。"
+          ]
+        }
+      ],
+      "id": "nagoya-2011-c88d968483-q01-practice-01",
+      "school": "名古屋大学",
+      "year": "2011"
+    },
+    {
+      "text": "设 $M=\\begin{pmatrix}1&1&0\\\\0&1&1\\\\1&0&1\\\\1&1&1\\end{pmatrix}$，求 $g_M:\\mathbb{R}^3\\to\\mathbb{R}^4$ 的像的维数。",
+      "knowledge_points": [
+        "线性映射的像",
+        "秩的计算"
+      ],
+      "question_type": "秩计算题",
+      "method": [
+        "行简化求秩"
+      ],
+      "solution_steps": [
+        "对M进行行变换",
+        "确定独立行数即为秩",
+        "秩即像的维数"
+      ],
+      "math_structure": {
+        "type": "linear_map_image_dimension",
+        "template": "4x3矩阵M，求dim(im(g_M))",
+        "variable_count": 0
+      },
+      "difficulty": 2,
+      "estimated_minutes": 8,
+      "answer": [
+        {
+          "label": "求dim(im(g_M))",
+          "steps": [
+            "对 M 做行变换：R4-R1=(0,0,1)，R4-R2得(0,0,... )，直接验证前三行 (1,1,0),(0,1,1),(1,0,1) 是否线性无关：其行列式(视为3x3子块)= 1(1-0)-1(0-1)+0=1+1=2≠0，故这三行独立。",
+            "第四行 (1,1,1) = 行1的部分组合？验证：R1+R2-R3=(1,1,0)+(0,1,1)-(1,0,1)=(0,2,0)，不等于R4，说明R4也独立于前三行的某种组合，需要直接算秩。",
+            "更直接地，计算矩阵的秩：由于矩阵为4x3，秩最多为3，而前三行构成的3x3矩阵行列式为2≠0，所以秩至少为3，因此rank(M)=3。",
+            "故 dim(im(g_M))=3。"
+          ]
+        }
+      ],
+      "id": "nagoya-2011-c88d968483-q01-practice-02",
+      "school": "名古屋大学",
+      "year": "2011"
+    },
+    {
+      "text": "在 $\\mathbb{R}^3$ 中，设 $W=\\mathrm{span}\\{(1,1,0),(0,1,1)\\}$，求 $W^{\\perp}$ 的一组基。",
+      "knowledge_points": [
+        "正交补空间",
+        "线性方程组求解"
+      ],
+      "question_type": "正交补计算题",
+      "method": [
+        "解线性方程组"
+      ],
+      "solution_steps": [
+        "设x与W的生成元正交，列方程",
+        "解方程组得到通解",
+        "写出基向量"
+      ],
+      "math_structure": {
+        "type": "orthogonal_complement_basic",
+        "template": "R^3中2维子空间W的正交补基",
+        "variable_count": 0
+      },
+      "difficulty": 2,
+      "estimated_minutes": 8,
+      "answer": [
+        {
+          "label": "求W^⊥的基",
+          "steps": [
+            "设 $x=(x_1,x_2,x_3)$ 满足 $x\\cdot(1,1,0)=0$ 和 $x\\cdot(0,1,1)=0$，即 $x_1+x_2=0$ 和 $x_2+x_3=0$。",
+            "由第一式 $x_1=-x_2$，由第二式 $x_3=-x_2$，取 $x_2=-1$ 得 $x_1=1,x_3=1$。",
+            "验证：$(1,-1,1)\\cdot(1,1,0)=1-1=0$ ✓，$(1,-1,1)\\cdot(0,1,1)=-1+1=0$ ✓。",
+            "故 $W^{\\perp}=\\mathrm{span}\\{(1,-1,1)\\}$。"
+          ]
+        }
+      ],
+      "id": "nagoya-2011-c88d968483-q01-practice-03",
+      "school": "名古屋大学",
+      "year": "2011"
+    },
+    {
+      "text": "设 $U=\\mathrm{span}\\{(1,0,0),(0,1,0)\\}\\subset\\mathbb{R}^3$，向量 $v=(a,b,1)$。求使 $U$ 与 $v$ 一起张成 $\\mathbb{R}^3$ 的 $a,b$ 的条件。",
+      "knowledge_points": [
+        "向量组生成空间",
+        "线性无关性判定"
+      ],
+      "question_type": "张成条件判定题",
+      "method": [
+        "利用第三分量非零判断独立性"
+      ],
+      "solution_steps": [
+        "确定U的补方向",
+        "计算v在补方向上的分量",
+        "给出条件"
+      ],
+      "math_structure": {
+        "type": "span_condition_simple",
+        "template": "2维子空间U加一个向量v(a,b,1)是否张成R^3",
+        "variable_count": 2
+      },
+      "difficulty": 2,
+      "estimated_minutes": 6,
+      "answer": [
+        {
+          "label": "求a,b的条件",
+          "steps": [
+            "U 的正交补方向是 $(0,0,1)$（因为U是xy平面）。",
+            "v 在此方向上的分量是第三坐标，即 1，恒不为零，与 a,b 无关。",
+            "故对任意实数 $a,b$，$U$ 与 $v$ 总能张成 $\\mathbb{R}^3$，没有额外限制条件。"
+          ]
+        }
+      ],
+      "id": "nagoya-2011-c88d968483-q01-practice-04",
+      "school": "名古屋大学",
+      "year": "2011"
+    },
+    {
+      "text": "设 $U\\subset\\mathbb{R}^4$ 是由矩阵 $A'=\\begin{pmatrix}1&0\\\\0&1\\\\1&1\\\\0&0\\end{pmatrix}$ 的列张成的子空间（$\\dim U=2$），并设 $c'=(0,0,0,1)^T$，$d'=(k,k,0,0)^T$（$k$为实数）。求使 $U,c',d'$ 一起张成 $\\mathbb{R}^4$ 的 $k$ 的条件。",
+      "knowledge_points": [
+        "子空间维数",
+        "正交补",
+        "生成空间条件综合应用"
+      ],
+      "question_type": "综合张成条件题",
+      "method": [
+        "求U的正交补",
+        "计算c',d'在正交补方向上的分量",
+        "判断是否同时为零"
+      ],
+      "solution_steps": [
+        "求U^⊥的基（2维）",
+        "将c',d'投影到U^⊥",
+        "判断线性组合是否能覆盖U^⊥"
+      ],
+      "math_structure": {
+        "type": "span_condition_advanced",
+        "template": "2维子空间U(R^4)与两个向量c',d'(含参数k)张成R^4的条件",
+        "variable_count": 1
+      },
+      "difficulty": 4,
+      "estimated_minutes": 15,
+      "answer": [
+        {
+          "label": "求k的条件",
+          "steps": [
+            "U 的列为 $(1,0,1,0)$ 与 $(0,1,1,0)$，求 $U^{\\perp}$：设 $x=(x_1,x_2,x_3,x_4)$ 满足 $x_1+x_3=0$，$x_2+x_3=0$，得 $x_1=x_2=-x_3$，$x_4$ 自由。",
+            "故 $U^{\\perp}=\\mathrm{span}\\{(1,1,-1,0),(0,0,0,1)\\}$，是二维空间。",
+            "要使 $U,c',d'$ 张成 $\\mathbb{R}^4$，需要 $c',d'$ 在 $U^{\\perp}$ 中的投影线性无关（张成整个 $U^{\\perp}$）。",
+            "$c'=(0,0,0,1)$ 本身就在 $U^{\\perp}$ 中，对应基向量 $(0,0,0,1)$ 方向的分量为1，非零。",
+            "$d'=(k,k,0,0)$ 在 $U^{\\perp}$ 上的投影：与基 $(1,1,-1,0)$ 的内积为 $k+k-0=2k$，与 $(0,0,0,1)$ 的内积为0。",
+            "所以 $d'$ 在 $U^{\\perp}$ 中的分量为 $2k\\cdot\\frac{(1,1,-1,0)}{\\|(1,1,-1,0)\\|^2}$方向（忽略归一化），要使 $c',d'$ 的投影张成整个二维的 $U^{\\perp}$，需要 $d'$ 在 $(1,1,-1,0)$ 方向上的分量非零，即 $k\\neq 0$。",
+            "故条件为 $k\\neq 0$。"
+          ]
+        }
+      ],
+      "id": "nagoya-2011-c88d968483-q01-practice-05",
+      "school": "名古屋大学",
+      "year": "2011"
+    }
+  ],
+  "source_question": "1",
+  "source_pdf": "名古屋大学/多元数理科学研究科/全专攻/名古屋大学_多元数理科学研究科_2011_第1次_数学过去问_上午.pdf",
+  "source_type": "官方过去问",
+  "subject_category": "线性代数"
+}

@@ -1,0 +1,247 @@
+{
+  "id": "nagoya-2009-53c879b0af-q01",
+  "school": "名古屋大学",
+  "year": "2009",
+  "subject": "多元数理科学研究科_全专攻",
+  "text": "设 $\\mathbb{R}^5$ 中的向量\n$$v_1=\\begin{pmatrix}1\\\\-1\\\\4\\\\3\\\\1\\end{pmatrix},\\ v_2=\\begin{pmatrix}0\\\\0\\\\5\\\\3\\\\1\\end{pmatrix},\\ v_3=\\begin{pmatrix}-2\\\\2\\\\7\\\\3\\\\1\\end{pmatrix},\\ v_4=\\begin{pmatrix}0\\\\-1\\\\2\\\\1\\\\1\\end{pmatrix},\\ v_5=\\begin{pmatrix}4\\\\-5\\\\3\\\\4\\\\2\\end{pmatrix}$$\n所生成的子空间记为 $V$，向量\n$$w_1=\\begin{pmatrix}2\\\\-1\\\\2\\\\2\\\\-1\\end{pmatrix},\\ w_2=\\begin{pmatrix}4\\\\1\\\\2\\\\4\\\\-3\\end{pmatrix},\\ w_3=\\begin{pmatrix}1\\\\-2\\\\2\\\\1\\\\0\\end{pmatrix}$$\n所生成的子空间记为 $W$。回答以下问题：\n(1) 求 $\\dim V$ 和 $\\dim W$。并从 $v_1,\\dots,v_5$ 中选出适当的向量给出 $V$ 的一组基，说明它们确实构成基。\n(2) 求 $\\dim(V+W)$。\n(3) 求 $\\dim(V\\cap W)$。",
+  "knowledge_points": [
+    "向量组的线性相关性",
+    "子空间的维数",
+    "基的判定",
+    "子空间的和与交",
+    "维数公式 dim(V+W)+dim(V∩W)=dimV+dimW",
+    "矩阵的秩"
+  ],
+  "question_type": "子空间维数与基的计算",
+  "method": [
+    "初等行变换求秩",
+    "线性相关关系的消元验证",
+    "维数公式"
+  ],
+  "solution_steps": [
+    "对v1,...,v5构成的矩阵做行变换,寻找线性相关关系",
+    "验证剩余向量线性无关,得到dim V及其基",
+    "对w1,w2,w3同样处理求dim W",
+    "将V,W的一组基向量合并求rank得到dim(V+W)",
+    "用维数公式dim(V∩W)=dimV+dimW-dim(V+W)求解"
+  ],
+  "math_structure": {
+    "type": "subspace_dimension_intersection",
+    "template": "given vectors v_i, w_j in R^n, find dim(span v_i), dim(span w_j), dim(sum), dim(intersection)",
+    "variable_count": 8
+  },
+  "difficulty": 3,
+  "answer": [
+    {
+      "label": "(1)",
+      "steps": [
+        "计算发现 $3v_2-2v_1=(-2,2,7,3,1)=v_3$，验证：$3v_2=(0,0,15,9,3)$，$2v_1=(2,-2,8,6,2)$，两者之差恰为 $v_3$，故 $v_3$ 依赖于 $v_1,v_2$。",
+        "同理计算 $4v_1-3v_2+v_4=(4,-4,16,12,4)-(0,0,15,9,3)+(0,-1,2,1,1)=(4,-5,3,4,2)=v_5$，故 $v_5$ 依赖于 $v_1,v_2,v_4$。",
+        "考察 $v_1,v_2,v_4$ 构成的矩阵前三列所成 $3\\times3$ 子式：$\\det\\begin{pmatrix}1&-1&4\\\\0&0&5\\\\0&-1&2\\end{pmatrix}=1\\cdot(0\\cdot2-5\\cdot(-1))=5\\neq0$，故 $v_1,v_2,v_4$ 线性无关。",
+        "结论：$\\dim V=3$，且 $\\{v_1,v_2,v_4\\}$ 是 $V$ 的一组基（因为它们线性无关且 $v_3,v_5$ 均可由它们线性表示，从而生成同一子空间）。"
+      ]
+    },
+    {
+      "label": "(2)",
+      "steps": [
+        "先求 $W$：计算 $1.5w_1-0.5w_2=(1,-2,2,1,0)=w_3$（验证：$1.5w_1=(3,-1.5,3,3,-1.5)$，$0.5w_2=(2,0.5,1,2,-1.5)$，差为 $w_3$），故 $w_3$ 依赖于 $w_1,w_2$，且 $w_1,w_2$ 不成比例，故 $\\dim W=2$，基为 $\\{w_1,w_2\\}$。",
+        "由于 $V=\\mathrm{span}\\{v_1,v_2,v_4\\}$，$W=\\mathrm{span}\\{w_1,w_2\\}$，故 $V+W=\\mathrm{span}\\{v_1,v_2,v_4,w_1,w_2\\}$，构造矩阵并行简化：先用 $v_1$ 消去 $w_1,w_2$ 的第一分量，得到 $w_1-2v_1=(0,1,-6,-4,-3)$，$w_2-4v_1=(0,5,-14,-8,-7)$。",
+        "继续与 $v_4=(0,-1,2,1,1)$ 组合：$(w_1-2v_1)+v_4=(0,0,-4,-3,-2)$；$(w_2-4v_1)-5(w_1-2v_1)=(0,0,16,12,8)=-4\\times(0,0,-4,-3,-2)$，说明该行是多余的。",
+        "剩余的独立行为 $v_1,\\ (w_1-2v_1)\\text{（即含} v_4\\text{信息）},\\ v_2=(0,0,5,3,1),\\ (0,0,-4,-3,-2)$，四者互相独立（其中 $v_2$ 与 $(0,0,-4,-3,-2)$ 不成比例：$5/(-4)\\neq3/(-3)$），故秩为4。",
+        "结论：$\\dim(V+W)=4$。"
+      ]
+    },
+    {
+      "label": "(3)",
+      "steps": [
+        "利用维数公式 $\\dim(V+W)=\\dim V+\\dim W-\\dim(V\\cap W)$。",
+        "代入已知数值：$4=3+2-\\dim(V\\cap W)$。",
+        "解得 $\\dim(V\\cap W)=3+2-4=1$。"
+      ]
+    }
+  ],
+  "practice_questions": [
+    {
+      "text": "判断向量 $u_1=(1,2,-1)$ 与 $u_2=(2,4,-2)$ 在 $\\mathbb{R}^3$ 中是否线性无关。",
+      "knowledge_points": [
+        "线性相关性判定"
+      ],
+      "question_type": "线性相关性判断",
+      "method": [
+        "观察比例关系"
+      ],
+      "solution_steps": [
+        "检验是否存在标量k使u2=k*u1"
+      ],
+      "math_structure": {
+        "type": "vector_dependence_check",
+        "template": "check if u2 = k*u1 for some scalar k",
+        "variable_count": 2
+      },
+      "difficulty": 1,
+      "estimated_minutes": 3,
+      "answer": [
+        {
+          "label": "结果",
+          "steps": [
+            "观察到 $u_2=2u_1$（因为 $(2,4,-2)=2\\times(1,2,-1)$）",
+            "因此 $u_1,u_2$ 线性相关",
+            "结论：不是线性无关"
+          ]
+        }
+      ],
+      "id": "nagoya-2009-53c879b0af-q01-practice-01",
+      "school": "名古屋大学",
+      "year": "2009"
+    },
+    {
+      "text": "求向量 $a_1=(1,0,1,0)$, $a_2=(0,1,0,1)$, $a_3=(1,1,1,1)$ 在 $\\mathbb{R}^4$ 中生成子空间的维数。",
+      "knowledge_points": [
+        "生成子空间维数",
+        "线性相关性"
+      ],
+      "question_type": "维数计算",
+      "method": [
+        "寻找线性关系"
+      ],
+      "solution_steps": [
+        "检查a3是否为a1,a2的线性组合",
+        "计算a1,a2是否独立",
+        "得出维数"
+      ],
+      "math_structure": {
+        "type": "span_dimension",
+        "template": "find dim(span{a1,a2,a3}) in R^4",
+        "variable_count": 3
+      },
+      "difficulty": 1,
+      "estimated_minutes": 4,
+      "answer": [
+        {
+          "label": "结果",
+          "steps": [
+            "验证 $a_3=a_1+a_2=(1,0,1,0)+(0,1,0,1)=(1,1,1,1)$，成立",
+            "a1,a2显然线性无关(不成比例)",
+            "故生成子空间维数为2"
+          ]
+        }
+      ],
+      "id": "nagoya-2009-53c879b0af-q01-practice-02",
+      "school": "名古屋大学",
+      "year": "2009"
+    },
+    {
+      "text": "在 $\\mathbb{R}^4$ 中，给定 $b_1=(1,1,0,0)$, $b_2=(0,1,1,0)$, $b_3=(1,3,2,0)$, $b_4=(0,0,0,1)$，求 $b_3$ 用 $b_1,b_2$ 的线性组合表示的方式，并求 $\\{b_1,b_2,b_3,b_4\\}$ 生成子空间的维数。",
+      "knowledge_points": [
+        "线性组合表示",
+        "生成子空间维数"
+      ],
+      "question_type": "线性相关关系求解与维数计算",
+      "method": [
+        "解线性方程求系数",
+        "秩的计算"
+      ],
+      "solution_steps": [
+        "设b3=xb1+yb2解出x,y",
+        "验证b1,b2,b4两两独立",
+        "得出总维数"
+      ],
+      "math_structure": {
+        "type": "span_dimension_with_dependency",
+        "template": "express b3 as combination of b1,b2 and find dim(span{b1,b2,b3,b4})",
+        "variable_count": 4
+      },
+      "difficulty": 2,
+      "estimated_minutes": 6,
+      "answer": [
+        {
+          "label": "结果",
+          "steps": [
+            "设 $b_3=xb_1+yb_2$，比较分量得 $x=1,\\ x+y=3\\Rightarrow y=2,\\ y=2$（第三分量check）,第四分量0=0成立",
+            "验证：$b_1+2b_2=(1,1,0,0)+(0,2,2,0)=(1,3,2,0)=b_3$，成立，故 $b_3=b_1+2b_2$",
+            "$b_1,b_2$线性无关(不成比例)，$b_4$与前两者支撑不同(第四分量非零)必独立",
+            "故生成子空间维数为3"
+          ]
+        }
+      ],
+      "id": "nagoya-2009-53c879b0af-q01-practice-03",
+      "school": "名古屋大学",
+      "year": "2009"
+    },
+    {
+      "text": "设 $V=\\mathrm{span}\\{(1,0,0),(0,1,0)\\}$，$W=\\mathrm{span}\\{(0,1,0),(0,0,1)\\}$ 为 $\\mathbb{R}^3$ 中的子空间。求 $\\dim(V+W)$。",
+      "knowledge_points": [
+        "子空间的和",
+        "维数计算"
+      ],
+      "question_type": "子空间和的维数",
+      "method": [
+        "合并生成元求秩"
+      ],
+      "solution_steps": [
+        "合并V,W的生成向量",
+        "判断是否张成全空间",
+        "得出维数"
+      ],
+      "math_structure": {
+        "type": "sum_of_subspaces_dimension",
+        "template": "find dim(V+W) for two given spanning sets in R^3",
+        "variable_count": 4
+      },
+      "difficulty": 1,
+      "estimated_minutes": 3,
+      "answer": [
+        {
+          "label": "结果",
+          "steps": [
+            "V+W由(1,0,0),(0,1,0),(0,0,1)生成",
+            "这三个向量是R^3的标准基,线性无关",
+            "故dim(V+W)=3"
+          ]
+        }
+      ],
+      "id": "nagoya-2009-53c879b0af-q01-practice-04",
+      "school": "名古屋大学",
+      "year": "2009"
+    },
+    {
+      "text": "已知 $\\mathbb{R}^4$ 中子空间 $V,W$ 满足 $\\dim V=3,\\ \\dim W=3,\\ \\dim(V+W)=4$，求 $\\dim(V\\cap W)$。",
+      "knowledge_points": [
+        "维数公式dim(V+W)+dim(V∩W)=dimV+dimW"
+      ],
+      "question_type": "维数公式应用",
+      "method": [
+        "直接代入维数公式"
+      ],
+      "solution_steps": [
+        "写出维数公式",
+        "代入已知数值",
+        "求解未知量"
+      ],
+      "math_structure": {
+        "type": "dimension_formula_application",
+        "template": "given dimV, dimW, dim(V+W), find dim(V∩W)",
+        "variable_count": 3
+      },
+      "difficulty": 1,
+      "estimated_minutes": 2,
+      "answer": [
+        {
+          "label": "结果",
+          "steps": [
+            "公式：$\\dim(V+W)=\\dim V+\\dim W-\\dim(V\\cap W)$",
+            "代入：$4=3+3-\\dim(V\\cap W)$",
+            "解得 $\\dim(V\\cap W)=2$"
+          ]
+        }
+      ],
+      "id": "nagoya-2009-53c879b0af-q01-practice-05",
+      "school": "名古屋大学",
+      "year": "2009"
+    }
+  ],
+  "source_question": "1",
+  "source_pdf": "名古屋大学/多元数理科学研究科/全专攻/名古屋大学_多元数理科学研究科_2009_第2次_数学过去问_上午.pdf",
+  "source_type": "官方过去问",
+  "subject_category": "线性代数"
+}

@@ -1,0 +1,224 @@
+{
+  "id": "osaka-2026-04166f1147-q05",
+  "school": "大阪大学",
+  "year": "2026",
+  "subject": "情报科学研究科_情报基础数学",
+  "text": "设 $n$ 为正整数,$M_n(\\mathbb{R})$ 表示 $n$ 次实方阵全体构成的向量空间.对任意 $A=(a_{ij})\\in M_m(\\mathbb{R}),\\,B=(b_{ij})\\in M_n(\\mathbb{R})$,定义从 $M_m(\\mathbb{R})$ 到 $M_{mn}(\\mathbb{R})$ 的映射 $\\varphi_B$:\n$$\\varphi_B(A)=\\begin{pmatrix}a_{11}B&a_{12}B&\\cdots&a_{1m}B\\\\a_{21}B&a_{22}B&\\cdots&a_{2m}B\\\\\\vdots&\\vdots&\\ddots&\\vdots\\\\a_{m1}B&a_{m2}B&\\cdots&a_{mm}B\\end{pmatrix}.$$\n回答以下问题.\n(1) 对任意矩阵 $A,C\\in M_m(\\mathbb{R})$,$B,D\\in M_n(\\mathbb{R})$,证明 $\\varphi_B(A)\\varphi_D(C)=\\varphi_{BD}(AC)$ 成立.\n(2) 证明 $\\varphi_B(A)$ 的转置矩阵可以用 $A,B$ 的转置矩阵 $^tA,^tB$ 表示为 $\\varphi_{^tB}(^tA)$.\n(3) 当 $A\\in M_m(\\mathbb{R}),\\,B\\in M_n(\\mathbb{R})$ 为可逆矩阵时,证明 $\\varphi_B(A)$ 也是可逆矩阵.\n(4) 当\n$$A=\\begin{pmatrix}0&1\\\\1&0\\end{pmatrix},\\quad B=\\begin{pmatrix}-1&1&1\\\\1&-1&1\\\\1&1&-1\\end{pmatrix}$$\n时,用正交矩阵将 $\\varphi_B(A)$ 对角化.",
+  "knowledge_points": [
+    "Kronecker积(张量积)的定义与性质",
+    "分块矩阵乘法",
+    "混合乘积公式$(A\\otimes B)(C\\otimes D)=(AC)\\otimes(BD)$",
+    "转置的分块结构",
+    "可逆性与逆的构造",
+    "对称矩阵的正交对角化",
+    "特征值的张量积性质(乘积关系)"
+  ],
+  "question_type": "矩阵张量积的性质证明与正交对角化",
+  "method": [
+    "直接分块矩阵乘法验证混合乘积公式",
+    "分块矩阵转置的位置交换加内部转置",
+    "用(1)构造逆矩阵证明可逆性",
+    "利用 $A\\otimes B$ 特征值为两者特征值乘积的性质求特征值,再用张量积的特征向量构造正交矩阵"
+  ],
+  "solution_steps": [
+    "(1)按分块矩阵乘法逐块计算并比对",
+    "(2)分析分块矩阵转置时块位置转置加块内转置的规律",
+    "(3)用(1)构造 $\\varphi_{B^{-1}}(A^{-1})$ 作为逆",
+    "(4)先分别正交对角化 $A$ 与 $B$,再用特征向量的Kronecker积构造 $\\varphi_B(A)$ 的正交对角化"
+  ],
+  "math_structure": {
+    "type": "kronecker_product_linear_map",
+    "template": "$\\varphi_B(A)$ 为分块矩阵,块 $(i,j)=a_{ij}B$, $A\\in M_m(\\mathbb{R}),B\\in M_n(\\mathbb{R})$",
+    "variable_count": 2
+  },
+  "difficulty": 5,
+  "answer": [
+    {
+      "label": "(1)",
+      "steps": [
+        "$\\varphi_B(A)$ 是 $m\\times m$ 分块矩阵,第 $(i,k)$ 块为 $a_{ik}B$;$\\varphi_D(C)$ 是 $m\\times m$ 分块矩阵,第 $(k,j)$ 块为 $c_{kj}D$。",
+        "按分块矩阵乘法,乘积的第 $(i,j)$ 块为 $\\sum_{k=1}^m(a_{ik}B)(c_{kj}D)=\\sum_{k=1}^m a_{ik}c_{kj}\\,(BD)=\\left(\\sum_{k=1}^m a_{ik}c_{kj}\\right)BD=(AC)_{ij}\\,BD$。",
+        "而 $\\varphi_{BD}(AC)$ 的第 $(i,j)$ 块正是 $(AC)_{ij}(BD)$,与上式完全一致,故 $\\varphi_B(A)\\varphi_D(C)=\\varphi_{BD}(AC)$ 成立,证毕。"
+      ]
+    },
+    {
+      "label": "(2)",
+      "steps": [
+        "把 $\\varphi_B(A)$ 看作 $m\\times m$ 分块矩阵,块 $X_{ij}=a_{ij}B$($n\\times n$)。对于按分块排列的矩阵,其转置等于把块位置转置($(i,j)\\to(j,i)$)后再对每个块内部转置,即 $(\\varphi_B(A))^T$ 的第 $(i,j)$ 块为 $(X_{ji})^T$。",
+        "计算 $(X_{ji})^T=(a_{ji}B)^T=a_{ji}\\,B^T=a_{ji}\\,{}^tB$。",
+        "另一方面, $\\varphi_{^tB}({}^tA)$ 的第 $(i,j)$ 块为 $({}^tA)_{ij}\\cdot{}^tB=a_{ji}\\cdot{}^tB$(因为 $({}^tA)_{ij}=A_{ji}=a_{ji}$)。",
+        "两者的第 $(i,j)$ 块完全相同,故 $(\\varphi_B(A))^T=\\varphi_{^tB}({}^tA)$,证毕。"
+      ]
+    },
+    {
+      "label": "(3)",
+      "steps": [
+        "设 $A,B$ 可逆,考察矩阵 $\\varphi_{B^{-1}}(A^{-1})$。由第(1)部分的公式(取 $C=A^{-1},D=B^{-1}$):\n$$\\varphi_B(A)\\varphi_{B^{-1}}(A^{-1})=\\varphi_{B\\cdot B^{-1}}(A\\cdot A^{-1})=\\varphi_{E_n}(E_m).$$",
+        "$\\varphi_{E_n}(E_m)$ 的第 $(i,j)$ 块为 $(E_m)_{ij}E_n=\\delta_{ij}E_n$,即块对角、对角块为 $E_n$ 的矩阵,恰为 $mn$ 阶单位矩阵 $E_{mn}$。",
+        "同理 $\\varphi_{B^{-1}}(A^{-1})\\varphi_B(A)=\\varphi_{B^{-1}B}(A^{-1}A)=\\varphi_{E_n}(E_m)=E_{mn}$。",
+        "两个方向的乘积都等于单位矩阵,故 $\\varphi_B(A)$ 可逆,且其逆为 $\\varphi_{B^{-1}}(A^{-1})$,证毕。"
+      ]
+    },
+    {
+      "label": "(4)",
+      "steps": [
+        "先分别对角化 $A,B$。$A=\\begin{pmatrix}0&1\\\\1&0\\end{pmatrix}$ 特征值为 $1,-1$,对应单位特征向量 $u_1=\\frac1{\\sqrt2}(1,1)^T,\\,u_2=\\frac1{\\sqrt2}(1,-1)^T$。",
+        "$B=\\begin{pmatrix}-1&1&1\\\\1&-1&1\\\\1&1&-1\\end{pmatrix}=J-2E$($J$为全1矩阵)。$J$ 的特征值为 $3$(特征向量 $(1,1,1)$)和 $0$(二重,特征空间为 $\\{x+y+z=0\\}$),故 $B$ 的特征值为 $3-2=1$和 $0-2=-2$(二重)。取正交单位特征向量 $v_1=\\frac1{\\sqrt3}(1,1,1)^T$(特征值1),$v_2=\\frac1{\\sqrt2}(1,-1,0)^T,\\,v_3=\\frac1{\\sqrt6}(1,1,-2)^T$(均为特征值$-2$)。",
+        "由于 $\\varphi_B(A)$ 即为Kronecker积 $A\\otimes B$,其特征值为 $A,B$ 特征值的乘积,对应特征向量为 $u_i\\otimes v_j$(记 $u\\otimes v$ 为把 $u$ 的每个分量乘以向量 $v$ 后按块堆叠得到的向量)。六个特征对为: $u_1\\otimes v_1$(值$1$),$u_1\\otimes v_2$(值$-2$),$u_1\\otimes v_3$(值$-2$),$u_2\\otimes v_1$(值$-1$),$u_2\\otimes v_2$(值$2$),$u_2\\otimes v_3$(值$2$)。",
+        "写出正交矩阵 $P$ 的六个列向量(均为单位向量,取自 $u_i\\otimes v_j$):\n$p_1=\\frac1{\\sqrt6}(1,1,1,1,1,1)^T,\\ p_2=\\frac12(1,-1,0,1,-1,0)^T,\\ p_3=\\frac1{2\\sqrt3}(1,1,-2,1,1,-2)^T,$\n$p_4=\\frac1{\\sqrt6}(1,1,1,-1,-1,-1)^T,\\ p_5=\\frac12(1,-1,0,-1,1,0)^T,\\ p_6=\\frac1{2\\sqrt3}(1,1,-2,-1,-1,2)^T$。",
+        "于是 $\\varphi_B(A)=PDP^T$,其中 $P=(p_1,p_2,p_3,p_4,p_5,p_6)$ 为正交矩阵,$D=\\mathrm{diag}(1,-2,-2,-1,2,2)$。",
+        "验算: $\\mathrm{tr}(D)=1-2-2-1+2+2=0$,与 $\\varphi_B(A)$(对角块全为0矩阵,迹自然为0)一致;$\\det D=1\\cdot(-2)\\cdot(-2)\\cdot(-1)\\cdot2\\cdot2=-16$,而由公式 $\\det(A\\otimes B)=(\\det A)^n(\\det B)^m=(-1)^3\\cdot4^2=-16$(因 $\\det A=-1,\\det B=1\\cdot(-2)(-2)=4$),两者一致,说明特征值与对角化结构正确。"
+      ]
+    }
+  ],
+  "practice_questions": [
+    {
+      "text": "设 $A=\\begin{pmatrix}1&2\\\\0&1\\end{pmatrix},\\,B=\\begin{pmatrix}0&1\\\\1&0\\end{pmatrix}$,直接按定义写出 $\\varphi_B(A)$(即 $4\\times4$ 矩阵)。",
+      "knowledge_points": [
+        "分块矩阵的直接构造",
+        "Kronecker积的定义"
+      ],
+      "question_type": "定义的直接应用",
+      "method": [
+        "按定义把每个 $a_{ij}$ 替换为 $a_{ij}B$"
+      ],
+      "solution_steps": [
+        "列出各块 $a_{ij}B$",
+        "拼接成4x4矩阵"
+      ],
+      "math_structure": {
+        "type": "kronecker_product_linear_map",
+        "template": "$\\varphi_B(A)$, $A,B\\in M_2(\\mathbb{R})$",
+        "variable_count": 0
+      },
+      "difficulty": 1,
+      "estimated_minutes": 5,
+      "answer": [
+        {
+          "label": "构造",
+          "steps": [
+            "块 $(1,1)=1\\cdot B=\\begin{pmatrix}0&1\\\\1&0\\end{pmatrix}$,块$(1,2)=2\\cdot B=\\begin{pmatrix}0&2\\\\2&0\\end{pmatrix}$,块$(2,1)=0\\cdot B=\\begin{pmatrix}0&0\\\\0&0\\end{pmatrix}$,块$(2,2)=1\\cdot B=\\begin{pmatrix}0&1\\\\1&0\\end{pmatrix}$。",
+            "拼接得 $\\varphi_B(A)=\\begin{pmatrix}0&1&0&2\\\\1&0&2&0\\\\0&0&0&1\\\\0&0&1&0\\end{pmatrix}$。"
+          ]
+        }
+      ],
+      "id": "osaka-2026-04166f1147-q05-practice-01",
+      "school": "大阪大学",
+      "year": "2026"
+    },
+    {
+      "text": "用具体的 $2\\times2$ 矩阵 $A,C$ 与 $2\\times2$ 矩阵 $B,D$ 验证混合乘积公式 $\\varphi_B(A)\\varphi_D(C)=\\varphi_{BD}(AC)$。",
+      "knowledge_points": [
+        "混合乘积公式的数值验证",
+        "矩阵乘法"
+      ],
+      "question_type": "公式验证",
+      "method": [
+        "取简单具体矩阵直接计算两边并比较"
+      ],
+      "solution_steps": [
+        "选取 $A,C,B,D$",
+        "分别计算左边和右边",
+        "比对结果"
+      ],
+      "math_structure": {
+        "type": "kronecker_mixed_product_verification",
+        "template": "$\\varphi_B(A)\\varphi_D(C)=\\varphi_{BD}(AC)$, 数值验证",
+        "variable_count": 0
+      },
+      "difficulty": 2,
+      "estimated_minutes": 8,
+      "answer": [
+        {
+          "label": "验证",
+          "steps": [
+            "取 $A=\\begin{pmatrix}1&0\\\\0&1\\end{pmatrix},C=\\begin{pmatrix}0&1\\\\1&0\\end{pmatrix},B=\\begin{pmatrix}1&1\\\\0&1\\end{pmatrix},D=\\begin{pmatrix}1&0\\\\1&1\\end{pmatrix}$。",
+            "$AC=C=\\begin{pmatrix}0&1\\\\1&0\\end{pmatrix}$,$BD=\\begin{pmatrix}1&1\\\\0&1\\end{pmatrix}\\begin{pmatrix}1&0\\\\1&1\\end{pmatrix}=\\begin{pmatrix}2&1\\\\1&1\\end{pmatrix}$。右边 $\\varphi_{BD}(AC)$ 的块$(1,2)=1\\cdot BD=\\begin{pmatrix}2&1\\\\1&1\\end{pmatrix}$,块$(2,1)$同理,对角块为0(因 $AC$ 对角元为0)。",
+            "左边: $\\varphi_B(A)=\\begin{pmatrix}B&0\\\\0&B\\end{pmatrix}$(因 $A=E$),$\\varphi_D(C)$的块$(1,2)=1\\cdot D=D$,块$(2,1)=1\\cdot D=D$,对角块0。乘积 $\\varphi_B(A)\\varphi_D(C)$ 的块$(1,2)=B\\cdot D=\\begin{pmatrix}2&1\\\\1&1\\end{pmatrix}$,与右边一致,验证通过。"
+          ]
+        }
+      ],
+      "id": "osaka-2026-04166f1147-q05-practice-02",
+      "school": "大阪大学",
+      "year": "2026"
+    },
+    {
+      "text": "对 (2)题目练习中的 $A,B$($A=\\begin{pmatrix}1&2\\\\0&1\\end{pmatrix},B=\\begin{pmatrix}0&1\\\\1&0\\end{pmatrix}$),验证 $(\\varphi_B(A))^T=\\varphi_{^tB}({}^tA)$。",
+      "knowledge_points": [
+        "转置公式的数值验证",
+        "分块矩阵转置"
+      ],
+      "question_type": "公式验证",
+      "method": [
+        "直接对已构造的4x4矩阵转置并与右边比较"
+      ],
+      "solution_steps": [
+        "写出 $\\varphi_B(A)$ 转置",
+        "计算 ${}^tA,{}^tB$ 并构造右边",
+        "比对"
+      ],
+      "math_structure": {
+        "type": "kronecker_transpose_verification",
+        "template": "$(\\varphi_B(A))^T=\\varphi_{^tB}({}^tA)$, 数值验证",
+        "variable_count": 0
+      },
+      "difficulty": 2,
+      "estimated_minutes": 6,
+      "answer": [
+        {
+          "label": "验证",
+          "steps": [
+            "由练习1, $\\varphi_B(A)=\\begin{pmatrix}0&1&0&2\\\\1&0&2&0\\\\0&0&0&1\\\\0&0&1&0\\end{pmatrix}$,其转置为 $\\begin{pmatrix}0&1&0&0\\\\1&0&0&0\\\\0&2&0&1\\\\2&0&1&0\\end{pmatrix}$。",
+            "${}^tA=\\begin{pmatrix}1&0\\\\2&1\\end{pmatrix}$,${}^tB=B=\\begin{pmatrix}0&1\\\\1&0\\end{pmatrix}$(因$B$对称)。$\\varphi_{^tB}({}^tA)$ 的块$(1,1)=1\\cdot B,(1,2)=0,(2,1)=2\\cdot B,(2,2)=1\\cdot B$,拼接得 $\\begin{pmatrix}0&1&0&0\\\\1&0&0&0\\\\0&2&0&1\\\\2&0&1&0\\end{pmatrix}$,与上面转置结果一致,验证通过。"
+          ]
+        }
+      ],
+      "id": "osaka-2026-04166f1147-q05-practice-03",
+      "school": "大阪大学",
+      "year": "2026"
+    },
+    {
+      "text": "作为(4)的简化版本,设 $A=\\begin{pmatrix}0&1\\\\1&0\\end{pmatrix},\\,B=\\begin{pmatrix}2&1\\\\1&2\\end{pmatrix}$,用正交矩阵将 $\\varphi_B(A)$ 对角化。",
+      "knowledge_points": [
+        "对称矩阵正交对角化",
+        "Kronecker积特征值的乘积规律"
+      ],
+      "question_type": "正交对角化(简化模型)",
+      "method": [
+        "分别对角化 $A,B$",
+        "用特征向量的Kronecker积构造整体正交矩阵"
+      ],
+      "solution_steps": [
+        "求 $A,B$ 的特征值与正交特征向量",
+        "组合成 $\\varphi_B(A)$ 的特征对",
+        "写出正交对角化结果"
+      ],
+      "math_structure": {
+        "type": "kronecker_product_linear_map",
+        "template": "$\\varphi_B(A)$ 正交对角化, $A,B\\in M_2(\\mathbb{R})$对称",
+        "variable_count": 0
+      },
+      "difficulty": 3,
+      "estimated_minutes": 12,
+      "answer": [
+        {
+          "label": "求解",
+          "steps": [
+            "$A$ 特征值 $1,-1$,特征向量 $u_1=\\frac1{\\sqrt2}(1,1)^T,u_2=\\frac1{\\sqrt2}(1,-1)^T$(与原题相同)。",
+            "$B=\\begin{pmatrix}2&1\\\\1&2\\end{pmatrix}$,特征方程 $(2-\\lambda)^2-1=0\\Rightarrow\\lambda=3$或$\\lambda=1$。特征值3对应特征向量 $v_1=\\frac1{\\sqrt2}(1,1)^T$;特征值1对应 $v_2=\\frac1{\\sqrt2}(1,-1)^T$。",
+            "$\\varphi_B(A)=A\\otimes B$ 是 $4\\times4$ 对称矩阵,特征值为乘积: $u_1\\otimes v_1\\to1\\times3=3$,$u_1\\otimes v_2\\to1\\times1=1$,$u_2\\otimes v_1\\to(-1)\\times3=-3$,$u_2\\otimes v_2\\to(-1)\\times1=-1$。",
+            "对应正交单位特征向量: $p_1=u_1\\otimes v_1=\\frac12(1,1,1,1)^T$,$p_2=u_1\\otimes v_2=\\frac12(1,-1,1,-1)^T$,$p_3=u_2\\otimes v_1=\\frac12(1,1,-1,-1)^T$,$p_4=u_2\\otimes v_2=\\frac12(1,-1,-1,1)^T$。",
+            "于是 $\\varphi_B(A)=PDP^T$,$P=(p_1,p_2,p_3,p_4)$ 为正交矩阵,$D=\\mathrm{diag}(3,1,-3,-1)$。验算: $\\mathrm{tr}(D)=0$,与 $\\varphi_B(A)$ 对角块为0矩阵(因 $A$ 对角元为0)的迹一致;$\\det D=3\\cdot1\\cdot(-3)\\cdot(-1)=9$,而 $(\\det A)^2(\\det B)^2=(-1)^2\\cdot3^2=9$,吻合。"
+          ]
+        }
+      ],
+      "id": "osaka-2026-04166f1147-q05-practice-04",
+      "school": "大阪大学",
+      "year": "2026"
+    }
+  ],
+  "source_question": "問5",
+  "source_pdf": "大阪大学/情报科学研究科/情报基础数学/大阪大学_情报科学研究科_情报基础数学_2026_数学过去问.pdf",
+  "source_type": "官方过去问",
+  "subject_category": "线性代数"
+}

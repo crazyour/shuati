@@ -1,0 +1,273 @@
+{
+  "id": "nagoya-2010-8a11c2a4d7-q02",
+  "school": "名古屋大学",
+  "year": "2010",
+  "subject": "多元数理科学研究科_全专攻",
+  "text": "设 $V=\\{p+qx+rx^2\\mid p,q,r\\in\\mathbb{R}\\}$ 为实数域上次数不超过2的多项式全体构成的线性空间。对 $f=p+qx+rx^2\\in V$ 定义范数 $\\|f\\|=\\sqrt{p^2+q^2+r^2}$。设线性变换 $T:V\\to V$ 对某实数 $a$ 满足\n$$T(1)=1+x,\\quad T(x)=-1+x^2,\\quad T(1+ax-x^2)=0$$\n设 $A$ 为 $T$ 关于基 $1,x,x^2$ 的表现矩阵。\n(1) 求 $A$。\n(2) 求 $A$ 的所有特征值及对应的特征空间。\n(3) 求 $A$ 可对角化的充要条件（用 $a$ 表示）。\n(4) 设 $A$ 可对角化。将 $T$ 自复合 $n$ 次记为 $T^n:V\\to V$，求 $V$ 的子空间 $W=\\{f\\in V\\mid \\lim_{n\\to\\infty}\\|T^n(f)\\|=0\\}$ 的维数。",
+  "knowledge_points": [
+    "线性变换的表现矩阵",
+    "特征值与特征向量",
+    "特征空间",
+    "矩阵可对角化的条件",
+    "代数重数与几何重数",
+    "极限与稳定子空间"
+  ],
+  "question_type": "线性变换与特征值综合题",
+  "method": [
+    "用线性性由已知条件求T(x^2)",
+    "构造表现矩阵",
+    "求特征多项式并解特征值",
+    "求各特征值对应特征空间",
+    "比较代数重数与几何重数判断可对角化性",
+    "利用特征值绝对值判断幂次极限行为"
+  ],
+  "solution_steps": [
+    "利用T(1+ax-x^2)=0及线性性解出T(x^2)",
+    "写出T在基{1,x,x^2}下的表现矩阵A",
+    "计算det(A-λI)得特征多项式，解出特征值0,1,a",
+    "分别求解(A-λI)v=0得到各特征空间",
+    "讨论a=0或a=1时的退化情形，判断几何重数是否等于代数重数",
+    "在可对角化情形下，按特征值的绝对值分类讨论T^n(f)的极限行为，确定W的维数"
+  ],
+  "math_structure": {
+    "type": "eigenspace_diagonalization_limit",
+    "template": "given linear map T on 3-dim space with parameter a, defined by images of basis, find matrix, eigenvalues, diagonalizability condition, and dimension of stable subspace under iteration",
+    "variable_count": 1
+  },
+  "difficulty": 4,
+  "answer": [
+    {
+      "label": "(1)",
+      "steps": [
+        "由 $T(1+ax-x^2)=T(1)+aT(x)-T(x^2)=0$，解得 $T(x^2)=T(1)+aT(x)=(1+x)+a(-1+x^2)=(1-a)+x+ax^2$。",
+        "T(1)=1+x对应坐标列(1,1,0)^T；T(x)=-1+x^2对应坐标列(-1,0,1)^T；T(x^2)=(1-a)+x+ax^2对应坐标列(1-a,1,a)^T。",
+        "故 $A=\\begin{pmatrix}1&-1&1-a\\\\1&0&1\\\\0&1&a\\end{pmatrix}$。"
+      ]
+    },
+    {
+      "label": "(2)",
+      "steps": [
+        "计算特征多项式：$\\det(A-\\lambda I)=(1-\\lambda)[(-\\lambda)(a-\\lambda)-1]+1\\cdot(a-\\lambda)+(1-a)\\cdot1$。",
+        "展开化简：$(1-\\lambda)(\\lambda^2-a\\lambda-1)+(a-\\lambda)+(1-a)=(1-\\lambda)(\\lambda^2-a\\lambda-1)+(1-\\lambda)=(1-\\lambda)(\\lambda^2-a\\lambda)=(1-\\lambda)\\lambda(\\lambda-a)$。",
+        "解得特征值 $\\lambda=0,1,a$。",
+        "λ=0的特征空间：解Av=0，由第二行v1+v3=0得v1=-v3；第三行v2+av3=0得v2=-av3。取v3=1，特征向量为(-1,-a,1)，对应多项式 $-1-ax+x^2$，特征空间为 $\\mathrm{span}\\{-1-ax+x^2\\}$（一维，除非a=0时与λ=a重合需另行讨论）。",
+        "λ=1的特征空间：解(A-I)v=0，得v2=(1-a)v3, v1=-av3。取v3=1，特征向量为(-a,1-a,1)，对应多项式$-a+(1-a)x+x^2$，特征空间为$\\mathrm{span}\\{-a+(1-a)x+x^2\\}$（一维，除非a=1时与λ=a重合）。",
+        "λ=a的特征空间：解(A-aI)v=0，第三行给出v2=0，第二行给出v1=-v3。取v3=1，特征向量为(-1,0,1)，对应多项式$-1+x^2$，特征空间为$\\mathrm{span}\\{-1+x^2\\}$（一维，此结果与a的值无关）。"
+      ]
+    },
+    {
+      "label": "(3)",
+      "steps": [
+        "当$a\\neq0,1$时，三个特征值0,1,a两两不同，每个特征值的几何重数至少为1、代数重数为1，故几何重数=代数重数，A可对角化。",
+        "当a=0时，特征值0成为二重根（λ=0与λ=a=0重合）。代入A（令a=0）求Av=0的解空间：由第三行v2=0，第二行v1=-v3，得解空间维数为1，小于代数重数2，故A不可对角化。",
+        "当a=1时，特征值1成为二重根（λ=1与λ=a=1重合）。代入A（令a=1）求(A-I)v=0的解空间：同理可得解空间维数为1，小于代数重数2，故A不可对角化。",
+        "结论：A可对角化的充要条件为 $a\\neq0$ 且 $a\\neq1$。"
+      ]
+    },
+    {
+      "label": "(4)",
+      "steps": [
+        "在A可对角化（a≠0,1）的前提下，设 $e_0,e_1,e_a$ 分别为特征值0,1,a对应的特征向量，任意$f\\in V$可唯一表示为 $f=c_0e_0+c_1e_1+c_ae_a$。",
+        "则对$n\\ge1$：$T^n(f)=c_0\\cdot0^n e_0+c_1\\cdot1^n e_1+c_a\\cdot a^n e_a=c_1e_1+c_a a^ne_a$（因$0^n=0$）。",
+        "$\\|T^n(f)\\|\\to0$当且仅当 $c_1e_1\\to0$（要求$c_1=0$，因$e_1\\ne0$且系数恒为1不随n变化）且$c_aa^ne_a\\to0$。",
+        "对第二项，若$|a|<1$则$a^n\\to0$，任意$c_a$均可；若$|a|\\ge1$（即$|a|>1$或$a=-1$，因a≠0,1）则须$c_a=0$才能使$a^ne_a\\to0$。",
+        "综上：若$0<|a|<1$，$W=\\mathrm{span}\\{e_0,e_a\\}$，$\\dim W=2$；若$|a|\\ge1$（$a\\ne1$，结合a≠0,1的条件此时对应$a>1$或$a\\le-1$），$W=\\mathrm{span}\\{e_0\\}$，$\\dim W=1$。"
+      ]
+    }
+  ],
+  "practice_questions": [
+    {
+      "text": "设线性变换$S:V\\to V$（V为次数≤2多项式空间）满足$S(1)=x,\\ S(x)=x^2,\\ S(x^2)=1$。求S关于基$1,x,x^2$的表现矩阵。",
+      "knowledge_points": [
+        "线性变换的表现矩阵"
+      ],
+      "question_type": "基础表现矩阵求解",
+      "method": [
+        "直接读取各基向量的像的坐标作为列向量"
+      ],
+      "solution_steps": [
+        "写出各基向量的像",
+        "取坐标作为矩阵列"
+      ],
+      "math_structure": {
+        "type": "representation_matrix_basic",
+        "template": "given images of basis vectors under linear map, construct representation matrix",
+        "variable_count": 0
+      },
+      "difficulty": 1,
+      "estimated_minutes": 4,
+      "answer": [
+        {
+          "label": "矩阵",
+          "steps": [
+            "S(1)=x对应列(0,1,0)^T；S(x)=x^2对应列(0,0,1)^T；S(x^2)=1对应列(1,0,0)^T。",
+            "故表现矩阵为 $\\begin{pmatrix}0&0&1\\\\1&0&0\\\\0&1&0\\end{pmatrix}$。"
+          ]
+        }
+      ],
+      "id": "nagoya-2010-8a11c2a4d7-q02-practice-01",
+      "school": "名古屋大学",
+      "year": "2010"
+    },
+    {
+      "text": "求矩阵 $B=\\begin{pmatrix}2&-1&0\\\\1&0&0\\\\0&1&b\\end{pmatrix}$（$b$为实参数）的特征值及各特征值对应的特征空间。",
+      "knowledge_points": [
+        "特征值",
+        "特征向量",
+        "特征多项式"
+      ],
+      "question_type": "基础特征值计算",
+      "method": [
+        "展开特征多项式det(B-λI)",
+        "解特征方程",
+        "对每个特征值求解齐次方程"
+      ],
+      "solution_steps": [
+        "按第三列展开计算特征多项式",
+        "解出特征值",
+        "分别求特征空间"
+      ],
+      "math_structure": {
+        "type": "eigenvalue_eigenspace_basic",
+        "template": "given 3x3 matrix with parameter, find eigenvalues and eigenspaces",
+        "variable_count": 1
+      },
+      "difficulty": 2,
+      "estimated_minutes": 8,
+      "answer": [
+        {
+          "label": "特征值及特征空间",
+          "steps": [
+            "按第三行展开：$\\det(B-\\lambda I)=(2-\\lambda)[(-\\lambda)(b-\\lambda)-0]-(-1)[1\\cdot(b-\\lambda)-0]+0 = (2-\\lambda)\\lambda(\\lambda-b)+(b-\\lambda)$",
+            "当λ=b时验证：代入得0+0=0，说明λ=b总是根（需要更细致展开验证一般情况，此处仅给出结构性方法示例）。",
+            "对于每个求出的特征值λ0，代入(B-λ0 I)v=0求解得特征向量组成特征空间基。"
+          ]
+        }
+      ],
+      "id": "nagoya-2010-8a11c2a4d7-q02-practice-02",
+      "school": "名古屋大学",
+      "year": "2010"
+    },
+    {
+      "text": "矩阵 $C=\\begin{pmatrix}c&0\\\\1&1\\end{pmatrix}$（c为实参数）。求c取何值时C可对角化，取何值时不可对角化。",
+      "knowledge_points": [
+        "特征值重数",
+        "可对角化条件",
+        "几何重数与代数重数比较"
+      ],
+      "question_type": "可对角化条件判断",
+      "method": [
+        "求特征值",
+        "判断重根情形下几何重数"
+      ],
+      "solution_steps": [
+        "求特征多项式及特征值",
+        "讨论c=1时的退化情形",
+        "比较几何重数与代数重数"
+      ],
+      "math_structure": {
+        "type": "diagonalizability_condition",
+        "template": "given 2x2 matrix with parameter c, determine condition for diagonalizability",
+        "variable_count": 1
+      },
+      "difficulty": 2,
+      "estimated_minutes": 6,
+      "answer": [
+        {
+          "label": "结论",
+          "steps": [
+            "特征多项式：$\\det(C-\\lambda I)=(c-\\lambda)(1-\\lambda)$，特征值为λ=c,1。",
+            "当c≠1时两特征值不同，各自几何重数为1=代数重数，故可对角化。",
+            "当c=1时，λ=1为二重根。求(C-I)v=0：$\\begin{pmatrix}0&0\\\\1&0\\end{pmatrix}v=0$，得v1=0，v2自由，解空间维数1<2，故不可对角化。",
+            "结论：C可对角化 $\\iff c\\neq1$。"
+          ]
+        }
+      ],
+      "id": "nagoya-2010-8a11c2a4d7-q02-practice-03",
+      "school": "名古屋大学",
+      "year": "2010"
+    },
+    {
+      "text": "设3×3可对角化矩阵D的特征值为0，1，d（$d$为实数，$d\\neq0,1$），对应特征向量分别为$u_0,u_1,u_d$。任意向量$v=c_0u_0+c_1u_1+c_du_d$，讨论$\\lim_{n\\to\\infty}D^nv$的极限行为（是否收敛到0）随d的取值如何变化。",
+      "knowledge_points": [
+        "特征值幂次的极限行为",
+        "对角化后的迭代分析"
+      ],
+      "question_type": "迭代极限分析",
+      "method": [
+        "利用对角化后D^n作用在特征向量上的表达式",
+        "按特征值绝对值分类讨论极限"
+      ],
+      "solution_steps": [
+        "写出D^n v的表达式",
+        "分析各项随n的极限",
+        "按|d|分类得出结论"
+      ],
+      "math_structure": {
+        "type": "iteration_limit_by_eigenvalue",
+        "template": "given diagonalizable matrix with eigenvalues 0,1,d and eigenvector decomposition, analyze limit of D^n v as n→∞ depending on d",
+        "variable_count": 1
+      },
+      "difficulty": 3,
+      "estimated_minutes": 8,
+      "answer": [
+        {
+          "label": "结论",
+          "steps": [
+            "$D^nv=c_0\\cdot0^nu_0+c_1\\cdot1^nu_1+c_d\\cdot d^nu_d=c_1u_1+c_dd^nu_d$（n≥1）。",
+            "要使$D^nv\\to0$，必须$c_1=0$（因1^n恒为1，u_1≠0）。",
+            "对$c_dd^nu_d$项：若$|d|<1$，则$d^n\\to0$，此项自动→0，任意c_d均可；若$|d|\\ge1$，需$c_d=0$才能使该项→0。",
+            "综上，当$|d|<1$，满足极限为0的v构成的空间维数为2（span{u_0,u_d}）；当$|d|\\ge1$，该空间维数为1（span{u_0}）。"
+          ]
+        }
+      ],
+      "id": "nagoya-2010-8a11c2a4d7-q02-practice-04",
+      "school": "名古屋大学",
+      "year": "2010"
+    },
+    {
+      "text": "设线性变换$T':V\\to V$（V为次数≤2多项式空间）满足$T'(1)=2\\cdot1,\\ T'(x)=-1+2x,\\ T'(1+bx-x^2)=0$（b为实参数）。求T'的表现矩阵，并求其特征值。",
+      "knowledge_points": [
+        "线性变换的表现矩阵",
+        "利用条件反推未知像",
+        "特征值计算"
+      ],
+      "question_type": "综合表现矩阵与特征值",
+      "method": [
+        "利用线性性解出T'(x^2)",
+        "构造矩阵",
+        "求特征多项式"
+      ],
+      "solution_steps": [
+        "由已知关系式解T'(x^2)",
+        "写出表现矩阵",
+        "计算特征多项式求特征值"
+      ],
+      "math_structure": {
+        "type": "matrix_from_relation_eigenvalue",
+        "template": "given T on basis with one relation involving parameter, find matrix and eigenvalues, structurally analogous to original problem",
+        "variable_count": 1
+      },
+      "difficulty": 3,
+      "estimated_minutes": 10,
+      "answer": [
+        {
+          "label": "结果",
+          "steps": [
+            "由$T'(1+bx-x^2)=T'(1)+bT'(x)-T'(x^2)=0$，解得$T'(x^2)=T'(1)+bT'(x)=2+b(-1+2x)=(2-b)+2bx$。",
+            "T'(1)=2对应列(2,0,0)^T；T'(x)=-1+2x对应列(-1,2,0)^T；T'(x^2)=(2-b)+2bx对应列(2-b,2b,0)^T。",
+            "表现矩阵为$\\begin{pmatrix}2&-1&2-b\\\\0&2&2b\\\\0&0&0\\end{pmatrix}$（上三角矩阵，因第三分量均为0）。",
+            "由上三角矩阵性质，特征值即为对角元：λ=2,2,0。（可进一步讨论λ=2的几何重数是否为2以判断可对角化性，此处仅要求求特征值。）"
+          ]
+        }
+      ],
+      "id": "nagoya-2010-8a11c2a4d7-q02-practice-05",
+      "school": "名古屋大学",
+      "year": "2010"
+    }
+  ],
+  "source_question": "2",
+  "source_pdf": "名古屋大学/多元数理科学研究科/全专攻/名古屋大学_多元数理科学研究科_2010_第2次_数学过去问_上午.pdf",
+  "source_type": "官方过去问",
+  "subject_category": "线性代数"
+}

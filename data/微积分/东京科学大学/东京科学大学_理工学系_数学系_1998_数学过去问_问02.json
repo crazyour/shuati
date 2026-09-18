@@ -1,0 +1,196 @@
+{
+  "id": "isct-1998-ecc9f1f22d-q02",
+  "school": "东京科学大学",
+  "year": "1998",
+  "subject": "理工学系_数学系",
+  "text": "设数列 $\\{a_n\\}$ 满足 $\\lim_{n\\to\\infty}a_n=A$。\n(1) 证明 $\\displaystyle\\lim_{n\\to\\infty}\\frac{1}{n}(a_1+a_2+\\cdots+a_n)=A$。\n(2) 设 $A=0$，定义数列 $\\{b_n\\}$ 为\n$$b_n=\\frac{1}{n^{\\alpha}}\\big(a_1+2^2a_2+\\cdots+n^2a_n\\big)\\quad(n=1,2,\\cdots).$$\n求使得对一切满足 $a_n\\to0$ 的数列 $\\{a_n\\}$，$\\{b_n\\}$ 都收敛的最小实数 $\\alpha$，并求此时的极限值。",
+  "knowledge_points": [
+    "Cesàro均值定理",
+    "Toeplitz型加权平均",
+    "数列极限的$\\varepsilon$-$N$论证",
+    "求和的渐近估计",
+    "反例构造"
+  ],
+  "question_type": "数列极限证明与最优阶数确定",
+  "method": [
+    "分割求和法（前N项+后面项）估计",
+    "利用Toeplitz正则加权条件",
+    "反例法确定临界指数"
+  ],
+  "solution_steps": [
+    "(1)对任意 $\\varepsilon>0$ 取 $N$ 使 $n>N$ 时 $|a_n-A|<\\varepsilon$，把前 $N$ 项与后面项分别估计",
+    "(2)先证明 $\\alpha=3$ 时 $b_n\\to0$：用同样的分割法结合 $\\sum k^2\\sim n^3/3$",
+    "(2)再证明对任意 $\\alpha<3$ 存在反例（如 $a_n=1/\\log(n+1)$）使 $b_n\\to\\infty$，从而 $\\alpha=3$ 是最小值"
+  ],
+  "math_structure": {
+    "type": "weighted_cesaro_limit",
+    "template": "b_n=\\frac{1}{n^{\\alpha}}\\sum_{k=1}^n k^2a_k,\\ a_n\\to0,\\ \\text{find minimal }\\alpha",
+    "variable_count": 1
+  },
+  "difficulty": 4,
+  "answer": [
+    {
+      "label": "(1)",
+      "steps": [
+        "任给 $\\varepsilon>0$，因 $a_n\\to A$，存在 $N$ 使 $n>N$ 时 $|a_n-A|<\\varepsilon/2$。",
+        "对 $n>N$，将和拆分：$\\left|\\frac1n\\sum_{k=1}^na_k-A\\right|\\le\\frac1n\\sum_{k=1}^N|a_k-A|+\\frac1n\\sum_{k=N+1}^n|a_k-A|\\le\\frac{C_N}{n}+\\frac{n-N}{n}\\cdot\\frac{\\varepsilon}{2}$，其中 $C_N=\\sum_{k=1}^N|a_k-A|$ 为固定常数。",
+        "当 $n\\to\\infty$，第一项 $\\to0$，第二项 $<\\varepsilon/2$，故存在 $N'$ 使 $n>N'$ 时整体小于 $\\varepsilon$，即 $\\frac1n\\sum a_k\\to A$。"
+      ]
+    },
+    {
+      "label": "(2)",
+      "steps": [
+        "先证 $\\alpha=3$ 时对一切 $a_n\\to0$ 都有 $b_n\\to0$：记 $T_n=\\sum_{k=1}^nk^2a_k$。任给 $\\varepsilon>0$，取 $N$ 使 $k>N$ 时 $|a_k|<\\varepsilon$。则 $|T_n|\\le\\sum_{k=1}^Nk^2|a_k|+\\varepsilon\\sum_{k=N+1}^nk^2\\le C_N+\\varepsilon\\cdot\\frac{n(n+1)(2n+1)}{6}$，其中 $C_N$ 为与 $n$ 无关的常数。",
+        "两边除以 $n^3$ 取上极限：$\\limsup_n\\frac{|T_n|}{n^3}\\le0+\\varepsilon\\cdot\\frac13$。由 $\\varepsilon$ 任意，得 $\\lim_{n\\to\\infty}T_n/n^3=0$，即 $\\alpha=3$ 时 $b_n\\to0$。",
+        "再证任意 $\\alpha<3$ 不满足普遍收敛：取反例 $a_n=\\dfrac{1}{\\log(n+1)}\\to0$。此时 $T_n=\\sum_{k=1}^n\\dfrac{k^2}{\\log(k+1)}$，用积分比较 $\\int_1^n\\frac{x^2}{\\log x}dx\\sim\\frac{n^3}{3\\log n}$，故 $T_n\\sim\\frac{n^3}{3\\log n}$。",
+        "于是对 $\\alpha<3$，$b_n=T_n/n^\\alpha\\sim\\dfrac{n^{3-\\alpha}}{3\\log n}\\to\\infty$（因 $3-\\alpha>0$），即 $\\{b_n\\}$ 不收敛。",
+        "结论：使 $\\{b_n\\}$ 对一切 $a_n\\to0$ 都收敛的最小 $\\alpha$ 为 $\\alpha=3$，此时极限值为 $\\lim_{n\\to\\infty}b_n=0$。"
+      ]
+    }
+  ],
+  "practice_questions": [
+    {
+      "text": "设 $a_n\\to A$。证明 $\\displaystyle\\lim_{n\\to\\infty}\\frac{1}{n}\\sum_{k=1}^n(-1)^{k+1}\\cdot0$（即验证Cesàro均值定理的基本情形）：设 $a_n=1+\\frac{(-1)^n}{n}$，求 $\\lim_{n\\to\\infty}\\frac1n\\sum_{k=1}^na_k$。",
+      "knowledge_points": [
+        "Cesàro均值定理基本应用"
+      ],
+      "question_type": "极限计算",
+      "method": [
+        "直接用Cesàro均值定理"
+      ],
+      "solution_steps": [
+        "求 $a_n$ 的极限",
+        "代入Cesàro均值定理"
+      ],
+      "math_structure": {
+        "type": "cesaro_mean_basic",
+        "template": "a_n=1+\\frac{(-1)^n}{n},\\ \\lim\\frac1n\\sum a_k",
+        "variable_count": 0
+      },
+      "difficulty": 1,
+      "estimated_minutes": 4,
+      "answer": [
+        {
+          "label": "求极限",
+          "steps": [
+            "$a_n\\to1$ 因为 $(-1)^n/n\\to0$",
+            "由(1)结论 $\\frac1n\\sum_{k=1}^na_k\\to1$",
+            "结论：极限为 $1$"
+          ]
+        }
+      ],
+      "id": "isct-1998-ecc9f1f22d-q02-practice-01",
+      "school": "东京科学大学",
+      "year": "1998"
+    },
+    {
+      "text": "设 $a_n\\to0$。证明 $\\displaystyle\\lim_{n\\to\\infty}\\frac{1}{n^2}\\sum_{k=1}^nka_k=0$。",
+      "knowledge_points": [
+        "加权Cesàro均值",
+        "分割估计法"
+      ],
+      "question_type": "加权极限证明",
+      "method": [
+        "分割求和为前N项与后面项估计"
+      ],
+      "solution_steps": [
+        "拆分和为固定项和尾项",
+        "利用 $\\sum k\\sim n^2/2$ 及 $\\varepsilon$ 任意性"
+      ],
+      "math_structure": {
+        "type": "weighted_cesaro_limit",
+        "template": "c_n=\\frac1{n^2}\\sum_{k=1}^nka_k,\\ a_n\\to0",
+        "variable_count": 0
+      },
+      "difficulty": 2,
+      "estimated_minutes": 8,
+      "answer": [
+        {
+          "label": "证明",
+          "steps": [
+            "设 $S_n=\\sum_{k=1}^nka_k$，任给 $\\varepsilon>0$ 取 $N$ 使 $k>N$ 时 $|a_k|<\\varepsilon$",
+            "$|S_n|\\le\\sum_{k=1}^Nk|a_k|+\\varepsilon\\sum_{k=N+1}^nk\\le C_N+\\varepsilon\\cdot n^2/2$（大致估计）",
+            "两边除以 $n^2$ 并取极限，$\\limsup|S_n|/n^2\\le\\varepsilon/2$，由 $\\varepsilon$ 任意得极限为 $0$"
+          ]
+        }
+      ],
+      "id": "isct-1998-ecc9f1f22d-q02-practice-02",
+      "school": "东京科学大学",
+      "year": "1998"
+    },
+    {
+      "text": "取 $a_n=\\dfrac1n$（满足 $a_n\\to0$）。计算 $\\displaystyle\\lim_{n\\to\\infty}\\frac{1}{n^2}\\sum_{k=1}^nk^2a_k$ 的值，并说明此例揭示了为何 $\\alpha=2$ 不足以保证对一切 $a_n\\to0$ 都收敛。",
+      "knowledge_points": [
+        "反例构造",
+        "加权求和渐近估计"
+      ],
+      "question_type": "反例分析",
+      "method": [
+        "直接计算特例的求和渐近式"
+      ],
+      "solution_steps": [
+        "代入 $a_n=1/n$ 化简求和",
+        "得出极限并与一般理论对比"
+      ],
+      "math_structure": {
+        "type": "counterexample_weighted_sum",
+        "template": "a_n=1/n,\\ b_n=\\frac1{n^{2}}\\sum_{k=1}^nk^2a_k",
+        "variable_count": 0
+      },
+      "difficulty": 2,
+      "estimated_minutes": 6,
+      "answer": [
+        {
+          "label": "计算与说明",
+          "steps": [
+            "$\\sum_{k=1}^nk^2a_k=\\sum_{k=1}^nk=\\frac{n(n+1)}{2}$",
+            "$b_n=\\frac{n(n+1)}{2n^2}\\to\\frac12$，收敛且极限非零",
+            "说明：虽然此例中 $\\alpha=2$ 恰好收敛，但对更慢趋于 $0$ 的数列（如 $1/\\log n$）$\\alpha=2$ 不够，需 $\\alpha=3$ 才能对一切数列成立，这正是原题中反例的作用"
+          ]
+        }
+      ],
+      "id": "isct-1998-ecc9f1f22d-q02-practice-03",
+      "school": "东京科学大学",
+      "year": "1998"
+    },
+    {
+      "text": "取 $a_n=\\dfrac{1}{\\sqrt n}$（$a_n\\to0$）。判断当 $\\alpha=3$ 时 $b_n=\\dfrac{1}{n^3}\\sum_{k=1}^nk^2a_k$ 是否收敛，并求极限（若存在）。",
+      "knowledge_points": [
+        "加权Cesàro均值的验证",
+        "渐近估计"
+      ],
+      "question_type": "验证性计算",
+      "method": [
+        "积分比较估计求和渐近阶"
+      ],
+      "solution_steps": [
+        "估计 $\\sum k^2/\\sqrt k=\\sum k^{3/2}$ 的渐近阶",
+        "代入 $\\alpha=3$ 计算极限"
+      ],
+      "math_structure": {
+        "type": "weighted_cesaro_limit",
+        "template": "a_n=1/\\sqrt n,\\ b_n=\\frac1{n^3}\\sum_{k=1}^nk^2a_k",
+        "variable_count": 0
+      },
+      "difficulty": 3,
+      "estimated_minutes": 8,
+      "answer": [
+        {
+          "label": "求极限",
+          "steps": [
+            "$\\sum_{k=1}^nk^{3/2}\\sim\\int_0^nx^{3/2}dx=\\frac{2}{5}n^{5/2}$",
+            "$b_n\\sim\\frac{2n^{5/2}/5}{n^3}=\\frac{2}{5\\sqrt n}\\to0$",
+            "结论：$b_n\\to0$，与理论一致（$\\alpha=3$时对一切 $a_n\\to0$ 均有 $b_n\\to0$）"
+          ]
+        }
+      ],
+      "id": "isct-1998-ecc9f1f22d-q02-practice-04",
+      "school": "东京科学大学",
+      "year": "1998"
+    }
+  ],
+  "source_question": "午前 問2",
+  "source_pdf": "东京科学大学/理工学系/数学系/东京科学大学_理工学系_数学系_1998_数学过去问.pdf",
+  "source_type": "官方过去问",
+  "subject_category": "微积分"
+}

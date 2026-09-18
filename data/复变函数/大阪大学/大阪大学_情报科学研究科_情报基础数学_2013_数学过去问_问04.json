@@ -1,0 +1,216 @@
+{
+  "id": "osaka-2013-6ff4bc84d8-q04",
+  "school": "大阪大学",
+  "year": "2013",
+  "subject": "情报科学研究科_情报基础数学",
+  "text": "对正数 $a$，考虑下列积分：\n$$I(a)=\\int_0^\\pi \\tan(x+ia)\\,dx$$\n其中 $i$ 为虚数单位。回答以下问题：\n(1) 证明 $\\displaystyle\\lim_{a\\to\\infty}\\tan(x+ia)=i$。\n(2) 证明积分值 $I(a)$ 不依赖于 $a>0$。\n(3) 求积分值 $I(a)$。",
+  "knowledge_points": [
+    "复变函数极限",
+    "三角函数与双曲函数的复数关系",
+    "柯西积分定理",
+    "矩形围道积分",
+    "周期函数性质",
+    "一致收敛与积分号下取极限"
+  ],
+  "question_type": "复变函数极限与围道积分不变性证明",
+  "method": [
+    "用指数形式改写tan(z)求极限",
+    "验证被积函数在带状区域内全纯以套用柯西定理",
+    "构造矩形围道并利用tan的周期性使侧边积分抵消",
+    "结合(1)的一致极限与(2)的不变性求出积分值"
+  ],
+  "solution_steps": [
+    "将 tan(z) 写成指数形式，代入 z=x+ia，分析 a→∞ 时各项的极限，证明(1)且极限关于x一致",
+    "证明当 a>0 时 cos(x+ia) 不为零，从而 tan(x+ia) 在此区域内全纯",
+    "取 0<a1<a2，构造矩形围道，利用柯西积分定理令闭围道积分为零",
+    "计算矩形两条竖直边的积分，利用 tan 的周期性证明它们恰好抵消，从而得到 I(a1)=I(a2)",
+    "利用(2)的不变性和(1)的一致极限，令 a→∞ 在积分号下取极限得到 I(a)=iπ"
+  ],
+  "math_structure": {
+    "type": "contour_integral_invariance_complex_tangent",
+    "template": "I(a)=int_0^pi tan(x+ia)dx; prove limit as a->infty, prove invariance via Cauchy theorem, evaluate",
+    "variable_count": 1
+  },
+  "difficulty": 5,
+  "answer": [
+    {
+      "label": "(1)",
+      "steps": [
+        "利用指数形式 $\\tan z=\\dfrac{e^{iz}-e^{-iz}}{i(e^{iz}+e^{-iz})}$，令 $z=x+ia$，则 $e^{iz}=e^{-a}e^{ix}\\to0$，$e^{-iz}=e^{a}e^{-ix}\\to\\infty\\ (a\\to\\infty)$",
+        "将分子分母同除以 $e^{a}e^{-ix}$：$\\tan z=\\dfrac{e^{-2a}e^{2ix}-1}{i\\left(e^{-2a}e^{2ix}+1\\right)}$",
+        "由于 $|e^{2ix}|=1$，$e^{-2a}\\to0$ 且该收敛速度与 $x$ 无关，即关于 $x\\in[0,\\pi]$ 一致收敛",
+        "令 $a\\to\\infty$，得 $\\tan(x+ia)\\to\\dfrac{0-1}{i(0+1)}=-\\dfrac1i=i$，证毕"
+      ]
+    },
+    {
+      "label": "(2)",
+      "steps": [
+        "$\\cos(x+ia)=\\cos x\\cosh a-i\\sin x\\sinh a$；令其为零需 $\\cos x\\cosh a=0$ 且 $\\sin x\\sinh a=0$。因 $\\cosh a>0$ 恒成立，需 $\\cos x=0$，此时 $\\sin x=\\pm1\\ne0$，则需 $\\sinh a=0$ 即 $a=0$，与 $a>0$ 矛盾，故当 $a>0$ 时 $\\tan(x+ia)$ 对任意实数 $x$ 都无奇点（全纯）",
+        "取 $0<a_1<a_2$，考虑矩形围道 $\\partial([0,\\pi]\\times[a_1,a_2])$（逆时针方向）。因 $\\tan z$ 在此闭矩形上全纯，由柯西积分定理，沿闭围道的积分为0",
+        "底边（$a=a_1,x:0\\to\\pi$）积分为 $I(a_1)$；顶边（$a=a_2,x:\\pi\\to0$）积分为 $-I(a_2)$",
+        "右边（$x=\\pi,\\ a:a_1\\to a_2$，$dz=i\\,da$）：$\\tan(\\pi+ia)=\\tan(ia)=i\\tanh a$，积分$=\\int_{a_1}^{a_2}i\\cdot i\\tanh a\\,da=-\\int_{a_1}^{a_2}\\tanh a\\,da$；左边（$x=0,\\ a:a_2\\to a_1$）：积分$=\\int_{a_2}^{a_1}i\\tan(ia)\\,da=+\\int_{a_1}^{a_2}\\tanh a\\,da$，恰好与右边抵消（因为 $\\tan(0+ia)=\\tan(\\pi+ia)$，两条竖边被积函数相同、方向相反）",
+        "四边之和为0，即 $I(a_1)-I(a_2)+0=0$，故 $I(a_1)=I(a_2)$，说明 $I(a)$ 对所有 $a>0$ 取相同值"
+      ]
+    },
+    {
+      "label": "(3)",
+      "steps": [
+        "由(2)，$I(a)$ 是与 $a>0$ 无关的常数，记为 $I$",
+        "由(1)，当 $a\\to\\infty$ 时 $\\tan(x+ia)\\to i$ 关于 $x\\in[0,\\pi]$ 一致收敛，故可在积分号下取极限：$\\lim_{a\\to\\infty}I(a)=\\int_0^\\pi i\\,dx=i\\pi$",
+        "结合 $I(a)$ 恒为常数，得 $I(a)=i\\pi$ 对所有 $a>0$ 成立"
+      ]
+    }
+  ],
+  "practice_questions": [
+    {
+      "text": "证明恒等式 $\\tan(iy)=i\\tanh y$（$y$ 为实数）。",
+      "knowledge_points": [
+        "复数三角函数与双曲函数的关系"
+      ],
+      "question_type": "基础恒等式证明",
+      "method": [
+        "用sin(iy), cos(iy)的定义直接代入"
+      ],
+      "solution_steps": [
+        "写出 sin(iy)=i sinh y, cos(iy)=cosh y",
+        "相除得结论"
+      ],
+      "math_structure": {
+        "type": "complex_trig_hyperbolic_identity",
+        "template": "prove tan(iy) = i*tanh(y)",
+        "variable_count": 1
+      },
+      "difficulty": 1,
+      "estimated_minutes": 3,
+      "answer": [
+        {
+          "label": "证明",
+          "steps": [
+            "$\\sin(iy)=i\\sinh y,\\ \\cos(iy)=\\cosh y$（由 $\\sinh,\\cosh$ 的定义直接展开可验证）",
+            "$\\tan(iy)=\\dfrac{\\sin(iy)}{\\cos(iy)}=\\dfrac{i\\sinh y}{\\cosh y}=i\\tanh y$，证毕"
+          ]
+        }
+      ],
+      "id": "osaka-2013-6ff4bc84d8-q04-practice-01",
+      "school": "大阪大学",
+      "year": "2013"
+    },
+    {
+      "text": "求 $\\displaystyle\\lim_{a\\to\\infty}\\tanh a$，并据此求 $\\displaystyle\\lim_{a\\to\\infty}\\tan(ia)$。",
+      "knowledge_points": [
+        "双曲函数极限",
+        "复数极限计算"
+      ],
+      "question_type": "基础极限计算",
+      "method": [
+        "用tanh的定义计算极限"
+      ],
+      "solution_steps": [
+        "写出tanh a的指数定义",
+        "取极限",
+        "结合上一问结论求tan(ia)的极限"
+      ],
+      "math_structure": {
+        "type": "complex_trig_hyperbolic_identity",
+        "template": "find lim_{a->infty} tanh(a) and lim tan(ia)",
+        "variable_count": 0
+      },
+      "difficulty": 1,
+      "estimated_minutes": 4,
+      "answer": [
+        {
+          "label": "求极限",
+          "steps": [
+            "$\\tanh a=\\dfrac{e^a-e^{-a}}{e^a+e^{-a}}=\\dfrac{1-e^{-2a}}{1+e^{-2a}}\\to1\\ (a\\to\\infty)$",
+            "由上一问 $\\tan(ia)=i\\tanh a$，故 $\\lim_{a\\to\\infty}\\tan(ia)=i\\cdot1=i$"
+          ]
+        }
+      ],
+      "id": "osaka-2013-6ff4bc84d8-q04-practice-02",
+      "school": "大阪大学",
+      "year": "2013"
+    },
+    {
+      "text": "仿照原题(2)的方法，证明 $\\displaystyle\\int_0^\\pi\\cot(x+ia)\\,dx$（$a>0$）的值不依赖于 $a$。",
+      "knowledge_points": [
+        "柯西积分定理",
+        "矩形围道积分",
+        "周期函数性质"
+      ],
+      "question_type": "围道积分不变性的类比证明",
+      "method": [
+        "验证被积函数在a>0区域全纯",
+        "构造矩形围道并利用周期性使竖边抵消"
+      ],
+      "solution_steps": [
+        "验证cot(x+ia)对a>0无奇点",
+        "构造矩形围道并应用柯西定理",
+        "计算两条竖边积分并说明相互抵消",
+        "得出积分值与a无关"
+      ],
+      "math_structure": {
+        "type": "contour_integral_invariance_complex_tangent",
+        "template": "prove int_0^pi cot(x+ia)dx is independent of a>0",
+        "variable_count": 1
+      },
+      "difficulty": 4,
+      "estimated_minutes": 12,
+      "answer": [
+        {
+          "label": "证明",
+          "steps": [
+            "$\\sin(x+ia)=\\sin x\\cosh a+i\\cos x\\sinh a=0$ 需 $\\sin x\\cosh a=0$ 且 $\\cos x\\sinh a=0$；因 $\\cosh a>0$，需 $\\sin x=0$，即 $x=k\\pi$，此时 $\\cos x=\\pm1\\ne0$，需 $\\sinh a=0$ 即 $a=0$，与 $a>0$ 矛盾，故 $\\cot(x+ia)$ 在 $a>0$ 区域内对一切实数 $x$ 全纯",
+            "取 $0<a_1<a_2$，在矩形围道 $[0,\\pi]\\times[a_1,a_2]$ 上应用柯西积分定理，闭围道积分为0：底边为记为 $J(a_1)$，顶边为 $-J(a_2)$",
+            "由于 $\\cot z$ 周期为 $\\pi$，即 $\\cot(0+ia)=\\cot(\\pi+ia)$，故左右两条竖边（方向相反、被积函数相同）的积分恰好相互抵消",
+            "四边之和为0给出 $J(a_1)-J(a_2)=0$，即 $J(a)=\\int_0^\\pi\\cot(x+ia)dx$ 与 $a>0$ 无关"
+          ]
+        }
+      ],
+      "id": "osaka-2013-6ff4bc84d8-q04-practice-03",
+      "school": "大阪大学",
+      "year": "2013"
+    },
+    {
+      "text": "利用 $\\displaystyle\\lim_{a\\to\\infty}\\tan(x+ia)=i$ 的结论求 $\\displaystyle\\lim_{a\\to\\infty}\\cot(x+ia)$，并结合上一问的不变性求出 $\\displaystyle\\int_0^\\pi\\cot(x+ia)\\,dx$（$a>0$）的值。",
+      "knowledge_points": [
+        "复数极限的倒数关系",
+        "一致收敛下积分号取极限",
+        "围道积分不变性的应用"
+      ],
+      "question_type": "综合应用求积分值",
+      "method": [
+        "用cot=1/tan和已知极限求cot的极限",
+        "结合不变性在极限下计算积分"
+      ],
+      "solution_steps": [
+        "由tan极限求cot极限",
+        "说明该极限关于x一致",
+        "在积分号下取极限并结合不变性得结果"
+      ],
+      "math_structure": {
+        "type": "contour_integral_invariance_complex_tangent",
+        "template": "evaluate int_0^pi cot(x+ia)dx using invariance and limit a->infty",
+        "variable_count": 1
+      },
+      "difficulty": 4,
+      "estimated_minutes": 8,
+      "answer": [
+        {
+          "label": "求积分值",
+          "steps": [
+            "$\\cot(x+ia)=\\dfrac{1}{\\tan(x+ia)}$，由原题(1)结论 $\\tan(x+ia)\\to i$（关于$x\\in[0,\\pi]$一致），故 $\\cot(x+ia)\\to\\dfrac1i=-i\\ (a\\to\\infty)$，且该收敛关于$x$一致",
+            "因收敛一致，可在积分号下取极限：$\\lim_{a\\to\\infty}\\int_0^\\pi\\cot(x+ia)dx=\\int_0^\\pi(-i)\\,dx=-i\\pi$",
+            "结合上一问结论 $\\int_0^\\pi\\cot(x+ia)dx$ 与 $a>0$ 无关，故对所有 $a>0$，$\\int_0^\\pi\\cot(x+ia)\\,dx=-i\\pi$"
+          ]
+        }
+      ],
+      "id": "osaka-2013-6ff4bc84d8-q04-practice-04",
+      "school": "大阪大学",
+      "year": "2013"
+    }
+  ],
+  "source_question": "問4",
+  "source_pdf": "大阪大学/情报科学研究科/情报基础数学/大阪大学_情报科学研究科_情报基础数学_2013_数学过去问.pdf",
+  "source_type": "官方过去问",
+  "subject_category": "复变函数"
+}

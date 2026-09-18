@@ -1,0 +1,253 @@
+{
+  "id": "nagoya-2011-c88d968483-q04",
+  "school": "名古屋大学",
+  "year": "2011",
+  "subject": "多元数理科学研究科_全专攻",
+  "text": "设 $\\mathbb{R}^2$ 上的函数 $f(x,y)$ 定义为 $f(x,y)=e^{-x^2-y^2}(1-x-y)$。回答以下问题：\n(1) 求 $f(x,y)$ 的所有临界点，其中 $(a,b)$ 是临界点是指 $\\dfrac{\\partial f}{\\partial x}(a,b)=\\dfrac{\\partial f}{\\partial y}(a,b)=0$。\n(2) 对 $R>0$，设 $D_R=\\{(x,y)\\mid x^2+y^2\\le R^2\\}$ 为半径 $R$ 的闭圆盘。证明 $f(x,y)$ 在 $D_R$ 上的最大值、最小值存在，并且当 $R$ 充分大时，它们与 $f$ 在 $\\mathbb{R}^2$ 上的最大值、最小值一致。\n(3) 求 $f(x,y)$ 在 $\\mathbb{R}^2$ 上的最大值、最小值以及取得这些值的点。",
+  "knowledge_points": [
+    "多元函数临界点",
+    "偏导数计算",
+    "有界闭集上连续函数的极值存在性",
+    "函数在无穷远处的衰减性",
+    "多元函数全局最值分析"
+  ],
+  "question_type": "多元函数极值综合分析题",
+  "method": [
+    "求偏导数并解方程组求临界点",
+    "利用连续函数在紧集上取得极值的定理",
+    "分析函数在无穷远处趋于0的性质",
+    "比较临界点函数值确定全局极值"
+  ],
+  "solution_steps": [
+    "对f求偏导数并令其为0，解出所有临界点",
+    "说明f在闭圆盘上连续，由极值存在定理得最大最小值存在；再证明f(x,y)在||（x,y)||→∞时趋于0，从而全局极值必在有界区域内取得",
+    "计算各临界点处的函数值，比较大小确定全局最大值和最小值"
+  ],
+  "math_structure": {
+    "type": "critical_point_global_extremum",
+    "template": "f(x,y)=e^{-x^2-y^2}(1-x-y)的临界点与全局最值分析",
+    "variable_count": 0
+  },
+  "difficulty": 4,
+  "answer": [
+    {
+      "label": "(1)",
+      "steps": [
+        "计算偏导数：$\\dfrac{\\partial f}{\\partial x}=e^{-x^2-y^2}[-2x(1-x-y)-1]$，$\\dfrac{\\partial f}{\\partial y}=e^{-x^2-y^2}[-2y(1-x-y)-1]$。",
+        "令两式为零（指数因子恒正可消去）：$2x(1-x-y)=-1$ …(i)，$2y(1-x-y)=-1$ …(ii)。两式相减得 $(1-x-y)(2x-2y)=0$，即 $1-x-y=0$或$x=y$。",
+        "若 $1-x-y=0$，代入(i)得 $0=-1$，矛盾，故舍去；因此必有 $x=y$。代入(i)：$2x(1-2x)=-1\\Rightarrow4x^2-2x-1=0\\Rightarrow x=\\dfrac{1\\pm\\sqrt5}{4}$。",
+        "所以临界点为 $P_1=\\left(\\dfrac{1+\\sqrt5}{4},\\dfrac{1+\\sqrt5}{4}\\right)$ 与 $P_2=\\left(\\dfrac{1-\\sqrt5}{4},\\dfrac{1-\\sqrt5}{4}\\right)$。"
+      ]
+    },
+    {
+      "label": "(2)",
+      "steps": [
+        "$f$ 是初等函数的乘积，在 $\\mathbb{R}^2$ 上连续，$D_R$ 是有界闭集（紧集），由多元连续函数在紧集上取得最大值最小值的定理，$f$ 在 $D_R$ 上的最大值、最小值必存在。",
+        "考察 $\\|(x,y)\\|\\to\\infty$ 时 $f$ 的行为：$|f(x,y)|=e^{-x^2-y^2}|1-x-y|\\le e^{-x^2-y^2}(1+|x|+|y|)$，而指数衰减 $e^{-x^2-y^2}$ 的速度远超多项式增长 $(1+|x|+|y|)$，故 $f(x,y)\\to0$ 当 $\\|(x,y)\\|\\to\\infty$。",
+        "由(1)知存在临界点使 $f$ 取非零值（后续(3)中验证 $f(P_1)<0<f(P_2)$），因此存在正数 $\\varepsilon>0$ 使得 $|f|>\\varepsilon$ 在某有界区域外恒不成立，即全局最大最小值必在某有界区域内取得。取 $R$ 充分大使该有界区域完全包含于 $D_R$ 内，此时 $D_R$ 上的最大最小值即为 $\\mathbb{R}^2$ 上的最大最小值。"
+      ]
+    },
+    {
+      "label": "(3)",
+      "steps": [
+        "计算 $P_1=\\left(\\dfrac{1+\\sqrt5}{4},\\dfrac{1+\\sqrt5}{4}\\right)$ 处的函数值：$x_1^2+y_1^2=2x_1^2$，其中 $x_1^2=\\dfrac{(1+\\sqrt5)^2}{16}=\\dfrac{6+2\\sqrt5}{16}=\\dfrac{3+\\sqrt5}{8}$，故 $2x_1^2=\\dfrac{3+\\sqrt5}{4}$；又 $1-x_1-y_1=1-2x_1=1-\\dfrac{1+\\sqrt5}{2}=\\dfrac{1-\\sqrt5}{2}$（负数）。",
+        "所以 $f(P_1)=e^{-(3+\\sqrt5)/4}\\cdot\\dfrac{1-\\sqrt5}{2}<0$。",
+        "计算 $P_2=\\left(\\dfrac{1-\\sqrt5}{4},\\dfrac{1-\\sqrt5}{4}\\right)$ 处：$x_2^2=\\dfrac{(1-\\sqrt5)^2}{16}=\\dfrac{6-2\\sqrt5}{16}=\\dfrac{3-\\sqrt5}{8}$，$2x_2^2=\\dfrac{3-\\sqrt5}{4}$；$1-x_2-y_2=1-2x_2=1-\\dfrac{1-\\sqrt5}{2}=\\dfrac{1+\\sqrt5}{2}$（正数）。",
+        "所以 $f(P_2)=e^{-(3-\\sqrt5)/4}\\cdot\\dfrac{1+\\sqrt5}{2}>0$，数值约为 $0.826\\times1.618\\approx1.337$，而 $f(P_1)\\approx0.270\\times(-0.618)\\approx-0.167$。",
+        "由(2)知 $f\\to0$ 于无穷远，且只有这两个临界点，一个取正值一个取负值，因此由连续性与紧集极值定理，$f(P_2)$ 是 $\\mathbb{R}^2$ 上的全局最大值，$f(P_1)$ 是全局最小值。",
+        "综上：最大值为 $\\dfrac{1+\\sqrt5}{2}e^{-(3-\\sqrt5)/4}$，在点 $\\left(\\dfrac{1-\\sqrt5}{4},\\dfrac{1-\\sqrt5}{4}\\right)$ 取得；最小值为 $\\dfrac{1-\\sqrt5}{2}e^{-(3+\\sqrt5)/4}$，在点 $\\left(\\dfrac{1+\\sqrt5}{4},\\dfrac{1+\\sqrt5}{4}\\right)$ 取得。"
+      ]
+    }
+  ],
+  "practice_questions": [
+    {
+      "text": "求函数 $g(x,y)=e^{-x^2-y^2}(x+y)$ 的所有临界点。",
+      "knowledge_points": [
+        "偏导数",
+        "临界点求解"
+      ],
+      "question_type": "临界点基础题",
+      "method": [
+        "求偏导数并解方程组"
+      ],
+      "solution_steps": [
+        "计算偏导数",
+        "联立方程求解"
+      ],
+      "math_structure": {
+        "type": "critical_point_basic",
+        "template": "g(x,y)=e^{-x^2-y^2}(x+y)的临界点",
+        "variable_count": 0
+      },
+      "difficulty": 2,
+      "estimated_minutes": 8,
+      "answer": [
+        {
+          "label": "求临界点",
+          "steps": [
+            "$\\partial g/\\partial x=e^{-x^2-y^2}[1-2x(x+y)]$，$\\partial g/\\partial y=e^{-x^2-y^2}[1-2y(x+y)]$，令两者为0：$2x(x+y)=1$，$2y(x+y)=1$。",
+            "两式相减：$2(x-y)(x+y)=0$，即$x=y$或$x+y=0$。若$x+y=0$代入得$0=1$矛盾，故$x=y$。",
+            "代入 $2x(2x)=1\\Rightarrow4x^2=1\\Rightarrow x=\\pm\\dfrac12$，得临界点 $(\\dfrac12,\\dfrac12)$ 和 $(-\\dfrac12,-\\dfrac12)$。"
+          ]
+        }
+      ],
+      "id": "nagoya-2011-c88d968483-q04-practice-01",
+      "school": "名古屋大学",
+      "year": "2011"
+    },
+    {
+      "text": "证明函数 $h(x,y)=e^{-x^2-y^2}(2-x-y)$ 满足 $\\lim_{\\|(x,y)\\|\\to\\infty}h(x,y)=0$。",
+      "knowledge_points": [
+        "极限",
+        "指数衰减与多项式增长比较"
+      ],
+      "question_type": "极限证明题",
+      "method": [
+        "不等式估计"
+      ],
+      "solution_steps": [
+        "用绝对值不等式界定h",
+        "说明指数项主导多项式项"
+      ],
+      "math_structure": {
+        "type": "limit_at_infinity_decay",
+        "template": "证明h(x,y)=e^{-x^2-y^2}(2-x-y)在无穷远处趋于0",
+        "variable_count": 0
+      },
+      "difficulty": 2,
+      "estimated_minutes": 6,
+      "answer": [
+        {
+          "label": "证明极限为0",
+          "steps": [
+            "$|h(x,y)|\\le e^{-x^2-y^2}(2+|x|+|y|)$。",
+            "设 $r=\\sqrt{x^2+y^2}\\to\\infty$，则 $|x|+|y|\\le\\sqrt2 r$，故 $|h|\\le e^{-r^2}(2+\\sqrt2 r)$。",
+            "由于指数衰减 $e^{-r^2}$ 远快于线性增长 $r$，$\\lim_{r\\to\\infty}e^{-r^2}(2+\\sqrt2r)=0$，故 $h(x,y)\\to0$ 当 $\\|(x,y)\\|\\to\\infty$。"
+          ]
+        }
+      ],
+      "id": "nagoya-2011-c88d968483-q04-practice-02",
+      "school": "名古屋大学",
+      "year": "2011"
+    },
+    {
+      "text": "证明：连续函数在有界闭集（紧集）上必取得最大值和最小值（叙述并简要论证 Weierstrass 极值定理在本情形的应用）。",
+      "knowledge_points": [
+        "紧集上连续函数的极值定理"
+      ],
+      "question_type": "定理陈述与论证题",
+      "method": [
+        "引用极值定理"
+      ],
+      "solution_steps": [
+        "陈述定理条件",
+        "说明该定理适用条件在本题中满足"
+      ],
+      "math_structure": {
+        "type": "extreme_value_theorem_statement",
+        "template": "叙述并应用Weierstrass极值定理于闭圆盘上的连续函数",
+        "variable_count": 0
+      },
+      "difficulty": 1,
+      "estimated_minutes": 5,
+      "answer": [
+        {
+          "label": "论证",
+          "steps": [
+            "Weierstrass极值定理：若函数在有界闭集（紧集）上连续，则该函数在此集合上必取得最大值和最小值。",
+            "闭圆盘 $D_R$ 是 $\\mathbb{R}^2$ 中的有界闭集，指数函数与多项式的乘积在 $\\mathbb{R}^2$ 上处处连续，限制在 $D_R$ 上仍连续。",
+            "故由该定理，$f$ 在 $D_R$ 上必取得最大值和最小值。"
+          ]
+        }
+      ],
+      "id": "nagoya-2011-c88d968483-q04-practice-03",
+      "school": "名古屋大学",
+      "year": "2011"
+    },
+    {
+      "text": "设 $k(x,y)=e^{-x^2-y^2}(3-2x-2y)$，求其所有临界点并判断哪一个使 $k$ 取正值哪一个使 $k$ 取负值。",
+      "knowledge_points": [
+        "临界点求解",
+        "函数值比较"
+      ],
+      "question_type": "临界点与符号判定题",
+      "method": [
+        "偏导数联立求解",
+        "代入比较函数值"
+      ],
+      "solution_steps": [
+        "求偏导数并解方程组得临界点",
+        "计算各临界点处函数值",
+        "比较符号"
+      ],
+      "math_structure": {
+        "type": "critical_point_sign_analysis",
+        "template": "k(x,y)=e^{-x^2-y^2}(3-2x-2y)的临界点及符号判定",
+        "variable_count": 0
+      },
+      "difficulty": 3,
+      "estimated_minutes": 12,
+      "answer": [
+        {
+          "label": "求临界点及符号",
+          "steps": [
+            "$\\partial k/\\partial x=e^{-x^2-y^2}[-2x(3-2x-2y)-2]$，$\\partial k/\\partial y=e^{-x^2-y^2}[-2y(3-2x-2y)-2]$，令括号为0：$x(3-2x-2y)=-1$，$y(3-2x-2y)=-1$。",
+            "两式相等：$x(3-2x-2y)=y(3-2x-2y)\\Rightarrow(3-2x-2y)(x-y)=0$。若$3-2x-2y=0$代入原方程得$0=-1$矛盾，故$x=y$。",
+            "代入 $x(3-4x)=-1\\Rightarrow4x^2-3x-1=0\\Rightarrow x=\\dfrac{3\\pm\\sqrt{9+16}}{8}=\\dfrac{3\\pm5}{8}$，得 $x=1$ 或 $x=-\\dfrac14$。",
+            "临界点为 $(1,1)$ 和 $(-\\dfrac14,-\\dfrac14)$。计算 $k(1,1)=e^{-2}(3-4)=-e^{-2}<0$；计算 $k(-\\dfrac14,-\\dfrac14)=e^{-1/8}(3+1)=4e^{-1/8}>0$。",
+            "故 $(-\\dfrac14,-\\dfrac14)$ 使 $k$ 取正值，$(1,1)$ 使 $k$ 取负值。"
+          ]
+        }
+      ],
+      "id": "nagoya-2011-c88d968483-q04-practice-04",
+      "school": "名古屋大学",
+      "year": "2011"
+    },
+    {
+      "text": "综合运用(1)-(3)的方法，求函数 $m(x,y)=e^{-x^2-y^2}(2-x-2y)$ 的全局最大值和最小值及取得点（提示：临界点方程不再满足$x=y$的简单形式，需分别处理）。",
+      "knowledge_points": [
+        "多元函数临界点",
+        "非对称系数下的极值分析",
+        "全局最值判定"
+      ],
+      "question_type": "综合极值分析题",
+      "method": [
+        "偏导数联立求解非对称方程组",
+        "利用无穷远处衰减性判定全局最值"
+      ],
+      "solution_steps": [
+        "求偏导数并联立解方程组（此时系数不对称，需用消元法）",
+        "求出所有临界点",
+        "比较函数值确定全局最大最小值"
+      ],
+      "math_structure": {
+        "type": "critical_point_asymmetric",
+        "template": "m(x,y)=e^{-x^2-y^2}(2-x-2y)的全局极值分析",
+        "variable_count": 0
+      },
+      "difficulty": 4,
+      "estimated_minutes": 15,
+      "answer": [
+        {
+          "label": "求全局最值",
+          "steps": [
+            "$\\partial m/\\partial x=e^{-x^2-y^2}[-2x(2-x-2y)-1]=0\\Rightarrow2x(2-x-2y)=-1$ …(i)",
+            "$\\partial m/\\partial y=e^{-x^2-y^2}[-2y(2-x-2y)-2]=0\\Rightarrow2y(2-x-2y)=-2\\Rightarrow y(2-x-2y)=-1$ …(ii)",
+            "由(i)：$x(2-x-2y)=-\\dfrac12$；结合(ii)：$y(2-x-2y)=-1$，两式相除（假设$2-x-2y\\neq0$，若为0则代入(i)得$0=-1/2$矛盾，故非零）：$\\dfrac{x}{y}=\\dfrac{1}{2}\\Rightarrow y=2x$。",
+            "代入(i)：$x(2-x-4x)=-\\dfrac12\\Rightarrow x(2-5x)=-\\dfrac12\\Rightarrow2x-5x^2=-\\dfrac12\\Rightarrow5x^2-2x-\\dfrac12=0\\Rightarrow10x^2-4x-1=0$，解得 $x=\\dfrac{4\\pm\\sqrt{16+40}}{20}=\\dfrac{4\\pm\\sqrt{56}}{20}=\\dfrac{2\\pm\\sqrt{14}}{10}$。",
+            "对应两临界点 $x_+=\\dfrac{2+\\sqrt{14}}{10},y_+=2x_+$ 和 $x_-=\\dfrac{2-\\sqrt{14}}{10},y_-=2x_-$。数值：$\\sqrt{14}\\approx3.742$，$x_+\\approx0.574,y_+\\approx1.148$；$x_-\\approx-0.174,y_-\\approx-0.348$。",
+            "计算 $2-x_+-2y_+=2-0.574-2.296\\approx-0.870$（负），故 $m(P_+)=e^{-(x_+^2+y_+^2)}\\cdot(-0.870)<0$；计算 $2-x_--2y_-=2+0.174+0.696\\approx2.870$（正），故 $m(P_-)=e^{-(x_-^2+y_-^2)}\\cdot2.870>0$。",
+            "结合无穷远处 $m\\to0$（同(2)的衰减论证），由连续性及仅有两个临界点，$m(P_-)$为全局最大值，$m(P_+)$为全局最小值，取得点分别为 $\\left(\\dfrac{2-\\sqrt{14}}{10},\\dfrac{2(2-\\sqrt{14})}{10}\\right)$（最大）和 $\\left(\\dfrac{2+\\sqrt{14}}{10},\\dfrac{2(2+\\sqrt{14})}{10}\\right)$（最小）。"
+          ]
+        }
+      ],
+      "id": "nagoya-2011-c88d968483-q04-practice-05",
+      "school": "名古屋大学",
+      "year": "2011"
+    }
+  ],
+  "source_question": "4",
+  "source_pdf": "名古屋大学/多元数理科学研究科/全专攻/名古屋大学_多元数理科学研究科_2011_第1次_数学过去问_上午.pdf",
+  "source_type": "官方过去问",
+  "subject_category": "微积分"
+}

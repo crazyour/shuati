@@ -1,0 +1,205 @@
+{
+  "id": "nagoya-2002-0dcbdbb1cf-q03",
+  "school": "名古屋大学",
+  "year": "2002",
+  "subject": "多元数理科学研究科_全专攻",
+  "text": "在 $xy$ 平面 $\\mathbb{R}^2$ 上考虑 2 次微分形式 $\\omega=dx\\wedge dy$。对 $\\mathbb{R}^2$ 上的 $C^\\infty$ 函数 $H$，定义 $\\mathbb{R}^2$ 上的向量场 $X_H$，使其对所有向量场 $Y$ 满足 $\\omega(X_H,Y)=(dH)(Y)$。\n(1) 计算函数 $H$ 沿 $X_H$ 的微分（即 $X_H(H)$）。\n以下设 $H(x,y)=\\dfrac{1}{2}(x^2-y^2)$。\n(2) 求以 $p=(a,b)\\in\\mathbb{R}^2$ 为起点的 $X_H$ 的积分曲线 $c_p:\\mathbb{R}\\to\\mathbb{R}^2$。\n(3) 设 $c_p$ 为(2)中所定义的积分曲线，$t\\in\\mathbb{R}$固定。设 $\\varphi:\\mathbb{R}^2\\to\\mathbb{R}^2$ 为 $\\varphi(p)=c_p(t)$ 所定义的微分同胚。证明 $\\varphi^*\\omega=\\omega$。",
+  "knowledge_points": [
+    "哈密顿向量场",
+    "辛形式",
+    "能量守恒",
+    "线性ODE系统求解",
+    "微分形式的拉回",
+    "行列式与体积形式变换"
+  ],
+  "question_type": "哈密顿系统与辛几何",
+  "method": [
+    "由ω(X_H,Y)=dH(Y)解出X_H的分量表达式",
+    "利用能量守恒证明H沿流不变",
+    "求解线性常系数ODE系统",
+    "计算线性映射对2-形式的拉回"
+  ],
+  "solution_steps": [
+    "设X_H=(X1,X2)，展开ω(X_H,Y)=X1Y2-X2Y1与dH(Y)=H_xY1+H_yY2比较系数得X_H=(H_y,-H_x)",
+    "计算X_H(H)=H_y H_x+(-H_x)H_y=0",
+    "代入具体H求出线性ODE系统并求解通解",
+    "利用线性变换行列式为1得出拉回不变ω"
+  ],
+  "math_structure": {
+    "type": "hamiltonian_vector_field_linear",
+    "template": "omega=dx^dy, X_H=(H_y,-H_x), H=(x^2-y^2)/2",
+    "variable_count": 2
+  },
+  "difficulty": 4,
+  "answer": [
+    {
+      "label": "(1)",
+      "steps": [
+        "设 $X_H=(X_1,X_2)$，任取 $Y=(Y_1,Y_2)$，则 $\\omega(X_H,Y)=dx\\wedge dy(X_H,Y)=X_1Y_2-X_2Y_1$。",
+        "又 $dH(Y)=H_xY_1+H_yY_2$。比较 $Y_1,Y_2$ 系数：$-X_2=H_x$，$X_1=H_y$，即 $X_H=(H_y,-H_x)$。",
+        "于是 $X_H(H)=H_y\\cdot H_x+(-H_x)\\cdot H_y=H_xH_y-H_xH_y=0$。这说明 $H$ 沿其哈密顿流保持不变（能量守恒）。"
+      ]
+    },
+    {
+      "label": "(2)",
+      "steps": [
+        "由 $H=\\frac12(x^2-y^2)$ 得 $H_x=x,\\ H_y=-y$，故 $X_H=(H_y,-H_x)=(-y,-x)$。",
+        "积分曲线满足 $\\dot x=-y,\\ \\dot y=-x$，初值 $x(0)=a,y(0)=b$。系数矩阵 $M=\\begin{pmatrix}0&-1\\\\-1&0\\end{pmatrix}$，特征值 $\\lambda=\\pm1$，特征向量分别为 $(1,-1)$（对应$\\lambda=1$）和 $(1,1)$（对应$\\lambda=-1$）。",
+        "设 $(a,b)=c_1(1,-1)+c_2(1,1)$，解得 $c_1=\\frac{a-b}{2},\\ c_2=\\frac{a+b}{2}$。",
+        "故 $c_p(t)=c_1e^{t}(1,-1)+c_2e^{-t}(1,1)$，化简得 $c_p(t)=\\big(a\\cosh t-b\\sinh t,\\ -a\\sinh t+b\\cosh t\\big)$，验证 $t=0$ 时为 $(a,b)$。"
+      ]
+    },
+    {
+      "label": "(3)",
+      "steps": [
+        "由(2)，$\\varphi(p)=c_p(t)$ 是线性映射，矩阵为 $M_t=\\begin{pmatrix}\\cosh t&-\\sinh t\\\\-\\sinh t&\\cosh t\\end{pmatrix}$。",
+        "对线性映射 $\\varphi=M_t$，拉回二次形式满足 $\\varphi^*(dx\\wedge dy)=\\det(M_t)\\,dx\\wedge dy$。",
+        "计算 $\\det(M_t)=\\cosh^2t-\\sinh^2t=1$。",
+        "故 $\\varphi^*\\omega=1\\cdot\\omega=\\omega$，证毕。"
+      ]
+    }
+  ],
+  "practice_questions": [
+    {
+      "text": "对 $H(x,y)=xy$，求哈密顿向量场 $X_H$ 的表达式。",
+      "knowledge_points": [
+        "哈密顿向量场定义"
+      ],
+      "question_type": "基础计算",
+      "method": [
+        "利用公式 X_H=(H_y,-H_x)"
+      ],
+      "solution_steps": [
+        "求偏导数",
+        "代入公式"
+      ],
+      "math_structure": {
+        "type": "hamiltonian_vector_field_basic",
+        "template": "H=xy, X_H=(H_y,-H_x)",
+        "variable_count": 0
+      },
+      "difficulty": 1,
+      "estimated_minutes": 4,
+      "answer": [
+        {
+          "label": "结果",
+          "steps": [
+            "$H_x=y,\\ H_y=x$。",
+            "代入 $X_H=(H_y,-H_x)=(x,-y)$。"
+          ]
+        }
+      ],
+      "id": "nagoya-2002-0dcbdbb1cf-q03-practice-01",
+      "school": "名古屋大学",
+      "year": "2002"
+    },
+    {
+      "text": "证明对任意 $C^\\infty$ 函数 $H$，其哈密顿向量场 $X_H$ 满足 $X_H(H)=0$（能量守恒的一般证明）。",
+      "knowledge_points": [
+        "能量守恒",
+        "哈密顿向量场一般性质"
+      ],
+      "question_type": "一般性证明",
+      "method": [
+        "展开定义直接计算"
+      ],
+      "solution_steps": [
+        "写出X_H=(H_y,-H_x)",
+        "计算X_H(H)并化简为0"
+      ],
+      "math_structure": {
+        "type": "hamiltonian_energy_conservation_general",
+        "template": "X_H=(H_y,-H_x), X_H(H)=H_xH_y-H_yH_x",
+        "variable_count": 1
+      },
+      "difficulty": 2,
+      "estimated_minutes": 5,
+      "answer": [
+        {
+          "label": "证明",
+          "steps": [
+            "由定义 $X_H=(H_y,-H_x)$。",
+            "$X_H(H)=H_y\\partial_xH+(-H_x)\\partial_yH=H_yH_x-H_xH_y=0$，与H的具体形式无关，恒成立。"
+          ]
+        }
+      ],
+      "id": "nagoya-2002-0dcbdbb1cf-q03-practice-02",
+      "school": "名古屋大学",
+      "year": "2002"
+    },
+    {
+      "text": "对 $H(x,y)=\\frac12(x^2+y^2)$，求以 $(a,b)$ 为起点的积分曲线 $c_p(t)$。",
+      "knowledge_points": [
+        "哈密顿向量场",
+        "线性ODE系统求解"
+      ],
+      "question_type": "圆周运动求解",
+      "method": [
+        "求X_H表达式后解线性ODE"
+      ],
+      "solution_steps": [
+        "求X_H",
+        "写出ODE系统",
+        "求解得到旋转解"
+      ],
+      "math_structure": {
+        "type": "hamiltonian_vector_field_rotation",
+        "template": "H=(x^2+y^2)/2, X_H=(y,-x)",
+        "variable_count": 0
+      },
+      "difficulty": 3,
+      "estimated_minutes": 7,
+      "answer": [
+        {
+          "label": "结果",
+          "steps": [
+            "$H_x=x,H_y=y$，故 $X_H=(y,-x)$。",
+            "ODE: $\\dot x=y,\\dot y=-x$，即 $x''=-x$，通解 $x(t)=a\\cos t+b\\sin t$，进而 $y(t)=x'(t)=-a\\sin t+b\\cos t$（对照$\\dot x=y$）。",
+            "验证 $t=0$：$x(0)=a,y(0)=b$，符合初值。此为绕原点的旋转运动，矩阵为旋转矩阵，行列式恒为1，同样保持ω不变。"
+          ]
+        }
+      ],
+      "id": "nagoya-2002-0dcbdbb1cf-q03-practice-03",
+      "school": "名古屋大学",
+      "year": "2002"
+    },
+    {
+      "text": "验证问题正文中 $\\varphi(p)=c_p(t)$ 对应的矩阵 $M_t=\\begin{pmatrix}\\cosh t&-\\sinh t\\\\-\\sinh t&\\cosh t\\end{pmatrix}$ 是可逆的，并求其逆矩阵。",
+      "knowledge_points": [
+        "矩阵可逆性",
+        "双曲函数恒等式"
+      ],
+      "question_type": "矩阵运算",
+      "method": [
+        "计算行列式判断可逆性并求逆"
+      ],
+      "solution_steps": [
+        "计算行列式",
+        "利用伴随矩阵公式求逆"
+      ],
+      "math_structure": {
+        "type": "hyperbolic_rotation_matrix_inverse",
+        "template": "M_t=[[cosh t,-sinh t],[-sinh t,cosh t]]",
+        "variable_count": 1
+      },
+      "difficulty": 2,
+      "estimated_minutes": 5,
+      "answer": [
+        {
+          "label": "结果",
+          "steps": [
+            "$\\det(M_t)=\\cosh^2t-\\sinh^2t=1\\ne0$，故 $M_t$ 可逆。",
+            "由 $2\\times2$ 矩阵逆公式，$M_t^{-1}=\\begin{pmatrix}\\cosh t&\\sinh t\\\\\\sinh t&\\cosh t\\end{pmatrix}=M_{-t}$，恰好对应参数 $-t$ 的流，符合流的群性质 $c_p(-t)$ 是 $c_p(t)$ 的逆过程。"
+          ]
+        }
+      ],
+      "id": "nagoya-2002-0dcbdbb1cf-q03-practice-04",
+      "school": "名古屋大学",
+      "year": "2002"
+    }
+  ],
+  "source_question": "問6",
+  "source_pdf": "名古屋大学/多元数理科学研究科/全专攻/名古屋大学_多元数理科学研究科_2002_第2次_数学过去问_下午.pdf",
+  "source_type": "官方过去问",
+  "subject_category": "向量解析"
+}

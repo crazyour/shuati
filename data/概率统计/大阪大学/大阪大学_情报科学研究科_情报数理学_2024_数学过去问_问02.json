@@ -1,0 +1,204 @@
+{
+  "id": "osaka-2024-144813ba62-q02",
+  "school": "大阪大学",
+  "year": "2024",
+  "subject": "情报科学研究科_情报数理学",
+  "text": "设随机变量 $X,Y$ 均具有均值 $\\mu$、方差 $\\sigma^2$，且分布关于均值对称，$X$ 与 $Y$ 的相关系数为 $\\rho\\neq0$。回答下列问题。\n\n(1) 求 $X^2$ 的期望 $E(X^2)$。\n\n(2) 求 $X^3$ 的期望 $E(X^3)$。\n\n(3) 求使 $X$ 与 $X^2+aY$ 不相关的 $a$ 的值。",
+  "knowledge_points": [
+    "矩的定义与展开",
+    "对称分布的奇数中心矩为零",
+    "方差与二阶矩的关系",
+    "协方差的双线性性质",
+    "相关系数定义",
+    "不相关条件 $\\mathrm{Cov}=0$"
+  ],
+  "question_type": "矩计算与相关性证明",
+  "method": [
+    "二项式展开将 $X^k$ 用中心矩 $E[(X-\\mu)^k]$ 表示",
+    "利用对称分布奇数中心矩为零化简",
+    "协方差双线性展开求解未知系数"
+  ],
+  "solution_steps": [
+    "利用 $\\mathrm{Var}(X)=E(X^2)-\\mu^2$ 直接得到 $E(X^2)$",
+    "将 $X^3$ 按 $(X-\\mu)+\\mu$ 二项展开，利用对称性令奇数阶中心矩为零，只保留偶数阶项",
+    "计算 $\\mathrm{Cov}(X,X^2)=E(X^3)-E(X)E(X^2)$ 并化简",
+    "由 $\\mathrm{Cov}(X,Y)=\\rho\\sigma^2$，令 $\\mathrm{Cov}(X,X^2)+a\\,\\mathrm{Cov}(X,Y)=0$ 解出 $a$"
+  ],
+  "math_structure": {
+    "type": "moment_symmetric_correlation",
+    "template": "E(X)=\\mu,\\ \\mathrm{Var}(X)=\\sigma^2,\\ \\mathrm{Corr}(X,Y)=\\rho,\\ \\mathrm{Cov}(X,X^2+aY)=0",
+    "variable_count": 4
+  },
+  "difficulty": 3,
+  "answer": [
+    {
+      "label": "(1)",
+      "steps": [
+        "由方差定义 $\\mathrm{Var}(X)=E(X^2)-[E(X)]^2$，即 $\\sigma^2=E(X^2)-\\mu^2$。",
+        "移项直接解出 $E(X^2)=\\sigma^2+\\mu^2$。"
+      ]
+    },
+    {
+      "label": "(2)",
+      "steps": [
+        "将 $X^3$ 写成 $X=(X-\\mu)+\\mu$ 的展开：$X^3=(X-\\mu)^3+3\\mu(X-\\mu)^2+3\\mu^2(X-\\mu)+\\mu^3$。",
+        "取期望：$E(X^3)=E[(X-\\mu)^3]+3\\mu E[(X-\\mu)^2]+3\\mu^2E[(X-\\mu)]+\\mu^3$。因分布关于均值 $\\mu$ 对称，$X-\\mu$ 的分布关于0对称，故一切奇数阶矩为零：$E[(X-\\mu)^3]=0$，$E[X-\\mu]=0$；又 $E[(X-\\mu)^2]=\\sigma^2$。",
+        "代入得 $E(X^3)=0+3\\mu\\sigma^2+0+\\mu^3=\\mu^3+3\\mu\\sigma^2$。"
+      ]
+    },
+    {
+      "label": "(3)",
+      "steps": [
+        "$X$ 与 $X^2+aY$ 不相关等价于 $\\mathrm{Cov}(X,X^2+aY)=0$，由协方差双线性性 $\\mathrm{Cov}(X,X^2)+a\\,\\mathrm{Cov}(X,Y)=0$。",
+        "计算 $\\mathrm{Cov}(X,X^2)=E(X^3)-E(X)E(X^2)=(\\mu^3+3\\mu\\sigma^2)-\\mu(\\sigma^2+\\mu^2)=\\mu^3+3\\mu\\sigma^2-\\mu\\sigma^2-\\mu^3=2\\mu\\sigma^2$。",
+        "由相关系数定义 $\\rho=\\dfrac{\\mathrm{Cov}(X,Y)}{\\sigma_X\\sigma_Y}$，因 $X,Y$ 方差均为 $\\sigma^2$，故 $\\mathrm{Cov}(X,Y)=\\rho\\sigma^2$。",
+        "代入方程 $2\\mu\\sigma^2+a\\rho\\sigma^2=0$，因 $\\sigma^2\\neq0,\\rho\\neq0$，解得 $a=-\\dfrac{2\\mu}{\\rho}$。"
+      ]
+    }
+  ],
+  "practice_questions": [
+    {
+      "text": "设随机变量 $X$ 的均值为 $0$，方差 $\\sigma^2=4$，且分布关于均值对称。求 $E(X)$、$E(X^3)$ 与 $E(X^2)$。",
+      "knowledge_points": [
+        "对称分布奇数矩为零",
+        "方差与二阶矩关系"
+      ],
+      "question_type": "基础计算题",
+      "method": [
+        "直接用对称性与方差定义"
+      ],
+      "solution_steps": [
+        "由对称性得奇数矩为零",
+        "用方差定义求二阶矩"
+      ],
+      "math_structure": {
+        "type": "symmetric_moment_basic",
+        "template": "E(X)=0,\\ \\mathrm{Var}(X)=\\sigma^2",
+        "variable_count": 1
+      },
+      "difficulty": 1,
+      "estimated_minutes": 4,
+      "answer": [
+        {
+          "label": "结果",
+          "steps": [
+            "因分布关于均值 $0$ 对称，$X$ 本身即中心化变量，故一切奇数阶矩为零：$E(X)=0$，$E(X^3)=0$。",
+            "由 $\\mathrm{Var}(X)=E(X^2)-[E(X)]^2$ 及 $E(X)=0$，得 $E(X^2)=\\mathrm{Var}(X)=4$。"
+          ]
+        }
+      ],
+      "id": "osaka-2024-144813ba62-q02-practice-01",
+      "school": "大阪大学",
+      "year": "2024"
+    },
+    {
+      "text": "设随机变量 $X$ 均值 $\\mu=3$，方差 $\\sigma^2=2$，分布关于均值对称。求 $E(X^2)$ 与 $E(X^3)$。",
+      "knowledge_points": [
+        "中心矩展开",
+        "对称分布性质"
+      ],
+      "question_type": "计算题",
+      "method": [
+        "二项展开+对称性化简"
+      ],
+      "solution_steps": [
+        "用 $E(X^2)=\\sigma^2+\\mu^2$",
+        "用 $E(X^3)=\\mu^3+3\\mu\\sigma^2$"
+      ],
+      "math_structure": {
+        "type": "symmetric_moment_general",
+        "template": "E(X)=\\mu,\\ \\mathrm{Var}(X)=\\sigma^2",
+        "variable_count": 2
+      },
+      "difficulty": 2,
+      "estimated_minutes": 6,
+      "answer": [
+        {
+          "label": "结果",
+          "steps": [
+            "$E(X^2)=\\sigma^2+\\mu^2=2+9=11$。",
+            "由展开式 $E(X^3)=\\mu^3+3\\mu\\sigma^2$（对称分布下奇数中心矩为零的结论），代入得 $E(X^3)=27+3\\times3\\times2=27+18=45$。"
+          ]
+        }
+      ],
+      "id": "osaka-2024-144813ba62-q02-practice-02",
+      "school": "大阪大学",
+      "year": "2024"
+    },
+    {
+      "text": "设 $X$ 均值为 $\\mu$、方差为 $\\sigma^2$，分布关于均值对称。推导 $\\mathrm{Cov}(X,X^2)$ 关于 $\\mu,\\sigma^2$ 的一般表达式。",
+      "knowledge_points": [
+        "协方差定义",
+        "矩的展开"
+      ],
+      "question_type": "证明题",
+      "method": [
+        "协方差定义展开并代入矩公式"
+      ],
+      "solution_steps": [
+        "写出 $\\mathrm{Cov}(X,X^2)=E(X^3)-E(X)E(X^2)$",
+        "代入 $E(X^2),E(X^3)$ 的一般表达式化简"
+      ],
+      "math_structure": {
+        "type": "cov_x_x2_general",
+        "template": "\\mathrm{Cov}(X,X^2)=E(X^3)-E(X)E(X^2)",
+        "variable_count": 2
+      },
+      "difficulty": 3,
+      "estimated_minutes": 7,
+      "answer": [
+        {
+          "label": "证明",
+          "steps": [
+            "由协方差定义，$\\mathrm{Cov}(X,X^2)=E(X\\cdot X^2)-E(X)E(X^2)=E(X^3)-\\mu E(X^2)$。",
+            "代入一般公式 $E(X^2)=\\sigma^2+\\mu^2$，$E(X^3)=\\mu^3+3\\mu\\sigma^2$（对称分布下推导所得），得 $\\mathrm{Cov}(X,X^2)=(\\mu^3+3\\mu\\sigma^2)-\\mu(\\sigma^2+\\mu^2)$。",
+            "化简：$=\\mu^3+3\\mu\\sigma^2-\\mu\\sigma^2-\\mu^3=2\\mu\\sigma^2$，即 $\\mathrm{Cov}(X,X^2)=2\\mu\\sigma^2$。"
+          ]
+        }
+      ],
+      "id": "osaka-2024-144813ba62-q02-practice-03",
+      "school": "大阪大学",
+      "year": "2024"
+    },
+    {
+      "text": "设 $X,Y$ 均值 $\\mu=1$，方差 $\\sigma^2=3$，分布关于均值对称，相关系数 $\\rho=0.5$。求使 $X$ 与 $X^2+aY$ 不相关的 $a$。",
+      "knowledge_points": [
+        "协方差双线性性",
+        "相关系数与协方差关系"
+      ],
+      "question_type": "计算题",
+      "method": [
+        "套用一般公式 $a=-2\\mu/\\rho$"
+      ],
+      "solution_steps": [
+        "计算 $\\mathrm{Cov}(X,X^2)=2\\mu\\sigma^2$",
+        "计算 $\\mathrm{Cov}(X,Y)=\\rho\\sigma^2$",
+        "解线性方程求 $a$"
+      ],
+      "math_structure": {
+        "type": "uncorrelated_condition_numeric",
+        "template": "\\mu=1,\\sigma^2=3,\\rho=0.5",
+        "variable_count": 3
+      },
+      "difficulty": 3,
+      "estimated_minutes": 8,
+      "answer": [
+        {
+          "label": "结果",
+          "steps": [
+            "$\\mathrm{Cov}(X,X^2)=2\\mu\\sigma^2=2\\times1\\times3=6$。",
+            "$\\mathrm{Cov}(X,Y)=\\rho\\sigma^2=0.5\\times3=1.5$。",
+            "由 $\\mathrm{Cov}(X,X^2)+a\\,\\mathrm{Cov}(X,Y)=0$，即 $6+1.5a=0$，解得 $a=-4$；与一般公式 $a=-2\\mu/\\rho=-2\\times1/0.5=-4$ 一致。"
+          ]
+        }
+      ],
+      "id": "osaka-2024-144813ba62-q02-practice-04",
+      "school": "大阪大学",
+      "year": "2024"
+    }
+  ],
+  "source_question": "数理基础 問3",
+  "source_pdf": "大阪大学/情报科学研究科/情报数理学/大阪大学_情报科学研究科_情报数理学_2024_数学过去问.pdf",
+  "source_type": "官方过去问",
+  "subject_category": "概率统计"
+}

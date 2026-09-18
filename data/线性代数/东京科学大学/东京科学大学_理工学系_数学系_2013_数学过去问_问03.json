@@ -1,0 +1,212 @@
+{
+  "id": "isct-2013-14be69d38d-q03",
+  "school": "东京科学大学",
+  "year": "2013",
+  "subject": "理工学系_数学系",
+  "text": "设映射 $\\varphi:\\mathbb{R}^n\\to\\mathbb{R}^n$ 对所有 $\\boldsymbol{x},\\boldsymbol{y}\\in\\mathbb{R}^n$ 满足条件 $$(\\varphi(\\boldsymbol{x}),\\varphi(\\boldsymbol{y}))=(\\boldsymbol{x},\\boldsymbol{y})$$ 其中 $$(\\boldsymbol{x},\\boldsymbol{y})=\\sum_{i=1}^n x_iy_i\\quad\\left(\\boldsymbol{x}=\\begin{pmatrix}x_1\\\\\\vdots\\\\x_n\\end{pmatrix},\\ \\boldsymbol{y}=\\begin{pmatrix}y_1\\\\\\vdots\\\\y_n\\end{pmatrix}\\right)$$ 是 $\\mathbb{R}^n$ 上的内积。\n(1) 证明对零向量 $\\boldsymbol{0}$，有 $\\varphi(\\boldsymbol{0})=\\boldsymbol{0}$。\n(2) 证明 $\\varphi$ 是线性映射。\n(3) 证明存在正交矩阵 $A$，使得 $\\varphi(\\boldsymbol{x})=A\\boldsymbol{x}$。",
+  "knowledge_points": [
+    "内积保持映射",
+    "正交矩阵",
+    "标准正交基",
+    "线性映射的矩阵表示",
+    "等距变换",
+    "正交展开公式"
+  ],
+  "question_type": "证明题(线性代数结构证明)",
+  "method": [
+    "代入特殊向量证明φ(0)=0",
+    "证明{φ(e_i)}是标准正交基再用正交展开公式证明线性性",
+    "取基向量的像为列构造矩阵A"
+  ],
+  "solution_steps": [
+    "(1) 代入x=y=0，利用内积正定性得φ(0)=0",
+    "(2) 证明{φ(e_i)}是标准正交基，利用正交展开公式表示φ(x)=Σx_iφ(e_i)，从而得到线性性",
+    "(3) 取A的列向量为φ(e_i)，由正交基性质得A^TA=I，即A正交，且φ(x)=Ax"
+  ],
+  "math_structure": {
+    "type": "inner_product_preserving_map_orthogonal",
+    "template": "(\\varphi(x),\\varphi(y))=(x,y)\\ \\forall x,y \\Rightarrow \\varphi(x)=Ax,\\ A^TA=I",
+    "variable_count": 1
+  },
+  "difficulty": 3,
+  "answer": [
+    {
+      "label": "(1)",
+      "steps": [
+        "在条件式中取x=y=0：得(φ(0),φ(0))=(0,0)=0",
+        "由内积的正定性(v,v)=0当且仅当v=0，故φ(0)=0"
+      ]
+    },
+    {
+      "label": "(2)",
+      "steps": [
+        "设e_1,...,e_n为R^n的标准正交基，即(e_i,e_j)=δ_ij。由条件(φ(e_i),φ(e_j))=(e_i,e_j)=δ_ij，故{φ(e_1),...,φ(e_n)}是R^n中n个两两正交的单位向量，因而构成R^n的一组标准正交基",
+        "对任意x=Σ_ix_ie_i∈R^n，由已知条件(φ(x),φ(e_j))=(x,e_j)=x_j对每个j=1,...,n成立",
+        "因{φ(e_j)}是标准正交基，任意向量按此基展开的系数恰为与各基向量的内积，故φ(x)=Σ_j(φ(x),φ(e_j))φ(e_j)=Σ_jx_jφ(e_j)",
+        "于是对任意x,y∈R^n和标量α,β：φ(αx+βy)=Σ_j(αx_j+βy_j)φ(e_j)=αΣ_jx_jφ(e_j)+βΣ_jy_jφ(e_j)=αφ(x)+βφ(y)，即φ是线性映射"
+      ]
+    },
+    {
+      "label": "(3)",
+      "steps": [
+        "由(2)φ线性，故存在矩阵A使φ(x)=Ax对所有x成立，其中A的第i列为Ae_i=φ(e_i)",
+        "由(2)中{φ(e_i)}是标准正交基，即(φ(e_i),φ(e_j))=δ_ij，这恰是A^TA的(i,j)元素，故A^TA=I_n，即A是正交矩阵",
+        "综上φ(x)=Ax，其中A为正交矩阵，命题得证"
+      ]
+    }
+  ],
+  "practice_questions": [
+    {
+      "text": "证明：若 $v_1,\\ldots,v_n\\in\\mathbb{R}^n$ 满足 $(v_i,v_j)=\\delta_{ij}$（标准正交），则 $v_1,\\ldots,v_n$ 线性无关，从而构成 $\\mathbb{R}^n$ 的一组基。",
+      "knowledge_points": [
+        "标准正交向量组",
+        "线性无关性判定"
+      ],
+      "question_type": "基础引理证明",
+      "method": [
+        "与基向量作内积消去系数"
+      ],
+      "solution_steps": [
+        "假设线性组合为零",
+        "两边与v_j作内积",
+        "得出所有系数为0"
+      ],
+      "math_structure": {
+        "type": "orthonormal_implies_independent",
+        "template": "(v_i,v_j)=\\delta_{ij}\\Rightarrow v_1,\\ldots,v_n\\text{ linearly independent}",
+        "variable_count": 1
+      },
+      "difficulty": 1,
+      "estimated_minutes": 5,
+      "answer": [
+        {
+          "label": "证明",
+          "steps": [
+            "设Σ_ic_iv_i=0，两边与v_j作内积：(Σ_ic_iv_i,v_j)=Σ_ic_i(v_i,v_j)=Σ_ic_iδ_{ij}=c_j",
+            "又(0,v_j)=0，故c_j=0对所有j成立",
+            "所以v_1,...,v_n线性无关，共n个向量在n维空间中线性无关，故构成一组基"
+          ]
+        }
+      ],
+      "id": "isct-2013-14be69d38d-q03-practice-01",
+      "school": "东京科学大学",
+      "year": "2013"
+    },
+    {
+      "text": "证明极化恒等式 $(x,y)=\\frac{1}{2}\\big[(x+y,x+y)-(x,x)-(y,y)\\big]$，并说明它在\"保范数的线性映射必保内积\"这一事实中的作用。",
+      "knowledge_points": [
+        "极化恒等式",
+        "内积的双线性与对称性"
+      ],
+      "question_type": "恒等式证明与应用说明",
+      "method": [
+        "展开内积的双线性性质"
+      ],
+      "solution_steps": [
+        "展开(x+y,x+y)",
+        "整理得极化恒等式",
+        "结合线性性用于保范数推保内积"
+      ],
+      "math_structure": {
+        "type": "polarization_identity",
+        "template": "(x,y)=\\tfrac12[(x+y,x+y)-(x,x)-(y,y)]",
+        "variable_count": 0
+      },
+      "difficulty": 2,
+      "estimated_minutes": 7,
+      "answer": [
+        {
+          "label": "证明及应用",
+          "steps": [
+            "展开(x+y,x+y)=(x,x)+2(x,y)+(y,y)（用内积的双线性和对称性）",
+            "整理得(x,y)=(1/2)[(x+y,x+y)-(x,x)-(y,y)]",
+            "若φ线性且保范数，即(φ(v),φ(v))=(v,v)对所有v成立，取v=x,y,x+y分别代入并应用φ(x+y)=φ(x)+φ(y)，可得(φ(x)+φ(y),φ(x)+φ(y))=(x+y,x+y)展开后与(φ(x),φ(x))=(x,x)，(φ(y),φ(y))=(y,y)两式联立，消去平方项即得(φ(x),φ(y))=(x,y)，说明线性+保范数可推出保内积"
+          ]
+        }
+      ],
+      "id": "isct-2013-14be69d38d-q03-practice-02",
+      "school": "东京科学大学",
+      "year": "2013"
+    },
+    {
+      "text": "设 $\\varphi:\\mathbb{R}^2\\to\\mathbb{R}^2$，$\\varphi(x_1,x_2)=(x_2,-x_1)$（旋转$-90°$）。验证 $(\\varphi(x),\\varphi(y))=(x,y)$ 对任意 $x,y$ 成立，并求对应的正交矩阵 $A$。",
+      "knowledge_points": [
+        "具体线性映射验证",
+        "旋转矩阵",
+        "正交矩阵验证"
+      ],
+      "question_type": "具体映射验证计算",
+      "method": [
+        "直接代入验证内积等式",
+        "构造矩阵并验证A^TA=I"
+      ],
+      "solution_steps": [
+        "代入定义验证内积保持",
+        "由基向量的像构造矩阵A",
+        "验证A^TA=I"
+      ],
+      "math_structure": {
+        "type": "orthogonal_map_concrete_example",
+        "template": "\\varphi(x_1,x_2)=(x_2,-x_1)",
+        "variable_count": 0
+      },
+      "difficulty": 2,
+      "estimated_minutes": 7,
+      "answer": [
+        {
+          "label": "验证与求A",
+          "steps": [
+            "设x=(x_1,x_2),y=(y_1,y_2)，φ(x)=(x_2,-x_1),φ(y)=(y_2,-y_1)，计算(φ(x),φ(y))=x_2y_2+(-x_1)(-y_1)=x_1y_1+x_2y_2=(x,y)，验证成立",
+            "求A：φ(e_1)=φ(1,0)=(0,-1)，φ(e_2)=φ(0,1)=(1,0)，故A的第一列为(0,-1)^T，第二列为(1,0)^T，即A=[[0,1],[-1,0]]",
+            "验证A^TA：A^T=[[0,-1],[1,0]]，A^TA=[[0,-1],[1,0]][[0,1],[-1,0]]=[[1,0],[0,1]]=I，A是正交矩阵"
+          ]
+        }
+      ],
+      "id": "isct-2013-14be69d38d-q03-practice-03",
+      "school": "东京科学大学",
+      "year": "2013"
+    },
+    {
+      "text": "设 $\\psi:\\mathbb{R}^2\\to\\mathbb{R}^2$，$\\psi(x_1,x_2)=(x_1,-x_2)$（关于x轴的反射）。验证 $\\psi$ 满足内积保持条件，求其矩阵 $B$，并说明 $\\det B$ 的符号与旋转情形的区别。",
+      "knowledge_points": [
+        "反射变换",
+        "正交矩阵的行列式(±1)",
+        "正交矩阵分类"
+      ],
+      "question_type": "具体映射验证计算",
+      "method": [
+        "直接代入验证",
+        "求矩阵并计算行列式"
+      ],
+      "solution_steps": [
+        "代入验证内积保持",
+        "构造矩阵B",
+        "计算detB并与旋转对比"
+      ],
+      "math_structure": {
+        "type": "orthogonal_map_reflection_example",
+        "template": "\\psi(x_1,x_2)=(x_1,-x_2)",
+        "variable_count": 0
+      },
+      "difficulty": 2,
+      "estimated_minutes": 6,
+      "answer": [
+        {
+          "label": "验证与分析",
+          "steps": [
+            "设x=(x_1,x_2),y=(y_1,y_2)，ψ(x)=(x_1,-x_2)，ψ(y)=(y_1,-y_2)，(ψ(x),ψ(y))=x_1y_1+(-x_2)(-y_2)=x_1y_1+x_2y_2=(x,y)，验证成立",
+            "ψ(e_1)=(1,0)，ψ(e_2)=(0,-1)，故B=[[1,0],[0,-1]]，验证B^TB=[[1,0],[0,-1]][[1,0],[0,-1]]=I，B正交",
+            "计算detB=1×(-1)-0×0=-1，与练习3中旋转矩阵detA=0×0-1×(-1)=1不同，说明正交矩阵可分为旋转(det=1)与反射(det=-1)两类"
+          ]
+        }
+      ],
+      "id": "isct-2013-14be69d38d-q03-practice-04",
+      "school": "东京科学大学",
+      "year": "2013"
+    }
+  ],
+  "source_question": "午前[3]",
+  "source_pdf": "东京科学大学/理工学系/数学系/东京科学大学_理工学系_数学系_2013_数学过去问.pdf",
+  "source_type": "官方过去问",
+  "subject_category": "线性代数"
+}

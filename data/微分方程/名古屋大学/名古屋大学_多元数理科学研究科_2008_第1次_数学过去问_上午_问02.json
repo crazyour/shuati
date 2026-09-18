@@ -1,0 +1,209 @@
+{
+  "id": "nagoya-2008-4cbe2e15d5-q02",
+  "school": "名古屋大学",
+  "year": "2008",
+  "subject": "多元数理科学研究科_全专攻",
+  "text": "设 $A$ 为非零的三阶实反对称矩阵（即 $A\\ne O$ 且 $^tA=-A$），$x(t)=\\begin{pmatrix}x_1(t)\\\\x_2(t)\\\\x_3(t)\\end{pmatrix}$ 是取值于 $\\mathbb{R}^3$ 的可微向量值函数，满足 $\\dfrac{d}{dt}x(t)=Ax(t)\\ (t\\in\\mathbb{R})$。设 $\\langle\\ ,\\ \\rangle$ 为 $\\mathbb{R}^3$ 上标准欧氏内积，$\\|w\\|=\\sqrt{\\langle w,w\\rangle}$。\n(1) 证明 $\\|x(t)\\|$ 与 $t$ 无关（为常数）。\n(2) 证明矩阵 $A$ 以 $0$ 为特征值。\n(3) 设 $v$ 是 $A$ 关于特征值 $0$ 的特征向量，证明 $\\langle x(t),v\\rangle$ 与 $t$ 无关。\n(4) 证明 $x(t)\\ (t\\in\\mathbb{R})$ 始终位于 $\\mathbb{R}^3$ 内某个固定的圆周上。",
+  "knowledge_points": [
+    "反对称矩阵性质",
+    "线性常微分方程组",
+    "特征值与特征向量",
+    "守恒量",
+    "球面与平面交为圆"
+  ],
+  "question_type": "常微分方程证明题",
+  "method": [
+    "利用反对称性质证明二次型为零",
+    "利用奇数阶反对称矩阵行列式为零证明存在零特征值",
+    "利用守恒量构造几何轨迹"
+  ],
+  "solution_steps": [
+    "求导||x(t)||^2并用反对称性质说明其导数恒为0",
+    "利用det(A)=det(A^T)=det(-A)=(-1)^3det(A)证明det A=0从而0是特征值",
+    "求导<x(t),v>并利用Av=0及反对称性证明其导数为0",
+    "结合(1)(3)得知x(t)同时落在球面与平面上，交集为圆"
+  ],
+  "math_structure": {
+    "type": "skew_symmetric_ode_conserved_quantities",
+    "template": "x'(t)=Ax(t), A^T=-A, A\\ne 0, 3\\times3",
+    "variable_count": 1
+  },
+  "difficulty": 3,
+  "answer": [
+    {
+      "label": "(1)",
+      "steps": [
+        "计算 $\\dfrac{d}{dt}\\|x(t)\\|^2=2\\langle x'(t),x(t)\\rangle=2\\langle Ax(t),x(t)\\rangle=2x(t)^TAx(t)$",
+        "对任意向量 $x$，反对称矩阵满足 $x^TAx=(x^TAx)^T=x^TA^Tx=-x^TAx$，故 $x^TAx=0$",
+        "因此 $\\dfrac{d}{dt}\\|x(t)\\|^2=0$，即 $\\|x(t)\\|^2$（从而$\\|x(t)\\|$）与 $t$ 无关，为常数"
+      ]
+    },
+    {
+      "label": "(2)",
+      "steps": [
+        "由 $A^T=-A$，取行列式：$\\det(A^T)=\\det(-A)=(-1)^3\\det(A)=-\\det(A)$",
+        "又 $\\det(A^T)=\\det(A)$，故 $\\det(A)=-\\det(A)$，即 $2\\det(A)=0$，得 $\\det A=0$",
+        "$\\det A=0$ 说明 $A$ 不可逆，即存在非零向量 $v$ 使 $Av=0$，也即 $0$ 是 $A$ 的特征值"
+      ]
+    },
+    {
+      "label": "(3)",
+      "steps": [
+        "设 $v$ 满足 $Av=0$，计算 $\\dfrac{d}{dt}\\langle x(t),v\\rangle=\\langle x'(t),v\\rangle=\\langle Ax(t),v\\rangle$",
+        "利用反对称性：$\\langle Ax(t),v\\rangle=(Ax(t))^Tv=x(t)^TA^Tv=x(t)^T(-Av)=x(t)^T\\cdot 0=0$",
+        "故 $\\langle x(t),v\\rangle$ 的导数恒为0，即其与 $t$ 无关，为常数"
+      ]
+    },
+    {
+      "label": "(4)",
+      "steps": [
+        "由(1)，$\\|x(t)\\|=r$（常数），即 $x(t)$ 始终位于以原点为心、半径 $r$ 的球面 $S=\\{y:\\|y\\|=r\\}$ 上",
+        "由(2)(3)，存在非零 $v$（$A$ 的核方向）使 $\\langle x(t),v\\rangle=k$（常数），即 $x(t)$ 始终位于法向量为 $v$ 的平面 $P=\\{y:\\langle y,v\\rangle=k\\}$ 上",
+        "球面与平面的交集（若非空）是一个圆（当平面与球心距离小于半径时为真圆，等于半径时退化为一点，大于半径时为空集），而 $x(t_0)$（任一时刻的值）本身即属于该交集，故交集非空，从而 $x(t)$ 恒在该固定圆周（或其退化情形，一点）上",
+        "结论：$x(t)\\ (t\\in\\mathbb{R})$ 始终位于 $\\mathbb{R}^3$ 内某个固定圆周上，得证"
+      ]
+    }
+  ],
+  "practice_questions": [
+    {
+      "text": "证明：若 $A$ 为任意 $n$ 阶实反对称矩阵，则对任意 $x\\in\\mathbb{R}^n$ 有 $x^TAx=0$。",
+      "knowledge_points": [
+        "反对称矩阵",
+        "二次型"
+      ],
+      "question_type": "基础证明题",
+      "method": [
+        "转置性质"
+      ],
+      "solution_steps": [
+        "利用标量的转置等于自身",
+        "利用A^T=-A化简"
+      ],
+      "math_structure": {
+        "type": "skew_symmetric_quadratic_form",
+        "template": "A^T=-A \\Rightarrow x^TAx=0",
+        "variable_count": 1
+      },
+      "difficulty": 1,
+      "estimated_minutes": 5,
+      "answer": [
+        {
+          "label": "证明",
+          "steps": [
+            "$x^TAx$为标量，故等于自身转置：$x^TAx=(x^TAx)^T=x^TA^Tx$",
+            "代入 $A^T=-A$：$x^TAx=-x^TAx$，即 $2x^TAx=0$，故 $x^TAx=0$"
+          ]
+        }
+      ],
+      "id": "nagoya-2008-4cbe2e15d5-q02-practice-01",
+      "school": "名古屋大学",
+      "year": "2008"
+    },
+    {
+      "text": "证明：任意奇数阶（如5阶）实反对称矩阵的行列式为0。",
+      "knowledge_points": [
+        "行列式性质",
+        "反对称矩阵"
+      ],
+      "question_type": "基础证明题",
+      "method": [
+        "行列式转置与数乘性质"
+      ],
+      "solution_steps": [
+        "利用det(A)=det(A^T)",
+        "利用A^T=-A及奇数阶提出符号"
+      ],
+      "math_structure": {
+        "type": "odd_order_skew_determinant_zero",
+        "template": "n odd, A^T=-A \\Rightarrow det(A)=0",
+        "variable_count": 1
+      },
+      "difficulty": 1,
+      "estimated_minutes": 5,
+      "answer": [
+        {
+          "label": "证明",
+          "steps": [
+            "$\\det(A^T)=\\det(A)$，又 $\\det(A^T)=\\det(-A)=(-1)^5\\det(A)=-\\det(A)$",
+            "所以 $\\det(A)=-\\det(A)\\Rightarrow 2\\det A=0\\Rightarrow \\det A=0$"
+          ]
+        }
+      ],
+      "id": "nagoya-2008-4cbe2e15d5-q02-practice-02",
+      "school": "名古屋大学",
+      "year": "2008"
+    },
+    {
+      "text": "设 $A=\\begin{pmatrix}0&-1&0\\\\1&0&0\\\\0&0&0\\end{pmatrix}$，求 $A$ 关于特征值0的一个特征向量，并验证其满足 $Av=0$。",
+      "knowledge_points": [
+        "特征向量求解"
+      ],
+      "question_type": "计算题",
+      "method": [
+        "解线性方程组Av=0"
+      ],
+      "solution_steps": [
+        "列出Av=0方程组",
+        "求解得特征向量"
+      ],
+      "math_structure": {
+        "type": "eigenvector_zero_eigenvalue",
+        "template": "solve Av=0 for given skew matrix A",
+        "variable_count": 1
+      },
+      "difficulty": 1,
+      "estimated_minutes": 5,
+      "answer": [
+        {
+          "label": "结果",
+          "steps": [
+            "方程 $Av=0$：$-v_2=0, v_1=0, 0=0$，得 $v_1=v_2=0$，$v_3$任意",
+            "取 $v=(0,0,1)$，验证 $Av=(0,0,0)=0$，符合要求"
+          ]
+        }
+      ],
+      "id": "nagoya-2008-4cbe2e15d5-q02-practice-03",
+      "school": "名古屋大学",
+      "year": "2008"
+    },
+    {
+      "text": "设 $x(t)=(\\cos t,\\sin t,0)$ 满足 $x'(t)=Ax(t)$，其中 $A=\\begin{pmatrix}0&-1&0\\\\1&0&0\\\\0&0&0\\end{pmatrix}$。验证 $\\|x(t)\\|$ 为常数，并求 $x(t)$ 所在的固定圆周方程。",
+      "knowledge_points": [
+        "守恒量验证",
+        "圆周方程"
+      ],
+      "question_type": "验证与几何描述",
+      "method": [
+        "直接计算"
+      ],
+      "solution_steps": [
+        "计算范数",
+        "确定圆所在平面与半径"
+      ],
+      "math_structure": {
+        "type": "conserved_circle_verification",
+        "template": "verify ||x(t)|| constant and identify fixed circle for explicit skew-ODE solution",
+        "variable_count": 1
+      },
+      "difficulty": 2,
+      "estimated_minutes": 6,
+      "answer": [
+        {
+          "label": "结果",
+          "steps": [
+            "$\\|x(t)\\|^2=\\cos^2t+\\sin^2t+0=1$，为常数，即 $\\|x(t)\\|=1$",
+            "特征向量 $v=(0,0,1)$，$\\langle x(t),v\\rangle=0\\cdot\\cos t+0\\cdot\\sin t+0\\cdot1=0$，常数",
+            "故 $x(t)$ 位于球面 $x_1^2+x_2^2+x_3^2=1$ 与平面 $x_3=0$ 的交线，即单位圆 $\\{x_1^2+x_2^2=1,x_3=0\\}$ 上"
+          ]
+        }
+      ],
+      "id": "nagoya-2008-4cbe2e15d5-q02-practice-04",
+      "school": "名古屋大学",
+      "year": "2008"
+    }
+  ],
+  "source_question": "問題2",
+  "source_pdf": "名古屋大学/多元数理科学研究科/全专攻/名古屋大学_多元数理科学研究科_2008_第1次_数学过去问_上午.pdf",
+  "source_type": "官方过去问",
+  "subject_category": "微分方程"
+}

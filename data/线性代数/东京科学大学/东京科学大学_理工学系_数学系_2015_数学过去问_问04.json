@@ -1,0 +1,198 @@
+{
+  "id": "isct-2015-3867f3ae42-q04",
+  "school": "东京科学大学",
+  "year": "2015",
+  "subject": "理工学系_数学系",
+  "text": "设 $n$ 为正整数，$A$ 为 $n$ 阶复方阵。\n(1) 证明不等式 $$\\mathrm{rank}\\,A+\\mathrm{rank}\\,(E_n-A)\\ge n \\qquad (*)$$ 其中 $E_n$ 为 $n$ 阶单位矩阵。\n(2) 证明 $(*)$ 中等号成立的必要充分条件是 $A^2=A$。",
+  "knowledge_points": [
+    "矩阵秩的次加性",
+    "Sylvester秩不等式",
+    "像空间与核空间",
+    "幂等矩阵(投影矩阵)",
+    "直和分解"
+  ],
+  "question_type": "矩阵秩不等式的证明与等号条件刻画",
+  "method": [
+    "利用rank(X+Y)≤rankX+rankY",
+    "利用Sylvester不等式rank(AB)≥rankA+rankB-n",
+    "利用像空间的直和分解分析等号条件"
+  ],
+  "solution_steps": [
+    "(1)直接用矩阵秩的次加性：rank(A)+rank(E-A)≥rank(A+(E-A))=rank(E)=n",
+    "(2)充分性：若A²=A，则A(E-A)=0，由Sylvester不等式rank(A(E-A))≥rankA+rank(E-A)-n，结合rank(A(E-A))=0得等号成立",
+    "(2)必要性：利用对任意x有x=Ax+(E-A)x说明ImA+Im(E-A)=C^n恒成立，从而rankA+rank(E-A)=n+dim(ImA∩Im(E-A))，等号成立 iff ImA∩Im(E-A)={0}",
+    "进一步证明ImA∩Im(E-A)={0}与A²=A等价，利用Ax-A²x同时属于ImA和Im(E-A)完成证明"
+  ],
+  "math_structure": {
+    "type": "rank_inequality_idempotent_characterization",
+    "template": "证明 $\\mathrm{rank}A+\\mathrm{rank}(E_n-A)\\ge n$ 及等号 $\\iff A^2=A$",
+    "variable_count": 1
+  },
+  "difficulty": 5,
+  "answer": [
+    {
+      "label": "(1)",
+      "steps": [
+        "对任意 $n\\times n$ 矩阵 $X,Y$，有秩的次加性 $\\mathrm{rank}(X+Y)\\le \\mathrm{rank}X+\\mathrm{rank}Y$（因为$\\mathrm{Im}(X+Y)\\subseteq \\mathrm{Im}X+\\mathrm{Im}Y$）。",
+        "取 $X=A,Y=E_n-A$，则 $X+Y=E_n$，于是 $n=\\mathrm{rank}(E_n)=\\mathrm{rank}(A+(E_n-A))\\le\\mathrm{rank}A+\\mathrm{rank}(E_n-A)$。",
+        "即证得 $(*)$：$\\mathrm{rank}A+\\mathrm{rank}(E_n-A)\\ge n$。"
+      ]
+    },
+    {
+      "label": "(2)",
+      "steps": [
+        "【关键恒等式】对任意 $x\\in\\mathbb{C}^n$，$x=Ax+(E_n-A)x\\in \\mathrm{Im}A+\\mathrm{Im}(E_n-A)$，故恒有 $\\mathrm{Im}A+\\mathrm{Im}(E_n-A)=\\mathbb{C}^n$。",
+        "由维数公式 $\\dim(\\mathrm{Im}A+\\mathrm{Im}(E-A))=\\mathrm{rank}A+\\mathrm{rank}(E-A)-\\dim(\\mathrm{Im}A\\cap\\mathrm{Im}(E-A))=n$，得 $$\\mathrm{rank}A+\\mathrm{rank}(E-A)=n+\\dim(\\mathrm{Im}A\\cap\\mathrm{Im}(E-A)).$$ 结合(1)知右边第二项$\\ge0$恒成立，且等号成立 $\\iff \\mathrm{Im}A\\cap\\mathrm{Im}(E-A)=\\{0\\}$。",
+        "【充分性：$A^2=A\\Rightarrow$等号】若 $A^2=A$，则 $A(E-A)=A-A^2=0$，由Sylvester秩不等式 $\\mathrm{rank}(A(E-A))\\ge\\mathrm{rank}A+\\mathrm{rank}(E-A)-n$，得 $0\\ge \\mathrm{rank}A+\\mathrm{rank}(E-A)-n$，即$\\mathrm{rank}A+\\mathrm{rank}(E-A)\\le n$，结合(1)的$\\ge n$得等号成立。",
+        "【必要性：等号$\\Rightarrow A^2=A$】等号成立即 $\\mathrm{Im}A\\cap\\mathrm{Im}(E-A)=\\{0\\}$。对任意 $x\\in\\mathbb{C}^n$，考虑 $v:=Ax-A^2x=A\\big((E-A)x\\big)$：一方面 $v\\in\\mathrm{Im}A$（它是$A$作用于某向量所得）；另一方面 $v=Ax-A^2x=(E-A)(Ax)\\in\\mathrm{Im}(E-A)$（它是$(E-A)$作用于$Ax$所得）。",
+        "故 $v\\in\\mathrm{Im}A\\cap\\mathrm{Im}(E-A)=\\{0\\}$，即 $Ax-A^2x=0$ 对所有 $x$ 成立，从而 $A^2=A$。",
+        "综上，$(*)$ 中等号成立 $\\iff A^2=A$，证明完成。"
+      ]
+    }
+  ],
+  "practice_questions": [
+    {
+      "text": "证明矩阵秩满足次加性：对任意同型矩阵 $X,Y$，$\\mathrm{rank}(X+Y)\\le \\mathrm{rank}X+\\mathrm{rank}Y$。",
+      "knowledge_points": [
+        "秩的次加性",
+        "像空间维数"
+      ],
+      "question_type": "基础性质证明",
+      "method": [
+        "像空间包含关系"
+      ],
+      "solution_steps": [
+        "证明Im(X+Y)⊆ImX+ImY",
+        "用维数不等式得出结论"
+      ],
+      "math_structure": {
+        "type": "rank_subadditivity",
+        "template": "证明 $\\mathrm{rank}(X+Y)\\le\\mathrm{rank}X+\\mathrm{rank}Y$",
+        "variable_count": 0
+      },
+      "difficulty": 2,
+      "estimated_minutes": 8,
+      "answer": [
+        {
+          "label": "结果",
+          "steps": [
+            "任取$(X+Y)v=Xv+Yv\\in \\mathrm{Im}X+\\mathrm{Im}Y$，故$\\mathrm{Im}(X+Y)\\subseteq \\mathrm{Im}X+\\mathrm{Im}Y$",
+            "两边取维数：$\\mathrm{rank}(X+Y)\\le\\dim(\\mathrm{Im}X+\\mathrm{Im}Y)\\le\\mathrm{rank}X+\\mathrm{rank}Y$"
+          ]
+        }
+      ],
+      "id": "isct-2015-3867f3ae42-q04-practice-01",
+      "school": "东京科学大学",
+      "year": "2015"
+    },
+    {
+      "text": "验证幂等矩阵 $P=\\begin{pmatrix}1&0\\\\0&0\\end{pmatrix}$ 满足 $P^2=P$，并计算 $\\mathrm{rank}P+\\mathrm{rank}(E_2-P)$，核实等于 $2$。",
+      "knowledge_points": [
+        "幂等矩阵",
+        "秩计算"
+      ],
+      "question_type": "数值验证",
+      "method": [
+        "直接矩阵乘法与秩计算"
+      ],
+      "solution_steps": [
+        "验证P²=P",
+        "计算两个矩阵的秩",
+        "求和验证等于n"
+      ],
+      "math_structure": {
+        "type": "idempotent_rank_numeric_check",
+        "template": "取 $P=\\mathrm{diag}(1,0)$ 验证 $\\mathrm{rank}P+\\mathrm{rank}(E-P)=n$",
+        "variable_count": 0
+      },
+      "difficulty": 1,
+      "estimated_minutes": 5,
+      "answer": [
+        {
+          "label": "结果",
+          "steps": [
+            "$P^2=\\begin{pmatrix}1&0\\\\0&0\\end{pmatrix}=P$，确认幂等",
+            "$\\mathrm{rank}P=1$；$E_2-P=\\begin{pmatrix}0&0\\\\0&1\\end{pmatrix}$，秩为1",
+            "$1+1=2=n$，等号成立，与结论一致"
+          ]
+        }
+      ],
+      "id": "isct-2015-3867f3ae42-q04-practice-02",
+      "school": "东京科学大学",
+      "year": "2015"
+    },
+    {
+      "text": "举一个非幂等矩阵 $A$（$2\\times2$），验证 $\\mathrm{rank}A+\\mathrm{rank}(E_2-A)>2$，从而说明不等式在非幂等情形是严格的。",
+      "knowledge_points": [
+        "秩不等式严格性"
+      ],
+      "question_type": "反例构造验证",
+      "method": [
+        "选取具体矩阵计算秩"
+      ],
+      "solution_steps": [
+        "选取矩阵",
+        "计算两秩之和",
+        "对比n说明严格大于"
+      ],
+      "math_structure": {
+        "type": "non_idempotent_strict_inequality",
+        "template": "取非幂等矩阵验证 $\\mathrm{rank}A+\\mathrm{rank}(E-A)>n$",
+        "variable_count": 0
+      },
+      "difficulty": 2,
+      "estimated_minutes": 6,
+      "answer": [
+        {
+          "label": "结果",
+          "steps": [
+            "取 $A=\\begin{pmatrix}2&0\\\\0&2\\end{pmatrix}$（$A^2=4A\\ne A$，非幂等）",
+            "$\\mathrm{rank}A=2$；$E_2-A=\\begin{pmatrix}-1&0\\\\0&-1\\end{pmatrix}$，秩为2",
+            "$2+2=4>2=n$，验证不等式严格成立，因为$A$不满足$A^2=A$"
+          ]
+        }
+      ],
+      "id": "isct-2015-3867f3ae42-q04-practice-03",
+      "school": "东京科学大学",
+      "year": "2015"
+    },
+    {
+      "text": "用Sylvester秩不等式 $\\mathrm{rank}(AB)\\ge \\mathrm{rank}A+\\mathrm{rank}B-n$（对$n\\times n$矩阵$A,B$），推导若 $AB=0$ 则 $\\mathrm{rank}A+\\mathrm{rank}B\\le n$。",
+      "knowledge_points": [
+        "Sylvester秩不等式应用"
+      ],
+      "question_type": "推论证明",
+      "method": [
+        "代入不等式"
+      ],
+      "solution_steps": [
+        "代入AB=0",
+        "整理不等式"
+      ],
+      "math_structure": {
+        "type": "sylvester_inequality_application",
+        "template": "由 $AB=0$ 推出 $\\mathrm{rank}A+\\mathrm{rank}B\\le n$",
+        "variable_count": 0
+      },
+      "difficulty": 2,
+      "estimated_minutes": 5,
+      "answer": [
+        {
+          "label": "结果",
+          "steps": [
+            "由Sylvester不等式：$\\mathrm{rank}(AB)\\ge \\mathrm{rank}A+\\mathrm{rank}B-n$",
+            "已知$AB=0$，故$\\mathrm{rank}(AB)=0$，代入得 $0\\ge \\mathrm{rank}A+\\mathrm{rank}B-n$",
+            "即 $\\mathrm{rank}A+\\mathrm{rank}B\\le n$，此即原题(2)充分性证明中所用的关键工具"
+          ]
+        }
+      ],
+      "id": "isct-2015-3867f3ae42-q04-practice-04",
+      "school": "东京科学大学",
+      "year": "2015"
+    }
+  ],
+  "source_question": "[４]（上午）",
+  "source_pdf": "东京科学大学/理工学系/数学系/东京科学大学_理工学系_数学系_2015_数学过去问.pdf",
+  "source_type": "官方过去问",
+  "subject_category": "线性代数"
+}

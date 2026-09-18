@@ -1,0 +1,207 @@
+{
+  "id": "tohoku-2023-469b59f929-q05",
+  "school": "东北大学",
+  "year": "2023",
+  "subject": "情报科学研究科_数学教室",
+  "text": "设某生物资源在时刻 $t$ 的现存量为 $N(t)$。该资源以时间周期 $T$ 反复被消费掉现存量的 $50\\%$：$$\\lim_{t\\to kT+0}N(t)=0.5\\left\\{\\lim_{t\\to kT-0}N(t)\\right\\}\\quad(k=0,1,2,\\dots)$$ 而在 $t\\in(kT,(k+1)T)$（$k=0,1,2,\\dots$）区间内，资源的增长服从常微分方程 $$\\frac{dN(t)}{dt}=\\{1-N(t)\\}N(t)$$ 并设 $\\lim_{t\\to-0}N(t)=1$。\n(1) 求时刻 $t\\in(0,T)$ 内 $N(t)$ 关于 $t$ 的函数表达式；\n(2) 记 $N_+(k)=\\lim_{t\\to kT+0}N(t)$（$k=0,1,2,\\dots$），求 $N_+(k+1)$ 与 $N_+(k)$ 之间的关系式；\n(3) 求使生物资源不趋于枯竭所需满足的消费周期 $T$ 的条件。",
+  "knowledge_points": [
+    "Logistic方程求解",
+    "分离变量法",
+    "脉冲（跳跃）动力系统",
+    "不动点与稳定性分析",
+    "线性化判定稳定性"
+  ],
+  "question_type": "带脉冲的Logistic增长模型分析",
+  "method": [
+    "分离变量求解Logistic方程",
+    "利用跳跃条件建立递推关系",
+    "求解不动点并分析局部稳定性判断长期行为"
+  ],
+  "solution_steps": [
+    "利用初始条件 $N(0+)=0.5N(0-)=0.5$，求解Logistic方程得到 $t\\in(0,T)$ 内的 $N(t)$",
+    "对一般区间 $(kT,(k+1)T)$ 用相同方法求出 $N((k+1)T-0)$ 关于 $N_+(k)$ 的表达式，再乘以0.5得到 $N_+(k+1)$",
+    "求映射 $p\\mapsto f(p)$ 的正不动点，分析该不动点存在性及稳定性（通过在 $p=0$ 处的导数判断），得到 $T$ 的临界条件"
+  ],
+  "math_structure": {
+    "type": "logistic_impulsive_dynamics",
+    "template": "Logistic方程 $dN/dt=(1-N)N$ 在周期性脉冲 $N(kT+0)=0.5N(kT-0)$ 下的长期行为分析",
+    "variable_count": 2
+  },
+  "difficulty": 4,
+  "answer": [
+    {
+      "label": "(1)",
+      "steps": [
+        "由跳跃条件，$N(0+)=0.5\\cdot N(0-)=0.5\\times1=0.5$，即 $t\\in(0,T)$ 内以 $N(0+)=0.5$ 为初值",
+        "分离变量求解 $\\dfrac{dN}{(1-N)N}=dt$：$\\dfrac{1}{(1-N)N}=\\dfrac1N+\\dfrac1{1-N}$，积分得 $\\ln\\left|\\dfrac{N}{1-N}\\right|=t+C$，即 $\\dfrac{N}{1-N}=Ce^{t}$",
+        "代入初值 $N(0)=0.5$：$\\dfrac{0.5}{0.5}=1=Ce^0\\Rightarrow C=1$，故 $\\dfrac{N}{1-N}=e^{t}$，解得 $N(t)=\\dfrac{e^t}{1+e^t}=\\dfrac{1}{1+e^{-t}}$",
+        "即 $t\\in(0,T)$ 内 $N(t)=\\dfrac{1}{1+e^{-t}}$（验证：$t=0$时 $N=1/2$，$t\\to\\infty$时 $N\\to1$，且满足logistic方程，正确）"
+      ]
+    },
+    {
+      "label": "(2)",
+      "steps": [
+        "在区间 $(kT,(k+1)T)$，$N$ 以 $N_+(k)$ 为在 $t=kT+0$ 处的初值，满足同样的logistic方程，故一般解为 $N(t)=\\dfrac{N_+(k)}{N_+(k)+(1-N_+(k))e^{-(t-kT)}}$（标准logistic解公式，代入验证 $t=kT$ 时得 $N_+(k)$）",
+        "令 $t\\to(k+1)T-0$，得 $N_-(k+1)=\\dfrac{N_+(k)}{N_+(k)+(1-N_+(k))e^{-T}}$",
+        "再由跳跃条件 $N_+(k+1)=0.5\\,N_-(k+1)$，得递推关系：$$N_+(k+1)=\\dfrac{0.5\\,N_+(k)}{N_+(k)+(1-N_+(k))e^{-T}}$$"
+      ]
+    },
+    {
+      "label": "(3)",
+      "steps": [
+        "记 $p=N_+(k)$，$c=e^{-T}\\in(0,1)$，映射为 $f(p)=\\dfrac{0.5p}{c+p(1-c)}$。求正不动点：$p=f(p)\\Rightarrow p[c+p(1-c)]=0.5p\\Rightarrow c+p(1-c)=0.5$（$p\\ne0$）$\\Rightarrow p^*=\\dfrac{0.5-c}{1-c}=\\dfrac{0.5-e^{-T}}{1-e^{-T}}$",
+        "要使 $p^*>0$（存在正的平衡资源量），需 $0.5-e^{-T}>0$（因 $1-e^{-T}>0$ 对 $T>0$恒成立），即 $e^{-T}<0.5\\Leftrightarrow T>\\ln2$",
+        "分析平衡点 $p=0$（资源枯竭）的稳定性：$f'(p)=\\dfrac{0.5c}{[c+p(1-c)]^2}$，在 $p=0$处 $f'(0)=\\dfrac{0.5c}{c^2}=\\dfrac{0.5}{c}=0.5e^{T}$。当 $T>\\ln2$时 $f'(0)>1$，即 $p=0$ 为不稳定不动点，资源不会趋于枯竭而是趋向正不动点 $p^*$；当 $T\\le\\ln2$，$p=0$稳定或临界，资源趋于枯竭",
+        "综上，生物资源不趋于枯竭的充要条件为 $T>\\ln2$"
+      ]
+    }
+  ],
+  "practice_questions": [
+    {
+      "text": "求解Logistic方程 $\\dfrac{dy}{dt}=y(1-y)$，初值 $y(0)=0.2$，写出 $y(t)$ 的显式表达式。",
+      "knowledge_points": [
+        "Logistic方程",
+        "分离变量法"
+      ],
+      "question_type": "常微分方程求解",
+      "method": [
+        "分离变量"
+      ],
+      "solution_steps": [
+        "分离变量积分",
+        "代入初值定常数",
+        "化简得显式解"
+      ],
+      "math_structure": {
+        "type": "logistic_ode_solution",
+        "template": "求解 $dy/dt=y(1-y)$ 给定初值 $y(0)=y_0$ 的显式解",
+        "variable_count": 1
+      },
+      "difficulty": 2,
+      "estimated_minutes": 8,
+      "answer": [
+        {
+          "label": "结果",
+          "steps": [
+            "分离变量：$\\frac{dy}{y(1-y)}=dt$，部分分式 $\\frac1y+\\frac1{1-y}$，积分得 $\\ln\\left|\\frac{y}{1-y}\\right|=t+C$",
+            "代入 $y(0)=0.2$：$\\frac{0.2}{0.8}=0.25=e^C\\Rightarrow C=\\ln0.25$，故 $\\frac{y}{1-y}=0.25e^t$",
+            "解得 $y(t)=\\dfrac{0.25e^t}{1+0.25e^t}=\\dfrac{1}{1+4e^{-t}}$"
+          ]
+        }
+      ],
+      "id": "tohoku-2023-469b59f929-q05-practice-01",
+      "school": "东北大学",
+      "year": "2023"
+    },
+    {
+      "text": "求 Logistic 方程一般解 $N(t)=\\dfrac{N_0}{N_0+(1-N_0)e^{-t}}$ 在 $t\\to\\infty$ 时的极限，其中 $0<N_0<1$。",
+      "knowledge_points": [
+        "极限计算",
+        "Logistic方程渐近行为"
+      ],
+      "question_type": "极限求解",
+      "method": [
+        "直接取极限"
+      ],
+      "solution_steps": [
+        "分析分母极限行为",
+        "得到极限值"
+      ],
+      "math_structure": {
+        "type": "logistic_asymptotic_limit",
+        "template": "求Logistic解在 $t\\to\\infty$ 的极限",
+        "variable_count": 1
+      },
+      "difficulty": 1,
+      "estimated_minutes": 4,
+      "answer": [
+        {
+          "label": "结果",
+          "steps": [
+            "当 $t\\to\\infty$，$e^{-t}\\to0$，分母 $N_0+(1-N_0)e^{-t}\\to N_0$",
+            "故 $N(t)\\to\\dfrac{N_0}{N_0}=1$",
+            "即无论初值 $N_0\\in(0,1)$ 如何，Logistic方程解都趋于稳定平衡点 $1$"
+          ]
+        }
+      ],
+      "id": "tohoku-2023-469b59f929-q05-practice-02",
+      "school": "东北大学",
+      "year": "2023"
+    },
+    {
+      "text": "设映射 $f(p)=\\dfrac{0.5p}{p+0.5(1-p)}$（即取 $c=0.5$，对应 $T=\\ln2$），求其不动点，并讨论 $p=0$ 处的稳定性。",
+      "knowledge_points": [
+        "不动点分析",
+        "导数判稳定性"
+      ],
+      "question_type": "离散动力系统分析",
+      "method": [
+        "求不动点",
+        "计算导数判断稳定性"
+      ],
+      "solution_steps": [
+        "求解不动点方程",
+        "计算 $f'(0)$ 判断稳定性"
+      ],
+      "math_structure": {
+        "type": "fixed_point_stability_boundary_case",
+        "template": "在临界参数下分析映射不动点的稳定性",
+        "variable_count": 1
+      },
+      "difficulty": 3,
+      "estimated_minutes": 8,
+      "answer": [
+        {
+          "label": "结果",
+          "steps": [
+            "求不动点：$p[p+0.5(1-p)]=0.5p\\Rightarrow p+0.5(1-p)=0.5$（$p\\ne0$）$\\Rightarrow 0.5p+0.5=0.5\\Rightarrow p=0$，即临界情形下唯一非负不动点退化为 $p=0$",
+            "计算 $f'(p)=\\dfrac{0.5\\times0.5}{[0.5+0.5p]^2}=\\dfrac{0.25}{(0.5+0.5p)^2}$，在 $p=0$ 处 $f'(0)=\\dfrac{0.25}{0.25}=1$",
+            "$f'(0)=1$ 为临界（边界）情形，对应问题(3)中 $T=\\ln2$ 的临界值，此时稳定性需更高阶分析，通常表现为资源缓慢趋于枯竭（半稳定）"
+          ]
+        }
+      ],
+      "id": "tohoku-2023-469b59f929-q05-practice-03",
+      "school": "东北大学",
+      "year": "2023"
+    },
+    {
+      "text": "考虑周期脉冲系统 $N_+(k+1)=\\dfrac{0.8N_+(k)}{N_+(k)+0.2(1-N_+(k))}$（对应消费比例为20%而非50%）。求其正不动点 $p^*$。",
+      "knowledge_points": [
+        "不动点求解",
+        "脉冲动力系统"
+      ],
+      "question_type": "不动点计算",
+      "method": [
+        "求解不动点方程"
+      ],
+      "solution_steps": [
+        "列不动点方程",
+        "化简求解"
+      ],
+      "math_structure": {
+        "type": "impulsive_map_fixed_point",
+        "template": "求形如 $p^*=\\frac{a-c}{a-c}$ 型脉冲映射的正不动点",
+        "variable_count": 1
+      },
+      "difficulty": 3,
+      "estimated_minutes": 8,
+      "answer": [
+        {
+          "label": "结果",
+          "steps": [
+            "不动点方程：$p[p+0.2(1-p)]=0.8p\\Rightarrow p+0.2(1-p)=0.8$（$p\\ne0$）$\\Rightarrow 0.2+0.8p=0.8\\Rightarrow 0.8p=0.6\\Rightarrow p=0.75$",
+            "验证：代入 $f(0.75)=\\dfrac{0.8\\times0.75}{0.75+0.2\\times0.25}=\\dfrac{0.6}{0.75+0.05}=\\dfrac{0.6}{0.8}=0.75$，成立",
+            "故正不动点为 $p^*=0.75$"
+          ]
+        }
+      ],
+      "id": "tohoku-2023-469b59f929-q05-practice-04",
+      "school": "东北大学",
+      "year": "2023"
+    }
+  ],
+  "source_question": "問5",
+  "source_pdf": "东北大学/情报科学研究科/数学教室/东北大学_情报科学研究科_数学_2023_数学过去问.pdf",
+  "source_type": "官方过去问",
+  "subject_category": "微分方程"
+}

@@ -78,6 +78,57 @@
     <div id="similar-backdrop" class="similar-backdrop" hidden></div>
   </main>
 
+  {% if feedback_enabled %}
+  <button type="button" id="feedback-fab" class="feedback-fab" aria-label="填写反馈问卷">
+    <span aria-hidden="true">📝</span>
+    <span>反馈</span>
+  </button>
+
+  <div id="feedback-modal" class="feedback-modal" hidden role="dialog" aria-modal="true" aria-labelledby="feedback-title">
+    <div class="feedback-modal-backdrop" data-feedback-close></div>
+    <div class="feedback-modal-panel" role="document">
+      <button type="button" class="feedback-modal-close" data-feedback-close aria-label="关闭">×</button>
+      <h2 id="feedback-title">帮我做得更好 ✨</h2>
+      <p class="feedback-modal-sub">3 个问题，30 秒搞定。</p>
+
+      <form id="feedback-form" class="feedback-form" novalidate>
+        <input type="text" name="hp" class="feedback-hp" tabindex="-1" autocomplete="off" aria-hidden="true">
+
+        <label class="feedback-field">
+          <span>1. 改进建议（自由发挥）</span>
+          <textarea name="suggestion" rows="3" maxlength="2000" required placeholder="检索更准 / 加更多题 / 解析详细 / 界面更好用…想到啥写啥"></textarea>
+        </label>
+
+        <fieldset class="feedback-fieldset">
+          <legend>2. 后续会持续追加题目和科目，做成包月网站后，你每月愿意花多少？</legend>
+          <label class="feedback-radio"><input type="radio" name="willingness" value="不愿付费" required>完全不愿付费</label>
+          <label class="feedback-radio"><input type="radio" name="willingness" value="1-5元">1-5 元（咖啡钱）</label>
+          <label class="feedback-radio"><input type="radio" name="willingness" value="5-15元">5-15 元</label>
+          <label class="feedback-radio"><input type="radio" name="willingness" value="15-30元">15-30 元</label>
+          <label class="feedback-radio"><input type="radio" name="willingness" value="30+元">30+ 元</label>
+          <label class="feedback-radio"><input type="radio" name="willingness" value="其他">其他（请说明）</label>
+          <label class="feedback-field feedback-other" id="feedback-other-block" hidden>
+            <textarea name="willingness_other" id="feedback-other-input" rows="2" maxlength="500" placeholder="说一下你的想法，比如愿意付多少、什么条件下愿意…"></textarea>
+          </label>
+        </fieldset>
+
+        <fieldset class="feedback-fieldset">
+          <legend>3. 你现在在哪？</legend>
+          <label class="feedback-radio"><input type="radio" name="role" value="备考" required>备考</label>
+          <label class="feedback-radio"><input type="radio" name="role" value="工作">工作</label>
+          <label class="feedback-radio"><input type="radio" name="role" value="其他">其他</label>
+        </fieldset>
+
+        <div class="feedback-actions">
+          <button type="button" data-feedback-close class="feedback-btn feedback-btn-ghost">取消</button>
+          <button type="submit" id="feedback-submit" class="feedback-btn feedback-btn-primary">提交反馈</button>
+        </div>
+        <p id="feedback-status" class="feedback-status" hidden></p>
+      </form>
+    </div>
+  </div>
+  {% endif %}
+
   <script id="example-json" type="application/json">{{ example | safe }}</script>
   <script id="scope-tree" type="application/json">{{ scope_tree | tojson }}</script>
   <script id="default-subject" type="application/json">{{ default_subject | tojson }}</script>

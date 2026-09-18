@@ -1,0 +1,194 @@
+{
+  "id": "osaka-2010-d2b8f5102c-q02",
+  "school": "大阪大学",
+  "year": "2010",
+  "subject": "情报科学研究科_情报基础数学",
+  "text": "求下列复积分的值：\n$$\\int_{|z|=1} \\frac{\\sin\\pi z}{(2z-1)(3z-2)}\\,dz,$$\n其中积分路径为单位圆 $|z|=1$，逆时针方向绕行一圈。",
+  "knowledge_points": [
+    "留数定理",
+    "复变函数积分",
+    "简单极点",
+    "极点位置判断"
+  ],
+  "question_type": "留数定理计算复积分",
+  "method": [
+    "留数定理",
+    "简单极点留数公式"
+  ],
+  "solution_steps": [
+    "求出被积函数的极点：$z=1/2$ 和 $z=2/3$，均在单位圆内",
+    "对每个极点用简单极点留数公式 $\\mathrm{Res}_{z=z_0}f(z)=\\lim_{z\\to z_0}(z-z_0)f(z)$",
+    "计算两个留数并求和",
+    "应用留数定理：$\\int_{|z|=1}f(z)dz=2\\pi i\\sum\\mathrm{Res}$"
+  ],
+  "math_structure": {
+    "type": "contour_integral_residue",
+    "template": "\\int_{|z|=1}\\frac{\\sin\\pi z}{(az-1)(bz-c)}dz",
+    "variable_count": 3
+  },
+  "difficulty": 3,
+  "answer": [
+    {
+      "label": "ii)",
+      "steps": [
+        "将分母写成 $(2z-1)(3z-2)=6(z-1/2)(z-2/3)$，两个简单极点 $z=1/2,\\,z=2/3$ 均满足 $|z|<1$，故都在积分路径内",
+        "在 $z=1/2$ 处的留数：$\\mathrm{Res}=\\dfrac{\\sin(\\pi/2)}{6(1/2-2/3)}=\\dfrac{1}{6\\cdot(-1/6)}=-1$",
+        "在 $z=2/3$ 处的留数：$\\mathrm{Res}=\\dfrac{\\sin(2\\pi/3)}{6(2/3-1/2)}=\\dfrac{\\sqrt3/2}{6\\cdot(1/6)}=\\dfrac{\\sqrt3}{2}$",
+        "留数之和：$-1+\\dfrac{\\sqrt3}{2}$",
+        "由留数定理：$\\int_{|z|=1}f(z)dz=2\\pi i\\left(-1+\\dfrac{\\sqrt3}{2}\\right)=\\pi i(\\sqrt3-2)$"
+      ]
+    }
+  ],
+  "practice_questions": [
+    {
+      "text": "计算 $\\int_{|z|=1} \\frac{dz}{2z-1}$（逆时针一圈）。",
+      "knowledge_points": [
+        "留数定理",
+        "简单极点"
+      ],
+      "question_type": "基础留数计算",
+      "method": [
+        "留数定理"
+      ],
+      "solution_steps": [
+        "找极点 $z=1/2$",
+        "计算留数",
+        "应用留数定理"
+      ],
+      "math_structure": {
+        "type": "contour_integral_residue",
+        "template": "\\int_{|z|=1}\\frac{dz}{az-1}",
+        "variable_count": 1
+      },
+      "difficulty": 1,
+      "estimated_minutes": 4,
+      "answer": [
+        {
+          "label": "结果",
+          "steps": [
+            "极点 $z=1/2$ 在单位圆内，留数 $=\\lim_{z\\to1/2}(z-1/2)\\cdot\\frac{1}{2(z-1/2)}=\\frac12$",
+            "积分 $=2\\pi i\\cdot\\frac12=\\pi i$"
+          ]
+        }
+      ],
+      "id": "osaka-2010-d2b8f5102c-q02-practice-01",
+      "school": "大阪大学",
+      "year": "2010"
+    },
+    {
+      "text": "计算 $\\int_{|z|=1} \\frac{dz}{(3z-1)(z-2)}$（逆时针一圈）。",
+      "knowledge_points": [
+        "留数定理",
+        "极点位置判断",
+        "简单极点"
+      ],
+      "question_type": "留数计算(单极点在内)",
+      "method": [
+        "留数定理"
+      ],
+      "solution_steps": [
+        "判断极点 $z=1/3$（在圆内）和 $z=2$（在圆外，舍去）",
+        "计算圆内极点的留数",
+        "应用留数定理"
+      ],
+      "math_structure": {
+        "type": "contour_integral_residue",
+        "template": "\\int_{|z|=1}\\frac{dz}{(az-1)(z-c)}",
+        "variable_count": 2
+      },
+      "difficulty": 2,
+      "estimated_minutes": 5,
+      "answer": [
+        {
+          "label": "结果",
+          "steps": [
+            "极点 $z=1/3$ 在单位圆内，$z=2$ 在圆外不计",
+            "留数：$\\lim_{z\\to1/3}(z-1/3)\\cdot\\frac{1}{3(z-1/3)(z-2)}=\\frac{1}{3(1/3-2)}=\\frac{1}{3\\cdot(-5/3)}=-\\frac15$",
+            "积分 $=2\\pi i\\cdot(-1/5)=-\\frac{2\\pi i}{5}$"
+          ]
+        }
+      ],
+      "id": "osaka-2010-d2b8f5102c-q02-practice-02",
+      "school": "大阪大学",
+      "year": "2010"
+    },
+    {
+      "text": "计算 $\\int_{|z|=1} \\frac{\\cos\\pi z}{2z-1}\\,dz$（逆时针一圈）。",
+      "knowledge_points": [
+        "留数定理",
+        "三角函数留数"
+      ],
+      "question_type": "含三角函数分子的留数计算",
+      "method": [
+        "留数定理"
+      ],
+      "solution_steps": [
+        "确定极点 $z=1/2$",
+        "代入留数公式",
+        "应用留数定理并化简三角函数值"
+      ],
+      "math_structure": {
+        "type": "contour_integral_residue",
+        "template": "\\int_{|z|=1}\\frac{\\cos\\pi z}{2z-1}dz",
+        "variable_count": 1
+      },
+      "difficulty": 2,
+      "estimated_minutes": 5,
+      "answer": [
+        {
+          "label": "结果",
+          "steps": [
+            "极点 $z=1/2$ 在圆内",
+            "留数 $=\\frac{\\cos(\\pi/2)}{2}=\\frac{0}{2}=0$",
+            "积分 $=2\\pi i\\cdot0=0$"
+          ]
+        }
+      ],
+      "id": "osaka-2010-d2b8f5102c-q02-practice-03",
+      "school": "大阪大学",
+      "year": "2010"
+    },
+    {
+      "text": "计算 $\\int_{|z|=1} \\frac{\\sin\\pi z}{(2z-1)(z-3/4)}\\,dz$（逆时针一圈），作为通向原题（两极点均在圆内）的过渡练习。",
+      "knowledge_points": [
+        "留数定理",
+        "多极点求和",
+        "三角函数留数"
+      ],
+      "question_type": "多极点留数计算",
+      "method": [
+        "留数定理",
+        "简单极点留数公式"
+      ],
+      "solution_steps": [
+        "确定两个极点 $z=1/2,\\,z=3/4$ 均在单位圆内",
+        "分别计算两处留数",
+        "求和并应用留数定理"
+      ],
+      "math_structure": {
+        "type": "contour_integral_residue",
+        "template": "\\int_{|z|=1}\\frac{\\sin\\pi z}{(2z-1)(z-c)}dz",
+        "variable_count": 1
+      },
+      "difficulty": 3,
+      "estimated_minutes": 7,
+      "answer": [
+        {
+          "label": "结果",
+          "steps": [
+            "在 $z=1/2$ 处：留数 $=\\dfrac{\\sin(\\pi/2)}{2(1/2-3/4)}=\\dfrac{1}{2\\cdot(-1/4)}=-2$",
+            "在 $z=3/4$ 处：留数 $=\\dfrac{\\sin(3\\pi/4)}{2\\cdot3/4-1}=\\dfrac{\\sqrt2/2}{1/2}=\\sqrt2$",
+            "留数之和 $=-2+\\sqrt2$，积分 $=2\\pi i(-2+\\sqrt2)=2\\pi i(\\sqrt2-2)$"
+          ]
+        }
+      ],
+      "id": "osaka-2010-d2b8f5102c-q02-practice-04",
+      "school": "大阪大学",
+      "year": "2010"
+    }
+  ],
+  "source_question": "問1(ii)",
+  "source_pdf": "大阪大学/情报科学研究科/情报基础数学/大阪大学_情报科学研究科_情报基础数学_2010_数学过去问.pdf",
+  "source_type": "官方过去问",
+  "subject_category": "复变函数"
+}

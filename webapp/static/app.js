@@ -730,5 +730,111 @@ browseQuestionEl.addEventListener("change", () => selectBrowseQuestion(browseQue
 
 populateBrowseSubject();
 populateBrowseSchool();
+// 页面打开时：上面会把每个下拉默认选到第一项，如果最深层（题目）有值就直接拉数据，
+// 否则再退回去显示提示。这样进来默认就有一道题，不会有空白页。
+browseReady = Boolean(browseQuestion);
 if (browseQuestion && browseReady) fetchBrowse(); else showBrowsePrompt();
 updateUrl();
+
+// ---------- 反馈问卷：右下浮动按钮 + 模态框 ----------
+// FAB 不在 DOM 里时（FEEDBACK_ENABLED=false）整套不挂载，避免空指针。
+const feedbackFab = el("feedback-fab");
+if (feedbackFab) {
+const feedbackModal = el("feedback-modal");
+const feedbackForm = el("feedback-form");
+const feedbackSubmit = el("feedback-submit");
+const feedbackStatus = el("feedback-status");
+const feedbackOtherBlock = el("feedback-other-block");
+const feedbackOtherInput = el("feedback-other-input");
+
+// 选了「其他」才显示文字框；切回预设档位时顺手清空
+function syncFeedbackOther() {
+  const otherSelected = feedbackForm.querySelector('input[name="willingness"]:checked')?.value === "其他";
+  feedbackOtherBlock.hidden = !otherSelected;
+  if (!otherSelected && feedbackOtherInput) feedbackOtherInput.value = "";
+}
+feedbackForm.addEventListener("change", syncFeedbackOther);
+
+function openFeedback() {
+  feedbackForm.reset();
+  feedbackStatus.hidden = true;
+  feedbackStatus.textContent = "";
+  feedbackStatus.className = "feedback-status";
+  syncFeedbackOther();
+  feedbackModal.hidden = false;
+  document.body.classList.add("drawer-open");
+  // 第一个表单控件自动聚焦，便于键盘用户
+  window.setTimeout(() => {
+    const first = feedbackForm.querySelector("input, textarea");
+    if (first) first.focus();
+  }, 0);
+}
+
+function closeFeedback() {
+  feedbackModal.hidden = true;
+  document.body.classList.remove("drawer-open");
+}
+
+feedbackFab.addEventListener("click", openFeedback);
+feedbackModal.addEventListener("click", (e) => {
+  if (e.target.dataset.feedbackClose !== undefined) closeFeedback();
+});
+document.addEventListener("keydown", (e) => {
+  if (e.key === "Escape" && !feedbackModal.hidden) closeFeedback();
+});
+
+feedbackForm.addEventListener("submit", async (e) => {
+  e.preventDefault();
+  const fd = new FormData(feedbackForm);
+  const suggestion = (fd.get("suggestion") || "").toString().trim();
+  if (suggestion.length < 2) {
+    feedbackStatus.textContent = "写点改进建议吧，哪怕一两句都行。";
+    feedbackStatus.className = "feedback-status err";
+    feedbackStatus.hidden = false;
+    return;
+  }
+  const willingness = fd.get("willingness");
+  const role = fd.get("role");
+  if (!willingness || !role) {
+    feedbackStatus.textContent = "付费意愿和当前身份都选一下。";
+    feedbackStatus.className = "feedback-status err";
+    feedbackStatus.hidden = false;
+    return;
+  }
+  const willingnessOther = (fd.get("willingness_other") || "").toString().trim();
+  if (willingness === "其他" && willingnessOther.length < 2) {
+    feedbackStatus.textContent = "选了「其他」就简单说两句吧～";
+    feedbackStatus.className = "feedback-status err";
+    feedbackStatus.hidden = false;
+    return;
+  }
+  const payload = {
+    suggestion,
+    willingness,
+    willingness_other: willingness === "其他" ? willingnessOther : "",
+    role,
+    hp: fd.get("hp") || "",
+  };
+
+  feedbackSubmit.disabled = true;
+  feedbackStatus.textContent = "提交中…";
+  feedbackStatus.className = "feedback-status";
+  feedbackStatus.hidden = false;
+  try {
+    const { ok, data } = await post("/api/feedback", {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify(payload),
+    });
+    if (!ok) throw new Error(data.error || "提交失败。");
+    feedbackStatus.textContent = "收到啦，谢谢！🙏";
+    feedbackStatus.className = "feedback-status ok";
+    window.setTimeout(closeFeedback, 1200);
+  } catch (err) {
+    feedbackStatus.textContent = err.message;
+    feedbackStatus.className = "feedback-status err";
+  } finally {
+    feedbackSubmit.disabled = false;
+  }
+});
+}

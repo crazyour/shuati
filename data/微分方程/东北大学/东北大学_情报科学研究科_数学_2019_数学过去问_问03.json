@@ -1,0 +1,214 @@
+{
+  "id": "tohoku-2019-48163c7ac0-q03",
+  "school": "东北大学",
+  "year": "2019",
+  "subject": "情报科学研究科_数学教室",
+  "text": "考虑关于传染病传播动力学的如下数理模型。设时刻 $t$ 时的易感者（未感染者）数密度为 $S(t)$，感染者数密度为 $I(t)$，$N(t)=S(t)+I(t)$ 表示所考察种群的总密度。参数 $\\lambda,\\mu,\\beta,\\gamma$ 均为正常数。设存在时刻 $t_0$，使得当 $t<t_0$ 时 $S(t)=\\lambda/\\mu,\\ I(t)=0$，而在 $t=t_0$ 时 $S(t_0)=\\lambda/\\mu-I_0,\\ I(t_0)=I_0$，其中 $I_0$ 为充分小的正值（$\\ll\\lambda/\\mu$）。当 $t\\ge t_0$ 时，传染病传播动力学服从如下常微分方程组：\n$$\\frac{dS(t)}{dt}=\\lambda-\\mu S(t)-\\beta S(t)I(t)+\\gamma I(t),$$\n$$\\frac{dI(t)}{dt}=\\beta S(t)I(t)-\\mu I(t)-\\gamma I(t).$$\n(1) 说明参数 $\\lambda,\\mu,\\gamma$ 的含义，特别说明 $\\gamma$ 取较大值代表传染病的何种性质。\n(2) 说明该传染病传播动力学中时刻 $t_0$ 的意义。\n(3) 说明种群总密度 $N(t)$ 与时间无关（为常数）。\n(4) 在该模型中，若 $\\beta>(\\mu+\\gamma)\\mu/\\lambda$，则 $t\\to\\infty$ 时 $I(t)$ 收敛到正的有限值 $I^*$，传染病在种群中定着（成为地方病）；若 $\\beta\\le(\\mu+\\gamma)\\mu/\\lambda$，则感染者数密度随时间单调递减，传染病不会流行。请说明理由，并用参数表示 $I^*$。",
+  "knowledge_points": [
+    "常微分方程组建模",
+    "守恒量法",
+    "一维约化为逻辑斯蒂方程",
+    "平衡点与稳定性分析",
+    "阈值条件（基本再生数思想）"
+  ],
+  "question_type": "传染病SIS模型的常微分方程组分析题",
+  "method": [
+    "利用 $N=S+I$ 的方程判断守恒量",
+    "代入 $S=N-I$ 化简为关于 $I$ 的单变量方程",
+    "对逻辑斯蒂型方程做符号分析确定极限行为"
+  ],
+  "solution_steps": [
+    "解释每个参数在流行病学模型中的现实含义",
+    "把 $S,I$ 两个方程相加求 $dN/dt$，证明其满足线性齐次方程且初值恰为平衡值，从而 $N$ 恒定",
+    "利用 $S=N-I=\\lambda/\\mu-I$ 代入 $I$ 方程得到关于 $I$ 的一元二次（逻辑斯蒂型）方程",
+    "按系数正负分类讨论极限行为，求出正平衡点 $I^*$"
+  ],
+  "math_structure": {
+    "type": "epidemic_ode_system",
+    "template": "$\\dot S=\\lambda-\\mu S-\\beta SI+\\gamma I,\\ \\dot I=\\beta SI-(\\mu+\\gamma)I$；证明 $N=S+I$ 守恒，并按 $\\beta$ 与 $(\\mu+\\gamma)\\mu/\\lambda$ 的大小关系分析 $I(t)$ 的极限行为",
+    "variable_count": 4
+  },
+  "difficulty": 4,
+  "answer": [
+    {
+      "label": "(1)",
+      "steps": [
+        "$\\lambda$：单位时间内新增易感者的（常）速率，即种群的补充率（出生/迁入率）。",
+        "$\\mu$：个体的自然死亡率（每个个体单位时间的死亡概率），对 $S,I$ 均适用。",
+        "$\\gamma$：感染者的康复率，即单位时间内感染者康复并重新变为易感者的比例（模型中康复者回到 $S$，形成 SIS 型结构）。",
+        "$\\gamma$ 越大，表示感染者康复得越快（平均感染持续时间 $1/(\\mu+\\gamma)$ 越短），即该传染病的传染性持续期短、患者恢复迅速，这类快速康复的疾病更不容易在种群中长期传播扩散。"
+      ]
+    },
+    {
+      "label": "(2)",
+      "steps": [
+        "$t_0$ 表示传染病最初被引入该种群的时刻（“指标病例”出现的时刻）。",
+        "在 $t<t_0$ 时种群处于无病平衡态 $S=\\lambda/\\mu,I=0$；到 $t=t_0$ 时，突然出现了 $I_0$（充分小）个感染者，此后系统按给定的常微分方程组演化。",
+        "因此 $t_0$ 是病原体输入种群、疾病传播过程正式开始的初始时刻。"
+      ]
+    },
+    {
+      "label": "(3)",
+      "steps": [
+        "将两式相加：$\\dfrac{dN}{dt}=\\dfrac{dS}{dt}+\\dfrac{dI}{dt}=(\\lambda-\\mu S-\\beta SI+\\gamma I)+(\\beta SI-\\mu I-\\gamma I)=\\lambda-\\mu S-\\mu I=\\lambda-\\mu N$。",
+        "这是关于 $N$ 的一阶线性常微分方程，其唯一平衡解为 $N^*=\\lambda/\\mu$，且 $\\dfrac{dN}{dt}=-\\mu(N-N^*)$，故该平衡点是（指数）稳定的。",
+        "由初始条件，$N(t_0)=S(t_0)+I(t_0)=(\\lambda/\\mu-I_0)+I_0=\\lambda/\\mu=N^*$，即初值恰好落在平衡点上，故对一切 $t\\ge t_0$ 恒有 $N(t)=\\lambda/\\mu$，即 $N$ 为与时间无关的常数。"
+      ]
+    },
+    {
+      "label": "(4)",
+      "steps": [
+        "由 (3)，$S(t)=N-I(t)=\\lambda/\\mu-I(t)$。代入 $I$ 的方程：$\\dot I=\\beta I(\\lambda/\\mu-I)-(\\mu+\\gamma)I=I\\left[\\left(\\dfrac{\\beta\\lambda}{\\mu}-(\\mu+\\gamma)\\right)-\\beta I\\right]$，记 $A=\\dfrac{\\beta\\lambda}{\\mu}-(\\mu+\\gamma)$，则 $\\dot I=I(A-\\beta I)$，为标准逻辑斯蒂方程。",
+        "情形一：若 $\\beta>(\\mu+\\gamma)\\mu/\\lambda$，即 $A>0$，逻辑斯蒂方程有正稳定平衡点 $I^*=A/\\beta$；因初值 $I(t_0)=I_0>0$ 充分小（$0<I_0<I^*$，因 $I^*$ 与 $\\lambda/\\mu$ 同阶而 $I_0\\ll\\lambda/\\mu$），故 $I(t)$ 单调增且当 $t\\to\\infty$ 时收敛于 $I^*>0$，传染病定着为地方病。",
+        "情形二：若 $\\beta\\le(\\mu+\\gamma)\\mu/\\lambda$，即 $A\\le0$，则对一切 $I>0$，$\\dot I=I(A-\\beta I)\\le -\\beta I^2<0$（当 $A=0$）或 $\\dot I<0$（当 $A<0$，因两个因子分别非正与负），故 $I(t)$ 严格单调递减，随时间趋于 $0$，传染病不会流行。",
+        "综上，正的有限极限值为 $I^*=\\dfrac{A}{\\beta}=\\dfrac{\\beta\\lambda/\\mu-(\\mu+\\gamma)}{\\beta}=\\dfrac{\\lambda}{\\mu}-\\dfrac{\\mu+\\gamma}{\\beta}$（当条件 $\\beta>(\\mu+\\gamma)\\mu/\\lambda$ 成立时此式为正）。"
+      ]
+    }
+  ],
+  "practice_questions": [
+    {
+      "text": "求逻辑斯蒂方程 $\\dot y=y(r-ay)$（$r,a>0$，$y(0)=y_0>0$）当 $t\\to\\infty$ 时的极限。",
+      "knowledge_points": [
+        "逻辑斯蒂方程",
+        "平衡点稳定性"
+      ],
+      "question_type": "基础逻辑斯蒂方程分析",
+      "method": [
+        "平衡点分析",
+        "符号判断单调性"
+      ],
+      "solution_steps": [
+        "求平衡点",
+        "判断稳定性",
+        "得出极限"
+      ],
+      "math_structure": {
+        "type": "logistic_equation_basic",
+        "template": "$\\dot y=y(r-ay)$",
+        "variable_count": 2
+      },
+      "difficulty": 2,
+      "estimated_minutes": 6,
+      "answer": [
+        {
+          "label": "极限",
+          "steps": [
+            "平衡点为 $y=0$ 与 $y=r/a$",
+            "对 $0<y_0<r/a$，$\\dot y>0$ 当 $y<r/a$，故 $y(t)$ 单调增趋于 $r/a$",
+            "极限为 $r/a$"
+          ]
+        }
+      ],
+      "id": "tohoku-2019-48163c7ac0-q03-practice-01",
+      "school": "东北大学",
+      "year": "2019"
+    },
+    {
+      "text": "在原模型中，若不考虑康复（即 $\\gamma=0$），写出简化后的 SIS/SIR 阈值条件（即 $\\beta$ 需满足什么条件才使感染定着）。",
+      "knowledge_points": [
+        "阈值条件",
+        "参数简化"
+      ],
+      "question_type": "参数简化讨论",
+      "method": [
+        "代入 $\\gamma=0$ 得阈值不等式"
+      ],
+      "solution_steps": [
+        "把 $\\gamma=0$ 代入原阈值条件"
+      ],
+      "math_structure": {
+        "type": "threshold_special_case",
+        "template": "$\\beta>(\\mu+\\gamma)\\mu/\\lambda$ 令 $\\gamma=0$",
+        "variable_count": 3
+      },
+      "difficulty": 2,
+      "estimated_minutes": 4,
+      "answer": [
+        {
+          "label": "结果",
+          "steps": [
+            "条件化为 $\\beta>\\mu^2/\\lambda$",
+            "此即基本再生数 $R_0=\\beta\\lambda/\\mu^2>1$ 的条件"
+          ]
+        }
+      ],
+      "id": "tohoku-2019-48163c7ac0-q03-practice-02",
+      "school": "东北大学",
+      "year": "2019"
+    },
+    {
+      "text": "验证：若 $N(t_0)\\ne\\lambda/\\mu$，则 $N(t)$ 不再是常数，而是随时间趋于 $\\lambda/\\mu$。给出证明。",
+      "knowledge_points": [
+        "一阶线性常微分方程求解"
+      ],
+      "question_type": "非平衡初值下的守恒量讨论",
+      "method": [
+        "求解线性ODE $\\dot N=\\lambda-\\mu N$"
+      ],
+      "solution_steps": [
+        "解出通解",
+        "代入初值",
+        "取极限"
+      ],
+      "math_structure": {
+        "type": "linear_ode_convergence",
+        "template": "$\\dot N=\\lambda-\\mu N,\\ N(t_0)=N_0\\ne\\lambda/\\mu$",
+        "variable_count": 3
+      },
+      "difficulty": 2,
+      "estimated_minutes": 6,
+      "answer": [
+        {
+          "label": "证明",
+          "steps": [
+            "通解：$N(t)=\\lambda/\\mu+(N_0-\\lambda/\\mu)e^{-\\mu(t-t_0)}$",
+            "因 $\\mu>0$，当 $t\\to\\infty$ 时指数项趋于 $0$",
+            "故 $N(t)\\to\\lambda/\\mu$，但若 $N_0\\ne\\lambda/\\mu$ 则 $N(t)$ 不是常数（除非恰在该初值）"
+          ]
+        }
+      ],
+      "id": "tohoku-2019-48163c7ac0-q03-practice-03",
+      "school": "东北大学",
+      "year": "2019"
+    },
+    {
+      "text": "在阈值条件 $\\beta>(\\mu+\\gamma)\\mu/\\lambda$ 下，验证 $I^*=\\lambda/\\mu-(\\mu+\\gamma)/\\beta$ 确实满足 $\\dot I=0$ 于 $I=I^*$。",
+      "knowledge_points": [
+        "平衡点验证"
+      ],
+      "question_type": "代入验证平衡解",
+      "method": [
+        "直接代入方程验证"
+      ],
+      "solution_steps": [
+        "写出 $\\dot I$ 表达式",
+        "代入 $I^*$",
+        "化简验证为零"
+      ],
+      "math_structure": {
+        "type": "equilibrium_verification",
+        "template": "验证 $I^*=\\lambda/\\mu-(\\mu+\\gamma)/\\beta$ 是平衡点",
+        "variable_count": 4
+      },
+      "difficulty": 3,
+      "estimated_minutes": 7,
+      "answer": [
+        {
+          "label": "验证",
+          "steps": [
+            "$\\dot I=I[(\\beta\\lambda/\\mu-(\\mu+\\gamma))-\\beta I]$，代入 $I=I^*=(\\beta\\lambda/\\mu-(\\mu+\\gamma))/\\beta$",
+            "括号内 $=(\\beta\\lambda/\\mu-(\\mu+\\gamma))-\\beta\\cdot(\\beta\\lambda/\\mu-(\\mu+\\gamma))/\\beta=0$",
+            "故 $\\dot I=I^*\\cdot0=0$，验证成立"
+          ]
+        }
+      ],
+      "id": "tohoku-2019-48163c7ac0-q03-practice-04",
+      "school": "东北大学",
+      "year": "2019"
+    }
+  ],
+  "source_question": "4",
+  "source_pdf": "东北大学/情报科学研究科/数学教室/东北大学_情报科学研究科_数学_2019_数学过去问.pdf",
+  "source_type": "官方过去问",
+  "subject_category": "微分方程"
+}

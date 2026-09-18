@@ -1,0 +1,144 @@
+{
+  "id": "kyoto-2025-0964b49f99-q10",
+  "school": "京都大学",
+  "year": "2025",
+  "subject": "情报学研究科_数理工学",
+  "text": "设 $f(t)=2, g(t)=-3$，求常微分方程 $\\dfrac{d^2x}{dt^2}+f(t)\\dfrac{dx}{dt}+g(t)x=0$ 的一般解。",
+  "knowledge_points": [
+    "常系数线性齐次微分方程",
+    "特征方程",
+    "指数函数解"
+  ],
+  "question_type": "常系数二阶线性ODE求解",
+  "method": [
+    "特征方程法"
+  ],
+  "solution_steps": [
+    "代入 $f,g$ 得具体方程 $x''+2x'-3x=0$",
+    "写出特征方程并求根",
+    "根据实数不同根写出通解"
+  ],
+  "math_structure": {
+    "type": "constant_coefficient_ode",
+    "template": "x''+2x'-3x=0",
+    "variable_count": 0
+  },
+  "difficulty": 1,
+  "answer": [
+    {
+      "label": "一般解",
+      "steps": [
+        "方程为 $x''+2x'-3x=0$，特征方程 $r^2+2r-3=0$",
+        "因式分解：$(r+3)(r-1)=0$，得根 $r_1=1, r_2=-3$",
+        "由于两根为不同实数，一般解为 $x(t)=C_1e^{t}+C_2e^{-3t}$（$C_1,C_2$为任意常数）",
+        "验证：代入 $x=e^t$，$x''+2x'-3x=e^t+2e^t-3e^t=0$成立；代入 $x=e^{-3t}$，$9e^{-3t}-6e^{-3t}-3e^{-3t}=0$成立"
+      ]
+    }
+  ],
+  "practice_questions": [
+    {
+      "text": "求 $x''-5x'+6x=0$ 的一般解。",
+      "knowledge_points": [
+        "特征方程法"
+      ],
+      "question_type": "常系数ODE求解",
+      "method": [
+        "特征方程法"
+      ],
+      "solution_steps": [
+        "求特征方程根",
+        "写出通解"
+      ],
+      "math_structure": {
+        "type": "constant_coefficient_ode",
+        "template": "x''-5x'+6x=0",
+        "variable_count": 0
+      },
+      "difficulty": 1,
+      "estimated_minutes": 3,
+      "answer": [
+        {
+          "label": "结果",
+          "steps": [
+            "特征方程 $r^2-5r+6=0\\Rightarrow(r-2)(r-3)=0$，根 $r=2,3$",
+            "一般解：$x(t)=C_1e^{2t}+C_2e^{3t}$"
+          ]
+        }
+      ],
+      "id": "kyoto-2025-0964b49f99-q10-practice-01",
+      "school": "京都大学",
+      "year": "2025"
+    },
+    {
+      "text": "求 $x''+4x'+4x=0$ 的一般解（重根情形）。",
+      "knowledge_points": [
+        "特征方程重根情形"
+      ],
+      "question_type": "常系数ODE求解",
+      "method": [
+        "特征方程法，重根需乘以 $t$"
+      ],
+      "solution_steps": [
+        "求特征方程根",
+        "处理重根情形写出通解"
+      ],
+      "math_structure": {
+        "type": "constant_coefficient_ode_repeated_root",
+        "template": "x''+4x'+4x=0",
+        "variable_count": 0
+      },
+      "difficulty": 2,
+      "estimated_minutes": 4,
+      "answer": [
+        {
+          "label": "结果",
+          "steps": [
+            "特征方程 $r^2+4r+4=0\\Rightarrow(r+2)^2=0$，重根 $r=-2$",
+            "一般解：$x(t)=(C_1+C_2t)e^{-2t}$"
+          ]
+        }
+      ],
+      "id": "kyoto-2025-0964b49f99-q10-practice-02",
+      "school": "京都大学",
+      "year": "2025"
+    },
+    {
+      "text": "求 $x''+2x'+5x=0$ 的一般解（复根情形）。",
+      "knowledge_points": [
+        "特征方程复根情形",
+        "欧拉公式"
+      ],
+      "question_type": "常系数ODE求解",
+      "method": [
+        "特征方程法，复根用欧拉公式转化为三角函数形式"
+      ],
+      "solution_steps": [
+        "求特征方程复根",
+        "写出实数形式通解"
+      ],
+      "math_structure": {
+        "type": "constant_coefficient_ode_complex_root",
+        "template": "x''+2x'+5x=0",
+        "variable_count": 0
+      },
+      "difficulty": 2,
+      "estimated_minutes": 5,
+      "answer": [
+        {
+          "label": "结果",
+          "steps": [
+            "特征方程 $r^2+2r+5=0$，判别式 $4-20=-16$，根 $r=-1\\pm2i$",
+            "一般解：$x(t)=e^{-t}(C_1\\cos2t+C_2\\sin2t)$"
+          ]
+        }
+      ],
+      "id": "kyoto-2025-0964b49f99-q10-practice-03",
+      "school": "京都大学",
+      "year": "2025"
+    }
+  ],
+  "source_question": "問6(i)",
+  "source_pdf": "京都大学/情报学研究科/数理工学/京都大学_情报学研究科_数理工学_2025_数学过去问.pdf",
+  "source_type": "官方过去问",
+  "subject_category": "微分方程"
+}

@@ -1,0 +1,211 @@
+{
+  "id": "nagoya-2007-3a846a5911-q03",
+  "school": "名古屋大学",
+  "year": "2007",
+  "subject": "多元数理科学研究科_全专攻",
+  "text": "回答以下问题：\n(1) 设常数 $a,b$ 满足 $0<a<b$，考虑 $xy$-平面上的区域\n$$R=\\{(x,y)\\mid a\\le x+y\\le b,\\ x\\ge0,\\ y\\ge0\\}.$$\n通过变量代换 $s=x+y, t=x-y$，$R$ 在 $st$-平面上变为怎样的区域？请图示，并求积分\n$$\\iint_R \\frac{x^2+y^2}{(x+y)^3}\\,dx\\,dy.$$\n(2) 设 $f(x,y)$ 是 $\\mathbb{R}^2$ 上的 $C^2$ 级函数，满足方程\n$$\\left(\\frac{\\partial^2}{\\partial x^2}-\\frac{\\partial^2}{\\partial y^2}\\right)f(x,y)=0.$$\n利用变量代换 $s=x+y,t=x-y$ 定义 $\\mathbb{R}^2$ 上的函数 $g(s,t)=f(x,y)$。求 $g(s,t)$ 满足的方程，并证明 $f(x,y)$ 可表示为某两个一元函数 $f_1,f_2$ 之和：$f(x,y)=f_1(x+y)+f_2(x-y)$。",
+  "knowledge_points": [
+    "二重积分变量替换",
+    "雅可比行列式",
+    "偏微分方程的特征线法",
+    "波动方程的通解",
+    "混合偏导数"
+  ],
+  "question_type": "变量替换下的二重积分计算与偏微分方程通解求法",
+  "question_type_detail": "",
+  "method": [
+    "变量替换求新区域并计算雅可比行列式",
+    "转化积分并逐次积分",
+    "利用链式法则将偏微分方程转化为混合偏导形式",
+    "对 $g_{st}=0$ 积分得到通解形式"
+  ],
+  "solution_steps": [
+    "求出 $x,y$ 关于 $s,t$ 的表达式，代入约束条件确定 $st$-平面区域",
+    "计算雅可比行列式 $|\\partial(x,y)/\\partial(s,t)|$",
+    "将被积函数用 $s,t$ 表示，计算二重积分",
+    "用链式法则证明 $\\partial^2/\\partial x^2-\\partial^2/\\partial y^2=4\\partial^2/\\partial s\\partial t$",
+    "对 $g_{st}=0$ 两次积分得到 $g(s,t)=f_1(s)+f_2(t)$，代回得 $f(x,y)=f_1(x+y)+f_2(x-y)$"
+  ],
+  "math_structure": {
+    "type": "change_of_variables_integral_and_pde",
+    "template": "region a<=x+y<=b, x,y>=0; integral of (x^2+y^2)/(x+y)^3 under s=x+y,t=x-y; and wave-type PDE f_xx-f_yy=0 via same substitution",
+    "variable_count": 2
+  },
+  "difficulty": 4,
+  "answer": [
+    {
+      "label": "(1)",
+      "steps": [
+        "由 $s=x+y,t=x-y$ 得 $x=\\frac{s+t}{2},y=\\frac{s-t}{2}$。条件 $x\\ge0\\Leftrightarrow t\\ge-s$；$y\\ge0\\Leftrightarrow t\\le s$；又 $a\\le s\\le b$。故 $st$-平面上的区域为 $\\{(s,t): a\\le s\\le b,\\ -s\\le t\\le s\\}$，即在带状区域 $a\\le s\\le b$ 内，$t$ 被限制在直线 $t=s$ 与 $t=-s$ 之间，构成一个梯形区域（左边界 $s=a$ 处 $t\\in[-a,a]$，右边界 $s=b$ 处 $t\\in[-b,b]$，上下由 $t=\\pm s$ 围成）",
+        "雅可比行列式：$\\frac{\\partial(x,y)}{\\partial(s,t)}=\\det\\begin{pmatrix}1/2&1/2\\\\1/2&-1/2\\end{pmatrix}=-\\frac14-\\frac14=-\\frac12$，故 $dx\\,dy=\\frac12\\,ds\\,dt$",
+        "被积函数：$x^2+y^2=\\frac{(s+t)^2+(s-t)^2}{4}=\\frac{s^2+t^2}{2}$，而 $(x+y)^3=s^3$，故 $\\frac{x^2+y^2}{(x+y)^3}=\\frac{s^2+t^2}{2s^3}$",
+        "于是积分 $=\\iint \\frac{s^2+t^2}{2s^3}\\cdot\\frac12\\,ds\\,dt=\\int_a^b\\int_{-s}^{s}\\frac{s^2+t^2}{4s^3}\\,dt\\,ds$。先对 $t$ 积分：$\\int_{-s}^s\\frac{s^2+t^2}{4s^3}dt=\\frac{1}{4s^3}\\left[s^2t+\\frac{t^3}{3}\\right]_{-s}^{s}=\\frac{1}{4s^3}\\left(2s^3+\\frac{2s^3}{3}\\right)=\\frac{1}{4s^3}\\cdot\\frac{8s^3}{3}=\\frac{2}{3}$",
+        "再对 $s$ 积分：$\\int_a^b \\frac23\\,ds=\\frac23(b-a)$。故 $\\iint_R\\frac{x^2+y^2}{(x+y)^3}dxdy=\\dfrac{2}{3}(b-a)$"
+      ]
+    },
+    {
+      "label": "(2)",
+      "steps": [
+        "由 $s=x+y,t=x-y$ 反解 $x=\\frac{s+t}2,y=\\frac{s-t}2$，故 $\\frac{\\partial}{\\partial s}=\\frac{\\partial x}{\\partial s}\\frac{\\partial}{\\partial x}+\\frac{\\partial y}{\\partial s}\\frac{\\partial}{\\partial y}=\\frac12\\frac{\\partial}{\\partial x}+\\frac12\\frac{\\partial}{\\partial y}$，同理 $\\frac{\\partial}{\\partial t}=\\frac12\\frac{\\partial}{\\partial x}-\\frac12\\frac{\\partial}{\\partial y}$",
+        "于是 $\\frac{\\partial^2}{\\partial s\\partial t}=\\frac14\\left(\\frac{\\partial}{\\partial x}+\\frac{\\partial}{\\partial y}\\right)\\left(\\frac{\\partial}{\\partial x}-\\frac{\\partial}{\\partial y}\\right)=\\frac14\\left(\\frac{\\partial^2}{\\partial x^2}-\\frac{\\partial^2}{\\partial y^2}\\right)$（利用 $C^2$ 保证混合偏导可交换），故 $\\frac{\\partial^2}{\\partial x^2}-\\frac{\\partial^2}{\\partial y^2}=4\\frac{\\partial^2}{\\partial s\\partial t}$",
+        "由已知方程得 $4g_{st}=0$，即 $g(s,t)$ 满足 $\\dfrac{\\partial^2 g}{\\partial s\\partial t}=0$",
+        "对该方程先对 $t$ 积分：$g_s(s,t)$ 与 $t$ 无关，记 $g_s(s,t)=h(s)$；再对 $s$ 积分：$g(s,t)=\\int h(s)ds+f_2(t)=f_1(s)+f_2(t)$，其中 $f_1$ 为 $h$ 的原函数",
+        "代回 $s=x+y,t=x-y$ 得 $f(x,y)=g(x+y,x-y)=f_1(x+y)+f_2(x-y)$，证毕"
+      ]
+    }
+  ],
+  "practice_questions": [
+    {
+      "text": "求变量替换 $u=x+y,v=x-y$ 下的雅可比行列式 $\\dfrac{\\partial(x,y)}{\\partial(u,v)}$，并说明 $dx\\,dy$ 与 $du\\,dv$ 的关系。",
+      "knowledge_points": [
+        "雅可比行列式",
+        "变量替换"
+      ],
+      "question_type": "雅可比行列式基础计算",
+      "method": [
+        "反解 $x,y$",
+        "直接计算偏导数矩阵行列式"
+      ],
+      "solution_steps": [
+        "反解出 $x=(u+v)/2,y=(u-v)/2$",
+        "求偏导数矩阵并计算行列式"
+      ],
+      "math_structure": {
+        "type": "jacobian_computation",
+        "template": "u=x+y, v=x-y, find Jacobian d(x,y)/d(u,v)",
+        "variable_count": 0
+      },
+      "difficulty": 1,
+      "estimated_minutes": 4,
+      "answer": [
+        {
+          "label": "雅可比行列式",
+          "steps": [
+            "$x=\\frac{u+v}2, y=\\frac{u-v}2$，故 $\\partial x/\\partial u=1/2,\\partial x/\\partial v=1/2,\\partial y/\\partial u=1/2,\\partial y/\\partial v=-1/2$",
+            "雅可比行列式 $=\\det\\begin{pmatrix}1/2&1/2\\\\1/2&-1/2\\end{pmatrix}=-\\frac14-\\frac14=-\\frac12$",
+            "故 $dx\\,dy=\\left|-\\frac12\\right|du\\,dv=\\frac12 du\\,dv$"
+          ]
+        }
+      ],
+      "id": "nagoya-2007-3a846a5911-q03-practice-01",
+      "school": "名古屋大学",
+      "year": "2007"
+    },
+    {
+      "text": "利用变量替换 $s=x+y,t=x-y$，计算 $\\displaystyle\\iint_D \\frac{1}{(x+y)^2}\\,dx\\,dy$，其中 $D=\\{(x,y):1\\le x+y\\le2, |x-y|\\le x+y\\}$。",
+      "knowledge_points": [
+        "二重积分变量替换",
+        "雅可比行列式应用"
+      ],
+      "question_type": "简化版变量替换积分",
+      "method": [
+        "确定新区域",
+        "计算雅可比行列式并转化积分",
+        "逐次积分求值"
+      ],
+      "solution_steps": [
+        "写出 $s,t$ 的范围",
+        "转化被积函数与面积元",
+        "计算内层与外层积分"
+      ],
+      "math_structure": {
+        "type": "change_of_variables_integral",
+        "template": "region 1<=x+y<=2, |x-y|<=x+y; integral of 1/(x+y)^2 under s=x+y,t=x-y",
+        "variable_count": 0
+      },
+      "difficulty": 2,
+      "estimated_minutes": 8,
+      "answer": [
+        {
+          "label": "积分值",
+          "steps": [
+            "约束 $|x-y|\\le x+y$ 即 $-s\\le t\\le s$，且 $1\\le s\\le2$，与原题结构相同",
+            "雅可比行列式为 $1/2$，被积函数 $\\frac{1}{s^2}$，积分变为 $\\int_1^2\\int_{-s}^s \\frac{1}{s^2}\\cdot\\frac12\\,dt\\,ds$",
+            "内层积分：$\\int_{-s}^s \\frac{1}{2s^2}dt=\\frac{2s}{2s^2}=\\frac1s$；外层积分：$\\int_1^2\\frac1s\\,ds=\\ln2-\\ln1=\\ln2$",
+            "故积分值为 $\\ln 2$"
+          ]
+        }
+      ],
+      "id": "nagoya-2007-3a846a5911-q03-practice-02",
+      "school": "名古屋大学",
+      "year": "2007"
+    },
+    {
+      "text": "设 $f(x,y)=C^2$ 函数满足波动方程 $f_{xx}-f_{yy}=0$。利用替换 $s=x+y,t=x-y$ 直接验证 $f(x,y)=(x+y)^3+\\sin(x-y)$ 满足此方程，并指出对应的 $f_1,f_2$。",
+      "knowledge_points": [
+        "波动方程验证",
+        "一般解形式的应用"
+      ],
+      "question_type": "通解形式的验证练习",
+      "method": [
+        "直接求偏导数代入验证",
+        "对照通解形式确定 $f_1,f_2$"
+      ],
+      "solution_steps": [
+        "计算 $f_{xx}$ 与 $f_{yy}$",
+        "验证方程成立",
+        "写出对应的 $f_1(s),f_2(t)$"
+      ],
+      "math_structure": {
+        "type": "wave_equation_solution_verification",
+        "template": "verify f(x,y)=(x+y)^3+sin(x-y) satisfies f_xx - f_yy=0 and identify f_1,f_2",
+        "variable_count": 0
+      },
+      "difficulty": 2,
+      "estimated_minutes": 6,
+      "answer": [
+        {
+          "label": "验证与分解",
+          "steps": [
+            "设 $f_1(s)=s^3,f_2(t)=\\sin t$，则 $f(x,y)=f_1(x+y)+f_2(x-y)=(x+y)^3+\\sin(x-y)$，与题目给出的函数一致",
+            "计算 $f_x=3(x+y)^2+\\cos(x-y)$，$f_{xx}=6(x+y)-\\sin(x-y)$；$f_y=3(x+y)^2-\\cos(x-y)$，$f_{yy}=6(x+y)-\\sin(x-y)$",
+            "故 $f_{xx}-f_{yy}=[6(x+y)-\\sin(x-y)]-[6(x+y)-\\sin(x-y)]=0$，方程成立，且 $f_1(s)=s^3,f_2(t)=\\sin t$ 即为所求分解"
+          ]
+        }
+      ],
+      "id": "nagoya-2007-3a846a5911-q03-practice-03",
+      "school": "名古屋大学",
+      "year": "2007"
+    },
+    {
+      "text": "对区域 $R'=\\{(x,y):2\\le x+y\\le5,x\\ge0,y\\ge0\\}$，用与原题相同的方法计算 $\\iint_{R'}\\dfrac{x^2+y^2}{(x+y)^3}dx\\,dy$。",
+      "knowledge_points": [
+        "变量替换积分",
+        "参数化结果的直接应用"
+      ],
+      "question_type": "参数变化下的重复练习",
+      "method": [
+        "套用一般公式 $\\frac23(b-a)$",
+        "从头推导核对"
+      ],
+      "solution_steps": [
+        "识别 $a=2,b=5$",
+        "代入一般结论或重新推导"
+      ],
+      "math_structure": {
+        "type": "change_of_variables_integral",
+        "template": "region 2<=x+y<=5,x,y>=0; integral of (x^2+y^2)/(x+y)^3",
+        "variable_count": 0
+      },
+      "difficulty": 3,
+      "estimated_minutes": 8,
+      "answer": [
+        {
+          "label": "结果",
+          "steps": [
+            "由原题一般结论，$\\iint_R \\frac{x^2+y^2}{(x+y)^3}dxdy=\\frac23(b-a)$ 对任意 $0<a<b$ 成立",
+            "代入 $a=2,b=5$，得 $\\frac23(5-2)=\\frac23\\times3=2$",
+            "验证：重新走一遍推导，内层积分恒为 $2/3$（与 $s$ 无关），外层对 $s$ 从2到5积分得 $\\frac23\\times3=2$，结果一致"
+          ]
+        }
+      ],
+      "id": "nagoya-2007-3a846a5911-q03-practice-04",
+      "school": "名古屋大学",
+      "year": "2007"
+    }
+  ],
+  "source_question": "問3",
+  "source_pdf": "名古屋大学/多元数理科学研究科/全专攻/名古屋大学_多元数理科学研究科_2007_第1次_数学过去问_上午.pdf",
+  "source_type": "官方过去问",
+  "subject_category": "微积分"
+}

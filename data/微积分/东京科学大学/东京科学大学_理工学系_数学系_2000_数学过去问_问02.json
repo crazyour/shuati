@@ -1,0 +1,203 @@
+{
+  "id": "isct-2000-7e67416ed8-q02",
+  "school": "东京科学大学",
+  "year": "2000",
+  "subject": "理工学系_数学系",
+  "text": "设 $\\alpha>0$。定义函数 $f:\\mathbb{R}^2\\to\\mathbb{R}$ 为\n$$f(x,y)=\\begin{cases}\\dfrac{|xy|^{\\alpha}}{\\sqrt{x^2+y^2}}, & (x,y)\\neq(0,0)\\\\ 0, & (x,y)=(0,0)\\end{cases}$$\n证明以下 (1)(2)：\n(1) $f$ 在原点 $(0,0)$ 连续的必要充分条件是 $\\alpha>\\dfrac12$。\n(2) $f$ 在原点 $(0,0)$ 全微分可能（可微）的必要充分条件是 $\\alpha>1$。",
+  "knowledge_points": [
+    "极坐标变换",
+    "多元函数极限",
+    "连续性判定",
+    "全微分可微性定义",
+    "偏导数计算"
+  ],
+  "question_type": "多元函数连续性与可微性证明题",
+  "method": [
+    "极坐标换元估计上下界",
+    "取特殊路径θ=π/4构造反例",
+    "利用可微定义验证极限比值"
+  ],
+  "solution_steps": [
+    "将f写成极坐标形式，分离出关于r的幂次和关于θ的有界因子",
+    "分析r幂指数的正负确定极限是否为0，得到连续性的临界值α=1/2",
+    "计算原点处偏导数均为0，写出可微性判别式为对r^{2α-2}的极限判断",
+    "得出可微性的临界值α=1，并用θ=π/4验证边界情形不可微/不连续"
+  ],
+  "math_structure": {
+    "type": "multivariable_continuity_differentiability",
+    "template": "f(x,y)=|xy|^alpha/sqrt(x^2+y^2) at origin, find threshold alpha for continuity and differentiability",
+    "variable_count": 1
+  },
+  "difficulty": 4,
+  "answer": [
+    {
+      "label": "(1)",
+      "steps": [
+        "用极坐标 $x=r\\cos\\theta,y=r\\sin\\theta$（$r>0$）代入：$|xy|^\\alpha=r^{2\\alpha}|\\cos\\theta\\sin\\theta|^\\alpha$，而 $\\sqrt{x^2+y^2}=r$，故 $f=r^{2\\alpha-1}|\\cos\\theta\\sin\\theta|^\\alpha$。",
+        "因为 $0\\le|\\cos\\theta\\sin\\theta|\\le\\frac12$ 对一切 $\\theta$ 成立，所以 $0\\le f\\le r^{2\\alpha-1}\\big(\\frac12\\big)^\\alpha$。若 $\\alpha>\\frac12$，则 $2\\alpha-1>0$，当 $r\\to0$ 时上界 $\\to0$，故 $f\\to0=f(0,0)$，连续。",
+        "若 $\\alpha\\le\\frac12$，取 $\\theta=\\pi/4$（即 $x=y=r/\\sqrt2$），此时 $|\\cos\\theta\\sin\\theta|=\\frac12$，$f=r^{2\\alpha-1}(1/2)^\\alpha$。当 $\\alpha<\\frac12$ 时 $2\\alpha-1<0$，$r\\to0$ 使 $f\\to+\\infty$，不连续；当 $\\alpha=\\frac12$ 时 $f\\equiv(1/2)^{1/2}\\neq0$（常数），极限不为0，仍不连续。",
+        "综上，$f$ 在原点连续 $\\iff\\alpha>\\frac12$。"
+      ]
+    },
+    {
+      "label": "(2)",
+      "steps": [
+        "先求原点处偏导数：$f(h,0)=\\dfrac{|h\\cdot0|^\\alpha}{|h|}=0$（对一切 $h\\neq0$，任意 $\\alpha>0$），故 $f_x(0,0)=\\lim_{h\\to0}\\frac{f(h,0)-0}{h}=0$；同理 $f_y(0,0)=0$。",
+        "全微分可能要求 $\\displaystyle\\lim_{(h,k)\\to(0,0)}\\frac{f(h,k)-f_x(0,0)h-f_y(0,0)k}{\\sqrt{h^2+k^2}}=\\lim_{(h,k)\\to(0,0)}\\frac{f(h,k)}{\\sqrt{h^2+k^2}}=0$。",
+        "用极坐标：$\\dfrac{f(h,k)}{\\sqrt{h^2+k^2}}=\\dfrac{r^{2\\alpha-1}|\\cos\\theta\\sin\\theta|^\\alpha}{r}=r^{2\\alpha-2}|\\cos\\theta\\sin\\theta|^\\alpha$。若 $\\alpha>1$，则 $2\\alpha-2>0$，该式被 $r^{2\\alpha-2}(1/2)^\\alpha\\to0$ 一致控制，极限为0，故可微。",
+        "若 $\\alpha\\le1$，取 $\\theta=\\pi/4$：该式等于 $r^{2\\alpha-2}(1/2)^\\alpha$。当 $\\alpha<1$ 时 $2\\alpha-2<0$，$r\\to0$ 使其 $\\to\\infty$；当 $\\alpha=1$ 时该式恒为常数 $(1/2)$，不趋于0；两种情形均不可微。综上，$f$ 在原点可微 $\\iff\\alpha>1$。"
+      ]
+    }
+  ],
+  "practice_questions": [
+    {
+      "text": "设 $g(x,y)=\\dfrac{|xy|}{\\sqrt{x^2+y^2}}$（$(x,y)\\neq0$），$g(0,0)=0$。判断 $g$ 在原点是否连续。",
+      "knowledge_points": [
+        "极坐标估计",
+        "极限判断"
+      ],
+      "question_type": "连续性判断",
+      "method": [
+        "极坐标换元"
+      ],
+      "solution_steps": [
+        "代入极坐标写出g=r|cosθsinθ|",
+        "由r→0得极限为0",
+        "结论连续"
+      ],
+      "math_structure": {
+        "type": "multivariable_continuity_differentiability",
+        "template": "g=|xy|/sqrt(x^2+y^2), alpha=1 case, continuity check",
+        "variable_count": 0
+      },
+      "difficulty": 2,
+      "estimated_minutes": 5,
+      "answer": [
+        {
+          "label": "结论",
+          "steps": [
+            "g=r^{2-1}|cosθsinθ|=r|cosθsinθ|，因|cosθsinθ|≤1/2，故0≤g≤r/2→0(r→0)",
+            "所以g在原点连续"
+          ]
+        }
+      ],
+      "id": "isct-2000-7e67416ed8-q02-practice-01",
+      "school": "东京科学大学",
+      "year": "2000"
+    },
+    {
+      "text": "对函数 $f(x,y)=\\dfrac{|xy|^{1/4}}{\\sqrt{x^2+y^2}}$（原点取0），判断其在原点是否连续。",
+      "knowledge_points": [
+        "极坐标估计",
+        "反例构造"
+      ],
+      "question_type": "连续性判断（α<1/2情形）",
+      "method": [
+        "极坐标+特殊路径"
+      ],
+      "solution_steps": [
+        "代入极坐标得r^{-1/2}因子",
+        "沿θ=π/4取极限说明发散",
+        "结论不连续"
+      ],
+      "math_structure": {
+        "type": "multivariable_continuity_differentiability",
+        "template": "alpha=1/4<1/2 case, show discontinuity via theta=pi/4 path",
+        "variable_count": 0
+      },
+      "difficulty": 2,
+      "estimated_minutes": 6,
+      "answer": [
+        {
+          "label": "结论",
+          "steps": [
+            "f=r^{2(1/4)-1}|cosθsinθ|^{1/4}=r^{-1/2}|cosθsinθ|^{1/4}",
+            "沿θ=π/4：f=r^{-1/2}(1/2)^{1/4}→∞ 当r→0",
+            "故f在原点不连续"
+          ]
+        }
+      ],
+      "id": "isct-2000-7e67416ed8-q02-practice-02",
+      "school": "东京科学大学",
+      "year": "2000"
+    },
+    {
+      "text": "设 $\\alpha=3/4$，考察 $f(x,y)=|xy|^{\\alpha}/\\sqrt{x^2+y^2}$ 在原点是否可微（已知此时函数连续，因 $3/4>1/2$）。",
+      "knowledge_points": [
+        "偏导数计算",
+        "全微分定义",
+        "极坐标反例"
+      ],
+      "question_type": "可微性判断（1/2<α<1情形）",
+      "method": [
+        "计算偏导数为0",
+        "极坐标估计差商",
+        "沿特殊路径构造反例"
+      ],
+      "solution_steps": [
+        "求f_x(0,0)=f_y(0,0)=0",
+        "写出差商比为r^{2α-2}|cosθsinθ|^α",
+        "代入α=3/4得2α-2=-1/2<0，沿θ=π/4发散，结论不可微"
+      ],
+      "math_structure": {
+        "type": "multivariable_continuity_differentiability",
+        "template": "alpha=3/4, between 1/2 and 1, differentiability check gives negative result",
+        "variable_count": 0
+      },
+      "difficulty": 3,
+      "estimated_minutes": 8,
+      "answer": [
+        {
+          "label": "结论",
+          "steps": [
+            "f_x(0,0)=f_y(0,0)=0（同原题推导）",
+            "差商比 = r^{2(3/4)-2}|cosθsinθ|^{3/4}=r^{-1/2}|cosθsinθ|^{3/4}",
+            "沿θ=π/4，比值=r^{-1/2}(1/2)^{3/4}→∞，极限非0，故不可微"
+          ]
+        }
+      ],
+      "id": "isct-2000-7e67416ed8-q02-practice-03",
+      "school": "东京科学大学",
+      "year": "2000"
+    },
+    {
+      "text": "证明：一般地，对形如 $h(x,y)=|xy|^{\\beta}/(x^2+y^2)^{\\gamma}$（$\\beta,\\gamma>0$）的函数在原点连续的充要条件是 $2\\beta-2\\gamma>0$，即 $\\beta>\\gamma$。",
+      "knowledge_points": [
+        "极坐标一般化估计",
+        "参数化临界值分析"
+      ],
+      "question_type": "一般化证明题",
+      "method": [
+        "极坐标代换给出一般幂次表达式"
+      ],
+      "solution_steps": [
+        "写出h的极坐标表达式为r^{2β-2γ}×有界角函数",
+        "分析幂次符号得连续性条件"
+      ],
+      "math_structure": {
+        "type": "multivariable_continuity_differentiability",
+        "template": "general h=|xy|^beta/(x^2+y^2)^gamma, find continuity threshold beta>gamma",
+        "variable_count": 2
+      },
+      "difficulty": 3,
+      "estimated_minutes": 10,
+      "answer": [
+        {
+          "label": "结论",
+          "steps": [
+            "极坐标下h=r^{2\\beta}|\\cos\\theta\\sin\\theta|^\\beta / r^{2\\gamma}=r^{2\\beta-2\\gamma}|\\cos\\theta\\sin\\theta|^\\beta",
+            "该式被r^{2\\beta-2\\gamma}(1/2)^\\beta控制，若2β-2γ>0则→0连续；若≤0，沿θ=π/4发散或不为0，不连续",
+            "故连续的充要条件为β>γ，与原题α>1/2（此处γ=1/2）时β=α对应一致"
+          ]
+        }
+      ],
+      "id": "isct-2000-7e67416ed8-q02-practice-04",
+      "school": "东京科学大学",
+      "year": "2000"
+    }
+  ],
+  "source_question": "専門科目（午前）問3",
+  "source_pdf": "东京科学大学/理工学系/数学系/东京科学大学_理工学系_数学系_2000_数学过去问.pdf",
+  "source_type": "官方过去问",
+  "subject_category": "微积分"
+}

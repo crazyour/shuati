@@ -1,0 +1,234 @@
+{
+  "id": "kobe-2026-a798af0c90-q03",
+  "school": "神户大学",
+  "year": "2026",
+  "subject": "系统情报学研究科_全专攻",
+  "text": "考虑复函数 $f(z)=\\dfrac{e^{iz}}{z-i}$。设 $R>1$，令 $C_1$ 为复平面上从 $R$ 到 $iR$ 的线段，$C_2$ 为从 $iR$ 到 $-R$ 的线段，$C_3$ 为从 $-R$ 到 $R$ 的线段，并令 $C=C_1\\cup C_2\\cup C_3$。\n\n(1) 求复积分 $\\displaystyle\\int_C f(z)\\,dz$。\n\n(2) 证明：当 $z\\in C_1$ 时，$|z-i|\\ge\\dfrac{R-1}{\\sqrt2}$。\n\n(3) 利用 (2) 证明 $\\displaystyle\\lim_{R\\to\\infty}\\int_{C_1}f(z)\\,dz=0$。\n\n(4) 利用 (1)、(3) 以及已知结论 $\\displaystyle\\lim_{R\\to\\infty}\\int_{C_2}f(z)\\,dz=0$，求 $\\displaystyle\\int_{-\\infty}^{\\infty}\\frac{\\cos x+x\\sin x}{x^2+1}\\,dx$。",
+  "knowledge_points": [
+    "留数定理",
+    "复素积分",
+    "极点与留数",
+    "参数化曲线",
+    "积分估计",
+    "实积分与复积分"
+  ],
+  "question_type": "多部分复积分问题",
+  "method": [
+    "留数定理",
+    "参数化与积分估计",
+    "约当引理",
+    "实部虚部分离"
+  ],
+  "solution_steps": [
+    "识别 $f(z)$ 的奇点位置",
+    "计算留数",
+    "利用留数定理计算 $\\int_C f(z)dz$",
+    "对 $C_1$ 进行参数化并估计积分上界",
+    "证明路径积分的极限为零",
+    "利用闭合路径积分与路径和的关系求实积分"
+  ],
+  "math_structure": {
+    "type": "residue_theorem_application",
+    "template": "利用留数定理计算实部虚部分离的实积分，通过约当引理估计路径积分",
+    "variable_count": 2
+  },
+  "difficulty": 5,
+  "answer": [
+    {
+      "label": "(1) 复素积分",
+      "steps": [
+        "$f$ 在路径 $C$ 围成的三角形内只有一个一阶极点 $z=i$。",
+        "该点的留数为 $$\\operatorname{Res}(f;i)=\\lim_{z\\to i}(z-i)\\frac{e^{iz}}{z-i}=e^{i^2}=e^{-1}.$$",
+        "路径方向为逆时针，因此由留数定理，$$\\int_C f(z)\\,dz=2\\pi i\\operatorname{Res}(f;i)=\\frac{2\\pi i}{e}.$$"
+      ]
+    },
+    {
+      "label": "(2) 不等式证明",
+      "steps": [
+        "写 $z=x+iy$。在线段 $C_1$ 上有 $x+y=R$，且 $x,y\\ge0$。",
+        "利用 $p^2+q^2\\ge(p+q)^2/2$，取 $p=x$、$q=y-1$，得到 $$|z-i|^2=x^2+(y-1)^2\\ge\\frac{(x+y-1)^2}{2}=\\frac{(R-1)^2}{2}.$$",
+        "因 $R>1$，两边取平方根即得 $|z-i|\\ge(R-1)/\\sqrt2$。"
+      ]
+    },
+    {
+      "label": "(3) 极限证明",
+      "steps": [
+        "用 $z(t)=R(1-t)+iRt$（$0\\le t\\le1$）参数化 $C_1$，则 $|dz|=\\sqrt2R\\,dt$，且 $|e^{iz(t)}|=e^{-Rt}$。",
+        "由 (2)，$$\\left|\\int_{C_1}f(z)\\,dz\\right|\\le\\int_0^1\\frac{e^{-Rt}}{(R-1)/\\sqrt2}\\sqrt2R\\,dt=\\frac{2R}{R-1}\\int_0^1e^{-Rt}\\,dt.$$",
+        "计算积分后得到 $$\\left|\\int_{C_1}f(z)\\,dz\\right|\\le\\frac{2(1-e^{-R})}{R-1}\\longrightarrow0,$$ 故所求极限为 $0$。"
+      ]
+    },
+    {
+      "label": "(4) 实积分值",
+      "steps": [
+        "由路径分解、(1)、(3) 和题设给出的 $C_2$ 极限，$$\\lim_{R\\to\\infty}\\int_{-R}^{R}\\frac{e^{ix}}{x-i}\\,dx=\\frac{2\\pi i}{e}.$$",
+        "对实数 $x$，$$\\frac{e^{ix}}{x-i}=\\frac{e^{ix}(x+i)}{x^2+1}=\\frac{x\\cos x-\\sin x}{x^2+1}+i\\frac{\\cos x+x\\sin x}{x^2+1}.$$",
+        "比较上式积分的虚部与 $2\\pi i/e$ 的虚部，得到 $$\\int_{-\\infty}^{\\infty}\\frac{\\cos x+x\\sin x}{x^2+1}\\,dx=\\frac{2\\pi}{e}.$$"
+      ]
+    }
+  ],
+  "practice_questions": [
+    {
+      "text": "计算 $\\int_{-\\infty}^{\\infty} \\frac{1}{(x^2+1)(x^2+4)}dx$。",
+      "knowledge_points": [
+        "留数定理",
+        "部分分式"
+      ],
+      "question_type": "实积分计算",
+      "method": [
+        "留数定理",
+        "上半平面闭合"
+      ],
+      "solution_steps": [
+        "找奇点",
+        "计算留数",
+        "利用留数定理"
+      ],
+      "math_structure": {
+        "type": "rational_integration",
+        "template": "有理函数的实积分通过留数定理计算",
+        "variable_count": 2
+      },
+      "difficulty": 3,
+      "estimated_minutes": 10,
+      "answer": [
+        {
+          "label": "积分值",
+          "steps": [
+            "$f(z) = \\frac{1}{(z^2+1)(z^2+4)}$ 的奇点为 $z = \\pm i, \\pm 2i$",
+            "在上半平面的奇点为 $z = i$ 和 $z = 2i$",
+            "$\\text{Res}(f, i) = \\lim_{z \\to i}(z-i)\\frac{1}{(z+i)(z^2+4)} = \\frac{1}{2i(i^2+4)} = \\frac{1}{2i\\cdot 3} = \\frac{1}{6i}$",
+            "$\\text{Res}(f, 2i) = \\lim_{z \\to 2i}(z-2i)\\frac{1}{(z^2+1)(z+2i)} = \\frac{1}{(4i^2+1)(4i)} = \\frac{1}{(-3)(4i)} = -\\frac{1}{12i}$",
+            "$\\int_{-\\infty}^{\\infty} \\frac{1}{(x^2+1)(x^2+4)}dx = 2\\pi i(\\frac{1}{6i} - \\frac{1}{12i}) = 2\\pi i \\cdot \\frac{1}{12i} = \\frac{\\pi}{6}$"
+          ]
+        }
+      ],
+      "id": "kobe-2026-a798af0c90-q03-practice-01",
+      "school": "神户大学",
+      "year": "2026"
+    },
+    {
+      "text": "求 $\\int_{-\\infty}^{\\infty} \\frac{x\\sin x}{x^2 + a^2}dx$，其中 $a > 0$。",
+      "knowledge_points": [
+        "留数定理",
+        "虚部分离",
+        "参数"
+      ],
+      "question_type": "含参实积分",
+      "method": [
+        "留数定理",
+        "参数化"
+      ],
+      "solution_steps": [
+        "考虑 $\\int \\frac{ze^{iz}}{z^2+a^2}$",
+        "计算留数",
+        "提取虚部"
+      ],
+      "math_structure": {
+        "type": "parametric_integral",
+        "template": "含参数的实积分通过留数定理",
+        "variable_count": 2
+      },
+      "difficulty": 3,
+      "estimated_minutes": 10,
+      "answer": [
+        {
+          "label": "积分值",
+          "steps": [
+            "考虑 $f(z) = \\frac{ze^{iz}}{z^2+a^2}$，奇点为 $z = \\pm ai$",
+            "在上半平面，奇点为 $z = ai$",
+            "$\\text{Res}(f, ai) = \\frac{ai \\cdot e^{i(ai)}}{2ai} = \\frac{e^{-a}}{2}$",
+            "$\\int_{-\\infty}^{\\infty} \\frac{xe^{ix}}{x^2+a^2}dx = 2\\pi i \\cdot \\frac{e^{-a}}{2} = \\pi i e^{-a}$",
+            "$\\int_{-\\infty}^{\\infty} \\frac{x\\sin x}{x^2+a^2}dx = \\text{Im}(\\pi i e^{-a}) = \\pi e^{-a}$",
+            "**答：$\\pi e^{-a}$**"
+          ]
+        }
+      ],
+      "id": "kobe-2026-a798af0c90-q03-practice-02",
+      "school": "神户大学",
+      "year": "2026"
+    },
+    {
+      "text": "证明：$\\int_{-\\infty}^{\\infty} \\frac{\\sin x}{x}dx = \\pi$。",
+      "knowledge_points": [
+        "留数定理",
+        "积分路径",
+        "奇点处理"
+      ],
+      "question_type": "证明题",
+      "method": [
+        "键孔轮廓",
+        "留数定理"
+      ],
+      "solution_steps": [
+        "用键孔轮廓避开原点奇点",
+        "分别计算各段积分"
+      ],
+      "math_structure": {
+        "type": "keyhole_contour",
+        "template": "使用键孔轮廓处理原点奇点",
+        "variable_count": 0
+      },
+      "difficulty": 4,
+      "estimated_minutes": 15,
+      "answer": [
+        {
+          "label": "证明",
+          "steps": [
+            "对 $e^{iz}/z$ 取上半平面大半圆轮廓，并用半径 $\\varepsilon$ 的上半小圆弧从上方绕开原点。被挖去的区域内没有极点，因此轮廓积分为 $0$。",
+            "大圆弧积分由 Jordan 引理趋于 $0$。小圆弧按顺时针方向参数化为 $z=\\varepsilon e^{i\\theta}$（$\\theta$ 从 $\\pi$ 到 $0$），于是 $$\\int_{C_\\varepsilon}\\frac{e^{iz}}z\\,dz=i\\int_\\pi^0e^{i\\varepsilon e^{i\\theta}}\\,d\\theta\\longrightarrow-i\\pi.$$",
+            "令大圆半径趋于无穷、小圆半径趋于零，得到主值积分 $$\\operatorname{PV}\\int_{-\\infty}^{\\infty}\\frac{e^{ix}}x\\,dx=i\\pi.$$",
+            "取虚部即得 $$\\int_{-\\infty}^{\\infty}\\frac{\\sin x}{x}\\,dx=\\pi.$$"
+          ]
+        }
+      ],
+      "id": "kobe-2026-a798af0c90-q03-practice-03",
+      "school": "神户大学",
+      "year": "2026"
+    },
+    {
+      "text": "设 $f(z) = \\frac{e^{2iz}}{z^2 - 2z + 2}$，计算 $\\int_{-\\infty}^{\\infty} f(x)dx$。",
+      "knowledge_points": [
+        "留数定理",
+        "二次方程求根",
+        "约当引理"
+      ],
+      "question_type": "综合计算",
+      "method": [
+        "配方法",
+        "留数计算"
+      ],
+      "solution_steps": [
+        "配方求二次方程的根",
+        "判断上半平面奇点",
+        "计算留数"
+      ],
+      "math_structure": {
+        "type": "quadratic_poles",
+        "template": "带二次多项式分母的复积分",
+        "variable_count": 2
+      },
+      "difficulty": 4,
+      "estimated_minutes": 12,
+      "answer": [
+        {
+          "label": "积分计算",
+          "steps": [
+            "配方：$z^2 - 2z + 2 = (z-1)^2 + 1$",
+            "奇点为 $z = 1 \\pm i$，在上半平面的奇点为 $z = 1 + i$",
+            "$\\text{Res}(f, 1+i) = \\frac{e^{2i(1+i)}}{2(1+i)-2} = \\frac{e^{2i-2}}{2i} = \\frac{e^{-2}e^{2i}}{2i}$",
+            "$\\int_{-\\infty}^{\\infty} f(x)dx = 2\\pi i \\cdot \\frac{e^{-2}e^{2i}}{2i} = \\pi e^{-2}(\\cos 2 + i\\sin 2)$",
+            "**答：$\\pi e^{-2}\\cos 2 + i\\pi e^{-2}\\sin 2$（如果只要实部则为 $\\pi e^{-2}\\cos 2$）**"
+          ]
+        }
+      ],
+      "id": "kobe-2026-a798af0c90-q03-practice-04",
+      "school": "神户大学",
+      "year": "2026"
+    }
+  ],
+  "source_question": "問2",
+  "source_pdf": "神户大学/系统情报学研究科/全专攻/神户大学_系统情报学研究科_2026_数学过去问.pdf",
+  "source_type": "官方过去问",
+  "subject_category": "复变函数"
+}

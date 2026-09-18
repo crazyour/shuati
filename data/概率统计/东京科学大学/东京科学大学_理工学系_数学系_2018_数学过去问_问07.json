@@ -1,0 +1,164 @@
+{
+  "id": "isct-2018-9607dddc5c-q07",
+  "school": "东京科学大学",
+  "year": "2018",
+  "subject": "理工学系_数学系",
+  "text": "设 $(X,\\mathcal{B},\\mu)$ 为测度空间，$\\mu(X)<\\infty$。\n(1) 设 $f:X\\to\\mathbb{R}$ 可测，$k>0$，$\\lambda>0$。证明 $$e^{\\lambda k}\\mu(\\{x\\in X\\mid f(x)>k\\})\\le\\int_X e^{\\lambda f(x)}d\\mu(x).$$\n(2) 设 $X=\\mathbb{R}$，$\\mathcal{B}=\\mathcal{B}(\\mathbb{R})$，$d\\mu(x)=\\dfrac{1}{\\sqrt{2\\pi}}e^{-x^2/2}dx$，$k>0$。证明 $$\\mu(\\{x\\in\\mathbb{R}\\mid x>k\\})\\le e^{-k^2/2}.$$ 其中可利用 $\\int_{-\\infty}^{\\infty}e^{-x^2/2}dx=\\sqrt{2\\pi}$。",
+  "knowledge_points": [
+    "切尔诺夫界（Chernoff bound）",
+    "指数矩生成函数",
+    "可测集的积分不等式",
+    "标准正态分布的尾概率估计",
+    "优化技巧（对参数λ求最优）"
+  ],
+  "question_type": "概率不等式证明",
+  "method": [
+    "利用指示函数与指数单调性构造马尔可夫型不等式",
+    "计算高斯分布的矩生成函数（完成平方）",
+    "对参数λ求最优值以得到最紧的界"
+  ],
+  "solution_steps": [
+    "对(1)：在集合{f>k}上用e^{λf}≥e^{λk}逐点估计，再扩大积分区域到全空间",
+    "对(2)：取f(x)=x，计算∫e^{λx}dμ(x)（用完成平方法算出矩生成函数为e^{λ^2/2}）",
+    "得到μ({x>k})≤e^{λ^2/2-λk}对任意λ>0成立，再对λ求最小值（λ=k）得到最终估计"
+  ],
+  "math_structure": {
+    "type": "chernoff_bound_gaussian_tail",
+    "template": "e^{\\lambda k}\\mu(f>k)\\le\\int e^{\\lambda f}d\\mu; apply with f(x)=x, Gaussian measure, optimize over \\lambda",
+    "variable_count": 3
+  },
+  "difficulty": 3,
+  "answer": [
+    {
+      "label": "(1)",
+      "steps": [
+        "对 $x\\in\\{f>k\\}$，因 $\\lambda>0$且 $f(x)>k$，得 $\\lambda f(x)>\\lambda k$，故 $e^{\\lambda f(x)}>e^{\\lambda k}$。",
+        "由 $e^{\\lambda f(x)}\\ge0$对所有$x\\in X$成立，故 $\\int_X e^{\\lambda f(x)}d\\mu(x)\\ge\\int_{\\{f>k\\}}e^{\\lambda f(x)}d\\mu(x)\\ge\\int_{\\{f>k\\}}e^{\\lambda k}d\\mu(x)=e^{\\lambda k}\\mu(\\{f>k\\})$。",
+        "综合以上两步得 $e^{\\lambda k}\\mu(\\{f>k\\})\\le\\int_X e^{\\lambda f(x)}d\\mu(x)$，证毕。"
+      ]
+    },
+    {
+      "label": "(2)",
+      "steps": [
+        "取 $f(x)=x$，由(1)对任意 $\\lambda>0$：$e^{\\lambda k}\\mu(\\{x>k\\})\\le\\int_{\\mathbb{R}}e^{\\lambda x}d\\mu(x)=\\frac{1}{\\sqrt{2\\pi}}\\int_{-\\infty}^{\\infty}e^{\\lambda x-x^2/2}dx$。",
+        "完成平方：$\\lambda x-\\frac{x^2}{2}=-\\frac{1}{2}(x-\\lambda)^2+\\frac{\\lambda^2}{2}$，代入得 $\\int_{-\\infty}^{\\infty}e^{\\lambda x-x^2/2}dx=e^{\\lambda^2/2}\\int_{-\\infty}^{\\infty}e^{-(x-\\lambda)^2/2}dx=e^{\\lambda^2/2}\\sqrt{2\\pi}$（利用平移不变性和已知高斯积分值）。",
+        "故 $\\int_{\\mathbb{R}}e^{\\lambda x}d\\mu(x)=\\frac{1}{\\sqrt{2\\pi}}\\cdot e^{\\lambda^2/2}\\sqrt{2\\pi}=e^{\\lambda^2/2}$，从而 $e^{\\lambda k}\\mu(\\{x>k\\})\\le e^{\\lambda^2/2}$，即 $\\mu(\\{x>k\\})\\le e^{\\lambda^2/2-\\lambda k}$对任意$\\lambda>0$成立。",
+        "为得最紧的上界，最小化右边关于$\\lambda$的函数 $g(\\lambda)=\\frac{\\lambda^2}{2}-\\lambda k$：$g'(\\lambda)=\\lambda-k=0\\Rightarrow\\lambda=k$（因$k>0$，此$\\lambda$合法）；$g''(\\lambda)=1>0$为最小值点。",
+        "代入 $\\lambda=k$：$g(k)=\\frac{k^2}{2}-k^2=-\\frac{k^2}{2}$，故 $\\mu(\\{x>k\\})\\le e^{-k^2/2}$，证毕。"
+      ]
+    }
+  ],
+  "practice_questions": [
+    {
+      "text": "用(1)的马尔可夫型不等式（取λ=1）估计标准正态分布中 $\\mu(\\{x>3\\})$的一个上界（不必最优化λ），并与最优λ=k=3给出的界比较大小。",
+      "knowledge_points": [
+        "马尔可夫不等式的具体代入",
+        "参数选择对界紧度的影响"
+      ],
+      "question_type": "数值比较",
+      "method": [
+        "代入λ=1与λ=3分别计算界，比较"
+      ],
+      "solution_steps": [
+        "计算λ=1时的界",
+        "计算λ=3(最优)时的界",
+        "比较大小"
+      ],
+      "math_structure": {
+        "type": "bound_comparison_different_lambda",
+        "template": "compare e^{\\lambda^2/2-\\lambda k} for k=3 at \\lambda=1 vs \\lambda=k=3",
+        "variable_count": 2
+      },
+      "difficulty": 2,
+      "estimated_minutes": 6,
+      "answer": [
+        {
+          "label": "比较",
+          "steps": [
+            "取$\\lambda=1,k=3$：界为 $e^{1/2-3}=e^{-2.5}\\approx0.0821$。",
+            "取最优 $\\lambda=k=3$：界为 $e^{-9/2}=e^{-4.5}\\approx0.0111$。",
+            "显然最优$\\lambda=k$给出的界（$\\approx0.0111$）远小于（更紧于）$\\lambda=1$给出的界（$\\approx0.0821$），说明优化λ的重要性。"
+          ]
+        }
+      ],
+      "id": "isct-2018-9607dddc5c-q07-practice-01",
+      "school": "东京科学大学",
+      "year": "2018"
+    },
+    {
+      "text": "证明标准正态分布的双侧尾概率估计：$\\mu(\\{|x|>k\\})\\le2e^{-k^2/2}$（$k>0$）。",
+      "knowledge_points": [
+        "对称性应用",
+        "双侧尾概率估计"
+      ],
+      "question_type": "推广证明",
+      "method": [
+        "利用原题(2)结果和分布的对称性"
+      ],
+      "solution_steps": [
+        "分解{|x|>k}={x>k}∪{x<-k}",
+        "利用对称性各自估计",
+        "求和"
+      ],
+      "math_structure": {
+        "type": "two_sided_tail_bound",
+        "template": "\\mu(|x|>k)\\le 2e^{-k^2/2} using symmetry of standard normal",
+        "variable_count": 1
+      },
+      "difficulty": 2,
+      "estimated_minutes": 7,
+      "answer": [
+        {
+          "label": "证明",
+          "steps": [
+            "$\\{|x|>k\\}=\\{x>k\\}\\cup\\{x<-k\\}$，两集合不相交，故 $\\mu(\\{|x|>k\\})=\\mu(\\{x>k\\})+\\mu(\\{x<-k\\})$。",
+            "由原题(2)，$\\mu(\\{x>k\\})\\le e^{-k^2/2}$。由标准正态密度 $\\frac{1}{\\sqrt{2\\pi}}e^{-x^2/2}$关于$x=0$对称，$\\mu(\\{x<-k\\})=\\mu(\\{x>k\\})\\le e^{-k^2/2}$（用变量替换$x\\to-x$）。",
+            "两者相加：$\\mu(\\{|x|>k\\})\\le e^{-k^2/2}+e^{-k^2/2}=2e^{-k^2/2}$，证毕。"
+          ]
+        }
+      ],
+      "id": "isct-2018-9607dddc5c-q07-practice-02",
+      "school": "东京科学大学",
+      "year": "2018"
+    },
+    {
+      "text": "设 $(X,\\mathcal{B},\\mu)$ 为有限测度空间，$f$可测且 $\\int_X e^{\\lambda_0 f}d\\mu<\\infty$对某个固定$\\lambda_0>0$成立。证明对任意 $0<\\lambda\\le\\lambda_0$及$k>0$，不等式 $e^{\\lambda k}\\mu(f>k)\\le\\int_X e^{\\lambda f}d\\mu$仍成立（说明原不等式对更一般的可积性条件依然有效）。",
+      "knowledge_points": [
+        "不等式证明的条件推广",
+        "积分存在性条件"
+      ],
+      "question_type": "条件推广证明",
+      "method": [
+        "重复(1)的证明步骤,只需验证积分有意义"
+      ],
+      "solution_steps": [
+        "验证被积函数非负可积",
+        "重复(1)的逐点估计论证"
+      ],
+      "math_structure": {
+        "type": "generalized_condition_proof",
+        "template": "extend Chernoff bound to \\lambda\\in(0,\\lambda_0] given integrability at \\lambda_0",
+        "variable_count": 2
+      },
+      "difficulty": 2,
+      "estimated_minutes": 6,
+      "answer": [
+        {
+          "label": "证明",
+          "steps": [
+            "对固定 $\\lambda\\in(0,\\lambda_0]$，由假设 $\\int_X e^{\\lambda_0 f}d\\mu<\\infty$，需说明 $\\int_X e^{\\lambda f}d\\mu$亦有限（或即使为$+\\infty$，不等式自动成立，故不影响结论），可设其有限。",
+            "重复原(1)的论证：在 $\\{f>k\\}$上$e^{\\lambda f}>e^{\\lambda k}$（因$\\lambda>0$），且$e^{\\lambda f}\\ge0$处处成立，故 $\\int_X e^{\\lambda f}d\\mu\\ge\\int_{\\{f>k\\}}e^{\\lambda f}d\\mu\\ge e^{\\lambda k}\\mu(\\{f>k\\})$。",
+            "此论证未使用测度空间的有限性以外的任何特殊性质，故对任意 $\\lambda\\in(0,\\lambda_0]$均成立，证毕。"
+          ]
+        }
+      ],
+      "id": "isct-2018-9607dddc5c-q07-practice-03",
+      "school": "东京科学大学",
+      "year": "2018"
+    }
+  ],
+  "source_question": "午后[7]",
+  "source_pdf": "东京科学大学/理工学系/数学系/东京科学大学_理工学系_数学系_2018_数学过去问.pdf",
+  "source_type": "官方过去问",
+  "subject_category": "概率统计"
+}

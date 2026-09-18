@@ -17,6 +17,7 @@ import json
 import sys
 import tempfile
 import time
+from datetime import datetime, timezone
 from dataclasses import dataclass, field
 from pathlib import Path
 from typing import Any, Dict, Iterable, List, Optional
@@ -26,6 +27,8 @@ if str(ROOT) not in sys.path:  # 允许 python webapp/server.py 直接跑
     sys.path.insert(0, str(ROOT))
 
 from flask import Flask, jsonify, render_template, request  # noqa: E402
+
+import requests  # noqa: E402  — 反馈转发到 Notion 用
 
 from mqm import (  # noqa: E402
     ALL_SUBJECTS,
@@ -61,6 +64,76 @@ TEXT_KEYS = ("text", "stem", "question", "content", "题目", "题干")
 MAX_TOPK = 50
 MAX_UPLOAD_BYTES = 16 * 1024 * 1024
 ALLOWED_IMAGE_SUFFIXES = {".png", ".jpg", ".jpeg", ".webp", ".heic", ".heif", ".gif", ".bmp", ".tiff"}
+
+# ---------- 反馈问卷（右下浮动按钮） ----------
+# 选项值要和 Notion 数据库的 select 选项名完全一致；详见 .env.example。
+FEEDBACK_LOG = ROOT / "data" / "feedback.jsonl"
+FEEDBACK_WILLINGNESS = {"不愿付费", "1-5元", "5-15元", "15-30元", "30+元"}
+FEEDBACK_WILLINGNESS_OTHER = "其他"          # 选这个时还要带 willingness_other 文本
+FEEDBACK_WILLINGNESS_OTHER_MIN = 2
+FEEDBACK_WILLINGNESS_OTHER_MAX = 500
+FEEDBACK_ROLE = {"备考", "工作", "其他"}
+FEEDBACK_SUGGESTION_MIN = 2
+FEEDBACK_SUGGESTION_MAX = 2000
+NOTION_VERSION = "2022-06-28"
+NOTION_API_URL = "https://api.notion.com/v1/pages"
+
+
+def forward_feedback_to_notion(record: Dict[str, Any], token: str, database_id: str) -> None:
+    """把一条反馈推到 Notion 数据库。失败抛 RuntimeError，调用方自己决定是否吞掉。"""
+    props: Dict[str, Any] = {
+        "提交时间": {"date": {"start": record["ts"]}},
+        "付费意愿": {"select": {"name": record["willingness"]}},
+        "当前身份": {"select": {"name": record["role"]}},
+        # Notion 的 rich_text 不能为空字符串，但也不能完全没有 content，所以兜底放一个空格
+        "建议": {"rich_text": [{"type": "text", "text": {"content": record["suggestion"] or " "}}]},
+        "来源": {"select": {"name": record["source"]}},
+    }
+    if record.get("willingness_other"):
+        # 只在选了「其他」的时候填这一列；平时留空，数据库看着更干净
+        props["其他说明"] = {
+            "rich_text": [{"type": "text", "text": {"content": record["willingness_other"]}}]
+        }
+    body = {"parent": {"database_id": database_id}, "properties": props}
+    headers = {
+        "Authorization": f"Bearer {token}",
+        "Notion-Version": NOTION_VERSION,
+        "Content-Type": "application/json",
+    }
+    res = requests.post(NOTION_API_URL, headers=headers, json=body, timeout=10)
+    if res.status_code >= 300:
+        raise RuntimeError(f"Notion {res.status_code}: {res.text[:200]}")
+
+
+def parse_feedback_payload(payload: Dict[str, Any]) -> Optional[Dict[str, Any]]:
+    """校验并清洗反馈字段；不合法返回 None。"""
+    willingness = str(payload.get("willingness") or "").strip()
+    if willingness not in FEEDBACK_WILLINGNESS and willingness != FEEDBACK_WILLINGNESS_OTHER:
+        return None
+
+    willingness_other = str(payload.get("willingness_other") or "").strip()
+    if willingness == FEEDBACK_WILLINGNESS_OTHER:
+        if len(willingness_other) < FEEDBACK_WILLINGNESS_OTHER_MIN or len(willingness_other) > FEEDBACK_WILLINGNESS_OTHER_MAX:
+            return None
+    else:
+        # 没选「其他」时如果带了文字就丢掉，避免被人误塞脏数据
+        willingness_other = ""
+
+    role = str(payload.get("role") or "").strip()
+    if role not in FEEDBACK_ROLE:
+        return None
+
+    suggestion = str(payload.get("suggestion") or "").strip()
+    if len(suggestion) < FEEDBACK_SUGGESTION_MIN or len(suggestion) > FEEDBACK_SUGGESTION_MAX:
+        return None
+
+    return {
+        "willingness": willingness,
+        "willingness_other": willingness_other,
+        "role": role,
+        "suggestion": suggestion,
+        "source": "webapp",
+    }
 
 
 def filename_hierarchy(path: Path) -> tuple[str, str, str]:
@@ -353,6 +426,16 @@ def create_app(
         rate_limit = 120
     request_buckets: Dict[str, List[float]] = {}
 
+    notion_token = os.environ.get("NOTION_TOKEN", "").strip()
+    notion_database_id = os.environ.get("NOTION_DATABASE_ID", "").strip()
+    notion_enabled = bool(notion_token and notion_database_id)
+    if os.environ.get("NOTION_TOKEN") and not notion_enabled:
+        print("[feedback] NOTION_TOKEN 或 NOTION_DATABASE_ID 没填全，反馈只存本地、不转发到 Notion。",
+              file=sys.stderr)
+
+    # FEEDBACK_ENABLED=false 临时关闭：FAB 不渲染、/api/feedback 不注册；不填默认开
+    feedback_enabled = os.environ.get("FEEDBACK_ENABLED", "true").strip().lower() not in ("false", "0", "no", "off")
+
     example = EXAMPLE_QUERY.read_text(encoding="utf-8") if EXAMPLE_QUERY.exists() else "{}"
 
     @app.before_request
@@ -472,6 +555,7 @@ def create_app(
             ocr_ready=bool(available_backends()),
             model_name=config.get("llm", {}).get("model", "MiniMax-M2.7"),
             asset_version=version,
+            feedback_enabled=feedback_enabled,
         )
 
     @app.get("/api/subjects")
@@ -619,6 +703,47 @@ def create_app(
             "total": len(items),
             "questions": items,
         })
+
+    if feedback_enabled:
+        @app.post("/api/feedback")
+        def api_feedback():
+            """反馈问卷：先落本地 JSONL，再 best-effort 转发到 Notion。
+
+            Notion 转发失败不影响本地存档；本地失败才返回 500，方便你手动 replay。
+            """
+            payload = request.get_json(silent=True) or {}
+            # 蜜罐字段：填了直接当成功返回，机器人继续填下去它也得不到任何东西
+            if payload.get("hp"):
+                return jsonify({"ok": True, "notion": "skipped"}), 200
+
+            cleaned = parse_feedback_payload(payload)
+            if cleaned is None:
+                return jsonify({"error": "反馈内容不合法，请检查必填项。"}), 400
+
+            record = {
+                "ts": datetime.now(timezone.utc).isoformat(timespec="seconds").replace("+00:00", "Z"),
+                "ip": request.headers.get("X-Forwarded-For", request.remote_addr or "").split(",")[0].strip(),
+                "ua": request.headers.get("User-Agent", "")[:300],
+                **cleaned,
+            }
+
+            try:
+                FEEDBACK_LOG.parent.mkdir(parents=True, exist_ok=True)
+                with FEEDBACK_LOG.open("a", encoding="utf-8") as f:
+                    f.write(json.dumps(record, ensure_ascii=False) + "\n")
+            except OSError as exc:
+                return jsonify({"error": f"本地保存失败：{exc}"}), 500
+
+            notion_status = "skipped"
+            if notion_enabled:
+                try:
+                    forward_feedback_to_notion(record, notion_token, notion_database_id)
+                    notion_status = "ok"
+                except Exception as exc:  # requests.RequestException / RuntimeError 等
+                    notion_status = f"error: {exc}"
+                    print(f"[feedback] Notion 转发失败：{exc}", file=sys.stderr)
+
+            return jsonify({"ok": True, "notion": notion_status})
 
     @app.errorhandler(413)
     def too_large(_):

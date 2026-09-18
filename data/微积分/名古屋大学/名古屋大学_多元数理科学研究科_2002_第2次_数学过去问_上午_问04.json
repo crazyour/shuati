@@ -1,0 +1,213 @@
+{
+  "id": "nagoya-2002-35142bc6eb-q04",
+  "school": "名古屋大学",
+  "year": "2002",
+  "subject": "多元数理科学研究科_全专攻",
+  "text": "设函数 $f(x,y)=x^4+y^4-2x^2+4xy-2y^2,\\ (x,y)\\in\\mathbb{R}^2$。回答以下问题：\n(1) 求 $f(x,y)$ 的临界点。这里 $(x,y)=(\\alpha,\\beta)$ 为临界点是指 $\\dfrac{\\partial f}{\\partial x}(\\alpha,\\beta)=\\dfrac{\\partial f}{\\partial y}(\\alpha,\\beta)=0$。\n(2) 设 $a$ 为实数常数，考虑函数 $g(x)=f(x,ax)$。根据 $a$ 的取值，判断 $g(x)$ 在 $x=0$ 处是取极大值、极小值，还是二者都不是。\n(3) 求 $f(x,y)$ 取极大值和极小值的点（若存在）。",
+  "knowledge_points": [
+    "多元函数临界点",
+    "偏导数方程组求解",
+    "黑塞矩阵判别法",
+    "退化临界点的方向分析",
+    "极值存在性判断"
+  ],
+  "question_type": "多元函数极值分析（含退化临界点）",
+  "method": [
+    "求偏导并联立方程",
+    "通过参数直线 $y=ax$ 还原一元函数分析退化点",
+    "黑塞矩阵判别法"
+  ],
+  "solution_steps": [
+    "求 $\\partial f/\\partial x=0,\\ \\partial f/\\partial y=0$，联立解出全部临界点",
+    "代入 $y=ax$，得到一元函数 $g(x)$，展开为 $x^2,x^4$ 的多项式，按系数正负判别 $x=0$ 处极值类型",
+    "计算黑塞矩阵，在各临界点上计算判别式 $D=f_{xx}f_{yy}-f_{xy}^2$",
+    "对判别式为零的退化点利用(2)的方向分析结论判定其非极值性质，对非退化点直接用二阶判别法确定极大/极小"
+  ],
+  "math_structure": {
+    "type": "multivariable_critical_point_classification",
+    "template": "$f(x,y)=x^4+y^4-2x^2+4xy-2y^2$; find critical points, classify via directional restriction and Hessian test",
+    "variable_count": 2
+  },
+  "difficulty": 4,
+  "answer": [
+    {
+      "label": "(1)",
+      "steps": [
+        "计算偏导数：$\\dfrac{\\partial f}{\\partial x}=4x^3-4x+4y=0\\Rightarrow y=x-x^3$；$\\dfrac{\\partial f}{\\partial y}=4y^3-4y+4x=0\\Rightarrow x=y-y^3$。",
+        "将 $y=x-x^3$ 代入 $x=y-y^3$：$x=(x-x^3)-(x-x^3)^3$，整理得 $x-y=-y^3$，即 $x-(x-x^3)=-y^3\\Rightarrow x^3=-y^3\\Rightarrow x=-y$（实数域立方根唯一）。",
+        "代回 $y=x-x^3=-y-(-y)^3=-y+y^3$，得 $2y=y^3\\Rightarrow y(y^2-2)=0\\Rightarrow y=0$ 或 $y=\\pm\\sqrt2$。",
+        "对应地：$y=0\\Rightarrow x=0$，得 $(0,0)$；$y=\\sqrt2\\Rightarrow x=-\\sqrt2$，验证 $y=x-x^3=-\\sqrt2-(-2\\sqrt2)=\\sqrt2$ 成立，得 $(-\\sqrt2,\\sqrt2)$；$y=-\\sqrt2\\Rightarrow x=\\sqrt2$，同理验证得 $(\\sqrt2,-\\sqrt2)$。故临界点为 $(0,0),\\,(-\\sqrt2,\\sqrt2),\\,(\\sqrt2,-\\sqrt2)$。"
+      ]
+    },
+    {
+      "label": "(2)",
+      "steps": [
+        "$g(x)=f(x,ax)=x^4+a^4x^4-2x^2+4ax^2-2a^2x^2=(1+a^4)x^4+\\left[-2+4a-2a^2\\right]x^2=(1+a^4)x^4-2(a-1)^2x^2$。",
+        "当 $a\\neq1$ 时，$x^2$ 项系数 $-2(a-1)^2<0$，主导项（$x\\to0$）为 $-2(a-1)^2x^2$，恒为负（$x\\neq0$），故 $g(0)=0$ 是局部极大值。",
+        "当 $a=1$ 时，$x^2$ 项系数为 $0$，$g(x)=2x^4\\geq0$，且仅在 $x=0$ 取零，故 $g(0)=0$ 是局部极小值。",
+        "结论：对 $a\\ne1$，$x=0$ 是 $g$ 的极大点；对 $a=1$，$x=0$ 是 $g$ 的极小点。"
+      ]
+    },
+    {
+      "label": "(3)",
+      "steps": [
+        "计算黑塞矩阵各分量：$f_{xx}=12x^2-4,\\ f_{yy}=12y^2-4,\\ f_{xy}=4$，判别式 $D=(12x^2-4)(12y^2-4)-16$。",
+        "在 $(0,0)$：$f_{xx}=f_{yy}=-4,\\ D=16-16=0$，二阶判别法失效（退化情形）。由(2)可知：沿绝大多数方向 $y=ax$（$a\\ne1$）$g$ 在 $x=0$ 处取极大，但沿方向 $y=x$（$a=1$）却取极小，方向依赖的行为不一致，说明 $(0,0)$ 既非局部极大也非局部极小，是一个鞍点。",
+        "在 $(-\\sqrt2,\\sqrt2)$：$x^2=y^2=2$，故 $f_{xx}=f_{yy}=12\\cdot2-4=20,\\ f_{xy}=4,\\ D=20\\cdot20-16=384>0$，且 $f_{xx}=20>0$，故此点是局部极小点。同理 $(\\sqrt2,-\\sqrt2)$（由对称性 $f_{xx}=f_{yy}=20,f_{xy}=4,D=384>0,f_{xx}>0$）也是局部极小点。",
+        "计算极小值：在 $(-\\sqrt2,\\sqrt2)$，$x^4=4,y^4=4,x^2=2,y^2=2,xy=-2$，$f=4+4-2(2)+4(-2)-2(2)=8-4-8-4=-8$。由对称性 $f(\\sqrt2,-\\sqrt2)=-8$ 相同。综上，$f$ 在 $(-\\sqrt2,\\sqrt2)$ 与 $(\\sqrt2,-\\sqrt2)$ 处取局部极小值 $-8$，不存在局部极大点。"
+      ]
+    }
+  ],
+  "practice_questions": [
+    {
+      "text": "求函数 $h(x,y)=x^2+y^2-2xy$ 的临界点，并用黑塞矩阵判断其类型。",
+      "knowledge_points": [
+        "临界点",
+        "黑塞矩阵判别"
+      ],
+      "question_type": "基础临界点分类",
+      "method": [
+        "偏导求解",
+        "黑塞矩阵"
+      ],
+      "solution_steps": [
+        "求偏导数联立求解",
+        "计算判别式"
+      ],
+      "math_structure": {
+        "type": "quadratic_critical_point",
+        "template": "$h(x,y)=x^2+y^2-2xy$, find and classify critical points",
+        "variable_count": 2
+      },
+      "difficulty": 1,
+      "estimated_minutes": 5,
+      "answer": [
+        {
+          "label": "结果",
+          "steps": [
+            "$h_x=2x-2y=0,\\ h_y=2y-2x=0$，得整条直线 $x=y$ 上所有点均为临界点（退化情形，$h=（x-y)^2\\ge0$ 恒成立）。",
+            "黑塞矩阵 $\\begin{pmatrix}2&-2\\\\-2&2\\end{pmatrix}$，判别式 $D=4-4=0$，退化。由 $h(x,y)=(x-y)^2\\ge0$ 且在直线 $x=y$ 上取最小值0，故这些点均为（非孤立的）极小点。"
+          ]
+        }
+      ],
+      "id": "nagoya-2002-35142bc6eb-q04-practice-01",
+      "school": "名古屋大学",
+      "year": "2002"
+    },
+    {
+      "text": "求函数 $u(x,y)=x^3-3xy^2$（猴鞍面）的临界点，并说明为何该临界点既非极大也非极小。",
+      "knowledge_points": [
+        "退化临界点",
+        "方向导数分析"
+      ],
+      "question_type": "退化临界点性质分析",
+      "method": [
+        "偏导求解",
+        "极坐标方向分析"
+      ],
+      "solution_steps": [
+        "求偏导联立解出临界点",
+        "沿不同方向分析函数值符号变化"
+      ],
+      "math_structure": {
+        "type": "monkey_saddle_analysis",
+        "template": "$u(x,y)=x^3-3xy^2$, degenerate critical point classification",
+        "variable_count": 2
+      },
+      "difficulty": 3,
+      "estimated_minutes": 8,
+      "answer": [
+        {
+          "label": "结果",
+          "steps": [
+            "$u_x=3x^2-3y^2=0\\Rightarrow x^2=y^2$；$u_y=-6xy=0\\Rightarrow x=0$ 或 $y=0$。结合两式得唯一临界点 $(0,0)$。",
+            "黑塞矩阵在 $(0,0)$ 处：$u_{xx}=6x=0,\\ u_{yy}=-6x=0,\\ u_{xy}=-6y=0$，全为零，判别式 $D=0$，二阶判别法失效。",
+            "沿 $y=0$：$u(x,0)=x^3$，在 $x=0$ 附近符号随 $x$ 正负变化（正负都取到），说明 $(0,0)$ 附近函数值既有大于0又有小于0的情形，因此既非极大也非极小（这是典型的猴鞍点）。"
+          ]
+        }
+      ],
+      "id": "nagoya-2002-35142bc6eb-q04-practice-02",
+      "school": "名古屋大学",
+      "year": "2002"
+    },
+    {
+      "text": "设 $v(x,y)=x^4+y^4-4xy$。求其临界点，并用黑塞矩阵判别各点的极值类型。",
+      "knowledge_points": [
+        "多元函数临界点",
+        "黑塞矩阵判别",
+        "对称性利用"
+      ],
+      "question_type": "四次多项式极值分析",
+      "method": [
+        "偏导联立求解",
+        "黑塞矩阵判别"
+      ],
+      "solution_steps": [
+        "求偏导方程组",
+        "解出临界点",
+        "计算判别式确定类型"
+      ],
+      "math_structure": {
+        "type": "quartic_critical_point_classification",
+        "template": "$v(x,y)=x^4+y^4-4xy$, find and classify critical points",
+        "variable_count": 2
+      },
+      "difficulty": 3,
+      "estimated_minutes": 10,
+      "answer": [
+        {
+          "label": "结果",
+          "steps": [
+            "$v_x=4x^3-4y=0\\Rightarrow y=x^3$；$v_y=4y^3-4x=0\\Rightarrow x=y^3$。代入得 $x=(x^3)^3=x^9\\Rightarrow x^9-x=0\\Rightarrow x(x^8-1)=0\\Rightarrow x=0,\\pm1$。",
+            "对应临界点：$x=0\\Rightarrow y=0$，得 $(0,0)$；$x=1\\Rightarrow y=1$，得 $(1,1)$；$x=-1\\Rightarrow y=-1$，得 $(-1,-1)$。",
+            "黑塞矩阵：$v_{xx}=12x^2,\\ v_{yy}=12y^2,\\ v_{xy}=-4$，判别式 $D=144x^2y^2-16$。在 $(0,0)$：$D=-16<0$，为鞍点；在 $(1,1)$：$D=144-16=128>0,\\ v_{xx}=12>0$，为极小点，$v(1,1)=1+1-4=-2$；同理 $(-1,-1)$：$D=128>0,\\ v_{xx}=12>0$，也为极小点，$v(-1,-1)=1+1-4=-2$。"
+          ]
+        }
+      ],
+      "id": "nagoya-2002-35142bc6eb-q04-practice-03",
+      "school": "名古屋大学",
+      "year": "2002"
+    },
+    {
+      "text": "设 $w(x)=f(x,bx)$，其中 $f(x,y)=x^4+y^4-x^2+2xy-y^2$，$b$ 为实数常数。求 $w(x)$ 关于 $x^2$ 的系数（用 $b$ 表示），并确定使 $x=0$ 为 $w$ 的极小点、极大点、或退化的 $b$ 的取值。",
+      "knowledge_points": [
+        "参数化直线代入",
+        "多项式系数分析",
+        "极值类型判别"
+      ],
+      "question_type": "参数化一元函数极值分类",
+      "method": [
+        "代入化简",
+        "系数正负判别"
+      ],
+      "solution_steps": [
+        "代入 $y=bx$ 化简为关于 $x$ 的多项式",
+        "提取 $x^2$ 系数并按 $b$ 分类"
+      ],
+      "math_structure": {
+        "type": "parametric_line_substitution_extrema",
+        "template": "$w(x)=f(x,bx)$ for $f(x,y)=x^4+y^4-x^2+2xy-y^2$, classify $x=0$ extremum by $b$",
+        "variable_count": 1
+      },
+      "difficulty": 3,
+      "estimated_minutes": 8,
+      "answer": [
+        {
+          "label": "结果",
+          "steps": [
+            "$w(x)=x^4+b^4x^4-x^2+2bx^2-b^2x^2=(1+b^4)x^4+(-1+2b-b^2)x^2=(1+b^4)x^4-(b-1)^2x^2$。",
+            "$x^2$ 项系数为 $-(b-1)^2\\le0$，恒非正，等于零仅当 $b=1$。",
+            "当 $b\\neq1$：系数为负，主导项为负的 $x^2$ 项，$x=0$ 处 $w$ 取局部极大值；当 $b=1$：$w(x)=2x^4\\ge0$，$x=0$ 处取局部极小值（退化为纯四次型情形）。"
+          ]
+        }
+      ],
+      "id": "nagoya-2002-35142bc6eb-q04-practice-04",
+      "school": "名古屋大学",
+      "year": "2002"
+    }
+  ],
+  "source_question": "4",
+  "source_pdf": "名古屋大学/多元数理科学研究科/全专攻/名古屋大学_多元数理科学研究科_2002_第2次_数学过去问_上午.pdf",
+  "source_type": "官方过去问",
+  "subject_category": "微积分"
+}

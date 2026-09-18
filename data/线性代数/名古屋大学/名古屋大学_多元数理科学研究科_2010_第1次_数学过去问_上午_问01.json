@@ -1,0 +1,218 @@
+{
+  "id": "nagoya-2010-db71f0cd2e-q01",
+  "school": "名古屋大学",
+  "year": "2010",
+  "subject": "多元数理科学研究科_全专攻",
+  "text": "设复数 $a$，考虑矩阵\n$$A=\\begin{pmatrix} -4 & 2 & -2\\\\ -2-a & 1+a & -1\\\\ 2-a & -1+a & 1\\end{pmatrix}.$$\n(1) 求所有使 $\\mathrm{rank}\\,A=1$ 的 $a$。\n(2) 当 $\\mathrm{rank}\\,A=1$ 时，求一个正则矩阵 $P$ 使 $P^{-1}AP$ 为对角矩阵。\n(3) 求所有使 $A$ 不可对角化的 $a$。",
+  "knowledge_points": [
+    "矩阵秩",
+    "特征值与特征向量",
+    "矩阵对角化",
+    "秩一矩阵分解",
+    "特征多项式",
+    "若尔当标准形判别"
+  ],
+  "question_type": "含参数矩阵的秩、对角化综合题",
+  "method": [
+    "行向量比例分析法求秩",
+    "秩一矩阵写成 $uv^T$ 形式",
+    "直接展开特征多项式",
+    "比较代数重数与几何重数判别可对角化性"
+  ],
+  "solution_steps": [
+    "利用行第一行非零，令其余各行为其倍数，解出使秩为1的 $a$",
+    "在 $\\mathrm{rank}\\,A=1$ 情形下把 $A$ 写成 $uv^T$，求非零特征值及零空间基",
+    "组装特征向量为列得到 $P$，验证 $P^{-1}AP$ 为对角阵",
+    "展开一般 $a$ 下的特征多项式，得到三个特征值",
+    "对特征值重根情形逐一计算几何重数，判断是否可对角化"
+  ],
+  "math_structure": {
+    "type": "parametric_matrix_diagonalization",
+    "template": "3x3 matrix with parameter a; find rank=1 condition, diagonalizing matrix P, and non-diagonalizable parameter values",
+    "variable_count": 1
+  },
+  "difficulty": 4,
+  "answer": [
+    {
+      "label": "(1)",
+      "steps": [
+        "第一行 $(-4,2,-2)$ 恒非零，设第二、三行分别为其 $\\lambda,\\mu$ 倍。",
+        "由第二行第三分量 $-1=-2\\lambda$ 得 $\\lambda=1/2$；由第一分量 $-2-a=-4\\lambda=-2$ 得 $a=0$；由第二分量 $1+a=2\\lambda=1$ 得 $a=0$，三式一致。",
+        "由第三行第三分量 $1=-2\\mu$ 得 $\\mu=-1/2$；代入第一、二分量同样得 $a=0$。",
+        "故唯一解为 $a=0$，此时三行分别为 $(-4,2,-2),(-2,1,-1),(2,-1,1)$，确为秩1（第一行非零，其余成比例）。",
+        "结论：$a=0$。"
+      ]
+    },
+    {
+      "label": "(2)",
+      "steps": [
+        "当 $a=0$ 时 $A=\\begin{pmatrix}-4&2&-2\\\\-2&1&-1\\\\2&-1&1\\end{pmatrix}$，可写成 $A=uv^{T}$，其中 $v=(2,-1,1)^{T}$，$u=(-2,-1,1)^{T}$（验证：$u_1v^T=(-4,2,-2)$ 等均符合各行）。",
+        "非零特征值为 $v^{T}u=2(-2)+(-1)(-1)+1\\cdot1=-4+1+1=-2$，对应特征向量为 $u=(-2,-1,1)^{T}$；零特征值的特征空间为 $\\{w: v^{T}w=0\\}=\\{2w_1-w_2+w_3=0\\}$，取基 $w_1=(1,2,0)^{T}, w_2=(0,1,1)^{T}$。",
+        "令 $P=\\begin{pmatrix}-2&1&0\\\\-1&2&1\\\\1&0&1\\end{pmatrix}$，计算 $\\det P=-2(2)-1(-1-1)+0=-4+2=-2\\neq0$，故 $P$ 可逆。",
+        "验证 $AP$ 的第一列 $=A(-2,-1,1)^T=-2u=(4,2,-2)$，恰为 $-2\\cdot(-2,-1,1)^T$ 的 $-2$ 倍列（即 $P$ 第一列乘 $-2$）；第二、三列 $Aw_1=Aw_2=0$。故 $P^{-1}AP=\\mathrm{diag}(-2,0,0)$。"
+      ]
+    },
+    {
+      "label": "(3)",
+      "steps": [
+        "展开 $\\det(\\lambda I-A)$：逐项计算子行列式，化简得 $\\det(\\lambda I-A)=\\lambda(\\lambda+2)(\\lambda-a)$（过程：先算 $2\\times2$ 余子式，因子化出 $(\\lambda-2)(\\lambda-a)$ 及 $-2a+(2\\pm a)\\lambda$ 项，最终合并为 $-\\lambda(\\lambda+2)(\\lambda-a)$ 乘 $(-1)^3$）。",
+        "故特征值为 $0,-2,a$。当 $a\\neq0,-2$ 时三特征值互异，$A$ 必可对角化。",
+        "当 $a=0$ 时由(2)已证可对角化。",
+        "当 $a=-2$ 时，计算 $A+2I=\\begin{pmatrix}-2&2&-2\\\\0&-1&-1\\\\4&-3&3\\end{pmatrix}$，行化简：第一行除以$-2$得$(1,-1,1)$，第三行减去4倍第一行得$(0,1,-1)$，与第二行$(0,-1,-1)$不成比例但独立性检查：实际上 $R_3-4R_1=(0,1,-1)$，与$R_2=(0,-1,-1)$ 线性无关吗？两者不是比例关系（$(0,1,-1)$ 与 $(0,-1,-1)$ 不成比例），故 $\\mathrm{rank}(A+2I)=2$，几何重数 $=3-2=1<2=$代数重数。",
+        "故 $A$ 在 $a=-2$ 时不可对角化，其余 $a$ 均可对角化。结论：唯一使 $A$ 不可对角化的值为 $a=-2$。"
+      ]
+    }
+  ],
+  "practice_questions": [
+    {
+      "text": "求所有使矩阵 $B=\\begin{pmatrix}2&1&-1\\\\4&2&-2\\\\-2&-1&1\\end{pmatrix}$ 的秩为1的说法是否成立，并说明理由（此矩阵不含参数，只需判断秩）。",
+      "knowledge_points": [
+        "矩阵秩",
+        "行向量线性相关性"
+      ],
+      "question_type": "秩的判定",
+      "method": [
+        "行比例分析"
+      ],
+      "solution_steps": [
+        "观察各行是否成比例",
+        "计算秩"
+      ],
+      "math_structure": {
+        "type": "matrix_rank_check",
+        "template": "3x3 constant matrix; determine rank",
+        "variable_count": 0
+      },
+      "difficulty": 1,
+      "estimated_minutes": 5,
+      "answer": [
+        {
+          "label": "结果",
+          "steps": [
+            "第一行 $(2,1,-1)$，第二行 $=2\\times$第一行 $=(4,2,-2)$，第三行$=-1\\times$第一行$=(-2,-1,1)$。",
+            "三行两两成比例，故秩为1。",
+            "结论：$\\mathrm{rank}\\,B=1$。"
+          ]
+        }
+      ],
+      "id": "nagoya-2010-db71f0cd2e-q01-practice-01",
+      "school": "名古屋大学",
+      "year": "2010"
+    },
+    {
+      "text": "设 $C=\\begin{pmatrix}1&0&0\\\\0&2&0\\\\0&1&2\\end{pmatrix}$，求 $C$ 的特征值，并判断 $C$ 是否可对角化。",
+      "knowledge_points": [
+        "特征值计算",
+        "几何重数与代数重数比较"
+      ],
+      "question_type": "上三角矩阵对角化判定",
+      "method": [
+        "直接读取对角线元素为特征值（上/下三角矩阵）",
+        "计算特征子空间维数"
+      ],
+      "solution_steps": [
+        "利用下三角矩阵特征值即对角元",
+        "对重根特征值求解 $(C-\\lambda I)x=0$",
+        "比较维数得出结论"
+      ],
+      "math_structure": {
+        "type": "triangular_matrix_diagonalizability",
+        "template": "lower triangular 3x3 matrix with repeated eigenvalue; determine diagonalizability",
+        "variable_count": 0
+      },
+      "difficulty": 2,
+      "estimated_minutes": 8,
+      "answer": [
+        {
+          "label": "结果",
+          "steps": [
+            "下三角矩阵特征值为对角元：$1,2,2$。",
+            "对 $\\lambda=2$：$C-2I=\\begin{pmatrix}-1&0&0\\\\0&0&0\\\\0&1&0\\end{pmatrix}$，解得 $x_1=0, x_3$ 自由, $x_2=0$（由第三行 $x_2=0$），故特征空间维数为1。",
+            "代数重数2，几何重数1，故 $C$ 不可对角化。"
+          ]
+        }
+      ],
+      "id": "nagoya-2010-db71f0cd2e-q01-practice-02",
+      "school": "名古屋大学",
+      "year": "2010"
+    },
+    {
+      "text": "设矩阵 $D=uv^{T}$，其中 $u=(1,2,-1)^{T}, v=(3,0,1)^{T}$。求 $D$ 的非零特征值及对应特征向量，并给出使 $P^{-1}DP$ 对角的 $P$。",
+      "knowledge_points": [
+        "秩一矩阵特征值",
+        "特征向量构造",
+        "对角化"
+      ],
+      "method": [
+        "秩一矩阵 $uv^T$ 非零特征值为 $v^Tu$",
+        "零空间为 $\\{w: v^Tw=0\\}$ 的补充基"
+      ],
+      "solution_steps": [
+        "计算 $v^Tu$",
+        "写出零空间基",
+        "组装 $P$"
+      ],
+      "math_structure": {
+        "type": "rank_one_matrix_diagonalization",
+        "template": "$D=uv^T$ given explicit $u,v$; find eigen-decomposition",
+        "variable_count": 0
+      },
+      "difficulty": 2,
+      "estimated_minutes": 8,
+      "answer": [
+        {
+          "label": "结果",
+          "steps": [
+            "$v^Tu=3\\cdot1+0\\cdot2+1\\cdot(-1)=3-1=2$，非零特征值为2，特征向量为 $u=(1,2,-1)^T$。",
+            "零空间：$3w_1+w_3=0$，取基 $w_1=(1,0,-3)^T$（此时$3(1)+(-3)=0$成立）及 $w_2=(0,1,0)^T$（此时 $3(0)+0=0$成立）。",
+            "取 $P=(u,w_1,w_2)=\\begin{pmatrix}1&1&0\\\\2&0&1\\\\-1&-3&0\\end{pmatrix}$，则 $P^{-1}DP=\\mathrm{diag}(2,0,0)$。"
+          ]
+        }
+      ],
+      "id": "nagoya-2010-db71f0cd2e-q01-practice-03",
+      "school": "名古屋大学",
+      "year": "2010"
+    },
+    {
+      "text": "设 $E(b)=\\begin{pmatrix}0&1&0\\\\0&0&1\\\\0&0&b\\end{pmatrix}$，$b\\in\\mathbb{R}$。求特征多项式并讨论对所有 $b$ 是否可对角化。",
+      "knowledge_points": [
+        "特征多项式计算",
+        "参数化矩阵对角化讨论"
+      ],
+      "method": [
+        "展开三阶行列式求特征多项式",
+        "对重根情形逐一验证几何重数"
+      ],
+      "solution_steps": [
+        "求 $\\det(\\lambda I-E)$",
+        "求特征值",
+        "判别是否所有情形均可对角化"
+      ],
+      "math_structure": {
+        "type": "parametric_diagonalizability_discussion",
+        "template": "3x3 upper-triangular-like matrix with parameter b; discuss diagonalizability for all b",
+        "variable_count": 1
+      },
+      "difficulty": 3,
+      "estimated_minutes": 12,
+      "answer": [
+        {
+          "label": "结果",
+          "steps": [
+            "特征多项式：$\\det(\\lambda I - E)=\\lambda^2(\\lambda-b)-\\lambda\\cdot0-\\dots$，直接展开（上三角结构变形后）得 $\\lambda^3-b\\lambda^2-\\lambda\\cdot0-\\dots$ 实际计算：$\\det\\begin{pmatrix}\\lambda&-1&0\\\\0&\\lambda&-1\\\\0&0&\\lambda-b\\end{pmatrix}=\\lambda\\cdot\\lambda\\cdot(\\lambda-b)=\\lambda^2(\\lambda-b)$，特征值为 $0,0,b$。",
+            "当 $b\\neq0$ 时特征值为 $0$（二重）与 $b$（单）；检验 $\\lambda=0$ 的零空间：$Ex=0\\Rightarrow x_2=0,x_3=0,bx_3=0$，解得 $x_2=x_3=0$，$x_1$自由，几何重数1 < 代数重数2，故不可对角化。",
+            "当 $b=0$ 时特征值全为0，此时 $E$ 本身即为幂零矩阵，$Ex=0$ 给出 $x_2=x_3=0$，几何重数仍为1<3，同样不可对角化。",
+            "结论：对任意 $b\\in\\mathbb{R}$，$E(b)$ 均不可对角化。"
+          ]
+        }
+      ],
+      "id": "nagoya-2010-db71f0cd2e-q01-practice-04",
+      "school": "名古屋大学",
+      "year": "2010"
+    }
+  ],
+  "source_question": "問1",
+  "source_pdf": "名古屋大学/多元数理科学研究科/全专攻/名古屋大学_多元数理科学研究科_2010_第1次_数学过去问_上午.pdf",
+  "source_type": "官方过去问",
+  "subject_category": "线性代数"
+}

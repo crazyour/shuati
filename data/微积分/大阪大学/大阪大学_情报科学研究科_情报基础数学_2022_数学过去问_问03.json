@@ -1,0 +1,209 @@
+{
+  "id": "osaka-2022-c07cb3c8db-q03",
+  "school": "大阪大学",
+  "year": "2022",
+  "subject": "情报科学研究科_情报基础数学",
+  "text": "设$f(x)$是$\\mathbb{R}$上的实值连续函数，且在$x\\neq0$处可微。判断以下两个命题是否正确，正确则证明，错误则给出反例：\n\n(1) 若存在实数$c$使得$\\displaystyle\\lim_{x\\to0}f'(x)=c$，则$f(x)$在$x=0$处可微。\n\n(2) 若$f(x)$在$x=0$处可微，则存在实数$c$使得$\\displaystyle\\lim_{x\\to0}f'(x)=c$。",
+  "knowledge_points": [
+    "导数的定义",
+    "拉格朗日中值定理",
+    "极限的存在性",
+    "反例的构造",
+    "振荡函数$\\sin(1/x)$",
+    "可微性与导函数连续性的区别"
+  ],
+  "question_type": "判断命题真伪并给出证明/反例",
+  "method": [
+    "对(1)用拉格朗日中值定理，把差商写成中间点处导数值",
+    "对(2)构造$f(x)=x^2\\sin(1/x)$型振荡反例"
+  ],
+  "solution_steps": [
+    "(1)：对任意小的$h>0$，在$[0,h]$上用中值定理得$\\frac{f(h)-f(0)}{h}=f'(\\xi_h)$，$\\xi_h\\in(0,h)$，令$h\\to0^+$得右导数$=c$；对$h<0$类似得左导数$=c$；两者相等，故$f'(0)=c$存在，命题(1)成立",
+    "(2)：取$f(x)=x^2\\sin(1/x)\\ (x\\neq0)$，$f(0)=0$；验证$f$在$\\mathbb{R}$上连续、在$x=0$处可微（$f'(0)=0$），但对$x\\neq0$有$f'(x)=2x\\sin(1/x)-\\cos(1/x)$，当$x\\to0$时$\\cos(1/x)$无极限，故$f'(x)$无极限，命题(2)不成立"
+  ],
+  "math_structure": {
+    "type": "differentiability_vs_limit_of_derivative",
+    "template": "f continuous on R, differentiable for x\\neq0; relate \\lim_{x\\to0}f'(x) to differentiability at 0",
+    "variable_count": 1
+  },
+  "difficulty": 4,
+  "answer": [
+    {
+      "label": "(1)",
+      "steps": [
+        "命题(1)正确。设$\\lim_{x\\to0}f'(x)=c$存在。对任意充分小的$h>0$，$f$在闭区间$[0,h]$上连续，在开区间$(0,h)$上可微（因为$(0,h)$中的点都$\\neq0$），由拉格朗日中值定理，存在$\\xi_h\\in(0,h)$使得$\\dfrac{f(h)-f(0)}{h}=f'(\\xi_h)$。",
+        "当$h\\to0^+$时，由$0<\\xi_h<h$可知$\\xi_h\\to0^+$；结合假设$\\lim_{x\\to0}f'(x)=c$，得$f'(\\xi_h)\\to c$，从而右极限$\\displaystyle\\lim_{h\\to0^+}\\frac{f(h)-f(0)}{h}=c$。",
+        "对$h<0$同理，在$[h,0]$上应用中值定理，存在$\\eta_h\\in(h,0)$使$\\dfrac{f(0)-f(h)}{-h}=f'(\\eta_h)$，即$\\dfrac{f(h)-f(0)}{h}=f'(\\eta_h)$，当$h\\to0^-$时$\\eta_h\\to0^-$，同样得$f'(\\eta_h)\\to c$，故左极限也等于$c$。",
+        "左右极限均存在且等于$c$，故$\\displaystyle\\lim_{h\\to0}\\frac{f(h)-f(0)}{h}=c$存在，即$f$在$x=0$处可微，且$f'(0)=c$。命题(1)得证。"
+      ]
+    },
+    {
+      "label": "(2)",
+      "steps": [
+        "命题(2)不正确。构造反例：设$f(x)=x^2\\sin\\dfrac{1}{x}$（$x\\neq0$），$f(0)=0$。",
+        "先验证$f$在$\\mathbb{R}$上连续：当$x\\neq0$时$f$显然连续；在$x=0$处，由$|f(x)|=|x^2\\sin(1/x)|\\le x^2\\to0=f(0)$（$x\\to0$），故$f$在$0$处连续。又对$x\\neq0$，$f$是初等函数的乘积与复合，显然可微。",
+        "验证$f$在$x=0$处可微：$\\dfrac{f(h)-f(0)}{h}=\\dfrac{h^2\\sin(1/h)}{h}=h\\sin(1/h)$。由$|h\\sin(1/h)|\\le|h|\\to0$（$h\\to0$），由夹逼定理得$\\displaystyle\\lim_{h\\to0}\\frac{f(h)-f(0)}{h}=0$，故$f$在$0$处可微，且$f'(0)=0$。",
+        "计算$x\\neq0$时的导数：$f'(x)=2x\\sin\\dfrac1x+x^2\\cos\\dfrac1x\\cdot\\left(-\\dfrac1{x^2}\\right)=2x\\sin\\dfrac1x-\\cos\\dfrac1x$。取序列$x_n=\\dfrac{1}{2n\\pi}\\to0$，则$\\cos(1/x_n)=\\cos(2n\\pi)=1$，故$f'(x_n)\\to0-1=-1$；取$x_n'=\\dfrac1{(2n+1)\\pi}\\to0$，则$\\cos(1/x_n')=\\cos((2n+1)\\pi)=-1$，故$f'(x_n')\\to0+1=1$。两个子序列极限不同（$-1\\neq1$），故$\\displaystyle\\lim_{x\\to0}f'(x)$不存在，即不存在满足条件的实数$c$。命题(2)被此反例否定。"
+      ]
+    }
+  ],
+  "practice_questions": [
+    {
+      "text": "设$g(x)$在闭区间$[a,b]$上连续，在开区间$(a,b)$上可微，且对所有$x\\in(a,b)$有$g'(x)=0$。证明$g$在$[a,b]$上是常数函数。",
+      "knowledge_points": [
+        "拉格朗日中值定理",
+        "常数函数的判定"
+      ],
+      "question_type": "利用中值定理证明函数为常数",
+      "method": [
+        "对任意两点用中值定理"
+      ],
+      "solution_steps": [
+        "任取$a\\le x_1<x_2\\le b$",
+        "在$[x_1,x_2]$上用中值定理",
+        "由$g'\\equiv0$得$g(x_1)=g(x_2)$"
+      ],
+      "math_structure": {
+        "type": "mvt_constant_function",
+        "template": "g'(x)=0\\ \\text{on}\\ (a,b)\\Rightarrow g\\ \\text{constant}",
+        "variable_count": 1
+      },
+      "difficulty": 1,
+      "estimated_minutes": 5,
+      "answer": [
+        {
+          "label": "证明",
+          "steps": [
+            "任取$a\\le x_1<x_2\\le b$。由$g$在$[x_1,x_2]\\subset[a,b]$上连续，在$(x_1,x_2)\\subset(a,b)$上可微，由拉格朗日中值定理，存在$\\xi\\in(x_1,x_2)$使$g(x_2)-g(x_1)=g'(\\xi)(x_2-x_1)$。",
+            "由假设$g'(\\xi)=0$（因为$\\xi\\in(a,b)$），故$g(x_2)-g(x_1)=0$，即$g(x_1)=g(x_2)$。",
+            "由$x_1,x_2$的任意性，$g$在$[a,b]$上任意两点取值相等，即$g$是常数函数。"
+          ]
+        }
+      ],
+      "id": "osaka-2022-c07cb3c8db-q03-practice-01",
+      "school": "大阪大学",
+      "year": "2022"
+    },
+    {
+      "text": "设$f$在$[0,\\delta)$（$\\delta>0$）上连续，在$(0,\\delta)$上可微，且$\\displaystyle\\lim_{x\\to0^+}f'(x)=L$存在。证明$f$在$x=0$处的右导数存在且等于$L$。",
+      "knowledge_points": [
+        "单侧导数",
+        "拉格朗日中值定理",
+        "极限"
+      ],
+      "question_type": "证明单侧导数存在性（(1)的单侧版本）",
+      "method": [
+        "对$[0,h]$用中值定理，令$h\\to0^+$"
+      ],
+      "solution_steps": [
+        "对$h\\in(0,\\delta)$用中值定理得$\\xi_h\\in(0,h)$",
+        "令$h\\to0^+$，$\\xi_h\\to0^+$",
+        "得右导数$=L$"
+      ],
+      "math_structure": {
+        "type": "one_sided_derivative_limit",
+        "template": "\\lim_{x\\to0^+}f'(x)=L\\Rightarrow f'_+(0)=L",
+        "variable_count": 1
+      },
+      "difficulty": 2,
+      "estimated_minutes": 6,
+      "answer": [
+        {
+          "label": "证明",
+          "steps": [
+            "对任意$h\\in(0,\\delta)$，$f$在$[0,h]$上连续，在$(0,h)$上可微，由拉格朗日中值定理存在$\\xi_h\\in(0,h)$使$\\dfrac{f(h)-f(0)}{h}=f'(\\xi_h)$。",
+            "当$h\\to0^+$时，由$0<\\xi_h<h$知$\\xi_h\\to0^+$，结合$\\lim_{x\\to0^+}f'(x)=L$，得$f'(\\xi_h)\\to L$。",
+            "因此$\\displaystyle\\lim_{h\\to0^+}\\frac{f(h)-f(0)}{h}=L$，即右导数$f'_+(0)$存在且等于$L$。"
+          ]
+        }
+      ],
+      "id": "osaka-2022-c07cb3c8db-q03-practice-02",
+      "school": "大阪大学",
+      "year": "2022"
+    },
+    {
+      "text": "设$f(x)=x^3\\sin\\dfrac1x$（$x\\neq0$），$f(0)=0$。判断$f$是否在$x=0$处可微，并判断$\\displaystyle\\lim_{x\\to0}f'(x)$是否存在。将结论与函数$x^2\\sin(1/x)$的情形作比较。",
+      "knowledge_points": [
+        "可微性判定",
+        "导函数极限",
+        "振荡函数的夹逼估计"
+      ],
+      "question_type": "判定可微性与导函数极限（对照反例）",
+      "method": [
+        "用定义计算$f'(0)$",
+        "对$x\\neq0$求导并用夹逼估计极限"
+      ],
+      "solution_steps": [
+        "计算差商$h^2\\sin(1/h)\\to0$得$f'(0)=0$",
+        "求$f'(x)=3x^2\\sin(1/x)-x\\cos(1/x)$",
+        "证明该式当$x\\to0$时极限为$0$，与$x^2\\sin(1/x)$情形相反"
+      ],
+      "math_structure": {
+        "type": "differentiability_and_derivative_limit_contrast",
+        "template": "f(x)=x^3\\sin(1/x),\\ f(0)=0",
+        "variable_count": 0
+      },
+      "difficulty": 3,
+      "estimated_minutes": 8,
+      "answer": [
+        {
+          "label": "可微性与导函数极限的判断",
+          "steps": [
+            "在$0$处的可微性：$\\dfrac{f(h)-f(0)}{h}=\\dfrac{h^3\\sin(1/h)}{h}=h^2\\sin(1/h)$。由$|h^2\\sin(1/h)|\\le h^2\\to0$，夹逼定理给出$\\lim_{h\\to0}\\frac{f(h)-f(0)}{h}=0$，故$f$在$0$处可微，且$f'(0)=0$。",
+            "对$x\\neq0$，求导得$f'(x)=3x^2\\sin\\dfrac1x+x^3\\cos\\dfrac1x\\cdot\\left(-\\dfrac1{x^2}\\right)=3x^2\\sin\\dfrac1x-x\\cos\\dfrac1x$。",
+            "估计当$x\\to0$时：$|3x^2\\sin(1/x)|\\le3x^2\\to0$，$|x\\cos(1/x)|\\le|x|\\to0$，两项都被夹逼到$0$，故$\\lim_{x\\to0}f'(x)=0$存在，且恰好等于$f'(0)=0$。",
+            "对比：函数$x^2\\sin(1/x)$的导数含有不随$x\\to0$衰减的振荡项$-\\cos(1/x)$，故极限不存在；而$x^3\\sin(1/x)$多乘了一次$x$，使振荡项也被衰减因子$x$控制，从而导函数在$0$处连续。这说明幂次的高低决定了导函数是否在可微点处连续。"
+          ]
+        }
+      ],
+      "id": "osaka-2022-c07cb3c8db-q03-practice-03",
+      "school": "大阪大学",
+      "year": "2022"
+    },
+    {
+      "text": "设$f(x)=x^2$（$x\\ge0$），$f(x)=x^3$（$x<0$）。判断$f$在$\\mathbb{R}$上是否连续，是否在$x\\neq0$处可微，并利用命题(1)的结论判断$f$是否在$x=0$处可微。",
+      "knowledge_points": [
+        "分段函数的连续性与可微性",
+        "命题(1)的应用",
+        "极限计算"
+      ],
+      "question_type": "应用中值定理型判据判断分段函数在分界点的可微性",
+      "method": [
+        "验证连续性",
+        "分别计算$x>0$和$x<0$处的导数并求极限$c$",
+        "套用(1)的结论得出$f'(0)=c$"
+      ],
+      "solution_steps": [
+        "验证$f$在$0$处连续",
+        "求$f'(x)$在$x>0,x<0$的表达式",
+        "验证$\\lim_{x\\to0}f'(x)=0$存在，套用(1)得$f'(0)=0$",
+        "直接用定义验算"
+      ],
+      "math_structure": {
+        "type": "piecewise_function_differentiability_via_limit_criterion",
+        "template": "f(x)=x^2\\ (x\\ge0),\\ f(x)=x^3\\ (x<0)",
+        "variable_count": 0
+      },
+      "difficulty": 2,
+      "estimated_minutes": 6,
+      "answer": [
+        {
+          "label": "可微性判断",
+          "steps": [
+            "连续性：当$x\\to0^+$，$f(x)=x^2\\to0$；当$x\\to0^-$，$f(x)=x^3\\to0$；且$f(0)=0^2=0$（按$x\\ge0$的定义）。三者一致，故$f$在$0$处连续，在其余点显然连续（多项式），故$f$在$\\mathbb{R}$上连续。",
+            "在$x\\neq0$处可微：当$x>0$，$f'(x)=2x$；当$x<0$，$f'(x)=3x^2$，均为多项式求导，显然可微。",
+            "计算$\\lim_{x\\to0}f'(x)$：当$x\\to0^+$，$f'(x)=2x\\to0$；当$x\\to0^-$，$f'(x)=3x^2\\to0$。左右极限都是$0$，故$\\lim_{x\\to0}f'(x)=0=c$存在。",
+            "由命题(1)（$f$连续、$x\\neq0$可微、且$\\lim_{x\\to0}f'(x)=c$存在，则$f$在$0$处可微且$f'(0)=c$），得$f$在$0$处可微且$f'(0)=0$。直接验算：$\\frac{f(h)-f(0)}{h}=h\\to0$（$h>0$时为$h^2/h=h$）或$\\frac{h^3}{h}=h^2\\to0$（$h<0$时），两者都趋于$0$，与结论一致。"
+          ]
+        }
+      ],
+      "id": "osaka-2022-c07cb3c8db-q03-practice-04",
+      "school": "大阪大学",
+      "year": "2022"
+    }
+  ],
+  "source_question": "3",
+  "source_pdf": "大阪大学/情报科学研究科/情报基础数学/大阪大学_情报科学研究科_情报基础数学_2022_数学过去问.pdf",
+  "source_type": "官方过去问",
+  "subject_category": "微积分"
+}

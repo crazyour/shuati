@@ -1,0 +1,213 @@
+{
+  "id": "tohoku-2024-94ed6e28c4-q03",
+  "school": "东北大学",
+  "year": "2024",
+  "subject": "情报科学研究科_数学教室",
+  "text": "设 $f(x)$ 为开区间 $I$ 上的凸函数，即对任意 $x,y\\in I$ 与任意 $0\\le t\\le1$，满足\n$$f((1-t)x+ty)\\le(1-t)f(x)+tf(y).$$\n\n(1) 对 $I$ 内任意三点 $x_1<x_2<x_3$，求满足 $(1-t)x_1+tx_3=x_2$ 的 $t$（用 $x_1,x_2,x_3$ 表示）。\n\n(2) 对 $I$ 内任意三点 $x_1<x_2<x_3$，证明不等式\n$$\\frac{f(x_2)-f(x_1)}{x_2-x_1}\\le\\frac{f(x_3)-f(x_1)}{x_3-x_1}\\le\\frac{f(x_3)-f(x_2)}{x_3-x_2}.$$\n\n(3) 证明 $f(x)$ 在 $I$ 上连续。\n\n(4) 证明 $f(x)$ 在 $I$ 的每一点 $x$ 处都右侧可微且左侧可微，且右导数 $f'_+(x)$ 与左导数 $f'_-(x)$ 满足 $f'_-(x)\\le f'_+(x)$。",
+  "knowledge_points": [
+    "凸函数定义",
+    "三点斜率不等式",
+    "凸函数的连续性",
+    "单侧导数存在性",
+    "差商单调性"
+  ],
+  "question_type": "凸函数性质证明",
+  "method": [
+    "用凸性定义直接代入特定的 $t$",
+    "利用三点斜率不等式的传递性",
+    "利用差商的单调有界性构造极限",
+    "夹逼原理证明连续性与可微性"
+  ],
+  "solution_steps": [
+    "由 $(1-t)x_1+tx_3=x_2$ 解出 $t$",
+    "将此 $t$ 代入凸性定义不等式并化简为斜率不等式",
+    "利用斜率不等式在局部有界区间内控制 $f$ 的增量，从而得出连续性",
+    "对固定 $x$，考察差商 $\\dfrac{f(x+h)-f(x)}{h}$ 当 $h\\to0^+$ 与 $h\\to0^-$ 的单调性和有界性，说明极限（即单侧导数）存在",
+    "利用斜率不等式比较左右差商，得出 $f'_-(x)\\le f'_+(x)$"
+  ],
+  "math_structure": {
+    "type": "convex_function_slope_inequality_proof",
+    "template": "凸函数 $f$ 在开区间上满足三点斜率不等式、连续性、单侧可微性的证明",
+    "variable_count": 3
+  },
+  "difficulty": 4,
+  "answer": [
+    {
+      "label": "(1)",
+      "steps": [
+        "由方程 $(1-t)x_1+tx_3=x_2$ 展开：$x_1-tx_1+tx_3=x_2\\Rightarrow x_1+t(x_3-x_1)=x_2$",
+        "解出 $t=\\dfrac{x_2-x_1}{x_3-x_1}$",
+        "由 $x_1<x_2<x_3$ 知 $0<t<1$，符合凸性定义的取值范围"
+      ]
+    },
+    {
+      "label": "(2)",
+      "steps": [
+        "将 $t=\\dfrac{x_2-x_1}{x_3-x_1}$ 代入凸性不等式 $f(x_2)=f((1-t)x_1+tx_3)\\le(1-t)f(x_1)+tf(x_3)$",
+        "记 $t=\\dfrac{x_2-x_1}{x_3-x_1}, 1-t=\\dfrac{x_3-x_2}{x_3-x_1}$，代入得 $f(x_2)\\le\\dfrac{x_3-x_2}{x_3-x_1}f(x_1)+\\dfrac{x_2-x_1}{x_3-x_1}f(x_3)$",
+        "两边同乘 $(x_3-x_1)$ 并整理：$(x_3-x_1)f(x_2)\\le(x_3-x_2)f(x_1)+(x_2-x_1)f(x_3)$，即 $(x_3-x_2)(f(x_2)-f(x_1))\\le(x_2-x_1)(f(x_3)-f(x_2))$，两边同除以 $(x_2-x_1)(x_3-x_2)>0$ 得到 $\\dfrac{f(x_2)-f(x_1)}{x_2-x_1}\\le\\dfrac{f(x_3)-f(x_2)}{x_3-x_2}$",
+        "另外对同一不等式变形：将 $(x_3-x_1)f(x_2)\\le(x_3-x_2)f(x_1)+(x_2-x_1)f(x_3)$ 两边减去 $(x_3-x_1)f(x_1)$：$(x_3-x_1)(f(x_2)-f(x_1))\\le(x_2-x_1)(f(x_3)-f(x_1))$，除以 $(x_3-x_1)(x_2-x_1)$ 得 $\\dfrac{f(x_2)-f(x_1)}{x_2-x_1}\\le\\dfrac{f(x_3)-f(x_1)}{x_3-x_1}$；类似地可证 $\\dfrac{f(x_3)-f(x_1)}{x_3-x_1}\\le\\dfrac{f(x_3)-f(x_2)}{x_3-x_2}$，合并即得所求三段不等式链"
+      ]
+    },
+    {
+      "label": "(3)",
+      "steps": [
+        "任取 $x_0\\in I$，因 $I$ 开区间，可取 $a<x_0<b$，$a,b\\in I$",
+        "对任意 $x\\in(a,b)$ 且 $x\\ne x_0$，由(2)的不等式链，差商 $\\dfrac{f(x)-f(x_0)}{x-x_0}$ 被夹在两个固定常数 $\\dfrac{f(x_0)-f(a)}{x_0-a}$ 和 $\\dfrac{f(b)-f(x_0)}{b-x_0}$ 之间（当 $x$ 趋近 $x_0$ 时，取更紧的边界点），从而 $|f(x)-f(x_0)|\\le M|x-x_0|$ 对某常数 $M$（局部Lipschitz性）",
+        "由局部Lipschitz性可知 $f$ 在 $x_0$ 处连续，因 $x_0$ 任意，故 $f$ 在 $I$ 上处处连续"
+      ]
+    },
+    {
+      "label": "(4)",
+      "steps": [
+        "固定 $x\\in I$，考察差商函数 $\\phi(h)=\\dfrac{f(x+h)-f(x)}{h}$，由(2)可知对 $h_1<h_2$（同号或不同号，只要 $x+h_1,x+h_2\\in I$），$\\phi(h_1)\\le\\phi(h_2)$，即 $\\phi$ 关于 $h$ 单调不减",
+        "对 $h\\to0^+$：$\\phi(h)$ 关于 $h$ 递减为 $h\\to0^+$（即 $h$ 越小 $\\phi(h)$ 越小，且有下界，例如任意负的 $h_0$ 对应的差商），故 $\\phi(h)$ 当 $h\\to0^+$ 单调递减且有下界，极限存在，记为 $f'_+(x)=\\lim_{h\\to0^+}\\phi(h)$；对 $h\\to0^-$ 同理 $\\phi(h)$ 单调递增且有上界，极限存在，记为 $f'_-(x)=\\lim_{h\\to0^-}\\phi(h)$",
+        "对任意 $h_-<0<h_+$，由(2)（取 $x_1=x+h_-,x_2=x,x_3=x+h_+$）得 $\\dfrac{f(x)-f(x+h_-)}{-h_-}\\le\\dfrac{f(x+h_+)-f(x)}{h_+}$，即 $\\phi(h_-)\\le\\phi(h_+)$ 对所有此类 $h_-<0<h_+$ 成立",
+        "对上式左边取 $h_-\\to0^-$ 上极限、右边取 $h_+\\to0^+$ 下极限（由单调性极限均存在），得到 $f'_-(x)\\le f'_+(x)$"
+      ]
+    }
+  ],
+  "practice_questions": [
+    {
+      "text": "直接利用凸函数定义（取 $t=1/2$）证明：对任意 $x,y\\in I$，有 $f\\left(\\dfrac{x+y}{2}\\right)\\le\\dfrac{f(x)+f(y)}{2}$。",
+      "knowledge_points": [
+        "凸函数定义的直接应用"
+      ],
+      "question_type": "凸函数定义应用",
+      "method": [
+        "代入 $t=1/2$"
+      ],
+      "solution_steps": [
+        "将 $t=1/2$ 代入定义不等式",
+        "化简得到中点不等式"
+      ],
+      "math_structure": {
+        "type": "convexity_midpoint_inequality",
+        "template": "凸函数定义中取 $t=1/2$ 得中点不等式",
+        "variable_count": 2
+      },
+      "difficulty": 1,
+      "estimated_minutes": 4,
+      "answer": [
+        {
+          "label": "结果",
+          "steps": [
+            "凸性定义：$f((1-t)x+ty)\\le(1-t)f(x)+tf(y)$，取 $t=1/2$",
+            "左边：$f\\left(\\frac12x+\\frac12y\\right)=f\\left(\\frac{x+y}{2}\\right)$；右边：$\\frac12f(x)+\\frac12f(y)=\\frac{f(x)+f(y)}{2}$",
+            "结论：$f\\left(\\dfrac{x+y}{2}\\right)\\le\\dfrac{f(x)+f(y)}{2}$"
+          ]
+        }
+      ],
+      "id": "tohoku-2024-94ed6e28c4-q03-practice-01",
+      "school": "东北大学",
+      "year": "2024"
+    },
+    {
+      "text": "取 $x_1=1,x_2=3,x_3=7$，求满足 $(1-t)x_1+tx_3=x_2$ 的 $t$ 的数值。",
+      "knowledge_points": [
+        "三点内分比公式的数值应用"
+      ],
+      "question_type": "数值计算",
+      "method": [
+        "代入公式 $t=\\dfrac{x_2-x_1}{x_3-x_1}$"
+      ],
+      "solution_steps": [
+        "代入数值计算 $t$"
+      ],
+      "math_structure": {
+        "type": "affine_combination_parameter",
+        "template": "求 $t$ 使 $(1-t)x_1+tx_3=x_2$，数值实例",
+        "variable_count": 3
+      },
+      "difficulty": 1,
+      "estimated_minutes": 3,
+      "answer": [
+        {
+          "label": "结果",
+          "steps": [
+            "公式：$t=\\dfrac{x_2-x_1}{x_3-x_1}$",
+            "代入 $x_1=1,x_2=3,x_3=7$：$t=\\dfrac{3-1}{7-1}=\\dfrac{2}{6}=\\dfrac13$",
+            "验证：$(1-\\frac13)\\cdot1+\\frac13\\cdot7=\\frac23+\\frac73=\\frac93=3=x_2$，正确"
+          ]
+        }
+      ],
+      "id": "tohoku-2024-94ed6e28c4-q03-practice-02",
+      "school": "东北大学",
+      "year": "2024"
+    },
+    {
+      "text": "设 $f$ 为 $I$ 上凸函数，$x_0\\in I$ 固定。证明：函数 $g(x)=\\dfrac{f(x)-f(x_0)}{x-x_0}$（$x\\ne x_0$）在 $x>x_0$ 与 $x<x_0$ 的每一侧都是关于 $x$ 单调不减的。",
+      "knowledge_points": [
+        "差商单调性",
+        "三点斜率不等式的推广应用"
+      ],
+      "question_type": "单调性证明",
+      "method": [
+        "应用原题(2)结论于三点 $x_0,x,x'$"
+      ],
+      "solution_steps": [
+        "对 $x_0<x<x'$ 应用斜率不等式链",
+        "得出 $g$ 在 $x>x_0$ 侧单调不减，对称地在 $x<x_0$ 侧同理"
+      ],
+      "math_structure": {
+        "type": "difference_quotient_monotonicity",
+        "template": "证明凸函数差商 $g(x)=\\frac{f(x)-f(x_0)}{x-x_0}$ 的单调性",
+        "variable_count": 2
+      },
+      "difficulty": 3,
+      "estimated_minutes": 10,
+      "answer": [
+        {
+          "label": "结果",
+          "steps": [
+            "设 $x_0<x<x'$，由原题(2)（取三点 $x_0,x,x'$）得 $\\dfrac{f(x)-f(x_0)}{x-x_0}\\le\\dfrac{f(x')-f(x_0)}{x'-x_0}$，即 $g(x)\\le g(x')$，说明 $g$ 在 $x>x_0$ 一侧关于 $x$ 单调不减",
+            "同理设 $x'<x<x_0$（即两点都小于 $x_0$），由(2)取三点 $x',x,x_0$ 得 $\\dfrac{f(x)-f(x')}{x-x'}\\le\\dfrac{f(x_0)-f(x')}{x_0-x'}\\le\\dfrac{f(x_0)-f(x)}{x_0-x}$，从中可导出 $g(x')\\le g(x)$（因 $g(x)=\\frac{f(x)-f(x_0)}{x-x_0}=\\frac{f(x_0)-f(x)}{x_0-x}$），即 $g$ 在 $x<x_0$ 一侧也单调不减",
+            "结论：$g$ 分别在 $(x_0,+\\infty)\\cap I$ 与 $(-\\infty,x_0)\\cap I$ 上单调不减，这也解释了原题(4)中单侧导数极限存在的原因"
+          ]
+        }
+      ],
+      "id": "tohoku-2024-94ed6e28c4-q03-practice-03",
+      "school": "东北大学",
+      "year": "2024"
+    },
+    {
+      "text": "证明凸函数若在开区间 $I$ 上处处可导，则其导函数 $f'$ 在 $I$ 上单调不减。",
+      "knowledge_points": [
+        "凸函数导数的单调性",
+        "差商极限与导数关系"
+      ],
+      "question_type": "导函数单调性证明",
+      "method": [
+        "利用三点斜率不等式取极限"
+      ],
+      "solution_steps": [
+        "对 $x_1<x<x_2$ 应用斜率不等式并令自变量趋于端点取极限",
+        "得到 $f'(x_1)\\le f'(x_2)$"
+      ],
+      "math_structure": {
+        "type": "derivative_monotonicity_of_convex_function",
+        "template": "证明可导凸函数的导数单调不减",
+        "variable_count": 2
+      },
+      "difficulty": 3,
+      "estimated_minutes": 10,
+      "answer": [
+        {
+          "label": "结果",
+          "steps": [
+            "设 $x_1<x_2$，任取 $x_1<x<x_2$，由原题(2)三点不等式：$\\dfrac{f(x)-f(x_1)}{x-x_1}\\le\\dfrac{f(x_2)-f(x)}{x_2-x}$",
+            "令 $x\\to x_1^+$，左边极限为 $f'(x_1)$（因 $f$ 可导）；令 $x\\to x_2^-$，右边极限为 $f'(x_2)$；由于不等式对中间任意 $x$ 成立且两端各自的单侧极限存在，取适当的中间点逼近可得 $f'(x_1)\\le f'(x_2)$",
+            "更严格地：先固定 $x_2$令$x\\to x_1^+$得$f'(x_1)\\le\\dfrac{f(x_2)-f(x_1)}{x_2-x_1}$，再固定$x_1$令$x\\to x_2^-$得$\\dfrac{f(x_2)-f(x_1)}{x_2-x_1}\\le f'(x_2)$，两式合并即 $f'(x_1)\\le f'(x_2)$，证明 $f'$ 单调不减"
+          ]
+        }
+      ],
+      "id": "tohoku-2024-94ed6e28c4-q03-practice-04",
+      "school": "东北大学",
+      "year": "2024"
+    }
+  ],
+  "source_question": "3",
+  "source_pdf": "东北大学/情报科学研究科/数学教室/东北大学_情报科学研究科_数学_2024_数学过去问.pdf",
+  "source_type": "官方过去问",
+  "subject_category": "微积分"
+}

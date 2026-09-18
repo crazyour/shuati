@@ -1,0 +1,240 @@
+{
+  "id": "nagoya-2011-95fc9d2a71-q02",
+  "school": "名古屋大学",
+  "year": "2011",
+  "subject": "多元数理科学研究科_全专攻",
+  "text": "设 $A$ 是特征值全为正数的 $n\\times n$ 实对称矩阵，定义 $\\mathbb{R}^n$ 上的函数\n$$Q_A(x_1,\\ldots,x_n)=(x_1,\\ldots,x_n)A\\begin{pmatrix}x_1\\\\ \\vdots\\\\ x_n\\end{pmatrix}.$$\n设 $\\alpha$ 为实数，考虑广义积分\n$$\\int_{0<x_1^2+\\cdots+x_n^2\\le 1}\\frac{Q_A(x_1,\\ldots,x_n)}{(x_1^2+\\cdots+x_n^2)^{\\alpha/2}}\\,dx_1\\cdots dx_n.$$\n回答以下问题：\n\n(1) 当 $n=2$，$A=\\begin{pmatrix}a&b\\\\b&c\\end{pmatrix}$ 时，确定使上述广义积分收敛的 $\\alpha$ 的范围，并求出积分值。\n\n(2) 当 $n$ 为一般正整数时，确定使上述广义积分收敛的 $\\alpha$ 的范围。",
+  "knowledge_points": [
+    "广义积分敛散性",
+    "极坐标/球坐标变换",
+    "二次型齐次性",
+    "球面上的积分",
+    "正定矩阵与特征值"
+  ],
+  "question_type": "计算与判别题",
+  "method": [
+    "极坐标变换",
+    "利用齐次性分离径向与角度积分",
+    "球面积分公式 $\\int_{S^{n-1}}\\omega_i\\omega_j\\,d\\omega=\\frac{\\mathrm{Vol}(S^{n-1})}{n}\\delta_{ij}$"
+  ],
+  "solution_steps": [
+    "将 $x=r\\omega$，$\\omega$ 为单位向量，利用 $Q_A$ 的二次齐次性分离 $r$ 与角度部分",
+    "把积分化为径向积分 $\\int_0^1 r^{n+1-\\alpha}dr$ 乘以角度积分 $\\int_{S^{n-1}}Q_A(\\omega)d\\omega$",
+    "判断径向积分收敛的条件：$n+1-\\alpha>-1$",
+    "利用对称性计算角度积分等于 $\\dfrac{\\mathrm{Vol}(S^{n-1})}{n}\\mathrm{tr}(A)$",
+    "对 $n=2$ 情形直接用极坐标验证公式"
+  ],
+  "math_structure": {
+    "type": "homogeneous_quadratic_form_improper_integral",
+    "template": "\\int_{0<|x|\\le1}\\frac{Q_A(x)}{|x|^\\alpha}dx,\\ A\\ \\text{正定对称}",
+    "variable_count": 2
+  },
+  "difficulty": 4,
+  "answer": [
+    {
+      "label": "(1)",
+      "steps": [
+        "令 $x_1=r\\cos\\theta,\\ x_2=r\\sin\\theta$，则 $dx_1dx_2=r\\,dr\\,d\\theta$，且 $x_1^2+x_2^2=r^2$。$Q_A(x_1,x_2)=a x_1^2+2bx_1x_2+cx_2^2=r^2(a\\cos^2\\theta+2b\\sin\\theta\\cos\\theta+c\\sin^2\\theta)=r^2 g(\\theta)$。",
+        "被积函数化为 $\\dfrac{r^2g(\\theta)}{r^\\alpha}\\cdot r=r^{3-\\alpha}g(\\theta)$，积分为 $\\left(\\int_0^1 r^{3-\\alpha}dr\\right)\\left(\\int_0^{2\\pi}g(\\theta)d\\theta\\right)$。",
+        "计算角度积分：$\\int_0^{2\\pi}\\cos^2\\theta\\,d\\theta=\\pi$，$\\int_0^{2\\pi}\\sin^2\\theta\\,d\\theta=\\pi$，$\\int_0^{2\\pi}\\sin\\theta\\cos\\theta\\,d\\theta=0$，所以 $\\int_0^{2\\pi}g(\\theta)d\\theta=\\pi(a+c)$。",
+        "径向积分 $\\int_0^1 r^{3-\\alpha}dr$ 在原点附近收敛当且仅当指数 $3-\\alpha>-1$，即 $\\alpha<4$；此时其值为 $\\dfrac{1}{4-\\alpha}$。",
+        "综上，积分收敛当且仅当 $\\alpha<4$，此时积分值为 $\\dfrac{\\pi(a+c)}{4-\\alpha}$。"
+      ]
+    },
+    {
+      "label": "(2)",
+      "steps": [
+        "用球坐标 $x=r\\omega$，$\\omega\\in S^{n-1}$，$dx_1\\cdots dx_n=r^{n-1}dr\\,d\\omega$。由 $Q_A$ 二次齐次，$Q_A(x)=r^2Q_A(\\omega)$，而 $(x_1^2+\\cdots+x_n^2)^{\\alpha/2}=r^\\alpha$。",
+        "积分化为 $\\left(\\int_0^1 r^{n+1-\\alpha}dr\\right)\\left(\\int_{S^{n-1}}Q_A(\\omega)\\,d\\omega\\right)$。",
+        "径向积分 $\\int_0^1 r^{n+1-\\alpha}dr$ 在 $r\\to0$ 处收敛的条件是 $n+1-\\alpha>-1$，即 $\\alpha<n+2$；收敛时其值为 $\\dfrac{1}{n+2-\\alpha}$。",
+        "角度积分：由对称性 $\\int_{S^{n-1}}\\omega_i\\omega_j\\,d\\omega=\\dfrac{\\mathrm{Vol}(S^{n-1})}{n}\\delta_{ij}$，故 $\\int_{S^{n-1}}Q_A(\\omega)d\\omega=\\sum_{i,j}A_{ij}\\int\\omega_i\\omega_j d\\omega=\\dfrac{\\mathrm{Vol}(S^{n-1})}{n}\\mathrm{tr}(A)$。",
+        "所以，广义积分收敛当且仅当 $\\alpha<n+2$，此时积分值为 $\\dfrac{\\mathrm{Vol}(S^{n-1})}{n(n+2-\\alpha)}\\mathrm{tr}(A)$，其中 $\\mathrm{Vol}(S^{n-1})=\\dfrac{2\\pi^{n/2}}{\\Gamma(n/2)}$。当 $n=2$ 时 $\\mathrm{Vol}(S^1)=2\\pi$，代入得 $\\dfrac{\\pi(a+c)}{4-\\alpha}$，与(1)一致，验证了公式正确性。"
+      ]
+    }
+  ],
+  "practice_questions": [
+    {
+      "text": "计算 $\\int_0^{2\\pi}\\cos^2\\theta\\,d\\theta$，$\\int_0^{2\\pi}\\sin^2\\theta\\,d\\theta$ 及 $\\int_0^{2\\pi}\\sin\\theta\\cos\\theta\\,d\\theta$ 的值。",
+      "knowledge_points": [
+        "三角函数积分",
+        "周期函数对称性"
+      ],
+      "question_type": "计算题",
+      "method": [
+        "倍角公式化简"
+      ],
+      "solution_steps": [
+        "用 $\\cos^2\\theta=\\frac{1+\\cos2\\theta}{2}$ 等公式化简后积分"
+      ],
+      "math_structure": {
+        "type": "trig_integral_basic",
+        "template": "\\int_0^{2\\pi}\\cos^2\\theta\\,d\\theta,\\ \\int_0^{2\\pi}\\sin^2\\theta\\,d\\theta,\\ \\int_0^{2\\pi}\\sin\\theta\\cos\\theta\\,d\\theta",
+        "variable_count": 0
+      },
+      "difficulty": 1,
+      "estimated_minutes": 6,
+      "answer": [
+        {
+          "label": "结果",
+          "steps": [
+            "$\\cos^2\\theta=\\frac{1+\\cos2\\theta}{2}$，积分得 $\\int_0^{2\\pi}\\cos^2\\theta\\,d\\theta=\\pi+\\frac{1}{2}\\left[\\sin2\\theta\\right]_0^{2\\pi}=\\pi$。",
+            "同理 $\\int_0^{2\\pi}\\sin^2\\theta\\,d\\theta=\\pi$。",
+            "$\\sin\\theta\\cos\\theta=\\frac{1}{2}\\sin2\\theta$，积分得 $\\int_0^{2\\pi}\\sin\\theta\\cos\\theta\\,d\\theta=-\\frac{1}{4}[\\cos2\\theta]_0^{2\\pi}=0$。"
+          ]
+        }
+      ],
+      "id": "nagoya-2011-95fc9d2a71-q02-practice-01",
+      "school": "名古屋大学",
+      "year": "2011"
+    },
+    {
+      "text": "设 $A=I$（单位矩阵），$n=2$。判断广义积分 $\\displaystyle\\int_{0<x_1^2+x_2^2\\le1}\\frac{1}{(x_1^2+x_2^2)^{\\alpha/2}}dx_1dx_2$ 的收敛条件并求积分值。",
+      "knowledge_points": [
+        "极坐标变换",
+        "径向奇点积分"
+      ],
+      "question_type": "计算题",
+      "method": [
+        "极坐标变换"
+      ],
+      "solution_steps": [
+        "极坐标化",
+        "求径向积分收敛条件与值"
+      ],
+      "math_structure": {
+        "type": "radial_power_integral_2d",
+        "template": "\\int_{0<|x|\\le1}|x|^{-\\alpha}dx,\\ n=2",
+        "variable_count": 1
+      },
+      "difficulty": 2,
+      "estimated_minutes": 8,
+      "answer": [
+        {
+          "label": "结果",
+          "steps": [
+            "极坐标下 $dx_1dx_2=r\\,dr\\,d\\theta$，积分化为 $\\int_0^{2\\pi}d\\theta\\int_0^1 r^{1-\\alpha}dr=2\\pi\\int_0^1 r^{1-\\alpha}dr$。",
+            "该径向积分在 $r\\to0$ 收敛当且仅当 $1-\\alpha>-1$，即 $\\alpha<2$，此时值为 $\\dfrac{1}{2-\\alpha}$。",
+            "所以积分收敛当且仅当 $\\alpha<2$，此时积分值为 $\\dfrac{2\\pi}{2-\\alpha}$，可与一般公式 $\\alpha<n+2=4$（此处对应 $Q_A=1$ 而非 $Q_I(x)=|x|^2$，故指数偏移了2）相互印证。"
+          ]
+        }
+      ],
+      "id": "nagoya-2011-95fc9d2a71-q02-practice-02",
+      "school": "名古屋大学",
+      "year": "2011"
+    },
+    {
+      "text": "设 $A=I_n$（$n\\times n$单位矩阵）。求 $\\displaystyle\\int_{0<|x|\\le1}\\frac{Q_I(x)}{|x|^\\alpha}dx_1\\cdots dx_n$（即 $Q_I(x)=|x|^2$）的收敛条件与积分值，并验证与一般公式一致。",
+      "knowledge_points": [
+        "球坐标积分",
+        "径向积分收敛性",
+        "球面体积公式"
+      ],
+      "question_type": "计算题",
+      "method": [
+        "球坐标变换",
+        "代入一般公式验证"
+      ],
+      "solution_steps": [
+        "球坐标展开",
+        "计算径向积分",
+        "利用 $\\mathrm{tr}(I)=n$ 验证一般公式"
+      ],
+      "math_structure": {
+        "type": "radial_power_integral_nd_identity_matrix",
+        "template": "\\int_{0<|x|\\le1}\\frac{|x|^2}{|x|^\\alpha}dx,\\ x\\in\\mathbb{R}^n",
+        "variable_count": 1
+      },
+      "difficulty": 3,
+      "estimated_minutes": 12,
+      "answer": [
+        {
+          "label": "结果",
+          "steps": [
+            "球坐标下积分为 $\\mathrm{Vol}(S^{n-1})\\int_0^1 r^{2-\\alpha}\\cdot r^{n-1}dr=\\mathrm{Vol}(S^{n-1})\\int_0^1 r^{n+1-\\alpha}dr$。",
+            "该积分收敛当且仅当 $n+1-\\alpha>-1$，即 $\\alpha<n+2$，此时值为 $\\dfrac{\\mathrm{Vol}(S^{n-1})}{n+2-\\alpha}$。",
+            "由一般公式 $\\dfrac{\\mathrm{Vol}(S^{n-1})}{n(n+2-\\alpha)}\\mathrm{tr}(A)$，当 $A=I$ 时 $\\mathrm{tr}(A)=n$，代入得 $\\dfrac{\\mathrm{Vol}(S^{n-1})}{n+2-\\alpha}$，与直接计算一致，验证公式正确。"
+          ]
+        }
+      ],
+      "id": "nagoya-2011-95fc9d2a71-q02-practice-03",
+      "school": "名古屋大学",
+      "year": "2011"
+    },
+    {
+      "text": "设 $n=2$，$A=\\begin{pmatrix}2&0\\\\0&5\\end{pmatrix}$（对角矩阵，特征值 $2,5$）。直接通过伸缩变量计算 $\\displaystyle\\int_{0<x_1^2+x_2^2\\le1}\\frac{Q_A(x_1,x_2)}{(x_1^2+x_2^2)^{\\alpha/2}}dx_1dx_2$（$\\alpha<4$）的值，并与公式 $\\dfrac{\\pi\\,\\mathrm{tr}(A)}{4-\\alpha}$ 核对。",
+      "knowledge_points": [
+        "对角二次型",
+        "极坐标积分",
+        "公式验证"
+      ],
+      "question_type": "计算题",
+      "method": [
+        "极坐标直接展开"
+      ],
+      "solution_steps": [
+        "写出 $Q_A=2x_1^2+5x_2^2$",
+        "极坐标展开并积分",
+        "对照公式验证"
+      ],
+      "math_structure": {
+        "type": "diagonal_quadratic_form_verification",
+        "template": "A=\\mathrm{diag}(2,5),\\ \\int Q_A(x)/|x|^\\alpha dx",
+        "variable_count": 1
+      },
+      "difficulty": 3,
+      "estimated_minutes": 12,
+      "answer": [
+        {
+          "label": "结果",
+          "steps": [
+            "$Q_A(x_1,x_2)=2x_1^2+5x_2^2=r^2(2\\cos^2\\theta+5\\sin^2\\theta)$。",
+            "积分为 $\\int_0^1 r^{3-\\alpha}dr\\int_0^{2\\pi}(2\\cos^2\\theta+5\\sin^2\\theta)d\\theta=\\dfrac{1}{4-\\alpha}\\cdot(2\\pi+5\\pi)=\\dfrac{7\\pi}{4-\\alpha}$（用到 $\\int\\cos^2=\\int\\sin^2=\\pi$）。",
+            "由公式 $\\dfrac{\\pi\\,\\mathrm{tr}(A)}{4-\\alpha}$，$\\mathrm{tr}(A)=2+5=7$，得 $\\dfrac{7\\pi}{4-\\alpha}$，与直接计算完全一致，验证成功。"
+          ]
+        }
+      ],
+      "id": "nagoya-2011-95fc9d2a71-q02-practice-04",
+      "school": "名古屋大学",
+      "year": "2011"
+    },
+    {
+      "text": "设 $n=3$，$A=\\mathrm{diag}(1,2,3)$，$\\alpha=1$。利用一般公式 $\\dfrac{\\mathrm{Vol}(S^{n-1})}{n(n+2-\\alpha)}\\mathrm{tr}(A)$ 计算积分值，其中 $\\mathrm{Vol}(S^2)=4\\pi$。",
+      "knowledge_points": [
+        "球面体积公式",
+        "一般公式代入计算"
+      ],
+      "question_type": "计算题",
+      "method": [
+        "直接代入一般公式"
+      ],
+      "solution_steps": [
+        "确定 $n,\\alpha,\\mathrm{tr}(A)$",
+        "代入公式计算数值"
+      ],
+      "math_structure": {
+        "type": "general_formula_substitution",
+        "template": "n=3,\\ A=\\mathrm{diag}(1,2,3),\\ \\alpha=1",
+        "variable_count": 0
+      },
+      "difficulty": 2,
+      "estimated_minutes": 6,
+      "answer": [
+        {
+          "label": "结果",
+          "steps": [
+            "$n=3$，$\\mathrm{tr}(A)=1+2+3=6$，$\\alpha=1<n+2=5$，故积分收敛。",
+            "代入公式：$\\dfrac{\\mathrm{Vol}(S^2)}{n(n+2-\\alpha)}\\mathrm{tr}(A)=\\dfrac{4\\pi}{3\\cdot4}\\cdot6=\\dfrac{4\\pi\\cdot6}{12}=2\\pi$。",
+            "故该广义积分的值为 $2\\pi$。"
+          ]
+        }
+      ],
+      "id": "nagoya-2011-95fc9d2a71-q02-practice-05",
+      "school": "名古屋大学",
+      "year": "2011"
+    }
+  ],
+  "source_question": "問2",
+  "source_pdf": "名古屋大学/多元数理科学研究科/全专攻/名古屋大学_多元数理科学研究科_2011_第2次_数学过去问_下午.pdf",
+  "source_type": "官方过去问",
+  "subject_category": "微积分"
+}

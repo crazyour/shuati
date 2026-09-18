@@ -1,0 +1,201 @@
+{
+  "id": "osaka-2010-d2b8f5102c-q04",
+  "school": "大阪大学",
+  "year": "2010",
+  "subject": "情报科学研究科_情报基础数学",
+  "text": "对非零复数 $a,b,c$，数列 $\\{z_n\\}$ 定义为\n$$z_1=a,\\quad z_2=b,\\quad z_n=c\\cdot\\frac{z_{n-1}}{z_{n-2}}\\quad(n=3,4,\\ldots).$$\n(i) 求 $z_7$。\n(ii) 求 $\\displaystyle\\lim_{n\\to\\infty}\\frac1n\\sum_{k=1}^n z_k$。",
+  "knowledge_points": [
+    "复数列递推关系",
+    "周期性数列",
+    "Cesàro平均",
+    "极限计算"
+  ],
+  "question_type": "复数递推数列的周期性与均值",
+  "method": [
+    "逐项递推计算",
+    "发现周期规律",
+    "周期数列的Cesàro均值公式"
+  ],
+  "solution_steps": [
+    "逐项计算 $z_3,z_4,z_5,z_6,z_7$，发现数列以5为周期",
+    "验证 $z_7=z_1=a$，$z_8=z_2=b$，确认周期为5",
+    "利用周期性，Cesàro平均的极限等于一个周期内各项之和除以周期长度",
+    "计算一个周期 $z_1+z_2+z_3+z_4+z_5$ 之和并除以5得到极限"
+  ],
+  "math_structure": {
+    "type": "periodic_recurrence_cesaro_mean",
+    "template": "z_1=a,z_2=b,z_n=c\\cdot z_{n-1}/z_{n-2},\\ \\lim_{n\\to\\infty}\\frac1n\\sum_{k=1}^n z_k",
+    "variable_count": 3
+  },
+  "difficulty": 4,
+  "answer": [
+    {
+      "label": "i)",
+      "steps": [
+        "$z_3=c\\cdot z_2/z_1=cb/a$",
+        "$z_4=c\\cdot z_3/z_2=c\\cdot(cb/a)/b=c^2/a$",
+        "$z_5=c\\cdot z_4/z_3=c\\cdot(c^2/a)/(cb/a)=c^2/b$",
+        "$z_6=c\\cdot z_5/z_4=c\\cdot(c^2/b)/(c^2/a)=ca/b$",
+        "$z_7=c\\cdot z_6/z_5=c\\cdot(ca/b)/(c^2/b)=a$",
+        "验证：继续算 $z_8=c\\cdot z_7/z_6=c\\cdot a/(ca/b)=b=z_2$，确认数列以5为周期，故 $z_7=a$"
+      ]
+    },
+    {
+      "label": "ii)",
+      "steps": [
+        "由(i)知数列周期为5：$z_1=a,z_2=b,z_3=cb/a,z_4=c^2/a,z_5=c^2/b$，且$z_{n+5}=z_n$对所有$n$成立",
+        "对周期数列，Cesàro平均的极限等于一个周期内各项算术平均：$\\lim_{n\\to\\infty}\\frac1n\\sum_{k=1}^n z_k=\\frac{z_1+z_2+z_3+z_4+z_5}{5}$",
+        "计算周期和：$S=a+b+\\dfrac{cb}{a}+\\dfrac{c^2}{a}+\\dfrac{c^2}{b}$，通分（分母$ab$）：$S=\\dfrac{a^2b+ab^2+cb^2+bc^2+ac^2}{ab}$",
+        "最终结果：$\\displaystyle\\lim_{n\\to\\infty}\\frac1n\\sum_{k=1}^n z_k=\\frac{a^2b+ab^2+cb^2+bc^2+ac^2}{5ab}$"
+      ]
+    }
+  ],
+  "practice_questions": [
+    {
+      "text": "设 $z_1=1,z_2=2,z_n=3\\cdot z_{n-1}/z_{n-2}$（$n\\ge3$），求 $z_3,z_4,z_5,z_6$ 的数值。",
+      "knowledge_points": [
+        "递推数列计算"
+      ],
+      "question_type": "递推数列数值计算",
+      "method": [
+        "逐项代入计算"
+      ],
+      "solution_steps": [
+        "依次代入递推公式计算各项"
+      ],
+      "math_structure": {
+        "type": "periodic_recurrence_cesaro_mean",
+        "template": "z_1=1,z_2=2,z_n=3z_{n-1}/z_{n-2}",
+        "variable_count": 0
+      },
+      "difficulty": 1,
+      "estimated_minutes": 5,
+      "answer": [
+        {
+          "label": "结果",
+          "steps": [
+            "$z_3=3\\cdot2/1=6$",
+            "$z_4=3\\cdot6/2=9$",
+            "$z_5=3\\cdot9/6=4.5$",
+            "$z_6=3\\cdot4.5/9=1.5$"
+          ]
+        }
+      ],
+      "id": "osaka-2010-d2b8f5102c-q04-practice-01",
+      "school": "大阪大学",
+      "year": "2010"
+    },
+    {
+      "text": "对一般的 $z_1=a,z_2=b,z_n=c\\cdot z_{n-1}/z_{n-2}$，用符号推导证明 $z_6=\\dfrac{ca}{b}$（写出从$z_3$到$z_6$的完整推导）。",
+      "knowledge_points": [
+        "复数列递推关系",
+        "代数化简"
+      ],
+      "question_type": "递推公式符号推导",
+      "method": [
+        "逐项代入符号计算"
+      ],
+      "solution_steps": [
+        "依次用a,b,c表示z3,z4,z5,z6",
+        "化简每一步的分式表达式"
+      ],
+      "math_structure": {
+        "type": "periodic_recurrence_cesaro_mean",
+        "template": "z_1=a,z_2=b,z_n=c z_{n-1}/z_{n-2},\\text{求}z_6",
+        "variable_count": 3
+      },
+      "difficulty": 2,
+      "estimated_minutes": 8,
+      "answer": [
+        {
+          "label": "结果",
+          "steps": [
+            "$z_3=cb/a$",
+            "$z_4=c\\cdot(cb/a)/b=c^2/a$",
+            "$z_5=c\\cdot(c^2/a)/(cb/a)=c^2/b$",
+            "$z_6=c\\cdot(c^2/b)/(c^2/a)=ca/b$，与所求一致"
+          ]
+        }
+      ],
+      "id": "osaka-2010-d2b8f5102c-q04-practice-02",
+      "school": "大阪大学",
+      "year": "2010"
+    },
+    {
+      "text": "证明对一般的 $a,b,c\\ne0$，数列 $\\{z_n\\}$ 满足 $z_{n+5}=z_n$ 对所有 $n\\ge1$ 成立（即证明周期为5）。",
+      "knowledge_points": [
+        "数列周期性证明",
+        "代数归纳"
+      ],
+      "question_type": "周期性证明",
+      "method": [
+        "逐项计算验证首个周期",
+        "利用递推关系归纳证明后续周期"
+      ],
+      "solution_steps": [
+        "计算z1至z7验证z6=z1周期性起点",
+        "说明由递推关系的确定性(仅依赖前两项)得到整体周期性"
+      ],
+      "math_structure": {
+        "type": "periodic_recurrence_cesaro_mean",
+        "template": "\\text{证明}z_{n+5}=z_n\\ \\forall n",
+        "variable_count": 3
+      },
+      "difficulty": 3,
+      "estimated_minutes": 10,
+      "answer": [
+        {
+          "label": "结果",
+          "steps": [
+            "计算得 $z_6=ca/b,\\,z_7=a=z_1$（如(i)所示）",
+            "继续计算 $z_8=c\\cdot z_7/z_6=c\\cdot a/(ca/b)=b=z_2$",
+            "由于递推关系 $z_n=c z_{n-1}/z_{n-2}$ 完全由前两项决定后续所有项，而 $(z_6,z_7)=(ca/b,a)$与$(z_1,z_2)=(a,b)$的关系是：$z_7=z_1,z_8=z_2$，即从第6项开始的两项序列与原序列的第1，2项通过相同递推规则生成后续项，故对所有 $n\\ge1$ 有 $z_{n+5}=z_n$，周期为5得证"
+          ]
+        }
+      ],
+      "id": "osaka-2010-d2b8f5102c-q04-practice-03",
+      "school": "大阪大学",
+      "year": "2010"
+    },
+    {
+      "text": "设 $a=1,b=2,c=4$，利用原题(ii)的公式计算 $\\lim_{n\\to\\infty}\\frac1n\\sum_{k=1}^n z_k$ 的具体数值。",
+      "knowledge_points": [
+        "Cesàro平均",
+        "周期数列求和",
+        "数值计算"
+      ],
+      "question_type": "周期数列均值数值计算",
+      "method": [
+        "套用周期均值公式"
+      ],
+      "solution_steps": [
+        "代入a=1,b=2,c=4到公式 $S/5$ 中计算数值"
+      ],
+      "math_structure": {
+        "type": "periodic_recurrence_cesaro_mean",
+        "template": "\\lim \\frac1n\\sum z_k,\\ a=1,b=2,c=4",
+        "variable_count": 0
+      },
+      "difficulty": 3,
+      "estimated_minutes": 8,
+      "answer": [
+        {
+          "label": "结果",
+          "steps": [
+            "由公式 $S=\\dfrac{a^2b+ab^2+cb^2+bc^2+ac^2}{ab}$，代入 $a=1,b=2,c=4$：",
+            "$a^2b=2,\\ ab^2=4,\\ cb^2=16,\\ bc^2=32,\\ ac^2=16$，分子之和 $=2+4+16+32+16=70$，分母 $ab=2$",
+            "$S=70/2=35$，极限 $=S/5=35/5=7$",
+            "验证：直接算 $z_1=1,z_2=2,z_3=4\\cdot2/1=8,z_4=4\\cdot8/2=16,z_5=4\\cdot16/8=8$，和 $=1+2+8+16+8=35$，与公式一致，极限为$35/5=7$"
+          ]
+        }
+      ],
+      "id": "osaka-2010-d2b8f5102c-q04-practice-04",
+      "school": "大阪大学",
+      "year": "2010"
+    }
+  ],
+  "source_question": "問3",
+  "source_pdf": "大阪大学/情报科学研究科/情报基础数学/大阪大学_情报科学研究科_情报基础数学_2010_数学过去问.pdf",
+  "source_type": "官方过去问",
+  "subject_category": "复变函数"
+}

@@ -1,0 +1,265 @@
+{
+  "id": "nagoya-2007-1e847b7fbd-q02",
+  "school": "名古屋大学",
+  "year": "2007",
+  "subject": "多元数理科学研究科_全专攻",
+  "text": "设 $R$ 表示正数。回答以下问题。\n(1) 求三维空间中旋转体\n$$U(R)=\\{(x,y,z)\\in\\mathbb R^3\\mid x^2+y^2\\le R^2,\\ 0\\le z\\le e^{-x^2-y^2}\\}$$\n的体积 $u(R)$。\n(2) 求极限 $\\displaystyle\\lim_{R\\to\\infty}u(R)$。\n(3) 三维空间中的立体\n$$V(R)=\\{(x,y,z)\\in\\mathbb R^3\\mid \\max\\{|x|,|y|\\}\\le R,\\ 0\\le z\\le e^{-x^2-y^2}\\}$$\n的体积 $v(R)$ 可表示为 $\\left(\\displaystyle\\int_{-R}^R e^{-x^2}dx\\right)^2$，证明这一点。\n(4) 证明 $\\displaystyle\\lim_{R\\to\\infty}(v(R)-u(R))=0$。\n(5) 证明广义积分 $\\displaystyle\\int_{-\\infty}^\\infty e^{-x^2}dx$ 存在，并求其值。",
+  "knowledge_points": [
+    "二重积分",
+    "极坐标变换",
+    "体积计算",
+    "广义积分",
+    "夹逼定理",
+    "Gauss积分",
+    "累次积分与Fubini定理"
+  ],
+  "question_type": "重积分与广义积分综合题",
+  "method": [
+    "极坐标积分",
+    "累次积分分离变量",
+    "区域包含关系比较积分",
+    "夹逼定理证明极限"
+  ],
+  "solution_steps": [
+    "用极坐标计算圆盘上的二重积分得 $u(R)$",
+    "取极限求 $u(R)$ 当 $R\\to\\infty$ 的值",
+    "利用Fubini定理将正方形上的二重积分分离为两个一维积分的乘积证明 $v(R)$ 的表达式",
+    "利用圆内接、外接正方形的包含关系夹逼 $v(R)-u(R)\\to0$",
+    "结合 $u(R)\\to\\pi$ 与 $v(R)-u(R)\\to0$ 得到 $v(R)\\to\\pi$，从而求出高斯积分值"
+  ],
+  "math_structure": {
+    "type": "gaussian_integral_via_volume",
+    "template": "compute volume of e^{-x^2-y^2} over disk and square, derive int e^{-x^2}dx",
+    "variable_count": 1
+  },
+  "difficulty": 4,
+  "answer": [
+    {
+      "label": "(1)",
+      "steps": [
+        "$u(R)=\\iint_{x^2+y^2\\le R^2} e^{-x^2-y^2}\\,dxdy$，改用极坐标 $x=r\\cos\\theta,y=r\\sin\\theta$，$dxdy=r\\,dr\\,d\\theta$。",
+        "$u(R)=\\int_0^{2\\pi}\\int_0^R e^{-r^2} r\\,dr\\,d\\theta = 2\\pi\\int_0^R r e^{-r^2}dr$。",
+        "令 $t=r^2$，$dt=2r\\,dr$，得 $\\int_0^R re^{-r^2}dr=\\frac12\\left[-e^{-r^2}\\right]_0^R=\\frac12(1-e^{-R^2})$。",
+        "所以 $u(R)=2\\pi\\cdot\\frac12(1-e^{-R^2})=\\pi(1-e^{-R^2})$。"
+      ]
+    },
+    {
+      "label": "(2)",
+      "steps": [
+        "当 $R\\to\\infty$ 时 $e^{-R^2}\\to0$，因此 $\\lim_{R\\to\\infty}u(R)=\\pi(1-0)=\\pi$。"
+      ]
+    },
+    {
+      "label": "(3)",
+      "steps": [
+        "$V(R)$ 的底面是正方形 $[-R,R]\\times[-R,R]$，故 $v(R)=\\iint_{[-R,R]^2}e^{-x^2-y^2}dxdy$。",
+        "由于被积函数可分离变量 $e^{-x^2-y^2}=e^{-x^2}e^{-y^2}$，利用Fubini定理化为累次积分：$v(R)=\\int_{-R}^R\\int_{-R}^R e^{-x^2}e^{-y^2}\\,dy\\,dx=\\int_{-R}^R e^{-x^2}\\left(\\int_{-R}^R e^{-y^2}dy\\right)dx$。",
+        "内层积分与 $x$ 无关，可提出：$v(R)=\\left(\\int_{-R}^R e^{-y^2}dy\\right)\\int_{-R}^R e^{-x^2}dx=\\left(\\int_{-R}^R e^{-x^2}dx\\right)^2$，证毕。"
+      ]
+    },
+    {
+      "label": "(4)",
+      "steps": [
+        "半径 $R$ 的圆盘内接于边长 $2R$ 的正方形，而该正方形又内接于半径 $R\\sqrt2$ 的圆盘，即 $U(R)\\subset V(R)\\subset U(R\\sqrt2)$（作为底面区域的包含关系，被积函数非负）。",
+        "由此得 $u(R)\\le v(R)\\le u(R\\sqrt2)$，从而 $0\\le v(R)-u(R)\\le u(R\\sqrt2)-u(R)$。",
+        "代入(1)的公式：$u(R\\sqrt2)-u(R)=\\pi(1-e^{-2R^2})-\\pi(1-e^{-R^2})=\\pi(e^{-R^2}-e^{-2R^2})$。",
+        "当 $R\\to\\infty$ 时，$e^{-R^2}\\to0$ 且 $e^{-2R^2}\\to0$，故右端趋于 $0$，由夹逼定理 $\\lim_{R\\to\\infty}(v(R)-u(R))=0$。"
+      ]
+    },
+    {
+      "label": "(5)",
+      "steps": [
+        "由(2)知 $u(R)\\to\\pi$，由(4)知 $v(R)-u(R)\\to0$，故 $v(R)\\to\\pi$。",
+        "由(3)，$v(R)=\\left(\\int_{-R}^R e^{-x^2}dx\\right)^2\\to\\pi$。设 $I(R)=\\int_{-R}^R e^{-x^2}dx$，则 $I(R)^2\\to\\pi$；又 $I(R)$ 单调递增（被积函数恒正）且有上界（因 $I(R)^2\\le v(R)\\le\\pi$ 对充分大 $R$ 成立），故 $I(R)$ 收敛，从而广义积分 $\\int_{-\\infty}^\\infty e^{-x^2}dx=\\lim_{R\\to\\infty}I(R)$ 存在。",
+        "由 $I(R)>0$ 且 $I(R)^2\\to\\pi$，得 $\\lim_{R\\to\\infty}I(R)=\\sqrt\\pi$（取正根，因积分值恒正）。",
+        "故 $\\displaystyle\\int_{-\\infty}^\\infty e^{-x^2}dx=\\sqrt\\pi$。"
+      ]
+    }
+  ],
+  "practice_questions": [
+    {
+      "text": "计算 $\\displaystyle\\iint_{x^2+y^2\\le1} e^{-2(x^2+y^2)}\\,dxdy$。",
+      "knowledge_points": [
+        "极坐标变换",
+        "二重积分"
+      ],
+      "question_type": "极坐标积分计算",
+      "method": [
+        "极坐标变换",
+        "换元积分"
+      ],
+      "solution_steps": [
+        "转化为极坐标",
+        "计算径向积分"
+      ],
+      "math_structure": {
+        "type": "polar_double_integral",
+        "template": "int_disk e^{-k(x^2+y^2)}dxdy",
+        "variable_count": 1
+      },
+      "difficulty": 2,
+      "estimated_minutes": 6,
+      "answer": [
+        {
+          "label": "结果",
+          "steps": [
+            "用极坐标：$\\iint = \\int_0^{2\\pi}\\int_0^1 e^{-2r^2}r\\,dr\\,d\\theta=2\\pi\\int_0^1 re^{-2r^2}dr$。",
+            "令 $t=2r^2$，$dt=4rdr$，得 $\\int_0^1 re^{-2r^2}dr=\\frac14(1-e^{-2})$。",
+            "所以结果为 $2\\pi\\cdot\\frac14(1-e^{-2})=\\frac{\\pi}{2}(1-e^{-2})$。"
+          ]
+        }
+      ],
+      "id": "nagoya-2007-1e847b7fbd-q02-practice-01",
+      "school": "名古屋大学",
+      "year": "2007"
+    },
+    {
+      "text": "求 $\\displaystyle\\lim_{R\\to\\infty}\\int_0^{2\\pi}\\int_0^R re^{-3r^2}\\,dr\\,d\\theta$。",
+      "knowledge_points": [
+        "极坐标积分",
+        "极限计算"
+      ],
+      "question_type": "极限求值",
+      "method": [
+        "直接积分",
+        "取极限"
+      ],
+      "solution_steps": [
+        "计算内层积分表达式",
+        "对R取极限"
+      ],
+      "math_structure": {
+        "type": "polar_integral_limit",
+        "template": "lim_{R->infty} int_0^{2pi}int_0^R re^{-kr^2}drdtheta",
+        "variable_count": 1
+      },
+      "difficulty": 2,
+      "estimated_minutes": 6,
+      "answer": [
+        {
+          "label": "结果",
+          "steps": [
+            "$\\int_0^R re^{-3r^2}dr=\\frac16(1-e^{-3R^2})$（同前法用 $t=3r^2$换元）。",
+            "乘以角度积分 $2\\pi$：原式$=2\\pi\\cdot\\frac16(1-e^{-3R^2})=\\frac{\\pi}{3}(1-e^{-3R^2})$。",
+            "当 $R\\to\\infty$ 时 $e^{-3R^2}\\to0$，极限为 $\\frac{\\pi}{3}$。"
+          ]
+        }
+      ],
+      "id": "nagoya-2007-1e847b7fbd-q02-practice-02",
+      "school": "名古屋大学",
+      "year": "2007"
+    },
+    {
+      "text": "利用Fubini定理证明 $\\displaystyle\\int_{-R}^R\\int_{-R}^R e^{-(x^2+y^2)}dxdy=\\left(\\int_{-R}^R e^{-x^2}dx\\right)^2$ 对任意正数 $R$ 成立。",
+      "knowledge_points": [
+        "Fubini定理",
+        "变量分离"
+      ],
+      "question_type": "积分恒等式证明",
+      "method": [
+        "Fubini定理",
+        "变量分离"
+      ],
+      "solution_steps": [
+        "利用被积函数可分离性",
+        "应用Fubini定理化为累次积分乘积"
+      ],
+      "math_structure": {
+        "type": "separable_double_integral",
+        "template": "int int e^{-x^2-y^2} over square = (int e^{-x^2})^2",
+        "variable_count": 1
+      },
+      "difficulty": 2,
+      "estimated_minutes": 7,
+      "answer": [
+        {
+          "label": "证明",
+          "steps": [
+            "由于 $e^{-(x^2+y^2)}=e^{-x^2}\\cdot e^{-y^2}$ 在有界矩形上连续，满足Fubini定理条件，可交换积分次序并分离。",
+            "$\\int_{-R}^R\\int_{-R}^R e^{-x^2}e^{-y^2}dxdy=\\int_{-R}^R e^{-y^2}\\left(\\int_{-R}^R e^{-x^2}dx\\right)dy$。",
+            "内层括号中的积分是关于 $y$ 的常数，可提出：$=\\left(\\int_{-R}^R e^{-x^2}dx\\right)\\int_{-R}^R e^{-y^2}dy=\\left(\\int_{-R}^R e^{-x^2}dx\\right)^2$，证毕。"
+          ]
+        }
+      ],
+      "id": "nagoya-2007-1e847b7fbd-q02-practice-03",
+      "school": "名古屋大学",
+      "year": "2007"
+    },
+    {
+      "text": "证明半径为 $R$ 的圆盘 $D_R=\\{x^2+y^2\\le R^2\\}$ 与边长 $2R$ 的正方形 $S_R=[-R,R]^2$ 满足 $D_R\\subset S_R\\subset D_{R\\sqrt2}$，并说明这在证明高斯积分中的作用。",
+      "knowledge_points": [
+        "几何包含关系",
+        "夹逼定理原理"
+      ],
+      "question_type": "几何证明",
+      "method": [
+        "几何分析",
+        "距离比较"
+      ],
+      "solution_steps": [
+        "证明圆盘包含于正方形",
+        "证明正方形包含于更大圆盘"
+      ],
+      "math_structure": {
+        "type": "geometric_inclusion",
+        "template": "disk subset square subset larger disk",
+        "variable_count": 1
+      },
+      "difficulty": 2,
+      "estimated_minutes": 8,
+      "answer": [
+        {
+          "label": "证明",
+          "steps": [
+            "若 $(x,y)\\in D_R$，即 $x^2+y^2\\le R^2$，则 $|x|\\le R$ 且 $|y|\\le R$（因为 $x^2\\le x^2+y^2\\le R^2$），故 $(x,y)\\in S_R$，即 $D_R\\subset S_R$。",
+            "若 $(x,y)\\in S_R$，即 $|x|\\le R,|y|\\le R$，则 $x^2+y^2\\le R^2+R^2=2R^2$，即 $(x,y)\\in D_{R\\sqrt2}$，故 $S_R\\subset D_{R\\sqrt2}$。",
+            "作用：对于非负被积函数，区域包含关系可给出积分值的大小关系，从而用两侧极限相同的量夹逼中间的量，这是证明 $v(R)-u(R)\\to0$ 从而推出高斯积分值的关键工具（夹逼定理）。"
+          ]
+        }
+      ],
+      "id": "nagoya-2007-1e847b7fbd-q02-practice-04",
+      "school": "名古屋大学",
+      "year": "2007"
+    },
+    {
+      "text": "已知 $\\int_{-\\infty}^{\\infty} e^{-x^2}dx=\\sqrt\\pi$，求 $\\int_{-\\infty}^{\\infty} e^{-ax^2}dx$（$a>0$）。",
+      "knowledge_points": [
+        "换元积分",
+        "Gauss积分推广"
+      ],
+      "question_type": "广义积分计算",
+      "method": [
+        "换元法",
+        "利用已知结果"
+      ],
+      "solution_steps": [
+        "作换元 $u=\\sqrt a x$",
+        "利用已知高斯积分结果代入"
+      ],
+      "math_structure": {
+        "type": "gaussian_integral_generalization",
+        "template": "int e^{-ax^2}dx over R, a>0",
+        "variable_count": 1
+      },
+      "difficulty": 2,
+      "estimated_minutes": 6,
+      "answer": [
+        {
+          "label": "结果",
+          "steps": [
+            "令 $u=\\sqrt a\\,x$，则 $du=\\sqrt a\\,dx$，即 $dx=\\frac{du}{\\sqrt a}$。",
+            "代入：$\\int_{-\\infty}^\\infty e^{-ax^2}dx=\\int_{-\\infty}^\\infty e^{-u^2}\\frac{du}{\\sqrt a}=\\frac{1}{\\sqrt a}\\int_{-\\infty}^\\infty e^{-u^2}du$。",
+            "利用已知结果 $\\int_{-\\infty}^\\infty e^{-u^2}du=\\sqrt\\pi$，得 $\\int_{-\\infty}^\\infty e^{-ax^2}dx=\\sqrt{\\pi/a}$。"
+          ]
+        }
+      ],
+      "id": "nagoya-2007-1e847b7fbd-q02-practice-05",
+      "school": "名古屋大学",
+      "year": "2007"
+    }
+  ],
+  "source_question": "問2",
+  "source_pdf": "名古屋大学/多元数理科学研究科/全专攻/名古屋大学_多元数理科学研究科_2007_第2次_数学过去问_下午.pdf",
+  "source_type": "官方过去问",
+  "subject_category": "微积分"
+}

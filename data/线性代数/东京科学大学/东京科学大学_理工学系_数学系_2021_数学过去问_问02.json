@@ -1,0 +1,204 @@
+{
+  "id": "isct-2021-df5ee26269-q02",
+  "school": "东京科学大学",
+  "year": "2021",
+  "subject": "理工学系_数学系",
+  "text": "设V是$\\mathbb{R}$上的有限维向量空间，$\\mathrm{End}(V)$表示V上全体线性变换构成的集合。证明：对任意$f\\in\\mathrm{End}(V)$，存在$g,h\\in\\mathrm{End}(V)$满足下列条件：\n(i) $g$是同构；\n(ii) $h^2=h$；\n(iii) $f=g\\circ h$。",
+  "knowledge_points": [
+    "线性变换的核与像",
+    "直和分解",
+    "幂等变换（投影）",
+    "秩-零度定理",
+    "同构的构造",
+    "限制映射的单射性"
+  ],
+  "question_type": "存在性证明",
+  "method": [
+    "选取核的补空间进行直和分解",
+    "定义投影算子h",
+    "利用f在补空间上的单射性构造g",
+    "验证f=g∘h"
+  ],
+  "solution_steps": [
+    "取V=ker f ⊕ W，其中W是ker f的补空间",
+    "定义h为沿ker f到W的投影，验证h²=h",
+    "证明f限制在W上是到Im f的同构",
+    "选取Im f的补空间U及ker f到U的同构φ，定义g在W和ker f上的作用",
+    "验证g是V上的同构且f=g∘h"
+  ],
+  "math_structure": {
+    "type": "endomorphism_factorization",
+    "template": "对f∈End(V)证明存在同构g与幂等变换h使得f=g∘h",
+    "variable_count": 1
+  },
+  "difficulty": 4,
+  "answer": [
+    {
+      "label": "证明",
+      "steps": [
+        "设$\\dim V=n$，$r=\\mathrm{rank}\\,f$。取$\\ker f$的一个补空间$W$，即$V=\\ker f\\oplus W$，则$\\dim W=r$。",
+        "定义$h:V\\to V$为沿$\\ker f$到$W$方向的投影：对$v=w+k\\ (w\\in W,k\\in\\ker f)$，令$h(v)=w$。显然$h$是线性变换，且$h(w)=w$对$w\\in W$成立，故$h^2(v)=h(w)=w=h(v)$，即$h^2=h$。",
+        "考察$f$在$W$上的限制$f|_W:W\\to V$。由于$\\ker f\\cap W=\\{0\\}$，$f|_W$是单射；又对$v=w+k$有$f(v)=f(w)+f(k)=f(w)$（因$k\\in\\ker f$），故$f(W)=f(V)=\\mathrm{Im}\\,f$，且$\\dim(\\mathrm{Im}\\,f)=r=\\dim W$，因此$f|_W:W\\to\\mathrm{Im}\\,f$是线性同构。",
+        "选取$\\mathrm{Im}\\,f$在$V$中的补空间$U$，即$V=\\mathrm{Im}\\,f\\oplus U$，$\\dim U=n-r=\\dim(\\ker f)$。取任意同构$\\varphi:\\ker f\\to U$（存在，因两空间维数相同）。",
+        "定义$g:V\\to V$：对$v=w+k\\ (w\\in W,k\\in\\ker f)$，令$g(v)=f(w)+\\varphi(k)$。因$f|_W:W\\to\\mathrm{Im}\\,f$与$\\varphi:\\ker f\\to U$均为同构，且$V=W\\oplus\\ker f$，$V=\\mathrm{Im}\\,f\\oplus U$，故$g$把$V$双射地映到$V$，即$g$是$V$上的同构。",
+        "验证$f=g\\circ h$：对任意$v=w+k$，$h(v)=w$，故$g(h(v))=g(w)=f(w)+\\varphi(0)=f(w)=f(w)+f(k)=f(v)$（因$f(k)=0$）。故$f=g\\circ h$成立。",
+        "综上，$g$是同构，$h$满足$h^2=h$，且$f=g\\circ h$，命题得证。"
+      ]
+    }
+  ],
+  "practice_questions": [
+    {
+      "text": "设$h=\\begin{pmatrix}1&0\\\\0&0\\end{pmatrix}$为$\\mathbb{R}^2$上的线性变换，验证$h^2=h$，并说明可取$g$为恒等变换使得$h=g\\circ h$。",
+      "knowledge_points": [
+        "幂等矩阵",
+        "恒等变换"
+      ],
+      "question_type": "基础验证题",
+      "method": [
+        "矩阵乘法直接验证"
+      ],
+      "solution_steps": [
+        "计算h²",
+        "取g=I验证g∘h=h"
+      ],
+      "math_structure": {
+        "type": "endomorphism_factorization",
+        "template": "验证给定矩阵是幂等的并构造平凡的g",
+        "variable_count": 1
+      },
+      "difficulty": 1,
+      "estimated_minutes": 3,
+      "answer": [
+        {
+          "label": "验证",
+          "steps": [
+            "计算$h^2=\\begin{pmatrix}1&0\\\\0&0\\end{pmatrix}\\begin{pmatrix}1&0\\\\0&0\\end{pmatrix}=\\begin{pmatrix}1&0\\\\0&0\\end{pmatrix}=h$，故h²=h成立。",
+            "取$g=I$（恒等变换），显然是同构，且$g\\circ h=I\\circ h=h$，满足要求。"
+          ]
+        }
+      ],
+      "id": "isct-2021-df5ee26269-q02-practice-01",
+      "school": "东京科学大学",
+      "year": "2021"
+    },
+    {
+      "text": "设$f=\\begin{pmatrix}1&1&0\\\\0&0&0\\\\0&0&0\\end{pmatrix}$作用于$\\mathbb{R}^3$，求$\\ker f$的一组基，并给出$\\ker f$的一个补空间$W$（使得$\\mathbb{R}^3=\\ker f\\oplus W$）。",
+      "knowledge_points": [
+        "核空间求解",
+        "直和分解"
+      ],
+      "question_type": "核空间与补空间构造",
+      "method": [
+        "解齐次线性方程组",
+        "验证直和条件"
+      ],
+      "solution_steps": [
+        "求解f(x,y,z)=0得ker f",
+        "选取不在ker f中的向量构成W",
+        "验证直和条件"
+      ],
+      "math_structure": {
+        "type": "endomorphism_factorization",
+        "template": "对具体矩阵f求ker f及其补空间",
+        "variable_count": 3
+      },
+      "difficulty": 2,
+      "estimated_minutes": 6,
+      "answer": [
+        {
+          "label": "求解",
+          "steps": [
+            "计算$f(x,y,z)=(x+y,0,0)$，故$\\ker f=\\{(x,y,z):x+y=0\\}=\\mathrm{span}\\{(1,-1,0),(0,0,1)\\}$，是2维子空间。",
+            "取$W=\\mathrm{span}\\{(1,0,0)\\}$，验证$(1,0,0)\\notin\\ker f$（因$1+0=1\\ne0$）。",
+            "验证直和：$\\dim\\ker f+\\dim W=2+1=3=\\dim\\mathbb{R}^3$；若$t(1,0,0)=a(1,-1,0)+b(0,0,1)$则$-a=0,t=a,b=0$，得$t=0$，故交集为$\\{0\\}$，直和成立。"
+          ]
+        }
+      ],
+      "id": "isct-2021-df5ee26269-q02-practice-02",
+      "school": "东京科学大学",
+      "year": "2021"
+    },
+    {
+      "text": "设$f=\\begin{pmatrix}0&1&0\\\\0&0&0\\\\0&0&0\\end{pmatrix}$作用于$\\mathbb{R}^3$，仿照定理证明的构造方法，具体给出满足$f=g\\circ h$的同构$g$与幂等变换$h$。",
+      "knowledge_points": [
+        "核与像的直和分解",
+        "投影算子构造",
+        "同构的显式构造"
+      ],
+      "question_type": "构造性证明",
+      "method": [
+        "确定ker f和补空间W",
+        "定义投影h",
+        "构造同构g"
+      ],
+      "solution_steps": [
+        "求ker f及像空间",
+        "选取补空间W及U",
+        "定义h为投影",
+        "定义g并验证f=g∘h"
+      ],
+      "math_structure": {
+        "type": "endomorphism_factorization",
+        "template": "对具体秩1矩阵f显式构造g,h满足f=g∘h",
+        "variable_count": 3
+      },
+      "difficulty": 3,
+      "estimated_minutes": 12,
+      "answer": [
+        {
+          "label": "构造",
+          "steps": [
+            "$f(x,y,z)=(y,0,0)$，故$\\ker f=\\{(x,0,z)\\}=\\mathrm{span}\\{e_1,e_3\\}$，$\\mathrm{Im}\\,f=\\mathrm{span}\\{e_1\\}$，取补空间$W=\\mathrm{span}\\{e_2\\}$。",
+            "定义$h(x,y,z)=(0,y,0)$（沿ker f投影到W），显然$h^2=h$。$f$限制在$W$上：$f(e_2)=e_1$，是$W\\to\\mathrm{Im}\\,f$的同构。",
+            "取$\\mathrm{Im}\\,f$的补空间$U=\\mathrm{span}\\{e_2,e_3\\}$，取同构$\\varphi:\\ker f\\to U$，$\\varphi(e_1)=e_2,\\varphi(e_3)=e_3$。",
+            "定义$g(x,y,z)=f(y\\cdot e_2)+\\varphi(x e_1+z e_3)=y e_1+x e_2+z e_3=(y,x,z)$，这是交换x,y坐标的置换矩阵，显然可逆（$g^2=I$），故为同构。",
+            "验证：$g(h(x,y,z))=g(0,y,0)=(y,0,0)=f(x,y,z)$，恒成立，故$f=g\\circ h$，构造正确。"
+          ]
+        }
+      ],
+      "id": "isct-2021-df5ee26269-q02-practice-03",
+      "school": "东京科学大学",
+      "year": "2021"
+    },
+    {
+      "text": "证明：若$\\dim\\ker f=\\dim U$，其中$U$是$\\mathrm{Im}\\,f$在$V$中的一个补空间，则存在同构$\\varphi:\\ker f\\to U$。并说明这一事实在定理证明中构造同构$g$时的作用。",
+      "knowledge_points": [
+        "有限维向量空间的同构判定",
+        "维数相等推出同构"
+      ],
+      "question_type": "引理证明",
+      "method": [
+        "选取基并建立基之间的双射线性映射"
+      ],
+      "solution_steps": [
+        "取两空间的基",
+        "定义基到基的线性映射",
+        "验证是双射"
+      ],
+      "math_structure": {
+        "type": "endomorphism_factorization",
+        "template": "证明同维数有限维向量空间同构，并说明其在定理证明中的作用",
+        "variable_count": 1
+      },
+      "difficulty": 4,
+      "estimated_minutes": 8,
+      "answer": [
+        {
+          "label": "证明",
+          "steps": [
+            "设$\\dim\\ker f=\\dim U=m$，取$\\ker f$的一组基$k_1,\\ldots,k_m$及$U$的一组基$u_1,\\ldots,u_m$。",
+            "定义线性映射$\\varphi:\\ker f\\to U$为$\\varphi(k_i)=u_i$，并线性扩张。由于基之间的映射保持线性无关性，$\\varphi$是单射；又其像包含U的一组基，故$\\varphi$是满射，从而是同构。",
+            "在定理证明中，$W\\xrightarrow{f}\\mathrm{Im}\\,f$已经是同构，但$g$需要定义在整个$V=W\\oplus\\ker f$上并映到整个$V=\\mathrm{Im}\\,f\\oplus U$，因此需要额外的同构$\\varphi:\\ker f\\to U$来'补全'$g$在$\\ker f$上的定义，从而使$g$整体成为$V$上的双射线性映射（同构）。"
+          ]
+        }
+      ],
+      "id": "isct-2021-df5ee26269-q02-practice-04",
+      "school": "东京科学大学",
+      "year": "2021"
+    }
+  ],
+  "source_question": "上午 [2]",
+  "source_pdf": "东京科学大学/理工学系/数学系/东京科学大学_理工学系_数学系_2021_数学过去问.pdf",
+  "source_type": "官方过去问",
+  "subject_category": "线性代数"
+}

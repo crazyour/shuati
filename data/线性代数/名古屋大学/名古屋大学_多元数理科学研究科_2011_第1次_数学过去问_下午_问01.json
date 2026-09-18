@@ -1,0 +1,211 @@
+{
+  "id": "nagoya-2011-d32b9d749c-q01",
+  "school": "名古屋大学",
+  "year": "2011",
+  "subject": "多元数理科学研究科_全专攻",
+  "text": "设 $V$ 是 $\\mathbb{C}$ 上的有限维线性空间，$n=\\dim V$，$f:V\\to V$ 是线性映射。已知存在整数 $k\\ge 1$，使得 $f^k=0$。回答以下问题：\n(1) 证明 $f$ 的所有特征值都是 $0$。\n(2) 当 $n=3$ 时，$f$ 的乔尔当（Jordan）标准形是什么样的？\n(3) 证明 $I_V+f$ 是双射，其中 $I_V$ 是 $V$ 上的恒等映射。",
+  "knowledge_points": [
+    "幂零线性映射",
+    "特征值与特征向量",
+    "Jordan标准形",
+    "极小多项式",
+    "线性映射的可逆性",
+    "几何级数求逆"
+  ],
+  "question_type": "证明与结构分析",
+  "method": [
+    "特征值定义法",
+    "Jordan标准形理论",
+    "幂零算子的多项式逆构造"
+  ],
+  "solution_steps": [
+    "利用特征值定义及 f^k=0 推出所有特征值满足 λ^k=0，故 λ=0",
+    "分析 n=3 时幂零算子对应的所有可能 Jordan 块划分",
+    "构造 (I+f) 的逆元 I-f+f^2-\\cdots\\pm f^{k-1}，验证乘积为 I"
+  ],
+  "math_structure": {
+    "type": "nilpotent_linear_map_jordan_form",
+    "template": "f:V\\to V linear, dim V=n, f^k=0 for some k\\ge1; find eigenvalues, Jordan form for n=3, and invertibility of I+f",
+    "variable_count": 2
+  },
+  "difficulty": 3,
+  "answer": [
+    {
+      "label": "(1)",
+      "steps": [
+        "设 $\\lambda$ 是 $f$ 的特征值，$v\\ne 0$ 是对应特征向量，则 $f(v)=\\lambda v$。",
+        "由此归纳可得 $f^k(v)=\\lambda^k v$。因为 $f^k=0$，所以 $\\lambda^k v=0$。",
+        "由 $v\\ne 0$ 得 $\\lambda^k=0$，从而 $\\lambda=0$。故 $f$ 的所有特征值都是 $0$。"
+      ]
+    },
+    {
+      "label": "(2)",
+      "steps": [
+        "因为 $f$ 的唯一特征值是 $0$，其 Jordan 标准形只含以 $0$ 为对角元的 Jordan 块，块的大小之和为 $n=3$。",
+        "$3$ 的所有分拆对应三种可能的标准形：分拆 $3$ 对应一个 $3\\times3$ 的 Jordan 块 $J_3(0)=\\begin{pmatrix}0&1&0\\\\0&0&1\\\\0&0&0\\end{pmatrix}$；分拆 $2+1$ 对应 $J_2(0)\\oplus J_1(0)=\\begin{pmatrix}0&1&0\\\\0&0&0\\\\0&0&0\\end{pmatrix}$；分拆 $1+1+1$ 对应零矩阵 $J_1(0)\\oplus J_1(0)\\oplus J_1(0)=0$。",
+        "具体是哪一种，取决于 $\\mathrm{rank}(f)$ 与 $\\mathrm{rank}(f^2)$：若 $f=0$ 则为零矩阵；若 $f\\ne0,f^2=0$ 且 $\\mathrm{rank}(f)=1$ 则为 $J_2(0)\\oplus J_1(0)$；若 $f^2\\ne0,f^3=0$ 则为单个 $J_3(0)$。因此三种标准形都是可能出现的答案，需依据 $f$ 的具体秩来确定。"
+      ]
+    },
+    {
+      "label": "(3)",
+      "steps": [
+        "由于 $f^k=0$，考虑算子 $g=I_V-f+f^2-f^3+\\cdots+(-1)^{k-1}f^{k-1}$。",
+        "计算 $(I_V+f)g = I_V + f - f + f^2 - f^2 + \\cdots + (-1)^{k-1}f^{k-1} + (-1)^{k-1}f^k$，逐项相消后得到 $(I_V+f)g=I_V+(-1)^{k-1}f^k=I_V$（因为 $f^k=0$）。",
+        "同理验证 $g(I_V+f)=I_V$，故 $g$ 是 $I_V+f$ 的双侧逆。因此 $I_V+f$ 可逆，从而是双射。"
+      ]
+    }
+  ],
+  "practice_questions": [
+    {
+      "text": "设 $A=\\begin{pmatrix}0&1\\\\0&0\\end{pmatrix}$ 为 $2\\times2$ 复矩阵，满足 $A^2=0$。求 $A$ 的所有特征值，并说明理由。",
+      "knowledge_points": [
+        "幂零矩阵",
+        "特征值"
+      ],
+      "question_type": "计算与证明",
+      "method": [
+        "特征方程求解"
+      ],
+      "solution_steps": [
+        "计算特征多项式",
+        "求根并验证与幂零性的关系"
+      ],
+      "math_structure": {
+        "type": "nilpotent_matrix_eigenvalue",
+        "template": "A^2=0, 2x2 matrix, find eigenvalues",
+        "variable_count": 1
+      },
+      "difficulty": 1,
+      "estimated_minutes": 5,
+      "answer": [
+        {
+          "label": "特征值",
+          "steps": [
+            "特征多项式为 $\\det(A-\\lambda I)=\\lambda^2=0$（因为 $A$ 为上三角零对角矩阵）。",
+            "解得 $\\lambda=0$（二重）。",
+            "验证：$A^2=0$ 意味着若 $\\lambda$ 是特征值，则 $\\lambda^2=0$，故 $\\lambda=0$，与计算一致。"
+          ]
+        }
+      ],
+      "id": "nagoya-2011-d32b9d749c-q01-practice-01",
+      "school": "名古屋大学",
+      "year": "2011"
+    },
+    {
+      "text": "设 $N=\\begin{pmatrix}0&1&0\\\\0&0&0\\\\0&0&0\\end{pmatrix}$，验证 $N^2=0$ 但 $N\\ne 0$，并指出其 Jordan 标准形属于 (2) 中哪一种分拆类型。",
+      "knowledge_points": [
+        "Jordan标准形",
+        "幂零算子的秩"
+      ],
+      "question_type": "结构判定",
+      "method": [
+        "直接计算矩阵幂",
+        "秩分析"
+      ],
+      "solution_steps": [
+        "计算 N^2",
+        "确定秩",
+        "对照分拆类型给出标准形"
+      ],
+      "math_structure": {
+        "type": "jordan_form_identification",
+        "template": "given nilpotent 3x3 matrix N with N^2=0, identify Jordan partition",
+        "variable_count": 1
+      },
+      "difficulty": 2,
+      "estimated_minutes": 8,
+      "answer": [
+        {
+          "label": "判定",
+          "steps": [
+            "直接计算 $N^2$：$N$ 的第一行 $(0,1,0)$ 乘以 $N$ 的各列，得到 $N^2=0$。",
+            "$N\\ne 0$（因为 $(1,2)$ 位置为 $1$），且 $\\mathrm{rank}(N)=1$。",
+            "由于 $N^2=0$ 且 $\\mathrm{rank}(N)=1$，对应分拆 $2+1$，Jordan 标准形为 $J_2(0)\\oplus J_1(0)=\\begin{pmatrix}0&1&0\\\\0&0&0\\\\0&0&0\\end{pmatrix}$，与 $N$ 本身一致。"
+          ]
+        }
+      ],
+      "id": "nagoya-2011-d32b9d749c-q01-practice-02",
+      "school": "名古屋大学",
+      "year": "2011"
+    },
+    {
+      "text": "设 $N$ 是满足 $N^3=0$ 的 $3\\times3$ 复矩阵。写出 $(I+N)^{-1}$ 的显式表达式，并用矩阵乘法验证其正确性。",
+      "knowledge_points": [
+        "幂零算子",
+        "矩阵逆的构造",
+        "几何级数展开"
+      ],
+      "question_type": "构造与验证",
+      "method": [
+        "有限几何级数求逆"
+      ],
+      "solution_steps": [
+        "写出候选逆矩阵表达式",
+        "展开乘积并利用 N^3=0 化简",
+        "确认单位矩阵结果"
+      ],
+      "math_structure": {
+        "type": "inverse_of_identity_plus_nilpotent",
+        "template": "N^3=0, find (I+N)^{-1} explicitly",
+        "variable_count": 1
+      },
+      "difficulty": 2,
+      "estimated_minutes": 8,
+      "answer": [
+        {
+          "label": "$(I+N)^{-1}$",
+          "steps": [
+            "猜测逆为 $I-N+N^2$（因为 $N^3=0$，级数在此截断）。",
+            "计算 $(I+N)(I-N+N^2)=I-N+N^2+N-N^2+N^3=I+N^3=I$（因为 $N^3=0$）。",
+            "同理 $(I-N+N^2)(I+N)=I$，故 $(I+N)^{-1}=I-N+N^2$，验证完毕。"
+          ]
+        }
+      ],
+      "id": "nagoya-2011-d32b9d749c-q01-practice-03",
+      "school": "名古屋大学",
+      "year": "2011"
+    },
+    {
+      "text": "设 $f:V\\to V$ 是有限维复线性空间上的线性映射，满足 $f^k=0$。证明 $f$ 的极小多项式形如 $x^m$（其中 $1\\le m\\le k$），并说明 $m$ 与 Jordan 标准形中最大块大小的关系。",
+      "knowledge_points": [
+        "极小多项式",
+        "Jordan标准形",
+        "幂零算子结构"
+      ],
+      "question_type": "证明",
+      "method": [
+        "极小多项式定义",
+        "Jordan块理论"
+      ],
+      "solution_steps": [
+        "说明极小多项式整除 x^k",
+        "证明极小多项式必为 x 的幂",
+        "联系极小多项式次数与最大 Jordan 块大小"
+      ],
+      "math_structure": {
+        "type": "minimal_polynomial_nilpotent",
+        "template": "f^k=0, determine minimal polynomial form and relation to Jordan block size",
+        "variable_count": 2
+      },
+      "difficulty": 3,
+      "estimated_minutes": 10,
+      "answer": [
+        {
+          "label": "证明",
+          "steps": [
+            "由 $f^k=0$ 知 $f$ 满足多项式 $x^k$，故极小多项式 $p(x)$ 整除 $x^k$。$x^k$ 在 $\\mathbb{C}[x]$ 中的因子都是 $x^m$（$0\\le m\\le k$）的形式，因此 $p(x)=x^m$ 对某个 $1\\le m\\le k$（$m\\ge1$ 因为 $f\\ne$ 恒同映射的逆情形，若 $f=0$ 则 $m=1$，约定成立）。",
+            "由 (1) 知 $f$ 的所有特征值为 $0$，且极小多项式的根集合等于特征值集合，故极小多项式只能是 $x$ 的幂，与上一步吻合。",
+            "根据 Jordan 标准形理论，极小多项式的次数 $m$ 恰好等于所有 Jordan 块中最大块的大小（因为 $J_s(0)^s=0$ 但 $J_s(0)^{s-1}\\ne 0$），所以 $m=\\max\\{\\text{Jordan 块大小}\\}$。"
+          ]
+        }
+      ],
+      "id": "nagoya-2011-d32b9d749c-q01-practice-04",
+      "school": "名古屋大学",
+      "year": "2011"
+    }
+  ],
+  "source_question": "問1",
+  "source_pdf": "名古屋大学/多元数理科学研究科/全专攻/名古屋大学_多元数理科学研究科_2011_第1次_数学过去问_下午.pdf",
+  "source_type": "官方过去问",
+  "subject_category": "线性代数"
+}

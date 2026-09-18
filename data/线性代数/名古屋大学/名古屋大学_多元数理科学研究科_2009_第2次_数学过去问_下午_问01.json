@@ -1,0 +1,262 @@
+{
+  "id": "nagoya-2009-7a4dfb4e96-q01",
+  "school": "名古屋大学",
+  "year": "2009",
+  "subject": "多元数理科学研究科_全专攻",
+  "text": "以下の問に答えよ。\n(1) $W$ を $\\mathbb{C}$ 上の有限次元線型空间とし，$U\\subset W$ をその线性部分空间とする。もし $\\dim U=\\dim W$ ならば $U=W$ であることを示せ。\n\n以下では，$V$ を $\\mathbb{C}$ 上の4次元线性空间とし，$F:V\\to V$ を线性变换とする。$F$ は次の性质 $(*)$ を满たしているとする：\n$$\\dim \\mathrm{Im}\\,F=3,\\quad \\dim \\mathrm{Im}\\,F^2=2,\\quad \\dim \\mathrm{Im}\\,F^3=1,\\quad \\dim \\mathrm{Im}\\,F^4=1 \\quad (*)$$\n(2) $\\mathrm{Ker}\\,F\\subset \\mathrm{Im}\\,F$ となることを示せ。\n(3) $\\mathrm{Im}\\,F^2=\\mathrm{Ker}\\,F\\oplus \\mathrm{Im}\\,F^3$ となることを示せ。\n(4) $(*)$ を满たす线性变换 $F$ のジョルダン标准形を求めよ。",
+  "knowledge_points": [
+    "有限维线性空间维数定理",
+    "线性变换的像与核",
+    "秩的单调性",
+    "若尔当标准形",
+    "幂零算子结构",
+    "直和分解",
+    "Fitting分解"
+  ],
+  "question_type": "证明与结构分析（若尔当标准形）",
+  "method": [
+    "基与维数扩张论证",
+    "秩零度定理",
+    "限制映射的单射/满射分析",
+    "Fitting分解（不变量子空间+幂零部分）",
+    "幂零算子若尔当块判定"
+  ],
+  "solution_steps": [
+    "证明(1)：取U的一组基，其在W中线性无关，若维数相等则该基已张成W，故U=W",
+    "利用(1)证明(2)：计算F限制在Im F上的核 Ker F∩Im F 的维数等于 dim Im F - dim Im F^2，恰等于dim Ker F，从而Ker F⊆Im F",
+    "证明(3)：先证Im F^{k+1}⊆Im F^k恒成立；证明Ker F⊆Im F^2（用满射限制映射的原像维数计算）；证明Ker F∩Im F^3=0（用F在Im F^3上是双射）；维数相加得直和且等于Im F^2",
+    "用秩数列反推Fitting分解：不变部分维数=极限秩=1，幂零部分维数=3",
+    "计算幂零部分N=F|_{V_0}的秩序列，判定其为单个3阶若尔当块",
+    "写出F的若尔当标准形：3阶幂零块⊕1阶非零特征值块"
+  ],
+  "math_structure": {
+    "type": "linear_operator_jordan_form_from_rank_sequence",
+    "template": "given dim V=n and rank sequence dim Im F^k for k=1,...,n, determine Ker F vs Im F relations and Jordan normal form of F",
+    "variable_count": 5
+  },
+  "difficulty": 5,
+  "answer": [
+    {
+      "label": "(1)",
+      "steps": [
+        "设 $\\dim U=\\dim W=m$，取 $U$ 的一组基 $u_1,\\dots,u_m$，它们在 $W$ 中也是线性无关的向量组。",
+        "由于 $\\{u_1,\\dots,u_m\\}$ 是 $W$ 中 $m=\\dim W$ 个线性无关向量，它必定是 $W$ 的一组基（有限维空间中线性无关向量个数达到维数即为基）。",
+        "因此 $W=\\mathrm{span}\\{u_1,\\dots,u_m\\}=U$，即 $U=W$。"
+      ]
+    },
+    {
+      "label": "(2)",
+      "steps": [
+        "考虑限制映射 $F|_{\\mathrm{Im}F}:\\mathrm{Im}F\\to V$，其像恰为 $F(\\mathrm{Im}F)=\\mathrm{Im}F^2$，其核为 $\\mathrm{Im}F\\cap \\mathrm{Ker}F$。",
+        "由秩零度定理：$\\dim(\\mathrm{Im}F\\cap \\mathrm{Ker}F)=\\dim \\mathrm{Im}F-\\dim \\mathrm{Im}F^2=3-2=1$。",
+        "又 $\\dim \\mathrm{Ker}F=\\dim V-\\dim \\mathrm{Im}F=4-3=1$，而 $\\mathrm{Im}F\\cap \\mathrm{Ker}F\\subseteq \\mathrm{Ker}F$ 且两者维数都为1，由(1)得 $\\mathrm{Im}F\\cap \\mathrm{Ker}F=\\mathrm{Ker}F$，即 $\\mathrm{Ker}F\\subseteq \\mathrm{Im}F$。"
+      ]
+    },
+    {
+      "label": "(3)",
+      "steps": [
+        "一般地 $\\mathrm{Im}F^{k+1}=F^k(F(V))\\subseteq F^k(V)=\\mathrm{Im}F^k$，故像空间链单调递减：$V\\supseteq \\mathrm{Im}F\\supseteq \\mathrm{Im}F^2\\supseteq \\mathrm{Im}F^3\\supseteq \\mathrm{Im}F^4$。",
+        "考虑满射 $\\psi=F|_{\\mathrm{Im}F}:\\mathrm{Im}F\\twoheadrightarrow \\mathrm{Im}F^2$（$\\dim=3\\to 2$，核为 $\\mathrm{Ker}F$，由(2)）。对陪域中的子空间 $\\mathrm{Im}F^3\\subseteq\\mathrm{Im}F^2$（维数1），其原像 $\\psi^{-1}(\\mathrm{Im}F^3)$ 维数 $=\\dim\\mathrm{Ker}F+\\dim\\mathrm{Im}F^3=1+1=2$。",
+        "由 $F(\\mathrm{Im}F^2)=\\mathrm{Im}F^3$ 知 $\\mathrm{Im}F^2\\subseteq \\psi^{-1}(\\mathrm{Im}F^3)$，两者维数都为2，由(1)得 $\\mathrm{Im}F^2=\\psi^{-1}(\\mathrm{Im}F^3)$。又 $\\mathrm{Ker}F\\subseteq\\psi^{-1}(\\mathrm{Im}F^3)$（因 $F(\\mathrm{Ker}F)=0\\in\\mathrm{Im}F^3$），故 $\\mathrm{Ker}F\\subseteq \\mathrm{Im}F^2$。",
+        "由定义 $\\mathrm{Im}F^4=F(\\mathrm{Im}F^3)$ 且 $\\dim\\mathrm{Im}F^3=\\dim\\mathrm{Im}F^4=1$，故 $F|_{\\mathrm{Im}F^3}$ 是满射且核维数 $=1-1=0$，即为双射，从而 $\\mathrm{Ker}F\\cap\\mathrm{Im}F^3=0$。",
+        "综合：$\\mathrm{Ker}F,\\ \\mathrm{Im}F^3$ 都是 $\\mathrm{Im}F^2$ 的子空间，且它们的交为0，维数之和 $1+1=2=\\dim\\mathrm{Im}F^2$，故 $\\mathrm{Ker}F\\oplus\\mathrm{Im}F^3=\\mathrm{Im}F^2$。"
+      ]
+    },
+    {
+      "label": "(4)",
+      "steps": [
+        "用Fitting分解：由于秩从 $k=3$ 起稳定（$\\dim\\mathrm{Im}F^3=\\dim\\mathrm{Im}F^4=1$），$V=V_0\\oplus V_1$，其中 $V_1$（维数1）上 $F$ 可逆，$V_0$（维数3）上 $N=F|_{V_0}$ 幂零。",
+        "在此分解下 $\\dim\\mathrm{Im}F^k=\\dim N^k(V_0)+1$，代入数据得 $\\dim N(V_0)=2,\\ \\dim N^2(V_0)=1,\\ \\dim N^3(V_0)=0$，即 $N$ 在3维空间上秩序列为 $2,1,0$。",
+        "此秩序列恰好对应单个3阶幂零若尔当块 $J_3(0)$（秩每步恰减1直至0）。",
+        "$V_1$ 为1维，$F$ 在其上为某个非零标量 $\\alpha$ 的乘法（$\\alpha$ 不由所给秩数据唯一确定，只需 $\\alpha\\neq0$）。",
+        "故若尔当标准形为 $$J=\\begin{pmatrix}0&1&0&0\\\\0&0&1&0\\\\0&0&0&0\\\\0&0&0&\\alpha\\end{pmatrix},\\ \\alpha\\neq 0.$$"
+      ]
+    }
+  ],
+  "practice_questions": [
+    {
+      "text": "设 $W$ 是 $\\mathbb{R}$ 上的有限维线性空间，$U\\subset W$ 是子空间。证明：若 $\\dim U=\\dim W$，则 $U=W$。",
+      "knowledge_points": [
+        "有限维向量空间",
+        "基扩张",
+        "维数定理"
+      ],
+      "question_type": "基础证明题",
+      "method": [
+        "取基论证"
+      ],
+      "solution_steps": [
+        "取U的一组基",
+        "说明该基在W中线性无关且个数达到dim W",
+        "得出该基也是W的基，从而U=W"
+      ],
+      "math_structure": {
+        "type": "subspace_equal_dimension_lemma",
+        "template": "given dim U = dim W for U subseteq W finite dim, show U=W",
+        "variable_count": 1
+      },
+      "difficulty": 1,
+      "estimated_minutes": 5,
+      "answer": [
+        {
+          "label": "证明",
+          "steps": [
+            "设dim U=dim W=m，取U的基$u_1,\\dots,u_m$，它们在W中线性无关。",
+            "有限维空间中m个线性无关向量（m=dim W）必构成W的基。",
+            "故$W=\\mathrm{span}\\{u_1,\\dots,u_m\\}=U$，证毕。"
+          ]
+        }
+      ],
+      "id": "nagoya-2009-7a4dfb4e96-q01-practice-01",
+      "school": "名古屋大学",
+      "year": "2009"
+    },
+    {
+      "text": "设 $G:W\\to W$ 是3维复线性空间 $W$ 上的线性变换，满足 $\\dim \\mathrm{Im}\\,G=2,\\ \\dim \\mathrm{Im}\\,G^2=2$。证明 $\\mathrm{Im}\\,G=\\mathrm{Im}\\,G^2$，并说明 $G$ 限制在 $\\mathrm{Im}\\,G$ 上是双射。",
+      "knowledge_points": [
+        "像空间单调性",
+        "维数相等推子空间相等",
+        "限制映射双射判定"
+      ],
+      "question_type": "证明题",
+      "method": [
+        "像链单调性",
+        "上题引理"
+      ],
+      "solution_steps": [
+        "证明Im G^2⊆Im G",
+        "维数相等结合引理得Im G^2=Im G",
+        "由满射且定义域陪域维数相同推双射"
+      ],
+      "math_structure": {
+        "type": "stable_image_bijective_restriction",
+        "template": "operator on n-dim space with dim Im G^k = dim Im G^{k+1}, show image stabilizes and restriction is bijective",
+        "variable_count": 2
+      },
+      "difficulty": 2,
+      "estimated_minutes": 8,
+      "answer": [
+        {
+          "label": "Im G=Im G^2",
+          "steps": [
+            "一般地Im G^2=G(Im G)⊆Im G。",
+            "已知dim Im G=dim Im G^2=2，由引理(1)得Im G^2=Im G。"
+          ]
+        },
+        {
+          "label": "双射性",
+          "steps": [
+            "G|_{Im G}: Im G→Im G^2=Im G 是满射（按定义G(Im G)=Im G^2=Im G）。",
+            "定义域与陪域维数相同（都为2）且映射满射，故必为单射，从而是双射。"
+          ]
+        }
+      ],
+      "id": "nagoya-2009-7a4dfb4e96-q01-practice-02",
+      "school": "名古屋大学",
+      "year": "2009"
+    },
+    {
+      "text": "设 $H:V\\to V$ 是4维复线性空间上的线性变换，满足 $\\dim \\mathrm{Im}\\,H=2,\\ \\dim \\mathrm{Im}\\,H^2=1,\\ \\dim \\mathrm{Im}\\,H^3=1$。求 $H$ 的若尔当标准形，并计算 $\\dim(\\mathrm{Ker}\\,H\\cap \\mathrm{Im}\\,H)$。",
+      "knowledge_points": [
+        "Fitting分解",
+        "幂零算子秩序列",
+        "若尔当标准形",
+        "秩零度定理"
+      ],
+      "question_type": "结构分析题",
+      "method": [
+        "Fitting分解",
+        "幂零部分秩序列判定若尔当块"
+      ],
+      "solution_steps": [
+        "由秩数列在k=2,3稳定为1确定不变部分维数为1，幂零部分维数为3",
+        "计算幂零算子N在V0上的秩序列为1,0，判定Jordan块组成为J2(0)⊕J1(0)",
+        "写出总的若尔当标准形",
+        "用秩零度定理计算Ker H∩Im H的维数=dim Im H - dim Im H^2"
+      ],
+      "math_structure": {
+        "type": "jordan_form_from_partial_rank_sequence",
+        "template": "4-dim operator with dim Im H, dim Im H^2 = dim Im H^3, determine Jordan blocks",
+        "variable_count": 3
+      },
+      "difficulty": 3,
+      "estimated_minutes": 15,
+      "answer": [
+        {
+          "label": "若尔当标准形",
+          "steps": [
+            "$\\dim\\mathrm{Ker}H=4-2=2$，且从k=2起秩稳定为1，故不变（可逆）部分维数为1，幂零部分$V_0$维数为3。",
+            "在$V_0$上：$\\dim N(V_0)=\\dim\\mathrm{Im}H-1=1$，$\\dim N^2(V_0)=\\dim\\mathrm{Im}H^2-1=0$。秩序列$1,0$对应3维幂零算子的若尔当块组成为$J_2(0)\\oplus J_1(0)$（因为$[3]$型块会给出秩序列$2,1$，$[2,1]$型给出$1,0$，恰好匹配）。",
+            "不变部分1维对应单个非零特征值$\\lambda\\neq0$的$1\\times1$块。",
+            "故若尔当标准形为 $J_2(0)\\oplus J_1(0)\\oplus J_1(\\lambda)$，即 $$\\begin{pmatrix}0&1&0&0\\\\0&0&0&0\\\\0&0&0&0\\\\0&0&0&\\lambda\\end{pmatrix},\\lambda\\neq0.$$"
+          ]
+        },
+        {
+          "label": "dim(Ker H∩Im H)",
+          "steps": [
+            "由一般公式 $\\dim(\\mathrm{Ker}H\\cap\\mathrm{Im}H)=\\dim\\mathrm{Im}H-\\dim\\mathrm{Im}H^2=2-1=1$。",
+            "注：此处$\\dim\\mathrm{Ker}H=2\\neq1$，故与原题(2)不同，本例中$\\mathrm{Ker}H\\not\\subseteq\\mathrm{Im}H$（可用显式基验证：Ker H中还含有不属于Im H的向量）。"
+          ]
+        }
+      ],
+      "id": "nagoya-2009-7a4dfb4e96-q01-practice-03",
+      "school": "名古屋大学",
+      "year": "2009"
+    },
+    {
+      "text": "设 $F:V\\to V$ 是5维复线性空间上的线性变换，满足 $\\dim\\mathrm{Im}F=4,\\ \\dim\\mathrm{Im}F^2=3,\\ \\dim\\mathrm{Im}F^3=2,\\ \\dim\\mathrm{Im}F^4=2$。证明 $\\mathrm{Ker}F\\subset\\mathrm{Im}F$，并求出（在给定信息下能确定到何种程度的）$F$ 的若尔当标准形。",
+      "knowledge_points": [
+        "Fitting分解",
+        "秩序列与若尔当块",
+        "包含关系的充要条件",
+        "若尔当标准形的非唯一性"
+      ],
+      "question_type": "综合证明与结构分析题",
+      "method": [
+        "秩零度定理",
+        "Fitting分解",
+        "幂零算子结构判定",
+        "包含关系判据 2·dim Im F - dim Im F^2 = dim V"
+      ],
+      "solution_steps": [
+        "验证判据2dimImF-dimImF^2=dimV成立从而Ker F⊂Im F",
+        "确定不变部分维数为2（从k=3起稳定），幂零部分维数为3",
+        "计算幂零部分秩序列2,1,0判定为单个3阶若尔当块J3(0)",
+        "指出2维不变部分内部结构不由给定秩数据唯一确定"
+      ],
+      "math_structure": {
+        "type": "linear_operator_jordan_form_from_rank_sequence",
+        "template": "5-dim operator with rank sequence 4,3,2,2 for F,F^2,F^3,F^4, determine Ker F vs Im F and Jordan form up to ambiguity",
+        "variable_count": 5
+      },
+      "difficulty": 4,
+      "estimated_minutes": 25,
+      "answer": [
+        {
+          "label": "Ker F⊂Im F",
+          "steps": [
+            "$\\dim(\\mathrm{Ker}F\\cap\\mathrm{Im}F)=\\dim\\mathrm{Im}F-\\dim\\mathrm{Im}F^2=4-3=1$。",
+            "$\\dim\\mathrm{Ker}F=5-4=1$，两者维数相等且$\\mathrm{Ker}F\\cap\\mathrm{Im}F\\subseteq\\mathrm{Ker}F$，由引理(1)得$\\mathrm{Ker}F\\cap\\mathrm{Im}F=\\mathrm{Ker}F$。",
+            "故$\\mathrm{Ker}F\\subseteq\\mathrm{Im}F$。"
+          ]
+        },
+        {
+          "label": "若尔当标准形",
+          "steps": [
+            "秩从k=3起稳定于2，故Fitting分解中不变部分$V_1$维数2，幂零部分$V_0$维数3。",
+            "在$V_0$上：$\\dim N(V_0)=4-2=2,\\ \\dim N^2(V_0)=3-2=1,\\ \\dim N^3(V_0)=2-2=0$，秩序列$2,1,0$恰对应单个3阶幂零若尔当块$J_3(0)$。",
+            "在2维不变部分$V_1$上，$F$可逆，但其内部若尔当结构（是两个不同/相同非零特征值的$1\\times1\\times2$块，还是单个$2\\times2$块$J_2(\\lambda)$）不能由给定的$\\dim\\mathrm{Im}F^k$数据唯一确定，因为可逆部分对任何$k$均贡献满秩2。",
+            "故答案为：$F\\cong J_3(0)\\oplus B$，其中$B$是某个$2\\times2$可逆矩阵的若尔当形（$B=\\mathrm{diag}(\\lambda_1,\\lambda_2)$，$\\lambda_1,\\lambda_2\\neq0$，或$B=J_2(\\lambda),\\lambda\\neq0$），具体形式需额外信息才能确定。"
+          ]
+        }
+      ],
+      "id": "nagoya-2009-7a4dfb4e96-q01-practice-04",
+      "school": "名古屋大学",
+      "year": "2009"
+    }
+  ],
+  "source_question": "問1",
+  "source_pdf": "名古屋大学/多元数理科学研究科/全专攻/名古屋大学_多元数理科学研究科_2009_第2次_数学过去问_下午.pdf",
+  "source_type": "官方过去问",
+  "subject_category": "线性代数"
+}

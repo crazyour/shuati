@@ -1,0 +1,210 @@
+{
+  "id": "nagoya-2001-913d04de39-q07",
+  "school": "名古屋大学",
+  "year": "2001",
+  "subject": "多元数理科学研究科_全专攻",
+  "text": "对函数 $V(x,y)=x^4-4x^3+4x^2+y^2$，考虑按如下常微分方程运动的点 $(x,y)$：\n$$\\frac{dx}{dt}=-\\frac{\\partial V}{\\partial x},\\qquad \\frac{dy}{dt}=-\\frac{\\partial V}{\\partial y}.$$\n(1) 设时刻 $t$ 时点的坐标为 $(x(t),y(t))$，证明 $V(x(t),y(t))$ 是关于 $t$ 的广义单调递减函数（单调非增函数）。\n(2) 当时刻 $t=0$ 的初值 $(x_0,y_0)$ 变化时，极限 $(x_\\infty,y_\\infty)=\\lim_{t\\to\\infty}(x(t),y(t))$ 可能取哪些值？请全部列出。\n(3) 说明从怎样的初值出发才会到达(2)中列出的各个 $(x_\\infty,y_\\infty)$，即初值与极限的对应关系。",
+  "knowledge_points": [
+    "梯度流/Lyapunov函数",
+    "临界点分类（极小点、鞍点）",
+    "常微分方程的渐近行为",
+    "一维方程稳定性分析",
+    "势函数与吸引域"
+  ],
+  "question_type": "分析证明题",
+  "method": [
+    "计算 $dV/dt$ 证明非增性（梯度流的基本性质）",
+    "求临界点并用二阶导数判别类型",
+    "利用 $x,y$ 方程解耦，分析一维方程 $x'=-4x(x-1)(x-2)$ 的符号确定吸引域"
+  ],
+  "solution_steps": [
+    "计算 $\\dfrac{dV}{dt}=-\\left(\\dfrac{\\partial V}{\\partial x}\\right)^2-\\left(\\dfrac{\\partial V}{\\partial y}\\right)^2\\le0$，证明(1)",
+    "求 $\\partial V/\\partial x=0,\\partial V/\\partial y=0$ 得临界点 $(0,0),(1,0),(2,0)$，用 Hessian 判别类型",
+    "注意到方程解耦：$y'=-2y$ 恒使 $y\\to0$；$x'=-4x(x-1)(x-2)$ 仅依赖 $x$，分析其符号确定 $x\\to0,1,2$ 的条件",
+    "综合给出所有可能极限点及其对应初值范围"
+  ],
+  "math_structure": {
+    "type": "gradient_flow_lyapunov_convergence",
+    "template": "$V(x,y)=x^4-4x^3+4x^2+y^2$，梯度流 $x'=-V_x,y'=-V_y$，分析临界点与极限行为",
+    "variable_count": 0
+  },
+  "difficulty": 4,
+  "answer": [
+    {
+      "label": "(1)",
+      "steps": [
+        "由链式法则，$\\dfrac{dV}{dt}=\\dfrac{\\partial V}{\\partial x}\\dfrac{dx}{dt}+\\dfrac{\\partial V}{\\partial y}\\dfrac{dy}{dt}$。",
+        "代入方程 $\\dfrac{dx}{dt}=-\\dfrac{\\partial V}{\\partial x},\\dfrac{dy}{dt}=-\\dfrac{\\partial V}{\\partial y}$，得 $\\dfrac{dV}{dt}=-\\left(\\dfrac{\\partial V}{\\partial x}\\right)^2-\\left(\\dfrac{\\partial V}{\\partial y}\\right)^2$。",
+        "此式恒 $\\le0$（平方和的负数），故 $V(x(t),y(t))$ 沿轨道单调非增，即为广义单调递减函数，命题得证（等号仅在临界点 $\\nabla V=0$ 处成立）。"
+      ]
+    },
+    {
+      "label": "(2)",
+      "steps": [
+        "计算 $\\dfrac{\\partial V}{\\partial x}=4x^3-12x^2+8x=4x(x^2-3x+2)=4x(x-1)(x-2)$，$\\dfrac{\\partial V}{\\partial y}=2y$。故系统为 $x'=-4x(x-1)(x-2),\\ y'=-2y$。",
+        "临界点（$\\nabla V=0$）为 $(x,y)=(0,0),(1,0),(2,0)$。用 Hessian 判别：$V_{xx}=12x^2-24x+8$；$V_{xx}(0)=8>0$，$V_{xx}(1)=-4<0$，$V_{xx}(2)=8>0$；又 $V_{yy}=2>0$ 恒正，混合偏导 $V_{xy}=0$。故 $(0,0)$ 和 $(2,0)$ 是 $V$ 的局部极小点（稳定平衡点），$(1,0)$ 是鞍点（不稳定）。",
+        "由于 $y'=-2y$ 独立于 $x$，其解为 $y(t)=y_0e^{-2t}\\to0$（对任意初值恒成立）。而 $x$ 方程 $x'=-4x(x-1)(x-2)$ 是一维自治方程，因 $V$ 在 $x$ 方向趋于 $+\\infty$（当 $|x|\\to\\infty$），轨道有界，必收敛到某个平衡点 $x=0,1,2$（一维梯度流总是单调趋于最近的稳定平衡点，除非恰好从不稳定平衡点出发）。",
+        "综上，可能的极限为：$(x_\\infty,y_\\infty)\\in\\{(0,0),\\ (1,0),\\ (2,0)\\}$。"
+      ]
+    },
+    {
+      "label": "(3)",
+      "steps": [
+        "分析一维方程 $x'=-4x(x-1)(x-2)$ 的符号：当 $x<0$ 时，$x(x-1)(x-2)=(\\text{负})(\\text{负})(\\text{负})=$ 负，故 $x'=-4\\times(\\text{负})>0$，$x$ 增大（趋向 $0$）；当 $0<x<1$ 时，$x(x-1)(x-2)=(\\text{正})(\\text{负})(\\text{负})=$ 正，$x'<0$，$x$ 减小（趋向 $0$）；当 $1<x<2$ 时，$x(x-1)(x-2)=(\\text{正})(\\text{正})(\\text{负})=$负，$x'>0$，$x$ 增大（趋向 $2$）；当 $x>2$ 时，$x(x-1)(x-2)=$正，$x'<0$，$x$ 减小（趋向 $2$）。",
+        "在 $x=1$ 处 $x'=0$ 为不稳定平衡（两侧分别流向 $0$ 和 $2$）。因此：若初值 $x_0<1$，则不论 $x_0$ 取何值，$x(t)\\to0$（$t\\to\\infty$）；若初值 $x_0>1$，则 $x(t)\\to2$；若初值恰好 $x_0=1$，则 $x(t)\\equiv1$（保持在鞍点处不动）。",
+        "又 $y$ 方向的行为与 $x_0$ 无关，恒有 $y(t)\\to0$（对任意 $y_0\\in\\mathbb{R}$）。",
+        "综合结论：设初值为 $(x_0,y_0)$，则\n- 若 $x_0<1$（$y_0$ 任意）：$(x_\\infty,y_\\infty)=(0,0)$；\n- 若 $x_0>1$（$y_0$ 任意）：$(x_\\infty,y_\\infty)=(2,0)$；\n- 若 $x_0=1$（$y_0$ 任意）：$(x_\\infty,y_\\infty)=(1,0)$（鞍点，测度为零的初值集合）。"
+      ]
+    }
+  ],
+  "practice_questions": [
+    {
+      "text": "对函数 $W(x)=x^2$，考虑梯度流 $\\dfrac{dx}{dt}=-W'(x)$，证明对任意初值 $x_0$，$x(t)\\to0$（$t\\to\\infty$）。",
+      "knowledge_points": [
+        "梯度流基本性质",
+        "一维稳定平衡点"
+      ],
+      "question_type": "证明题",
+      "method": [
+        "直接求解线性方程"
+      ],
+      "solution_steps": [
+        "写出方程 $x'=-2x$",
+        "求解 $x(t)=x_0e^{-2t}$",
+        "取极限得 $0$"
+      ],
+      "math_structure": {
+        "type": "gradient_flow_quadratic",
+        "template": "$W(x)=x^2$，$x'=-W'(x)$",
+        "variable_count": 0
+      },
+      "difficulty": 1,
+      "estimated_minutes": 5,
+      "answer": [
+        {
+          "label": "证明",
+          "steps": [
+            "$W'(x)=2x$，方程为 $x'=-2x$，这是线性一阶方程。",
+            "解为 $x(t)=x_0e^{-2t}$（分离变量或直接观察）。",
+            "由于指数衰减因子 $e^{-2t}\\to0\\ (t\\to\\infty)$，故 $x(t)\\to0$ 对任意 $x_0$ 均成立，证毕。"
+          ]
+        }
+      ],
+      "id": "nagoya-2001-913d04de39-q07-practice-01",
+      "school": "名古屋大学",
+      "year": "2001"
+    },
+    {
+      "text": "对双井势函数 $W(x)=\\dfrac{1}{4}x^4-\\dfrac{1}{2}x^2$，考虑 $x'=-W'(x)$。求出所有平衡点并判断稳定性。",
+      "knowledge_points": [
+        "双井势函数",
+        "平衡点稳定性判别",
+        "一维动力系统"
+      ],
+      "question_type": "分析题",
+      "method": [
+        "求 $W'(x)=0$ 的根，用二阶导数判别稳定性"
+      ],
+      "solution_steps": [
+        "计算 $W'(x)=x^3-x$",
+        "求根 $x=0,\\pm1$",
+        "用 $W''(x)$ 符号判断稳定性"
+      ],
+      "math_structure": {
+        "type": "double_well_potential_equilibria",
+        "template": "$W(x)=\\frac14x^4-\\frac12x^2$，$x'=-W'(x)$",
+        "variable_count": 0
+      },
+      "difficulty": 2,
+      "estimated_minutes": 8,
+      "answer": [
+        {
+          "label": "结果",
+          "steps": [
+            "$W'(x)=x^3-x=x(x-1)(x+1)$，故平衡点为 $x=0,1,-1$。",
+            "$W''(x)=3x^2-1$：$W''(0)=-1<0$（$x=0$ 是 $W$ 的局部极大，故为不稳定平衡）；$W''(1)=2>0,W''(-1)=2>0$（均为局部极小，稳定平衡）。",
+            "结论：$x=\\pm1$ 是稳定平衡点（吸引），$x=0$ 是不稳定平衡点（排斥），初值 $x_0>0$（且$\\neq0$）流向 $1$，初值 $x_0<0$流向$-1$，$x_0=0$保持不动。"
+          ]
+        }
+      ],
+      "id": "nagoya-2001-913d04de39-q07-practice-02",
+      "school": "名古屋大学",
+      "year": "2001"
+    },
+    {
+      "text": "证明：对本题中的势函数 $V(x,y)=x^4-4x^3+4x^2+y^2$，沿任意轨道，$V(x(t),y(t))$ 严格递减，除非轨道已经处于临界点。",
+      "knowledge_points": [
+        "严格单调性与临界点关系",
+        "梯度流性质深化"
+      ],
+      "question_type": "证明题",
+      "method": [
+        "分析(1)中等号成立条件"
+      ],
+      "solution_steps": [
+        "回顾 $dV/dt=-\\|\\nabla V\\|^2$",
+        "说明等号仅当 $\\nabla V=0$",
+        "结论：非临界点处严格递减"
+      ],
+      "math_structure": {
+        "type": "strict_lyapunov_decrease",
+        "template": "$dV/dt=-\\|\\nabla V\\|^2$，说明严格递减条件",
+        "variable_count": 0
+      },
+      "difficulty": 2,
+      "estimated_minutes": 6,
+      "answer": [
+        {
+          "label": "证明",
+          "steps": [
+            "由原题(1)的计算，$\\dfrac{dV}{dt}=-\\left[\\left(\\dfrac{\\partial V}{\\partial x}\\right)^2+\\left(\\dfrac{\\partial V}{\\partial y}\\right)^2\\right]=-\\|\\nabla V\\|^2\\le0$。",
+            "等号 $dV/dt=0$ 成立当且仅当 $\\nabla V(x,y)=(0,0)$，即 $(x,y)$ 恰为临界点 $(0,0),(1,0),(2,0)$ 之一。",
+            "因此，只要轨道当前不在临界点上，$\\nabla V\\ne0$，从而 $dV/dt<0$ 严格成立，即 $V$ 严格递减；只有到达临界点后才可能保持不变（实际上到达临界点即停止运动），命题得证。"
+          ]
+        }
+      ],
+      "id": "nagoya-2001-913d04de39-q07-practice-03",
+      "school": "名古屋大学",
+      "year": "2001"
+    },
+    {
+      "text": "验证：若初值恰为 $(x_0,y_0)=(1,5)$，求出对应轨道的极限 $(x_\\infty,y_\\infty)$。",
+      "knowledge_points": [
+        "初值到极限的判定规则应用"
+      ],
+      "question_type": "计算题",
+      "method": [
+        "应用原题(3)得出的判据"
+      ],
+      "solution_steps": [
+        "判断 $x_0=1$属于哪一类情形",
+        "结合 $y$ 方向恒趋于0",
+        "给出结论"
+      ],
+      "math_structure": {
+        "type": "specific_initial_condition_limit",
+        "template": "$(x_0,y_0)=(1,5)$，求极限",
+        "variable_count": 0
+      },
+      "difficulty": 2,
+      "estimated_minutes": 5,
+      "answer": [
+        {
+          "label": "结果",
+          "steps": [
+            "由原题(3)的分析，当 $x_0=1$ 时（无论 $y_0$ 为何值），$x(t)\\equiv1$（保持在鞍点，因为 $x=1$ 恰是 $x'=-4x(x-1)(x-2)$ 的平衡点）。",
+            "而 $y$ 方向恒有 $y(t)=y_0e^{-2t}=5e^{-2t}\\to0$（$t\\to\\infty$），与 $x_0$ 取值无关。",
+            "故极限为 $(x_\\infty,y_\\infty)=(1,0)$，即到达鞍点。（注：这是测度为零的特殊初值情形。）"
+          ]
+        }
+      ],
+      "id": "nagoya-2001-913d04de39-q07-practice-04",
+      "school": "名古屋大学",
+      "year": "2001"
+    }
+  ],
+  "source_question": "問14",
+  "source_pdf": "名古屋大学/多元数理科学研究科/全专攻/名古屋大学_多元数理科学研究科_2001_第1次_数学过去问_下午.pdf",
+  "source_type": "官方过去问",
+  "subject_category": "微分方程"
+}

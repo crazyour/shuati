@@ -1,0 +1,212 @@
+{
+  "id": "isct-2018-9607dddc5c-q05",
+  "school": "东京科学大学",
+  "year": "2018",
+  "subject": "理工学系_数学系",
+  "text": "设 $S^2=\\{(x,y,z)\\in\\mathbb{R}^3 \\mid x^2+y^2+z^2=1\\}$，$\\iota$ 为 $S^2$ 到 $\\mathbb{R}^3$ 的包含映射，$\\mathbb{R}^3$ 上的2次微分形式为\n$$\\Omega=x\\,dy\\wedge dz+y\\,dz\\wedge dx+z\\,dx\\wedge dy.$$\n(1) 证明拉回 $\\omega=\\iota^*\\Omega$ 是 $S^2$ 上处处非零的微分形式。\n(2) 计算外微分 $d\\Omega$。\n(3) 设 $A$ 为3次实正交矩阵（$\\det A=1$），由 $A$ 定义的线性映射 $\\mathbb{R}^3\\to\\mathbb{R}^3$ 诱导 $C^\\infty$ 映射 $f_A:S^2\\to S^2$。计算 $\\displaystyle\\int_{S^2}f_A^*\\omega$。",
+  "knowledge_points": [
+    "微分形式与拉回",
+    "外微分计算",
+    "欧拉向量场与内积记号",
+    "正交群作用下体积形式的不变性",
+    "球面上的面积形式"
+  ],
+  "question_type": "微分形式与拉回计算",
+  "method": [
+    "用内积记号 $\\Omega=i_X(dx\\wedge dy\\wedge dz)$（$X$为欧拉向量场）分析非零性",
+    "直接按外微分公式展开d\\Omega",
+    "利用det A=1证明A保持体积形式，从而f_A^*\\omega=\\omega"
+  ],
+  "solution_steps": [
+    "识别Ω是欧拉向量场X=x∂x+y∂y+z∂z对体积形式的内积",
+    "在切空间上计算ω(v1,v2)=p·(v1×v2)，说明其非零",
+    "逐项对Ω求外微分并化简",
+    "证明线性正交映射A(detA=1)拉回体积形式不变，从而拉回Ω不变，进而拉回ω不变",
+    "利用ω即为S^2标准面积形式，得到积分值为球面面积4π"
+  ],
+  "math_structure": {
+    "type": "pullback_and_exterior_derivative_on_sphere",
+    "template": "\\Omega=x\\,dy\\wedge dz+y\\,dz\\wedge dx+z\\,dx\\wedge dy on R^3; \\omega=\\iota^*\\Omega on S^2; f_A induced by A\\in SO(3)",
+    "variable_count": 3
+  },
+  "difficulty": 4,
+  "answer": [
+    {
+      "label": "(1)",
+      "steps": [
+        "注意 $\\Omega=i_X(dx\\wedge dy\\wedge dz)$，其中 $X=x\\partial_x+y\\partial_y+z\\partial_z$（欧拉向量场），因为 $i_X(dx\\wedge dy\\wedge dz)=x\\,dy\\wedge dz-y\\,dx\\wedge dz+z\\,dx\\wedge dy=x\\,dy\\wedge dz+y\\,dz\\wedge dx+z\\,dx\\wedge dy=\\Omega$。",
+        "在点 $p\\in S^2$，$X_p=p$恰好是$S^2$在$p$处的外法向量。对切向量 $v_1,v_2\\in T_pS^2$（即与$p$正交），有 $\\omega_p(v_1,v_2)=\\Omega_p(v_1,v_2)=(dx\\wedge dy\\wedge dz)(p,v_1,v_2)=\\det[p,v_1,v_2]=p\\cdot(v_1\\times v_2)$。",
+        "由于 $v_1,v_2\\perp p$，$v_1\\times v_2$ 与 $p$ 平行；取 $\\{v_1,v_2\\}$ 为$T_pS^2$的正交基且取向使$v_1\\times v_2=p$（$|p|=1$），则 $\\omega_p(v_1,v_2)=p\\cdot p=1\\neq0$。故对任意非零$v_1,v_2$（线性无关），$\\omega_p(v_1,v_2)\\neq0$，即$\\omega$在$p$处非零。",
+        "由$p$任意，$\\omega=\\iota^*\\Omega$在$S^2$上处处非零，实际上$\\omega$恰是$S^2$的标准面积形式。"
+      ]
+    },
+    {
+      "label": "(2)",
+      "steps": [
+        "逐项计算：$d(x\\,dy\\wedge dz)=dx\\wedge dy\\wedge dz$（因$dx,dy,dz$为闭形式，只有对系数函数求导有贡献）。",
+        "$d(y\\,dz\\wedge dx)=dy\\wedge dz\\wedge dx=dx\\wedge dy\\wedge dz$（利用外积的循环对称性：三次交换偶数次不改变符号，$dy\\wedge dz\\wedge dx$与$dx\\wedge dy\\wedge dz$相等，因为是偶置换）。",
+        "$d(z\\,dx\\wedge dy)=dz\\wedge dx\\wedge dy=dx\\wedge dy\\wedge dz$（同理为偶置换）。",
+        "求和：$d\\Omega=dx\\wedge dy\\wedge dz+dx\\wedge dy\\wedge dz+dx\\wedge dy\\wedge dz=3\\,dx\\wedge dy\\wedge dz$。"
+      ]
+    },
+    {
+      "label": "(3)",
+      "steps": [
+        "先证明：对线性映射 $A$（视为 $\\mathbb{R}^3\\to\\mathbb{R}^3$），有 $A^*\\Omega=\\Omega$（当$\\det A=1$）。对任意点 $p$及切向量$v_1,v_2$：$(A^*\\Omega)_p(v_1,v_2)=\\Omega_{Ap}(Av_1,Av_2)=\\det[Ap,Av_1,Av_2]=\\det(A)\\det[p,v_1,v_2]=\\det(A)\\,\\Omega_p(v_1,v_2)$（利用行列式的多线性性质：$\\det[Ap,Av_1,Av_2]=\\det(A)\\det[p,v_1,v_2]$）。因$\\det A=1$，得$A^*\\Omega=\\Omega$。",
+        "注意 $\\iota\\circ f_A=A\\circ\\iota$（均为$p\\mapsto A(p)$，$p\\in S^2$），故 $f_A^*\\omega=f_A^*\\iota^*\\Omega=(\\iota\\circ f_A)^*\\Omega=(A\\circ\\iota)^*\\Omega=\\iota^*(A^*\\Omega)=\\iota^*\\Omega=\\omega$。",
+        "因此 $f_A^*\\omega=\\omega$ 对任意 $A\\in SO(3)$成立，从而 $\\int_{S^2}f_A^*\\omega=\\int_{S^2}\\omega$。",
+        "由(1)知$\\omega$恰是$S^2$的标准面积形式（在正交正定向基下取值为1），故 $\\int_{S^2}\\omega=\\text{Area}(S^2)=4\\pi$。",
+        "结论：$\\displaystyle\\int_{S^2}f_A^*\\omega=4\\pi$，与$A$的具体选取无关。"
+      ]
+    }
+  ],
+  "practice_questions": [
+    {
+      "text": "计算 $d(xy\\,dz)$，并与 $d(x\\,dy\\wedge dz)$的计算方法作对比。",
+      "knowledge_points": [
+        "外微分基本规则",
+        "乘积法则"
+      ],
+      "question_type": "外微分基础计算",
+      "method": [
+        "直接应用外微分的乘积法则"
+      ],
+      "solution_steps": [
+        "用d(fg\\,dz)=d(fg)\\wedge dz公式展开",
+        "化简结果"
+      ],
+      "math_structure": {
+        "type": "basic_exterior_derivative",
+        "template": "compute d(xy\\,dz)",
+        "variable_count": 1
+      },
+      "difficulty": 1,
+      "estimated_minutes": 4,
+      "answer": [
+        {
+          "label": "计算",
+          "steps": [
+            "$d(xy\\,dz)=d(xy)\\wedge dz=(y\\,dx+x\\,dy)\\wedge dz=y\\,dx\\wedge dz+x\\,dy\\wedge dz$。",
+            "与题目中 $d(x\\,dy\\wedge dz)=dx\\wedge dy\\wedge dz$ 不同：后者是对2-形式求外微分得到3-形式，而此处是对1-形式求外微分得到2-形式，体现外微分对形式的次数加1的一般规律。"
+          ]
+        }
+      ],
+      "id": "isct-2018-9607dddc5c-q05-practice-01",
+      "school": "东京科学大学",
+      "year": "2018"
+    },
+    {
+      "text": "验证：对旋转矩阵 $A=\\begin{pmatrix}\\cos\\theta&-\\sin\\theta&0\\\\\\sin\\theta&\\cos\\theta&0\\\\0&0&1\\end{pmatrix}\\in SO(3)$，直接验证 $\\det[Ap,Av_1,Av_2]=\\det[p,v_1,v_2]$ 对任意 $p,v_1,v_2\\in\\mathbb{R}^3$成立。",
+      "knowledge_points": [
+        "行列式的多线性性质",
+        "正交矩阵性质"
+      ],
+      "question_type": "性质验证",
+      "method": [
+        "用行列式乘法公式 det[Ap,Av1,Av2]=det(A)det[p,v1,v2]"
+      ],
+      "solution_steps": [
+        "写出det[Ap,Av1,Av2]=det(A[p v1 v2])",
+        "利用det(AB)=det(A)det(B)",
+        "代入det A=1"
+      ],
+      "math_structure": {
+        "type": "determinant_multilinearity_check",
+        "template": "for A\\in SO(3), verify \\det[Ap,Av_1,Av_2]=\\det[p,v_1,v_2]",
+        "variable_count": 1
+      },
+      "difficulty": 2,
+      "estimated_minutes": 6,
+      "answer": [
+        {
+          "label": "验证",
+          "steps": [
+            "令 $M=[p\\ v_1\\ v_2]$（以$p,v_1,v_2$为列的3×3矩阵），则 $[Ap\\ Av_1\\ Av_2]=AM$。",
+            "由行列式乘法公式：$\\det(AM)=\\det(A)\\det(M)$。",
+            "对给定旋转矩阵 $A$，直接计算 $\\det A=\\cos\\theta\\cdot(\\cos\\theta\\cdot1-0)-(-\\sin\\theta)(\\sin\\theta\\cdot1-0)+0=\\cos^2\\theta+\\sin^2\\theta=1$。",
+            "故 $\\det[Ap,Av_1,Av_2]=\\det(AM)=1\\cdot\\det(M)=\\det[p,v_1,v_2]$，验证成立。"
+          ]
+        }
+      ],
+      "id": "isct-2018-9607dddc5c-q05-practice-02",
+      "school": "东京科学大学",
+      "year": "2018"
+    },
+    {
+      "text": "计算 $\\Omega$ 在点 $p=(0,0,1)\\in S^2$ 处，对切向量 $v_1=(1,0,0), v_2=(0,1,0)$ 的取值 $\\omega_p(v_1,v_2)$，并与理论值1比较。",
+      "knowledge_points": [
+        "拉回形式的具体计算",
+        "行列式作为3-形式的取值"
+      ],
+      "question_type": "具体点计算",
+      "method": [
+        "直接用det[p,v1,v2]计算"
+      ],
+      "solution_steps": [
+        "组成矩阵[p v1 v2]",
+        "计算行列式"
+      ],
+      "math_structure": {
+        "type": "explicit_pullback_evaluation",
+        "template": "compute \\omega_p(v_1,v_2)=\\det[p,v_1,v_2] at p=(0,0,1)",
+        "variable_count": 1
+      },
+      "difficulty": 1,
+      "estimated_minutes": 5,
+      "answer": [
+        {
+          "label": "计算",
+          "steps": [
+            "矩阵 $[p\\ v_1\\ v_2]=\\begin{pmatrix}0&1&0\\\\0&0&1\\\\1&0&0\\end{pmatrix}$（按列排列 $p,v_1,v_2$）。",
+            "计算行列式：按第一行展开，$\\det=0\\cdot(0\\cdot0-1\\cdot0)-1\\cdot(0\\cdot0-1\\cdot1)+0\\cdot(\\dots)=-1\\cdot(-1)=1$。",
+            "得 $\\omega_p(v_1,v_2)=1$，与理论分析（正交正向基下取值为1）完全一致。"
+          ]
+        }
+      ],
+      "id": "isct-2018-9607dddc5c-q05-practice-03",
+      "school": "东京科学大学",
+      "year": "2018"
+    },
+    {
+      "text": "利用斯托克斯定理，验证 $\\int_{S^2}\\omega=\\int_{B^3}d\\Omega$（其中$B^3$为单位闭球），并由此重新得到球面面积公式。",
+      "knowledge_points": [
+        "斯托克斯定理",
+        "体积积分与球坐标"
+      ],
+      "question_type": "斯托克斯定理应用",
+      "method": [
+        "应用斯托克斯定理将面积分转化为体积分",
+        "球坐标计算体积分"
+      ],
+      "solution_steps": [
+        "写出斯托克斯定理表达式",
+        "代入d\\Omega=3dx\\wedge dy\\wedge dz",
+        "计算球体体积分"
+      ],
+      "math_structure": {
+        "type": "stokes_theorem_verification",
+        "template": "verify \\int_{S^2}\\omega=\\int_{B^3}d\\Omega=3\\mathrm{Vol}(B^3)",
+        "variable_count": 1
+      },
+      "difficulty": 3,
+      "estimated_minutes": 10,
+      "answer": [
+        {
+          "label": "验证",
+          "steps": [
+            "由斯托克斯定理，$\\int_{\\partial B^3}\\iota^*\\Omega=\\int_{B^3}d\\Omega$，即 $\\int_{S^2}\\omega=\\int_{B^3}3\\,dx\\wedge dy\\wedge dz=3\\int_{B^3}dV$。",
+            "单位球体积 $\\mathrm{Vol}(B^3)=\\frac{4}{3}\\pi$，故 $\\int_{S^2}\\omega=3\\cdot\\frac{4}{3}\\pi=4\\pi$。",
+            "此结果与原题(3)中直接论证（$\\omega$为标准面积形式，$\\int_{S^2}\\omega=\\mathrm{Area}(S^2)=4\\pi$）完全一致，验证了斯托克斯定理的正确应用。"
+          ]
+        }
+      ],
+      "id": "isct-2018-9607dddc5c-q05-practice-04",
+      "school": "东京科学大学",
+      "year": "2018"
+    }
+  ],
+  "source_question": "午后[4]",
+  "source_pdf": "东京科学大学/理工学系/数学系/东京科学大学_理工学系_数学系_2018_数学过去问.pdf",
+  "source_type": "官方过去问",
+  "subject_category": "向量解析"
+}

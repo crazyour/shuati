@@ -1,0 +1,201 @@
+{
+  "id": "osaka-2023-09db4de9ee-q01",
+  "school": "大阪大学",
+  "year": "2023",
+  "subject": "情报科学研究科_情报基础数学",
+  "text": "设 $f(x)$ 是在实数轴 $\\mathbb{R}$ 去掉一点 $x_0$ 后的集合上连续的函数。当极限\n$$\\lim_{\\epsilon\\to+0}\\left(\\int_{-\\infty}^{x_0-\\epsilon}f(x)\\,dx+\\int_{x_0+\\epsilon}^{+\\infty}f(x)\\,dx\\right)$$\n存在时,称这个值为积分的主值(principal value of integration),记作 $\\mathrm{p.v.}\\int_{-\\infty}^{+\\infty}f(x)\\,dx$。求下列的值:\n$$\\mathrm{p.v.}\\int_{-\\infty}^{+\\infty}\\frac{1}{x^3-1}\\,dx.$$",
+  "knowledge_points": [
+    "柯西主值积分",
+    "留数定理",
+    "含实轴奇点的半圆压线周线",
+    "部分分式分解",
+    "三次方程的复根分布"
+  ],
+  "question_type": "复变函数留数计算题",
+  "method": [
+    "构造上半平面周线(大圆弧+绕开实极点的小半圆),用留数定理",
+    "部分分式分解求出实变量原函数,取极限直接验算"
+  ],
+  "solution_steps": [
+    "分解 $x^3-1=(x-1)(x^2+x+1)$,唯一实奇点为 $x=1$,另两个复根为 $\\omega=e^{2\\pi i/3}$ 与 $\\bar\\omega=e^{-2\\pi i/3}$",
+    "构造上半平面大半圆 $C_R$,并在 $x=1$ 处用凸向上半平面的小半圆 $C_\\epsilon$ 绕开该奇点,因被积函数在无穷远处以 $1/z^3$ 衰减,大圆弧贡献为0",
+    "该闭周线只包围极点 $z=\\omega$,由留数定理得 $\\mathrm{p.v.}\\int+(-i\\pi\\,\\mathrm{Res}_{z=1}f)=2\\pi i\\,\\mathrm{Res}_{z=\\omega}f$",
+    "计算留数并代入求出主值",
+    "用部分分式求出原函数,直接取极限验算结果"
+  ],
+  "math_structure": {
+    "type": "principal_value_rational_integral",
+    "template": "\\mathrm{p.v.}\\int_{-\\infty}^{\\infty}\\frac{1}{x^3-a^3}\\,dx",
+    "variable_count": 1
+  },
+  "difficulty": 4,
+  "answer": [
+    {
+      "label": "求值",
+      "steps": [
+        "分解 $x^3-1=(x-1)(x^2+x+1)$,实奇点只有 $x=1$;复根为 $\\omega=e^{2\\pi i/3},\\bar\\omega=e^{-2\\pi i/3}$,分别在上、下半平面。",
+        "取上半平面大半圆 $C_R$($R\\to\\infty$),并在 $z=1$ 处以半径 $\\epsilon$ 的小半圆(凸向上半平面)绕开该点,构成闭周线。由于 $|f(z)|\\sim1/|z|^3$,大圆弧上的积分当 $R\\to\\infty$ 时为0。",
+        "该闭周线所围区域只包含极点 $z=\\omega$,不包含 $z=1$(被小半圆绕开),故由留数定理:\n$$\\mathrm{p.v.}\\int_{-\\infty}^{\\infty}f(x)\\,dx-i\\pi\\,\\mathrm{Res}_{z=1}f=2\\pi i\\,\\mathrm{Res}_{z=\\omega}f.$$",
+        "对 $g(z)=z^3-1$,单根留数公式为 $1/g'(z_0)$,故 $\\mathrm{Res}_{z=1}f=\\dfrac{1}{3\\cdot1^2}=\\dfrac13$;$\\mathrm{Res}_{z=\\omega}f=\\dfrac{1}{3\\omega^2}=\\dfrac{\\omega}{3}=\\dfrac13\\left(-\\dfrac12+i\\dfrac{\\sqrt3}{2}\\right)=-\\dfrac16+i\\dfrac{\\sqrt3}{6}$。",
+        "代入:$\\mathrm{p.v.}\\int=i\\pi\\cdot\\dfrac13+2\\pi i\\left(-\\dfrac16+i\\dfrac{\\sqrt3}{6}\\right)=\\dfrac{i\\pi}{3}-\\dfrac{i\\pi}{3}-\\dfrac{\\pi\\sqrt3}{3}=-\\dfrac{\\pi\\sqrt3}{3}=-\\dfrac{\\pi}{\\sqrt3}$。",
+        "验算:由部分分式 $\\dfrac{1}{x^3-1}=\\dfrac{1}{3(x-1)}-\\dfrac16\\cdot\\dfrac{2x+1}{x^2+x+1}-\\dfrac12\\cdot\\dfrac{1}{x^2+x+1}$,得原函数 $F(x)=\\dfrac13\\ln|x-1|-\\dfrac16\\ln(x^2+x+1)-\\dfrac{1}{\\sqrt3}\\arctan\\dfrac{2x+1}{\\sqrt3}$。计算 $\\lim_{R\\to\\infty}[F(R)-F(-R)]=-\\dfrac{\\pi}{\\sqrt3}$(对数项两端比值趋于1相消,反正切项贡献 $-\\pi/\\sqrt3$),而 $\\lim_{\\epsilon\\to0}[F(1+\\epsilon)-F(1-\\epsilon)]=0$(对数发散部分恰好抵消),两者结合得同样的 $-\\pi/\\sqrt3$,与留数法结果一致,确认 $\\mathrm{p.v.}\\int_{-\\infty}^{\\infty}\\frac{dx}{x^3-1}=-\\dfrac{\\pi\\sqrt3}{3}$。"
+      ]
+    }
+  ],
+  "practice_questions": [
+    {
+      "text": "用留数定理计算(无需主值,分母无实零点):$\\displaystyle\\int_{-\\infty}^{\\infty}\\frac{dx}{x^2+1}$。",
+      "knowledge_points": [
+        "留数定理",
+        "上半平面闭合周线"
+      ],
+      "question_type": "留数积分基础题",
+      "method": [
+        "构造上半圆闭周线,大圆弧贡献为0,只包围极点 $z=i$"
+      ],
+      "solution_steps": [
+        "确定极点位置",
+        "计算留数",
+        "代入 $2\\pi i\\times$留数"
+      ],
+      "math_structure": {
+        "type": "residue_rational_integral",
+        "template": "\\int_{-\\infty}^{\\infty}\\frac{1}{x^2+a^2}\\,dx",
+        "variable_count": 1
+      },
+      "difficulty": 1,
+      "estimated_minutes": 5,
+      "answer": [
+        {
+          "label": "求值",
+          "steps": [
+            "被积函数 $1/(z^2+1)$ 的极点为 $z=\\pm i$,只有 $z=i$ 在上半平面。",
+            "在简单极点处 $\\mathrm{Res}_{z=i}\\dfrac{1}{z^2+1}=\\dfrac{1}{2i}$(用 $1/g'(z_0)$,$g(z)=z^2+1$,$g'(i)=2i$)。",
+            "大圆弧上积分当 $R\\to\\infty$ 时因分母以 $R^2$ 增长而趋于0,故 $\\int_{-\\infty}^{\\infty}\\frac{dx}{x^2+1}=2\\pi i\\cdot\\dfrac{1}{2i}=\\pi$,与初等换元 $\\arctan x$ 的结果 $\\pi$ 一致,验算通过。"
+          ]
+        }
+      ],
+      "id": "osaka-2023-09db4de9ee-q01-practice-01",
+      "school": "大阪大学",
+      "year": "2023"
+    },
+    {
+      "text": "利用主值定义直接计算(无需留数):$\\displaystyle\\mathrm{p.v.}\\int_{-\\infty}^{\\infty}\\frac{dx}{x-2}$。",
+      "knowledge_points": [
+        "柯西主值积分",
+        "对称消去发散"
+      ],
+      "question_type": "主值积分基础题",
+      "method": [
+        "换元 $u=x-2$ 化为对称区间上的 $1/u$ 积分"
+      ],
+      "solution_steps": [
+        "换元",
+        "计算对称区间上的积分恒等于0",
+        "得出结论"
+      ],
+      "math_structure": {
+        "type": "principal_value_simple_pole",
+        "template": "\\mathrm{p.v.}\\int_{-\\infty}^{\\infty}\\frac{1}{x-c}\\,dx",
+        "variable_count": 1
+      },
+      "difficulty": 1,
+      "estimated_minutes": 5,
+      "answer": [
+        {
+          "label": "求值",
+          "steps": [
+            "令 $u=x-2$,则积分化为 $\\mathrm{p.v.}\\int_{-\\infty}^{\\infty}\\dfrac{du}{u}$。",
+            "对任意 $\\epsilon>0,R>0$:$\\int_{-R}^{-\\epsilon}\\dfrac{du}{u}+\\int_{\\epsilon}^{R}\\dfrac{du}{u}=(\\ln\\epsilon-\\ln R)+(\\ln R-\\ln\\epsilon)=0$,该式对任意 $\\epsilon,R$ 都精确为0,不仅是极限。",
+            "故 $\\mathrm{p.v.}\\int_{-\\infty}^{\\infty}\\dfrac{dx}{x-2}=0$。"
+          ]
+        }
+      ],
+      "id": "osaka-2023-09db4de9ee-q01-practice-02",
+      "school": "大阪大学",
+      "year": "2023"
+    },
+    {
+      "text": "计算 $\\displaystyle\\mathrm{p.v.}\\int_{-\\infty}^{\\infty}\\frac{dx}{x(x^2+1)}$。",
+      "knowledge_points": [
+        "柯西主值积分",
+        "部分分式分解",
+        "奇函数对称积分为0"
+      ],
+      "question_type": "主值积分题",
+      "method": [
+        "部分分式分解为 $1/x$ 与 $x/(x^2+1)$ 两个奇函数之差"
+      ],
+      "solution_steps": [
+        "部分分式分解",
+        "验证两部分均为奇函数",
+        "对称区间积分为0,得出结论"
+      ],
+      "math_structure": {
+        "type": "principal_value_rational_integral",
+        "template": "\\mathrm{p.v.}\\int_{-\\infty}^{\\infty}\\frac{1}{x(x^2+a^2)}\\,dx",
+        "variable_count": 1
+      },
+      "difficulty": 2,
+      "estimated_minutes": 8,
+      "answer": [
+        {
+          "label": "求值",
+          "steps": [
+            "部分分式:$\\dfrac{1}{x(x^2+1)}=\\dfrac1x-\\dfrac{x}{x^2+1}$(通分验证:$\\frac{x^2+1-x^2}{x(x^2+1)}=\\frac{1}{x(x^2+1)}$,正确)。",
+            "$1/x$ 与 $x/(x^2+1)$ 均为奇函数,在对称区间 $[-R,-\\epsilon]\\cup[\\epsilon,R]$ 上积分,对每个固定的 $\\epsilon,R$ 均精确为0(奇函数关于原点对称抵消)。",
+            "故 $\\mathrm{p.v.}\\int_{-\\infty}^{\\infty}\\dfrac{dx}{x(x^2+1)}=0-0=0$。"
+          ]
+        }
+      ],
+      "id": "osaka-2023-09db4de9ee-q01-practice-03",
+      "school": "大阪大学",
+      "year": "2023"
+    },
+    {
+      "text": "用留数法计算 $\\displaystyle\\mathrm{p.v.}\\int_{-\\infty}^{\\infty}\\frac{dx}{x^3+1}$,并与原题 $\\mathrm{p.v.}\\int\\frac{dx}{x^3-1}$ 的解法作对比。",
+      "knowledge_points": [
+        "柯西主值积分",
+        "留数定理",
+        "三次方程复根分布",
+        "部分分式验算"
+      ],
+      "question_type": "留数主值积分综合题",
+      "method": [
+        "上半平面周线+绕开实极点 $x=-1$",
+        "部分分式求原函数直接验算"
+      ],
+      "solution_steps": [
+        "分解 $x^3+1=(x+1)(x^2-x+1)$,确定实奇点 $x=-1$ 与复根 $e^{\\pm i\\pi/3}$",
+        "构造周线,用留数定理求出主值",
+        "部分分式验算"
+      ],
+      "math_structure": {
+        "type": "principal_value_rational_integral",
+        "template": "\\mathrm{p.v.}\\int_{-\\infty}^{\\infty}\\frac{1}{x^3+a^3}\\,dx",
+        "variable_count": 1
+      },
+      "difficulty": 4,
+      "estimated_minutes": 15,
+      "answer": [
+        {
+          "label": "求值",
+          "steps": [
+            "$x^3+1=(x+1)(x^2-x+1)$,实奇点 $x=-1$;复根为 $z=e^{i\\pi/3}$(上半平面)与 $z=e^{-i\\pi/3}$(下半平面)。",
+            "取上半平面周线,在 $z=-1$ 处以小半圆绕开,大圆弧贡献为0,故 $\\mathrm{p.v.}\\int-i\\pi\\,\\mathrm{Res}_{z=-1}f=2\\pi i\\,\\mathrm{Res}_{z=e^{i\\pi/3}}f$。",
+            "$g(z)=z^3+1,g'(z)=3z^2$。$\\mathrm{Res}_{z=-1}f=\\dfrac{1}{3(-1)^2}=\\dfrac13$;$\\mathrm{Res}_{z=e^{i\\pi/3}}f=\\dfrac{1}{3e^{2i\\pi/3}}=\\dfrac13e^{-2i\\pi/3}=-\\dfrac16-i\\dfrac{\\sqrt3}{6}$。",
+            "代入:$\\mathrm{p.v.}\\int=i\\pi\\cdot\\dfrac13+2\\pi i\\left(-\\dfrac16-i\\dfrac{\\sqrt3}{6}\\right)=\\dfrac{i\\pi}{3}-\\dfrac{i\\pi}{3}+\\dfrac{\\pi\\sqrt3}{3}=\\dfrac{\\pi\\sqrt3}{3}=\\dfrac{\\pi}{\\sqrt3}$。",
+            "验算(部分分式):$\\dfrac{1}{x^3+1}=\\dfrac{1}{3(x+1)}-\\dfrac16\\cdot\\dfrac{2x-1}{x^2-x+1}+\\dfrac12\\cdot\\dfrac{1}{x^2-x+1}$,原函数 $F(x)=\\dfrac13\\ln|x+1|-\\dfrac16\\ln(x^2-x+1)+\\dfrac{1}{\\sqrt3}\\arctan\\dfrac{2x-1}{\\sqrt3}$,取极限计算 $\\lim[F(R)-F(-R)]-\\lim_{\\epsilon\\to0}[F(-1+\\epsilon)-F(-1-\\epsilon)]=\\dfrac{\\pi}{\\sqrt3}-0$,与留数法一致,答案确认为 $\\dfrac{\\pi\\sqrt3}{3}$。注意此题与原题符号相反(因为唯一实根 $x=-1$ 在负轴,复根分布也镜像对称),体现了同一方法对不同参数的适应性。"
+          ]
+        }
+      ],
+      "id": "osaka-2023-09db4de9ee-q01-practice-04",
+      "school": "大阪大学",
+      "year": "2023"
+    }
+  ],
+  "source_question": "1",
+  "source_pdf": "大阪大学/情报科学研究科/情报基础数学/大阪大学_情报科学研究科_情报基础数学_2023_数学过去问.pdf",
+  "source_type": "官方过去问",
+  "subject_category": "复变函数"
+}

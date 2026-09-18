@@ -699,3 +699,141 @@ footer {
   .browse-answer-part { background: rgba(107, 155, 255, .08); }
   .browse-practice-card { background: rgba(107, 155, 255, .05); }
 }
+
+/* ---------- 反馈问卷：右下浮动按钮 + 模态框 ---------- */
+
+.feedback-fab {
+  position: fixed;
+  right: 20px;
+  bottom: 20px;
+  z-index: 50;
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 10px 18px;
+  border: 0;
+  border-radius: 999px;
+  background: var(--accent);
+  color: var(--accent-ink);
+  font: inherit;
+  font-weight: 600;
+  box-shadow: 0 8px 22px rgba(47, 111, 235, .32);
+  cursor: pointer;
+  transition: transform .15s ease, filter .15s ease;
+}
+.feedback-fab:hover { filter: brightness(1.06); transform: translateY(-1px); }
+.feedback-fab:active { transform: translateY(0); }
+
+.feedback-modal {
+  position: fixed;
+  inset: 0;
+  z-index: 100;
+  display: grid;
+  place-items: center;
+  padding: 16px;
+}
+.feedback-modal[hidden] { display: none; }
+.feedback-modal-backdrop {
+  position: absolute;
+  inset: 0;
+  background: rgba(15, 23, 42, .45);
+  backdrop-filter: blur(2px);
+}
+.feedback-modal-panel {
+  position: relative;
+  z-index: 1;
+  width: min(560px, 100%);
+  max-height: calc(100vh - 64px);
+  overflow: auto;
+  background: var(--panel);
+  border: 1px solid var(--line);
+  border-radius: 14px;
+  box-shadow: 0 18px 48px rgba(15, 23, 42, .22);
+  padding: 28px 28px 24px;
+}
+.feedback-modal-close {
+  position: absolute;
+  top: 10px;
+  right: 12px;
+  width: 32px;
+  height: 32px;
+  border: 0;
+  border-radius: 999px;
+  background: transparent;
+  color: var(--ink-soft);
+  font-size: 22px;
+  line-height: 1;
+  cursor: pointer;
+}
+.feedback-modal-close:hover { background: var(--bg); color: var(--ink); }
+.feedback-modal-panel h2 { margin: 0 0 4px; font-size: 18px; }
+.feedback-modal-sub { margin: 0 0 18px; color: var(--ink-soft); font-size: 13px; }
+
+.feedback-form { display: grid; gap: 16px; }
+.feedback-fieldset {
+  border: 1px solid var(--line);
+  border-radius: 10px;
+  padding: 10px 14px 12px;
+  margin: 0;
+  display: grid;
+  gap: 6px;
+}
+.feedback-fieldset legend { font-weight: 600; padding: 0 4px; font-size: 14px; }
+.feedback-check, .feedback-radio {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 14px;
+  cursor: pointer;
+}
+.feedback-other { margin: 4px 0 4px 22px; }
+.feedback-other[hidden] { display: none; }
+.feedback-field { display: grid; gap: 6px; font-size: 13px; color: var(--ink-soft); }
+.feedback-field input, .feedback-field textarea {
+  width: 100%;
+  padding: 10px 12px;
+  border: 1px solid var(--line);
+  border-radius: 8px;
+  font: inherit;
+  background: #fbfcfd;
+  color: var(--ink);
+}
+.feedback-field textarea { resize: vertical; min-height: 64px; }
+
+.feedback-actions { display: flex; justify-content: flex-end; gap: 10px; }
+.feedback-btn {
+  padding: 10px 18px;
+  border: 0;
+  border-radius: 8px;
+  font: inherit;
+  font-weight: 600;
+  cursor: pointer;
+}
+.feedback-btn-primary { background: var(--accent); color: var(--accent-ink); }
+.feedback-btn-primary:disabled { opacity: .55; cursor: not-allowed; }
+.feedback-btn-ghost { background: var(--bg); color: var(--ink); border: 1px solid var(--line); }
+
+.feedback-status { margin: 4px 0 0; font-size: 13px; }
+.feedback-status.ok { color: #137333; }
+.feedback-status.err { color: var(--danger); }
+
+/* 蜜罐：肉眼看不到，机器人会傻乎乎填进去 */
+.feedback-hp {
+  position: absolute !important;
+  left: -9999px !important;
+  width: 1px;
+  height: 1px;
+  opacity: 0;
+  pointer-events: none;
+}
+
+@media (max-width: 480px) {
+  .feedback-fab { right: 14px; bottom: 14px; padding: 10px 14px; }
+  .feedback-modal-panel { padding: 22px 18px 18px; }
+}
+
+@media (prefers-color-scheme: dark) {
+  .feedback-fab { box-shadow: 0 8px 22px rgba(0, 0, 0, .5); }
+  .feedback-field input, .feedback-field textarea { background: #1f2530; border-color: #2c3441; color: var(--ink); }
+  .feedback-btn-ghost { background: #1f2530; color: var(--ink); border-color: #2c3441; }
+}

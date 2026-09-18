@@ -1,0 +1,197 @@
+{
+  "id": "osaka-2025-8c31d1727d-q02",
+  "school": "大阪大学",
+  "year": "2025",
+  "subject": "情报科学研究科_情报数理学",
+  "text": "设 $t>0$，考虑微分方程\n$$t^2\\ddot x(t)-2t\\dot x(t)+2x(t)=4t^3\\log t \\qquad(*)$$\n(1) 通过变量替换 $s=\\log t$，求出关于 $x(s)$ 的微分方程；\n(2) 求解微分方程 $(*)$。",
+  "knowledge_points": [
+    "欧拉方程（Cauchy-Euler方程）",
+    "自变量替换 $s=\\log t$",
+    "常系数线性微分方程的特征方程",
+    "待定系数法（含共振情形）",
+    "非齐次项含对数与幂函数的组合"
+  ],
+  "question_type": "变系数常微分方程求解",
+  "method": [
+    "利用 $s=\\log t$ 把欧拉方程化为常系数线性微分方程",
+    "求解齐次方程的特征根",
+    "用待定系数法（设 $x_p=(As+B)e^{3s}$）求特解"
+  ],
+  "solution_steps": [
+    "计算 $dx/dt,\\ d^2x/dt^2$ 用 $s$ 的导数表示，代入原方程化简",
+    "求解所得常系数方程的齐次解",
+    "设特解形式求特解，写出通解并换回变量 $t$"
+  ],
+  "math_structure": {
+    "type": "euler_cauchy_ode_with_log_forcing",
+    "template": "t^2 x'' - 2t x' + 2x = 4t^3 log t via s=log t substitution",
+    "variable_count": 1
+  },
+  "difficulty": 4,
+  "answer": [
+    {
+      "label": "(1)",
+      "steps": [
+        "由 $s=\\log t$，$t=e^s$，链式法则给出 $\\dfrac{dx}{dt}=\\dfrac1t\\dfrac{dx}{ds}$，再对 $t$ 求导得 $\\dfrac{d^2x}{dt^2}=\\dfrac{1}{t^2}\\left(\\dfrac{d^2x}{ds^2}-\\dfrac{dx}{ds}\\right)$。",
+        "代入原方程：$t^2\\ddot x=\\dfrac{d^2x}{ds^2}-\\dfrac{dx}{ds}$，$-2t\\dot x=-2\\dfrac{dx}{ds}$，故左边化为 $\\dfrac{d^2x}{ds^2}-3\\dfrac{dx}{ds}+2x$。",
+        "右边 $4t^3\\log t=4e^{3s}s$，因此所求方程为 $x''(s)-3x'(s)+2x(s)=4se^{3s}$。"
+      ]
+    },
+    {
+      "label": "(2)",
+      "steps": [
+        "齐次方程 $x''-3x'+2x=0$ 的特征方程 $r^2-3r+2=0$ 给出 $r=1,2$，齐次解 $x_h(s)=C_1e^{s}+C_2e^{2s}$。",
+        "设特解 $x_p=(As+B)e^{3s}$，代入并合并同幂次的 $s$ 项，得 $x_p''-3x_p'+2x_p=(2As+2B+3A)e^{3s}$，令其等于 $4se^{3s}$，得 $2A=4\\Rightarrow A=2$，$2B+3A=0\\Rightarrow B=-3$，故 $x_p=(2s-3)e^{3s}$。",
+        "通解为 $x(s)=C_1e^{s}+C_2e^{2s}+(2s-3)e^{3s}$，代回 $s=\\log t$（$e^{ns}=t^n$）得 $x(t)=C_1t+C_2t^2+(2\\log t-3)t^3$。",
+        "验算：设 $x=t^3(2\\log t-3)$，求得 $x'=t^2(6\\log t-7)$，$x''=t(12\\log t-8)$，代入原方程左边 $t^2x''-2tx'+2x=t^3[(12\\log t-8)-2(6\\log t-7)+2(2\\log t-3)]=t^3\\cdot4\\log t=4t^3\\log t$，与右边一致，特解正确。"
+      ]
+    }
+  ],
+  "practice_questions": [
+    {
+      "text": "求解欧拉方程 $t^2x''-2tx'+2x=0\\ (t>0)$。",
+      "knowledge_points": [
+        "欧拉方程通解求法"
+      ],
+      "question_type": "齐次欧拉方程求解",
+      "method": [
+        "设 $x=t^r$ 代入求特征方程"
+      ],
+      "solution_steps": [
+        "代入 $x=t^r$ 求特征方程",
+        "求根并写出通解"
+      ],
+      "math_structure": {
+        "type": "euler_cauchy_homogeneous",
+        "template": "t^2x''-2tx'+2x=0",
+        "variable_count": 1
+      },
+      "difficulty": 1,
+      "estimated_minutes": 5,
+      "answer": [
+        {
+          "label": "通解",
+          "steps": [
+            "设 $x=t^r$，则 $x'=rt^{r-1}$，$x''=r(r-1)t^{r-2}$，代入得 $t^2\\cdot r(r-1)t^{r-2}-2t\\cdot rt^{r-1}+2t^r=[r(r-1)-2r+2]t^r=0$，特征方程 $r^2-3r+2=0$。",
+            "解得 $r=1,2$，故通解 $x(t)=C_1t+C_2t^2$。"
+          ]
+        }
+      ],
+      "id": "osaka-2025-8c31d1727d-q02-practice-01",
+      "school": "大阪大学",
+      "year": "2025"
+    },
+    {
+      "text": "利用变量替换 $s=\\log t$，求解方程 $t^2x''-2tx'+2x=t^3\\ (t>0)$。",
+      "knowledge_points": [
+        "欧拉方程变换",
+        "常系数非齐次方程待定系数法（非共振）"
+      ],
+      "question_type": "变系数非齐次方程求解",
+      "method": [
+        "用 $s=\\log t$ 化为常系数方程后用待定系数法求解"
+      ],
+      "solution_steps": [
+        "代入变换得常系数方程",
+        "设特解 $Ae^{3s}$ 求解常数",
+        "写出通解并换回 $t$"
+      ],
+      "math_structure": {
+        "type": "euler_cauchy_ode_with_power_forcing",
+        "template": "t^2x''-2tx'+2x=t^3 via s=log t",
+        "variable_count": 1
+      },
+      "difficulty": 2,
+      "estimated_minutes": 8,
+      "answer": [
+        {
+          "label": "解",
+          "steps": [
+            "由前述变换，方程化为 $x''(s)-3x'(s)+2x(s)=e^{3s}$（因为 $t^3=e^{3s}$，且没有 $\\log t$ 因子）。",
+            "设 $x_p=Ae^{3s}$，代入得 $(9A-9A+2A)e^{3s}=2Ae^{3s}=e^{3s}$，故 $A=\\tfrac12$。",
+            "通解 $x(s)=C_1e^s+C_2e^{2s}+\\tfrac12e^{3s}$，换回 $t$ 得 $x(t)=C_1t+C_2t^2+\\tfrac12t^3$。"
+          ]
+        }
+      ],
+      "id": "osaka-2025-8c31d1727d-q02-practice-02",
+      "school": "大阪大学",
+      "year": "2025"
+    },
+    {
+      "text": "利用变量替换 $s=\\log t$，求解方程 $t^2x''-2tx'+2x=6t^2\\ (t>0)$（注意共振情形）。",
+      "knowledge_points": [
+        "欧拉方程变换",
+        "共振情形的待定系数法"
+      ],
+      "question_type": "变系数非齐次方程求解（共振）",
+      "method": [
+        "化为常系数方程后，因右端与齐次解重复需设 $x_p=Ase^{2s}$"
+      ],
+      "solution_steps": [
+        "代入变换得常系数方程",
+        "识别共振并设正确特解形式",
+        "求解常数并换回 $t$"
+      ],
+      "math_structure": {
+        "type": "euler_cauchy_ode_resonant_forcing",
+        "template": "t^2x''-2tx'+2x=6t^2 via s=log t (resonant case)",
+        "variable_count": 1
+      },
+      "difficulty": 3,
+      "estimated_minutes": 12,
+      "answer": [
+        {
+          "label": "解",
+          "steps": [
+            "变换后方程为 $x''(s)-3x'(s)+2x(s)=6e^{2s}$；因 $e^{2s}$ 已是齐次解，设 $x_p=Ase^{2s}$。",
+            "计算 $x_p'=A(1+2s)e^{2s}$，$x_p''=A(4+4s)e^{2s}$，代入得 $x_p''-3x_p'+2x_p=A[(4+4s)-3(1+2s)+2s]e^{2s}=Ae^{2s}$，令其等于 $6e^{2s}$ 得 $A=6$。",
+            "通解 $x(s)=C_1e^s+C_2e^{2s}+6se^{2s}$，换回 $t$：$x(t)=C_1t+C_2t^2+6t^2\\log t$。"
+          ]
+        }
+      ],
+      "id": "osaka-2025-8c31d1727d-q02-practice-03",
+      "school": "大阪大学",
+      "year": "2025"
+    },
+    {
+      "text": "利用变量替换 $s=\\log t$，求解方程 $t^2x''-2tx'+2x=6t^3\\log t\\ (t>0)$。",
+      "knowledge_points": [
+        "欧拉方程变换",
+        "对数与幂函数组合的待定系数法"
+      ],
+      "question_type": "变系数非齐次方程求解",
+      "method": [
+        "化为常系数方程后设 $x_p=(As+B)e^{3s}$ 求解"
+      ],
+      "solution_steps": [
+        "代入变换得常系数方程",
+        "设特解形式求解常数",
+        "换回变量 $t$ 并核验"
+      ],
+      "math_structure": {
+        "type": "euler_cauchy_ode_with_log_forcing",
+        "template": "t^2x''-2tx'+2x=6t^3 log t via s=log t",
+        "variable_count": 1
+      },
+      "difficulty": 4,
+      "estimated_minutes": 15,
+      "answer": [
+        {
+          "label": "解",
+          "steps": [
+            "变换后方程为 $x''(s)-3x'(s)+2x(s)=6se^{3s}$。设 $x_p=(As+B)e^{3s}$，代入并合并得 $(2As+2B+3A)e^{3s}=6se^{3s}$，故 $2A=6\\Rightarrow A=3$，$2B+3A=0\\Rightarrow B=-\\tfrac92$。",
+            "通解 $x(s)=C_1e^{s}+C_2e^{2s}+\\left(3s-\\tfrac92\\right)e^{3s}$，换回 $t$：$x(t)=C_1t+C_2t^2+\\left(3\\log t-\\tfrac92\\right)t^3$。",
+            "核验：与原题方法相同（右端系数由 $4$ 改为 $6$，得到 $A=3$ 而非 $2$），代入验证左边最高阶对数项系数为 $2A=6$，与右端 $6t^3\\log t$ 的系数一致。"
+          ]
+        }
+      ],
+      "id": "osaka-2025-8c31d1727d-q02-practice-04",
+      "school": "大阪大学",
+      "year": "2025"
+    }
+  ],
+  "source_question": "数学解析 2",
+  "source_pdf": "大阪大学/情报科学研究科/情报数理学/大阪大学_情报科学研究科_情报数理学_2025_数学过去问.pdf",
+  "source_type": "官方过去问",
+  "subject_category": "微分方程"
+}

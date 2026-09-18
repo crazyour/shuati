@@ -1,0 +1,183 @@
+{
+  "id": "hokkaido-2025-5fa11c15a1-q04",
+  "school": "北海道大学",
+  "year": "2025",
+  "subject": "情报科学院_情报理工学",
+  "text": "求复素幂级数的收束圆中心与收束半径：\n$$\\sum_{n=0}^{\\infty} (n+1)(z+1)^n$$",
+  "knowledge_points": [
+    "幂级数收束性",
+    "收束圆",
+    "根式判别法",
+    "比值判别法",
+    "复变函数"
+  ],
+  "question_type": "计算题",
+  "method": [
+    "根式判别法（Cauchy-Hadamard）",
+    "比值判别法",
+    "收束半径公式"
+  ],
+  "solution_steps": [
+    "识别级数系数",
+    "应用判别法求收束半径",
+    "写出收束圆方程"
+  ],
+  "math_structure": {
+    "type": "power_series_radius_of_convergence",
+    "template": "$\\sum_{n=0}^{\\infty} a_n(z-z_0)^n$，$R = \\frac{1}{\\limsup \\sqrt[n]{|a_n|}}$",
+    "variable_count": 1
+  },
+  "difficulty": 2,
+  "answer": [
+    {
+      "label": "收束半径的确定",
+      "steps": [
+        "将级数改写为标准形式。令 $w = z + 1$，则级数变为 $\\sum_{n=0}^{\\infty} (n+1) w^n$",
+        "级数的系数为 $a_n = n + 1$，形式为 $\\sum_{n=0}^{\\infty} a_n w^n$",
+        "使用根式判别法（Cauchy-Hadamard）：",
+        "$$\\limsup_{n \\to \\infty} \\sqrt[n]{|a_n|} = \\limsup_{n \\to \\infty} \\sqrt[n]{n+1}$$",
+        "当 $n \\to \\infty$ 时，$\\sqrt[n]{n+1} \\to 1$（因为 $\\lim_{n \\to \\infty} n^{1/n} = 1$）",
+        "因此 $\\limsup_{n \\to \\infty} \\sqrt[n]{n+1} = 1$",
+        "收束半径 $R = \\frac{1}{1} = 1$"
+      ]
+    },
+    {
+      "label": "收束圆的描述",
+      "steps": [
+        "由于 $w = z + 1$，原级数在 $|w| < 1$ 时收束",
+        "即 $|z + 1| < 1$ 时级数收束",
+        "**收束圆中心**：$z_0 = -1$",
+        "**收束半径**：$R = 1$",
+        "**收束圆方程**：$|z - (-1)| < 1$ 或 $|z + 1| < 1$"
+      ]
+    }
+  ],
+  "practice_questions": [
+    {
+      "text": "求幂级数 $\\sum_{n=0}^{\\infty} \\frac{(z-2i)^n}{n!}$ 的收束半径与收束圆中心。",
+      "knowledge_points": [
+        "幂级数收束",
+        "阶乘型级数",
+        "收束半径计算"
+      ],
+      "question_type": "计算题",
+      "method": [
+        "比值判别法",
+        "收束半径公式"
+      ],
+      "solution_steps": [
+        "识别系数",
+        "计算相邻项比值的极限",
+        "确定收束半径"
+      ],
+      "math_structure": {
+        "type": "power_series_factorial",
+        "template": "$\\sum \\frac{(z-z_0)^n}{n!}$，收束半径为无穷",
+        "variable_count": 1
+      },
+      "difficulty": 2,
+      "estimated_minutes": 7,
+      "answer": [
+        {
+          "label": "收束半径与中心",
+          "steps": [
+            "系数 $a_n = \\frac{1}{n!}$",
+            "使用比值判别法：$\\lim_{n \\to \\infty} \\left|\\frac{a_{n+1}}{a_n}\\right| = \\lim_{n \\to \\infty} \\frac{n!}{(n+1)!} = \\lim_{n \\to \\infty} \\frac{1}{n+1} = 0$",
+            "收束半径 $R = \\frac{1}{0} = \\infty$，级数在整个复平面收束",
+            "**收束圆中心**：$z_0 = 2i$",
+            "**收束半径**：$R = \\infty$（整个复平面）"
+          ]
+        }
+      ],
+      "id": "hokkaido-2025-5fa11c15a1-q04-practice-01",
+      "school": "北海道大学",
+      "year": "2025"
+    },
+    {
+      "text": "求幂级数 $\\sum_{n=1}^{\\infty} n(z-1)^n$ 的收束圆。",
+      "knowledge_points": [
+        "线性系数的幂级数",
+        "收束性分析",
+        "根式判别法"
+      ],
+      "question_type": "计算题",
+      "method": [
+        "根式判别法",
+        "幂级数的收束条件"
+      ],
+      "solution_steps": [
+        "识别系数和中心",
+        "计算根式判别法的极限",
+        "确定收束圆"
+      ],
+      "math_structure": {
+        "type": "power_series_linear_coefficient",
+        "template": "$\\sum n(z-z_0)^n$，系数为 $n$",
+        "variable_count": 1
+      },
+      "difficulty": 2,
+      "estimated_minutes": 8,
+      "answer": [
+        {
+          "label": "收束圆的确定",
+          "steps": [
+            "级数 $\\sum_{n=1}^{\\infty} n(z-1)^n$ 的系数为 $a_n = n$",
+            "根式判别法：$\\limsup_{n \\to \\infty} \\sqrt[n]{n} = 1$（标准极限）",
+            "收束半径 $R = 1$",
+            "**收束圆中心**：$z_0 = 1$",
+            "**收束圆方程**：$|z - 1| < 1$",
+            "**收束半径**：$R = 1$"
+          ]
+        }
+      ],
+      "id": "hokkaido-2025-5fa11c15a1-q04-practice-02",
+      "school": "北海道大学",
+      "year": "2025"
+    },
+    {
+      "text": "求幂级数 $\\sum_{n=0}^{\\infty} 2^n (z+i)^n$ 的收束圆。",
+      "knowledge_points": [
+        "指数型系数",
+        "收束半径计算",
+        "几何级数"
+      ],
+      "question_type": "计算题",
+      "method": [
+        "根式判别法或比值判别法",
+        "收束条件"
+      ],
+      "solution_steps": [
+        "提取系数",
+        "计算极限",
+        "确定收束圆"
+      ],
+      "math_structure": {
+        "type": "power_series_exponential_coefficient",
+        "template": "$\\sum c^n(z-z_0)^n$，$R = 1/c$",
+        "variable_count": 1
+      },
+      "difficulty": 2,
+      "estimated_minutes": 7,
+      "answer": [
+        {
+          "label": "收束圆的计算",
+          "steps": [
+            "级数可写为 $\\sum_{n=0}^{\\infty} 2^n (z+i)^n = \\sum_{n=0}^{\\infty} [2(z+i)]^n$",
+            "这是几何级数，收束条件为 $|2(z+i)| < 1$，即 $|z+i| < \\frac{1}{2}$",
+            "或用根式判别法：系数 $a_n = 2^n$，$\\limsup \\sqrt[n]{2^n} = 2$，收束半径 $R = \\frac{1}{2}$",
+            "**收束圆中心**：$z_0 = -i$",
+            "**收束半径**：$R = \\frac{1}{2}$",
+            "**收束圆方程**：$|z + i| < \\frac{1}{2}$"
+          ]
+        }
+      ],
+      "id": "hokkaido-2025-5fa11c15a1-q04-practice-03",
+      "school": "北海道大学",
+      "year": "2025"
+    }
+  ],
+  "source_question": "問4[4]",
+  "source_pdf": "北海道大学/情报科学院/情报理工学/北海道大学_情报科学院_情报理工学_2025_数学过去问_专业科目2.pdf",
+  "source_type": "官方过去问",
+  "subject_category": "复变函数"
+}

@@ -1,0 +1,197 @@
+{
+  "id": "isct-2011-85521b397d-q03",
+  "school": "东京科学大学",
+  "year": "2011",
+  "subject": "理工学系_数学系",
+  "text": "设 $f$ 是左开区间 $I=(0,1]$ 上的实数值连续函数。证明下列命题 (A) 与 (B) 等价：\n(A) $f$ 在 $I$ 上一致连续。\n(B) 对任意收敛于 $0$ 的数列 $\\{x_n\\}_{n=1}^\\infty\\subset I$，$\\{f(x_n)\\}_{n=1}^\\infty$ 都收敛。",
+  "knowledge_points": [
+    "一致连续性的定义",
+    "Cauchy列判别法",
+    "连续函数在紧集上一致连续",
+    "极限存在的柯西准则"
+  ],
+  "question_type": "等价性证明题",
+  "method": [
+    "(A)⇒(B): 用一致连续性证明像列是Cauchy列",
+    "(B)⇒(A): 用反证法结合插值数列证明极限存在，再延拓为紧区间上的连续函数"
+  ],
+  "solution_steps": [
+    "证明(A)⇒(B): 利用一致连续的 $\\varepsilon$-$\\delta$ 定义控制 $|f(x_n)-f(x_m)|$，得像列为Cauchy列，故收敛",
+    "证明(B)⇒(A): 先证明(B)蕴含 $\\lim_{x\\to0^+}f(x)$ 存在（用插值数列排除极限值不同的情形）",
+    "把 $f$ 延拓为 $[0,1]$ 上连续函数 $g$，由 $[0,1]$ 紧性得 $g$ 一致连续，从而 $f=g|_I$ 一致连续"
+  ],
+  "math_structure": {
+    "type": "uniform_continuity_sequential_criterion",
+    "template": "$f\\in C(I),\\ I=(0,1]$: 一致连续 $\\Leftrightarrow$ 对任意 $x_n\\to0$，$f(x_n)$ 收敛",
+    "variable_count": 0
+  },
+  "difficulty": 4,
+  "answer": [
+    {
+      "label": "(A)⇒(B)",
+      "steps": [
+        "设 $f$ 在 $I$ 上一致连续。取任意数列 $x_n\\to0,\\ x_n\\in I$。由一致连续性，对任意 $\\varepsilon>0$，存在 $\\delta>0$，使得只要 $|x-y|<\\delta\\ (x,y\\in I)$，就有 $|f(x)-f(y)|<\\varepsilon$。",
+        "因 $\\{x_n\\}$ 收敛（到0），它是 Cauchy 列：存在 $N$，当 $n,m>N$ 时 $|x_n-x_m|<\\delta$，从而 $|f(x_n)-f(x_m)|<\\varepsilon$。",
+        "这说明 $\\{f(x_n)\\}$ 是实数中的 Cauchy 列，由实数完备性，$\\{f(x_n)\\}$ 收敛。故(B)成立。"
+      ]
+    },
+    {
+      "label": "(B)⇒(A)",
+      "steps": [
+        "先证明(B)蕴含极限 $\\lim_{x\\to0^+}f(x)$ 存在：设 $x_n\\to0$，$y_n\\to0$ 是 $I$ 中两个数列，由(B)，$f(x_n)\\to L_1$，$f(y_n)\\to L_2$。构造交错数列 $z_{2k-1}=x_k,\\ z_{2k}=y_k$，则 $z_n\\to0$，由(B)，$f(z_n)$ 收敛，其子列 $f(x_k)\\to L_1$ 与 $f(y_k)\\to L_2$ 必须相等，故 $L_1=L_2=:L$。这说明对任意趋于0的数列极限都相等于同一 $L$，即 $\\lim_{x\\to0^+}f(x)=L$ 存在。",
+        "定义 $g:[0,1]\\to\\mathbb R$，$g(x)=f(x)\\ (x\\in(0,1]),\\ g(0)=L$。由上述极限的存在性，$g$ 在 $x=0$ 处连续，又 $f$ 在 $(0,1]$ 上连续，故 $g$ 在整个闭区间 $[0,1]$ 上连续。",
+        "$[0,1]$ 是紧集（有界闭区间），连续函数在紧集上必一致连续（Heine 定理），故 $g$ 在 $[0,1]$ 上一致连续。",
+        "$f=g|_{(0,1]}$，作为一致连续函数在子集上的限制仍一致连续，故 $f$ 在 $I$ 上一致连续，即(A)成立。"
+      ]
+    }
+  ],
+  "practice_questions": [
+    {
+      "text": "证明 $f(x)=\\sin(1/x)$ 在 $I=(0,1]$ 上不一致连续（提示：构造两个趋于0但函数值差不趋于0的数列，或用本题的等价条件）。",
+      "knowledge_points": [
+        "一致连续的反例",
+        "序列判别法"
+      ],
+      "question_type": "反例证明",
+      "method": [
+        "构造数列使函数值不收敛"
+      ],
+      "solution_steps": [
+        "取 $x_n=1/(n\\pi)\\to0$ 使 $\\sin(1/x_n)=0$",
+        "取 $y_n=2/((2n+1)\\pi)\\to0$ 使 $\\sin(1/y_n)=\\pm1$",
+        "两者极限不同，由本题(B)不满足，故不一致连续"
+      ],
+      "math_structure": {
+        "type": "uniform_continuity_counterexample",
+        "template": "$f(x)=\\sin(1/x)$ on $(0,1]$",
+        "variable_count": 0
+      },
+      "difficulty": 2,
+      "estimated_minutes": 8,
+      "answer": [
+        {
+          "label": "证明",
+          "steps": [
+            "取 $x_n=\\dfrac{1}{n\\pi}\\to0$，则 $f(x_n)=\\sin(n\\pi)=0\\to0$",
+            "取 $y_n=\\dfrac{2}{(4n+1)\\pi}\\to0$，则 $f(y_n)=\\sin\\left(\\dfrac{(4n+1)\\pi}{2}\\right)=1\\to1$",
+            "由(B)条件，若一致连续则对任意趋于0数列 $f$ 值都应收敛且极限一致，但这里出现极限 $0$ 和 $1$ 两个不同值（用交错数列会使 $f(z_n)$ 不收敛），矛盾，故 $f$ 在 $(0,1]$ 上不一致连续"
+          ]
+        }
+      ],
+      "id": "isct-2011-85521b397d-q03-practice-01",
+      "school": "东京科学大学",
+      "year": "2011"
+    },
+    {
+      "text": "证明 $f(x)=1/x$ 在 $(0,1]$ 上不一致连续，并说明其不满足条件(B)。",
+      "knowledge_points": [
+        "一致连续性判别",
+        "无界导致的不一致连续"
+      ],
+      "question_type": "反例证明",
+      "method": [
+        "取 $x_n=1/n\\to0$ 观察 $f(x_n)\\to\\infty$"
+      ],
+      "solution_steps": [
+        "取 $x_n=1/n$",
+        "计算 $f(x_n)=n\\to\\infty$，不收敛",
+        "由(B)不成立得(A)不成立"
+      ],
+      "math_structure": {
+        "type": "uniform_continuity_counterexample",
+        "template": "$f(x)=1/x$ on $(0,1]$",
+        "variable_count": 0
+      },
+      "difficulty": 1,
+      "estimated_minutes": 5,
+      "answer": [
+        {
+          "label": "证明",
+          "steps": [
+            "取 $x_n=1/n\\to0\\ (n\\to\\infty)$，则 $f(x_n)=n\\to+\\infty$，即 $\\{f(x_n)\\}$ 不收敛（不存在有限极限）",
+            "这直接违反条件(B)（存在趋于0的数列使 $f(x_n)$ 不收敛）",
+            "由本题等价性，$f$ 在 $(0,1]$ 上不一致连续"
+          ]
+        }
+      ],
+      "id": "isct-2011-85521b397d-q03-practice-02",
+      "school": "东京科学大学",
+      "year": "2011"
+    },
+    {
+      "text": "证明 $f(x)=x\\sin(1/x)$（并令 $f(0)=0$）在 $(0,1]$ 上一致连续。",
+      "knowledge_points": [
+        "有界导数或延拓法判定一致连续"
+      ],
+      "question_type": "一致连续性证明",
+      "method": [
+        "延拓到 $[0,1]$ 并用紧性"
+      ],
+      "solution_steps": [
+        "验证 $\\lim_{x\\to0^+}f(x)=0$ 存在（因 $|f(x)|\\le x\\to0$）",
+        "延拓 $g(0)=0$ 得 $[0,1]$ 上连续函数",
+        "由紧性得一致连续，从而 $f$ 一致连续"
+      ],
+      "math_structure": {
+        "type": "uniform_continuity_via_extension",
+        "template": "$f(x)=x\\sin(1/x)$",
+        "variable_count": 0
+      },
+      "difficulty": 3,
+      "estimated_minutes": 10,
+      "answer": [
+        {
+          "label": "证明",
+          "steps": [
+            "因 $|f(x)|=|x\\sin(1/x)|\\le|x|\\to0$ 当 $x\\to0^+$，故 $\\lim_{x\\to0^+}f(x)=0$ 存在",
+            "定义 $g(x)=f(x)\\ (x\\in(0,1]),\\ g(0)=0$，则 $g$ 在 $[0,1]$ 上连续（$x=0$ 处的连续性由上述极限保证，$(0,1]$ 上连续显然）",
+            "$[0,1]$ 紧致，故 $g$ 一致连续，限制到 $(0,1]$ 得 $f$ 一致连续"
+          ]
+        }
+      ],
+      "id": "isct-2011-85521b397d-q03-practice-03",
+      "school": "东京科学大学",
+      "year": "2011"
+    },
+    {
+      "text": "利用本题结论证明：若 $f\\in C(0,1]$ 且 $\\lim_{x\\to0^+}f(x)$ 不存在（如 $f(x)=\\sin(1/x)$），则存在两个趋于0的数列使 $f$ 沿它们收敛到不同极限。",
+      "knowledge_points": [
+        "极限不存在的刻画",
+        "序列判别法的逆用"
+      ],
+      "question_type": "理论推导题",
+      "method": [
+        "反证法结合本题(B)⇒(A)证明中的插值技巧"
+      ],
+      "solution_steps": [
+        "假设对任意趋于0数列 $f(x_n)$ 都收敛",
+        "证明这蕴含所有极限值相等（用插值数列）",
+        "从而 $\\lim_{x\\to0^+}f(x)$ 存在，与假设矛盾"
+      ],
+      "math_structure": {
+        "type": "limit_nonexistence_implies_divergent_subsequences",
+        "template": "$\\lim_{x\\to0^+}f(x)$ 不存在 $\\Rightarrow$ 存在两数列给出不同极限",
+        "variable_count": 0
+      },
+      "difficulty": 4,
+      "estimated_minutes": 12,
+      "answer": [
+        {
+          "label": "证明",
+          "steps": [
+            "若不存在两个给出不同极限的数列，则所有趋于0的数列 $x_n$ 都使 $f(x_n)$ 收敛到同一极限值 $L$（否则若极限不同即得矛盾的两数列）",
+            "取任意固定数列 $x_n\\to0$，$f(x_n)\\to L$；对任意 $\\varepsilon>0$，用反证法可证明存在 $\\delta>0$ 使 $0<x<\\delta\\Rightarrow|f(x)-L|<\\varepsilon$（否则可抽取违反数列，重新导出两个不同极限的矛盾），这正是 $\\lim_{x\\to0^+}f(x)=L$ 的定义",
+            "故若 $\\lim_{x\\to0^+}f(x)$ 不存在，必存在两个趋于0数列给出不同的（或不存在）极限值，如 $f(x)=\\sin(1/x)$ 的例子所示"
+          ]
+        }
+      ],
+      "id": "isct-2011-85521b397d-q03-practice-04",
+      "school": "东京科学大学",
+      "year": "2011"
+    }
+  ],
+  "source_question": "午前 問2(2)",
+  "source_pdf": "东京科学大学/理工学系/数学系/东京科学大学_理工学系_数学系_2011_数学过去问.pdf",
+  "source_type": "官方过去问",
+  "subject_category": "微积分"
+}

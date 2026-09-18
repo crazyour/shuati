@@ -1,0 +1,203 @@
+{
+  "id": "kyoto-2022-a1fd7a7414-q01",
+  "school": "京都大学",
+  "year": "2022",
+  "subject": "情报学研究科_数理工学",
+  "text": "以下の各命題について，正しければ証明し，正しくなければ理由とともに反例をあげよ。\n\n(i) 数列 $\\{a_n\\}$ について，$\\sum_{n=1}^{\\infty} a_n$ が収束すれば $\\lim_{n \\to \\infty} a_n = 0$ が成り立つ。\n\n(ii) 数列 $\\{a_n\\}$ について，$\\lim_{n \\to \\infty} a_n = 0$ ならば $\\sum_{n=1}^{\\infty} a_n$ は収束する。\n\n(iii) $\\mathbb{R}$ 上の広義単調増加な $C^1$ 級関数 $f(x)$ について，$\\lim_{x \\to \\infty} \\frac{df}{dx}(x) = 0$ ならば $\\lim_{x \\to \\infty} f(x)$ は収束する。\n\n(iv) $\\mathbb{R}$ 上の広義単調増加な $C^1$ 級関数 $f(x)$ について，$\\lim_{x \\to \\infty} f(x)$ が収束すれば $\\lim_{x \\to \\infty} \\frac{df}{dx}(x) = 0$ である。",
+  "knowledge_points": [
+    "級数の収束判定定理",
+    "必要条件と十分条件",
+    "単調関数の性質",
+    "導関数の極限",
+    "微分積分学の基本定理",
+    "極限の定義"
+  ],
+  "question_type": "命題の真偽判定と証明または反例",
+  "method": [
+    "級数収束の定義と部分和の極限を利用",
+    "反例の構成（調和級数、平方根関数）",
+    "単調性と有界性の関係",
+    "導関数の非負性を利用した論証"
+  ],
+  "solution_steps": [
+    "各命題の真偽を判定する",
+    "真の命題は定義から厳密に証明する",
+    "偽の命題は具体的な反例を構成し理由を説明する"
+  ],
+  "math_structure": {
+    "type": "series_convergence_propositions",
+    "template": "Given sequence $\\{a_n\\}$, determine if: (i) convergence of series implies limit zero; (ii) limit zero implies series convergence; (iii) for monotone increasing $C^1$ function, zero derivative limit implies convergence of function limit; (iv) convergence of function limit implies zero derivative limit",
+    "variable_count": 4
+  },
+  "difficulty": 2,
+  "answer": [
+    {
+      "label": "(i) 真",
+      "steps": [
+        "級数 $\\sum_{n=1}^{\\infty} a_n$ が収束すると仮定し，その和を $S$ とする：$S = \\lim_{N \\to \\infty} S_N$，ここで $S_N = \\sum_{n=1}^{N} a_n$",
+        "部分和の列 $\\{S_N\\}$ と $\\{S_{N-1}\\}$ はともに $S$ に収束する",
+        "一般項 $a_N$ は部分和の差で表される：$a_N = S_N - S_{N-1}$",
+        "両辺の極限をとると：$\\lim_{N \\to \\infty} a_N = \\lim_{N \\to \\infty} (S_N - S_{N-1}) = S - S = 0$",
+        "したがって命題は真である"
+      ]
+    },
+    {
+      "label": "(ii) 偽",
+      "steps": [
+        "反例：調和級数の一般項を $a_n = \\frac{1}{n}$ とする",
+        "$\\lim_{n \\to \\infty} \\frac{1}{n} = 0$ が成り立つ",
+        "しかし級数 $\\sum_{n=1}^{\\infty} \\frac{1}{n}$ は発散する（積分判定法：$\\int_1^{\\infty} \\frac{1}{x} dx = \\infty$）",
+        "理由：級数収束の必要条件（項が 0 に収束）は十分条件ではない。項が十分に速く 0 に収束することが必要である"
+      ]
+    },
+    {
+      "label": "(iii) 偽",
+      "steps": [
+        "反例：$f(x) = \\sqrt{x}$ を考える",
+        "導関数は $f'(x) = \\frac{1}{2\\sqrt{x}}$",
+        "$\\lim_{x \\to \\infty} f'(x) = \\lim_{x \\to \\infty} \\frac{1}{2\\sqrt{x}} = 0$ が成り立つ",
+        "しかし $\\lim_{x \\to \\infty} f(x) = \\lim_{x \\to \\infty} \\sqrt{x} = \\infty$ であり収束しない",
+        "理由：導関数が 0 に収束しても，その積分が無限大に発散する可能性がある"
+      ]
+    },
+    {
+      "label": "(iv) 真",
+      "steps": [
+        "$f$ は広義単調増加であるため，すべての $x$ で $f'(x) \\geq 0$",
+        "$\\lim_{x \\to \\infty} f(x) = L < \\infty$ が存在すると仮定する",
+        "$L$ より大きい値に $f$ は到達できないため，$f$ は上に有界：すべての $x$ で $f(x) \\leq L$",
+        "任意の $\\epsilon > 0$ に対し，$\\exists X > 0$ such that $x > X \\Rightarrow L - \\epsilon < f(x) < L$",
+        "基本定理より $f(x) = f(X) + \\int_X^x f'(t) dt$。$f(x) \\to L$ ならば $\\int_X^{\\infty} f'(t) dt = L - f(X) < \\infty$",
+        "$f' \\geq 0$ で積分が有限であれば，$f'(x) \\to 0$（背理法：$\\limsup f' \\geq \\delta > 0$ なら無限個の区間で $f' \\geq \\delta/2$ となり積分が発散）",
+        "したがって $\\lim_{x \\to \\infty} f'(x) = 0$"
+      ]
+    }
+  ],
+  "practice_questions": [
+    {
+      "text": "数列 $\\{a_n\\}$ について，$\\sum_{n=1}^{\\infty} a_n$ が収束することと $a_n \\to 0$ は何が異なるか，$a_n = \\frac{(-1)^n}{n}$ を例に説明せよ。",
+      "knowledge_points": [
+        "級数の収束判定",
+        "交項級数判定法",
+        "必要条件と十分条件"
+      ],
+      "question_type": "級数収束の概念理解",
+      "method": [
+        "交項級数判定法の適用",
+        "部分和の計算"
+      ],
+      "solution_steps": [
+        "一般項が 0 に収束することを確認",
+        "交項級数判定法を適用",
+        "級数の収束を示す"
+      ],
+      "math_structure": {
+        "type": "alternating_series_analysis",
+        "template": "Analyze convergence of $\\sum (-1)^n a_n$ using alternating series test",
+        "variable_count": 1
+      },
+      "difficulty": 1,
+      "estimated_minutes": 8,
+      "answer": [
+        {
+          "label": "違いと例の説明",
+          "steps": [
+            "$a_n \\to 0$ は級数収束の必要条件だが十分条件ではない",
+            "$a_n = \\frac{(-1)^n}{n}$ の場合，$|a_n| \\to 0$",
+            "交項級数判定法：$|a_n|$ は単調減少で 0 に収束するため $\\sum_{n=1}^{\\infty} \\frac{(-1)^n}{n}$ は収束（条件収束）",
+            "一方 $\\sum_{n=1}^{\\infty} |a_n| = \\sum_{n=1}^{\\infty} \\frac{1}{n}$ は発散",
+            "結論：$a_n \\to 0$ かつ $|a_n|$ が単調減少であれば交項級数は収束するが，一般には不十分"
+          ]
+        }
+      ],
+      "id": "kyoto-2022-a1fd7a7414-q01-practice-01",
+      "school": "京都大学",
+      "year": "2022"
+    },
+    {
+      "text": "単調増加な $C^1$ 級関数 $g(x) = x - \\sin x$ について，$\\lim_{x \\to \\infty} g(x)$ と $\\lim_{x \\to \\infty} g'(x)$ を求め，上の命題 (iv) が成り立つことを確認せよ。",
+      "knowledge_points": [
+        "単調関数の極限",
+        "導関数の計算",
+        "三角関数の有界性"
+      ],
+      "question_type": "具体例による確認",
+      "method": [
+        "導関数の計算",
+        "単調性の確認",
+        "極限計算"
+      ],
+      "solution_steps": [
+        "導関数を求める",
+        "単調増加を確認",
+        "極限を計算"
+      ],
+      "math_structure": {
+        "type": "specific_function_limit",
+        "template": "For $g(x) = x - \\sin x$, find $\\lim_{x \\to \\infty} g(x)$ and $\\lim_{x \\to \\infty} g'(x)$",
+        "variable_count": 1
+      },
+      "difficulty": 1,
+      "estimated_minutes": 6,
+      "answer": [
+        {
+          "label": "極限計算と確認",
+          "steps": [
+            "$g'(x) = 1 - \\cos x$",
+            "$|\\cos x| \\leq 1$ より $g'(x) \\geq 1 - 1 = 0$，すなわち $g$ は単調増加",
+            "$\\lim_{x \\to \\infty} g(x) = \\lim_{x \\to \\infty} (x - \\sin x)$。$|\\sin x| \\leq 1$ より $x - 1 \\leq g(x) \\leq x + 1$",
+            "はさみうちの定理により $\\lim_{x \\to \\infty} g(x) = \\infty$（発散）",
+            "実際には収束せず，命題 (iv) の対偶が示される：収束しないなら $g'(x) \\not\\to 0$",
+            "訂正：$g(x) = x - \\sin x$ は発散するため，命題 (iv) の仮定を満たさない"
+          ]
+        }
+      ],
+      "id": "kyoto-2022-a1fd7a7414-q01-practice-02",
+      "school": "京都大学",
+      "year": "2022"
+    },
+    {
+      "text": "単調増加な $C^1$ 級関数 $h(x) = 2 - e^{-x}$ について，$\\lim_{x \\to \\infty} h(x)$ と $\\lim_{x \\to \\infty} h'(x)$ を求めよ。",
+      "knowledge_points": [
+        "指数関数の極限",
+        "単調関数の収束",
+        "導関数の極限"
+      ],
+      "question_type": "具体例による検証",
+      "method": [
+        "導関数の計算",
+        "指数関数の性質の利用"
+      ],
+      "solution_steps": [
+        "導関数を求める",
+        "単調増加を確認",
+        "両極限を計算"
+      ],
+      "math_structure": {
+        "type": "exponential_monotone_function",
+        "template": "For $h(x) = 2 - e^{-x}$, compute limits of function and derivative as $x \\to \\infty$",
+        "variable_count": 1
+      },
+      "difficulty": 1,
+      "estimated_minutes": 5,
+      "answer": [
+        {
+          "label": "極限の計算",
+          "steps": [
+            "$h'(x) = e^{-x}$",
+            "$x \\to \\infty$ のとき $e^{-x} \\to 0$ より $h'(x) \\to 0$",
+            "$\\lim_{x \\to \\infty} h(x) = \\lim_{x \\to \\infty} (2 - e^{-x}) = 2 - 0 = 2$（有限値に収束）",
+            "命題 (iv) が成り立つことが確認される：$h$ が単調増加で収束する $\\Rightarrow h'(x) \\to 0$"
+          ]
+        }
+      ],
+      "id": "kyoto-2022-a1fd7a7414-q01-practice-03",
+      "school": "京都大学",
+      "year": "2022"
+    }
+  ],
+  "source_question": "基礎数学 I - 問１",
+  "source_pdf": "京都大学/情报学研究科/数理工学/京都大学_情报学研究科_数理工学_2022_数学过去问.pdf",
+  "source_type": "官方过去问",
+  "subject_category": "微积分"
+}

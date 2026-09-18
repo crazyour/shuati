@@ -1,0 +1,203 @@
+{
+  "id": "nagoya-2002-70eece48bf-q05",
+  "school": "名古屋大学",
+  "year": "2002",
+  "subject": "多元数理科学研究科_全专攻",
+  "text": "考虑微分方程\n$$\\frac{d}{dt}\\begin{pmatrix}x\\\\y\\\\z\\end{pmatrix}=\\begin{pmatrix}0&-c&b\\\\c&0&-a\\\\-b&a&0\\end{pmatrix}\\begin{pmatrix}x\\\\y\\\\z\\end{pmatrix}$$\n的解 $(x(t),y(t),z(t))\\ (t\\in\\mathbb{R})$，其中 $a,b,c$ 为满足 $a^2+b^2+c^2=1$ 的实常数。回答以下问题：\n(1) 设 $p(t)=\\begin{pmatrix}x(t)\\\\y(t)\\\\z(t)\\end{pmatrix}$，$\\Omega=\\begin{pmatrix}a\\\\b\\\\c\\end{pmatrix}$。证明 $\\|p(t)\\|^2$，$\\langle\\Omega,p(t)\\rangle$，$\\left\\|\\dfrac{dp(t)}{dt}\\right\\|^2$ 均不依赖于 $t$。其中对 $p=\\begin{pmatrix}p_1\\\\p_2\\\\p_3\\end{pmatrix},q=\\begin{pmatrix}q_1\\\\q_2\\\\q_3\\end{pmatrix}$，定义 $\\langle p,q\\rangle=p_1q_1+p_2q_2+p_3q_3$，$\\|p\\|^2=\\langle p,p\\rangle$。\n(2) 详细描述 $\\mathbb{R}^3$ 中点 $p(t)$ 的运动（将 $t$ 视为时间变量）。",
+  "knowledge_points": [
+    "反对称矩阵与叉乘",
+    "守恒量",
+    "旋转运动",
+    "刚体旋转方程",
+    "拉格朗日恒等式"
+  ],
+  "question_type": "常微分方程组的守恒量与几何运动分析",
+  "method": [
+    "识别方程为Ω×p的叉乘形式",
+    "利用内积对时间求导为0证明守恒量",
+    "利用拉格朗日恒等式|Ω×p|²=|Ω|²|p|²-(Ω·p)²",
+    "把方程解释为绕轴Ω的匀速转动"
+  ],
+  "solution_steps": [
+    "验证给定的反对称矩阵恰好对应向量Ω=(a,b,c)的叉乘算子，即dp/dt=Ω×p",
+    "对|p(t)|²、⟨Ω,p(t)⟩分别求导并利用叉乘的正交性证明为0，从而为常数",
+    "用拉格朗日恒等式表示|dp/dt|²=|Ω|²|p|²-(Ω·p)²，结合|Ω|=1及已证的两个守恒量得出该式也是常数",
+    "指出该系统的解是绕过原点、方向为Ω的轴做角速度为|Ω|=1的匀速圆周运动，轨迹为球面与垂直平面的交线（圆）"
+  ],
+  "math_structure": {
+    "type": "linear_ode_system_skew_symmetric_matrix",
+    "template": "dp/dt=Ω×p (Ω为单位向量，反对称矩阵形式)，证明|p|²、Ω·p、|dp/dt|²均为守恒量，并描述解的几何运动为绕轴Ω的匀速圆周运动",
+    "variable_count": 3
+  },
+  "difficulty": 4,
+  "answer": [
+    {
+      "label": "(1)",
+      "steps": [
+        "首先验证给定矩阵 $A=\\begin{pmatrix}0&-c&b\\\\c&0&-a\\\\-b&a&0\\end{pmatrix}$ 满足 $Ap=\\Omega\\times p$：直接计算 $\\Omega\\times p=(bp_3-cp_2,\\,cp_1-ap_3,\\,ap_2-bp_1)$，与$Ap$的三个分量逐一比对相符，故方程即 $\\dfrac{dp}{dt}=\\Omega\\times p$。",
+        "对 $\\|p(t)\\|^2$ 求导：$\\dfrac{d}{dt}\\|p\\|^2=2\\langle p,\\dfrac{dp}{dt}\\rangle=2\\langle p,\\Omega\\times p\\rangle=0$，因为叉乘 $\\Omega\\times p$ 恒与 $p$ 正交（叉积的基本性质），故 $\\|p(t)\\|^2$ 为常数。",
+        "对 $\\langle\\Omega,p(t)\\rangle$ 求导：$\\dfrac{d}{dt}\\langle\\Omega,p\\rangle=\\langle\\Omega,\\dfrac{dp}{dt}\\rangle=\\langle\\Omega,\\Omega\\times p\\rangle=0$，因为标量三重积中出现重复向量必为0，故此量也是常数。",
+        "对 $\\left\\|\\dfrac{dp}{dt}\\right\\|^2=\\|\\Omega\\times p\\|^2$，由拉格朗日恒等式 $\\|\\Omega\\times p\\|^2=\\|\\Omega\\|^2\\|p\\|^2-\\langle\\Omega,p\\rangle^2$。由假设 $\\|\\Omega\\|^2=a^2+b^2+c^2=1$为常数，且已证明$\\|p(t)\\|^2$与$\\langle\\Omega,p(t)\\rangle$均为常数，故右边整体为常数，从而$\\left\\|\\dfrac{dp}{dt}\\right\\|^2$也不依赖于$t$。"
+      ]
+    },
+    {
+      "label": "(2)",
+      "steps": [
+        "由(1)知 $p(t)$ 始终保持在半径 $R=\\|p(0)\\|$ 的球面上（因$\\|p(t)\\|$恒定），同时保持在与$\\Omega$相关的平面 $\\langle\\Omega,x\\rangle=h$（$h=\\langle\\Omega,p(0)\\rangle$为常数）上。",
+        "两者的交集（球面与平面的交）是一个圆，圆心位于沿$\\Omega$方向、坐标为$h\\Omega$的点（因为$\\|\\Omega\\|=1$），半径为$\\sqrt{R^2-h^2}$。",
+        "方程 $dp/dt=\\Omega\\times p$ 是绕过原点、方向为单位向量$\\Omega$的轴的无穷小旋转生成元，其解为 $p(t)=e^{tA}p(0)$，其中$e^{tA}$是绕$\\Omega$轴、角度为$t$（弧度）的旋转矩阵（罗德里格斯公式，因$\\|\\Omega\\|=1$）。",
+        "因此，$p(t)$ 描述的运动是：点在上述圆周上以角速度 $1$（弧度/单位时间，因为$|\\Omega|=1$）绕轴$\\Omega$做匀速圆周运动，周期为 $2\\pi$。"
+      ]
+    }
+  ],
+  "practice_questions": [
+    {
+      "text": "求方程组 $\\dfrac{dp}{dt}=\\Omega\\times p$（$\\Omega=(0,0,1)$）的显式解，设初值 $p(0)=(1,0,0)^T$。",
+      "knowledge_points": [
+        "旋转矩阵求解",
+        "特殊情形（绕z轴旋转）"
+      ],
+      "question_type": "常微分方程求解",
+      "method": [
+        "写出Ω=(0,0,1)对应的矩阵A",
+        "求解对应的线性ODE"
+      ],
+      "solution_steps": [
+        "写出矩阵A",
+        "求解方程",
+        "代入初值"
+      ],
+      "math_structure": {
+        "type": "rotation_about_z_axis_ode",
+        "template": "求解dp/dt=(0,0,1)×p的显式解",
+        "variable_count": 0
+      },
+      "difficulty": 2,
+      "estimated_minutes": 6,
+      "answer": [
+        {
+          "label": "求解",
+          "steps": [
+            "$\\Omega=(0,0,1)$对应$A=\\begin{pmatrix}0&-1&0\\\\1&0&0\\\\0&0&0\\end{pmatrix}$，方程为$\\dot x=-y,\\dot y=x,\\dot z=0$。",
+            "解得$x(t)=x(0)\\cos t-y(0)\\sin t,\\ y(t)=x(0)\\sin t+y(0)\\cos t,\\ z(t)=z(0)$（标准的绕z轴旋转公式）。",
+            "代入初值$(1,0,0)$：$x(t)=\\cos t,\\ y(t)=\\sin t,\\ z(t)=0$，即$p(t)=(\\cos t,\\sin t,0)$，在xy平面内做单位圆周运动，角速度1，与|\\Omega|=1一致。"
+          ]
+        }
+      ],
+      "id": "nagoya-2002-70eece48bf-q05-practice-01",
+      "school": "名古屋大学",
+      "year": "2002"
+    },
+    {
+      "text": "设 $A$ 是任意 $3\\times3$ 反对称矩阵，$p(t)$ 满足 $\\dfrac{dp}{dt}=Ap$。证明 $\\|p(t)\\|$ 与 $t$ 无关。",
+      "knowledge_points": [
+        "反对称矩阵性质",
+        "守恒量证明"
+      ],
+      "question_type": "证明题",
+      "method": [
+        "利用反对称矩阵满足ᵗA=-A对内积求导"
+      ],
+      "solution_steps": [
+        "对|p|²求导",
+        "利用ᵗA=-A化简为0"
+      ],
+      "math_structure": {
+        "type": "skew_symmetric_matrix_norm_conservation",
+        "template": "证明反对称矩阵生成的线性流保持向量范数不变",
+        "variable_count": 0
+      },
+      "difficulty": 2,
+      "estimated_minutes": 5,
+      "answer": [
+        {
+          "label": "证明",
+          "steps": [
+            "$\\dfrac{d}{dt}\\|p\\|^2=\\dfrac{d}{dt}(p^Tp)=2p^T\\dot p=2p^TAp$。",
+            "因为$A$是反对称矩阵，$A^T=-A$，则$p^TAp=(p^TAp)^T=p^TA^Tp=-p^TAp$，即$p^TAp=-p^TAp$，故$p^TAp=0$。",
+            "所以$\\dfrac{d}{dt}\\|p\\|^2=0$，$\\|p(t)\\|$恒定，证毕。"
+          ]
+        }
+      ],
+      "id": "nagoya-2002-70eece48bf-q05-practice-02",
+      "school": "名古屋大学",
+      "year": "2002"
+    },
+    {
+      "text": "设 $\\Omega=\\left(\\frac{1}{\\sqrt3},\\frac{1}{\\sqrt3},\\frac{1}{\\sqrt3}\\right)$（单位向量），求解 $p(t)=\\Omega\\times p(t)$ 系统的旋转角速度和轨迹圆的半径（设初值 $p(0)=(1,-1,0)$，注意其与$\\Omega$正交）。",
+      "knowledge_points": [
+        "角速度",
+        "轨迹圆半径",
+        "初值与守恒量的应用"
+      ],
+      "question_type": "计算题",
+      "method": [
+        "用|p(0)|与⟨Ω,p(0)⟩计算轨迹圆参数"
+      ],
+      "solution_steps": [
+        "计算|p(0)|",
+        "计算⟨Ω,p(0)⟩",
+        "得出圆的半径与角速度"
+      ],
+      "math_structure": {
+        "type": "circular_trajectory_parameters_computation",
+        "template": "由初值和Ω计算旋转轨迹圆的半径与角速度",
+        "variable_count": 3
+      },
+      "difficulty": 3,
+      "estimated_minutes": 7,
+      "answer": [
+        {
+          "label": "求解",
+          "steps": [
+            "计算 $\\|p(0)\\|^2=1^2+(-1)^2+0^2=2$，故$R=\\sqrt2$。",
+            "计算 $\\langle\\Omega,p(0)\\rangle=\\frac{1}{\\sqrt3}(1-1+0)=0$，故$h=0$，说明$p(0)$位于过原点且垂直于$\\Omega$的平面内。",
+            "轨迹圆半径为$\\sqrt{R^2-h^2}=\\sqrt{2-0}=\\sqrt2$，圆心在原点（因为$h=0$，圆心$h\\Omega=0$）。角速度为$\\|\\Omega\\|=1$（弧度/单位时间），周期$2\\pi$。"
+          ]
+        }
+      ],
+      "id": "nagoya-2002-70eece48bf-q05-practice-03",
+      "school": "名古屋大学",
+      "year": "2002"
+    },
+    {
+      "text": "证明：对任意单位向量 $\\Omega$ 及向量 $p$，恒有 $\\langle\\Omega,\\Omega\\times p\\rangle=0$（标量三重积恒等式的特例）。",
+      "knowledge_points": [
+        "标量三重积",
+        "叉乘性质"
+      ],
+      "question_type": "证明题",
+      "method": [
+        "直接展开叉乘分量计算内积"
+      ],
+      "solution_steps": [
+        "写出Ω×p的分量表达式",
+        "计算Ω·(Ω×p)展开为0"
+      ],
+      "math_structure": {
+        "type": "scalar_triple_product_identity",
+        "template": "证明Ω·(Ω×p)=0对任意Ω,p成立",
+        "variable_count": 3
+      },
+      "difficulty": 1,
+      "estimated_minutes": 4,
+      "answer": [
+        {
+          "label": "证明",
+          "steps": [
+            "设 $\\Omega=(a,b,c)$，$p=(p_1,p_2,p_3)$，则 $\\Omega\\times p=(bp_3-cp_2,\\ cp_1-ap_3,\\ ap_2-bp_1)$。",
+            "计算 $\\langle\\Omega,\\Omega\\times p\\rangle=a(bp_3-cp_2)+b(cp_1-ap_3)+c(ap_2-bp_1)=abp_3-acp_2+bcp_1-abp_3+acp_2-bcp_1=0$（所有项两两抵消）。",
+            "故恒等式 $\\langle\\Omega,\\Omega\\times p\\rangle=0$对任意$\\Omega,p$成立，证毕，这是原题证明⟨Ω,p(t)⟩守恒的关键引理。"
+          ]
+        }
+      ],
+      "id": "nagoya-2002-70eece48bf-q05-practice-04",
+      "school": "名古屋大学",
+      "year": "2002"
+    }
+  ],
+  "source_question": "問12",
+  "source_pdf": "名古屋大学/多元数理科学研究科/全专攻/名古屋大学_多元数理科学研究科_2002_第1次_数学过去问_下午.pdf",
+  "source_type": "官方过去问",
+  "subject_category": "微分方程"
+}

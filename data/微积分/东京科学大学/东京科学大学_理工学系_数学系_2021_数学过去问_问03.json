@@ -1,0 +1,203 @@
+{
+  "id": "isct-2021-df5ee26269-q03",
+  "school": "东京科学大学",
+  "year": "2021",
+  "subject": "理工学系_数学系",
+  "text": "设$f$与$g$是$\\mathbb{R}$上的连续函数，$f$对所有$x\\in\\mathbb{R}$满足$f(x)=f(x+1)$（即以1为周期的周期函数），$g$满足$g(x)\\to0\\ (x\\to\\pm\\infty)$。又设$\\{a_n\\}$为一实数列，定义函数列$\\{f_n\\},\\{g_n\\}$为$f_n(x)=f(x+a_n)$，$g_n(x)=g(x+a_n)$。\n(1) 证明：对任意$\\{a_n\\}$，函数列$\\{f_n\\}$在$\\mathbb{R}$上存在一致收敛的子列。\n(2) 证明：对任意$\\{a_n\\}$，函数列$\\{f_n+g_n\\}$在区间$[0,1]$上存在一致收敛的子列。",
+  "knowledge_points": [
+    "周期函数的一致连续性",
+    "紧性论证（Bolzano-Weierstrass）",
+    "一致收敛子列的存在性",
+    "函数在无穷远处趋于0的性质",
+    "有界数列的收敛子列",
+    "平移函数族的等度连续性"
+  ],
+  "question_type": "一致收敛子列存在性证明",
+  "method": [
+    "利用周期性化简为紧集上讨论",
+    "Bolzano-Weierstrass定理取收敛子列",
+    "利用一致连续性得一致收敛",
+    "分类讨论数列有界与无界情形"
+  ],
+  "solution_steps": [
+    "利用f的周期性将an替换为其模1的小数部分bn∈[0,1]",
+    "由[0,1]紧性取bn的收敛子列并用一致连续性得fn子列在R上一致收敛",
+    "对(2)进一步在已得子列基础上按an有界或趋于无穷分类处理gn",
+    "分别证明两种情形下gn子列在[0,1]上一致收敛",
+    "合并得到fn+gn在[0,1]上一致收敛子列"
+  ],
+  "math_structure": {
+    "type": "uniform_convergence_subsequence",
+    "template": "周期连续函数f与衰减连续函数g的平移函数列f_n(x)=f(x+a_n), g_n(x)=g(x+a_n)，证明一致收敛子列的存在性",
+    "variable_count": 2
+  },
+  "difficulty": 4,
+  "answer": [
+    {
+      "label": "(1)",
+      "steps": [
+        "因f以1为周期且连续，f在闭区间[0,1]上连续故一致连续；结合周期性，f在整个R上一致连续（任意ε>0存在δ>0，使$|x-y|<\\delta\\Rightarrow|f(x)-f(y)|<\\varepsilon$对所有$x,y\\in\\mathbb{R}$成立）。",
+        "设$b_n=a_n-\\lfloor a_n\\rfloor\\in[0,1)$为$a_n$的小数部分，由周期性$f(x+a_n)=f(x+b_n)$对任意x成立（因$a_n-b_n$为整数）。",
+        "数列$\\{b_n\\}\\subset[0,1]$有界，由Bolzano–Weierstrass定理，存在子列$b_{n_k}\\to b\\in[0,1]$。",
+        "由f的一致连续性，对任意$\\varepsilon>0$存在$\\delta>0$，使只要$|b_{n_k}-b|<\\delta$，就对一切$x\\in\\mathbb{R}$有$|f(x+b_{n_k})-f(x+b)|<\\varepsilon$；因$b_{n_k}\\to b$，当k充分大时此不等式成立且与x无关。",
+        "因此$f_{n_k}(x)=f(x+b_{n_k})\\to f(x+b)$在R上一致收敛，即所求一致收敛子列。"
+      ]
+    },
+    {
+      "label": "(2)",
+      "steps": [
+        "先由(1)取得子列$\\{a_{n_k}\\}$使$f_{n_k}$在R上（从而在[0,1]上）一致收敛。",
+        "对该子列$\\{a_{n_k}\\}$分两种情形讨论。情形A：$\\{a_{n_k}\\}$有界，由Bolzano-Weierstrass存在进一步子列$a_{n_{k_j}}\\to a\\in\\mathbb{R}$；由g连续且在紧集上一致连续，$g_{n_{k_j}}(x)=g(x+a_{n_{k_j}})\\to g(x+a)$对$x\\in[0,1]$一致成立。",
+        "情形B：$\\{a_{n_k}\\}$无界，存在子列$a_{n_{k_j}}\\to+\\infty$或$-\\infty$；此时$x+a_{n_{k_j}}\\to\\pm\\infty$对$x\\in[0,1]$一致成立，由$g(t)\\to0(t\\to\\pm\\infty)$，得$g_{n_{k_j}}\\to0$在[0,1]上一致收敛。",
+        "无论哪种情形，均得到子列$\\{a_{n_{k_j}}\\}$使$g_{n_{k_j}}$在[0,1]上一致收敛（分别收敛于$g(x+a)$或0）；而$f_{n_{k_j}}$作为$f_{n_k}$的子列仍在[0,1]上一致收敛。",
+        "两个在[0,1]上一致收敛的函数列之和仍一致收敛，故$f_{n_{k_j}}+g_{n_{k_j}}$在[0,1]上一致收敛，即为所求子列。"
+      ]
+    }
+  ],
+  "practice_questions": [
+    {
+      "text": "证明函数$f(x)=\\sin x$在$\\mathbb{R}$上一致连续。",
+      "knowledge_points": [
+        "一致连续性",
+        "三角不等式"
+      ],
+      "question_type": "一致连续性证明",
+      "method": [
+        "利用和差化积不等式估计"
+      ],
+      "solution_steps": [
+        "利用不等式|sin x - sin y|≤|x-y|",
+        "由此得一致连续"
+      ],
+      "math_structure": {
+        "type": "uniform_convergence_subsequence",
+        "template": "证明基本周期函数的一致连续性",
+        "variable_count": 1
+      },
+      "difficulty": 1,
+      "estimated_minutes": 5,
+      "answer": [
+        {
+          "label": "证明",
+          "steps": [
+            "利用恒等式$\\sin x-\\sin y=2\\cos\\left(\\frac{x+y}{2}\\right)\\sin\\left(\\frac{x-y}{2}\\right)$，得$|\\sin x-\\sin y|\\le 2\\left|\\sin\\frac{x-y}{2}\\right|\\le|x-y|$（用$|\\sin t|\\le|t|$）。",
+            "对任意$\\varepsilon>0$取$\\delta=\\varepsilon$，则$|x-y|<\\delta\\Rightarrow|\\sin x-\\sin y|<\\varepsilon$，一致连续得证。"
+          ]
+        }
+      ],
+      "id": "isct-2021-df5ee26269-q03-practice-01",
+      "school": "东京科学大学",
+      "year": "2021"
+    },
+    {
+      "text": "设$f$以1为周期，$a_n=n\\ (n\\in\\mathbb{N})$。求$f_n(x)=f(x+n)$，并说明$\\{f_n\\}$本身（无需取子列）在$\\mathbb{R}$上是否一致收敛。",
+      "knowledge_points": [
+        "周期函数性质",
+        "一致收敛判定"
+      ],
+      "question_type": "基础验证题",
+      "method": [
+        "利用周期性直接化简"
+      ],
+      "solution_steps": [
+        "利用周期性化简fn",
+        "判断收敛性"
+      ],
+      "math_structure": {
+        "type": "uniform_convergence_subsequence",
+        "template": "整数平移周期函数序列的一致收敛性",
+        "variable_count": 1
+      },
+      "difficulty": 1,
+      "estimated_minutes": 3,
+      "answer": [
+        {
+          "label": "求解",
+          "steps": [
+            "因f周期为1，对整数n有$f(x+n)=f(x)$，故$f_n(x)=f(x)$对所有n成立。",
+            "函数列是常数列$f_n\\equiv f$，自然在R上一致收敛（收敛到f本身），无需取子列。"
+          ]
+        }
+      ],
+      "id": "isct-2021-df5ee26269-q03-practice-02",
+      "school": "东京科学大学",
+      "year": "2021"
+    },
+    {
+      "text": "设$g(x)=\\dfrac{1}{1+x^2}$，$a_n=n$，证明$g_n(x)=g(x+n)$在$[0,1]$上一致收敛于0。",
+      "knowledge_points": [
+        "函数在无穷远处趋于0",
+        "一致收敛的ε-N估计"
+      ],
+      "question_type": "一致收敛证明",
+      "method": [
+        "建立与x无关的上界估计"
+      ],
+      "solution_steps": [
+        "估计gn(x)的上界",
+        "证明上界与x无关且趋于0"
+      ],
+      "math_structure": {
+        "type": "uniform_convergence_subsequence",
+        "template": "衰减函数平移序列在紧区间上的一致收敛",
+        "variable_count": 2
+      },
+      "difficulty": 2,
+      "estimated_minutes": 6,
+      "answer": [
+        {
+          "label": "证明",
+          "steps": [
+            "对$x\\in[0,1]$，$x+n\\ge n$，故$g_n(x)=\\dfrac{1}{1+(x+n)^2}\\le\\dfrac{1}{1+n^2}$，此上界与x无关。",
+            "当$n\\to\\infty$时$\\dfrac{1}{1+n^2}\\to0$，故$\\sup_{x\\in[0,1]}|g_n(x)-0|\\le\\dfrac{1}{1+n^2}\\to0$，即一致收敛于0。"
+          ]
+        }
+      ],
+      "id": "isct-2021-df5ee26269-q03-practice-03",
+      "school": "东京科学大学",
+      "year": "2021"
+    },
+    {
+      "text": "设$f(x)=\\sin(2\\pi x)$（周期1），$g(x)=e^{-x^2}$，$a_n=n+\\dfrac12$。求$\\{f_n\\}$的极限函数以及$\\{g_n\\}$在$[0,1]$上的极限。",
+      "knowledge_points": [
+        "周期函数平移",
+        "指数衰减函数极限",
+        "一致收敛"
+      ],
+      "question_type": "综合计算题",
+      "method": [
+        "利用周期性化简fn",
+        "利用指数衰减估计gn"
+      ],
+      "solution_steps": [
+        "化简fn(x)",
+        "估计gn(x)的一致极限",
+        "综合得出fn+gn极限"
+      ],
+      "math_structure": {
+        "type": "uniform_convergence_subsequence",
+        "template": "具体周期函数与衰减函数平移序列的极限计算",
+        "variable_count": 2
+      },
+      "difficulty": 3,
+      "estimated_minutes": 10,
+      "answer": [
+        {
+          "label": "求解",
+          "steps": [
+            "$f_n(x)=\\sin(2\\pi(x+n+\\tfrac12))=\\sin(2\\pi x+2\\pi n+\\pi)=\\sin(2\\pi x+\\pi)=-\\sin(2\\pi x)$对所有n成立（因$2\\pi n$为$2\\pi$的整数倍），故$f_n$恒为常数函数$-\\sin(2\\pi x)$，一致收敛（平凡）到该函数。",
+            "$g_n(x)=e^{-(x+n+1/2)^2}$，对$x\\in[0,1]$，$x+n+\\tfrac12\\ge n+\\tfrac12\\to\\infty$，故$g_n(x)\\le e^{-(n+1/2)^2}\\to0$，一致收敛于0。",
+            "综合，$f_n(x)+g_n(x)\\to-\\sin(2\\pi x)+0=-\\sin(2\\pi x)$，在[0,1]上一致收敛。"
+          ]
+        }
+      ],
+      "id": "isct-2021-df5ee26269-q03-practice-04",
+      "school": "东京科学大学",
+      "year": "2021"
+    }
+  ],
+  "source_question": "上午 [4]",
+  "source_pdf": "东京科学大学/理工学系/数学系/东京科学大学_理工学系_数学系_2021_数学过去问.pdf",
+  "source_type": "官方过去问",
+  "subject_category": "微积分"
+}

@@ -1,0 +1,208 @@
+{
+  "id": "isct-2000-7e67416ed8-q07",
+  "school": "东京科学大学",
+  "year": "2000",
+  "subject": "理工学系_数学系",
+  "text": "设 $a,b$ 为正实数，$R=\\{z=x+iy\\in\\mathbb{C}\\mid 0\\le x\\le a,\\ 0\\le y\\le b\\}$。设 $f$ 在 $R$ 的内部非常数亚纯，且对任意 $\\zeta\\in\\partial R$，极限 $f(\\zeta)=\\lim_{z\\to\\zeta}f(z)$（$z$ 从 $R$ 内部趋于 $\\zeta$）存在且 $f(\\zeta)\\neq\\infty$。此外假设\n$$f(x)=f(x+bi)\\quad(\\forall x\\in[0,a]),\\qquad f(iy)=f(a+iy)\\quad(\\forall y\\in[0,b])$$\n成立。证明以下各点：\n(1) $f$ 可以亚纯延拓到整个 $\\mathbb{C}$。\n(2) $f$ 在 $R$ 内的极点的阶数之和至少为2。\n(3) 对任意 $\\alpha\\in\\mathbb{C}$，满足 $f(\\zeta)=\\alpha$ 的 $\\zeta\\in\\mathbb{C}$ 有无穷多个。",
+  "knowledge_points": [
+    "椭圆函数（双周期亚纯函数）",
+    "亚纯延拓",
+    "留数定理",
+    "刘维尔定理的椭圆函数版本",
+    "argument principle（辐角原理）"
+  ],
+  "question_type": "双周期亚纯函数（椭圆函数）性质证明题",
+  "method": [
+    "利用边界匹配条件按周期平移解析延拓",
+    "利用留数定理证明单极点椭圆函数不存在",
+    "利用辐角原理证明零点数等于极点数并结合周期性得到无穷多解"
+  ],
+  "solution_steps": [
+    "利用边界条件f(x)=f(x+bi)和f(iy)=f(a+iy)，把矩形R的边界粘合，按周期a和bi把f逐块延拓到整个平面",
+    "验证延拓后的函数在粘合边界处解析匹配（由假设的连续极限存在性），从而得到整体亚纯的双周期函数（椭圆函数）",
+    "假设f只有一个单极点（阶数和为1），则基本域上留数之和须为0（周期矩形边界积分为0），但单极点非零留数矛盾，从而阶数和≥2",
+    "对f-α应用辐角原理，在基本域内零点数=极点数（≥2>0），故存在z0使f(z0)=α；再用周期性得f(z0+ma+nbi)=α对所有整数m,n成立，给出无穷多解"
+  ],
+  "math_structure": {
+    "type": "elliptic_function_extension_and_valence",
+    "template": "meromorphic f on rectangle with matching boundary conditions extends to doubly periodic elliptic function on C; prove sum of pole orders >=2 and every value attained infinitely often",
+    "variable_count": 2
+  },
+  "difficulty": 5,
+  "answer": [
+    {
+      "label": "(1)",
+      "steps": [
+        "条件 $f(x)=f(x+bi)$（$x\\in[0,a]$）表示 $f$ 在矩形下边与上边（对应地）取值相同；条件 $f(iy)=f(a+iy)$（$y\\in[0,b]$）表示左边与右边取值相同。结合极限存在且有限的假设，这些是把矩形 $R$ 沿相对边粘合（形成环面拓扑）的相容条件。",
+        "定义 $f$ 在平移后的矩形 $R+ma+nbi$（$m,n\\in\\mathbb{Z}$）上为 $f(z-ma-nbi)$（即按周期 $a$ 与 $bi$ 周期延拓）。由边界匹配条件，相邻矩形在公共边界上的取值一致（因为正是这两个条件保证了粘合处两侧函数值相等），从而定义了 $\\mathbb{C}$ 上处处有定义、在内部亚纯、在粘合边界上连续匹配的函数。",
+        "由于两侧函数在公共边界（一维曲线）上取值相等且都是（单侧极限意义下）解析函数的边界值，根据施瓦茨对称/解析延拓原理（或更直接地：由于$f$在矩形内部亚纯，边界处极限有限存在，两个亚纯函数在公共边界曲线上函数值恒等，则它们必解析延拓为同一个亚纯函数，即通过莫雷拉定理型论证可验证在边界附近的解析性），故这样定义的函数在整个 $\\mathbb{C}$ 上是亚纯的。",
+        "从而 $f$ 延拓为 $\\mathbb{C}$ 上以 $a$、$bi$ 为周期的双周期亚纯函数（椭圆函数）。"
+      ]
+    },
+    {
+      "label": "(2)",
+      "steps": [
+        "设延拓后的 $f$ 是以 $a,bi$ 为周期的椭圆函数，非常数。取基本域 $R$（周期平行四边形），其边界为 $\\partial R$。由留数定理，$\\displaystyle\\oint_{\\partial R}f(z)\\,dz=2\\pi i\\sum_{\\text{poles in }R}\\operatorname{Res}f$。",
+        "但由周期性，$\\partial R$ 上相对边的贡献恰好相互抵消：沿下边从 $0$ 到 $a$ 的积分与沿上边从 $a+bi$ 到 $bi$ 的积分（方向相反）在被积函数上因 $f(x)=f(x+bi)$ 而相等，从而两者积分互相抵消（方向相反、大小相等）；同理左右两边也抵消。故 $\\displaystyle\\oint_{\\partial R}f(z)\\,dz=0$。",
+        "因此 $\\displaystyle\\sum_{\\text{poles in }R}\\operatorname{Res}f=0$。若 $f$ 在 $R$ 内只有一个极点且为单极点（阶数和为1），则该极点的留数必为非零（否则不是极点），这与留数之和为0矛盾。",
+        "若极点阶数和为0，则 $f$ 在 $R$（从而整个平面，由周期性）内无极点，即 $f$ 是整函数，又双周期使得 $f$ 在有界基本域上取值范围即为 $f$ 在 $\\mathbb{C}$ 上的全部取值范围，从而 $f$ 是有界整函数，由刘维尔定理 $f$ 为常数，与假设 $f$ 非常数矛盾。",
+        "综上，极点阶数之和不能为0或1，故必 $\\ge2$。"
+      ]
+    },
+    {
+      "label": "(3)",
+      "steps": [
+        "对任意 $\\alpha\\in\\mathbb{C}$，考察函数 $g(z)=f(z)-\\alpha$，它与 $f$ 具有相同的极点（同阶），也是以 $a,bi$ 为周期的椭圆函数。",
+        "由辐角原理（对椭圆函数的标准结果）：在基本域 $R$ 内，$g$ 的零点个数（按重数计）等于其极点个数（按重数计），这是因为 $\\displaystyle\\frac{1}{2\\pi i}\\oint_{\\partial R}\\frac{g'(z)}{g(z)}dz$ 同样由周期性使边界积分为0（与(2)的论证类似，被积函数 $g'/g$ 也是周期为 $a,bi$ 的函数），故零点数减极点数=0。",
+        "由(2)，$g$（同 $f$）的极点阶数之和 $\\ge2>0$，所以 $g$ 在 $R$ 内至少有一个零点（实际上零点数按重数计也 $\\ge2$），即存在 $z_0\\in R$ 使 $f(z_0)=\\alpha$。",
+        "由 $f$ 的周期性，对任意整数 $m,n$，$f(z_0+ma+nbi)=f(z_0)=\\alpha$。由于不同的 $(m,n)\\in\\mathbb{Z}^2$ 给出无穷多个互不相同的点 $z_0+ma+nbi\\in\\mathbb{C}$，故满足 $f(\\zeta)=\\alpha$ 的 $\\zeta\\in\\mathbb{C}$ 有无穷多个。"
+      ]
+    }
+  ],
+  "practice_questions": [
+    {
+      "text": "证明：不存在非常数的椭圆函数（双周期亚纯函数）只有一个单极点（即极点阶数和为1）。",
+      "knowledge_points": [
+        "留数定理",
+        "椭圆函数基本性质"
+      ],
+      "question_type": "基础理论证明题",
+      "method": [
+        "基本域边界积分抵消+留数定理矛盾"
+      ],
+      "solution_steps": [
+        "用周期性证明基本域边界积分为0",
+        "结合留数定理得基本域内留数和为0，与单极点非零留数矛盾"
+      ],
+      "math_structure": {
+        "type": "elliptic_function_extension_and_valence",
+        "template": "prove no elliptic function has a single simple pole",
+        "variable_count": 0
+      },
+      "difficulty": 3,
+      "estimated_minutes": 10,
+      "answer": [
+        {
+          "label": "结论",
+          "steps": [
+            "设f为双周期ω1,ω2的椭圆函数，基本域为平行四边形P",
+            "边界积分∮_{∂P}f dz由相对边贡献抵消为0，故基本域内留数和=0",
+            "若只一个单极点，其留数非零，矛盾，故不存在这样的椭圆函数"
+          ]
+        }
+      ],
+      "id": "isct-2000-7e67416ed8-q07-practice-01",
+      "school": "东京科学大学",
+      "year": "2000"
+    },
+    {
+      "text": "证明有界整函数必为常数（刘维尔定理），并说明该定理如何在原题(2)的证明中被用来排除极点阶数和为0的情形。",
+      "knowledge_points": [
+        "刘维尔定理",
+        "柯西积分估计"
+      ],
+      "question_type": "经典定理证明与应用",
+      "method": [
+        "柯西积分公式估计导数"
+      ],
+      "solution_steps": [
+        "用柯西积分公式估计f'(z)并令积分半径趋于无穷",
+        "得f'≡0，f为常数",
+        "应用于双周期无极点情形说明f在C上有界"
+      ],
+      "math_structure": {
+        "type": "liouville_theorem_application",
+        "template": "prove Liouville's theorem and apply to periodic bounded entire function",
+        "variable_count": 0
+      },
+      "difficulty": 2,
+      "estimated_minutes": 10,
+      "answer": [
+        {
+          "label": "结论",
+          "steps": [
+            "设|f|≤M在C上，由柯西积分公式|f'(z)|≤M/R，令R→∞得f'(z)=0对一切z，故f为常数",
+            "若椭圆函数无极点则在基本域（有界闭集）上连续故有界，又周期性使全平面取值范围与基本域相同，故f在C上有界，从而由刘维尔定理f为常数"
+          ]
+        }
+      ],
+      "id": "isct-2000-7e67416ed8-q07-practice-02",
+      "school": "东京科学大学",
+      "year": "2000"
+    },
+    {
+      "text": "考察辐角原理的椭圆函数版本：证明对椭圆函数g，其在基本域内的零点数（计重数）等于极点数（计重数）。",
+      "knowledge_points": [
+        "辐角原理",
+        "对数导数的周期性"
+      ],
+      "question_type": "定理证明题",
+      "method": [
+        "对数导数积分+周期性边界抵消"
+      ],
+      "solution_steps": [
+        "验证g'/g也是周期函数",
+        "用辐角原理公式结合边界积分抵消得零点数=极点数"
+      ],
+      "math_structure": {
+        "type": "elliptic_function_extension_and_valence",
+        "template": "prove zero count equals pole count for elliptic function via argument principle",
+        "variable_count": 0
+      },
+      "difficulty": 3,
+      "estimated_minutes": 10,
+      "answer": [
+        {
+          "label": "结论",
+          "steps": [
+            "g'(z)/g(z)也以a,bi为周期（因g本身周期，求导及取比值保持周期性）",
+            "由辐角原理，零点数-极点数=(1/2πi)∮_{∂R}(g'/g)dz，而周期性使得相对边贡献相互抵消，此积分为0",
+            "故零点数=极点数，得证"
+          ]
+        }
+      ],
+      "id": "isct-2000-7e67416ed8-q07-practice-03",
+      "school": "东京科学大学",
+      "year": "2000"
+    },
+    {
+      "text": "设 $f$ 为满足原题条件的椭圆函数，其在基本域内恰有一个二阶极点（阶数和为2）。说明对任意 $\\alpha\\in\\mathbb{C}$，方程 $f(z)=\\alpha$ 在基本域内恰有几个解（计重数）？并解释与无穷多解的关系。",
+      "knowledge_points": [
+        "价数（valence）概念",
+        "周期延拓给出无穷解"
+      ],
+      "question_type": "应用分析题",
+      "method": [
+        "利用零点数=极点数=2的结论"
+      ],
+      "solution_steps": [
+        "由辐角原理得基本域内方程f=α恰有2个解（计重数）",
+        "由周期性将基本域内解沿周期平移得到C上无穷多解"
+      ],
+      "math_structure": {
+        "type": "elliptic_function_extension_and_valence",
+        "template": "analyze exact solution count in fundamental domain for order-2 elliptic function",
+        "variable_count": 1
+      },
+      "difficulty": 3,
+      "estimated_minutes": 8,
+      "answer": [
+        {
+          "label": "结论",
+          "steps": [
+            "由(3)的辐角原理论证，基本域内f(z)=α的解数（计重数）恰等于极点阶数和=2",
+            "因此在R内恰有2个解（可能重合，即二重解）",
+            "对每一个基本域内的解z0，平移z0+ma+nbi(m,n∈Z)都是C上的解，给出无穷多个解，这与原题(3)的结论一致"
+          ]
+        }
+      ],
+      "id": "isct-2000-7e67416ed8-q07-practice-04",
+      "school": "东京科学大学",
+      "year": "2000"
+    }
+  ],
+  "source_question": "専門科目（午後）問9",
+  "source_pdf": "东京科学大学/理工学系/数学系/东京科学大学_理工学系_数学系_2000_数学过去问.pdf",
+  "source_type": "官方过去问",
+  "subject_category": "复变函数"
+}

@@ -1,0 +1,257 @@
+{
+  "id": "osaka-2024-144813ba62-q01",
+  "school": "大阪大学",
+  "year": "2024",
+  "subject": "情报科学研究科_情报数理学",
+  "text": "设函数 $f:\\mathbb{R}^n\\to\\mathbb{R}$ 定义为 $f(x)=\\frac{1}{2}x^TQx-x^Tb$。以 $x^{(0)}\\in\\mathbb{R}^n$ 为初值，考虑递推式\n$$x^{(k+1)}=x^{(k)}-\\alpha_k g^{(k)},\\quad g^{(k)}=Qx^{(k)}-b,\\quad k=0,1,2,\\ldots$$\n其中 $\\alpha_k\\in\\mathbb{R}$，$x,b\\in\\mathbb{R}^n$，$Q$ 是 $n$ 阶对称正定矩阵，$\\bullet^T$ 表示转置。\n\n(1) 设 $Q$ 的最大特征值为 $\\lambda_{\\max}$，最小特征值为 $\\lambda_{\\min}$。证明对任意 $x\\neq0$ 都有\n$$\\lambda_{\\min}\\le\\frac{x^TQx}{x^Tx}\\le\\lambda_{\\max}$$\n$$\\frac{\\lambda_{\\min}}{\\lambda_{\\max}}\\le\\frac{(x^Tx)^2}{(x^TQx)(x^TQ^{-1}x)}\\le\\frac{\\lambda_{\\max}}{\\lambda_{\\min}}$$\n\n(2) 当 $g^{(k)}\\neq0$ 时，设使 $f(x^{(k)}-\\alpha g^{(k)})$ 取最小值的 $\\alpha$ 为 $\\alpha_k$。证明\n$$\\alpha_k=\\frac{g^{(k)T}g^{(k)}}{g^{(k)T}Qg^{(k)}}$$\n\n(3) 设使 $f(x)$ 取最小值的点为 $x^*$，考虑函数 $Z(x)=\\frac{1}{2}(x-x^*)^TQ(x-x^*)$，并设 $x^{(k)}\\neq x^*$。按 (2) 中方式给出 $\\alpha_k$，令\n$$\\gamma_k=\\frac{(g^{(k)T}g^{(k)})^2}{(g^{(k)T}Qg^{(k)})(g^{(k)T}Q^{-1}g^{(k)})}$$\n证明 $Z(x^{(k+1)})=(1-\\gamma_k)Z(x^{(k)})$。",
+  "knowledge_points": [
+    "对称正定矩阵的谱分解",
+    "Rayleigh商的取值范围",
+    "Kantorovich不等式",
+    "Cauchy-Schwarz不等式",
+    "最速下降法的最优步长",
+    "二次型的最小化"
+  ],
+  "question_type": "证明题（矩阵谱理论与最速下降法收敛性）",
+  "method": [
+    "特征值分解(谱分解)化为对角形式",
+    "Cauchy-Schwarz不等式估计交叉项",
+    "对一元函数求导得到极值条件",
+    "利用 $g=Qe$ 将梯度与误差相互转换"
+  ],
+  "solution_steps": [
+    "对 $Q$ 作谱分解 $Q=U\\Lambda U^T$，令 $y=U^Tx$ 将二次型化为 $\\sum\\lambda_iy_i^2$ 与 $\\sum y_i^2$ 的比较",
+    "利用 $x^TQx\\le\\lambda_{\\max}x^Tx$ 及 $x^TQ^{-1}x\\le\\frac{1}{\\lambda_{\\min}}x^Tx$ 得到第二个不等式的上下界",
+    "对 $\\alpha$ 求导 $\\frac{d}{d\\alpha}f(x^{(k)}-\\alpha g^{(k)})=0$ 解出最优步长",
+    "引入误差 $e^{(k)}=x^{(k)}-x^*$，利用 $g^{(k)}=Qe^{(k)}$ 把 $Z$ 用 $g^{(k)}$ 表示，代入 $\\alpha_k$ 化简得到收敛比"
+  ],
+  "math_structure": {
+    "type": "quadratic_form_gradient_descent",
+    "template": "f(x)=\\frac{1}{2}x^TQx-x^Tb,\\ x^{(k+1)}=x^{(k)}-\\alpha_k g^{(k)},\\ g^{(k)}=Qx^{(k)}-b",
+    "variable_count": 3
+  },
+  "difficulty": 5,
+  "answer": [
+    {
+      "label": "(1)",
+      "steps": [
+        "由 $Q$ 对称正定，存在正交矩阵 $U$ 与对角矩阵 $\\Lambda=\\mathrm{diag}(\\lambda_1,\\ldots,\\lambda_n)$（$\\lambda_{\\min}=\\lambda_1\\le\\cdots\\le\\lambda_n=\\lambda_{\\max}$）使 $Q=U\\Lambda U^T$。对任意 $x\\neq0$ 令 $y=U^Tx\\neq0$，则 $x^TQx=y^T\\Lambda y=\\sum_i\\lambda_iy_i^2$，$x^Tx=y^Ty=\\sum_iy_i^2$。",
+        "由 $\\lambda_{\\min}\\sum y_i^2\\le\\sum\\lambda_iy_i^2\\le\\lambda_{\\max}\\sum y_i^2$ 立得 $\\lambda_{\\min}\\le\\dfrac{x^TQx}{x^Tx}\\le\\lambda_{\\max}$，第一式证毕。",
+        "对第二式的上界：由 Cauchy-Schwarz 不等式，$(x^Tx)^2=\\big(\\sum(\\lambda_i^{1/2}y_i)(\\lambda_i^{-1/2}y_i)\\big)^2\\le\\big(\\sum\\lambda_iy_i^2\\big)\\big(\\sum y_i^2/\\lambda_i\\big)=(x^TQx)(x^TQ^{-1}x)$，故 $\\dfrac{(x^Tx)^2}{(x^TQx)(x^TQ^{-1}x)}\\le1\\le\\dfrac{\\lambda_{\\max}}{\\lambda_{\\min}}$。",
+        "对第二式的下界：由第一式，$x^TQx\\le\\lambda_{\\max}x^Tx$；又 $Q^{-1}$ 的特征值为 $1/\\lambda_i\\in[1/\\lambda_{\\max},1/\\lambda_{\\min}]$，故 $x^TQ^{-1}x\\le\\dfrac{1}{\\lambda_{\\min}}x^Tx$。两式相乘得 $(x^TQx)(x^TQ^{-1}x)\\le\\dfrac{\\lambda_{\\max}}{\\lambda_{\\min}}(x^Tx)^2$，即 $\\dfrac{(x^Tx)^2}{(x^TQx)(x^TQ^{-1}x)}\\ge\\dfrac{\\lambda_{\\min}}{\\lambda_{\\max}}$，两不等式合并即得证。"
+      ]
+    },
+    {
+      "label": "(2)",
+      "steps": [
+        "记 $\\varphi(\\alpha)=f(x^{(k)}-\\alpha g^{(k)})=\\frac{1}{2}(x^{(k)}-\\alpha g^{(k)})^TQ(x^{(k)}-\\alpha g^{(k)})-(x^{(k)}-\\alpha g^{(k)})^Tb$。",
+        "展开并对 $\\alpha$ 求导：$\\varphi'(\\alpha)=-g^{(k)T}Q(x^{(k)}-\\alpha g^{(k)})+g^{(k)T}b=-g^{(k)T}(Qx^{(k)}-b)+\\alpha g^{(k)T}Qg^{(k)}=-g^{(k)T}g^{(k)}+\\alpha g^{(k)T}Qg^{(k)}$（用到 $g^{(k)}=Qx^{(k)}-b$）。",
+        "因 $Q$ 正定，$\\varphi$ 是关于 $\\alpha$ 的严格凸二次函数，令 $\\varphi'(\\alpha_k)=0$ 得唯一极小点 $\\alpha_k=\\dfrac{g^{(k)T}g^{(k)}}{g^{(k)T}Qg^{(k)}}$，且此点确为最小值点（$\\varphi''=g^{(k)T}Qg^{(k)}>0$）。"
+      ]
+    },
+    {
+      "label": "(3)",
+      "steps": [
+        "因 $x^*$ 是 $f$ 的最小值点，$Qx^*=b$，故 $g^{(k)}=Qx^{(k)}-b=Q(x^{(k)}-x^*)=Qe^{(k)}$，其中 $e^{(k)}=x^{(k)}-x^*$；于是 $e^{(k)}=Q^{-1}g^{(k)}$，从而 $Z(x^{(k)})=\\frac{1}{2}e^{(k)T}Qe^{(k)}=\\frac{1}{2}g^{(k)T}Q^{-1}g^{(k)}$。",
+        "由 $x^{(k+1)}-x^*=e^{(k)}-\\alpha_kg^{(k)}$，展开 $Z(x^{(k+1)})=\\frac{1}{2}\\big[e^{(k)T}Qe^{(k)}-2\\alpha_kg^{(k)T}Qe^{(k)}+\\alpha_k^2g^{(k)T}Qg^{(k)}\\big]$；又 $g^{(k)T}Qe^{(k)}=g^{(k)T}QQ^{-1}g^{(k)}=g^{(k)T}g^{(k)}$。",
+        "代入 $\\alpha_k=\\dfrac{g^{(k)T}g^{(k)}}{g^{(k)T}Qg^{(k)}}$：$-2\\alpha_kg^{(k)T}g^{(k)}+\\alpha_k^2g^{(k)T}Qg^{(k)}=-2\\dfrac{(g^{(k)T}g^{(k)})^2}{g^{(k)T}Qg^{(k)}}+\\dfrac{(g^{(k)T}g^{(k)})^2}{g^{(k)T}Qg^{(k)}}=-\\dfrac{(g^{(k)T}g^{(k)})^2}{g^{(k)T}Qg^{(k)}}$，故 $Z(x^{(k+1)})=\\frac{1}{2}e^{(k)T}Qe^{(k)}\\Big[1-\\dfrac{(g^{(k)T}g^{(k)})^2}{(g^{(k)T}Qg^{(k)})(e^{(k)T}Qe^{(k)})}\\Big]$。",
+        "因 $e^{(k)T}Qe^{(k)}=g^{(k)T}Q^{-1}g^{(k)}$，括号内即为 $1-\\gamma_k$，而 $\\frac{1}{2}e^{(k)T}Qe^{(k)}=Z(x^{(k)})$，故 $Z(x^{(k+1)})=(1-\\gamma_k)Z(x^{(k)})$，证毕。"
+      ]
+    }
+  ],
+  "practice_questions": [
+    {
+      "text": "设 $Q=\\begin{pmatrix}4&0\\\\0&1\\end{pmatrix}$，$x=(1,2)^T$。求 $Q$ 的最大、最小特征值 $\\lambda_{\\max},\\lambda_{\\min}$，并计算 $\\dfrac{x^TQx}{x^Tx}$ 及 $\\dfrac{(x^Tx)^2}{(x^TQx)(x^TQ^{-1}x)}$，验证它们分别落在 $[\\lambda_{\\min},\\lambda_{\\max}]$ 与 $[\\lambda_{\\min}/\\lambda_{\\max},\\lambda_{\\max}/\\lambda_{\\min}]$ 内。",
+      "knowledge_points": [
+        "对角矩阵特征值",
+        "Rayleigh商计算",
+        "逆矩阵计算"
+      ],
+      "question_type": "计算题",
+      "method": [
+        "直接代入对角矩阵计算"
+      ],
+      "solution_steps": [
+        "求特征值",
+        "计算 $x^TQx,x^Tx$",
+        "计算 $Q^{-1}$ 及 $x^TQ^{-1}x$",
+        "比较所得比值与理论区间"
+      ],
+      "math_structure": {
+        "type": "rayleigh_quotient_numeric",
+        "template": "Q=\\mathrm{diag}(4,1),\\ x=(1,2)^T",
+        "variable_count": 2
+      },
+      "difficulty": 1,
+      "estimated_minutes": 6,
+      "answer": [
+        {
+          "label": "结果",
+          "steps": [
+            "$Q$ 为对角矩阵，特征值即对角元：$\\lambda_{\\max}=4,\\lambda_{\\min}=1$。",
+            "$x^TQx=4\\cdot1^2+1\\cdot2^2=4+4=8$，$x^Tx=1+4=5$，故 $\\dfrac{x^TQx}{x^Tx}=\\dfrac{8}{5}=1.6\\in[1,4]$。",
+            "$Q^{-1}=\\mathrm{diag}(1/4,1)$，$x^TQ^{-1}x=\\frac{1}{4}\\cdot1+1\\cdot4=4.25$，$(x^Tx)^2=25$。",
+            "$\\dfrac{(x^Tx)^2}{(x^TQx)(x^TQ^{-1}x)}=\\dfrac{25}{8\\times4.25}=\\dfrac{25}{34}\\approx0.735$，而 $\\lambda_{\\min}/\\lambda_{\\max}=0.25\\le0.735\\le\\lambda_{\\max}/\\lambda_{\\min}=4$，验证成立。"
+          ]
+        }
+      ],
+      "id": "osaka-2024-144813ba62-q01-practice-01",
+      "school": "大阪大学",
+      "year": "2024"
+    },
+    {
+      "text": "设 $Q$ 为 $n$ 阶对称正定矩阵，最大、最小特征值分别为 $\\lambda_{\\max},\\lambda_{\\min}$。证明对任意 $x\\neq0$，$\\lambda_{\\min}\\le\\dfrac{x^TQx}{x^Tx}\\le\\lambda_{\\max}$（Rayleigh商定理的一般证明）。",
+      "knowledge_points": [
+        "谱分解",
+        "Rayleigh商",
+        "正定矩阵性质"
+      ],
+      "question_type": "证明题",
+      "method": [
+        "特征值分解化为对角形式后逐项比较"
+      ],
+      "solution_steps": [
+        "谱分解 $Q=U\\Lambda U^T$",
+        "变量替换 $y=U^Tx$",
+        "利用 $\\lambda_{\\min}\\le\\lambda_i\\le\\lambda_{\\max}$ 逐项放缩求和"
+      ],
+      "math_structure": {
+        "type": "rayleigh_quotient_general_proof",
+        "template": "\\lambda_{\\min}\\le\\frac{x^TQx}{x^Tx}\\le\\lambda_{\\max}",
+        "variable_count": 1
+      },
+      "difficulty": 2,
+      "estimated_minutes": 8,
+      "answer": [
+        {
+          "label": "证明",
+          "steps": [
+            "由谱定理，$Q=U\\Lambda U^T$，$U$ 正交，$\\Lambda=\\mathrm{diag}(\\lambda_1,\\ldots,\\lambda_n)$，不妨设 $\\lambda_1\\le\\cdots\\le\\lambda_n$，即 $\\lambda_{\\min}=\\lambda_1,\\lambda_{\\max}=\\lambda_n$。",
+            "对 $x\\neq0$ 令 $y=U^Tx$，因 $U$ 正交知 $y\\neq0$，且 $x^TQx=y^T\\Lambda y=\\sum_{i=1}^n\\lambda_iy_i^2$，$x^Tx=y^Ty=\\sum_{i=1}^ny_i^2>0$。",
+            "由 $\\lambda_{\\min}\\le\\lambda_i\\le\\lambda_{\\max}$ 对每个 $i$ 成立，两边乘以 $y_i^2\\ge0$ 再求和得 $\\lambda_{\\min}\\sum y_i^2\\le\\sum\\lambda_iy_i^2\\le\\lambda_{\\max}\\sum y_i^2$，即 $\\lambda_{\\min}x^Tx\\le x^TQx\\le\\lambda_{\\max}x^Tx$，两边除以 $x^Tx>0$ 得证。"
+          ]
+        }
+      ],
+      "id": "osaka-2024-144813ba62-q01-practice-02",
+      "school": "大阪大学",
+      "year": "2024"
+    },
+    {
+      "text": "设 $Q$ 为 $n$ 阶对称正定矩阵。利用 Cauchy-Schwarz 不等式证明：对任意 $x\\neq0$，$(x^Tx)^2\\le(x^TQx)(x^TQ^{-1}x)$。",
+      "knowledge_points": [
+        "Cauchy-Schwarz不等式",
+        "正定矩阵平方根",
+        "谱分解"
+      ],
+      "question_type": "证明题",
+      "method": [
+        "谱分解后构造Cauchy-Schwarz形式"
+      ],
+      "solution_steps": [
+        "谱分解并令 $y=U^Tx$",
+        "把 $\\sum y_i^2$ 写成两个向量内积形式",
+        "应用 Cauchy-Schwarz 不等式"
+      ],
+      "math_structure": {
+        "type": "cauchy_schwarz_quadratic_form",
+        "template": "(x^Tx)^2\\le(x^TQx)(x^TQ^{-1}x)",
+        "variable_count": 1
+      },
+      "difficulty": 3,
+      "estimated_minutes": 10,
+      "answer": [
+        {
+          "label": "证明",
+          "steps": [
+            "谱分解 $Q=U\\Lambda U^T$，$\\Lambda=\\mathrm{diag}(\\lambda_1,\\ldots,\\lambda_n)$，$\\lambda_i>0$。令 $y=U^Tx=(y_1,\\ldots,y_n)^T\\neq0$，则 $x^Tx=\\sum y_i^2$，$x^TQx=\\sum\\lambda_iy_i^2$，$x^TQ^{-1}x=\\sum y_i^2/\\lambda_i$。",
+            "将 $y_i^2=(\\sqrt{\\lambda_i}y_i)(y_i/\\sqrt{\\lambda_i})$，故 $\\sum y_i^2=\\sum(\\sqrt{\\lambda_i}y_i)(y_i/\\sqrt{\\lambda_i})$，这是两个向量 $u_i=\\sqrt{\\lambda_i}y_i$ 与 $v_i=y_i/\\sqrt{\\lambda_i}$ 的内积。",
+            "由 Cauchy-Schwarz 不等式 $(u\\cdot v)^2\\le\\|u\\|^2\\|v\\|^2$ 得 $(x^Tx)^2=\\big(\\sum u_iv_i\\big)^2\\le\\big(\\sum u_i^2\\big)\\big(\\sum v_i^2\\big)=\\big(\\sum\\lambda_iy_i^2\\big)\\big(\\sum y_i^2/\\lambda_i\\big)=(x^TQx)(x^TQ^{-1}x)$，证毕。等号当且仅当 $y_i$ 对应的 $\\lambda_i$ 全部相等时成立。"
+          ]
+        }
+      ],
+      "id": "osaka-2024-144813ba62-q01-practice-03",
+      "school": "大阪大学",
+      "year": "2024"
+    },
+    {
+      "text": "设 $Q=\\begin{pmatrix}3&1\\\\1&3\\end{pmatrix}$，$b=(4,4)^T$，$f(x)=\\frac{1}{2}x^TQx-x^Tb$，初值 $x^{(0)}=(0,0)^T$。求 $g^{(0)}=Qx^{(0)}-b$、最优步长 $\\alpha_0=\\dfrac{g^{(0)T}g^{(0)}}{g^{(0)T}Qg^{(0)}}$，以及 $x^{(1)}=x^{(0)}-\\alpha_0g^{(0)}$，并验证 $x^{(1)}$ 是否等于精确最小点 $x^*=Q^{-1}b$。",
+      "knowledge_points": [
+        "最速下降法迭代",
+        "最优步长公式",
+        "线性方程组求解"
+      ],
+      "question_type": "计算题",
+      "method": [
+        "直接代入公式逐步计算"
+      ],
+      "solution_steps": [
+        "计算梯度 $g^{(0)}$",
+        "计算 $\\alpha_0$",
+        "计算 $x^{(1)}$",
+        "计算 $x^*=Q^{-1}b$ 并比较"
+      ],
+      "math_structure": {
+        "type": "steepest_descent_step",
+        "template": "Q=\\begin{pmatrix}3&1\\\\1&3\\end{pmatrix},\\ b=(4,4)^T,\\ x^{(0)}=(0,0)^T",
+        "variable_count": 2
+      },
+      "difficulty": 3,
+      "estimated_minutes": 10,
+      "answer": [
+        {
+          "label": "结果",
+          "steps": [
+            "$g^{(0)}=Qx^{(0)}-b=0-(4,4)^T=(-4,-4)^T$。",
+            "$g^{(0)T}g^{(0)}=16+16=32$；$Qg^{(0)}=\\begin{pmatrix}3&1\\\\1&3\\end{pmatrix}\\begin{pmatrix}-4\\\\-4\\end{pmatrix}=(-16,-16)^T$，故 $g^{(0)T}Qg^{(0)}=(-4)(-16)+(-4)(-16)=128$，$\\alpha_0=32/128=0.25$。",
+            "$x^{(1)}=x^{(0)}-\\alpha_0g^{(0)}=(0,0)^T-0.25\\times(-4,-4)^T=(1,1)^T$。",
+            "$Q^{-1}=\\dfrac{1}{8}\\begin{pmatrix}3&-1\\\\-1&3\\end{pmatrix}$（因 $\\det Q=9-1=8$），$x^*=Q^{-1}b=\\dfrac{1}{8}(3\\cdot4-4,-4+3\\cdot4)^T=\\dfrac{1}{8}(8,8)^T=(1,1)^T$，与 $x^{(1)}$ 相同——因为 $b$ 恰好沿 $Q$ 的特征向量 $(1,1)^T$（特征值4）方向，一步即收敛到精确解。"
+          ]
+        }
+      ],
+      "id": "osaka-2024-144813ba62-q01-practice-04",
+      "school": "大阪大学",
+      "year": "2024"
+    },
+    {
+      "text": "在最速下降法记号下，$e^{(k)}=x^{(k)}-x^*$，$g^{(k)}=Qx^{(k)}-b$。证明恒等式 $e^{(k)T}Qe^{(k)}=g^{(k)T}Q^{-1}g^{(k)}$（此为推导 $Z(x^{(k+1)})=(1-\\gamma_k)Z(x^{(k)})$ 的关键引理）。",
+      "knowledge_points": [
+        "矩阵逆运算",
+        "误差与梯度的关系",
+        "二次型恒等变形"
+      ],
+      "question_type": "证明题",
+      "method": [
+        "利用 $g^{(k)}=Qe^{(k)}$ 代入化简"
+      ],
+      "solution_steps": [
+        "由 $Qx^*=b$ 得 $g^{(k)}=Qe^{(k)}$",
+        "解出 $e^{(k)}=Q^{-1}g^{(k)}$",
+        "代入 $e^{(k)T}Qe^{(k)}$ 化简"
+      ],
+      "math_structure": {
+        "type": "gradient_error_identity",
+        "template": "e^{(k)T}Qe^{(k)}=g^{(k)T}Q^{-1}g^{(k)}",
+        "variable_count": 1
+      },
+      "difficulty": 3,
+      "estimated_minutes": 8,
+      "answer": [
+        {
+          "label": "证明",
+          "steps": [
+            "因 $x^*$ 使 $f$ 最小，梯度为零：$Qx^*-b=0$，即 $Qx^*=b$。",
+            "于是 $g^{(k)}=Qx^{(k)}-b=Qx^{(k)}-Qx^*=Q(x^{(k)}-x^*)=Qe^{(k)}$；由 $Q$ 可逆得 $e^{(k)}=Q^{-1}g^{(k)}$。",
+            "代入：$e^{(k)T}Qe^{(k)}=(Q^{-1}g^{(k)})^TQ(Q^{-1}g^{(k)})=g^{(k)T}(Q^{-1})^TQQ^{-1}g^{(k)}$；因 $Q$ 对称故 $Q^{-1}$ 也对称，$(Q^{-1})^T=Q^{-1}$，故上式化为 $g^{(k)T}Q^{-1}QQ^{-1}g^{(k)}=g^{(k)T}Q^{-1}g^{(k)}$，证毕。"
+          ]
+        }
+      ],
+      "id": "osaka-2024-144813ba62-q01-practice-05",
+      "school": "大阪大学",
+      "year": "2024"
+    }
+  ],
+  "source_question": "数理基础 問1",
+  "source_pdf": "大阪大学/情报科学研究科/情报数理学/大阪大学_情报科学研究科_情报数理学_2024_数学过去问.pdf",
+  "source_type": "官方过去问",
+  "subject_category": "线性代数"
+}

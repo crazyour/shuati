@@ -1,0 +1,202 @@
+{
+  "id": "osaka-2015-247ebe2ae6-q05",
+  "school": "大阪大学",
+  "year": "2015",
+  "subject": "情报科学研究科_情报基础数学",
+  "text": "回答下列问题：\n(1) 叙述关于全纯函数的柯西积分定理；\n(2) 求 $\\displaystyle\\lim_{R\\to\\infty}\\int_{-R}^{R}\\frac{x^3+1}{x^4+1}\\,dx$ 的值。",
+  "knowledge_points": [
+    "柯西积分定理",
+    "留数定理",
+    "奇函数在对称区间上积分为零",
+    "半圆弧上的ML估值不等式",
+    "有理函数极点与留数的计算"
+  ],
+  "question_type": "复变函数基本定理陈述与留数法求实积分",
+  "method": [
+    "陈述单连通域内全纯函数的柯西积分定理",
+    "利用被积函数奇偶分解简化",
+    "构造上半平面闭合路径并用留数定理求值",
+    "估计大圆弧上积分随R→∞趋于零"
+  ],
+  "solution_steps": [
+    "(1)写出柯西积分定理的标准陈述：单连通域内全纯函数沿域内闭曲线积分为0",
+    "(2)将被积函数分解为奇函数x^3/(x^4+1)与偶函数1/(x^4+1)之和，奇函数部分积分恒为0",
+    "对1/(x^4+1)构造闭合路径(实轴线段+上半圆弧)，求出上半平面的两个极点",
+    "计算两极点处留数之和，代入留数定理求闭合积分值",
+    "说明大圆弧上积分随R→∞趋于0，得到最终极限值"
+  ],
+  "math_structure": {
+    "type": "residue_theorem_real_integral",
+    "template": "\\lim_{R\\to\\infty}\\int_{-R}^{R}\\frac{P(x)}{Q(x)}\\,dx=2\\pi i\\sum_{\\mathrm{Im}(z_k)>0}\\mathrm{Res}_{z_k}\\frac{P(z)}{Q(z)}",
+    "variable_count": 1
+  },
+  "difficulty": 3,
+  "answer": [
+    {
+      "label": "(1)",
+      "steps": [
+        "柯西积分定理(标准陈述)：设$D\\subset\\mathbb C$为单连通开域，$f$在$D$上全纯(处处可微)。",
+        "设$\\gamma$为完全包含于$D$内的任意分段光滑简单闭曲线，则沿$\\gamma$的积分$\\displaystyle\\oint_\\gamma f(z)\\,dz=0$。",
+        "该定理是留数定理的基础：当函数在闭曲线内部有孤立奇点时，闭曲线积分不再为0，而等于$2\\pi i$乘以内部各奇点留数之和，这正是(2)中求实积分所用的工具。"
+      ]
+    },
+    {
+      "label": "(2)",
+      "steps": [
+        "被积函数可分解为$\\dfrac{x^3+1}{x^4+1}=\\dfrac{x^3}{x^4+1}+\\dfrac{1}{x^4+1}$。$\\dfrac{x^3}{x^4+1}$分子为奇函数、分母为偶函数，整体为奇函数，故在对称区间$[-R,R]$上其积分对任意R恒为0。因此原极限等于$\\displaystyle\\lim_{R\\to\\infty}\\int_{-R}^{R}\\frac{dx}{x^4+1}$。",
+        "取$f(z)=\\dfrac{1}{z^4+1}$，构造闭合路径$\\gamma_R=[-R,R]\\cup C_R$，其中$C_R=\\{Re^{i\\theta}:0\\le\\theta\\le\\pi\\}$为上半圆弧。$f$的极点满足$z^4=-1$，即$z=e^{i\\pi/4},e^{i3\\pi/4},e^{i5\\pi/4},e^{i7\\pi/4}$，其中位于上半平面的为$z_1=e^{i\\pi/4}=\\frac{\\sqrt2}{2}(1+i)$，$z_2=e^{i3\\pi/4}=\\frac{\\sqrt2}{2}(-1+i)$。",
+        "对简单极点$z_0$，$\\mathrm{Res}_{z_0}f=\\dfrac{1}{4z_0^3}$；由$z_0^4=-1$知$z_0^3=-1/z_0$，故$\\mathrm{Res}_{z_0}f=-\\dfrac{z_0}{4}$。于是$\\mathrm{Res}_{z_1}f+\\mathrm{Res}_{z_2}f=-\\dfrac{z_1+z_2}{4}$，而$z_1+z_2=\\frac{\\sqrt2}{2}(1+i)+\\frac{\\sqrt2}{2}(-1+i)=\\sqrt2\\,i$，故留数之和为$-\\dfrac{\\sqrt2\\,i}{4}$。",
+        "由留数定理，当$R>1$时$\\displaystyle\\oint_{\\gamma_R}f(z)dz=2\\pi i\\left(-\\dfrac{\\sqrt2\\,i}{4}\\right)=\\dfrac{\\pi\\sqrt2}{2}$，为与R无关的常数。又在$C_R$上$|f(z)|\\le\\dfrac{1}{R^4-1}$，弧长为$\\pi R$，故$\\left|\\displaystyle\\int_{C_R}f\\,dz\\right|\\le\\dfrac{\\pi R}{R^4-1}\\to0\\ (R\\to\\infty)$。",
+        "因此$\\displaystyle\\lim_{R\\to\\infty}\\int_{-R}^{R}\\frac{dx}{x^4+1}=\\dfrac{\\pi\\sqrt2}{2}$，从而所求极限为$\\boxed{\\dfrac{\\pi\\sqrt2}{2}}$(即$\\dfrac{\\pi}{\\sqrt2}$)。"
+      ]
+    }
+  ],
+  "practice_questions": [
+    {
+      "text": "利用柯西积分定理判断 $\\displaystyle\\oint_{|z|=1}e^z\\,dz$ 的值。",
+      "knowledge_points": [
+        "柯西积分定理的直接应用",
+        "整函数(entire function)的全纯性"
+      ],
+      "question_type": "定理直接应用",
+      "method": [
+        "判断e^z在全平面全纯，直接应用柯西积分定理"
+      ],
+      "solution_steps": [
+        "说明e^z在整个复平面全纯",
+        "应用柯西积分定理得结果为0"
+      ],
+      "math_structure": {
+        "type": "residue_theorem_real_integral",
+        "template": "\\oint_{|z|=1}e^z\\,dz",
+        "variable_count": 0
+      },
+      "difficulty": 1,
+      "estimated_minutes": 4,
+      "answer": [
+        {
+          "label": "结果",
+          "steps": [
+            "$e^z$是整函数，在$\\mathbb C$上处处全纯，特别在单连通域(如整个复平面)及闭曲线$|z|=1$内部全纯。",
+            "由柯西积分定理，闭曲线内无奇点时积分为0，故$\\oint_{|z|=1}e^z dz=0$。"
+          ]
+        }
+      ],
+      "id": "osaka-2015-247ebe2ae6-q05-practice-01",
+      "school": "大阪大学",
+      "year": "2015"
+    },
+    {
+      "text": "判断函数 $\\dfrac{x^5}{x^6+1}$ 的奇偶性，并求 $\\displaystyle\\int_{-R}^{R}\\frac{x^5}{x^6+1}\\,dx$ 的值(对任意R>0)。",
+      "knowledge_points": [
+        "奇偶函数判断",
+        "对称区间积分性质"
+      ],
+      "question_type": "奇偶性分析",
+      "method": [
+        "直接验证f(-x)=-f(x)"
+      ],
+      "solution_steps": [
+        "验证函数为奇函数",
+        "利用对称区间积分性质得结果为0"
+      ],
+      "math_structure": {
+        "type": "residue_theorem_real_integral",
+        "template": "\\int_{-R}^{R}\\frac{x^{2k+1}}{x^{2m}+1}dx",
+        "variable_count": 0
+      },
+      "difficulty": 2,
+      "estimated_minutes": 5,
+      "answer": [
+        {
+          "label": "结果",
+          "steps": [
+            "设$f(x)=\\dfrac{x^5}{x^6+1}$，则$f(-x)=\\dfrac{-x^5}{x^6+1}=-f(x)$，故f为奇函数。",
+            "奇函数在对称区间$[-R,R]$上的积分恒为0(左右两半相互抵消)，故$\\int_{-R}^{R}f(x)dx=0$对任意$R>0$成立。"
+          ]
+        }
+      ],
+      "id": "osaka-2015-247ebe2ae6-q05-practice-02",
+      "school": "大阪大学",
+      "year": "2015"
+    },
+    {
+      "text": "用留数定理计算 $\\displaystyle\\int_{-\\infty}^{\\infty}\\frac{dx}{x^2+1}$。",
+      "knowledge_points": [
+        "留数定理",
+        "简单极点留数计算",
+        "半圆弧估值"
+      ],
+      "question_type": "留数法求实积分(基础案例)",
+      "method": [
+        "构造上半圆闭合路径并求留数"
+      ],
+      "solution_steps": [
+        "找出上半平面唯一极点z=i",
+        "计算留数并代入留数定理",
+        "说明弧上积分趋于0"
+      ],
+      "math_structure": {
+        "type": "residue_theorem_real_integral",
+        "template": "\\int_{-\\infty}^{\\infty}\\frac{dx}{x^2+1}",
+        "variable_count": 0
+      },
+      "difficulty": 3,
+      "estimated_minutes": 8,
+      "answer": [
+        {
+          "label": "结果",
+          "steps": [
+            "$f(z)=\\dfrac1{z^2+1}$的极点为$z=\\pm i$，上半平面只有$z=i$，为简单极点，留数$=\\dfrac{1}{2i}$。",
+            "上半圆弧上$|f(z)|\\le\\dfrac{1}{R^2-1}$，弧长$\\pi R$，积分随$R\\to\\infty$趋于0。",
+            "由留数定理，$\\int_{-\\infty}^{\\infty}\\dfrac{dx}{x^2+1}=2\\pi i\\cdot\\dfrac1{2i}=\\pi$。"
+          ]
+        }
+      ],
+      "id": "osaka-2015-247ebe2ae6-q05-practice-03",
+      "school": "大阪大学",
+      "year": "2015"
+    },
+    {
+      "text": "用留数定理计算 $\\displaystyle\\int_{-\\infty}^{\\infty}\\frac{dx}{x^4+4}$。",
+      "knowledge_points": [
+        "留数定理",
+        "四次多项式极点计算",
+        "复数运算"
+      ],
+      "question_type": "留数法求实积分(变系数案例)",
+      "method": [
+        "构造上半圆闭合路径,求四次分母的极点及留数"
+      ],
+      "solution_steps": [
+        "求出z^4=-4的上半平面两个根",
+        "计算各极点留数并求和",
+        "代入留数定理得结果"
+      ],
+      "math_structure": {
+        "type": "residue_theorem_real_integral",
+        "template": "\\int_{-\\infty}^{\\infty}\\frac{dx}{x^4+a^4}",
+        "variable_count": 1
+      },
+      "difficulty": 4,
+      "estimated_minutes": 12,
+      "answer": [
+        {
+          "label": "结果",
+          "steps": [
+            "极点满足$z^4=-4$，模为$4^{1/4}=\\sqrt2$，上半平面两根为$z_1=\\sqrt2e^{i\\pi/4}=1+i$，$z_2=\\sqrt2e^{i3\\pi/4}=-1+i$。",
+            "在简单极点$z_0$处留数$=\\dfrac1{4z_0^3}$，由$z_0^4=-4$知$z_0^3=-4/z_0$，故留数$=-\\dfrac{z_0}{16}$。两极点留数之和$=-\\dfrac{z_1+z_2}{16}=-\\dfrac{2i}{16}=-\\dfrac{i}{8}$。",
+            "由留数定理并结合上半圆弧积分随$R\\to\\infty$趋于0，得$\\int_{-\\infty}^{\\infty}\\dfrac{dx}{x^4+4}=2\\pi i\\left(-\\dfrac{i}{8}\\right)=\\dfrac{\\pi}{4}$。"
+          ]
+        }
+      ],
+      "id": "osaka-2015-247ebe2ae6-q05-practice-04",
+      "school": "大阪大学",
+      "year": "2015"
+    }
+  ],
+  "source_question": "問5",
+  "source_pdf": "大阪大学/情报科学研究科/情报基础数学/大阪大学_情报科学研究科_情报基础数学_2015_数学过去问.pdf",
+  "source_type": "官方过去问",
+  "subject_category": "复变函数"
+}

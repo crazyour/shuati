@@ -1,0 +1,242 @@
+{
+  "id": "hokkaido-2025-c0ed463d3c-q03",
+  "school": "北海道大学",
+  "year": "2025",
+  "subject": "情报科学院_系统情报科学",
+  "text": "求解以下微分方程的通解：\n\n(a) $\\frac{dy}{dx}=y^2-4$\n\n(b) $\\frac{d^2y}{dx^2}+\\left(\\frac{dy}{dx}\\right)^2=0$",
+  "knowledge_points": [
+    "分离变量法",
+    "Riccati方程",
+    "部分分式分解",
+    "换元降阶法",
+    "通解与特解"
+  ],
+  "question_type": "一阶与二阶微分方程求解",
+  "method": [
+    "分离变量法",
+    "部分分式分解",
+    "降阶法",
+    "换元法"
+  ],
+  "solution_steps": [
+    "分析方程类型",
+    "选择合适的求解方法",
+    "分离变量或换元",
+    "积分求解",
+    "化简答案"
+  ],
+  "math_structure": {
+    "type": "ode_separable",
+    "template": "可分离型与二阶降阶型微分方程",
+    "variable_count": 2
+  },
+  "difficulty": 2,
+  "answer": [
+    {
+      "label": "(a) 分离变量法求解",
+      "steps": [
+        "方程 $\\frac{dy}{dx}=y^2-4$ 是可分离变量的微分方程",
+        "分离变量：$\\frac{dy}{y^2-4}=dx$",
+        "对左边进行部分分式分解：$y^2-4=(y-2)(y+2)$",
+        "$\\frac{1}{y^2-4}=\\frac{1}{(y-2)(y+2)}=\\frac{A}{y-2}+\\frac{B}{y+2}$",
+        "展开：$1=A(y+2)+B(y-2)$",
+        "取 $y=2$：$1=4A \\Rightarrow A=\\frac{1}{4}$",
+        "取 $y=-2$：$1=-4B \\Rightarrow B=-\\frac{1}{4}$",
+        "所以 $\\frac{1}{y^2-4}=\\frac{1}{4}\\left(\\frac{1}{y-2}-\\frac{1}{y+2}\\right)$",
+        "两边积分：$\\int\\frac{dy}{y^2-4}=\\int dx$",
+        "$\\frac{1}{4}[\\ln|y-2|-\\ln|y+2|]=x+C_1$",
+        "$\\frac{1}{4}\\ln\\left|\\frac{y-2}{y+2}\\right|=x+C_1$",
+        "$\\ln\\left|\\frac{y-2}{y+2}\\right|=4x+4C_1=4x+C$（记 $C=4C_1$）",
+        "$\\left|\\frac{y-2}{y+2}\\right|=e^{4x+C}=Ke^{4x}$（记 $K=e^C$）",
+        "$\\frac{y-2}{y+2}=Ae^{4x}$（记 $A=\\pm K$，为任意常数）",
+        "解出 $y$：$y-2=Ae^{4x}(y+2)$",
+        "$y-Ae^{4x}y=2+2Ae^{4x}$",
+        "$y(1-Ae^{4x})=2(1+Ae^{4x})$",
+        "**通解**：$y=\\frac{2(1+Ae^{4x})}{1-Ae^{4x}}$，其中 $A$ 为任意常数"
+      ]
+    },
+    {
+      "label": "(b) 降阶法求解",
+      "steps": [
+        "方程 $\\frac{d^2y}{dx^2}+\\left(\\frac{dy}{dx}\\right)^2=0$ 是二阶方程，不显含 $y$",
+        "令 $p=\\frac{dy}{dx}$，则 $\\frac{d^2y}{dx^2}=\\frac{dp}{dx}=\\frac{dp}{dy}\\cdot\\frac{dy}{dx}=p\\frac{dp}{dy}$",
+        "代入方程：$p\\frac{dp}{dy}+p^2=0$",
+        "$p\\left(\\frac{dp}{dy}+p\\right)=0$",
+        "**情况1**：$p=0$，即 $\\frac{dy}{dx}=0$",
+        "  解得 $y=C_1$（常数解）",
+        "**情况2**：$\\frac{dp}{dy}+p=0$，即 $\\frac{dp}{dy}=-p$",
+        "  分离变量：$\\frac{dp}{p}=-dy$",
+        "  积分：$\\ln|p|=-y+C_2$",
+        "  得 $p=Ae^{-y}$（记 $A=\\pm e^{C_2}$）",
+        "  即 $\\frac{dy}{dx}=Ae^{-y}$",
+        "  分离变量：$\\frac{dy}{Ae^{-y}}=dx$",
+        "  $e^y dy = A dx$",
+        "  积分：$e^y = Ax + B$",
+        "  得 $y=\\ln|Ax+B|$",
+        "**通解**：$y=\\ln|Ax+B|$，其中 $A, B$ 为任意常数（包含常数解 $y=C_1$ 作为特例）"
+      ]
+    }
+  ],
+  "practice_questions": [
+    {
+      "text": "求解微分方程 $\\frac{dy}{dx}=y(1-y)$（Logistic方程）。",
+      "knowledge_points": [
+        "分离变量法",
+        "部分分式分解"
+      ],
+      "question_type": "可分离型微分方程",
+      "method": [
+        "分离变量",
+        "部分分式分解"
+      ],
+      "solution_steps": [
+        "分离变量",
+        "部分分式分解",
+        "积分",
+        "化简通解"
+      ],
+      "math_structure": {
+        "type": "logistic_equation",
+        "template": "Logistic方程的求解",
+        "variable_count": 1
+      },
+      "difficulty": 2,
+      "estimated_minutes": 10,
+      "answer": [
+        {
+          "label": "Logistic方程求解",
+          "steps": [
+            "分离变量：$\\frac{dy}{y(1-y)}=dx$",
+            "部分分式分解：$\\frac{1}{y(1-y)}=\\frac{1}{y}+\\frac{1}{1-y}$",
+            "积分：$\\int\\left(\\frac{1}{y}+\\frac{1}{1-y}\\right)dy=\\int dx$",
+            "$\\ln|y|-\\ln|1-y|=x+C_1$",
+            "$\\ln\\left|\\frac{y}{1-y}\\right|=x+C_1$",
+            "$\\frac{y}{1-y}=Ae^x$",
+            "解出 $y$：$y=Ae^x(1-y) \\Rightarrow y(1+Ae^x)=Ae^x$",
+            "**通解**：$y=\\frac{Ae^x}{1+Ae^x}=\\frac{1}{1+Be^{-x}}$（其中 $B=A^{-1}$）"
+          ]
+        }
+      ],
+      "id": "hokkaido-2025-c0ed463d3c-q03-practice-01",
+      "school": "北海道大学",
+      "year": "2025"
+    },
+    {
+      "text": "求解微分方程 $\\frac{dy}{dx}=\\frac{y}{x}$。",
+      "knowledge_points": [
+        "分离变量法",
+        "基本积分"
+      ],
+      "question_type": "可分离型微分方程",
+      "method": [
+        "分离变量"
+      ],
+      "solution_steps": [
+        "分离变量",
+        "积分",
+        "化简"
+      ],
+      "math_structure": {
+        "type": "separable_ode",
+        "template": "简单可分离型方程",
+        "variable_count": 1
+      },
+      "difficulty": 1,
+      "estimated_minutes": 5,
+      "answer": [
+        {
+          "label": "求解过程",
+          "steps": [
+            "分离变量：$\\frac{dy}{y}=\\frac{dx}{x}$",
+            "积分：$\\ln|y|=\\ln|x|+C$",
+            "**通解**：$y=Cx$（其中 $C$ 为任意常数）"
+          ]
+        }
+      ],
+      "id": "hokkaido-2025-c0ed463d3c-q03-practice-02",
+      "school": "北海道大学",
+      "year": "2025"
+    },
+    {
+      "text": "求解二阶微分方程 $\\frac{d^2y}{dx^2}=e^x$。",
+      "knowledge_points": [
+        "二阶常系数齐次方程",
+        "特解求法",
+        "积分"
+      ],
+      "question_type": "二阶非齐次微分方程",
+      "method": [
+        "逐次积分"
+      ],
+      "solution_steps": [
+        "两次积分求解"
+      ],
+      "math_structure": {
+        "type": "second_order_linear",
+        "template": "二阶常系数非齐次方程",
+        "variable_count": 1
+      },
+      "difficulty": 1,
+      "estimated_minutes": 8,
+      "answer": [
+        {
+          "label": "逐次积分",
+          "steps": [
+            "对 $\\frac{d^2y}{dx^2}=e^x$ 积分一次：",
+            "$\\frac{dy}{dx}=e^x+C_1$",
+            "再积分一次：",
+            "$y=e^x+C_1 x+C_2$",
+            "**通解**：$y=e^x+C_1 x+C_2$"
+          ]
+        }
+      ],
+      "id": "hokkaido-2025-c0ed463d3c-q03-practice-03",
+      "school": "北海道大学",
+      "year": "2025"
+    },
+    {
+      "text": "求解微分方程 $\\frac{d^2y}{dx^2}=6x$，初值条件为 $y(0)=0, y'(0)=1$。",
+      "knowledge_points": [
+        "二阶微分方程",
+        "初值问题",
+        "逐次积分"
+      ],
+      "question_type": "二阶初值问题",
+      "method": [
+        "逐次积分",
+        "代入初值条件"
+      ],
+      "solution_steps": [
+        "积分求通解",
+        "利用初值条件确定常数"
+      ],
+      "math_structure": {
+        "type": "ivp_second_order",
+        "template": "二阶初值问题求解",
+        "variable_count": 1
+      },
+      "difficulty": 2,
+      "estimated_minutes": 10,
+      "answer": [
+        {
+          "label": "初值问题求解",
+          "steps": [
+            "第一次积分：$\\frac{dy}{dx}=3x^2+C_1$",
+            "由初值 $y'(0)=1$：$1=0+C_1 \\Rightarrow C_1=1$",
+            "所以 $\\frac{dy}{dx}=3x^2+1$",
+            "第二次积分：$y=x^3+x+C_2$",
+            "由初值 $y(0)=0$：$0=0+0+C_2 \\Rightarrow C_2=0$",
+            "**特解**：$y=x^3+x$"
+          ]
+        }
+      ],
+      "id": "hokkaido-2025-c0ed463d3c-q03-practice-04",
+      "school": "北海道大学",
+      "year": "2025"
+    }
+  ],
+  "source_question": "問2-1",
+  "source_pdf": "北海道大学/情报科学院/系统情报科学/北海道大学_情报科学院_系统情报科学_2025_数学过去问_专业科目1.pdf",
+  "source_type": "官方过去问",
+  "subject_category": "微分方程"
+}

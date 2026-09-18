@@ -1,0 +1,204 @@
+{
+  "id": "isct-2018-9607dddc5c-q08",
+  "school": "东京科学大学",
+  "year": "2018",
+  "subject": "理工学系_数学系",
+  "text": "考虑常微分方程初值问题\n$$\\begin{cases}x''+4x'+5x=f(x,x'),\\\\ x(0)=x_0,\\ x'(0)=x_1,\\end{cases}$$\n其中 $x_0,x_1\\in\\mathbb{R}$。\n(1) 当 $f=0$ 时，求解 $x(t)$。\n(2) 设 $f:\\mathbb{R}^2\\to\\mathbb{R}$ 是 $C^1$ 级函数，满足 $f(0,0)=0$ 及 $\\nabla f(0,0)=(0,0)$。证明存在 $(0,0)\\in\\mathbb{R}^2$ 的一个邻域 $U$，使得当 $(x_0,x_1)\\in U$ 时 $\\lim_{t\\to\\infty}x(t)=0$（假设解 $x(t)$ 在 $0\\le t<\\infty$ 上存在）。",
+  "knowledge_points": [
+    "常系数线性齐次微分方程求解",
+    "特征方程与复根情形",
+    "李雅普诺夫稳定性理论",
+    "线性化定理",
+    "扰动项的高阶小量估计"
+  ],
+  "question_type": "常微分方程求解与稳定性证明",
+  "method": [
+    "特征方程求根,构造实值通解",
+    "写成状态空间形式X'=AX+F(X)",
+    "构造李雅普诺夫函数V(X)=X^TPX并估计其沿轨道的变化率"
+  ],
+  "solution_steps": [
+    "对(1)：求解特征方程r^2+4r+5=0得复根-2±i，写出通解并代入初值条件",
+    "对(2)：将方程化为一阶系统X'=AX+F(X)，A的特征值实部为负",
+    "利用李雅普诺夫方程构造正定二次型V(X)，估计dV/dt在原点邻域内的负定性",
+    "由V的估计得到轨道停留在小球内并指数衰减到0"
+  ],
+  "math_structure": {
+    "type": "damped_oscillator_stability",
+    "template": "x''+4x'+5x=f(x,x'), f(0,0)=0,\\nabla f(0,0)=0; solve linear case and prove local asymptotic stability",
+    "variable_count": 4
+  },
+  "difficulty": 4,
+  "answer": [
+    {
+      "label": "(1)",
+      "steps": [
+        "当 $f=0$，方程为线性齐次 $x''+4x'+5x=0$，特征方程 $r^2+4r+5=0$，判别式 $16-20=-4<0$，根为 $r=\\dfrac{-4\\pm\\sqrt{-4}}{2}=-2\\pm i$。",
+        "通解为 $x(t)=e^{-2t}(C_1\\cos t+C_2\\sin t)$。求导：$x'(t)=e^{-2t}\\left[(-2C_1+C_2)\\cos t+(-2C_2-C_1)\\sin t\\right]$。",
+        "代入初值 $x(0)=C_1=x_0$；$x'(0)=-2C_1+C_2=x_1\\Rightarrow C_2=x_1+2x_0$。",
+        "最终解：$x(t)=e^{-2t}\\left[x_0\\cos t+(x_1+2x_0)\\sin t\\right]$。"
+      ]
+    },
+    {
+      "label": "(2)",
+      "steps": [
+        "记 $X=(x,x')^T$，将方程化为一阶系统 $X'=AX+F(X)$，其中 $A=\\begin{pmatrix}0&1\\\\-5&-4\\end{pmatrix}$（对应齐次方程），$F(X)=(0,f(x,x'))^T$。$A$的特征值为$-2\\pm i$（实部为$-2<0$），故线性系统渐近稳定。",
+        "由李雅普诺夫方程理论，因$A$为稳定矩阵（所有特征值实部为负），存在正定对称矩阵$P$满足 $A^TP+PA=-I$。定义 $V(X)=X^TPX$，则$V$为正定二次型，存在常数$c_1,c_2>0$使 $c_1|X|^2\\le V(X)\\le c_2|X|^2$。",
+        "沿系统轨道计算：$\\dot V=X^T(A^TP+PA)X+2X^TPF(X)=-|X|^2+2X^TPF(X)$。因 $f(0,0)=0,\\nabla f(0,0)=(0,0)$，由$C^1$性及Taylor展开，$f(X)=o(|X|)$当$X\\to0$，故$|F(X)|=o(|X|)$，从而$|2X^TPF(X)|\\le2\\|P\\|\\,|X|\\,|F(X)|=o(|X|^2)$。",
+        "因此存在 $\\delta>0$，使得当 $|X|<\\delta$时 $|2X^TPF(X)|\\le\\frac12|X|^2$，从而 $\\dot V\\le-|X|^2+\\frac12|X|^2=-\\frac12|X|^2\\le-\\frac{1}{2c_2}V(X)$（利用$V\\le c_2|X|^2$）。",
+        "选取 $U=\\{(x_0,x_1):V(x_0,x_1)<c_1\\delta^2\\}$（此为$(0,0)$的邻域，因$V$正定连续）。若 $(x_0,x_1)\\in U$，则初始时 $|X(0)|^2\\le V(0)/c_1<\\delta^2$，即$X(0)$在球$|X|<\\delta$内；由 $\\dot V\\le-\\frac{1}{2c_2}V<0$（当$X\\neq0$）及$V$的单调不增性，轨道保持在$\\{V<c_1\\delta^2\\}\\subset\\{|X|<\\delta\\}$内（不变集），故上述微分不等式对所有$t\\ge0$成立。",
+        "解微分不等式 $\\dot V\\le-\\frac{1}{2c_2}V$得 $V(t)\\le V(0)e^{-t/(2c_2)}\\to0$（$t\\to\\infty$），从而 $|X(t)|\\le\\sqrt{V(t)/c_1}\\to0$，特别地 $x(t)\\to0$，证毕。"
+      ]
+    }
+  ],
+  "practice_questions": [
+    {
+      "text": "求解常系数线性齐次方程 $x''+2x'+2x=0$，$x(0)=1,x'(0)=0$的初值问题。",
+      "knowledge_points": [
+        "特征方程求解",
+        "复根情形通解构造"
+      ],
+      "question_type": "常微分方程求解",
+      "method": [
+        "求特征根",
+        "构造通解并代入初值"
+      ],
+      "solution_steps": [
+        "解特征方程",
+        "写通解",
+        "代入初值求常数"
+      ],
+      "math_structure": {
+        "type": "linear_second_order_ode",
+        "template": "x''+2x'+2x=0, x(0)=1,x'(0)=0",
+        "variable_count": 2
+      },
+      "difficulty": 2,
+      "estimated_minutes": 6,
+      "answer": [
+        {
+          "label": "求解",
+          "steps": [
+            "特征方程 $r^2+2r+2=0$，判别式$4-8=-4$，根 $r=-1\\pm i$。",
+            "通解 $x(t)=e^{-t}(C_1\\cos t+C_2\\sin t)$。$x'(t)=e^{-t}[(-C_1+C_2)\\cos t+(-C_2-C_1)\\sin t]$。",
+            "代入初值：$x(0)=C_1=1$；$x'(0)=-C_1+C_2=0\\Rightarrow C_2=1$。故解为 $x(t)=e^{-t}(\\cos t+\\sin t)$。"
+          ]
+        }
+      ],
+      "id": "isct-2018-9607dddc5c-q08-practice-01",
+      "school": "东京科学大学",
+      "year": "2018"
+    },
+    {
+      "text": "对状态矩阵 $A=\\begin{pmatrix}0&1\\\\-5&-4\\end{pmatrix}$，验证其特征值为 $-2\\pm i$（即验证原方程线性化部分的稳定性）。",
+      "knowledge_points": [
+        "特征值计算",
+        "矩阵与微分方程的对应关系"
+      ],
+      "question_type": "特征值验证",
+      "method": [
+        "求特征多项式并解方程"
+      ],
+      "solution_steps": [
+        "写特征多项式",
+        "求根"
+      ],
+      "math_structure": {
+        "type": "eigenvalue_verification",
+        "template": "verify eigenvalues of A=[[0,1],[-5,-4]] are -2\\pm i",
+        "variable_count": 1
+      },
+      "difficulty": 1,
+      "estimated_minutes": 4,
+      "answer": [
+        {
+          "label": "验证",
+          "steps": [
+            "特征多项式：$\\det(A-rI)=\\det\\begin{pmatrix}-r&1\\\\-5&-4-r\\end{pmatrix}=(-r)(-4-r)-1\\cdot(-5)=r^2+4r+5$。",
+            "解 $r^2+4r+5=0$得 $r=\\dfrac{-4\\pm\\sqrt{16-20}}{2}=-2\\pm i$，与原方程特征方程一致，验证成立。"
+          ]
+        }
+      ],
+      "id": "isct-2018-9607dddc5c-q08-practice-02",
+      "school": "东京科学大学",
+      "year": "2018"
+    },
+    {
+      "text": "设 $A$为$2\\times2$矩阵且所有特征值实部为负，说明为何存在正定矩阵$P$满足 $A^TP+PA=-I$（李雅普诺夫方程解的存在性），并给出$A=\\begin{pmatrix}-1&0\\\\0&-1\\end{pmatrix}$时的具体解$P$。",
+      "knowledge_points": [
+        "李雅普诺夫方程",
+        "稳定矩阵的性质"
+      ],
+      "question_type": "存在性说明与具体求解",
+      "method": [
+        "引用李雅普诺夫定理",
+        "对简单对角矩阵直接求解方程"
+      ],
+      "solution_steps": [
+        "说明一般存在性定理",
+        "对具体A代入求P"
+      ],
+      "math_structure": {
+        "type": "lyapunov_equation_solution",
+        "template": "solve A^TP+PA=-I for A=diag(-1,-1)",
+        "variable_count": 1
+      },
+      "difficulty": 2,
+      "estimated_minutes": 8,
+      "answer": [
+        {
+          "label": "求解与说明",
+          "steps": [
+            "一般理论：若矩阵$A$的所有特征值实部为负（稳定矩阵），则李雅普诺夫方程$A^TP+PA=-I$对任意正定矩阵右端（这里取$-I$）恒有唯一正定解$P$，可表示为 $P=\\int_0^\\infty e^{A^Tt}e^{At}dt$（此积分收敛正是因为$A$稳定）。",
+            "对具体 $A=\\begin{pmatrix}-1&0\\\\0&-1\\end{pmatrix}=-I$，尝试 $P=\\frac12I$：验证 $A^TP+PA=(-I)(\\frac12I)+(\\frac12I)(-I)=-\\frac12I-\\frac12I=-I$，恰好满足方程。",
+            "故 $P=\\frac12I=\\begin{pmatrix}1/2&0\\\\0&1/2\\end{pmatrix}$为所求正定解。"
+          ]
+        }
+      ],
+      "id": "isct-2018-9607dddc5c-q08-practice-03",
+      "school": "东京科学大学",
+      "year": "2018"
+    },
+    {
+      "text": "设 $f(x,x')=x^3$（满足$f(0,0)=0,\\nabla f(0,0)=(0,0)$）。定性说明为何原方程 $x''+4x'+5x=x^3$ 在原点附近仍然渐近稳定，并指出该稳定性可能不是全局的原因。",
+      "knowledge_points": [
+        "非线性扰动下的局部稳定性",
+        "全局稳定性与局部稳定性的区别"
+      ],
+      "question_type": "定性分析",
+      "method": [
+        "套用原题(2)的一般结论",
+        "分析非线性项在大范围可能主导线性项"
+      ],
+      "solution_steps": [
+        "验证f满足假设条件",
+        "套用定理得局部稳定性结论",
+        "讨论全局行为的可能失效"
+      ],
+      "math_structure": {
+        "type": "qualitative_stability_discussion",
+        "template": "x''+4x'+5x=x^3; discuss local vs global stability",
+        "variable_count": 1
+      },
+      "difficulty": 3,
+      "estimated_minutes": 8,
+      "answer": [
+        {
+          "label": "分析",
+          "steps": [
+            "验证：$f(x,x')=x^3$在$(0,0)$处 $f(0,0)=0$，且 $\\nabla f=(3x^2,0)$，在$(0,0)$处为$(0,0)$，满足原题(2)的假设条件（$f\\in C^1$显然成立）。",
+            "由原题(2)结论，存在原点邻域$U$使初值在$U$内的解满足$\\lim_{t\\to\\infty}x(t)=0$，即在小初值下方程渐近稳定于原点。",
+            "然而该稳定性是局部的：由于非线性项 $x^3$ 随$|x|$增大迅速超过线性稳定项$-5x$提供的恢复力（即当$x$较大时，方程近似为$x''+4x'\\approx x^3-5x$，右边在$|x|$足够大时可能变为正反馈，使解发散而非收敛），故不能保证对任意初值$(x_0,x_1)$都有$x(t)\\to0$；证明中构造的邻域$U$依赖于李雅普诺夫函数的局部估计（$\\delta$的选取），本质上只在原点附近有效，这正是局部渐近稳定性与全局渐近稳定性的关键区别。"
+          ]
+        }
+      ],
+      "id": "isct-2018-9607dddc5c-q08-practice-04",
+      "school": "东京科学大学",
+      "year": "2018"
+    }
+  ],
+  "source_question": "午后[8]",
+  "source_pdf": "东京科学大学/理工学系/数学系/东京科学大学_理工学系_数学系_2018_数学过去问.pdf",
+  "source_type": "官方过去问",
+  "subject_category": "微分方程"
+}

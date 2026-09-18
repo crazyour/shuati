@@ -1,0 +1,217 @@
+{
+  "id": "nagoya-2012-d55c63eac6-q03",
+  "school": "名古屋大学",
+  "year": "2012",
+  "subject": "多元数理科学研究科_全专攻",
+  "text": "以下均设 $f(z)=\\dfrac{\\exp(-i\\zeta z)}{1+z^2}\\ (z\\in\\mathbb{C})$，$\\zeta\\in\\mathbb{R}$ 是参数。设 $R>1$ 为常数，$C_1=[-R,R]$ 为实轴上的线段，$C_2:\\ Re^{i\\theta}\\ (0\\le\\theta\\le\\pi)$ 为上半圆弧，$C$ 是由 $C_1$ 与 $C_2$ 组成、取逆时针方向的闭合积分路径。\n\n(1) 当 $\\zeta\\le0$ 时，证明 $\\displaystyle\\int_C f(z)\\,dz=\\pi\\exp(\\zeta)$。\n\n(2) 由此证明当 $\\zeta\\le0$ 时，$\\displaystyle\\int_{-\\infty}^{\\infty}\\dfrac{\\exp(-i\\zeta t)}{1+t^2}\\,dt=\\pi\\exp(\\zeta)$。\n\n(3) 求 $\\zeta>0$ 时，$\\displaystyle\\int_{-\\infty}^{\\infty}\\dfrac{\\exp(-i\\zeta t)}{1+t^2}\\,dt$ 的值。",
+  "knowledge_points": [
+    "留数定理",
+    "半圆弧上的估值引理",
+    "Jordan型估计",
+    "含参数的傅里叶变换",
+    "偶函数对称性"
+  ],
+  "question_type": "留数定理应用与含参积分",
+  "method": [
+    "留数定理计算围道积分",
+    "估计半圆弧积分趋于零",
+    "利用实部/虚部拆分并用对称性延拓到 $\\zeta>0$"
+  ],
+  "solution_steps": [
+    "在上半平面内确定 $f$ 的极点并求留数",
+    "由留数定理直接算出闭合积分值",
+    "估计半圆弧 $C_2$ 上积分的模，说明 $R\\to\\infty$ 时趋于零",
+    "取极限得到实轴上广义积分的值",
+    "利用被积函数虚部为奇函数、实部为偶函数的性质，把 $\\zeta>0$ 情形转化为 $\\zeta\\le0$ 情形"
+  ],
+  "math_structure": {
+    "type": "fourier_transform_residue_semicircle",
+    "template": "\\int_{-\\infty}^{\\infty}\\frac{e^{-i\\zeta t}}{1+t^2}\\,dt,\\ \\zeta\\in\\mathbb{R}",
+    "variable_count": 1
+  },
+  "difficulty": 3,
+  "answer": [
+    {
+      "label": "(1)",
+      "steps": [
+        "$f(z)=\\dfrac{\\exp(-i\\zeta z)}{(z-i)(z+i)}$ 在上半平面内唯一的极点是 $z=i$（因 $R>1$，$z=i$ 被 $C$ 包围）。",
+        "在 $z=i$ 处的留数：$\\mathrm{Res}_{z=i}f(z)=\\dfrac{\\exp(-i\\zeta\\cdot i)}{2i}=\\dfrac{\\exp(\\zeta)}{2i}$（因为 $-i\\zeta\\cdot i=\\zeta$，分母求导 $\\dfrac{d}{dz}(z^2+1)=2z$ 在 $z=i$ 处为 $2i$）。",
+        "由留数定理，$\\displaystyle\\int_C f(z)\\,dz=2\\pi i\\cdot\\dfrac{\\exp(\\zeta)}{2i}=\\pi\\exp(\\zeta)$，恰为所需结果（此式对任意 $R>1$ 及任意实数 $\\zeta$ 都成立，与 $\\zeta$ 的符号无关，因为留数计算本身没有用到 $\\zeta\\le0$ 这一条件）。"
+      ]
+    },
+    {
+      "label": "(2)",
+      "steps": [
+        "$\\displaystyle\\int_C f=\\int_{C_1}f+\\int_{C_2}f=\\int_{-R}^{R}f(t)\\,dt+\\int_{C_2}f(z)\\,dz=\\pi\\exp(\\zeta)$（由(1)）。",
+        "在 $C_2$ 上，$z=Re^{i\\theta}=R\\cos\\theta+iR\\sin\\theta$，故 $-i\\zeta z=-i\\zeta R\\cos\\theta+\\zeta R\\sin\\theta$，从而 $|\\exp(-i\\zeta z)|=\\exp(\\zeta R\\sin\\theta)$。当 $\\zeta\\le0$ 且 $\\theta\\in[0,\\pi]$（此时 $\\sin\\theta\\ge0$）时，$\\zeta R\\sin\\theta\\le0$，故 $|\\exp(-i\\zeta z)|\\le1$。",
+        "又 $|1+z^2|\\ge R^2-1$（当 $R>1$），故 $|f(z)|\\le\\dfrac{1}{R^2-1}$ 在 $C_2$ 上处处成立，由估值引理 $\\left|\\displaystyle\\int_{C_2}f\\,dz\\right|\\le\\dfrac{\\pi R}{R^2-1}\\to0\\ (R\\to\\infty)$。",
+        "令 $R\\to\\infty$，$\\int_{C_2}f\\to0$，于是 $\\displaystyle\\int_{-\\infty}^{\\infty}f(t)\\,dt=\\lim_{R\\to\\infty}\\int_{-R}^{R}f(t)\\,dt=\\pi\\exp(\\zeta)$，即当 $\\zeta\\le0$ 时 $\\displaystyle\\int_{-\\infty}^{\\infty}\\dfrac{\\exp(-i\\zeta t)}{1+t^2}\\,dt=\\pi\\exp(\\zeta)$。"
+      ]
+    },
+    {
+      "label": "(3)",
+      "steps": [
+        "记 $I(\\zeta)=\\displaystyle\\int_{-\\infty}^{\\infty}\\dfrac{\\exp(-i\\zeta t)}{1+t^2}\\,dt=\\displaystyle\\int_{-\\infty}^{\\infty}\\dfrac{\\cos(\\zeta t)-i\\sin(\\zeta t)}{1+t^2}\\,dt$。由于 $\\dfrac{\\sin(\\zeta t)}{1+t^2}$ 是 $t$ 的奇函数，在对称区间上积分为零，故 $I(\\zeta)=\\displaystyle\\int_{-\\infty}^{\\infty}\\dfrac{\\cos(\\zeta t)}{1+t^2}\\,dt$ 是实数。",
+        "又 $\\cos(\\zeta t)=\\cos(-\\zeta t)$，所以 $I(\\zeta)=I(-\\zeta)$，即 $I$ 是 $\\zeta$ 的偶函数。",
+        "设 $\\zeta>0$，则 $-\\zeta<0$，由 (2) 可取 $\\zeta'=-\\zeta\\le0$：$I(-\\zeta)=\\pi\\exp(-\\zeta)$。",
+        "由偶性 $I(\\zeta)=I(-\\zeta)=\\pi\\exp(-\\zeta)$，所以当 $\\zeta>0$ 时，$\\displaystyle\\int_{-\\infty}^{\\infty}\\dfrac{\\exp(-i\\zeta t)}{1+t^2}\\,dt=\\pi e^{-\\zeta}$。",
+        "综合(2)(3)，一般公式为 $\\displaystyle\\int_{-\\infty}^{\\infty}\\dfrac{\\exp(-i\\zeta t)}{1+t^2}\\,dt=\\pi e^{-|\\zeta|}$ 对所有实数 $\\zeta$ 成立。"
+      ]
+    }
+  ],
+  "practice_questions": [
+    {
+      "text": "求 $g(z)=\\dfrac{1}{1+z^2}$ 在上半平面内极点处的留数，并由此计算 $\\displaystyle\\int_{-\\infty}^{\\infty}\\dfrac{dt}{1+t^2}$（即原题 $\\zeta=0$ 的情形）。",
+      "knowledge_points": [
+        "留数计算",
+        "留数定理",
+        "简单极点"
+      ],
+      "question_type": "留数与实积分基础题",
+      "method": [
+        "留数定理"
+      ],
+      "solution_steps": [
+        "求上半平面极点",
+        "计算留数",
+        "应用留数定理并说明半圆弧积分趋于零"
+      ],
+      "math_structure": {
+        "type": "residue_basic_real_integral",
+        "template": "\\int_{-\\infty}^\\infty \\frac{dt}{1+t^2}",
+        "variable_count": 0
+      },
+      "difficulty": 1,
+      "estimated_minutes": 6,
+      "answer": [
+        {
+          "label": "结果 $=\\pi$",
+          "steps": [
+            "极点为 $z=\\pm i$，上半平面内只有 $z=i$。留数 $=\\dfrac{1}{2i}$。",
+            "在半圆弧上 $|g(z)|\\le\\dfrac1{R^2-1}$，弧长 $\\pi R$，积分模 $\\le\\dfrac{\\pi R}{R^2-1}\\to0$。",
+            "由留数定理 $\\int_C g=2\\pi i\\cdot\\dfrac1{2i}=\\pi$，取 $R\\to\\infty$ 得 $\\int_{-\\infty}^\\infty\\dfrac{dt}{1+t^2}=\\pi$，与已知反正切公式结果一致。"
+          ]
+        }
+      ],
+      "id": "nagoya-2012-d55c63eac6-q03-practice-01",
+      "school": "名古屋大学",
+      "year": "2012"
+    },
+    {
+      "text": "用估值引理证明：对 $h(z)=\\dfrac{1}{1+z^4}$，当 $R\\to\\infty$ 时，$\\displaystyle\\int_{C_2}h(z)\\,dz\\to0$，其中 $C_2$ 为半径 $R>1$ 的上半圆弧。",
+      "knowledge_points": [
+        "估值引理（ML不等式）",
+        "有理函数在圆弧上的估计"
+      ],
+      "question_type": "估计证明题",
+      "method": [
+        "ML不等式"
+      ],
+      "solution_steps": [
+        "估计 $|h(z)|$ 在弧上的上界",
+        "结合弧长应用ML不等式",
+        "取极限说明趋于零"
+      ],
+      "math_structure": {
+        "type": "arc_estimate_lemma",
+        "template": "\\left|\\int_{C_2} \\frac{dz}{1+z^4}\\right|\\to0 \\text{ as } R\\to\\infty",
+        "variable_count": 0
+      },
+      "difficulty": 2,
+      "estimated_minutes": 8,
+      "answer": [
+        {
+          "label": "证明",
+          "steps": [
+            "在 $C_2$ 上 $|z|=R$，故 $|1+z^4|\\ge R^4-1$，所以 $|h(z)|\\le\\dfrac{1}{R^4-1}$。",
+            "$C_2$ 的弧长为 $\\pi R$，由估值引理 $\\left|\\displaystyle\\int_{C_2}h\\,dz\\right|\\le\\dfrac{\\pi R}{R^4-1}$。",
+            "当 $R\\to\\infty$，$\\dfrac{\\pi R}{R^4-1}\\to0$，故 $\\int_{C_2}h(z)dz\\to0$，证毕。"
+          ]
+        }
+      ],
+      "id": "nagoya-2012-d55c63eac6-q03-practice-02",
+      "school": "名古屋大学",
+      "year": "2012"
+    },
+    {
+      "text": "利用与原题相同的方法（留数定理+半圆弧估计），证明当 $a>0,\\ \\zeta\\le0$ 时，$\\displaystyle\\int_{-\\infty}^{\\infty}\\dfrac{\\exp(-i\\zeta t)}{a^2+t^2}\\,dt=\\dfrac{\\pi}{a}\\exp(a\\zeta)$。",
+      "knowledge_points": [
+        "留数定理",
+        "含参数极点位置",
+        "半圆弧估计"
+      ],
+      "question_type": "留数定理应用（一般化练习）",
+      "method": [
+        "留数定理",
+        "估值引理"
+      ],
+      "solution_steps": [
+        "确定上半平面极点 $z=ai$",
+        "计算该点留数",
+        "估计半圆弧积分趋于零",
+        "取极限得到结果"
+      ],
+      "math_structure": {
+        "type": "general_pole_fourier_residue",
+        "template": "\\int_{-\\infty}^\\infty \\frac{e^{-i\\zeta t}}{a^2+t^2}dt,\\ a>0,\\ \\zeta\\le0",
+        "variable_count": 2
+      },
+      "difficulty": 3,
+      "estimated_minutes": 12,
+      "answer": [
+        {
+          "label": "证明与结果",
+          "steps": [
+            "$f(z)=\\dfrac{\\exp(-i\\zeta z)}{(z-ai)(z+ai)}$，上半平面内唯一极点 $z=ai$。留数 $=\\dfrac{\\exp(-i\\zeta\\cdot ai)}{2ai}=\\dfrac{\\exp(a\\zeta)}{2ai}$（因 $-i\\zeta\\cdot ai=a\\zeta$）。",
+            "由留数定理，$\\displaystyle\\int_C f\\,dz=2\\pi i\\cdot\\dfrac{\\exp(a\\zeta)}{2ai}=\\dfrac{\\pi}{a}\\exp(a\\zeta)$。",
+            "在半圆弧上，同原题推理，$\\zeta\\le0,\\sin\\theta\\ge0$ 时 $|\\exp(-i\\zeta z)|\\le1$，又 $|a^2+z^2|\\ge R^2-a^2$，故弧上积分模 $\\le\\dfrac{\\pi R}{R^2-a^2}\\to0$（$R\\to\\infty$）。",
+            "取极限得 $\\displaystyle\\int_{-\\infty}^{\\infty}\\dfrac{\\exp(-i\\zeta t)}{a^2+t^2}\\,dt=\\dfrac{\\pi}{a}\\exp(a\\zeta)$，与原题 $a=1$ 情形一致。"
+          ]
+        }
+      ],
+      "id": "nagoya-2012-d55c63eac6-q03-practice-03",
+      "school": "名古屋大学",
+      "year": "2012"
+    },
+    {
+      "text": "利用原题结论 $\\displaystyle\\int_{-\\infty}^{\\infty}\\dfrac{\\exp(-i\\zeta t)}{1+t^2}\\,dt=\\pi e^{-|\\zeta|}$，求 $\\displaystyle\\int_{-\\infty}^{\\infty}\\dfrac{\\cos(3t)}{1+t^2}\\,dt$ 的值。",
+      "knowledge_points": [
+        "实部提取",
+        "含参数积分求值"
+      ],
+      "question_type": "应用计算题",
+      "method": [
+        "取实部代入公式"
+      ],
+      "solution_steps": [
+        "写出 $\\zeta=3>0$ 的情形",
+        "代入一般公式",
+        "取实部（结果本身即为实数）"
+      ],
+      "math_structure": {
+        "type": "cosine_integral_from_general_formula",
+        "template": "\\int_{-\\infty}^{\\infty}\\frac{\\cos(\\zeta t)}{1+t^2}dt=\\pi e^{-|\\zeta|}",
+        "variable_count": 1
+      },
+      "difficulty": 2,
+      "estimated_minutes": 5,
+      "answer": [
+        {
+          "label": "结果 $=\\pi e^{-3}$",
+          "steps": [
+            "由一般公式（本题原题结果的推广）$\\displaystyle\\int_{-\\infty}^\\infty\\dfrac{\\exp(-i\\zeta t)}{1+t^2}dt=\\pi e^{-|\\zeta|}$，其虚部为零、实部即为 $\\displaystyle\\int_{-\\infty}^\\infty\\dfrac{\\cos(\\zeta t)}{1+t^2}dt$。",
+            "取 $\\zeta=3$：$\\displaystyle\\int_{-\\infty}^{\\infty}\\dfrac{\\cos(3t)}{1+t^2}\\,dt=\\pi e^{-3}$。",
+            "验证量纲/符号：被积函数在 $t=0$ 附近为正，随 $|t|$ 增大衰减，积分应为正数，$\\pi e^{-3}>0$ 符合预期。"
+          ]
+        }
+      ],
+      "id": "nagoya-2012-d55c63eac6-q03-practice-04",
+      "school": "名古屋大学",
+      "year": "2012"
+    }
+  ],
+  "source_question": "3",
+  "source_pdf": "名古屋大学/多元数理科学研究科/全专攻/名古屋大学_多元数理科学研究科_2012_第1次_数学过去问_下午.pdf",
+  "source_type": "官方过去问",
+  "subject_category": "复变函数"
+}

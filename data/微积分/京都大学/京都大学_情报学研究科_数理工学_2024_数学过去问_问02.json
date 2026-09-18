@@ -1,0 +1,191 @@
+{
+  "id": "kyoto-2024-a19745fad7-q02",
+  "school": "京都大学",
+  "year": "2024",
+  "subject": "情报学研究科_数理工学",
+  "text": "求函数 $\\dfrac{1}{x^4-1}$ 的原函数。",
+  "knowledge_points": [
+    "有理函数积分",
+    "部分分式分解",
+    "反正切函数积分",
+    "对数函数积分"
+  ],
+  "question_type": "不定积分计算",
+  "method": [
+    "因式分解$x^4-1=(x^2-1)(x^2+1)$",
+    "对$x^2$做部分分式分解",
+    "再对$1/(x^2-1)$做部分分式分解"
+  ],
+  "solution_steps": [
+    "分解 $x^4-1=(x^2-1)(x^2+1)$",
+    "设 $\\dfrac{1}{(x^2-1)(x^2+1)}=\\dfrac{A}{x^2-1}+\\dfrac{B}{x^2+1}$，求出 $A=1/2,B=-1/2$",
+    "对 $1/(x^2-1)$ 再分解为 $\\dfrac{1}{2}\\left(\\dfrac{1}{x-1}-\\dfrac{1}{x+1}\\right)$",
+    "逐项积分并合并结果"
+  ],
+  "math_structure": {
+    "type": "rational_function_integral",
+    "template": "\\int \\dfrac{1}{x^4-1}\\,dx",
+    "variable_count": 0
+  },
+  "difficulty": 2,
+  "answer": [
+    {
+      "label": "原函数",
+      "steps": [
+        "先将 $\\dfrac{1}{x^4-1}=\\dfrac{1}{(x^2-1)(x^2+1)}$ 按 $x^2$ 部分分式：设 $\\dfrac{1}{(x^2-1)(x^2+1)}=\\dfrac{A}{x^2-1}+\\dfrac{B}{x^2+1}$，通分得 $A(x^2+1)+B(x^2-1)=1$；令 $x^2=1$ 得 $2A=1\\Rightarrow A=1/2$；令 $x^2=-1$ 得 $-2B=1\\Rightarrow B=-1/2$",
+        "于是 $\\dfrac{1}{x^4-1}=\\dfrac{1}{2}\\cdot\\dfrac{1}{x^2-1}-\\dfrac{1}{2}\\cdot\\dfrac{1}{x^2+1}$；再将 $\\dfrac{1}{x^2-1}=\\dfrac{1}{2}\\left(\\dfrac{1}{x-1}-\\dfrac{1}{x+1}\\right)$代入，得 $\\dfrac{1}{x^4-1}=\\dfrac{1}{4}\\left(\\dfrac{1}{x-1}-\\dfrac{1}{x+1}\\right)-\\dfrac{1}{2}\\cdot\\dfrac{1}{x^2+1}$",
+        "逐项积分：$\\int\\dfrac{1}{x-1}dx=\\ln|x-1|$，$\\int\\dfrac{1}{x+1}dx=\\ln|x+1|$，$\\int\\dfrac{1}{x^2+1}dx=\\arctan x$",
+        "合并得原函数：$\\dfrac{1}{4}\\ln\\left|\\dfrac{x-1}{x+1}\\right|-\\dfrac{1}{2}\\arctan x+C$。验算：对结果求导，$\\dfrac{d}{dx}\\left[\\dfrac14\\ln|x-1|-\\dfrac14\\ln|x+1|-\\dfrac12\\arctan x\\right]=\\dfrac{1}{4(x-1)}-\\dfrac{1}{4(x+1)}-\\dfrac{1}{2(x^2+1)}=\\dfrac{1}{2(x^2-1)}-\\dfrac{1}{2(x^2+1)}=\\dfrac{(x^2+1)-(x^2-1)}{2(x^4-1)}=\\dfrac{2}{2(x^4-1)}=\\dfrac{1}{x^4-1}$，与被积函数一致，验证正确"
+      ]
+    }
+  ],
+  "practice_questions": [
+    {
+      "text": "求 $\\displaystyle\\int \\dfrac{1}{x^2-1}\\,dx$。",
+      "knowledge_points": [
+        "部分分式分解",
+        "对数积分"
+      ],
+      "question_type": "不定积分计算",
+      "method": [
+        "部分分式分解"
+      ],
+      "solution_steps": [
+        "分解为$1/(x-1)-1/(x+1)$除以2",
+        "分别积分"
+      ],
+      "math_structure": {
+        "type": "rational_function_integral_basic",
+        "template": "\\int\\dfrac{1}{x^2-1}dx",
+        "variable_count": 0
+      },
+      "difficulty": 1,
+      "estimated_minutes": 5,
+      "answer": [
+        {
+          "label": "结果",
+          "steps": [
+            "$\\dfrac{1}{x^2-1}=\\dfrac{1}{2}\\left(\\dfrac{1}{x-1}-\\dfrac{1}{x+1}\\right)$",
+            "积分得 $\\dfrac{1}{2}\\ln|x-1|-\\dfrac{1}{2}\\ln|x+1|+C=\\dfrac{1}{2}\\ln\\left|\\dfrac{x-1}{x+1}\\right|+C$",
+            "求导验算：$\\dfrac{1}{2}\\left(\\dfrac1{x-1}-\\dfrac1{x+1}\\right)=\\dfrac{1}{x^2-1}$，正确"
+          ]
+        }
+      ],
+      "id": "kyoto-2024-a19745fad7-q02-practice-01",
+      "school": "京都大学",
+      "year": "2024"
+    },
+    {
+      "text": "求 $\\displaystyle\\int \\dfrac{1}{x^2+1}\\,dx$。",
+      "knowledge_points": [
+        "反正切函数积分"
+      ],
+      "question_type": "不定积分计算",
+      "method": [
+        "标准积分公式"
+      ],
+      "solution_steps": [
+        "直接使用$\\arctan$的导数公式"
+      ],
+      "math_structure": {
+        "type": "arctan_integral",
+        "template": "\\int\\dfrac{1}{x^2+1}dx",
+        "variable_count": 0
+      },
+      "difficulty": 1,
+      "estimated_minutes": 3,
+      "answer": [
+        {
+          "label": "结果",
+          "steps": [
+            "由标准公式 $\\dfrac{d}{dx}\\arctan x=\\dfrac{1}{x^2+1}$",
+            "所以原函数为 $\\arctan x+C$",
+            "验算导数即为被积函数，正确"
+          ]
+        }
+      ],
+      "id": "kyoto-2024-a19745fad7-q02-practice-02",
+      "school": "京都大学",
+      "year": "2024"
+    },
+    {
+      "text": "求 $\\displaystyle\\int \\dfrac{1}{x^4-16}\\,dx$。",
+      "knowledge_points": [
+        "有理函数积分",
+        "因式分解",
+        "部分分式分解"
+      ],
+      "question_type": "不定积分计算",
+      "method": [
+        "因式分解$x^4-16=(x^2-4)(x^2+4)$，类比原题方法"
+      ],
+      "solution_steps": [
+        "分解$x^4-16=(x-2)(x+2)(x^2+4)$",
+        "按$x^2$做部分分式",
+        "对$1/(x^2-4)$继续分解",
+        "逐项积分"
+      ],
+      "math_structure": {
+        "type": "rational_function_integral_generalized",
+        "template": "\\int\\dfrac{1}{x^4-16}dx",
+        "variable_count": 0
+      },
+      "difficulty": 2,
+      "estimated_minutes": 10,
+      "answer": [
+        {
+          "label": "结果",
+          "steps": [
+            "设 $\\dfrac{1}{(x^2-4)(x^2+4)}=\\dfrac{A}{x^2-4}+\\dfrac{B}{x^2+4}$，得 $A(x^2+4)+B(x^2-4)=1$；令$x^2=4$得$8A=1\\Rightarrow A=1/8$；令$x^2=-4$得$-8B=1\\Rightarrow B=-1/8$",
+            "再分解 $\\dfrac{1}{x^2-4}=\\dfrac{1}{4}\\left(\\dfrac{1}{x-2}-\\dfrac{1}{x+2}\\right)$，故 $\\dfrac{1}{x^4-16}=\\dfrac{1}{32}\\left(\\dfrac{1}{x-2}-\\dfrac{1}{x+2}\\right)-\\dfrac{1}{8}\\cdot\\dfrac{1}{x^2+4}$",
+            "对最后一项，$\\int\\dfrac{1}{x^2+4}dx=\\dfrac{1}{2}\\arctan\\dfrac{x}{2}$",
+            "合并得：$\\dfrac{1}{32}\\ln\\left|\\dfrac{x-2}{x+2}\\right|-\\dfrac{1}{16}\\arctan\\dfrac{x}{2}+C$；求导验算可确认结果正确"
+          ]
+        }
+      ],
+      "id": "kyoto-2024-a19745fad7-q02-practice-03",
+      "school": "京都大学",
+      "year": "2024"
+    },
+    {
+      "text": "利用与原题相同方法，求 $\\displaystyle\\int\\dfrac{1}{x^4-1}\\,dx$ 在区间 $[2,3]$ 上的定积分值（保留 $\\ln$ 和 $\\arctan$ 形式）。",
+      "knowledge_points": [
+        "定积分计算",
+        "原函数代入"
+      ],
+      "question_type": "定积分计算",
+      "method": [
+        "利用原题求得的原函数代入端点"
+      ],
+      "solution_steps": [
+        "写出原函数",
+        "代入上下限相减"
+      ],
+      "math_structure": {
+        "type": "definite_integral_from_antiderivative",
+        "template": "\\int_2^3 \\dfrac{1}{x^4-1}dx",
+        "variable_count": 0
+      },
+      "difficulty": 2,
+      "estimated_minutes": 6,
+      "answer": [
+        {
+          "label": "结果",
+          "steps": [
+            "原函数为 $F(x)=\\dfrac14\\ln\\left|\\dfrac{x-1}{x+1}\\right|-\\dfrac12\\arctan x$（原题已求得）",
+            "$F(3)=\\dfrac14\\ln\\dfrac24-\\dfrac12\\arctan3=\\dfrac14\\ln\\dfrac12-\\dfrac12\\arctan3=-\\dfrac14\\ln2-\\dfrac12\\arctan3$",
+            "$F(2)=\\dfrac14\\ln\\dfrac13-\\dfrac12\\arctan2=-\\dfrac14\\ln3-\\dfrac12\\arctan2$",
+            "定积分 $=F(3)-F(2)=-\\dfrac14\\ln2+\\dfrac14\\ln3-\\dfrac12\\arctan3+\\dfrac12\\arctan2=\\dfrac14\\ln\\dfrac32+\\dfrac12(\\arctan2-\\arctan3)$"
+          ]
+        }
+      ],
+      "id": "kyoto-2024-a19745fad7-q02-practice-04",
+      "school": "京都大学",
+      "year": "2024"
+    }
+  ],
+  "source_question": "第1問(ii)",
+  "source_pdf": "京都大学/情报学研究科/数理工学/京都大学_情报学研究科_数理工学_2024_数学过去问.pdf",
+  "source_type": "官方过去问",
+  "subject_category": "微积分"
+}

@@ -1,0 +1,282 @@
+{
+  "id": "kyoto-2023-a9d208b11b-q01",
+  "school": "京都大学",
+  "year": "2023",
+  "subject": "情报学研究科_数理工学",
+  "text": "以下の問いに答えよ。\n\n(i) 極限値 $\\lim_{n \\to \\infty} n^{1/n}$ を求めよ。\n\n(ii) $\\mathbb{R}$ 上で定義された関数 $f(x) = e^{-\\sqrt{3}x}\\cos x$ の極値をすべて求めよ。\n\n(iii) $a, b$ を $a > b$ を満たす正数とする。$\\mathbb{R}^2$ 上で定義された関数 $f(x, y) = (ax^2 + by^2)e^{-(x^2+y^2)}$ の極値をすべて求めよ。\n\n(iv) 次の不定積分を求めよ。$\\int (\\log x)^2 dx$\n\n(v) $D = \\{(x, y) \\in \\mathbb{R}^2 \\mid x^2 + y^2 \\leq 2x\\}$ として、次の2重積分を求めよ。$\\iint_D \\sqrt{x} \\, dxdy$",
+  "knowledge_points": [
+    "数列の極限",
+    "ロピタルの定理",
+    "1変数関数の極値判定",
+    "2変数関数の極値判定",
+    "部分積分",
+    "2重積分",
+    "極座標変換"
+  ],
+  "question_type": "計算問題・証明問題",
+  "method": [
+    "対数をとって極限を計算",
+    "導関数の符号変化を調べる",
+    "ヘッセ行列による極値判定",
+    "部分積分の繰り返し適用",
+    "積分領域の極座標表示と変換"
+  ],
+  "solution_steps": [
+    "(i)は対数をとってロピタルの定理を適用する",
+    "(ii)は$f'(x)=0$の解を求め、導関数の符号をチェック",
+    "(iii)は偏導関数がゼロになる点を求め、2階偏導関数で判定",
+    "(iv)は部分積分を2回使用",
+    "(v)は領域を極座標で表現し、適切に積分順序を決定"
+  ],
+  "math_structure": {
+    "type": "multi_part_calculus",
+    "template": "limit, extrema (1D & 2D), indefinite_integral, double_integral",
+    "variable_count": 5
+  },
+  "difficulty": 3,
+  "answer": [
+    {
+      "label": "(i) 極限値の計算",
+      "steps": [
+        "$y = n^{1/n}$ とおくと、$\\ln y = \\frac{\\ln n}{n}$",
+        "ロピタルの定理により、$\\lim_{n \\to \\infty} \\frac{\\ln n}{n} = \\lim_{n \\to \\infty} \\frac{1/n}{1} = 0$",
+        "したがって、$\\lim_{n \\to \\infty} n^{1/n} = e^0 = 1$"
+      ]
+    },
+    {
+      "label": "(ii) 1変数関数の極値",
+      "steps": [
+        "$f'(x) = -\\sqrt{3}e^{-\\sqrt{3}x}\\cos x - e^{-\\sqrt{3}x}\\sin x = e^{-\\sqrt{3}x}(-\\sqrt{3}\\cos x - \\sin x)$",
+        "$f'(x) = 0$ より、$\\sqrt{3}\\cos x + \\sin x = 0$、つまり $\\tan x = -\\sqrt{3}$",
+        "したがって、$x = -\\frac{\\pi}{3} + n\\pi$ ($n$ は整数)",
+        "$x = -\\frac{\\pi}{3} + 2k\\pi$ のとき、$\\cos x = \\frac{1}{2}$ なので、$f(x) = \\frac{1}{2}e^{\\pi+2\\sqrt{3}k\\pi}$ (極大値)",
+        "$x = \\frac{2\\pi}{3} + 2k\\pi$ のとき、$\\cos x = -\\frac{1}{2}$ なので、$f(x) = -\\frac{1}{2}e^{-2\\pi-2\\sqrt{3}k\\pi}$ (極小値)"
+      ]
+    },
+    {
+      "label": "(iii) 2変数関数の極値",
+      "steps": [
+        "$\\frac{\\partial f}{\\partial x} = 2xe^{-(x^2+y^2)}(a - ax^2 - by^2)$",
+        "$\\frac{\\partial f}{\\partial y} = 2ye^{-(x^2+y^2)}(b - ax^2 - by^2)$",
+        "臨界点は $x=0, y=0$ または $a - ax^2 - by^2 = 0$ かつ $b - ax^2 - by^2 = 0$ を同時に満たす点",
+        "後者から、$a = b$、しかし $a > b$ に矛盾。また単独では $x=0$ 且つ $by^2=b$ (即ち $y=\\pm 1$)、または $y=0$ 且つ $ax^2=a$ (即ち $x=\\pm 1$)",
+        "臨界点：$(0,0)$ で $f=0$、$(0, \\pm 1)$ で $f = be^{-1}$、$(\\pm 1, 0)$ で $f = ae^{-1}$",
+        "ヘッセ行列の判定により：$(0,0)$ は鞍点、$(0, \\pm 1)$ は極大値 $be^{-1}$、$(\\pm 1, 0)$ は極大値 $ae^{-1}$"
+      ]
+    },
+    {
+      "label": "(iv) 不定積分",
+      "steps": [
+        "部分積分：$u = (\\log x)^2$、$dv = dx$ とすると、$du = 2\\log x \\cdot \\frac{1}{x}dx$、$v = x$",
+        "$\\int (\\log x)^2 dx = x(\\log x)^2 - \\int 2x \\cdot \\frac{\\log x}{x} dx = x(\\log x)^2 - 2\\int \\log x \\, dx$",
+        "再び部分積分：$u = \\log x$、$dv = dx$ とすると、$du = \\frac{1}{x}dx$、$v = x$",
+        "$\\int \\log x \\, dx = x\\log x - \\int x \\cdot \\frac{1}{x} dx = x\\log x - x$",
+        "したがって、$\\int (\\log x)^2 dx = x(\\log x)^2 - 2(x\\log x - x) + C = x[(\\log x)^2 - 2\\log x + 2] + C$"
+      ]
+    },
+    {
+      "label": "(v) 2重積分",
+      "steps": [
+        "領域 $D$：$x^2 + y^2 \\leq 2x$ は $(x-1)^2 + y^2 \\leq 1$ に変形でき、中心 $(1,0)$ 、半径 $1$ の円盤",
+        "極座標 $x = r\\cos\\phi$、$y = r\\sin\\phi$ を使用。領域は $r \\leq 2\\cos\\phi$ （$-\\frac{\\pi}{2} \\leq \\phi \\leq \\frac{\\pi}{2}$）",
+        "$\\iint_D \\sqrt{x} \\, dxdy = \\int_{-\\pi/2}^{\\pi/2} \\int_0^{2\\cos\\phi} \\sqrt{r\\cos\\phi} \\cdot r \\, dr d\\phi$",
+        "内積分：$\\int_0^{2\\cos\\phi} r^{3/2}(\\cos\\phi)^{1/2} dr = (\\cos\\phi)^{1/2} \\cdot \\frac{2}{5}(2\\cos\\phi)^{5/2} = \\frac{8\\sqrt{2}}{5}(\\cos\\phi)^3$",
+        "外積分：$\\int_{-\\pi/2}^{\\pi/2} (\\cos\\phi)^3 d\\phi = \\int_{-\\pi/2}^{\\pi/2} \\cos\\phi(1-\\sin^2\\phi) d\\phi = \\left[\\sin\\phi - \\frac{\\sin^3\\phi}{3}\\right]_{-\\pi/2}^{\\pi/2} = \\frac{4}{3}$",
+        "$\\iint_D \\sqrt{x} \\, dxdy = \\frac{8\\sqrt{2}}{5} \\cdot \\frac{4}{3} = \\frac{32\\sqrt{2}}{15}$"
+      ]
+    }
+  ],
+  "practice_questions": [
+    {
+      "text": "数列の極限 $\\lim_{n \\to \\infty} (1 + \\frac{1}{n})^n$ を計算せよ。",
+      "knowledge_points": [
+        "数列の極限",
+        "ネイピア数の定義"
+      ],
+      "question_type": "計算問題",
+      "method": [
+        "対数をとる",
+        "ロピタルの定理"
+      ],
+      "solution_steps": [
+        "自然対数をとり、極限の定義式に変形する"
+      ],
+      "math_structure": {
+        "type": "limit_of_sequence",
+        "template": "$(1 + a/n)^n$ の極限",
+        "variable_count": 1
+      },
+      "difficulty": 2,
+      "estimated_minutes": 5,
+      "answer": [
+        {
+          "label": "ネイピア数の計算",
+          "steps": [
+            "$y = (1 + \\frac{1}{n})^n$ とおく。$\\ln y = n \\ln(1 + \\frac{1}{n})$",
+            "$\\lim_{n \\to \\infty} n \\ln(1 + \\frac{1}{n}) = \\lim_{n \\to \\infty} \\frac{\\ln(1+1/n)}{1/n}$",
+            "ロピタルの定理：$\\lim_{u \\to 0} \\frac{\\ln(1+u)}{u} = \\lim_{u \\to 0} \\frac{1/(1+u)}{1} = 1$",
+            "したがって、$\\lim_{n \\to \\infty} (1 + \\frac{1}{n})^n = e^1 = e$"
+          ]
+        }
+      ],
+      "id": "kyoto-2023-a9d208b11b-q01-practice-01",
+      "school": "京都大学",
+      "year": "2023"
+    },
+    {
+      "text": "関数 $f(x) = e^{-x}\\sin x$ の極値をすべて求めよ。",
+      "knowledge_points": [
+        "積の微分法",
+        "1変数関数の極値判定"
+      ],
+      "question_type": "計算問題",
+      "method": [
+        "導関数を計算",
+        "導関数がゼロになる点を求める",
+        "符号変化で極値を判定"
+      ],
+      "solution_steps": [
+        "導関数を求める",
+        "臨界点を決定",
+        "極大値と極小値を分類"
+      ],
+      "math_structure": {
+        "type": "extrema_1d_function",
+        "template": "$f(x) = e^{ax}\\sin(bx)$ の極値",
+        "variable_count": 2
+      },
+      "difficulty": 2,
+      "estimated_minutes": 10,
+      "answer": [
+        {
+          "label": "極値の決定",
+          "steps": [
+            "$f'(x) = -e^{-x}\\sin x + e^{-x}\\cos x = e^{-x}(\\cos x - \\sin x)$",
+            "$f'(x) = 0$ より、$\\cos x = \\sin x$、つまり $\\tan x = 1$",
+            "$x = \\frac{\\pi}{4} + n\\pi$ （$n$ は整数）",
+            "$x = \\frac{\\pi}{4} + 2k\\pi$ のとき、$\\sin x = \\frac{\\sqrt{2}}{2}$、$f(x) = e^{-\\pi/4 - 2k\\pi} \\cdot \\frac{\\sqrt{2}}{2}$ （極大値）",
+            "$x = \\frac{5\\pi}{4} + 2k\\pi$ のとき、$\\sin x = -\\frac{\\sqrt{2}}{2}$、$f(x) = -e^{-5\\pi/4 - 2k\\pi} \\cdot \\frac{\\sqrt{2}}{2}$ （極小値）"
+          ]
+        }
+      ],
+      "id": "kyoto-2023-a9d208b11b-q01-practice-02",
+      "school": "京都大学",
+      "year": "2023"
+    },
+    {
+      "text": "$D = \\{(x,y) \\mid x^2 + y^2 \\leq 1, x \\geq 0\\}$ のとき、$\\iint_D xy \\, dxdy$ を計算せよ。",
+      "knowledge_points": [
+        "2重積分",
+        "極座標変換",
+        "積分領域の設定"
+      ],
+      "question_type": "計算問題",
+      "method": [
+        "極座標変換",
+        "逐次積分"
+      ],
+      "solution_steps": [
+        "極座標で領域を表現",
+        "ヤコビアンを適用",
+        "逐次積分を実行"
+      ],
+      "math_structure": {
+        "type": "double_integral_polar",
+        "template": "半円盤上の2重積分",
+        "variable_count": 2
+      },
+      "difficulty": 2,
+      "estimated_minutes": 10,
+      "answer": [
+        {
+          "label": "半円盤上の2重積分",
+          "steps": [
+            "$D$ は半径 1 の円盤の右半分。極座標：$0 \\leq r \\leq 1$、$-\\frac{\\pi}{2} \\leq \\theta \\leq \\frac{\\pi}{2}$",
+            "$x = r\\cos\\theta$、$y = r\\sin\\theta$、$dxdy = r \\, dr d\\theta$",
+            "$\\iint_D xy \\, dxdy = \\int_{-\\pi/2}^{\\pi/2} \\int_0^1 r\\cos\\theta \\cdot r\\sin\\theta \\cdot r \\, dr d\\theta$",
+            "$= \\int_{-\\pi/2}^{\\pi/2} \\cos\\theta\\sin\\theta d\\theta \\int_0^1 r^3 dr = \\int_{-\\pi/2}^{\\pi/2} \\frac{\\sin(2\\theta)}{2} d\\theta \\cdot \\frac{1}{4}$",
+            "$= \\frac{1}{4} \\left[-\\frac{\\cos(2\\theta)}{4}\\right]_{-\\pi/2}^{\\pi/2} = \\frac{1}{16}[(-1) - (-1)] = 0$"
+          ]
+        }
+      ],
+      "id": "kyoto-2023-a9d208b11b-q01-practice-03",
+      "school": "京都大学",
+      "year": "2023"
+    },
+    {
+      "text": "部分積分を用いて $\\int x\\cos x \\, dx$ を計算せよ。",
+      "knowledge_points": [
+        "部分積分"
+      ],
+      "question_type": "計算問題",
+      "method": [
+        "部分積分の公式を適用"
+      ],
+      "solution_steps": [
+        "適切な $u$、$dv$ を選択",
+        "積分公式を適用"
+      ],
+      "math_structure": {
+        "type": "indefinite_integral_by_parts",
+        "template": "$\\int x\\cos(ax) dx$",
+        "variable_count": 1
+      },
+      "difficulty": 1,
+      "estimated_minutes": 5,
+      "answer": [
+        {
+          "label": "部分積分",
+          "steps": [
+            "$u = x$、$dv = \\cos x \\, dx$ とすると、$du = dx$、$v = \\sin x$",
+            "$\\int x\\cos x \\, dx = x\\sin x - \\int \\sin x \\, dx = x\\sin x + \\cos x + C$"
+          ]
+        }
+      ],
+      "id": "kyoto-2023-a9d208b11b-q01-practice-04",
+      "school": "京都大学",
+      "year": "2023"
+    },
+    {
+      "text": "$f(x, y) = x^2 + y^2$ は領域 $\\{(x,y) \\mid x^2 + y^2 \\leq 4\\}$ で極値を持つか？理由を述べよ。",
+      "knowledge_points": [
+        "2変数関数の極値",
+        "内部の臨界点"
+      ],
+      "question_type": "概念理解",
+      "method": [
+        "偏導関数を計算",
+        "臨界点を求める"
+      ],
+      "solution_steps": [
+        "内部の臨界点を探す",
+        "境界での挙動を確認"
+      ],
+      "math_structure": {
+        "type": "extrema_2d_in_region",
+        "template": "凸領域内での2変数関数の極値",
+        "variable_count": 1
+      },
+      "difficulty": 1,
+      "estimated_minutes": 5,
+      "answer": [
+        {
+          "label": "極値の存在判定",
+          "steps": [
+            "$\\frac{\\partial f}{\\partial x} = 2x$、$\\frac{\\partial f}{\\partial y} = 2y$",
+            "領域内部の臨界点は $(0,0)$ のみ",
+            "$(0,0)$ での値は $f(0,0) = 0$",
+            "領域内の他の点では $f > 0$、境界上でも最小値 $0$",
+            "したがって、$(0,0)$ は領域内で（狭い意味での）極小値を持つ"
+          ]
+        }
+      ],
+      "id": "kyoto-2023-a9d208b11b-q01-practice-05",
+      "school": "京都大学",
+      "year": "2023"
+    }
+  ],
+  "source_question": "問1",
+  "source_pdf": "京都大学/情报学研究科/数理工学/京都大学_情报学研究科_数理工学_2023_数学过去问.pdf",
+  "source_type": "官方过去问",
+  "subject_category": "微积分"
+}

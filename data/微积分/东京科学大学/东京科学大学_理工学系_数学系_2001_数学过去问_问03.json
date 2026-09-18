@@ -1,0 +1,159 @@
+{
+  "id": "isct-2001-21d177050b-q03",
+  "school": "东京科学大学",
+  "year": "2001",
+  "subject": "理工学系_数学系",
+  "text": "映射 $f:\\mathbb R^n\\to\\mathbb R^m$ 在点 $a\\in\\mathbb R^n$ 处全微分可能，即存在线性映射 $A:\\mathbb R^n\\to\\mathbb R^m$，使得\n$$\\lim_{\\|x-a\\|_n\\to0} \\frac{\\|f(x)-f(a)-A(x-a)\\|_m}{\\|x-a\\|_n}=0,$$\n其中 $\\|\\cdot\\|_n$ 是 $\\mathbb R^n$ 上的欧几里得范数。再设映射 $g:\\mathbb R^m\\to\\mathbb R^l$ 在点 $f(a)$ 处全微分可能。证明复合映射 $h=g\\circ f$ 在点 $a$ 处全微分可能。",
+  "knowledge_points": [
+    "全微分（Fréchet微分）定义",
+    "链式法则证明",
+    "线性算子有界性",
+    "极限的$\\epsilon$-$\\delta$语言",
+    "多元函数复合"
+  ],
+  "question_type": "链式法则证明",
+  "method": [
+    "余项函数法",
+    "线性算子有界性估计",
+    "分解误差项"
+  ],
+  "solution_steps": [
+    "设 $B$ 为 $g$ 在 $f(a)$ 处的导数（线性映射），定义误差函数 $\\varphi,\\psi$",
+    "将 $h(x)-h(a)-BA(x-a)$ 分解为 $B\\varphi(x)+\\psi(f(x))$",
+    "分别证明两项除以 $\\|x-a\\|_n$ 都趋于0",
+    "得出 $h$ 在 $a$ 处可微，导数为 $BA$"
+  ],
+  "math_structure": {
+    "type": "chain_rule_frechet_derivative",
+    "template": "$f$ differentiable at $a$ with derivative $A$, $g$ differentiable at $f(a)$ with derivative $B$; show $h=g\\circ f$ differentiable at $a$ with derivative $BA$",
+    "variable_count": 3
+  },
+  "difficulty": 3,
+  "answer": [
+    {
+      "label": "证明",
+      "steps": [
+        "设 $A$ 是 $f$ 在 $a$ 处的导数，$B$ 是 $g$ 在 $f(a)$ 处的导数。定义 $\\varphi(x)=f(x)-f(a)-A(x-a)$，$\\psi(y)=g(y)-g(f(a))-B(y-f(a))$，依题设 $\\|\\varphi(x)\\|_m/\\|x-a\\|_n\\to0$（当 $x\\to a$），$\\|\\psi(y)\\|_l/\\|y-f(a)\\|_m\\to0$（当 $y\\to f(a)$）",
+        "计算 $h(x)-h(a)-BA(x-a) = g(f(x))-g(f(a))-BA(x-a)$。利用 $g(f(x))-g(f(a))=B(f(x)-f(a))+\\psi(f(x))$，代入得 $=B(f(x)-f(a))+\\psi(f(x))-BA(x-a)=B\\big(f(x)-f(a)-A(x-a)\\big)+\\psi(f(x))=B\\varphi(x)+\\psi(f(x))$",
+        "估计第一项：由 $B$ 是线性映射（在有限维空间上自动有界），存在常数 $\\|B\\|$ 使 $\\|B\\varphi(x)\\|_l\\le \\|B\\|\\cdot\\|\\varphi(x)\\|_m$，故 $\\|B\\varphi(x)\\|_l/\\|x-a\\|_n\\le \\|B\\|\\cdot\\|\\varphi(x)\\|_m/\\|x-a\\|_n\\to0$",
+        "估计第二项：由 $f$ 在 $a$ 处连续（可微必连续），$x\\to a$ 时 $f(x)\\to f(a)$；又由可微性，$\\|f(x)-f(a)\\|_m\\le(\\|A\\|+1)\\|x-a\\|_n$ 对 $x$ 充分靠近 $a$ 成立（因 $\\varphi(x)/\\|x-a\\|_n\\to0$）。于是当 $x\\ne a$ 靠近 $a$ 时，若 $f(x)\\ne f(a)$，$$\\frac{\\|\\psi(f(x))\\|_l}{\\|x-a\\|_n}=\\frac{\\|\\psi(f(x))\\|_l}{\\|f(x)-f(a)\\|_m}\\cdot\\frac{\\|f(x)-f(a)\\|_m}{\\|x-a\\|_n}\\le \\frac{\\|\\psi(f(x))\\|_l}{\\|f(x)-f(a)\\|_m}\\cdot(\\|A\\|+1)\\to 0\\cdot(\\|A\\|+1)=0$$（若 $f(x)=f(a)$，则 $\\psi(f(x))=0$，此项自动为0，不影响极限）",
+        "综合两项，得 $\\lim_{x\\to a}\\frac{\\|h(x)-h(a)-BA(x-a)\\|_l}{\\|x-a\\|_n}=0$，即 $h$ 在 $a$ 处全微分可能，其导数为线性映射 $BA$"
+      ]
+    }
+  ],
+  "practice_questions": [
+    {
+      "text": "设 $f(x)=x^2$（$\\mathbb R\\to\\mathbb R$），$g(y)=\\sin y$。用定义直接验证在 $a=1$ 处 $h=g\\circ f$ 可微，并求 $h'(1)$。",
+      "knowledge_points": [
+        "一元函数可微定义",
+        "链式法则具体计算"
+      ],
+      "question_type": "具体验证",
+      "method": [
+        "定义法",
+        "链式法则"
+      ],
+      "solution_steps": [
+        "求$f'(1)$与$g'(f(1))$",
+        "用链式法则计算$h'(1)$",
+        "对照定义验证极限为0"
+      ],
+      "math_structure": {
+        "type": "one_dim_chain_rule_example",
+        "template": "$f(x)=x^2$, $g(y)=\\sin y$, compute $h'(1)$",
+        "variable_count": 0
+      },
+      "difficulty": 1,
+      "estimated_minutes": 5,
+      "answer": [
+        {
+          "label": "结果",
+          "steps": [
+            "$f'(x)=2x$，故 $A=f'(1)=2$；$f(1)=1$，$g'(y)=\\cos y$，故 $B=g'(1)=\\cos1$",
+            "由链式法则 $h'(1)=BA=2\\cos1$",
+            "验证：$h(x)=\\sin(x^2)$，直接求导 $h'(x)=2x\\cos(x^2)$，代入 $x=1$ 得 $2\\cos1$，一致"
+          ]
+        }
+      ],
+      "id": "isct-2001-21d177050b-q03-practice-01",
+      "school": "东京科学大学",
+      "year": "2001"
+    },
+    {
+      "text": "设 $f:\\mathbb R^2\\to\\mathbb R^2$，$f(x,y)=(x+y,xy)$，在点 $(1,1)$ 处的导数矩阵 $A$ 是什么？设 $g:\\mathbb R^2\\to\\mathbb R$，$g(u,v)=u^2+v$，在点 $f(1,1)=(2,1)$ 处的导数 $B$ 是什么？求 $h=g\\circ f$ 在 $(1,1)$ 处的导数（用链式法则，即矩阵乘积 $BA$）。",
+      "knowledge_points": [
+        "雅可比矩阵",
+        "链式法则的矩阵表示"
+      ],
+      "question_type": "多元链式法则计算",
+      "method": [
+        "计算雅可比矩阵",
+        "矩阵乘法"
+      ],
+      "solution_steps": [
+        "求$f$的雅可比矩阵$A$",
+        "求$g$的梯度$B$",
+        "计算$BA$得到$h$的梯度"
+      ],
+      "math_structure": {
+        "type": "jacobian_chain_rule_example",
+        "template": "$f(x,y)=(x+y,xy)$, $g(u,v)=u^2+v$, compute Jacobian of $h=g\\circ f$ at $(1,1)$",
+        "variable_count": 0
+      },
+      "difficulty": 2,
+      "estimated_minutes": 8,
+      "answer": [
+        {
+          "label": "结果",
+          "steps": [
+            "$A=Df(1,1)=\\begin{pmatrix}\\partial(x+y)/\\partial x&\\partial(x+y)/\\partial y\\\\ \\partial(xy)/\\partial x&\\partial(xy)/\\partial y\\end{pmatrix}\\Big|_{(1,1)}=\\begin{pmatrix}1&1\\\\1&1\\end{pmatrix}$",
+            "$B=Dg(2,1)=(2u,1)|_{(2,1)}=(4,1)$（$1\\times2$矩阵）",
+            "$BA=(4,1)\\begin{pmatrix}1&1\\\\1&1\\end{pmatrix}=(4+1,\\,4+1)=(5,5)$",
+            "验证：$h(x,y)=(x+y)^2+xy$，$\\nabla h=(2(x+y)+y,\\,2(x+y)+x)$，代入$(1,1)$得$(5,5)$，一致"
+          ]
+        }
+      ],
+      "id": "isct-2001-21d177050b-q03-practice-02",
+      "school": "东京科学大学",
+      "year": "2001"
+    },
+    {
+      "text": "叙述并证明：若 $f$ 在 $a$ 处可微，则 $f$ 在 $a$ 处连续（这是链式法则证明中用到的关键引理）。",
+      "knowledge_points": [
+        "可微与连续的关系"
+      ],
+      "question_type": "基础引理证明",
+      "method": [
+        "从定义直接估计"
+      ],
+      "solution_steps": [
+        "利用可微定义写出$f(x)-f(a)$的表达式",
+        "估计其范数趋于0"
+      ],
+      "math_structure": {
+        "type": "differentiability_implies_continuity",
+        "template": "show differentiable at $a$ implies continuous at $a$",
+        "variable_count": 1
+      },
+      "difficulty": 2,
+      "estimated_minutes": 6,
+      "answer": [
+        {
+          "label": "证明",
+          "steps": [
+            "由可微定义，$f(x)-f(a)=A(x-a)+\\varphi(x)$，其中$\\|\\varphi(x)\\|/\\|x-a\\|\\to0$当$x\\to a$",
+            "$\\|f(x)-f(a)\\|\\le \\|A\\|\\|x-a\\|+\\|\\varphi(x)\\|$，当$x\\to a$时，$\\|A\\|\\|x-a\\|\\to0$，且$\\|\\varphi(x)\\|\\to0$（因为$\\|\\varphi(x)\\|/\\|x-a\\|\\to0$蕴含$\\|\\varphi(x)\\|\\to0$，只要$\\|x-a\\|$有界趋于0）",
+            "故$\\|f(x)-f(a)\\|\\to0$，即$f$在$a$处连续"
+          ]
+        }
+      ],
+      "id": "isct-2001-21d177050b-q03-practice-03",
+      "school": "东京科学大学",
+      "year": "2001"
+    }
+  ],
+  "source_question": "選択問題6",
+  "source_pdf": "东京科学大学/理工学系/数学系/东京科学大学_理工学系_数学系_2001_数学过去问.pdf",
+  "source_type": "官方过去问",
+  "subject_category": "微积分"
+}

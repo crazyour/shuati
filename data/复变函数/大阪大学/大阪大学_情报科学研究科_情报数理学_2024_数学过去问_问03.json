@@ -1,0 +1,196 @@
+{
+  "id": "osaka-2024-144813ba62-q03",
+  "school": "大阪大学",
+  "year": "2024",
+  "subject": "情报科学研究科_情报数理学",
+  "text": "设复函数 $f(z)$ 在整个复平面上可微（即为整函数）。证明：若 $|f(z)|$ 为常数，则 $f(z)$ 也是常数。",
+  "knowledge_points": [
+    "整函数的可微性",
+    "Cauchy-Riemann方程",
+    "实部虚部分离",
+    "线性方程组行列式判别",
+    "调和函数基本性质"
+  ],
+  "question_type": "证明题",
+  "question_type_extra": "",
+  "method": [
+    "设 $u=\\mathrm{Re}f,v=\\mathrm{Im}f$，利用 $u^2+v^2=$常数 对 $x,y$ 求偏导",
+    "结合Cauchy-Riemann方程得到关于 $u_x,u_y$ 的线性方程组",
+    "通过系数矩阵行列式 $u^2+v^2$ 非零判断偏导数全为零"
+  ],
+  "solution_steps": [
+    "分 $c=0$ 与 $c\\neq0$ 两种情形讨论",
+    "对 $u^2+v^2=c^2$ 关于 $x,y$ 求偏导得到两个方程",
+    "利用Cauchy-Riemann方程 $u_x=v_y,u_y=-v_x$ 化简为关于 $(u_x,u_y)$ 的齐次线性方程组",
+    "由系数矩阵行列式为 $u^2+v^2=c^2\\neq0$ 得知 $u_x=u_y=0$，从而 $f$ 为常数"
+  ],
+  "math_structure": {
+    "type": "entire_function_constant_modulus",
+    "template": "f:\\mathbb{C}\\to\\mathbb{C}\\ \\text{holomorphic on}\\ \\mathbb{C},\\ |f(z)|=c\\ (\\text{常数})",
+    "variable_count": 1
+  },
+  "difficulty": 3,
+  "answer": [
+    {
+      "label": "证明",
+      "steps": [
+        "若 $c=0$，则 $|f(z)|\\equiv0$，即 $f(z)\\equiv0$，为常数，命题成立。以下设 $c>0$，即 $|f(z)|=c\\neq0$ 处处成立。",
+        "设 $u(x,y)=\\mathrm{Re}f(z),v(x,y)=\\mathrm{Im}f(z)$（$z=x+iy$）。条件 $|f(z)|^2=u^2+v^2=c^2$ 对一切 $x,y$ 成立。分别对 $x,y$ 求偏导：$2uu_x+2vv_x=0$，$2uu_y+2vv_y=0$，即 $uu_x+vv_x=0,\\ uu_y+vv_y=0$。",
+        "因 $f$ 处处可微，满足 Cauchy-Riemann 方程 $u_x=v_y,\\ u_y=-v_x$。代入上式：第一式变为 $uu_x-vu_y=0$（用 $v_x=-u_y$）；第二式变为 $uu_y+vu_x=0$（用 $v_y=u_x$）。写成矩阵形式：$\\begin{pmatrix}u&-v\\\\v&u\\end{pmatrix}\\begin{pmatrix}u_x\\\\u_y\\end{pmatrix}=\\begin{pmatrix}0\\\\0\\end{pmatrix}$。",
+        "该系数矩阵的行列式为 $u^2+v^2=c^2\\neq0$，故矩阵可逆，唯一解为 $u_x=u_y=0$。再由 Cauchy-Riemann 方程得 $v_x=-u_y=0,\\ v_y=u_x=0$，故 $u,v$ 的一阶偏导数处处为零，$u,v$ 均为常数，从而 $f(z)=u+iv$ 为常数。综上，无论 $c=0$ 还是 $c\\neq0$，命题均成立。"
+      ]
+    }
+  ],
+  "practice_questions": [
+    {
+      "text": "设 $f(z)=z^2$，$z=x+iy$。写出 $u=\\mathrm{Re}f,v=\\mathrm{Im}f$ 的表达式，并验证 Cauchy-Riemann 方程 $u_x=v_y,\\ u_y=-v_x$ 成立。",
+      "knowledge_points": [
+        "Cauchy-Riemann方程",
+        "复变函数实部虚部分解"
+      ],
+      "question_type": "验证题",
+      "method": [
+        "直接展开求偏导"
+      ],
+      "solution_steps": [
+        "展开 $z^2$ 得 $u,v$",
+        "求各偏导数并比较"
+      ],
+      "math_structure": {
+        "type": "cauchy_riemann_verify",
+        "template": "f(z)=z^2,\\ u=\\mathrm{Re}f,\\ v=\\mathrm{Im}f",
+        "variable_count": 1
+      },
+      "difficulty": 1,
+      "estimated_minutes": 5,
+      "answer": [
+        {
+          "label": "结果",
+          "steps": [
+            "$z^2=(x+iy)^2=x^2-y^2+2xyi$，故 $u(x,y)=x^2-y^2$，$v(x,y)=2xy$。",
+            "求偏导：$u_x=2x,\\ u_y=-2y,\\ v_x=2y,\\ v_y=2x$。",
+            "比较得 $u_x=2x=v_y$，$u_y=-2y=-v_x=-(2y)$，两式均成立，Cauchy-Riemann方程得证。"
+          ]
+        }
+      ],
+      "id": "osaka-2024-144813ba62-q03-practice-01",
+      "school": "大阪大学",
+      "year": "2024"
+    },
+    {
+      "text": "设 $f(z)$ 在整个复平面上可微，且 $\\mathrm{Re}f(z)$ 恒为常数。证明 $f(z)$ 是常数。",
+      "knowledge_points": [
+        "Cauchy-Riemann方程",
+        "常数函数判别"
+      ],
+      "question_type": "证明题",
+      "method": [
+        "由实部常数直接推导偏导为零，再用CR方程推虚部"
+      ],
+      "solution_steps": [
+        "由 $u$ 常数得 $u_x=u_y=0$",
+        "用CR方程得 $v_x=v_y=0$",
+        "结论 $f$ 为常数"
+      ],
+      "math_structure": {
+        "type": "real_part_constant_implies_constant",
+        "template": "\\mathrm{Re}f(z)=c_0\\ (\\text{常数})",
+        "variable_count": 1
+      },
+      "difficulty": 2,
+      "estimated_minutes": 6,
+      "answer": [
+        {
+          "label": "证明",
+          "steps": [
+            "设 $u(x,y)=\\mathrm{Re}f(z)\\equiv c_0$（常数），则 $u_x\\equiv0,\\ u_y\\equiv0$。",
+            "由 Cauchy-Riemann 方程 $v_y=u_x=0,\\ v_x=-u_y=0$，故 $v(x,y)=\\mathrm{Im}f(z)$ 的一阶偏导数也处处为零。",
+            "$u,v$ 的所有一阶偏导数均为零，说明 $u,v$ 在连通的复平面上均为常数，故 $f=u+iv$ 为常数。"
+          ]
+        }
+      ],
+      "id": "osaka-2024-144813ba62-q03-practice-02",
+      "school": "大阪大学",
+      "year": "2024"
+    },
+    {
+      "text": "设 $f(z)$ 在整个复平面上可微，且处处非零，其辐角 $\\arg f(z)$ 恒等于常数 $\\theta_0$。证明 $f(z)$ 是常数。",
+      "knowledge_points": [
+        "辐角恒定条件",
+        "Cauchy-Riemann方程",
+        "行列式判别法"
+      ],
+      "question_type": "证明题",
+      "method": [
+        "把 $u,v$ 表示为 $\\rho\\cos\\theta_0,\\rho\\sin\\theta_0$ 的比例形式，仿照模长恒定情形建立线性方程组"
+      ],
+      "solution_steps": [
+        "设 $u=\\rho\\cos\\theta_0,v=\\rho\\sin\\theta_0$，其中 $\\rho=|f(z)|>0$",
+        "求偏导得到关于 $\\rho_x,\\rho_y$ 的方程，并结合CR方程",
+        "证明系数行列式非零，从而 $\\rho$ 的偏导为零，结合 $\\theta_0$ 为常数得 $f$ 常数"
+      ],
+      "math_structure": {
+        "type": "constant_argument_implies_constant",
+        "template": "\\arg f(z)=\\theta_0\\ (\\text{常数}),\\ f(z)\\neq0",
+        "variable_count": 1
+      },
+      "difficulty": 3,
+      "estimated_minutes": 10,
+      "answer": [
+        {
+          "label": "证明",
+          "steps": [
+            "因 $f(z)\\neq0$ 且辐角恒为 $\\theta_0$，可写 $u=\\rho\\cos\\theta_0,\\ v=\\rho\\sin\\theta_0$，其中 $\\rho(x,y)=|f(z)|>0$ 为待定实值函数，$\\theta_0$ 为常数。",
+            "对 $x,y$ 求偏导：$u_x=\\rho_x\\cos\\theta_0,\\ u_y=\\rho_y\\cos\\theta_0,\\ v_x=\\rho_x\\sin\\theta_0,\\ v_y=\\rho_y\\sin\\theta_0$。代入 Cauchy-Riemann 方程 $u_x=v_y$：$\\rho_x\\cos\\theta_0=\\rho_y\\sin\\theta_0$；由 $u_y=-v_x$：$\\rho_y\\cos\\theta_0=-\\rho_x\\sin\\theta_0$。",
+            "写成矩阵形式 $\\begin{pmatrix}\\cos\\theta_0&-\\sin\\theta_0\\\\\\sin\\theta_0&\\cos\\theta_0\\end{pmatrix}\\begin{pmatrix}\\rho_x\\\\\\rho_y\\end{pmatrix}=\\begin{pmatrix}0\\\\0\\end{pmatrix}$，其系数矩阵为旋转矩阵，行列式为 $\\cos^2\\theta_0+\\sin^2\\theta_0=1\\neq0$，故唯一解 $\\rho_x=\\rho_y=0$。",
+            "$\\rho$ 的偏导数处处为零，故 $\\rho$ 为常数；又 $\\theta_0$ 为常数，所以 $u=\\rho\\cos\\theta_0,v=\\rho\\sin\\theta_0$ 均为常数，$f=u+iv$ 为常数，证毕。"
+          ]
+        }
+      ],
+      "id": "osaka-2024-144813ba62-q03-practice-03",
+      "school": "大阪大学",
+      "year": "2024"
+    },
+    {
+      "text": "设 $f(z)$ 在整个复平面上可微，且存在点 $z_0$ 使 $|f(z)|\\le|f(z_0)|$ 对一切 $z\\in\\mathbb{C}$ 成立（即 $|f|$ 在 $z_0$ 处取全局最大值）。利用最大模原理证明 $f$ 是常数（这是本题主问题的另一种证明思路：先局部再整体）。",
+      "knowledge_points": [
+        "最大模原理",
+        "整函数性质",
+        "局部到整体的论证"
+      ],
+      "question_type": "证明题",
+      "method": [
+        "在任意以 $z_0$ 为内点的圆盘上应用最大模原理，说明 $|f|$ 在圆盘内取最大值必为常数，再由圆盘任意性扩展到全平面"
+      ],
+      "solution_steps": [
+        "在包含 $z_0$ 的任意闭圆盘 $\\bar D(z_0,R)$ 上应用最大模原理",
+        "得出 $f$ 在该圆盘内为常数",
+        "利用解析函数在连通开集上局部常数则整体常数的性质，结合 $R$ 任意扩展到全平面"
+      ],
+      "math_structure": {
+        "type": "max_modulus_implies_constant",
+        "template": "|f(z)|\\le|f(z_0)|\\ \\text{for all}\\ z\\in\\mathbb{C}",
+        "variable_count": 1
+      },
+      "difficulty": 4,
+      "estimated_minutes": 12,
+      "answer": [
+        {
+          "label": "证明",
+          "steps": [
+            "取任意 $R>0$，考虑闭圆盘 $\\bar D(z_0,R)=\\{z:|z-z_0|\\le R\\}$。因 $f$ 在 $\\mathbb{C}$ 上处处可微，故在 $\\bar D(z_0,R)$ 上解析。",
+            "由假设，$|f(z)|\\le|f(z_0)|$ 对一切 $z$ 成立，特别地在 $\\bar D(z_0,R)$ 上 $|f|$ 于内点 $z_0$ 处取得（不小于边界值的）最大值。由最大模原理，若非常数解析函数在区域内部某点取得模的最大值，则会得出矛盾，因此 $f$ 在 $\\bar D(z_0,R)$ 上必为常数（记该常数为 $f(z_0)$）。",
+            "上述结论对任意 $R>0$ 成立，故 $f(z)=f(z_0)$ 对一切满足 $|z-z_0|\\le R$ 的 $z$ 成立；令 $R\\to\\infty$，即得 $f(z)=f(z_0)$ 对一切 $z\\in\\mathbb{C}$ 成立，故 $f$ 在整个复平面上是常数，证毕。"
+          ]
+        }
+      ],
+      "id": "osaka-2024-144813ba62-q03-practice-04",
+      "school": "大阪大学",
+      "year": "2024"
+    }
+  ],
+  "source_question": "数学解析 問1",
+  "source_pdf": "大阪大学/情报科学研究科/情报数理学/大阪大学_情报科学研究科_情报数理学_2024_数学过去问.pdf",
+  "source_type": "官方过去问",
+  "subject_category": "复变函数"
+}

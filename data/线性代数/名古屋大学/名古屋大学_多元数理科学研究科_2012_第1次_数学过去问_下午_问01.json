@@ -1,0 +1,223 @@
+{
+  "id": "nagoya-2012-d55c63eac6-q01",
+  "school": "名古屋大学",
+  "year": "2012",
+  "subject": "多元数理科学研究科_全专攻",
+  "text": "设 $V$ 是有限维复线性空间，$f:V\\to V$，$g:V\\to V$ 是线性映射，且 $g$ 是双射，满足关系式 $g\\circ f\\circ g^{-1}\\circ f=\\mathrm{id}_V$（$\\mathrm{id}_V$ 为 $V$ 上的恒等映射）。\n\n(1) 证明 $f$ 也是双射。\n\n(2) 若 $\\lambda$ 是 $f$ 的特征值，证明 $\\lambda\\neq 0$，且 $\\lambda^{-1}$ 也是 $f$ 的特征值。\n\n(3) 设 $\\dim V=3$，且 $f$ 有特征值 $\\mu\\neq\\pm 1$。求 $f$ 的若尔当标准形；并取一组使 $f$ 化为若尔当标准形的 $V$ 的基，求 $g$ 在此基下的表示矩阵。",
+  "knowledge_points": [
+    "线性映射的双射性",
+    "特征值与逆映射的关系",
+    "矩阵共轭与相似",
+    "若尔当标准形",
+    "特征值成对出现",
+    "基变换与表示矩阵"
+  ],
+  "question_type": "证明与计算（若尔当标准形）",
+  "method": [
+    "利用有限维空间中单射与满射等价",
+    "由关系式推出 $gfg^{-1}=f^{-1}$",
+    "利用相似矩阵特征值集合相同",
+    "逐分量求解表示矩阵方程"
+  ],
+  "solution_steps": [
+    "由关系式两边左乘 $g^{-1}$ 得到 $f g^{-1} f = g^{-1}$，从而 $f\\circ(g^{-1}\\circ f)=g^{-1}$ 是双射，推出 $f$ 单射，再用有限维性质得 $f$ 双射",
+    "利用 $f$ 可逆，原关系式化为 $g f g^{-1} = f^{-1}$，即 $f$ 与 $f^{-1}$ 相似",
+    "相似矩阵有相同的特征值（含重数），故 $f$ 的特征值集合等于 $f^{-1}$ 的特征值集合，即 $\\{\\lambda_i\\}=\\{\\lambda_i^{-1}\\}$，从而 $\\lambda\\ne0$ 且 $\\lambda^{-1}$ 也是特征值",
+    "对 $\\dim V=3$，利用单若尔当块的逆的若尔当结构（大小不变，特征值取倒数）确定唯一可能的标准形",
+    "在标准基下解方程 $GF=F^{-1}G$，逐项比较非零元位置得到 $g$ 的矩阵形式"
+  ],
+  "math_structure": {
+    "type": "linear_map_conjugate_inverse_relation",
+    "template": "g\\circ f\\circ g^{-1}\\circ f=\\mathrm{id}_V,\\ \\dim V=n,\\ \\text{find Jordan form of } f \\text{ and matrix of } g",
+    "variable_count": 2
+  },
+  "difficulty": 4,
+  "answer": [
+    {
+      "label": "(1)",
+      "steps": [
+        "原关系式 $g\\circ f\\circ g^{-1}\\circ f=\\mathrm{id}_V$ 两边左复合 $g^{-1}$，得 $f\\circ g^{-1}\\circ f=g^{-1}$。",
+        "右边 $g^{-1}$ 是双射（因为 $g$ 是双射），所以复合映射 $f\\circ(g^{-1}\\circ f)$ 是双射。",
+        "复合映射双射必然要求最右边的映射 $f$ 是单射：若存在 $v\\ne0$ 使 $f(v)=0$，则 $f\\circ g^{-1}\\circ f(v)=0$，与该复合是双射矛盾。",
+        "又 $V$ 是有限维，线性映射单射等价于满射，故 $f$ 是双射。"
+      ]
+    },
+    {
+      "label": "(2)",
+      "steps": [
+        "由 (1)，$f$ 可逆，将 $f\\circ g^{-1}\\circ f=g^{-1}$ 两边右乘 $f^{-1}$ 得 $f\\circ g^{-1}=g^{-1}\\circ f^{-1}$，再左乘 $g$、右乘 $g^{-1}$ 变形，最终得到 $g f g^{-1}=f^{-1}$（直接验证：由 $gfg^{-1}f=\\mathrm{id}$ 右乘 $f^{-1}$ 即得 $gfg^{-1}=f^{-1}$）。",
+        "这说明 $f$ 与 $f^{-1}$ 通过 $g$ 相似，因此二者具有相同的特征多项式，从而特征值集合（计重数）相同：$\\{\\lambda_1,\\dots,\\lambda_n\\}=\\{\\lambda_1^{-1},\\dots,\\lambda_n^{-1}\\}$。",
+        "若 $\\lambda$ 是 $f$ 的特征值，由 $f$ 可逆知 $\\lambda\\ne0$；由上述集合相等性，$\\lambda$ 也出现在 $f^{-1}$ 的特征值集合中当且仅当 $\\lambda^{-1}$ 出现在 $f$ 的特征值集合中，所以 $\\lambda^{-1}$ 是 $f$ 的特征值。"
+      ]
+    },
+    {
+      "label": "(3)",
+      "steps": [
+        "由 (2)，$f$ 的 3 个特征值（计重数）在取倒数下不变。由于单个若尔当块 $J_k(\\lambda)$ 的逆相似于同样大小 $k$、特征值为 $\\lambda^{-1}$ 的若尔当块，故 $f$ 的若尔当块结构必须在“大小不变、特征值取倒数”的操作下自身不变（作为多重集合）。",
+        "含 $\\mu\\ (\\ne\\pm1)$ 的块必须与含 $\\mu^{-1}$ 的等大小块配对，且因 $\\mu\\ne\\mu^{-1}$，二者是不同的块；由维数 3 限制，唯一可能是两个大小为 1 的块（特征值 $\\mu,\\mu^{-1}$），剩余 1 维必为大小 1、特征值 $\\varepsilon$ 且满足 $\\varepsilon^{-1}=\\varepsilon$（否则无法自洽配对），即 $\\varepsilon=\\pm1$。",
+        "故 $f$ 可对角化，若尔当标准形为 $$F=\\begin{pmatrix}\\mu&0&0\\\\0&\\mu^{-1}&0\\\\0&0&\\varepsilon\\end{pmatrix},\\quad \\varepsilon\\in\\{1,-1\\}.$$",
+        "取基 $e_1,e_2,e_3$ 使 $f e_1=\\mu e_1,\\ f e_2=\\mu^{-1}e_2,\\ f e_3=\\varepsilon e_3$（对应对角形）。设 $g$ 在此基下矩阵为 $G=(g_{ij})$，由 $GF=F^{-1}G$ 得 $g_{ij}\\lambda_j=\\lambda_i^{-1}g_{ij}$，其中 $(\\lambda_1,\\lambda_2,\\lambda_3)=(\\mu,\\mu^{-1},\\varepsilon)$。",
+        "逐项检验：只有 $(i,j)=(1,2),(2,1),(3,3)$ 满足 $\\lambda_j=\\lambda_i^{-1}$（因一般情形 $\\mu,\\mu^{-1},\\varepsilon$ 互不相等），故 $G$ 形如 $$G=\\begin{pmatrix}0&a&0\\\\b&0&0\\\\0&0&c\\end{pmatrix},\\quad a,b,c\\in\\mathbb{C}\\setminus\\{0\\}$$（$a,b,c$ 非零保证 $G$ 可逆，即 $g$ 是双射）。",
+        "取最简代表 $a=b=c=1$，得到 $g$ 的表示矩阵 $$G=\\begin{pmatrix}0&1&0\\\\1&0&0\\\\0&0&1\\end{pmatrix},$$ 验证 $GFG^{-1}=\\begin{pmatrix}\\mu^{-1}&0&0\\\\0&\\mu&0\\\\0&0&\\varepsilon\\end{pmatrix}=F^{-1}$，与要求一致。"
+      ]
+    }
+  ],
+  "practice_questions": [
+    {
+      "text": "设 $A,B$ 是 $n\\times n$ 复矩阵，满足 $AB=I_n$。利用有限维线性空间上线性映射单射与满射等价的事实，证明 $BA=I_n$。",
+      "knowledge_points": [
+        "有限维空间单射满射等价",
+        "矩阵逆的唯一性"
+      ],
+      "question_type": "证明题",
+      "method": [
+        "利用维数有限性论证单射蕴含满射"
+      ],
+      "solution_steps": [
+        "把 $A,B$ 视为线性映射",
+        "由 $AB=I$ 说明 $A$ 是满射",
+        "有限维下满射蕴含单射，从而 $A$ 可逆",
+        "两边乘 $A^{-1}$ 得 $BA=I$"
+      ],
+      "math_structure": {
+        "type": "matrix_inverse_one_side",
+        "template": "AB=I_n \\Rightarrow BA=I_n",
+        "variable_count": 1
+      },
+      "difficulty": 2,
+      "estimated_minutes": 8,
+      "answer": [
+        {
+          "label": "证明",
+          "steps": [
+            "把 $A$ 看作 $\\mathbb{C}^n\\to\\mathbb{C}^n$ 的线性映射，$AB=I$ 说明对任意 $v\\in\\mathbb{C}^n$，$v=A(Bv)$，即 $v$ 在 $A$ 的值域中，故 $A$ 满射。",
+            "在有限维空间上，线性映射满射等价于单射，从而等价于双射，所以 $A$ 可逆，记逆为 $A^{-1}$。",
+            "由 $AB=I$ 两边左乘 $A^{-1}$ 得 $A^{-1}AB=A^{-1}$，即 $B=A^{-1}$，于是 $BA=A^{-1}A=I_n$，证毕。"
+          ]
+        }
+      ],
+      "id": "nagoya-2012-d55c63eac6-q01-practice-01",
+      "school": "名古屋大学",
+      "year": "2012"
+    },
+    {
+      "text": "设 $A$ 是 $n\\times n$ 可逆复矩阵，且存在可逆矩阵 $P$ 使 $PAP^{-1}=A^{-1}$。证明：若 $\\lambda$ 是 $A$ 的特征值，则 $\\lambda^{-1}$ 也是 $A$ 的特征值（重数相同）。",
+      "knowledge_points": [
+        "相似矩阵特征值相同",
+        "逆矩阵特征值",
+        "特征多项式"
+      ],
+      "question_type": "证明题",
+      "method": [
+        "利用相似矩阵有相同特征多项式",
+        "逆矩阵特征值为原特征值的倒数"
+      ],
+      "solution_steps": [
+        "由相似性写出 $A$ 与 $A^{-1}$ 特征多项式相同",
+        "用 $A^{-1}$ 特征值为 $A$ 特征值的倒数",
+        "结合两式得出特征值集合在取倒数下不变"
+      ],
+      "math_structure": {
+        "type": "similar_matrix_inverse_eigenvalue",
+        "template": "PAP^{-1}=A^{-1}\\Rightarrow \\text{eigenvalues closed under } \\lambda\\mapsto\\lambda^{-1}",
+        "variable_count": 1
+      },
+      "difficulty": 3,
+      "estimated_minutes": 10,
+      "answer": [
+        {
+          "label": "证明",
+          "steps": [
+            "因 $A$ 与 $A^{-1}$ 相似（通过 $P$），故它们的特征多项式相同：$\\det(xI-A)=\\det(xI-A^{-1})$，从而特征值集合（计重数）相同。",
+            "另一方面，若 $Av=\\lambda v$（$v\\ne0$），则 $\\lambda\\ne0$（因 $A$ 可逆），且 $A^{-1}v=\\lambda^{-1}v$，即 $\\lambda^{-1}$ 是 $A^{-1}$ 的特征值。",
+            "结合上一步“$A$ 与 $A^{-1}$ 特征值集合相同”，$\\lambda^{-1}$ 作为 $A^{-1}$ 的特征值也必是 $A$ 的特征值，重数由多项式相等直接保证相同。"
+          ]
+        }
+      ],
+      "id": "nagoya-2012-d55c63eac6-q01-practice-02",
+      "school": "名古屋大学",
+      "year": "2012"
+    },
+    {
+      "text": "设 $F=\\begin{pmatrix}2&0\\\\0&1/2\\end{pmatrix}$。求一个 $2\\times2$ 可逆矩阵 $P$，使 $PFP^{-1}=F^{-1}$，并验证。",
+      "knowledge_points": [
+        "矩阵共轭",
+        "置换矩阵",
+        "特征值倒数配对"
+      ],
+      "question_type": "计算题",
+      "method": [
+        "利用置换矩阵交换对角元素"
+      ],
+      "solution_steps": [
+        "写出 $F^{-1}$",
+        "猜测 $P$ 为交换坐标的置换矩阵",
+        "直接计算验证 $PFP^{-1}=F^{-1}$"
+      ],
+      "math_structure": {
+        "type": "two_by_two_jordan_conjugate",
+        "template": "F=\\mathrm{diag}(\\mu,\\mu^{-1}),\\ \\text{find } P \\text{ with } PFP^{-1}=F^{-1}",
+        "variable_count": 1
+      },
+      "difficulty": 2,
+      "estimated_minutes": 8,
+      "answer": [
+        {
+          "label": "求 $P$",
+          "steps": [
+            "$F^{-1}=\\begin{pmatrix}1/2&0\\\\0&2\\end{pmatrix}$，即对角元互换后的矩阵。",
+            "取 $P=\\begin{pmatrix}0&1\\\\1&0\\end{pmatrix}$（交换基向量的置换矩阵），则 $P^{-1}=P$。",
+            "计算 $PF=\\begin{pmatrix}0&1/2\\\\2&0\\end{pmatrix}$，再 $PFP^{-1}=PFP=\\begin{pmatrix}0&1/2\\\\2&0\\end{pmatrix}\\begin{pmatrix}0&1\\\\1&0\\end{pmatrix}=\\begin{pmatrix}1/2&0\\\\0&2\\end{pmatrix}=F^{-1}$，验证成立。"
+          ]
+        }
+      ],
+      "id": "nagoya-2012-d55c63eac6-q01-practice-03",
+      "school": "名古屋大学",
+      "year": "2012"
+    },
+    {
+      "text": "设 $\\dim V=3$，$f$ 的若尔当标准形为 $F=\\mathrm{diag}(2,\\,1/2,\\,1)$。求所有满足 $GFG^{-1}=F^{-1}$ 的可逆矩阵 $G$ 的一般形式，并给出一个具体例子。",
+      "knowledge_points": [
+        "若尔当标准形",
+        "共轭方程逐分量求解",
+        "矩阵可逆条件"
+      ],
+      "question_type": "计算题",
+      "method": [
+        "按特征值配对列出非零元位置",
+        "逐分量解线性方程"
+      ],
+      "solution_steps": [
+        "写出 $F^{-1}=\\mathrm{diag}(1/2,2,1)$",
+        "设 $G=(g_{ij})$，代入 $GF=F^{-1}G$",
+        "比较系数确定非零位置",
+        "给出一般解与具体例子并验证"
+      ],
+      "math_structure": {
+        "type": "three_by_three_jordan_conjugate",
+        "template": "F=\\mathrm{diag}(\\mu,\\mu^{-1},\\varepsilon),\\ \\text{find all } G \\text{ with } GFG^{-1}=F^{-1}",
+        "variable_count": 3
+      },
+      "difficulty": 4,
+      "estimated_minutes": 15,
+      "answer": [
+        {
+          "label": "一般形式与例子",
+          "steps": [
+            "$F^{-1}=\\mathrm{diag}(1/2,2,1)$。设 $G=(g_{ij})_{3\\times3}$，方程 $GF=F^{-1}G$ 逐项给出 $g_{ij}\\lambda_j=\\lambda_i^{-1}g_{ij}$，其中 $(\\lambda_1,\\lambda_2,\\lambda_3)=(2,1/2,1)$。",
+            "对 $(i,j)$ 逐一检验 $\\lambda_j=\\lambda_i^{-1}$：仅 $(1,2)$（$\\lambda_2=1/2=\\lambda_1^{-1}$）、$(2,1)$（$\\lambda_1=2=\\lambda_2^{-1}$）、$(3,3)$（$\\lambda_3=1=\\lambda_3^{-1}$）成立，其余 $g_{ij}=0$。",
+            "故一般解为 $G=\\begin{pmatrix}0&a&0\\\\b&0&0\\\\0&0&c\\end{pmatrix}$，$a,b,c\\ne0$（保证 $\\det G=-abc\\ne0$ 可逆）。",
+            "取 $a=b=c=1$ 得具体例子 $G=\\begin{pmatrix}0&1&0\\\\1&0&0\\\\0&0&1\\end{pmatrix}$，验证 $GFG^{-1}=\\mathrm{diag}(1/2,2,1)=F^{-1}$，成立。"
+          ]
+        }
+      ],
+      "id": "nagoya-2012-d55c63eac6-q01-practice-04",
+      "school": "名古屋大学",
+      "year": "2012"
+    }
+  ],
+  "source_question": "1",
+  "source_pdf": "名古屋大学/多元数理科学研究科/全专攻/名古屋大学_多元数理科学研究科_2012_第1次_数学过去问_下午.pdf",
+  "source_type": "官方过去问",
+  "subject_category": "线性代数"
+}

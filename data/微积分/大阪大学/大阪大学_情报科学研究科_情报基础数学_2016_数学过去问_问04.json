@@ -1,0 +1,197 @@
+{
+  "id": "osaka-2016-7b3eda5342-q04",
+  "school": "大阪大学",
+  "year": "2016",
+  "subject": "情报科学研究科_情报基础数学",
+  "text": "考虑在整个平面上定义的函数 $f(x,y)=x^4+y^4-x^2-y^2+1$。\n(1) 求 $f(x,y)$ 的极值。\n(2) 求 $f(x,y)$ 在闭区域 $x^2+y^2\\le 4$ 上的最大值与最小值。",
+  "knowledge_points": [
+    "多元函数极值",
+    "临界点与Hessian判别法",
+    "拉格朗日乘数法或边界参数化",
+    "闭区域最值定理",
+    "对称性分析"
+  ],
+  "question_type": "多元函数极值与最值",
+  "method": [
+    "求偏导得临界点，用二阶偏导判别法分类",
+    "边界参数化（极坐标或代数替换）求边界最值",
+    "比较内部极值与边界极值确定全局最值"
+  ],
+  "solution_steps": [
+    "(1) 求 $f_x=0,f_y=0$ 得临界点，计算 $f_{xx},f_{yy},f_{xy}$ 及Hessian行列式分类极值点",
+    "(2) 在边界 $x^2+y^2=4$ 上代入约束化简为单变量问题求边界最值，并与内部极值比较得到全局最值"
+  ],
+  "math_structure": {
+    "type": "bivariate_quartic_extrema_on_disk",
+    "template": "$f(x,y)=x^4+y^4-x^2-y^2+1$，求极值及在 $x^2+y^2\\le R^2$ 上的最值",
+    "variable_count": 2
+  },
+  "difficulty": 3,
+  "answer": [
+    {
+      "label": "(1)",
+      "steps": [
+        "求偏导：$f_x=4x^3-2x=2x(2x^2-1)=0\\Rightarrow x=0$ 或 $x=\\pm\\frac{1}{\\sqrt2}$；同理 $f_y=4y^3-2y=2y(2y^2-1)=0\\Rightarrow y=0$ 或 $y=\\pm\\frac{1}{\\sqrt2}$。共有 $3\\times3=9$ 个临界点。",
+        "二阶偏导：$f_{xx}=12x^2-2,\\ f_{yy}=12y^2-2,\\ f_{xy}=0$。当 $x=0$ 时 $f_{xx}=-2$；当 $x=\\pm\\frac1{\\sqrt2}$ 时 $f_{xx}=12\\cdot\\frac12-2=4$（对 $y$ 同理）。由于 $f_{xy}=0$，Hessian行列式 $=f_{xx}f_{yy}$。",
+        "分类：(i) $(0,0)$：$f_{xx}=f_{yy}=-2$，行列式 $=4>0,f_{xx}<0$，为极大点，$f(0,0)=1$。(ii) $(0,\\pm\\frac1{\\sqrt2})$ 与 $(\\pm\\frac1{\\sqrt2},0)$（共4点）：一个方向 $f_{xx}=-2$，另一个方向 $=4$，行列式 $=-8<0$，为鞍点，函数值均为 $\\frac34$（如 $f(0,\\frac1{\\sqrt2})=0+\\frac14-0-\\frac12+1=\\frac34$）。(iii) $(\\pm\\frac1{\\sqrt2},\\pm\\frac1{\\sqrt2})$（共4点）：$f_{xx}=f_{yy}=4$，行列式 $=16>0,f_{xx}>0$，为极小点。",
+        "极小值计算：$x^4=y^4=\\frac14,x^2=y^2=\\frac12$，故 $f=\\frac14+\\frac14-\\frac12-\\frac12+1=\\frac12$。综上：极大值 $f(0,0)=1$；极小值 $f\\left(\\pm\\frac1{\\sqrt2},\\pm\\frac1{\\sqrt2}\\right)=\\frac12$（四点）；另有四个鞍点函数值 $\\frac34$（非极值点）。"
+      ]
+    },
+    {
+      "label": "(2)",
+      "steps": [
+        "内部候选：由(1)得内部局部极大值 $1$（在 $(0,0)$），局部极小值 $\\frac12$（四点）。",
+        "边界候选：在 $x^2+y^2=4$ 上，记 $u=x^2,v=y^2$，则 $u+v=4$，且 $f=x^4+y^4-(x^2+y^2)+1=u^2+v^2-4+1=u^2+v^2-3$。又 $u^2+v^2=(u+v)^2-2uv=16-2uv$，其中 $u,v\\ge0,u+v=4$ 使 $uv\\in[0,4]$（$uv=4$ 时 $u=v=2$，$uv=0$ 时 $u=0,v=4$ 或反之）。",
+        "故 $u^2+v^2\\in[16-8,16-0]=[8,16]$，从而边界上 $f\\in[8-3,16-3]=[5,13]$。最小值 $5$ 在 $u=v=2$ 即 $x=\\pm\\sqrt2,y=\\pm\\sqrt2$ 处取得；最大值 $13$ 在 $uv=0$ 即 $(x,y)=(\\pm2,0)$ 或 $(0,\\pm2)$ 处取得（验算：$f(2,0)=16+0-4-0+1=13$，$f(\\sqrt2,\\sqrt2)=4+4-2-2+1=5$）。",
+        "综合内部候选 $\\{1,\\frac12\\}$ 与边界候选 $\\{5,13\\}$：全局最大值为 $13$（在边界点 $(\\pm2,0),(0,\\pm2)$ 取得），全局最小值为 $\\frac12$（在内部点 $\\left(\\pm\\frac1{\\sqrt2},\\pm\\frac1{\\sqrt2}\\right)$ 取得）。"
+      ]
+    }
+  ],
+  "practice_questions": [
+    {
+      "text": "求 $g(x,y)=x^2+y^2-2x-4y+5$ 的极值，并判断其类型。",
+      "knowledge_points": [
+        "多元函数极值",
+        "配方法或Hessian判别"
+      ],
+      "question_type": "多元函数极值",
+      "method": [
+        "求偏导找临界点，Hessian判别"
+      ],
+      "solution_steps": [
+        "求 $g_x=0,g_y=0$",
+        "计算Hessian判别极值类型"
+      ],
+      "math_structure": {
+        "type": "quadratic_bivariate_extrema",
+        "template": "$g(x,y)=x^2+y^2-2x-4y+5$ 的极值",
+        "variable_count": 2
+      },
+      "difficulty": 1,
+      "estimated_minutes": 5,
+      "answer": [
+        {
+          "label": "极值",
+          "steps": [
+            "$g_x=2x-2=0\\Rightarrow x=1$；$g_y=2y-4=0\\Rightarrow y=2$，唯一临界点 $(1,2)$。",
+            "$g_{xx}=2,g_{yy}=2,g_{xy}=0$，Hessian行列式 $=4>0,g_{xx}>0$，为极小点。",
+            "$g(1,2)=1+4-2-8+5=0$，即函数在 $(1,2)$ 处取极小值 $0$（配方法验证：$g=(x-1)^2+(y-2)^2\\ge0$，等号当且仅当 $x=1,y=2$，一致）。"
+          ]
+        }
+      ],
+      "id": "osaka-2016-7b3eda5342-q04-practice-01",
+      "school": "大阪大学",
+      "year": "2016"
+    },
+    {
+      "text": "求 $h(x,y)=x^2-y^2$ 的临界点并说明其为鞍点（马鞍面的典型例子）。",
+      "knowledge_points": [
+        "鞍点判别",
+        "Hessian行列式"
+      ],
+      "question_type": "多元函数极值分类",
+      "method": [
+        "求偏导及Hessian判别"
+      ],
+      "solution_steps": [
+        "求临界点",
+        "计算Hessian符号判断鞍点"
+      ],
+      "math_structure": {
+        "type": "saddle_point_example",
+        "template": "$h(x,y)=x^2-y^2$ 的临界点分类",
+        "variable_count": 2
+      },
+      "difficulty": 1,
+      "estimated_minutes": 4,
+      "answer": [
+        {
+          "label": "分类",
+          "steps": [
+            "$h_x=2x=0,h_y=-2y=0$，唯一临界点 $(0,0)$。",
+            "$h_{xx}=2,h_{yy}=-2,h_{xy}=0$，Hessian行列式 $=2\\times(-2)=-4<0$，故 $(0,0)$ 为鞍点。",
+            "验证：沿 $y=0$ 方向 $h(x,0)=x^2$ 在原点取极小；沿 $x=0$ 方向 $h(0,y)=-y^2$ 在原点取极大，两个方向表现相反，确认为鞍点，非极值点。"
+          ]
+        }
+      ],
+      "id": "osaka-2016-7b3eda5342-q04-practice-02",
+      "school": "大阪大学",
+      "year": "2016"
+    },
+    {
+      "text": "求 $p(x,y)=x^4-x^2+y^2$ 的所有极值点并分类（先考虑单变量四次项与简单二次项组合，作为原题结构的简化版）。",
+      "knowledge_points": [
+        "多元函数极值",
+        "四次函数临界点",
+        "Hessian判别"
+      ],
+      "question_type": "多元函数极值",
+      "method": [
+        "分离变量求偏导，Hessian判别"
+      ],
+      "solution_steps": [
+        "求 $p_x=0,p_y=0$",
+        "分类各临界点"
+      ],
+      "math_structure": {
+        "type": "quartic_plus_quadratic_extrema",
+        "template": "$p(x,y)=x^4-x^2+y^2$ 的极值",
+        "variable_count": 2
+      },
+      "difficulty": 2,
+      "estimated_minutes": 8,
+      "answer": [
+        {
+          "label": "极值",
+          "steps": [
+            "$p_x=4x^3-2x=2x(2x^2-1)=0\\Rightarrow x=0$ 或 $x=\\pm\\frac1{\\sqrt2}$；$p_y=2y=0\\Rightarrow y=0$。临界点：$(0,0),\\left(\\pm\\frac1{\\sqrt2},0\\right)$。",
+            "$p_{xx}=12x^2-2,p_{yy}=2,p_{xy}=0$。在 $(0,0)$：$p_{xx}=-2,p_{yy}=2$，Hessian $=-4<0$，鞍点。在 $\\left(\\pm\\frac1{\\sqrt2},0\\right)$：$p_{xx}=12\\cdot\\frac12-2=4,p_{yy}=2$，Hessian $=8>0,p_{xx}>0$，为极小点。",
+            "极小值：$p\\left(\\frac1{\\sqrt2},0\\right)=\\frac14-\\frac12+0=-\\frac14$，同理另一点也是 $-\\frac14$。故极小值为 $-\\frac14$（两点），$(0,0)$ 为鞍点（函数值 $0$，非极值），这与原题中 $x^4-x^2$ 部分产生双井结构、$y$ 方向简单凸性叠加导致鞍点与极小点共存的结构一致。"
+          ]
+        }
+      ],
+      "id": "osaka-2016-7b3eda5342-q04-practice-03",
+      "school": "大阪大学",
+      "year": "2016"
+    },
+    {
+      "text": "求 $q(x,y)=x^2+y^2$ 在闭区域 $x^2+y^2\\le 1$ 上的最大值与最小值。",
+      "knowledge_points": [
+        "闭区域最值",
+        "边界参数化"
+      ],
+      "question_type": "闭区域最值",
+      "method": [
+        "直接由约束判断"
+      ],
+      "solution_steps": [
+        "分析内部临界点",
+        "分析边界取值"
+      ],
+      "math_structure": {
+        "type": "disk_extrema_simple",
+        "template": "$q(x,y)=x^2+y^2$ 在 $x^2+y^2\\le 1$ 上的最值",
+        "variable_count": 2
+      },
+      "difficulty": 1,
+      "estimated_minutes": 4,
+      "answer": [
+        {
+          "label": "最值",
+          "steps": [
+            "内部临界点：$q_x=2x=0,q_y=2y=0$，得 $(0,0)$，为极小点，$q(0,0)=0$。",
+            "边界 $x^2+y^2=1$ 上 $q\\equiv 1$（常数），故边界上最大值与最小值均为 $1$。",
+            "比较内部值 $0$ 与边界值 $1$：全局最小值为 $0$（在原点），全局最大值为 $1$（整个边界圆周），与原题中先分类内部临界点再比较边界的方法完全一致。"
+          ]
+        }
+      ],
+      "id": "osaka-2016-7b3eda5342-q04-practice-04",
+      "school": "大阪大学",
+      "year": "2016"
+    }
+  ],
+  "source_question": "問4",
+  "source_pdf": "大阪大学/情报科学研究科/情报基础数学/大阪大学_情报科学研究科_情报基础数学_2016_数学过去问.pdf",
+  "source_type": "官方过去问",
+  "subject_category": "微积分"
+}

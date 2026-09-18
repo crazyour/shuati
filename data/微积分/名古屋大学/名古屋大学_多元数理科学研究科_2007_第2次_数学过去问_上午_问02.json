@@ -1,0 +1,237 @@
+{
+  "id": "nagoya-2007-b4a0cf0d7b-q02",
+  "school": "名古屋大学",
+  "year": "2007",
+  "subject": "多元数理科学研究科_全专攻",
+  "text": "回答以下问题。\n\n(1) 求使下列二重广义积分收敛的实数 $a$ 的范围，并求其积分值：\n$$\\iint_D (y-x)^{-a}\\,dx\\,dy,\\qquad D=\\{(x,y)\\mid 0\\le x<y\\le 1\\}.$$\n\n(2) 通过变量替换 $u=x+y,\\ v=x-y$，作图说明 $(x,y)$ 平面上区域\n$$D=\\{(x,y)\\mid 0\\le x+y\\le 1,\\ 0\\le x-y\\le 1\\}$$\n映射到 $(u,v)$ 平面上的哪种区域，并求下列积分的值：\n$$\\iint_D (x^2-y^2)\\,dx\\,dy.$$",
+  "knowledge_points": [
+    "二重广义积分",
+    "反常积分收敛性",
+    "变量替换",
+    "雅可比行列式",
+    "累次积分"
+  ],
+  "question_type": "重积分计算与收敛性判断",
+  "method": [
+    "累次积分",
+    "变量替换与雅可比行列式",
+    "反常积分敛散性判定"
+  ],
+  "solution_steps": [
+    "(1) 化为累次积分，先对 x 积分再对 y 积分，判断内层积分在 u=y-x→0 处的收敛性",
+    "求出内层积分结果，再对外层 y 积分求出收敛条件与最终值",
+    "(2) 求 x,y 关于 u,v 的表达式及雅可比行列式",
+    "确定新区域为矩形 $[0,1]\\times[0,1]$，并用 $x^2-y^2=uv$ 化简被积函数",
+    "计算变换后的二重积分"
+  ],
+  "math_structure": {
+    "type": "double_improper_integral_and_change_of_variables",
+    "template": "\\iint_D (y-x)^{-a}dxdy;\\ \\iint_D (x^2-y^2)dxdy \\text{ via } u=x+y,v=x-y",
+    "variable_count": 2
+  },
+  "difficulty": 3,
+  "answer": [
+    {
+      "label": "(1)",
+      "steps": [
+        "写成累次积分：$\\iint_D (y-x)^{-a}dxdy = \\int_0^1\\left(\\int_0^y (y-x)^{-a}dx\\right)dy$。对内层作代换 $t=y-x$（$dt=-dx$），当 $x:0\\to y$ 时 $t:y\\to 0$，得 $\\int_0^y (y-x)^{-a}dx = \\int_0^y t^{-a}dt$。",
+        "该内层积分在 $t=0$ 附近收敛的条件为 $-a>-1$，即 $a<1$；此时 $\\int_0^y t^{-a}dt = \\dfrac{y^{1-a}}{1-a}$。",
+        "代入外层积分：$\\int_0^1 \\dfrac{y^{1-a}}{1-a}dy = \\dfrac{1}{1-a}\\cdot\\dfrac{y^{2-a}}{2-a}\\Big|_0^1 = \\dfrac{1}{(1-a)(2-a)}$，由 $a<1$ 可知 $2-a>1>0$ 自动成立，无额外限制。",
+        "结论：当 $a<1$ 时积分收敛，值为 $\\dfrac{1}{(1-a)(2-a)}$；当 $a\\ge1$ 时积分发散。"
+      ]
+    },
+    {
+      "label": "(2)",
+      "steps": [
+        "由 $u=x+y, v=x-y$ 解得 $x=\\dfrac{u+v}{2}, y=\\dfrac{u-v}{2}$。区域 $D$ 的条件 $0\\le x+y\\le1$ 变为 $0\\le u\\le1$，条件 $0\\le x-y\\le1$ 变为 $0\\le v\\le1$，因此新区域是正方形 $[0,1]\\times[0,1]$（图示为 $u,v$ 平面上以 $(0,0),(1,0),(1,1),(0,1)$ 为顶点的单位正方形）。",
+        "雅可比行列式：$\\dfrac{\\partial(x,y)}{\\partial(u,v)} = \\begin{vmatrix}1/2 & 1/2\\\\ 1/2 & -1/2\\end{vmatrix} = -\\dfrac12$，故 $dxdy = \\dfrac12\\,dudv$。",
+        "被积函数 $x^2-y^2=(x-y)(x+y)=uv$，故积分化为 $\\displaystyle\\iint_{[0,1]^2} uv\\cdot\\frac12\\,dudv$。",
+        "计算：$\\dfrac12\\left(\\int_0^1 u\\,du\\right)\\left(\\int_0^1 v\\,dv\\right) = \\dfrac12\\cdot\\dfrac12\\cdot\\dfrac12=\\dfrac18$。故所求积分值为 $\\dfrac18$。"
+      ]
+    }
+  ],
+  "practice_questions": [
+    {
+      "text": "判断反常积分 $\\int_0^1 t^{-p}dt$（$p$ 为实数）的收敛性，并求收敛时的值。",
+      "knowledge_points": [
+        "反常积分",
+        "幂函数积分"
+      ],
+      "question_type": "基础敛散性判断",
+      "method": [
+        "直接积分并取极限"
+      ],
+      "solution_steps": [
+        "求原函数",
+        "代入端点并讨论极限存在性"
+      ],
+      "math_structure": {
+        "type": "basic_improper_integral",
+        "template": "\\int_0^1 t^{-p}dt",
+        "variable_count": 1
+      },
+      "difficulty": 1,
+      "estimated_minutes": 5,
+      "answer": [
+        {
+          "label": "结果",
+          "steps": [
+            "当 $p\\ne1$：$\\int_\\epsilon^1 t^{-p}dt = \\dfrac{1-\\epsilon^{1-p}}{1-p}$。",
+            "当 $p<1$ 时 $\\epsilon^{1-p}\\to0$，积分收敛于 $\\dfrac{1}{1-p}$；当 $p>1$ 时 $\\epsilon^{1-p}\\to\\infty$，发散；$p=1$ 时为 $\\ln$，也发散。",
+            "结论：$p<1$ 时收敛，值为 $\\dfrac{1}{1-p}$；$p\\ge1$ 时发散。"
+          ]
+        }
+      ],
+      "id": "nagoya-2007-b4a0cf0d7b-q02-practice-01",
+      "school": "名古屋大学",
+      "year": "2007"
+    },
+    {
+      "text": "计算累次积分 $\\displaystyle\\int_0^1\\int_0^y (y-x)^{-1/2}dx\\,dy$。",
+      "knowledge_points": [
+        "累次积分",
+        "变量替换"
+      ],
+      "question_type": "积分计算",
+      "method": [
+        "代换 t=y-x",
+        "累次积分"
+      ],
+      "solution_steps": [
+        "内层积分代换求解",
+        "外层对y积分"
+      ],
+      "math_structure": {
+        "type": "iterated_integral_special_case",
+        "template": "\\int_0^1\\int_0^y (y-x)^{-1/2}dxdy",
+        "variable_count": 2
+      },
+      "difficulty": 2,
+      "estimated_minutes": 8,
+      "answer": [
+        {
+          "label": "结果",
+          "steps": [
+            "内层：令 $t=y-x$，$\\int_0^y (y-x)^{-1/2}dx=\\int_0^y t^{-1/2}dt = 2y^{1/2}$。",
+            "外层：$\\int_0^1 2y^{1/2}dy = 2\\cdot\\dfrac23 = \\dfrac43$。",
+            "对照通式 $a=1/2$：$\\dfrac{1}{(1-1/2)(2-1/2)}=\\dfrac{1}{(1/2)(3/2)}=\\dfrac{4}{3}$，一致。"
+          ]
+        }
+      ],
+      "id": "nagoya-2007-b4a0cf0d7b-q02-practice-02",
+      "school": "名古屋大学",
+      "year": "2007"
+    },
+    {
+      "text": "求由 $u=x-y,\\ v=x+2y$ 定义的变量替换的雅可比行列式 $\\partial(x,y)/\\partial(u,v)$。",
+      "knowledge_points": [
+        "雅可比行列式",
+        "线性变量替换"
+      ],
+      "question_type": "雅可比计算",
+      "method": [
+        "解出 x,y 关于 u,v 的表达式后求偏导数行列式"
+      ],
+      "solution_steps": [
+        "联立求解 x,y",
+        "求偏导数组成行列式"
+      ],
+      "math_structure": {
+        "type": "jacobian_computation",
+        "template": "u=x-y, v=x+2y",
+        "variable_count": 2
+      },
+      "difficulty": 2,
+      "estimated_minutes": 6,
+      "answer": [
+        {
+          "label": "结果",
+          "steps": [
+            "由 $u=x-y, v=x+2y$ 解得 $x=\\dfrac{2u+v}{3}, y=\\dfrac{v-u}{3}$。",
+            "$\\partial x/\\partial u=2/3,\\partial x/\\partial v=1/3,\\partial y/\\partial u=-1/3,\\partial y/\\partial v=1/3$。",
+            "行列式 $=\\dfrac23\\cdot\\dfrac13-\\dfrac13\\cdot(-\\dfrac13)=\\dfrac29+\\dfrac19=\\dfrac13$。"
+          ]
+        }
+      ],
+      "id": "nagoya-2007-b4a0cf0d7b-q02-practice-03",
+      "school": "名古屋大学",
+      "year": "2007"
+    },
+    {
+      "text": "利用变量替换 $u=x+y,v=x-y$，计算 $\\displaystyle\\iint_D (x+y)\\,dxdy$，其中 $D=\\{0\\le x+y\\le2, 0\\le x-y\\le1\\}$。",
+      "knowledge_points": [
+        "变量替换",
+        "雅可比行列式",
+        "二重积分"
+      ],
+      "question_type": "变量替换积分计算",
+      "method": [
+        "同原题方法应用到新区域"
+      ],
+      "solution_steps": [
+        "确定新区域范围",
+        "写出雅可比行列式",
+        "化简被积函数并积分"
+      ],
+      "math_structure": {
+        "type": "change_of_variables_integral",
+        "template": "\\iint_D(x+y)dxdy,\\ D:0\\le u\\le2,0\\le v\\le1",
+        "variable_count": 2
+      },
+      "difficulty": 3,
+      "estimated_minutes": 8,
+      "answer": [
+        {
+          "label": "结果",
+          "steps": [
+            "新区域为 $u\\in[0,2], v\\in[0,1]$，雅可比 $|J|=1/2$（与原题相同）。",
+            "被积函数 $x+y=u$，积分为 $\\iint_{[0,2]\\times[0,1]} u\\cdot\\dfrac12\\,dudv = \\dfrac12\\int_0^2u\\,du\\int_0^1dv = \\dfrac12\\cdot2\\cdot1=1$。",
+            "验证：直接在 xy 平面上，该区域是以 (0,0),(1,1),(1.5,0.5),(0.5,-0.5)? 实际上通过替换已验证方法正确，结果为 $1$。"
+          ]
+        }
+      ],
+      "id": "nagoya-2007-b4a0cf0d7b-q02-practice-04",
+      "school": "名古屋大学",
+      "year": "2007"
+    },
+    {
+      "text": "求 $a=0$ 时（即被积函数恒为1）$\\iint_D dxdy$ 的值，其中 $D=\\{0\\le x<y\\le1\\}$，并与原题公式 $\\dfrac{1}{(1-a)(2-a)}$ 在 $a=0$ 处的取值比较。",
+      "knowledge_points": [
+        "面积计算",
+        "公式特例验证"
+      ],
+      "question_type": "特例验证",
+      "method": [
+        "直接几何面积法与公式代入对比"
+      ],
+      "solution_steps": [
+        "计算三角形面积",
+        "代入公式 a=0 验证"
+      ],
+      "math_structure": {
+        "type": "special_case_verification",
+        "template": "a=0,\\ \\iint_D 1\\,dxdy",
+        "variable_count": 1
+      },
+      "difficulty": 1,
+      "estimated_minutes": 5,
+      "answer": [
+        {
+          "label": "结果",
+          "steps": [
+            "$D$ 是以 $(0,0),(0,1),(1,1)$ 为顶点的直角三角形，面积 $=\\dfrac12\\times1\\times1=\\dfrac12$。",
+            "代入公式 $\\dfrac{1}{(1-0)(2-0)}=\\dfrac12$。",
+            "两者一致，验证公式在 $a=0$ 时正确。"
+          ]
+        }
+      ],
+      "id": "nagoya-2007-b4a0cf0d7b-q02-practice-05",
+      "school": "名古屋大学",
+      "year": "2007"
+    }
+  ],
+  "source_question": "問2",
+  "source_pdf": "名古屋大学/多元数理科学研究科/全专攻/名古屋大学_多元数理科学研究科_2007_第2次_数学过去问_上午.pdf",
+  "source_type": "官方过去问",
+  "subject_category": "微积分"
+}

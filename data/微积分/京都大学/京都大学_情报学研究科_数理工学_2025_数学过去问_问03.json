@@ -1,0 +1,156 @@
+{
+  "id": "kyoto-2025-0964b49f99-q03",
+  "school": "京都大学",
+  "year": "2025",
+  "subject": "情报学研究科_数理工学",
+  "text": "设 $x,y$ 为实数，在约束 $2x^2+3y^2=1$ 下，求 $x-y$ 的最大值与最小值。",
+  "knowledge_points": [
+    "拉格朗日乘数法",
+    "柯西-施瓦茨不等式",
+    "条件极值"
+  ],
+  "question_type": "条件极值问题",
+  "method": [
+    "拉格朗日乘数法求极值点",
+    "柯西-施瓦茨不等式验证"
+  ],
+  "solution_steps": [
+    "设拉格朗日函数并求偏导方程",
+    "解出 $x,y$ 关于 $\\lambda$ 的表达式",
+    "代入约束求 $\\lambda$",
+    "求出 $x-y$ 的极值并用柯西不等式验证"
+  ],
+  "math_structure": {
+    "type": "constrained_extremum_quadratic",
+    "template": "\\max/\\min\\ x-y \\text{ s.t. } 2x^2+3y^2=1",
+    "variable_count": 2
+  },
+  "difficulty": 3,
+  "answer": [
+    {
+      "label": "最大值与最小值",
+      "steps": [
+        "拉格朗日条件：$\\nabla(x-y)=\\lambda\\nabla(2x^2+3y^2)$，即 $1=4\\lambda x,\\ -1=6\\lambda y$，得 $x=\\dfrac{1}{4\\lambda},y=-\\dfrac{1}{6\\lambda}$",
+        "代入约束：$2\\cdot\\dfrac{1}{16\\lambda^2}+3\\cdot\\dfrac{1}{36\\lambda^2}=\\dfrac{1}{8\\lambda^2}+\\dfrac{1}{12\\lambda^2}=\\dfrac{5}{24\\lambda^2}=1$，得 $\\lambda^2=\\dfrac{5}{24}$",
+        "$x-y=\\dfrac{1}{4\\lambda}+\\dfrac{1}{6\\lambda}=\\dfrac{5}{12\\lambda}$，代入 $\\lambda=\\pm\\sqrt{5/24}$ 得 $x-y=\\pm\\dfrac{\\sqrt{30}}{6}$",
+        "验证用柯西-施瓦茨：$x-y=\\sqrt2x\\cdot\\dfrac{1}{\\sqrt2}+\\sqrt3y\\cdot\\left(-\\dfrac{1}{\\sqrt3}\\right)$，故 $(x-y)^2\\le(2x^2+3y^2)\\left(\\dfrac12+\\dfrac13\\right)=\\dfrac56$，即 $|x-y|\\le\\sqrt{5/6}=\\dfrac{\\sqrt{30}}{6}$，等号可达",
+        "结论：最大值 $\\dfrac{\\sqrt{30}}{6}$，最小值 $-\\dfrac{\\sqrt{30}}{6}$"
+      ]
+    }
+  ],
+  "practice_questions": [
+    {
+      "text": "在约束 $x^2+y^2=1$ 下，求 $x+y$ 的最大值。",
+      "knowledge_points": [
+        "拉格朗日乘数法基础"
+      ],
+      "question_type": "条件极值",
+      "method": [
+        "拉格朗日乘数法"
+      ],
+      "solution_steps": [
+        "建立方程组",
+        "求解并代入约束"
+      ],
+      "math_structure": {
+        "type": "constrained_extremum_circle",
+        "template": "\\max\\ x+y \\text{ s.t. } x^2+y^2=1",
+        "variable_count": 2
+      },
+      "difficulty": 1,
+      "estimated_minutes": 4,
+      "answer": [
+        {
+          "label": "最大值",
+          "steps": [
+            "$1=2\\lambda x,1=2\\lambda y \\Rightarrow x=y$",
+            "代入约束 $2x^2=1\\Rightarrow x=1/\\sqrt2$",
+            "最大值 $x+y=\\sqrt2$"
+          ]
+        }
+      ],
+      "id": "kyoto-2025-0964b49f99-q03-practice-01",
+      "school": "京都大学",
+      "year": "2025"
+    },
+    {
+      "text": "在约束 $4x^2+y^2=1$ 下，求 $x-y$ 的最大值与最小值。",
+      "knowledge_points": [
+        "拉格朗日乘数法",
+        "柯西不等式"
+      ],
+      "question_type": "条件极值",
+      "method": [
+        "拉格朗日乘数法或柯西不等式"
+      ],
+      "solution_steps": [
+        "建立方程组求出极值点",
+        "求出 $x-y$ 的表达式",
+        "用柯西不等式验证"
+      ],
+      "math_structure": {
+        "type": "constrained_extremum_quadratic",
+        "template": "\\max/\\min\\ x-y \\text{ s.t. } 4x^2+y^2=1",
+        "variable_count": 2
+      },
+      "difficulty": 2,
+      "estimated_minutes": 6,
+      "answer": [
+        {
+          "label": "结果",
+          "steps": [
+            "$1=8\\lambda x,-1=2\\lambda y\\Rightarrow x=1/(8\\lambda),y=-1/(2\\lambda)$",
+            "代入约束：$4/(64\\lambda^2)+1/(4\\lambda^2)=1/(16\\lambda^2)+1/(4\\lambda^2)=5/(16\\lambda^2)=1\\Rightarrow \\lambda^2=5/16$",
+            "$x-y=1/(8\\lambda)+1/(2\\lambda)=5/(8\\lambda)$，代入 $\\lambda=\\pm\\sqrt{5}/4$ 得 $x-y=\\pm\\sqrt5/2 \\cdot(4/8)=\\pm\\sqrt5/2$",
+            "验证：柯西不等式 $(x-y)^2\\le(4x^2+y^2)(1/4+1)=5/4$，故最大值 $\\sqrt5/2$，最小值 $-\\sqrt5/2$，一致"
+          ]
+        }
+      ],
+      "id": "kyoto-2025-0964b49f99-q03-practice-02",
+      "school": "京都大学",
+      "year": "2025"
+    },
+    {
+      "text": "在约束 $2x^2+3y^2=1$ 下，求 $2x+y$ 的最大值与最小值（作为原题方法的进一步练习）。",
+      "knowledge_points": [
+        "拉格朗日乘数法",
+        "柯西不等式",
+        "条件极值"
+      ],
+      "question_type": "条件极值问题",
+      "method": [
+        "拉格朗日乘数法与柯西不等式对照使用"
+      ],
+      "solution_steps": [
+        "建立拉格朗日方程",
+        "求 $\\lambda$ 及极值",
+        "柯西不等式验证"
+      ],
+      "math_structure": {
+        "type": "constrained_extremum_quadratic",
+        "template": "\\max/\\min\\ 2x+y \\text{ s.t. } 2x^2+3y^2=1",
+        "variable_count": 2
+      },
+      "difficulty": 3,
+      "estimated_minutes": 8,
+      "answer": [
+        {
+          "label": "结果",
+          "steps": [
+            "$2=4\\lambda x,1=6\\lambda y\\Rightarrow x=1/(2\\lambda),y=1/(6\\lambda)$",
+            "代入约束：$2/(4\\lambda^2)+3/(36\\lambda^2)=1/(2\\lambda^2)+1/(12\\lambda^2)=7/(12\\lambda^2)=1\\Rightarrow\\lambda^2=7/12$",
+            "$2x+y=1/\\lambda+1/(6\\lambda)=7/(6\\lambda)$，代入 $\\lambda=\\pm\\sqrt{7/12}$ 得 $2x+y=\\pm\\dfrac{7}{6}\\sqrt{12/7}=\\pm\\dfrac{7}{6}\\cdot\\dfrac{2\\sqrt3}{\\sqrt7}=\\pm\\dfrac{7\\sqrt3}{3\\sqrt7}=\\pm\\dfrac{\\sqrt{21}}{3}$",
+            "验证：柯西不等式 $(2x+y)^2\\le(2x^2+3y^2)(2+1/3)=7/3$，即 $|2x+y|\\le\\sqrt{7/3}=\\sqrt{21}/3$，一致，最大值 $\\sqrt{21}/3$，最小值 $-\\sqrt{21}/3$"
+          ]
+        }
+      ],
+      "id": "kyoto-2025-0964b49f99-q03-practice-03",
+      "school": "京都大学",
+      "year": "2025"
+    }
+  ],
+  "source_question": "問1(iii)",
+  "source_pdf": "京都大学/情报学研究科/数理工学/京都大学_情报学研究科_数理工学_2025_数学过去问.pdf",
+  "source_type": "官方过去问",
+  "subject_category": "微积分"
+}

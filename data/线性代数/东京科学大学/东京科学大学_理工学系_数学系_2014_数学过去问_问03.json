@@ -1,0 +1,209 @@
+{
+  "id": "isct-2014-34828a51c8-q03",
+  "school": "东京科学大学",
+  "year": "2014",
+  "subject": "理工学系_数学系",
+  "text": "设 $M_2(\\mathbb{R})$ 为全体2阶实方阵构成的线性空间。对 $A=\\begin{pmatrix}a&b\\\\c&d\\end{pmatrix}\\in M_2(\\mathbb{R})$，定义 $M_2(\\mathbb{R})$ 上的线性变换 $L_A$ 为 $L_A(X)=AXA$。回答下列问题：\n(1) 写出 $M_2(\\mathbb{R})$ 的一组基。\n(2) 求 $L_A$ 的迹。\n(3) 当 $A=\\begin{pmatrix}1&1\\\\-1&1\\end{pmatrix}$ 时，求 $L_A$ 的行列式。",
+  "knowledge_points": [
+    "矩阵空间的基",
+    "线性变换的矩阵表示",
+    "Kronecker积",
+    "迹的性质",
+    "行列式的乘法公式",
+    "向量化技巧"
+  ],
+  "question_type": "矩阵空间上线性变换的迹与行列式",
+  "method": [
+    "标准基下矩阵表示法",
+    "Kronecker积公式",
+    "vec化技巧"
+  ],
+  "solution_steps": [
+    "选取标准基E11,E12,E21,E22表示M2(R)",
+    "利用vec(AXA)=(A^T⊗A)vec(X)将L_A表示为Kronecker积矩阵",
+    "利用tr(A^T⊗A)=tr(A)^2求迹",
+    "利用det(A^T⊗A)=det(A)^4求行列式并代入具体A计算"
+  ],
+  "math_structure": {
+    "type": "matrix_space_linear_map_trace_det",
+    "template": "L_A(X)=AXA, A\\in M_2(\\mathbb{R})",
+    "variable_count": 4
+  },
+  "difficulty": 3,
+  "answer": [
+    {
+      "label": "(1)",
+      "steps": [
+        "$M_2(\\mathbb{R})$是4维线性空间，取标准基 $E_{11}=\\begin{pmatrix}1&0\\\\0&0\\end{pmatrix},E_{12}=\\begin{pmatrix}0&1\\\\0&0\\end{pmatrix},E_{21}=\\begin{pmatrix}0&0\\\\1&0\\end{pmatrix},E_{22}=\\begin{pmatrix}0&0\\\\0&1\\end{pmatrix}$。",
+        "验证：这四个矩阵线性独立，且任意$X=\\begin{pmatrix}x_{11}&x_{12}\\\\x_{21}&x_{22}\\end{pmatrix}$可唯一表示为$X=x_{11}E_{11}+x_{12}E_{12}+x_{21}E_{21}+x_{22}E_{22}$，故构成一组基。"
+      ]
+    },
+    {
+      "label": "(2)",
+      "steps": [
+        "利用向量化公式$\\mathrm{vec}(AXB)=(B^T\\otimes A)\\mathrm{vec}(X)$，取$B=A$得$\\mathrm{vec}(AXA)=(A^T\\otimes A)\\mathrm{vec}(X)$，即$L_A$在列向量化坐标下对应矩阵为$A^T\\otimes A$。",
+        "利用Kronecker积迹公式$\\mathrm{tr}(P\\otimes Q)=\\mathrm{tr}(P)\\mathrm{tr}(Q)$，得$\\mathrm{tr}(L_A)=\\mathrm{tr}(A^T)\\mathrm{tr}(A)=(\\mathrm{tr}A)^2=(a+d)^2$。",
+        "验算：取$A=I$，则$L_A(X)=X$为恒同映射，迹应为4（维数）；代入公式$(\\mathrm{tr}I)^2=2^2=4$，吻合，验证正确。"
+      ]
+    },
+    {
+      "label": "(3)",
+      "steps": [
+        "由(2)方法，$\\det(L_A)=\\det(A^T\\otimes A)$。利用Kronecker积行列式公式：对m×m矩阵P与n×n矩阵Q，$\\det(P\\otimes Q)=(\\det P)^n(\\det Q)^m$，此处P=A^T,Q=A均为2×2，得$\\det(A^T\\otimes A)=(\\det A^T)^2(\\det A)^2=(\\det A)^4$。",
+        "计算$\\det A=1\\cdot1-1\\cdot(-1)=1+1=2$。",
+        "故$\\det(L_A)=2^4=16$。",
+        "验算：$L_A$可逆当且仅当$A$可逆，其逆映射为$X\\mapsto A^{-1}XA^{-1}$，与$\\det(L_A)=16\\ne0$一致，验证无误。"
+      ]
+    }
+  ],
+  "practice_questions": [
+    {
+      "text": "设$A=I$为2阶单位矩阵，$L_A(X)=IXI=X$。求$L_A$的迹和行列式，并说明其含义。",
+      "knowledge_points": [
+        "恒同映射",
+        "迹",
+        "行列式"
+      ],
+      "question_type": "特例验证",
+      "method": [
+        "直接代入公式"
+      ],
+      "solution_steps": [
+        "代入公式(trA)^2",
+        "代入公式(detA)^4",
+        "解释结果"
+      ],
+      "math_structure": {
+        "type": "identity_map_trace_det_check",
+        "template": "L_I(X)=X",
+        "variable_count": 0
+      },
+      "difficulty": 1,
+      "estimated_minutes": 4,
+      "answer": [
+        {
+          "label": "求值",
+          "steps": [
+            "trA=2，故迹=$(2)^2=4$，恰为4维空间恒同映射的迹（=维数）",
+            "detA=1，故行列式=$1^4=1$，恰为恒同映射的行列式，二者均验证公式正确。"
+          ]
+        }
+      ],
+      "id": "isct-2014-34828a51c8-q03-practice-01",
+      "school": "东京科学大学",
+      "year": "2014"
+    },
+    {
+      "text": "设$L_A(X)=AX$（只左乘，不右乘），求$L_A$的迹和行列式的一般公式（用$\\mathrm{tr}A,\\det A$表示）。",
+      "knowledge_points": [
+        "Kronecker积",
+        "向量化"
+      ],
+      "question_type": "线性映射迹与行列式",
+      "method": [
+        "vec(AX)=(I⊗A)vec(X)"
+      ],
+      "solution_steps": [
+        "写出vec公式",
+        "用Kronecker积迹和行列式公式求解"
+      ],
+      "math_structure": {
+        "type": "left_multiplication_map_trace_det",
+        "template": "L_A(X)=AX",
+        "variable_count": 1
+      },
+      "difficulty": 2,
+      "estimated_minutes": 8,
+      "answer": [
+        {
+          "label": "求公式",
+          "steps": [
+            "vec(AX)=(I⊗A)vec(X)，故对应矩阵为I⊗A（I为2×2单位矩阵）",
+            "迹：$\\mathrm{tr}(I\\otimes A)=\\mathrm{tr}(I)\\mathrm{tr}(A)=2\\,\\mathrm{tr}A$",
+            "行列式：$\\det(I\\otimes A)=(\\det I)^2(\\det A)^2=(\\det A)^2$。"
+          ]
+        }
+      ],
+      "id": "isct-2014-34828a51c8-q03-practice-02",
+      "school": "东京科学大学",
+      "year": "2014"
+    },
+    {
+      "text": "设$L_A(X)=A^2XA$，求$L_A$的迹和行列式的一般公式（用$\\mathrm{tr}A,\\det A$表示）。",
+      "knowledge_points": [
+        "Kronecker积",
+        "Newton恒等式",
+        "2阶矩阵特征值"
+      ],
+      "question_type": "推广的线性映射迹与行列式",
+      "method": [
+        "vec化",
+        "Newton恒等式tr(A^2)=(trA)^2-2detA"
+      ],
+      "solution_steps": [
+        "写出vec(A^2XA)=((A^2)^T⊗A)vec(X)",
+        "用Kronecker积公式求迹",
+        "用Newton恒等式化简tr(A^2)",
+        "用Kronecker积公式求行列式"
+      ],
+      "math_structure": {
+        "type": "generalized_map_A2XA_trace_det",
+        "template": "L_A(X)=A^2XA",
+        "variable_count": 1
+      },
+      "difficulty": 3,
+      "estimated_minutes": 12,
+      "answer": [
+        {
+          "label": "求公式",
+          "steps": [
+            "vec(A^2XA)=((A^2)^T⊗A)vec(X)，迹=$\\mathrm{tr}((A^2)^T)\\mathrm{tr}(A)=\\mathrm{tr}(A^2)\\mathrm{tr}A$",
+            "由Newton恒等式（2阶矩阵）$\\mathrm{tr}(A^2)=(\\mathrm{tr}A)^2-2\\det A$，故迹$=\\mathrm{tr}A\\left[(\\mathrm{tr}A)^2-2\\det A\\right]$",
+            "行列式：$\\det((A^2)^T\\otimes A)=(\\det A^2)^2(\\det A)^2=(\\det A)^4\\cdot(\\det A)^2=(\\det A)^6$。"
+          ]
+        }
+      ],
+      "id": "isct-2014-34828a51c8-q03-practice-03",
+      "school": "东京科学大学",
+      "year": "2014"
+    },
+    {
+      "text": "用原题公式，对 $A=\\begin{pmatrix}1&2\\\\0&3\\end{pmatrix}$ 计算$L_A(X)=AXA$的迹；对$A=\\begin{pmatrix}2&0\\\\1&3\\end{pmatrix}$计算$L_A$的行列式。",
+      "knowledge_points": [
+        "公式应用",
+        "数值计算"
+      ],
+      "question_type": "公式数值应用",
+      "method": [
+        "直接代入原题公式"
+      ],
+      "solution_steps": [
+        "计算trA与代入迹公式",
+        "计算detA与代入行列式公式"
+      ],
+      "math_structure": {
+        "type": "formula_application_numeric",
+        "template": "\\mathrm{tr}(L_A)=(\\mathrm{tr}A)^2,\\ \\det(L_A)=(\\det A)^4",
+        "variable_count": 2
+      },
+      "difficulty": 2,
+      "estimated_minutes": 6,
+      "answer": [
+        {
+          "label": "求值",
+          "steps": [
+            "第一矩阵：trA=1+3=4，迹$(L_A)=4^2=16$",
+            "第二矩阵：detA=2·3-0·1=6，行列式$(L_A)=6^4=1296$，两者均为公式直接应用的结果。"
+          ]
+        }
+      ],
+      "id": "isct-2014-34828a51c8-q03-practice-04",
+      "school": "东京科学大学",
+      "year": "2014"
+    }
+  ],
+  "source_question": "午前[３]",
+  "source_pdf": "东京科学大学/理工学系/数学系/东京科学大学_理工学系_数学系_2014_数学过去问.pdf",
+  "source_type": "官方过去问",
+  "subject_category": "线性代数"
+}

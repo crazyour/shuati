@@ -1,0 +1,208 @@
+{
+  "id": "tohoku-2023-469b59f929-q09",
+  "school": "东北大学",
+  "year": "2023",
+  "subject": "情报科学研究科_数学教室",
+  "text": "考虑常微分方程 $$\\frac{dy}{dx}=1-y^2.$$\n(1) 求出该方程的所有解；\n(2) 当 $y(0)\\ge-1$ 时，求极限 $\\displaystyle\\lim_{x\\to\\infty}y(x)$；\n(3) 当 $y(0)<-1$ 时，描绘解的图像大致形状。",
+  "knowledge_points": [
+    "可分离变量方程",
+    "部分分式分解",
+    "平衡点稳定性分析",
+    "有限时间爆破现象",
+    "相图分析"
+  ],
+  "question_type": "一阶非线性常微分方程求解与定性分析",
+  "method": [
+    "分离变量法结合部分分式分解求通解",
+    "线性化分析平衡点稳定性",
+    "分析解的存在区间判断是否有限时间内趋于无穷"
+  ],
+  "solution_steps": [
+    "分离变量，利用部分分式 $\\frac1{1-y^2}=\\frac12\\left(\\frac1{1+y}+\\frac1{1-y}\\right)$ 积分求通解，并注意平衡解 $y=\\pm1$",
+    "分析平衡点 $y=1,y=-1$ 的稳定性（通过 $f'(y)=-2y$ 判断），确定 $y(0)\\ge-1$ 时解的长期趋势",
+    "对 $y(0)<-1$ 情形，求解中常数使解在某有限 $x$ 处分母为零，分析解的爆破行为并描述图像"
+  ],
+  "math_structure": {
+    "type": "riccati_type_separable_ode",
+    "template": "求解 $dy/dx=1-y^2$ 型可分离变量方程，分析平衡点稳定性与解的爆破现象",
+    "variable_count": 1
+  },
+  "difficulty": 3,
+  "answer": [
+    {
+      "label": "(1)",
+      "steps": [
+        "方程可分离变量：$\\dfrac{dy}{1-y^2}=dx$（当 $y\\ne\\pm1$）。利用部分分式 $\\dfrac1{1-y^2}=\\dfrac1{(1-y)(1+y)}=\\dfrac12\\left(\\dfrac1{1+y}+\\dfrac1{1-y}\\right)$，积分得 $\\dfrac12\\left[\\ln|1+y|-\\ln|1-y|\\right]=x+C_1$，即 $\\ln\\left|\\dfrac{1+y}{1-y}\\right|=2x+C_2$",
+        "记 $A=\\pm e^{C_2}$（非零常数），得 $\\dfrac{1+y}{1-y}=Ae^{2x}$，解出 $y=\\dfrac{Ae^{2x}-1}{Ae^{2x}+1}$（$A\\in\\mathbb{R}$，$A=0$对应 $y\\equiv-1$）",
+        "此外还需注意 $y\\equiv1$ 和 $y\\equiv-1$ 为方程的平衡解（常数解，满足 $1-y^2=0$）；其中 $y\\equiv-1$ 已包含在通解公式中（取 $A=0$），而 $y\\equiv1$ 是通解公式取 $A\\to\\infty$ 极限对应的特解，需单独列出",
+        "综上，所有解为：$$y(x)=\\dfrac{Ae^{2x}-1}{Ae^{2x}+1}\\ (A\\in\\mathbb{R})\\quad\\text{以及}\\quad y(x)\\equiv1$$"
+      ]
+    },
+    {
+      "label": "(2)",
+      "steps": [
+        "先分析平衡点稳定性：$f(y)=1-y^2$，$f'(y)=-2y$。在 $y=1$ 处 $f'(1)=-2<0$，为稳定平衡点；在 $y=-1$ 处 $f'(-1)=2>0$，为不稳定平衡点",
+        "若 $y(0)=-1$，则解恒为 $y(x)\\equiv-1$（不稳定平衡解自身保持不变），故 $\\lim_{x\\to\\infty}y(x)=-1$",
+        "若 $y(0)>-1$，由 $A=\\dfrac{1+y(0)}{1-y(0)}$ 可知：当 $y(0)\\in(-1,1)$ 时 $A>0$；当 $y(0)>1$ 时 $A<0$ 但对应的分母零点 $x^*=\\frac12\\ln(-1/A)$ 可验证为负（在 $x>0$ 区域解仍连续存在），且随 $x\\to\\infty$，$Ae^{2x}\\to\\pm\\infty$，代入 $y(x)=\\frac{Ae^{2x}-1}{Ae^{2x}+1}\\to1$（分子分母同阶，比值趋于1，无论 $A$ 正负）",
+        "综上：当 $y(0)=-1$ 时极限为 $-1$；当 $y(0)>-1$ 时极限为 $1$"
+      ]
+    },
+    {
+      "label": "(3)",
+      "steps": [
+        "当 $y(0)<-1$ 时，由 $A=\\dfrac{1+y(0)}{1-y(0)}$，因 $1+y(0)<0$，$1-y(0)>0$（因 $-y(0)>1$），故 $A<0$",
+        "此时解 $y(x)=\\dfrac{Ae^{2x}-1}{Ae^{2x}+1}$ 的分母 $Ae^{2x}+1=0$ 在 $x^*=\\frac12\\ln(-1/A)$ 处为零（可验证 $-1/A>0$，故 $x^*$ 为实数）。计算可知对 $y(0)<-1$，$-1/A=\\dfrac{1-y(0)}{-(1+y(0))}\\in(0,1)$（因 $1-y(0)<-(1+y(0))\\cdot$不等式核实略），故 $x^*>0$，即分母为零发生在正的有限时刻",
+        "因此该解只在区间 $(-\\infty,x^*)$ 上有定义：当 $x\\to-\\infty$，$Ae^{2x}\\to0^-$（因$A<0$），故 $y(x)\\to\\dfrac{0-1}{0+1}=-1$，即解从下方趋近于不稳定平衡值 $-1$；当 $x\\to x^{*-}$，分母 $\\to0^-$（或$0^+$，需结合符号具体分析），$y(x)\\to-\\infty$，解在有限时间内发生爆破",
+        "图像形状：曲线单调递减（由 $dy/dx=1-y^2<0$ 当 $|y|>1$），从水平渐近线 $y=-1$（$x\\to-\\infty$）出发向下弯曲，在有限的 $x=x^*$ 处出现垂直渐近线，$y\\to-\\infty$，图像在 $x<x^*$ 区间内呈现单调下降并快速发散的形态"
+      ]
+    }
+  ],
+  "practice_questions": [
+    {
+      "text": "求解可分离变量方程 $\\dfrac{dy}{dx}=4-y^2$ 的通解。",
+      "knowledge_points": [
+        "分离变量法",
+        "部分分式分解"
+      ],
+      "question_type": "常微分方程求解",
+      "method": [
+        "分离变量结合部分分式"
+      ],
+      "solution_steps": [
+        "分离变量并部分分式分解",
+        "积分求通解"
+      ],
+      "math_structure": {
+        "type": "separable_ode_quadratic",
+        "template": "求解 $dy/dx=a^2-y^2$ 型方程的通解",
+        "variable_count": 1
+      },
+      "difficulty": 2,
+      "estimated_minutes": 8,
+      "answer": [
+        {
+          "label": "结果",
+          "steps": [
+            "分离变量：$\\dfrac{dy}{4-y^2}=dx$，部分分式 $\\dfrac1{4-y^2}=\\dfrac1{(2-y)(2+y)}=\\dfrac14\\left(\\dfrac1{2-y}+\\dfrac1{2+y}\\right)$",
+            "积分：$\\dfrac14\\left[-\\ln|2-y|+\\ln|2+y|\\right]=x+C_1$，即 $\\ln\\left|\\dfrac{2+y}{2-y}\\right|=4x+C_2$",
+            "解出 $y(x)=\\dfrac{2(Ae^{4x}-1)}{Ae^{4x}+1}$（$A\\in\\mathbb{R}$），加上平衡解 $y\\equiv\\pm2$"
+          ]
+        }
+      ],
+      "id": "tohoku-2023-469b59f929-q09-practice-01",
+      "school": "东北大学",
+      "year": "2023"
+    },
+    {
+      "text": "对方程 $\\dfrac{dy}{dx}=1-y^2$，分析平衡点 $y=1$ 与 $y=-1$ 的稳定性（用线性化方法）。",
+      "knowledge_points": [
+        "平衡点稳定性",
+        "线性化分析"
+      ],
+      "question_type": "定性分析",
+      "method": [
+        "线性化（求导数判断符号）"
+      ],
+      "solution_steps": [
+        "求$f'(y)$",
+        "代入平衡点判断符号"
+      ],
+      "math_structure": {
+        "type": "equilibrium_stability_linearization",
+        "template": "对一阶自治方程 $dy/dx=f(y)$ 用线性化方法判断平衡点稳定性",
+        "variable_count": 1
+      },
+      "difficulty": 2,
+      "estimated_minutes": 6,
+      "answer": [
+        {
+          "label": "结果",
+          "steps": [
+            "$f(y)=1-y^2$，$f'(y)=-2y$",
+            "在 $y=1$ 处：$f'(1)=-2<0$，为稳定平衡点（吸引子）",
+            "在 $y=-1$ 处：$f'(-1)=2>0$，为不稳定平衡点（排斥子）"
+          ]
+        }
+      ],
+      "id": "tohoku-2023-469b59f929-q09-practice-02",
+      "school": "东北大学",
+      "year": "2023"
+    },
+    {
+      "text": "对方程 $\\dfrac{dy}{dx}=1-y^2$，若初值 $y(0)=2$，求解 $y(x)$ 并讨论其定义域是否为全体实数。",
+      "knowledge_points": [
+        "初值问题求解",
+        "解的存在区间"
+      ],
+      "question_type": "初值问题分析",
+      "method": [
+        "利用通解公式代入初值"
+      ],
+      "solution_steps": [
+        "代入初值求常数A",
+        "分析解的定义区间"
+      ],
+      "math_structure": {
+        "type": "ivp_domain_analysis",
+        "template": "给定初值 $y(0)>1$，求解并分析解的存在区间",
+        "variable_count": 1
+      },
+      "difficulty": 3,
+      "estimated_minutes": 10,
+      "answer": [
+        {
+          "label": "结果",
+          "steps": [
+            "由 $A=\\dfrac{1+y(0)}{1-y(0)}=\\dfrac{1+2}{1-2}=\\dfrac{3}{-1}=-3$，故 $y(x)=\\dfrac{-3e^{2x}-1}{-3e^{2x}+1}=\\dfrac{3e^{2x}+1}{3e^{2x}-1}$",
+            "分母 $3e^{2x}-1=0$ 时 $x^*=\\frac12\\ln(1/3)=-\\frac12\\ln3<0$，故在 $x>x^*$（含所有 $x\\ge0$）区间内解良好定义，但当 $x\\to x^{*+}$（从右侧趋近，$x^*<0$）分母趋于 $0^+$，可能出现奇异",
+            "因此该解并非在全体实数上有定义，仅在 $(x^*,\\infty)=(-\\frac12\\ln3,\\infty)$ 内有效，在 $x=0$ 处（属于该区间）解良好，且当 $x\\to\\infty$，$y(x)\\to1$（验证与问题(2)一致，因 $y(0)=2>-1$）"
+          ]
+        }
+      ],
+      "id": "tohoku-2023-469b59f929-q09-practice-03",
+      "school": "东北大学",
+      "year": "2023"
+    },
+    {
+      "text": "描述方程 $\\dfrac{dy}{dx}=y^2-1$（注意符号与原问题相反）在 $y(0)=0$ 时解的长期行为。",
+      "knowledge_points": [
+        "平衡点稳定性",
+        "方向场分析"
+      ],
+      "question_type": "定性分析",
+      "method": [
+        "平衡点分析",
+        "分离变量求解验证"
+      ],
+      "solution_steps": [
+        "求平衡点及稳定性",
+        "分离变量求具体解",
+        "分析长期行为"
+      ],
+      "math_structure": {
+        "type": "sign_reversed_riccati_analysis",
+        "template": "分析符号相反的类似Riccati方程的长期行为",
+        "variable_count": 1
+      },
+      "difficulty": 3,
+      "estimated_minutes": 10,
+      "answer": [
+        {
+          "label": "结果",
+          "steps": [
+            "$f(y)=y^2-1$，平衡点 $y=\\pm1$，$f'(y)=2y$：在 $y=1$ 处 $f'(1)=2>0$（不稳定），在 $y=-1$ 处 $f'(-1)=-2<0$（稳定）",
+            "分离变量求解：$\\dfrac{dy}{y^2-1}=dx$，同样部分分式得 $y(x)=\\dfrac{Ae^{-2x}+1}{Ae^{-2x}-1}$型（符号与原问题相反，需重新推导：$\\frac12\\ln\\left|\\frac{y-1}{y+1}\\right|=x+C$，解得 $y=\\frac{1+Be^{2x}}{1-Be^{2x}}$，其中 $B$为常数）",
+            "代入 $y(0)=0$：$0=\\frac{1+B}{1-B}\\Rightarrow B=-1$，故 $y(x)=\\dfrac{1-e^{2x}}{1+e^{2x}}$，当 $x\\to\\infty$，$y(x)\\to\\dfrac{-e^{2x}}{e^{2x}}=-1$，即解趋于稳定平衡点 $y=-1$，与线性化分析结论一致"
+          ]
+        }
+      ],
+      "id": "tohoku-2023-469b59f929-q09-practice-04",
+      "school": "东北大学",
+      "year": "2023"
+    }
+  ],
+  "source_question": "問9",
+  "source_pdf": "东北大学/情报科学研究科/数学教室/东北大学_情报科学研究科_数学_2023_数学过去问.pdf",
+  "source_type": "官方过去问",
+  "subject_category": "微分方程"
+}

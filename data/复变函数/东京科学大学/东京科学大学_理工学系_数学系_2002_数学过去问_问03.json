@@ -1,0 +1,207 @@
+{
+  "id": "isct-2002-60756c36b1-q03",
+  "school": "东京科学大学",
+  "year": "2002",
+  "subject": "理工学系_数学系",
+  "text": "(1) 设 $f$ 在 $1\\le|z|<\\infty$ 上正则（全纯）且有界，$M=\\max_{|z|=1}|f(z)|$。证明在 $1\\le|z|<\\infty$ 上有 $|f(z)|\\le M$。\n(2) 设 $P$ 为次数 $k$（$k\\ge1$）的多项式，且当 $|z|\\le1$ 时 $|P(z)|\\le1$。证明当 $|z|\\ge1$ 时，$$|P(z)|\\le|z|^{k}.$$",
+  "knowledge_points": [
+    "最大模原理",
+    "可去奇点定理（Riemann）",
+    "反演变换 $w=1/z$",
+    "多项式估计",
+    "Schwarz型不等式"
+  ],
+  "question_type": "复分析不等式证明",
+  "method": [
+    "反演 $w=1/z$ 化外域为内域",
+    "Riemann可去奇点定理消去 $w=0$ 处奇点",
+    "对内域应用最大模原理",
+    "将(2)化归为(1)的应用（构造 $P(z)/z^k$）"
+  ],
+  "solution_steps": [
+    "(1) 令 $g(w)=f(1/w)$，$0<|w|\\le1$，由 $f$ 有界知 $g$ 在 $w=0$ 附近有界，故由 Riemann 可去奇点定理 $g$ 可全纯延拓到 $w=0$",
+    "对延拓后的 $g$ 在闭圆盘 $|w|\\le1$ 上应用最大模原理，得内部模不超过边界上的最大值",
+    "把边界值换回 $z$ 变量即得 $|f(z)|\\le M$ 对 $|z|\\ge1$",
+    "(2) 构造辅助函数 $h(z)=P(z)/z^k$，验证其在 $|z|\\ge1$ 上正则有界（含 $z=\\infty$ 处也是正则，因 $h(\\infty)=a_k$为首项系数）",
+    "计算 $\\max_{|z|=1}|h(z)|=\\max_{|z|=1}|P(z)|\\le1$，套用(1)的结论得 $|h(z)|\\le1$ 对 $|z|\\ge1$，即证 $|P(z)|\\le|z|^k$"
+  ],
+  "math_structure": {
+    "type": "bounded_holomorphic_exterior_maximum",
+    "template": "f holomorphic bounded on |z|>=1, M=max on |z|=1; prove |f(z)|<=M for |z|>=1; apply to polynomial bound |P(z)|<=|z|^k for |z|>=1 given |P|<=1 on |z|<=1",
+    "variable_count": 1
+  },
+  "difficulty": 4,
+  "answer": [
+    {
+      "label": "(1)",
+      "steps": [
+        "作变换 $w=1/z$，定义 $g(w)=f(1/w)$，则 $g$ 在 $0<|w|\\le1$ 上全纯（因 $z=1/w$ 在此范围内对应 $|z|\\ge1$，而 $f$ 在该区域全纯）。由 $f$ 在 $1\\le|z|<\\infty$ 上有界，设 $|f(z)|\\le K$，则 $|g(w)|\\le K$ 对所有 $0<|w|\\le1$ 成立，即 $g$ 在去心圆盘 $0<|w|<1$ 附近 $w=0$ 处有界。",
+        "由 Riemann 可去奇点定理（有界的孤立奇点必为可去奇点），$g$ 可以全纯延拓到整个闭圆盘 $|w|\\le1$（补充定义 $g(0)=\\lim_{w\\to0}g(w)$）。",
+        "对延拓后的全纯函数 $g$ 在闭圆盘 $\\overline{D}=\\{|w|\\le1\\}$ 上应用最大模原理：$g$ 在 $D$ 内部（含边界，因闭圆盘上连续）的模不超过其在边界 $|w|=1$ 上的最大值，即对所有 $|w|\\le1$，$$|g(w)|\\le \\max_{|w|=1}|g(w)|=\\max_{|w|=1}|f(1/w)|=\\max_{|z|=1}|f(z)|=M.$$",
+        "将 $w=1/z$ 换回，对所有 $|z|\\ge1$（对应 $0<|w|\\le1$），有 $|f(z)|=|g(1/z)|\\le M$。命题证毕。"
+      ]
+    },
+    {
+      "label": "(2)",
+      "steps": [
+        "设 $P(z)=a_kz^k+a_{k-1}z^{k-1}+\\cdots+a_0$（$a_k\\ne0$，次数为 $k$）。定义 $h(z)=P(z)/z^k$，对 $z\\ne0$ 全纯，特别在 $1\\le|z|<\\infty$ 上全纯（$z^k\\ne0$）。",
+        "验证 $h$ 在 $|z|\\ge1$ 上有界：$h(z)=a_k+a_{k-1}/z+\\cdots+a_0/z^k$，当 $|z|\\to\\infty$，$h(z)\\to a_k$，且在 $1\\le|z|<\\infty$ 上各项 $|a_{k-j}/z^j|\\le|a_{k-j}|$ 都有界，故 $h$ 在此区域上是有界全纯函数，满足(1)的假设。",
+        "计算 $M=\\max_{|z|=1}|h(z)|=\\max_{|z|=1}\\dfrac{|P(z)|}{|z|^k}=\\max_{|z|=1}|P(z)|$（因 $|z|=1$ 时 $|z|^k=1$），由题设条件 $|P(z)|\\le1$ 对 $|z|\\le1$（特别 $|z|=1$）成立，故 $M\\le1$。",
+        "由(1)的结论，对所有 $|z|\\ge1$，$|h(z)|\\le M\\le1$，即 $\\left|\\dfrac{P(z)}{z^k}\\right|\\le1$，整理得 $$|P(z)|\\le|z|^k \\quad (|z|\\ge1).$$",
+        "验证边界情形：当 $|z|=1$ 时，不等式退化为 $|P(z)|\\le1$，恰是题设条件，逻辑自洽；当 $|z|\\to\\infty$ 时，$|P(z)|\\sim|a_k||z|^k\\le|z|^k$（因 $|a_k|\\le M\\le1$，实际上取 $z=1$ 附近的估计已经蕴含 $|a_k|\\le1$），与不等式渐近一致，验证无误。"
+      ]
+    }
+  ],
+  "practice_questions": [
+    {
+      "text": "证明 Riemann 可去奇点定理的一个特例：若 $g$ 在去心圆盘 $0<|w|<1$ 上全纯且有界，则 $g$ 在 $w=0$ 处存在全纯延拓。（可直接引用定理并说明证明思路要点，或用 Laurent 展开系数估计证明负幂系数全为零。）",
+      "knowledge_points": [
+        "Riemann可去奇点定理",
+        "Laurent展开",
+        "Cauchy积分估计"
+      ],
+      "question_type": "定理证明",
+      "method": [
+        "Laurent系数的Cauchy估计"
+      ],
+      "solution_steps": [
+        "写出 $g$ 的Laurent展开",
+        "用Cauchy不等式估计负幂系数",
+        "令半径趋于0得系数为零"
+      ],
+      "math_structure": {
+        "type": "removable_singularity_proof",
+        "template": "prove bounded holomorphic function on punctured disk extends holomorphically to center",
+        "variable_count": 0
+      },
+      "difficulty": 2,
+      "estimated_minutes": 10,
+      "answer": [
+        {
+          "label": "证明",
+          "steps": [
+            "设 $g$ 在 $0<|w|<1$ 上有 Laurent 展开 $g(w)=\\sum_{n=-\\infty}^{\\infty}c_nw^n$，系数由 $c_n=\\dfrac{1}{2\\pi i}\\oint_{|w|=r}\\dfrac{g(w)}{w^{n+1}}dw$ 给出，其中 $0<r<1$。",
+            "由 $|g(w)|\\le K$（有界），用 Cauchy 估计得 $|c_n|\\le \\dfrac{K}{r^{n}}$（对所有满足条件的 $r$）。对负整数 $n=-m$（$m\\ge1$），$|c_{-m}|\\le K r^{m}$，令 $r\\to0^+$ 得 $c_{-m}=0$。",
+            "故 Laurent 展开中所有负幂系数为零，$g(w)=\\sum_{n=0}^{\\infty}c_nw^n$ 是幂级数，在 $|w|<1$ 上收敛并定义了 $g$ 在 $w=0$ 处的全纯延拓（补充定义 $g(0)=c_0$）。这正是 Riemann 可去奇点定理的证明。"
+          ]
+        }
+      ],
+      "id": "isct-2002-60756c36b1-q03-practice-01",
+      "school": "东京科学大学",
+      "year": "2002"
+    },
+    {
+      "text": "设 $f$ 在 $|z|\\ge2$ 上全纯有界，且 $\\max_{|z|=2}|f(z)|=5$。求在 $|z|\\ge2$ 上 $|f(z)|$ 的一个上界估计。",
+      "knowledge_points": [
+        "最大模原理",
+        "反演变换",
+        "边界估计的推广"
+      ],
+      "question_type": "计算与证明题",
+      "method": [
+        "缩放变换将圆 $|z|=2$ 化为 $|z|=1$ 情形，套用原题结论"
+      ],
+      "solution_steps": [
+        "作变换 $\\zeta=z/2$ 化为标准情形",
+        "套用原题(1)结论",
+        "换回原变量给出结论"
+      ],
+      "math_structure": {
+        "type": "scaled_exterior_maximum",
+        "template": "f holomorphic bounded on |z|>=R with max on |z|=R equal to M0; find bound for |z|>=R",
+        "variable_count": 2
+      },
+      "difficulty": 2,
+      "estimated_minutes": 8,
+      "answer": [
+        {
+          "label": "结论",
+          "steps": [
+            "令 $\\zeta=z/2$，定义 $F(\\zeta)=f(2\\zeta)$，则 $F$ 在 $|\\zeta|\\ge1$ 上全纯有界，且 $\\max_{|\\zeta|=1}|F(\\zeta)|=\\max_{|z|=2}|f(z)|=5$。",
+            "由原题(1)的结论（标准情形），对所有 $|\\zeta|\\ge1$，$|F(\\zeta)|\\le5$。",
+            "换回原变量 $z=2\\zeta$，即对所有 $|z|\\ge2$，$|f(z)|=|F(z/2)|\\le5$。故上界估计为 $|f(z)|\\le5$，且这一界是紧的（当 $f$ 恰为常数5时取等）。"
+          ]
+        }
+      ],
+      "id": "isct-2002-60756c36b1-q03-practice-02",
+      "school": "东京科学大学",
+      "year": "2002"
+    },
+    {
+      "text": "设 $Q(z)=z^2+cz+d$ 为二次多项式，且在 $|z|\\le1$ 上满足 $|Q(z)|\\le1$。证明当 $|z|\\ge1$ 时 $|Q(z)|\\le|z|^2$，并验证 $z=2$ 处不等式给出的具体数值上界。",
+      "knowledge_points": [
+        "多项式模估计",
+        "最大模原理的应用"
+      ],
+      "question_type": "应用计算题",
+      "method": [
+        "直接套用原题(2)的结论，k=2的情形"
+      ],
+      "solution_steps": [
+        "确认 $Q$ 满足原题(2)的假设（次数2，$|z|\\le1$时模不超过1）",
+        "套用结论得一般不等式",
+        "代入 $z=2$ 计算具体数值"
+      ],
+      "math_structure": {
+        "type": "quadratic_polynomial_bound",
+        "template": "quadratic polynomial Q(z) with |Q|<=1 on unit disk, apply |Q(z)|<=|z|^2 for |z|>=1, evaluate at z=2",
+        "variable_count": 2
+      },
+      "difficulty": 2,
+      "estimated_minutes": 6,
+      "answer": [
+        {
+          "label": "结论",
+          "steps": [
+            "$Q$ 是次数 $k=2$ 的多项式，满足 $|Q(z)|\\le1$ 当 $|z|\\le1$，直接套用原题(2)（取 $k=2$）得对所有 $|z|\\ge1$，$$|Q(z)|\\le|z|^2.$$",
+            "这一不等式的证明方法完全同原题：令 $h(z)=Q(z)/z^2$，在 $|z|\\ge1$ 上全纯有界，$\\max_{|z|=1}|h(z)|=\\max_{|z|=1}|Q(z)|\\le1$，由(1)得 $|h(z)|\\le1$，即得所证不等式。",
+            "代入 $z=2$：不等式给出 $|Q(2)|\\le2^2=4$。这是一个数值上界，说明无论 $Q$ 的具体系数 $c,d$（只要满足单位圆盘上的模约束）如何选取，其在 $z=2$ 处的取值模长都不会超过4。"
+          ]
+        }
+      ],
+      "id": "isct-2002-60756c36b1-q03-practice-03",
+      "school": "东京科学大学",
+      "year": "2002"
+    },
+    {
+      "text": "举一个具体次数为3的多项式 $P(z)$，满足 $|P(z)|\\le1$ 当 $|z|\\le1$，并验证当 $z=1.5$ 时，原题(2)的不等式 $|P(z)|\\le|z|^3$ 是否被满足（数值验证）。",
+      "knowledge_points": [
+        "多项式构造与验证",
+        "数值代入检验不等式"
+      ],
+      "question_type": "构造与验证题",
+      "method": [
+        "取 $P(z)=z^3$ 作为最简单满足条件的例子进行验证"
+      ],
+      "solution_steps": [
+        "验证 $P(z)=z^3$ 在单位圆盘上满足模约束",
+        "代入 $z=1.5$ 计算两边数值",
+        "比较验证不等式成立"
+      ],
+      "math_structure": {
+        "type": "numerical_verification_polynomial_bound",
+        "template": "verify |P(z)|<=|z|^3 for P(z)=z^3 at z=1.5",
+        "variable_count": 1
+      },
+      "difficulty": 1,
+      "estimated_minutes": 5,
+      "answer": [
+        {
+          "label": "验证",
+          "steps": [
+            "取 $P(z)=z^3$，次数为3。当 $|z|\\le1$ 时，$|P(z)|=|z|^3\\le1$，满足题设条件。",
+            "代入 $z=1.5$：$|P(1.5)|=1.5^3=3.375$；而不等式右边 $|z|^3=1.5^3=3.375$。",
+            "两边相等（$3.375=3.375$），不等式 $|P(z)|\\le|z|^3$ 以等号形式成立，说明 $P(z)=z^k$ 是使原题(2)不等式取等号的极端情形（等号情形对应 $P$ 恰为 $z^k$ 乘以模为1的常数），验证了结论的紧致性。"
+          ]
+        }
+      ],
+      "id": "isct-2002-60756c36b1-q03-practice-04",
+      "school": "东京科学大学",
+      "year": "2002"
+    }
+  ],
+  "source_question": "午後 [9]",
+  "source_pdf": "东京科学大学/理工学系/数学系/东京科学大学_理工学系_数学系_2002_数学过去问.pdf",
+  "source_type": "官方过去问",
+  "subject_category": "复变函数"
+}

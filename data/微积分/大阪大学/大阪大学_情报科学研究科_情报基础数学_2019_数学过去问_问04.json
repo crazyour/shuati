@@ -1,0 +1,229 @@
+{
+  "id": "osaka-2019-e184f0090b-q04",
+  "school": "大阪大学",
+  "year": "2019",
+  "subject": "情报科学研究科_情报基础数学",
+  "text": "解答下列问题。\n(1) 设 $a$ 为正实数，证明如下等式成立：\n$$\\frac{d}{dx}\\left[x\\int_0^{ax}e^{-\\eta^2}d\\eta+\\frac{1}{2a}e^{-a^2x^2}\\right]=\\int_0^{ax}e^{-\\eta^2}d\\eta.$$\n(2) 设 $\\sigma$ 为正实数，令\n$$I(z)=\\int_0^z\\int_0^x\\frac{1}{\\sigma}e^{-\\frac{y^2}{\\sigma^2}}dy\\,dx,$$\n求 $\\displaystyle\\lim_{z\\to\\infty}\\frac{I(z)}{z}$ 的值。其中可以不加证明地使用 $\\displaystyle\\int_0^\\infty e^{-x^2}dx=\\frac{\\sqrt\\pi}{2}$。",
+  "knowledge_points": [
+    "变限积分求导(Leibniz法则)",
+    "复合函数求导/链式法则",
+    "Gauss积分",
+    "极限计算",
+    "变量替换"
+  ],
+  "method": [
+    "对变限积分表达式用求导公式和乘积法则直接验证等式",
+    "利用(1)的结论把I(z)的原函数表达出来",
+    "对表达式取z→∞的极限并使用Gauss积分值"
+  ],
+  "question_type": "变限积分求导与极限计算",
+  "solution_steps": [
+    "(1) 记G(u)=∫_0^u e^{-η²}dη，直接对xG(ax)+1/(2a)e^{-a²x²}求导，利用乘积法则和链式法则验证两项抵消后得G(ax)",
+    "(2) 换元y=ση把内层积分化为G(ax)（a=1/σ）的形式；利用(1)得到I(z)=zG(az)+1/(2a)e^{-a²z²}-1/(2a)；令z→∞，利用G(az)→√π/2求极限"
+  ],
+  "math_structure": {
+    "type": "erf_integral_limit",
+    "template": "d/dx[xG(ax)+c(a)e^{-a²x²}]=G(ax)，进而求lim_{z→∞} (1/z)∫_0^z G(ax)dx",
+    "variable_count": 1
+  },
+  "difficulty": 4,
+  "answer": [
+    {
+      "label": "(1)",
+      "steps": [
+        "记 $G(u)=\\int_0^u e^{-\\eta^2}d\\eta$，由变限积分求导公式 $G'(u)=e^{-u^2}$。设 $F(x)=xG(ax)+\\dfrac{1}{2a}e^{-a^2x^2}$为括号内表达式。",
+        "对F(x)求导，用乘积法则和链式法则：$F'(x)=G(ax)+x\\cdot aG'(ax)+\\dfrac{1}{2a}\\cdot(-2a^2x)e^{-a^2x^2}=G(ax)+ax\\,e^{-a^2x^2}-ax\\,e^{-a^2x^2}$。",
+        "后两项互相抵消（均为$ax\\,e^{-a^2x^2}$，符号相反），故$F'(x)=G(ax)=\\int_0^{ax}e^{-\\eta^2}d\\eta$，等式得证。"
+      ]
+    },
+    {
+      "label": "(2)",
+      "steps": [
+        "记$a=1/\\sigma$。对内层积分换元$y=\\sigma\\eta$（$dy=\\sigma\\,d\\eta$，当$y:0\\to x$时$\\eta:0\\to x/\\sigma=ax$）：$\\int_0^x\\frac1\\sigma e^{-y^2/\\sigma^2}dy=\\int_0^{ax}\\frac1\\sigma e^{-\\eta^2}\\sigma\\,d\\eta=\\int_0^{ax}e^{-\\eta^2}d\\eta=G(ax)$。故$I(z)=\\int_0^zG(ax)dx$。",
+        "由(1)，$G(ax)$恰是$F(x)=xG(ax)+\\dfrac{1}{2a}e^{-a^2x^2}$的导数，因此$I(z)=\\big[xG(ax)+\\dfrac{1}{2a}e^{-a^2x^2}\\big]_0^z=zG(az)+\\dfrac{1}{2a}e^{-a^2z^2}-\\dfrac{1}{2a}$。",
+        "于是$\\dfrac{I(z)}{z}=G(az)+\\dfrac{1}{2az}e^{-a^2z^2}-\\dfrac{1}{2az}$。当$z\\to\\infty$时，$G(az)\\to\\int_0^\\infty e^{-\\eta^2}d\\eta=\\dfrac{\\sqrt\\pi}{2}$（因a>0固定，az→∞），而后两项均以$1/z$速度趋于0。故极限为$\\dfrac{\\sqrt\\pi}{2}$，且结果与$\\sigma$无关。"
+      ]
+    }
+  ],
+  "practice_questions": [
+    {
+      "text": "计算 $\\displaystyle\\frac{d}{dx}\\int_0^x e^{-t^2}dt$。",
+      "knowledge_points": [
+        "牛顿-莱布尼茨公式(变限积分求导)"
+      ],
+      "question_type": "基础变限积分求导",
+      "method": [
+        "直接应用FTC"
+      ],
+      "solution_steps": [
+        "应用变限积分求导公式"
+      ],
+      "math_structure": {
+        "type": "ftc_basic",
+        "template": "d/dx ∫_0^x φ(t)dt=φ(x)",
+        "variable_count": 1
+      },
+      "difficulty": 1,
+      "estimated_minutes": 2,
+      "answer": [
+        {
+          "label": "结果",
+          "steps": [
+            "回顾变限积分求导公式：若$\\varphi(t)$连续，则$\\dfrac{d}{dx}\\int_0^x\\varphi(t)dt=\\varphi(x)$。",
+            "取$\\varphi(t)=e^{-t^2}$，其在R上连续，直接代入得$\\dfrac{d}{dx}\\int_0^xe^{-t^2}dt=e^{-x^2}$。",
+            "验算：该结果与被积函数本身在x处的取值相同，符合变限积分求导的一般规律。"
+          ]
+        }
+      ],
+      "id": "osaka-2019-e184f0090b-q04-practice-01",
+      "school": "大阪大学",
+      "year": "2019"
+    },
+    {
+      "text": "计算 $\\displaystyle\\frac{d}{dx}\\int_0^{2x} e^{-t^2}dt$。",
+      "knowledge_points": [
+        "变限积分求导",
+        "链式法则"
+      ],
+      "question_type": "复合变限积分求导",
+      "method": [
+        "链式法则结合变限积分求导公式"
+      ],
+      "solution_steps": [
+        "令u=2x，用链式法则计算导数"
+      ],
+      "math_structure": {
+        "type": "ftc_chain_rule",
+        "template": "d/dx ∫_0^{2x}φ(t)dt=2φ(2x)",
+        "variable_count": 1
+      },
+      "difficulty": 2,
+      "estimated_minutes": 4,
+      "answer": [
+        {
+          "label": "结果",
+          "steps": [
+            "令$u=2x$，$H(x)=\\int_0^ue^{-t^2}dt=G(u)$，其中$G'(u)=e^{-u^2}$。",
+            "由链式法则，$H'(x)=G'(u)\\cdot\\dfrac{du}{dx}=e^{-u^2}\\cdot2=2e^{-4x^2}$。",
+            "验算：当x=0时$H'(0)=2e^0=2$，与直接对$H(x)\\approx2x$（x很小时被积函数近似为1）的线性近似结果一致。"
+          ]
+        }
+      ],
+      "id": "osaka-2019-e184f0090b-q04-practice-02",
+      "school": "大阪大学",
+      "year": "2019"
+    },
+    {
+      "text": "验证原题(1)在 $a=1$ 时的特殊情形：证明 $\\displaystyle\\frac{d}{dx}\\left[x\\int_0^xe^{-\\eta^2}d\\eta+\\frac12e^{-x^2}\\right]=\\int_0^xe^{-\\eta^2}d\\eta$。",
+      "knowledge_points": [
+        "变限积分求导",
+        "乘积法则",
+        "链式法则"
+      ],
+      "question_type": "特殊情形验证",
+      "method": [
+        "直接求导验证"
+      ],
+      "solution_steps": [
+        "取a=1代入原题(1)的证明过程"
+      ],
+      "math_structure": {
+        "type": "erf_integral_identity_special_case",
+        "template": "a=1情形下的d/dx[xG(x)+e^{-x²}/2]=G(x)",
+        "variable_count": 0
+      },
+      "difficulty": 2,
+      "estimated_minutes": 5,
+      "answer": [
+        {
+          "label": "证明",
+          "steps": [
+            "取$a=1$，$F(x)=xG(x)+\\dfrac12e^{-x^2}$，其中$G(x)=\\int_0^xe^{-\\eta^2}d\\eta$，$G'(x)=e^{-x^2}$。",
+            "求导：$F'(x)=G(x)+xG'(x)+\\dfrac12(-2x)e^{-x^2}=G(x)+xe^{-x^2}-xe^{-x^2}$。",
+            "后两项抵消，故$F'(x)=G(x)=\\int_0^xe^{-\\eta^2}d\\eta$，验证了(1)在a=1时的特殊情形。"
+          ]
+        }
+      ],
+      "id": "osaka-2019-e184f0090b-q04-practice-03",
+      "school": "大阪大学",
+      "year": "2019"
+    },
+    {
+      "text": "利用上一练习(a=1情形)的结果，求 $\\displaystyle\\int_0^z\\left(\\int_0^xe^{-\\eta^2}d\\eta\\right)dx$ 的显式表达式，并求 $\\displaystyle\\lim_{z\\to\\infty}\\frac{1}{z}\\int_0^z\\left(\\int_0^xe^{-\\eta^2}d\\eta\\right)dx$。",
+      "knowledge_points": [
+        "原函数法计算积分",
+        "极限计算",
+        "Gauss积分"
+      ],
+      "question_type": "累次积分与极限",
+      "method": [
+        "用F(x)是G(x)的原函数直接积分再取极限"
+      ],
+      "solution_steps": [
+        "用F(x)=xG(x)+e^{-x²}/2作为原函数计算定积分，再对z求极限"
+      ],
+      "math_structure": {
+        "type": "erf_integral_limit_special_case",
+        "template": "a=1时I₁(z)=zG(z)+e^{-z²}/2-1/2，求lim I₁(z)/z",
+        "variable_count": 0
+      },
+      "difficulty": 3,
+      "estimated_minutes": 7,
+      "answer": [
+        {
+          "label": "结果",
+          "steps": [
+            "由上一练习，$G(x)$是$F(x)=xG(x)+\\dfrac12e^{-x^2}$的导数，故$I_1(z)=\\int_0^zG(x)dx=\\left[xG(x)+\\dfrac12e^{-x^2}\\right]_0^z=zG(z)+\\dfrac12e^{-z^2}-\\dfrac12$。",
+            "于是$\\dfrac{I_1(z)}{z}=G(z)+\\dfrac{1}{2z}e^{-z^2}-\\dfrac{1}{2z}$。",
+            "当$z\\to\\infty$，$G(z)\\to\\int_0^\\infty e^{-\\eta^2}d\\eta=\\dfrac{\\sqrt\\pi}2$，另两项均趋于0，故极限为$\\dfrac{\\sqrt\\pi}{2}$。"
+          ]
+        }
+      ],
+      "id": "osaka-2019-e184f0090b-q04-practice-04",
+      "school": "大阪大学",
+      "year": "2019"
+    },
+    {
+      "text": "设 $\\tau>0$，$J(z)=\\displaystyle\\int_0^z\\int_0^x\\frac{2}{\\tau}e^{-2y^2/\\tau^2}dy\\,dx$，求 $\\displaystyle\\lim_{z\\to\\infty}\\frac{J(z)}{z}$。",
+      "knowledge_points": [
+        "变限积分求导法",
+        "变量替换",
+        "Gauss积分",
+        "极限计算"
+      ],
+      "question_type": "推广的累次积分极限计算",
+      "method": [
+        "换元把内层积分化为G(ax)形式(含系数)",
+        "套用原题(1)(2)的方法计算极限"
+      ],
+      "solution_steps": [
+        "换元将2/τ e^{-2y²/τ²}积分化为√2·G(ax)形式(a=√2/τ)，仿照原题方法求J(z)显式表达式并取极限"
+      ],
+      "math_structure": {
+        "type": "erf_integral_limit_generalized",
+        "template": "内层积分含系数m和尺度a：J(z)/z→m·√π/2",
+        "variable_count": 1
+      },
+      "difficulty": 4,
+      "estimated_minutes": 12,
+      "answer": [
+        {
+          "label": "结果",
+          "steps": [
+            "设$c=2/\\tau^2,k=2/\\tau$，令$\\eta=y\\sqrt c$（即$\\sqrt c=\\sqrt2/\\tau$），则$\\int_0^x\\dfrac2\\tau e^{-2y^2/\\tau^2}dy=\\dfrac{k}{\\sqrt c}\\int_0^{x\\sqrt c}e^{-\\eta^2}d\\eta=\\sqrt2\\,G(ax)$，其中$a=\\sqrt2/\\tau$（因$k/\\sqrt c=(2/\\tau)/(\\sqrt2/\\tau)=\\sqrt2$）。",
+            "由(1)/前述练习的方法，$\\int_0^zG(ax)dx=zG(az)+\\dfrac1{2a}e^{-a^2z^2}-\\dfrac1{2a}$，故$J(z)=\\sqrt2\\left(zG(az)+\\dfrac1{2a}e^{-a^2z^2}-\\dfrac1{2a}\\right)$。",
+            "于是$\\dfrac{J(z)}{z}=\\sqrt2\\left(G(az)+\\dfrac{1}{2az}e^{-a^2z^2}-\\dfrac{1}{2az}\\right)\\to\\sqrt2\\cdot\\dfrac{\\sqrt\\pi}{2}=\\dfrac{\\sqrt{2\\pi}}{2}=\\sqrt{\\dfrac\\pi2}$，当$z\\to\\infty$。",
+            "验算：该结果与原题(2)中$\\sigma$任意时极限恒为$\\sqrt\\pi/2$的结构一致，只是这里内层积分在$x\\to\\infty$时趋于$\\int_0^\\infty\\frac2\\tau e^{-2y^2/\\tau^2}dy=\\sqrt{\\pi/2}$（可直接验证），从而极限即为该常数，方法自洽。"
+          ]
+        }
+      ],
+      "id": "osaka-2019-e184f0090b-q04-practice-05",
+      "school": "大阪大学",
+      "year": "2019"
+    }
+  ],
+  "source_question": "問4",
+  "source_pdf": "大阪大学/情报科学研究科/情报基础数学/大阪大学_情报科学研究科_情报基础数学_2019_数学过去问.pdf",
+  "source_type": "官方过去问",
+  "subject_category": "微积分"
+}

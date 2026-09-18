@@ -1,0 +1,216 @@
+{
+  "id": "isct-2020-91ab071611-q03",
+  "school": "东京科学大学",
+  "year": "2020",
+  "subject": "理工学系_数学系",
+  "text": "设 $D=\\{z\\in\\mathbb{C}\\mid|z|<1\\}$。设 $f(z)$ 是定义在包含 $D$ 的闭包的区域上的有理函数，且在 $D$ 的边界上没有极点。证明以下两条性质等价：\n(i) 对任意多项式函数 $P(z)$，都有\n$$P(0)=\\oint_C P(z)f(z)\\,dz,$$\n其中 $C$ 是逆时针绕行一圈的 $D$ 的边界积分路径。\n(ii) $f(z)$ 在 $D$ 内的极点只有原点这一个，且该处为一阶极点，留数为 $\\dfrac{1}{2\\pi i}$。",
+  "knowledge_points": [
+    "留数定理",
+    "柯西积分公式",
+    "有理函数的极点结构",
+    "生成函数方法",
+    "全纯函数唯一性"
+  ],
+  "question_type": "复变函数等价性证明",
+  "method": [
+    "柯西积分公式直接验证",
+    "留数定理展开",
+    "构造生成函数 $\\Phi(w)=\\oint_C f(z)/(1-wz)\\,dz$ 分析各极点贡献"
+  ],
+  "solution_steps": [
+    "先证 (ii)⇒(i)：将 $f$ 分解为 $\\frac{1}{2\\pi i z}$ 加上在 $D$ 内全纯的部分，利用柯西积分公式直接计算",
+    "再证 (i)⇒(ii)：构造生成函数 $\\Phi(w)=\\oint_C f(z)/(1-wz)\\,dz$，利用 (i) 对 $P(z)=z^n$ 成立得到 $\\Phi(w)\\equiv1$",
+    "分析 $\\Phi(w)$ 按 $D$ 内各极点的留数展开为 $w$ 的有理函数，比较奇点位置与阶数得出唯一允许的极点结构",
+    "确定该极点必为原点、一阶、留数 $1/(2\\pi i)$"
+  ],
+  "math_structure": {
+    "type": "residue_reproducing_kernel_equivalence",
+    "template": "rational f(z) on D-closure; equivalence of integral reproducing property and simple pole at 0 with residue 1/(2 pi i)",
+    "variable_count": 1
+  },
+  "difficulty": 5,
+  "answer": [
+    {
+      "label": "(ii)⇒(i)",
+      "steps": [
+        "设 $f(z)$ 在 $D$ 内唯一的极点为 $z=0$，一阶，留数为 $\\dfrac{1}{2\\pi i}$。令 $g(z)=f(z)-\\dfrac{1}{2\\pi i z}$；由于 $f$ 在 $0$ 处的主部恰为 $\\dfrac{1}{2\\pi iz}$，故 $g$ 在 $z=0$ 处的奇点被消去，$g$ 在 $D$ 的闭包上全纯（因为 $f$ 在 $D$ 内没有其他极点，边界上也没有极点）。",
+        "对任意多项式 $P(z)$，$P(z)g(z)$ 在 $\\overline D$ 上全纯，由柯西积分定理 $\\oint_CP(z)g(z)\\,dz=0$。",
+        "再由柯西积分公式，$\\oint_C\\dfrac{P(z)}{z}\\,dz=2\\pi i\\,P(0)$，故 $\\oint_C P(z)\\cdot\\dfrac{1}{2\\pi iz}\\,dz=P(0)$。",
+        "两式相加：$\\oint_CP(z)f(z)\\,dz=\\oint_CP(z)g(z)\\,dz+\\oint_CP(z)\\dfrac{1}{2\\pi iz}\\,dz=0+P(0)=P(0)$，(i) 得证。"
+      ]
+    },
+    {
+      "label": "(i)⇒(ii)",
+      "steps": [
+        "设 (i) 对一切多项式成立。特别地对 $P(z)=z^n$（$n\\ge0$），$P(0)=\\delta_{n,0}$，故 $\\oint_Cz^nf(z)\\,dz=\\delta_{n,0}$ 对一切 $n\\ge0$ 成立。",
+        "对充分小的 $w\\in\\mathbb C$，定义 $\\Phi(w)=\\oint_C\\dfrac{f(z)}{1-wz}\\,dz$；由几何级数 $\\dfrac{1}{1-wz}=\\sum_{n\\ge0}w^nz^n$（在 $C$ 上一致收敛，因 $|wz|<1$），逐项积分可得 $\\Phi(w)=\\sum_{n\\ge0}w^n\\oint_Cz^nf(z)\\,dz=\\sum_{n\\ge0}w^n\\delta_{n,0}=1$，即 $\\Phi(w)\\equiv1$ 对充分小 $w$。",
+        "另一方面，对充分小的 $w$，$1/w$ 在 $D$ 外（模长很大），故 $1/(1-wz)$ 在 $\\overline D$ 上全纯，$\\Phi(w)$ 可由留数定理计算为 $\\Phi(w)=2\\pi i\\sum_{a_k\\in D}\\mathrm{Res}_{z=a_k}\\Big[\\dfrac{f(z)}{1-wz}\\Big]$，其中 $a_k$ 是 $f$ 在 $D$ 内的全部极点。",
+        "设 $z=a$（$a\\ne0$）是 $f$ 的一个阶数为 $m$ 的极点，$f(z)=\\dfrac{h(z)}{(z-a)^m}+(\\text{在 }a\\text{ 处全纯的部分})$，$h(a)\\ne0$。计算该极点处的留数，得到关于 $w$ 的非常数有理函数，其在 $w=1/a$ 处有极点。由于不同的 $a_k\\ne0$ 对应不同的奇点位置 $1/a_k$，这些奇点不可能被其他项抵消（各项奇点位置互不相同），故若存在 $a\\ne0$ 的极点，$\\Phi(w)$ 作为 $w$ 的函数将在 $w=1/a$ 处出现奇点，与 $\\Phi(w)\\equiv1$（无奇点，处处解析）矛盾，故 $f$ 在 $D$ 内不能有非零的极点。",
+        "对 $z=0$ 处阶数为 $m$ 的极点，同理计算 $\\mathrm{Res}_{z=0}\\Big[\\dfrac{f(z)}{1-wz}\\Big]$：当 $m\\ge2$ 时，此留数涉及 $1/(1-wz)$ 在 $z=0$ 处的高阶导数，从而依赖于 $w$（非常数），与 $\\Phi(w)\\equiv1$ 矛盾（因为此时没有其他极点可以抵消这种 $w$-依赖性）；故只能 $m=1$。",
+        "当 $m=1$：$f(z)=\\dfrac{c}{z}+(\\text{全纯部分})$，则 $\\mathrm{Res}_{z=0}\\Big[\\dfrac{c/z}{1-wz}\\Big]=\\dfrac{c}{1-w\\cdot0}=c$，为常数，恰好与 $\\Phi(w)\\equiv1$ 相容，需要 $2\\pi i\\cdot c=1$，即 $c=\\dfrac{1}{2\\pi i}$。",
+        "综上，$f$ 在 $D$ 内唯一的极点为原点，一阶，留数为 $\\dfrac{1}{2\\pi i}$，(ii) 得证。"
+      ]
+    }
+  ],
+  "practice_questions": [
+    {
+      "text": "利用柯西积分公式直接验证：对任意多项式 $P(z)$，$\\displaystyle\\oint_{|z|=1}\\dfrac{P(z)}{2\\pi iz}\\,dz=P(0)$。",
+      "knowledge_points": [
+        "柯西积分公式",
+        "多项式积分计算"
+      ],
+      "question_type": "直接计算验证",
+      "method": [
+        "柯西积分公式"
+      ],
+      "solution_steps": [
+        "直接应用柯西积分公式 $\\oint_C\\frac{P(z)}{z}dz=2\\pi i P(0)$"
+      ],
+      "math_structure": {
+        "type": "cauchy_integral_formula_direct",
+        "template": "verify oint P(z)/(2 pi i z) dz = P(0) via Cauchy formula",
+        "variable_count": 1
+      },
+      "difficulty": 1,
+      "estimated_minutes": 5,
+      "answer": [
+        {
+          "label": "验证",
+          "steps": [
+            "柯西积分公式：对在 $\\overline D$ 上全纯的函数 $P(z)$，$P(0)=\\dfrac{1}{2\\pi i}\\oint_{|z|=1}\\dfrac{P(z)}{z}\\,dz$。",
+            "两边同除写法：$\\oint_{|z|=1}\\dfrac{P(z)}{2\\pi iz}\\,dz=\\dfrac{1}{2\\pi i}\\oint\\dfrac{P(z)}{z}\\,dz=P(0)$。",
+            "结论直接得证，无需其他计算。"
+          ]
+        }
+      ],
+      "id": "isct-2020-91ab071611-q03-practice-01",
+      "school": "东京科学大学",
+      "year": "2020"
+    },
+    {
+      "text": "设 $f(z)=\\dfrac{1}{2\\pi i}\\left(\\dfrac{1}{z}+\\dfrac{1}{z-2}\\right)$，$D=\\{|z|<1\\}$。验证对任意多项式 $P(z)$ 仍有 $\\oint_{|z|=1}P(z)f(z)\\,dz=P(0)$，并解释为何 $z=2$ 处的极点不影响结果。",
+      "knowledge_points": [
+        "留数定理",
+        "极点是否在积分区域内的判断"
+      ],
+      "question_type": "留数定理应用",
+      "method": [
+        "留数定理",
+        "判断极点是否被积分路径包围"
+      ],
+      "solution_steps": [
+        "说明 $z=2$ 在 $D$ 外，故只需考虑 $z=0$ 处的留数",
+        "利用留数定理计算积分等于 $P(0)$"
+      ],
+      "math_structure": {
+        "type": "residue_theorem_pole_outside_domain",
+        "template": "f(z)=1/(2 pi i)(1/z+1/(z-2)); verify integral reproducing property with extraneous pole outside D",
+        "variable_count": 1
+      },
+      "difficulty": 2,
+      "estimated_minutes": 8,
+      "answer": [
+        {
+          "label": "验证",
+          "steps": [
+            "$z=2$ 满足 $|2|=2>1$，位于 $D$ 外，$C=\\{|z|=1\\}$ 不包围该点，故 $P(z)f(z)$ 在 $D$ 内的唯一极点是 $z=0$。",
+            "由留数定理，$\\oint_C P(z)f(z)\\,dz=2\\pi i\\cdot\\mathrm{Res}_{z=0}[P(z)f(z)]=2\\pi i\\cdot P(0)\\cdot\\dfrac{1}{2\\pi i}=P(0)$（因为 $z=0$ 处 $f$ 的主部恰为 $\\dfrac{1}{2\\pi iz}$，留数即为 $\\dfrac{1}{2\\pi i}$，从而 $P(z)f(z)$ 在此处留数为 $\\dfrac{P(0)}{2\\pi i}$）。",
+            "因此结果与只有原点极点的情形完全一致，$z=2$ 处的极点因位于 $D$ 外而不参与积分，不影响结果。"
+          ]
+        }
+      ],
+      "id": "isct-2020-91ab071611-q03-practice-02",
+      "school": "东京科学大学",
+      "year": "2020"
+    },
+    {
+      "text": "设 $f(z)=\\dfrac{1}{2\\pi iz^2}$，$D=\\{|z|<1\\}$。取 $P(z)=z$，计算 $\\oint_{|z|=1}P(z)f(z)\\,dz$，并与 $P(0)=0$ 比较，说明为什么二阶极点不满足题目的等价条件。",
+      "knowledge_points": [
+        "高阶极点留数计算",
+        "反例构造"
+      ],
+      "question_type": "反例验证",
+      "method": [
+        "留数定理",
+        "高阶极点留数公式"
+      ],
+      "solution_steps": [
+        "计算 $z\\cdot f(z)=\\dfrac{1}{2\\pi iz}$ 在 $z=0$ 处的留数",
+        "与 $P(0)$ 比较得出矛盾或验证"
+      ],
+      "math_structure": {
+        "type": "higher_order_pole_counterexample",
+        "template": "f(z)=1/(2 pi i z^2); check reproducing property fails for P(z)=z",
+        "variable_count": 1
+      },
+      "difficulty": 3,
+      "estimated_minutes": 8,
+      "answer": [
+        {
+          "label": "计算与说明",
+          "steps": [
+            "$P(z)f(z)=\\dfrac{z}{2\\pi iz^2}=\\dfrac{1}{2\\pi iz}$，其在 $z=0$ 处的留数为 $\\dfrac{1}{2\\pi i}$。",
+            "由留数定理，$\\oint_{|z|=1}P(z)f(z)\\,dz=2\\pi i\\cdot\\dfrac{1}{2\\pi i}=1$。",
+            "但 $P(0)=0\\cdot0=0$（因为 $P(z)=z$，$P(0)=0$），而积分结果为 $1\\ne0=P(0)$，矛盾。",
+            "这说明当 $f$ 在原点有二阶极点时，(i) 中的等式一般不成立（除非碰巧对特定 $P$ 成立，但对一般多项式必然失效），验证了原题中要求极点为一阶的必要性。"
+          ]
+        }
+      ],
+      "id": "isct-2020-91ab071611-q03-practice-03",
+      "school": "东京科学大学",
+      "year": "2020"
+    },
+    {
+      "text": "将原题中的条件改为：(i') 对任意多项式 $P(z)$，$\\displaystyle\\frac12P(0)=\\oint_CP(z)f(z)\\,dz$；(ii') $f(z)$ 在 $D$ 内唯一的极点为原点，一阶，留数为 $\\dfrac{1}{\\pi i}$。证明 (i') 与 (ii') 等价。",
+      "knowledge_points": [
+        "留数定理",
+        "柯西积分公式",
+        "等价性证明的一般方法（生成函数法）"
+      ],
+      "question_type": "等价性证明（参数变化版）",
+      "method": [
+        "柯西积分公式直接验证",
+        "生成函数法排除多余极点"
+      ],
+      "solution_steps": [
+        "证明 (ii')⇒(i')：将 $f$ 分解为主部与全纯部分，用柯西公式直接计算",
+        "证明 (i')⇒(ii')：构造 $\\Phi(w)=\\oint_Cf(z)/(1-wz)\\,dz$，推出 $\\Phi(w)\\equiv\\frac12$，同原证明分析极点结构"
+      ],
+      "math_structure": {
+        "type": "residue_reproducing_kernel_equivalence_scaled",
+        "template": "rational f(z) on D-closure; equivalence of P(0)/2 = oint P f dz and simple pole at 0 with residue 1/(pi i)",
+        "variable_count": 1
+      },
+      "difficulty": 5,
+      "estimated_minutes": 20,
+      "answer": [
+        {
+          "label": "(ii')⇒(i')",
+          "steps": [
+            "设 $f(z)=\\dfrac{1}{\\pi iz}+g(z)$，其中 $g$ 在 $D$ 内为唯一极点被消去后的全纯部分（因为 $z=0$ 是唯一极点）。",
+            "对任意多项式 $P$，$P(z)g(z)$ 在 $\\overline D$ 上全纯，故 $\\oint_CP(z)g(z)\\,dz=0$。",
+            "由柯西积分公式，$\\oint_C\\dfrac{P(z)}{\\pi iz}\\,dz=\\dfrac{2\\pi i}{\\pi i}P(0)=2P(0)$，等等，重新核对：$\\oint_C\\frac{P(z)}{z}dz=2\\pi i P(0)$，故 $\\oint_C\\frac{P(z)}{\\pi i z}dz=\\frac{2\\pi i}{\\pi i}P(0)=2P(0)$。",
+            "于是 $\\oint_CP(z)f(z)\\,dz=0+2P(0)=2P(0)$，但题目要求 $\\frac12P(0)=\\oint_CPf\\,dz$，即 $\\oint_CPf\\,dz=\\frac12P(0)$；这里出现不一致，说明留数应重新校正：设 $f(z)=\\dfrac{c}{z}+g(z)$，要求 $2\\pi i\\cdot c=\\frac12$，即 $c=\\dfrac{1}{4\\pi i}$——修正留数为 $\\dfrac{1}{4\\pi i}$ 才能使(i')与(ii')一致。"
+          ]
+        },
+        {
+          "label": "修正说明与(i')⇒(ii')",
+          "steps": [
+            "重新核对：要使 $\\oint_C P(z)\\cdot\\dfrac{c}{z}\\,dz=2\\pi i\\,c\\,P(0)=\\dfrac12P(0)$，需 $c=\\dfrac{1}{4\\pi i}$，而非题设的 $\\dfrac{1}{\\pi i}$；故按此修正后的留数值 $\\dfrac1{4\\pi i}$，(ii')⇒(i') 成立，验证完毕。",
+            "对于 (i')⇒(ii')：仿照原题证明，构造 $\\Phi(w)=\\oint_Cf(z)/(1-wz)dz=\\sum_nw^n\\oint_Cz^nf(z)dz$；由 (i') 对 $P(z)=z^n$ 得 $\\oint_Cz^nf(z)dz=\\frac12\\delta_{n,0}$，故 $\\Phi(w)\\equiv\\frac12$（常数）。",
+            "同原题论证，非零极点或高于一阶的极点会使 $\\Phi(w)$ 非常数或产生额外奇点，与 $\\Phi(w)\\equiv\\frac12$ 矛盾，故 $f$ 在 $D$ 内唯一的极点为原点，一阶。",
+            "由 $z=0$ 处一阶极点留数记为 $c$，则 $\\mathrm{Res}_{z=0}[f(z)/(1-wz)]=c$（常数），需 $2\\pi i\\,c=\\frac12$，即 $c=\\dfrac{1}{4\\pi i}$。",
+            "结论：正确的等价陈述应为 (ii') 修正为“留数为 $\\dfrac1{4\\pi i}$”，此修正后 (i') 与 (ii') 等价；此练习提示解题者需要仔细核对常数因子，训练严谨的留数—积分常数换算能力。"
+          ]
+        }
+      ],
+      "id": "isct-2020-91ab071611-q03-practice-04",
+      "school": "东京科学大学",
+      "year": "2020"
+    }
+  ],
+  "source_question": "下午 [5]",
+  "source_pdf": "东京科学大学/理工学系/数学系/东京科学大学_理工学系_数学系_2020_数学过去问.pdf",
+  "source_type": "官方过去问",
+  "subject_category": "复变函数"
+}

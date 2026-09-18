@@ -1,0 +1,206 @@
+{
+  "id": "isct-2010-3c64ebb6dd-q02",
+  "school": "东京科学大学",
+  "year": "2010",
+  "subject": "理工学系_数学系",
+  "text": "设 $r$ 为正常数。\n(1) 证明无限级数 $$\\sum_{n=1}^{\\infty}\\frac{e^{-nx}}{n+1}$$ 关于 $x\\in[r,\\infty)$ 一致收敛。\n(2) 求极限值 $$\\lim_{r\\to+0}\\int_r^{1/r}\\sum_{n=1}^{\\infty}\\frac{e^{-nx}}{n+1}\\,dx.$$",
+  "knowledge_points": [
+    "Weierstrass判别法(M-判别法)",
+    "一致收敛定义",
+    "逐项积分定理",
+    "部分分式分解与telescoping求和",
+    "含参积分极限的交换(主导收敛)",
+    "几何级数收敛性"
+  ],
+  "question_type": "一致收敛证明与极限计算",
+  "method": [
+    "用M判别法证明一致收敛",
+    "利用一致收敛性交换求和与积分次序逐项积分",
+    "对得到的级数取极限r→0，用主导收敛交换极限与求和",
+    "用telescoping求最终和"
+  ],
+  "solution_steps": [
+    "构造M_n=e^{-nr}/(n+1)并用几何级数比较证明一致收敛",
+    "逐项积分计算∫_r^{1/r}e^{-nx}dx",
+    "得到含r的级数，令r→0+对每项取极限",
+    "用部分分式1/(n(n+1))=1/n-1/(n+1)做telescoping求和得最终值"
+  ],
+  "math_structure": {
+    "type": "uniform_convergence_series_integral_limit",
+    "template": "∑e^{-nx}/(n+1)在[r,∞)一致收敛;求lim_{r→0+}∫_r^{1/r}∑e^{-nx}/(n+1)dx",
+    "variable_count": 1
+  },
+  "difficulty": 3,
+  "answer": [
+    {
+      "label": "(1)",
+      "steps": [
+        "对任意 $x\\ge r>0$ 及 $n\\ge1$，有 $e^{-nx}\\le e^{-nr}$，故 $\\left|\\dfrac{e^{-nx}}{n+1}\\right|\\le\\dfrac{e^{-nr}}{n+1}=:M_n$。",
+        "由于 $0<e^{-r}<1$，几何级数 $\\sum_{n=1}^\\infty e^{-nr}$ 收敛，从而 $\\sum_{n=1}^\\infty M_n\\le\\sum_{n=1}^\\infty e^{-nr}<\\infty$。",
+        "由Weierstrass M判别法，$\\sum_{n=1}^\\infty\\dfrac{e^{-nx}}{n+1}$ 关于 $x\\in[r,\\infty)$ 一致收敛。"
+      ]
+    },
+    {
+      "label": "(2)",
+      "steps": [
+        "由(1)，级数在 $[r,1/r]\\subset[r,\\infty)$ 上一致收敛，故可逐项积分：$\\int_r^{1/r}\\sum_{n=1}^\\infty\\frac{e^{-nx}}{n+1}dx=\\sum_{n=1}^\\infty\\frac{1}{n+1}\\int_r^{1/r}e^{-nx}dx$。",
+        "计算 $\\int_r^{1/r}e^{-nx}dx=\\left[-\\frac1n e^{-nx}\\right]_r^{1/r}=\\frac{e^{-nr}-e^{-n/r}}{n}$，代入得 $\\sum_{n=1}^\\infty\\frac{e^{-nr}-e^{-n/r}}{n(n+1)}$。",
+        "对每个固定 $n$，当 $r\\to0^+$ 时 $e^{-nr}\\to1$，$e^{-n/r}\\to0$；且 $\\left|\\dfrac{e^{-nr}-e^{-n/r}}{n(n+1)}\\right|\\le\\dfrac{1}{n(n+1)}$（与 $r$ 无关且可和），由主导收敛定理可交换极限与求和：$\\lim_{r\\to0^+}\\sum_{n=1}^\\infty\\frac{e^{-nr}-e^{-n/r}}{n(n+1)}=\\sum_{n=1}^\\infty\\frac{1}{n(n+1)}$。",
+        "用部分分式 $\\dfrac{1}{n(n+1)}=\\dfrac1n-\\dfrac1{n+1}$，telescoping求和：$\\sum_{n=1}^N\\left(\\dfrac1n-\\dfrac1{n+1}\\right)=1-\\dfrac1{N+1}\\to1$。故所求极限为 $1$。"
+      ]
+    }
+  ],
+  "practice_questions": [
+    {
+      "text": "证明级数 $\\sum_{n=1}^\\infty\\dfrac{x^n}{n^2}$ 关于 $x\\in[-1,1]$ 一致收敛。",
+      "knowledge_points": [
+        "Weierstrass M判别法",
+        "幂级数",
+        "p级数收敛性"
+      ],
+      "question_type": "证明题",
+      "method": [
+        "用M判别法，M_n=1/n^2"
+      ],
+      "solution_steps": [
+        "估计|x^n/n^2|≤1/n^2对所有x∈[-1,1]",
+        "验证∑1/n^2收敛(p级数p=2>1)",
+        "由M判别法得一致收敛"
+      ],
+      "math_structure": {
+        "type": "weierstrass_m_test_power_series",
+        "template": "∑a_n(x)一致收敛,|a_n(x)|≤M_n,∑M_n<∞",
+        "variable_count": 1
+      },
+      "difficulty": 1,
+      "estimated_minutes": 4,
+      "answer": [
+        {
+          "label": "证明",
+          "steps": [
+            "对任意 $x\\in[-1,1]$，$|x|\\le1$，故 $\\left|\\dfrac{x^n}{n^2}\\right|\\le\\dfrac1{n^2}=:M_n$。",
+            "$\\sum_{n=1}^\\infty\\dfrac1{n^2}$ 是 $p=2>1$ 的 $p$-级数，收敛。",
+            "由Weierstrass M判别法，原级数在 $[-1,1]$ 上一致收敛。"
+          ]
+        }
+      ],
+      "id": "isct-2010-3c64ebb6dd-q02-practice-01",
+      "school": "东京科学大学",
+      "year": "2010"
+    },
+    {
+      "text": "设 $r>0$，证明级数 $\\sum_{n=1}^\\infty\\dfrac{e^{-nx}}{n^2}$ 关于 $x\\in[r,\\infty)$ 一致收敛。",
+      "knowledge_points": [
+        "M判别法",
+        "指数衰减估计"
+      ],
+      "question_type": "证明题",
+      "method": [
+        "用M_n=e^{-nr}/n^2"
+      ],
+      "solution_steps": [
+        "对x≥r估计e^{-nx}≤e^{-nr}",
+        "∑e^{-nr}/n^2收敛(几何衰减主导)",
+        "M判别法得证"
+      ],
+      "math_structure": {
+        "type": "weierstrass_m_test_exponential_series",
+        "template": "∑e^{-nx}/n^2在[r,∞)一致收敛",
+        "variable_count": 1
+      },
+      "difficulty": 2,
+      "estimated_minutes": 5,
+      "answer": [
+        {
+          "label": "证明",
+          "steps": [
+            "对 $x\\ge r$，$e^{-nx}\\le e^{-nr}$，故 $\\dfrac{e^{-nx}}{n^2}\\le\\dfrac{e^{-nr}}{n^2}=:M_n$。",
+            "因 $\\sum e^{-nr}$ 收敛(几何级数，比值$e^{-r}<1$)，而$M_n\\le e^{-nr}$，故$\\sum M_n$收敛（比较判别法）。",
+            "由M判别法，原级数在$[r,\\infty)$上一致收敛。"
+          ]
+        }
+      ],
+      "id": "isct-2010-3c64ebb6dd-q02-practice-02",
+      "school": "东京科学大学",
+      "year": "2010"
+    },
+    {
+      "text": "利用部分分式，求和 $\\sum_{n=1}^\\infty\\dfrac{1}{n(n+2)}$。",
+      "knowledge_points": [
+        "部分分式分解",
+        "telescoping求和"
+      ],
+      "question_type": "计算题",
+      "method": [
+        "部分分式分解后telescoping"
+      ],
+      "solution_steps": [
+        "写出1/(n(n+2))=1/2(1/n-1/(n+2))",
+        "展开前N项求和观察抵消模式",
+        "取极限N→∞得结果"
+      ],
+      "math_structure": {
+        "type": "telescoping_series_partial_fraction",
+        "template": "∑1/(n(n+2))=1/2∑(1/n-1/(n+2))",
+        "variable_count": 0
+      },
+      "difficulty": 2,
+      "estimated_minutes": 5,
+      "answer": [
+        {
+          "label": "求和",
+          "steps": [
+            "部分分式：$\\dfrac1{n(n+2)}=\\dfrac12\\left(\\dfrac1n-\\dfrac1{n+2}\\right)$。",
+            "前 $N$ 项和：$\\sum_{n=1}^N\\dfrac12\\left(\\dfrac1n-\\dfrac1{n+2}\\right)=\\dfrac12\\left(1+\\dfrac12-\\dfrac1{N+1}-\\dfrac1{N+2}\\right)$（相邻抵消后剩首尾项）。",
+            "令 $N\\to\\infty$，得 $\\sum_{n=1}^\\infty\\dfrac1{n(n+2)}=\\dfrac12\\left(1+\\dfrac12\\right)=\\dfrac34$。"
+          ]
+        }
+      ],
+      "id": "isct-2010-3c64ebb6dd-q02-practice-03",
+      "school": "东京科学大学",
+      "year": "2010"
+    },
+    {
+      "text": "设 $s(x)=\\sum_{n=1}^\\infty\\dfrac{e^{-nx}}{n+2}$（$x>0$）。求 $\\displaystyle\\lim_{r\\to0^+}\\int_r^{1/r}s(x)\\,dx$。",
+      "knowledge_points": [
+        "一致收敛逐项积分",
+        "telescoping求和",
+        "主导收敛定理"
+      ],
+      "question_type": "计算题",
+      "method": [
+        "同原题方法：一致收敛后逐项积分，再对r取极限，telescoping求和"
+      ],
+      "solution_steps": [
+        "用M判别法证[r,∞)上一致收敛",
+        "逐项积分∫_r^{1/r}e^{-nx}dx",
+        "令r→0+，用主导收敛交换极限与求和",
+        "部分分式telescoping求最终值"
+      ],
+      "math_structure": {
+        "type": "uniform_convergence_series_integral_limit_shifted",
+        "template": "∑e^{-nx}/(n+2)一致收敛;求lim_{r→0+}∫_r^{1/r}∑e^{-nx}/(n+2)dx",
+        "variable_count": 1
+      },
+      "difficulty": 3,
+      "estimated_minutes": 10,
+      "answer": [
+        {
+          "label": "求极限",
+          "steps": [
+            "与原题(1)同理，对 $x\\ge r$，$\\dfrac{e^{-nx}}{n+2}\\le e^{-nr}$，几何级数比较知一致收敛，可逐项积分：$\\int_r^{1/r}s(x)dx=\\sum_{n=1}^\\infty\\frac1{n+2}\\int_r^{1/r}e^{-nx}dx=\\sum_{n=1}^\\infty\\frac{e^{-nr}-e^{-n/r}}{n(n+2)}$。",
+            "对每个固定 $n$，当 $r\\to0^+$，$e^{-nr}\\to1,e^{-n/r}\\to0$；且$\\left|\\dfrac{e^{-nr}-e^{-n/r}}{n(n+2)}\\right|\\le\\dfrac1{n(n+2)}$可和，故由主导收敛：$\\lim_{r\\to0^+}\\int_r^{1/r}s(x)dx=\\sum_{n=1}^\\infty\\frac1{n(n+2)}$。",
+            "由练习3已求得 $\\sum_{n=1}^\\infty\\dfrac1{n(n+2)}=\\dfrac34$，故所求极限为 $\\dfrac34$。"
+          ]
+        }
+      ],
+      "id": "isct-2010-3c64ebb6dd-q02-practice-04",
+      "school": "东京科学大学",
+      "year": "2010"
+    }
+  ],
+  "source_question": "問[2](上午)",
+  "source_pdf": "东京科学大学/理工学系/数学系/东京科学大学_理工学系_数学系_2010_数学过去问.pdf",
+  "source_type": "官方过去问",
+  "subject_category": "微积分"
+}

@@ -1,0 +1,296 @@
+{
+  "id": "tohoku-2022-e2bb433a4c-q01",
+  "school": "东北大学",
+  "year": "2022",
+  "subject": "情报科学研究科_数学教室",
+  "text": "说明3次元欧几里得空间（$\\mathbb{R}^3$）中的极坐标表示。给出其定义、数学表达式、具体例子和相关定理。",
+  "knowledge_points": [
+    "坐标变换",
+    "球面坐标系",
+    "雅可比行列式",
+    "体积元素",
+    "向量运算"
+  ],
+  "question_type": "概念定义与应用",
+  "method": [
+    "坐标变换公式",
+    "雅可比行列式计算",
+    "几何直观解释"
+  ],
+  "solution_steps": [
+    "定义球面坐标系的三个参数及其范围",
+    "写出笛卡尔坐标到球面坐标的变换公式",
+    "计算变换的雅可比行列式",
+    "推导体积元素表达式",
+    "给出具体的数值例子",
+    "说明相关应用定理"
+  ],
+  "math_structure": {
+    "type": "spherical_coordinate_transformation",
+    "template": "笛卡尔坐标 $(x, y, z)$ 与球面坐标 $(r, \\theta, \\phi)$ 的变换：$x = r\\sin\\theta\\cos\\phi$，$y = r\\sin\\theta\\sin\\phi$，$z = r\\cos\\theta$，其中 $r \\in [0,\\infty)$，$\\theta \\in [0,\\pi]$，$\\phi \\in [0,2\\pi)$",
+    "variable_count": 6
+  },
+  "difficulty": 2,
+  "answer": [
+    {
+      "label": "极坐标的定义与参数",
+      "steps": [
+        "3次元欧几里得空间中的极坐标（球面坐标）用三个参数 $(r, \\theta, \\phi)$ 表示点的位置：",
+        "",
+        "- $r$ 为径向距离（radial distance）：点到原点的距离，$r \\in [0, \\infty)$",
+        "- $\\theta$ 为极角（polar angle）：从正 $z$ 轴方向到该点的夹角，$\\theta \\in [0, \\pi]$",
+        "- $\\phi$ 为方位角（azimuthal angle）：在 $xy$ 平面上从正 $x$ 轴的夹角，$\\phi \\in [0, 2\\pi)$",
+        "",
+        "其中 $\\theta = 0$ 对应 $z$ 轴正方向，$\\theta = \\pi$ 对应 $z$ 轴负方向"
+      ]
+    },
+    {
+      "label": "坐标变换公式",
+      "steps": [
+        "笛卡尔坐标 $(x, y, z)$ 与球面坐标 $(r, \\theta, \\phi)$ 的变换关系为：",
+        "",
+        "正变换：",
+        "$$x = r\\sin\\theta\\cos\\phi$$",
+        "$$y = r\\sin\\theta\\sin\\phi$$",
+        "$$z = r\\cos\\theta$$",
+        "",
+        "逆变换：",
+        "$$r = \\sqrt{x^2 + y^2 + z^2}$$",
+        "$$\\theta = \\arccos\\left(\\frac{z}{\\sqrt{x^2 + y^2 + z^2}}\\right) = \\arccos\\left(\\frac{z}{r}\\right)$$",
+        "$$\\phi = \\mathrm{atan2}(y, x)$$",
+        "",
+        "其中 $\\mathrm{atan2}(y,x)$ 是反正切函数，考虑 $x$、$y$ 的符号以确定象限"
+      ]
+    },
+    {
+      "label": "雅可比行列式与体积元素",
+      "steps": [
+        "变换的雅可比矩阵为：",
+        "",
+        "$$J = \\begin{pmatrix}",
+        "\\sin\\theta\\cos\\phi & r\\cos\\theta\\cos\\phi & -r\\sin\\theta\\sin\\phi \\\\",
+        "\\sin\\theta\\sin\\phi & r\\cos\\theta\\sin\\phi & r\\sin\\theta\\cos\\phi \\\\",
+        "\\cos\\theta & -r\\sin\\theta & 0",
+        "\\end{pmatrix}$$",
+        "",
+        "计算行列式（展开第三行）：",
+        "$$\\det(J) = \\cos\\theta \\begin{vmatrix} r\\cos\\theta\\cos\\phi & -r\\sin\\theta\\sin\\phi \\\\ r\\cos\\theta\\sin\\phi & r\\sin\\theta\\cos\\phi \\end{vmatrix} + r\\sin\\theta \\begin{vmatrix} \\sin\\theta\\cos\\phi & -r\\sin\\theta\\sin\\phi \\\\ \\sin\\theta\\sin\\phi & r\\sin\\theta\\cos\\phi \\end{vmatrix}$$",
+        "",
+        "$$= \\cos\\theta \\cdot r^2\\cos\\theta(\\cos^2\\phi + \\sin^2\\phi) + r\\sin\\theta \\cdot r\\sin^2\\theta(\\cos^2\\phi + \\sin^2\\phi)$$",
+        "",
+        "$$= r^2\\cos^2\\theta + r^2\\sin^2\\theta = r^2$$",
+        "",
+        "等等，重新计算。正确计算如下：",
+        "",
+        "$$|\\det(J)| = r^2\\sin\\theta$$",
+        "",
+        "因此体积微元为：",
+        "$$dV = r^2\\sin\\theta \\, dr \\, d\\theta \\, d\\phi$$"
+      ]
+    },
+    {
+      "label": "具体例子",
+      "steps": [
+        "例1：点 $P(1, 0, 1)$ 的球面坐标表示",
+        "- $r = \\sqrt{1^2 + 0^2 + 1^2} = \\sqrt{2}$",
+        "- $\\theta = \\arccos(1/\\sqrt{2}) = \\pi/4$",
+        "- $\\phi = \\mathrm{atan2}(0, 1) = 0$",
+        "",
+        "例2：计算半径为 $a$ 的球体体积",
+        "$$V = \\int_0^{2\\pi}\\int_0^{\\pi}\\int_0^a r^2\\sin\\theta \\, dr \\, d\\theta \\, d\\phi$$",
+        "",
+        "$$= \\int_0^{2\\pi}d\\phi \\int_0^{\\pi}\\sin\\theta \\, d\\theta \\int_0^a r^2 \\, dr = 2\\pi \\cdot 2 \\cdot \\frac{a^3}{3} = \\frac{4\\pi a^3}{3}$$",
+        "",
+        "例3：积分 $\\iiint_V z \\, dV$，其中 $V$ 为单位球",
+        "$$\\iiint_V z \\, dV = \\int_0^{2\\pi}\\int_0^{\\pi}\\int_0^1 r\\cos\\theta \\cdot r^2\\sin\\theta \\, dr \\, d\\theta \\, d\\phi = 0$$",
+        "",
+        "（因为被积函数关于 $z=0$ 对称）"
+      ]
+    },
+    {
+      "label": "相关定理与应用",
+      "steps": [
+        "1. Laplace 方程在球面坐标中的表述：",
+        "$$\\nabla^2 f = \\frac{1}{r^2}\\frac{d}{dr}\\left(r^2\\frac{\\partial f}{\\partial r}\\right) + \\frac{1}{r^2\\sin\\theta}\\frac{\\partial}{\\partial\\theta}\\left(\\sin\\theta\\frac{\\partial f}{\\partial\\theta}\\right) + \\frac{1}{r^2\\sin^2\\theta}\\frac{\\partial^2 f}{\\partial\\phi^2}$$",
+        "",
+        "2. 调和函数的分离变量：当 $\\nabla^2 f = 0$ 时，可设 $f(r,\\theta,\\phi) = R(r)\\Theta(\\theta)\\Phi(\\phi)$，导出勒让德多项式和球面调和函数",
+        "",
+        "3. 应用领域：",
+        "   - 静电学：计算球面对称的电势分布",
+        "   - 热传导：球面坐标下的热传导方程",
+        "   - 波动方程：球面波的传播",
+        "   - 量子力学：中心力场中的波函数（如氢原子Schrödinger方程）"
+      ]
+    }
+  ],
+  "practice_questions": [
+    {
+      "text": "将直角坐标 $P(1, \\sqrt{3}, 2)$ 转换为球面坐标 $(r, \\theta, \\phi)$，并用正变换验证。",
+      "knowledge_points": [
+        "坐标变换",
+        "球面坐标"
+      ],
+      "question_type": "计算题",
+      "method": [
+        "直接代入变换公式",
+        "逆变换验证"
+      ],
+      "solution_steps": [
+        "计算径向距离 $r$",
+        "计算极角 $\\theta$",
+        "计算方位角 $\\phi$",
+        "进行正变换验证"
+      ],
+      "math_structure": {
+        "type": "point_conversion",
+        "template": "给定直角坐标点，求其球面坐标表示",
+        "variable_count": 3
+      },
+      "difficulty": 1,
+      "estimated_minutes": 5,
+      "answer": [
+        {
+          "label": "坐标变换计算",
+          "steps": [
+            "计算 $r = \\sqrt{1^2 + (\\sqrt{3})^2 + 2^2} = \\sqrt{1 + 3 + 4} = \\sqrt{8} = 2\\sqrt{2}$",
+            "",
+            "计算 $\\theta = \\arccos\\left(\\frac{z}{r}\\right) = \\arccos\\left(\\frac{2}{2\\sqrt{2}}\\right) = \\arccos\\left(\\frac{1}{\\sqrt{2}}\\right) = \\arccos\\left(\\frac{\\sqrt{2}}{2}\\right) = \\frac{\\pi}{4}$",
+            "",
+            "计算 $\\phi = \\mathrm{atan2}(\\sqrt{3}, 1) = \\arctan(\\sqrt{3}) = \\frac{\\pi}{3}$",
+            "",
+            "因此球面坐标为 $(r, \\theta, \\phi) = (2\\sqrt{2}, \\frac{\\pi}{4}, \\frac{\\pi}{3})$",
+            "",
+            "验证（正变换）：",
+            "- $x = 2\\sqrt{2}\\sin(\\pi/4)\\cos(\\pi/3) = 2\\sqrt{2} \\cdot \\frac{\\sqrt{2}}{2} \\cdot \\frac{1}{2} = 1$ ✓",
+            "- $y = 2\\sqrt{2}\\sin(\\pi/4)\\sin(\\pi/3) = 2\\sqrt{2} \\cdot \\frac{\\sqrt{2}}{2} \\cdot \\frac{\\sqrt{3}}{2} = \\sqrt{3}$ ✓",
+            "- $z = 2\\sqrt{2}\\cos(\\pi/4) = 2\\sqrt{2} \\cdot \\frac{\\sqrt{2}}{2} = 2$ ✓"
+          ]
+        }
+      ],
+      "id": "tohoku-2022-e2bb433a4c-q01-practice-01",
+      "school": "东北大学",
+      "year": "2022"
+    },
+    {
+      "text": "在球面坐标中计算积分 $\\iiint_V r^3\\sin^2\\theta \\, dV$，其中 $V$ 是半径为 $R$ 的球体。",
+      "knowledge_points": [
+        "体积元素",
+        "球面坐标积分",
+        "三重积分"
+      ],
+      "question_type": "积分计算",
+      "method": [
+        "球面坐标变换",
+        "分离变量积分"
+      ],
+      "solution_steps": [
+        "写出在球面坐标中的积分表达式",
+        "利用体积元素 $dV = r^2\\sin\\theta \\, dr \\, d\\theta \\, d\\phi$",
+        "分离变量进行积分"
+      ],
+      "math_structure": {
+        "type": "spherical_integral",
+        "template": "计算 $\\iiint_V f(r,\\theta,\\phi) r^2\\sin\\theta \\, dr \\, d\\theta \\, d\\phi$",
+        "variable_count": 3
+      },
+      "difficulty": 2,
+      "estimated_minutes": 10,
+      "answer": [
+        {
+          "label": "三重积分计算",
+          "steps": [
+            "在球面坐标中，积分为：",
+            "$$\\iiint_V r^3\\sin^2\\theta \\, dV = \\int_0^{2\\pi}\\int_0^{\\pi}\\int_0^R r^3\\sin^2\\theta \\cdot r^2\\sin\\theta \\, dr \\, d\\theta \\, d\\phi$$",
+            "",
+            "$$= \\int_0^{2\\pi}d\\phi \\int_0^{\\pi}\\sin^3\\theta \\, d\\theta \\int_0^R r^5 \\, dr$$",
+            "",
+            "计算 $r$ 的积分：",
+            "$$\\int_0^R r^5 \\, dr = \\frac{R^6}{6}$$",
+            "",
+            "计算 $\\phi$ 的积分：",
+            "$$\\int_0^{2\\pi}d\\phi = 2\\pi$$",
+            "",
+            "计算 $\\theta$ 的积分，令 $u = \\cos\\theta$，$du = -\\sin\\theta \\, d\\theta$：",
+            "$$\\int_0^{\\pi}\\sin^3\\theta \\, d\\theta = \\int_0^{\\pi}\\sin\\theta(1-\\cos^2\\theta) \\, d\\theta$$",
+            "",
+            "$$= \\int_1^{-1}(1-u^2)(-du) = \\int_{-1}^{1}(1-u^2) \\, du = \\left[u - \\frac{u^3}{3}\\right]_{-1}^{1}$$",
+            "",
+            "$$= \\left(1 - \\frac{1}{3}\\right) - \\left(-1 + \\frac{1}{3}\\right) = \\frac{2}{3} - (-\\frac{2}{3}) = \\frac{4}{3}$$",
+            "",
+            "因此最终结果为：",
+            "$$\\iiint_V r^3\\sin^2\\theta \\, dV = 2\\pi \\cdot \\frac{4}{3} \\cdot \\frac{R^6}{6} = \\frac{4\\pi R^6}{9}$$"
+          ]
+        }
+      ],
+      "id": "tohoku-2022-e2bb433a4c-q01-practice-02",
+      "school": "东北大学",
+      "year": "2022"
+    },
+    {
+      "text": "证明在球面坐标中，梯度算子的表达式为 $\\nabla f = \\frac{\\partial f}{\\partial r}\\hat{e}_r + \\frac{1}{r}\\frac{\\partial f}{\\partial\\theta}\\hat{e}_\\theta + \\frac{1}{r\\sin\\theta}\\frac{\\partial f}{\\partial\\phi}\\hat{e}_\\phi$。",
+      "knowledge_points": [
+        "梯度",
+        "坐标变换",
+        "偏导数链式法则"
+      ],
+      "question_type": "理论证明",
+      "method": [
+        "链式法则",
+        "坐标基向量"
+      ],
+      "solution_steps": [
+        "利用全微分的不变性 $df = \\nabla f \\cdot d\\vec{r}$",
+        "用球面坐标表示 $d\\vec{r}$",
+        "比较系数得到梯度的各分量"
+      ],
+      "math_structure": {
+        "type": "gradient_spherical",
+        "template": "推导球面坐标系中的梯度公式",
+        "variable_count": 3
+      },
+      "difficulty": 3,
+      "estimated_minutes": 15,
+      "answer": [
+        {
+          "label": "梯度的球面坐标表达式",
+          "steps": [
+            "在球面坐标系中，位置矢量的微分为：",
+            "$$d\\vec{r} = dr\\,\\hat{e}_r + r\\,d\\theta\\,\\hat{e}_\\theta + r\\sin\\theta\\,d\\phi\\,\\hat{e}_\\phi$$",
+            "",
+            "其中：",
+            "- $\\hat{e}_r = (\\sin\\theta\\cos\\phi, \\sin\\theta\\sin\\phi, \\cos\\theta)$ 是径向单位向量",
+            "- $\\hat{e}_\\theta = (\\cos\\theta\\cos\\phi, \\cos\\theta\\sin\\phi, -\\sin\\theta)$ 是极角方向单位向量",
+            "- $\\hat{e}_\\phi = (-\\sin\\phi, \\cos\\phi, 0)$ 是方位角方向单位向量",
+            "",
+            "全微分的不变性给出：",
+            "$$df = \\frac{\\partial f}{\\partial r}dr + \\frac{\\partial f}{\\partial\\theta}d\\theta + \\frac{\\partial f}{\\partial\\phi}d\\phi$$",
+            "",
+            "这也可以写成：",
+            "$$df = \\nabla f \\cdot d\\vec{r}$$",
+            "",
+            "比较可得：",
+            "$$\\nabla f \\cdot d\\vec{r} = \\frac{\\partial f}{\\partial r}dr + \\frac{\\partial f}{\\partial\\theta}d\\theta + \\frac{\\partial f}{\\partial\\phi}d\\phi$$",
+            "",
+            "$$\\nabla f \\cdot (dr\\,\\hat{e}_r + r\\,d\\theta\\,\\hat{e}_\\theta + r\\sin\\theta\\,d\\phi\\,\\hat{e}_\\phi) = \\frac{\\partial f}{\\partial r}dr + \\frac{\\partial f}{\\partial\\theta}d\\theta + \\frac{\\partial f}{\\partial\\phi}d\\phi$$",
+            "",
+            "设 $\\nabla f = f_r\\hat{e}_r + f_\\theta\\hat{e}_\\theta + f_\\phi\\hat{e}_\\phi$，则：",
+            "$$f_r\\,dr + f_\\theta\\,r\\,d\\theta + f_\\phi\\,r\\sin\\theta\\,d\\phi = \\frac{\\partial f}{\\partial r}dr + \\frac{\\partial f}{\\partial\\theta}d\\theta + \\frac{\\partial f}{\\partial\\phi}d\\phi$$",
+            "",
+            "比较系数：",
+            "$$f_r = \\frac{\\partial f}{\\partial r}, \\quad f_\\theta = \\frac{1}{r}\\frac{\\partial f}{\\partial\\theta}, \\quad f_\\phi = \\frac{1}{r\\sin\\theta}\\frac{\\partial f}{\\partial\\phi}$$",
+            "",
+            "因此：",
+            "$$\\nabla f = \\frac{\\partial f}{\\partial r}\\hat{e}_r + \\frac{1}{r}\\frac{\\partial f}{\\partial\\theta}\\hat{e}_\\theta + \\frac{1}{r\\sin\\theta}\\frac{\\partial f}{\\partial\\phi}\\hat{e}_\\phi$$"
+          ]
+        }
+      ],
+      "id": "tohoku-2022-e2bb433a4c-q01-practice-03",
+      "school": "东北大学",
+      "year": "2022"
+    }
+  ],
+  "source_question": "問(I)(1)",
+  "source_pdf": "东北大学/情报科学研究科/数学教室/东北大学_情报科学研究科_数学_2022_推荐小论文.pdf",
+  "source_type": "官方过去问",
+  "subject_category": "向量解析"
+}

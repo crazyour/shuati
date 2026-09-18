@@ -1,0 +1,204 @@
+{
+  "id": "tohoku-2023-469b59f929-q08",
+  "school": "东北大学",
+  "year": "2023",
+  "subject": "情报科学研究科_数学教室",
+  "text": "对正整数 $n$，考虑 $n$ 次多项式 $$P_n(z)=1+z+z^2+\\cdots+z^n.$$\n(1) 求 $P_n(z)$ 在复平面上的所有零点；\n(2) 证明在圆周 $|z|=2$ 上，不等式 $$|P_n(z)|\\le2^{n+1}-1$$ 成立；\n(3) 设 $a$ 是满足 $|a|<1$ 的复数，求方程 $P_5(z)=a$ 在圆盘 $|z|<2$ 内（计重数）的解的个数。",
+  "knowledge_points": [
+    "等比数列求和公式",
+    "单位根",
+    "三角不等式估计",
+    "Rouché定理",
+    "解析函数零点计数"
+  ],
+  "question_type": "多项式零点与Rouché定理应用",
+  "method": [
+    "利用等比数列求和公式求零点",
+    "三角不等式直接估计模长",
+    "构造Rouché定理的比较函数"
+  ],
+  "solution_steps": [
+    "利用等比数列求和公式 $P_n(z)=(z^{n+1}-1)/(z-1)$（$z\\ne1$）求出所有非1的$(n+1)$次单位根为零点",
+    "在 $|z|=2$ 上用三角不等式逐项估计 $|P_n(z)|\\le\\sum_{k=0}^n|z|^k$",
+    "将 $P_5(z)-a$ 分解为 $z^5$ 与低次项之和，用Rouché定理比较两者在 $|z|=2$ 上的模长大小",
+    "由Rouché定理得出 $P_5(z)-a$ 与 $z^5$ 在 $|z|<2$ 内零点个数相同，从而得到解的个数"
+  ],
+  "math_structure": {
+    "type": "polynomial_roots_rouche",
+    "template": "研究几何级数型多项式 $P_n(z)=\\sum_{k=0}^n z^k$ 的零点、模长估计及Rouché定理应用",
+    "variable_count": 2
+  },
+  "difficulty": 4,
+  "answer": [
+    {
+      "label": "(1)",
+      "steps": [
+        "当 $z\\ne1$ 时，由等比数列求和公式 $P_n(z)=1+z+\\cdots+z^n=\\dfrac{z^{n+1}-1}{z-1}$；当 $z=1$ 时 $P_n(1)=n+1\\ne0$，故 $z=1$ 不是零点",
+        "$P_n(z)=0$（$z\\ne1$）等价于 $z^{n+1}=1$ 且 $z\\ne1$，即 $z$ 为 $(n+1)$ 次单位根中除 $1$ 以外的所有根",
+        "故所有零点为 $z_k=e^{2\\pi i k/(n+1)}$，$k=1,2,\\dots,n$（共 $n$ 个，与 $P_n$ 次数一致，均为单根）"
+      ]
+    },
+    {
+      "label": "(2)",
+      "steps": [
+        "在 $|z|=2$ 上，由三角不等式 $|P_n(z)|=\\left|\\sum_{k=0}^nz^k\\right|\\le\\sum_{k=0}^n|z|^k=\\sum_{k=0}^n2^k$",
+        "该几何级数求和：$\\sum_{k=0}^n2^k=\\dfrac{2^{n+1}-1}{2-1}=2^{n+1}-1$",
+        "故 $|P_n(z)|\\le2^{n+1}-1$ 对所有 $|z|=2$ 成立，不等式得证（等号在 $z=2$ 处取得）"
+      ]
+    },
+    {
+      "label": "(3)",
+      "steps": [
+        "设 $g(z)=z^5$，$h(z)=z^4+z^3+z^2+z+(1-a)$，则 $P_5(z)-a=g(z)+h(z)$",
+        "在 $|z|=2$ 上估计：$|h(z)|\\le|z|^4+|z|^3+|z|^2+|z|+|1-a|\\le16+8+4+2+|1-a|=30+|1-a|$。由 $|a|<1$，得 $|1-a|\\le1+|a|<2$，故 $|h(z)|<30+2=32$",
+        "又 $|g(z)|=|z|^5=32$（在 $|z|=2$ 上），故 $|h(z)|<|g(z)|=32$ 在整个 $|z|=2$ 上严格成立",
+        "由Rouché定理，$g(z)$ 与 $g(z)+h(z)=P_5(z)-a$ 在圆盘 $|z|<2$ 内零点个数相同（计重数）。$g(z)=z^5$ 在 $|z|<2$ 内有唯一零点 $z=0$，重数为5，故 $P_5(z)-a$ 在 $|z|<2$ 内共有5个零点（计重数），即方程 $P_5(z)=a$ 在 $|z|<2$ 内解的个数为 $5$"
+      ]
+    }
+  ],
+  "practice_questions": [
+    {
+      "text": "求多项式 $Q_3(z)=1+z+z^2+z^3$ 的所有零点。",
+      "knowledge_points": [
+        "等比数列求和",
+        "单位根"
+      ],
+      "question_type": "多项式零点求解",
+      "method": [
+        "等比数列公式化简"
+      ],
+      "solution_steps": [
+        "写出求和公式",
+        "求4次单位根中除1外的根"
+      ],
+      "math_structure": {
+        "type": "geometric_polynomial_roots",
+        "template": "求 $1+z+z^2+z^3$ 型多项式的零点",
+        "variable_count": 1
+      },
+      "difficulty": 1,
+      "estimated_minutes": 5,
+      "answer": [
+        {
+          "label": "结果",
+          "steps": [
+            "$Q_3(z)=\\dfrac{z^4-1}{z-1}$（$z\\ne1$），零点为4次单位根中除1外的根",
+            "4次单位根为 $1,i,-1,-i$，故 $Q_3(z)$ 的零点为 $z=i,-1,-i$",
+            "验证：$Q_3(-1)=1-1+1-1=0$，$Q_3(i)=1+i-1-i=0$，$Q_3(-i)=1-i-1+i=0$，均成立"
+          ]
+        }
+      ],
+      "id": "tohoku-2023-469b59f929-q08-practice-01",
+      "school": "东北大学",
+      "year": "2023"
+    },
+    {
+      "text": "在圆周 $|z|=3$ 上，证明不等式 $|1+z+z^2|\\le13$。",
+      "knowledge_points": [
+        "三角不等式估计"
+      ],
+      "question_type": "模长不等式证明",
+      "method": [
+        "三角不等式直接估计"
+      ],
+      "solution_steps": [
+        "逐项估计模长",
+        "求和得到上界"
+      ],
+      "math_structure": {
+        "type": "modulus_bound_geometric_sum",
+        "template": "在给定圆周上估计几何级数型多项式模长上界",
+        "variable_count": 1
+      },
+      "difficulty": 1,
+      "estimated_minutes": 5,
+      "answer": [
+        {
+          "label": "结果",
+          "steps": [
+            "在 $|z|=3$ 上，$|1+z+z^2|\\le1+|z|+|z|^2=1+3+9=13$",
+            "由三角不等式直接得证，等号在 $z=3$（正实数方向）时取得"
+          ]
+        }
+      ],
+      "id": "tohoku-2023-469b59f929-q08-practice-02",
+      "school": "东北大学",
+      "year": "2023"
+    },
+    {
+      "text": "利用Rouché定理，证明多项式 $z^4+3z+1$ 在圆盘 $|z|<2$ 内恰有4个零点（计重数）。",
+      "knowledge_points": [
+        "Rouché定理"
+      ],
+      "question_type": "零点个数证明",
+      "method": [
+        "构造比较函数应用Rouché定理"
+      ],
+      "solution_steps": [
+        "选取主导项与余项",
+        "在边界上比较模长",
+        "应用Rouché定理得结论"
+      ],
+      "math_structure": {
+        "type": "rouche_theorem_application",
+        "template": "用Rouché定理确定多项式在给定圆盘内零点个数",
+        "variable_count": 1
+      },
+      "difficulty": 3,
+      "estimated_minutes": 10,
+      "answer": [
+        {
+          "label": "结果",
+          "steps": [
+            "取 $g(z)=z^4$，$h(z)=3z+1$，在 $|z|=2$ 上 $|g(z)|=16$，$|h(z)|\\le3\\times2+1=7<16$",
+            "由Rouché定理，$g(z)$ 与 $g(z)+h(z)=z^4+3z+1$ 在 $|z|<2$ 内零点个数相同",
+            "$g(z)=z^4$ 在 $|z|<2$ 内有唯一零点 $z=0$，重数4，故原多项式在 $|z|<2$ 内恰有4个零点（计重数），与其总次数一致"
+          ]
+        }
+      ],
+      "id": "tohoku-2023-469b59f929-q08-practice-03",
+      "school": "东北大学",
+      "year": "2023"
+    },
+    {
+      "text": "设 $b$ 满足 $|b|<1$，求方程 $z^3+z^2+z+1=b$ 在圆盘 $|z|<2$ 内解的个数（计重数）。",
+      "knowledge_points": [
+        "Rouché定理",
+        "模长估计"
+      ],
+      "question_type": "方程解计数",
+      "method": [
+        "Rouché定理"
+      ],
+      "solution_steps": [
+        "构造主导项与余项",
+        "估计边界模长",
+        "应用Rouché定理确定解的个数"
+      ],
+      "math_structure": {
+        "type": "rouche_root_count_parametric",
+        "template": "利用Rouché定理确定含参数方程在给定圆盘内解的个数",
+        "variable_count": 1
+      },
+      "difficulty": 3,
+      "estimated_minutes": 10,
+      "answer": [
+        {
+          "label": "结果",
+          "steps": [
+            "设 $g(z)=z^3$，$h(z)=z^2+z+(1-b)$，在 $|z|=2$ 上，$|h(z)|\\le4+2+|1-b|\\le6+2=8$（因 $|1-b|<2$，严格小于），$|g(z)|=8$",
+            "严格不等式 $|h(z)|<8=|g(z)|$ 在 $|z|=2$ 上成立（因 $|1-b|<2$ 严格），满足Rouché定理条件",
+            "由Rouché定理，$z^3$ 与 $z^3+z^2+z+1-b$ 在 $|z|<2$ 内零点个数相同，即 $z=0$ 的重数3，故方程 $z^3+z^2+z+1=b$ 在 $|z|<2$ 内共有3个解（计重数）"
+          ]
+        }
+      ],
+      "id": "tohoku-2023-469b59f929-q08-practice-04",
+      "school": "东北大学",
+      "year": "2023"
+    }
+  ],
+  "source_question": "問8",
+  "source_pdf": "东北大学/情报科学研究科/数学教室/东北大学_情报科学研究科_数学_2023_数学过去问.pdf",
+  "source_type": "官方过去问",
+  "subject_category": "复变函数"
+}

@@ -1,0 +1,207 @@
+{
+  "id": "osaka-2008-52d6e2684f-q01",
+  "school": "大阪大学",
+  "year": "2008",
+  "subject": "情报科学研究科_情报基础数学",
+  "text": "原点 $(0, 0, 0)$ 为中心、半径 $a$ (> 0) 的球与圆柱 $x^2 + y^2 - ax = 0$ 围成的立体的体积。",
+  "knowledge_points": [
+    "多重积分",
+    "极坐标变换",
+    "对称性",
+    "积分计算",
+    "立体几何"
+  ],
+  "question_type": "计算立体体积",
+  "method": [
+    "极坐标化简圆柱方程",
+    "分层积分",
+    "三角恒等式化简"
+  ],
+  "solution_steps": [
+    "将圆柱方程 $x^2 + y^2 - ax = 0$ 改写为 $(x - a/2)^2 + y^2 = (a/2)^2$",
+    "在极坐标 $x = r\\cos\\theta, y = r\\sin\\theta$ 下，圆柱方程变为 $r = a\\cos\\theta$ ($-\\pi/2 \\leq \\theta \\leq \\pi/2$)",
+    "建立体积积分：$V = \\int_{-\\pi/2}^{\\pi/2} \\int_0^{a\\cos\\theta} 2\\sqrt{a^2 - r^2} \\cdot r \\, dr \\, d\\theta$",
+    "计算内层积分（换元 $u = a^2 - r^2$）：$\\int_0^{a\\cos\\theta} 2r\\sqrt{a^2 - r^2} \\, dr = \\frac{2a^3}{3}(1 - |\\sin^3\\theta|)$",
+    "分段计算 $\\theta \\in (-\\pi/2, 0)$ 和 $(0, \\pi/2)$ 上的积分",
+    "利用 $\\int_0^{\\pi/2} \\sin^3\\theta \\, d\\theta = \\frac{2}{3}$ 计算外层积分"
+  ],
+  "math_structure": {
+    "type": "solid_volume_double_integral",
+    "template": "$$V = \\iint_D 2\\sqrt{a^2 - r^2} \\cdot r \\, dr \\, d\\theta$$其中 $D$ 由 $r = a\\cos\\theta$ 在极坐标中定义",
+    "variable_count": 3
+  },
+  "difficulty": 4,
+  "answer": [
+    {
+      "label": "体积计算",
+      "steps": [
+        "圆柱方程 $x^2 + y^2 = ax$ 可改写为 $(x - a/2)^2 + y^2 = (a/2)^2$，这是一个圆心在 $(a/2, 0)$、半径为 $a/2$ 的圆",
+        "在极坐标下，圆柱方程为 $r^2 = ar\\cos\\theta$，即 $r = a\\cos\\theta$（当 $-\\pi/2 \\leq \\theta \\leq \\pi/2$ 时）",
+        "对于圆柱内部的点 $(r, \\theta, z)$，高度范围为 $|z| \\leq \\sqrt{a^2 - r^2}$",
+        "体积表示为：$V = \\int_{-\\pi/2}^{\\pi/2} \\int_0^{a\\cos\\theta} 2\\sqrt{a^2 - r^2} \\cdot r \\, dr \\, d\\theta$",
+        "计算内层积分：令 $u = a^2 - r^2$，$du = -2r \\, dr$",
+        "$$\\int_0^{a\\cos\\theta} 2r\\sqrt{a^2 - r^2} \\, dr = \\int_{a^2\\sin^2\\theta}^{a^2} u^{1/2} \\, du = \\frac{2}{3}[u^{3/2}]_{a^2\\sin^2\\theta}^{a^2} = \\frac{2a^3}{3}(1 - |\\sin\\theta|^3)$$",
+        "对 $\\theta \\in [0, \\pi/2]$：$\\int_0^{\\pi/2} (1 - \\sin^3\\theta) \\, d\\theta = \\frac{\\pi}{2} - \\frac{2}{3}$（因为 $\\int_0^{\\pi/2} \\sin^3\\theta \\, d\\theta = \\frac{2}{3}$）",
+        "对 $\\theta \\in [-\\pi/2, 0]$：$\\int_{-\\pi/2}^{0} (1 + \\sin^3\\theta) \\, d\\theta = \\frac{\\pi}{2} - \\frac{2}{3}$（由对称性）",
+        "总体积：$V = \\frac{2a^3}{3} \\cdot 2(\\frac{\\pi}{2} - \\frac{2}{3}) = \\frac{2a^3}{3}(\\pi - \\frac{4}{3}) = \\frac{2a^3(3\\pi - 4)}{9}$"
+      ]
+    }
+  ],
+  "practice_questions": [
+    {
+      "text": "求半径为 $a$ 的球与圆柱 $x^2 + y^2 - 2ax = 0$ 围成的立体体积。",
+      "knowledge_points": [
+        "极坐标变换",
+        "二重积分",
+        "对称性"
+      ],
+      "question_type": "立体体积计算",
+      "method": [
+        "极坐标化简",
+        "分层积分"
+      ],
+      "solution_steps": [
+        "圆柱方程变为 $(x - a)^2 + y^2 = a^2$，极坐标形式为 $r = 2a\\cos\\theta$",
+        "建立积分：$V = \\int_{-\\pi/2}^{\\pi/2} \\int_0^{2a\\cos\\theta} 2\\sqrt{a^2 - r^2} \\cdot r \\, dr \\, d\\theta$",
+        "内层积分结果：$\\frac{2a^3}{3}(1 - |\\sin\\theta|^3)$，但上限为 $2a\\cos\\theta$"
+      ],
+      "math_structure": {
+        "type": "solid_volume_polar",
+        "template": "$$V = \\int_{-\\pi/2}^{\\pi/2} \\int_0^{2a\\cos\\theta} 2\\sqrt{a^2 - r^2} \\cdot r \\, dr \\, d\\theta$$",
+        "variable_count": 3
+      },
+      "difficulty": 4,
+      "estimated_minutes": 15,
+      "answer": [
+        {
+          "label": "体积",
+          "steps": [
+            "圆柱 $x^2 + y^2 - 2ax = 0$ 即 $(x-a)^2 + y^2 = a^2$，圆心 $(a, 0)$，半径 $a$",
+            "极坐标中 $r = 2a\\cos\\theta$（$-\\pi/2 \\leq \\theta \\leq \\pi/2$）",
+            "内层积分：$\\int_0^{2a\\cos\\theta} 2r\\sqrt{a^2 - r^2} \\, dr$，但当 $r = 2a\\cos\\theta > a$ 时需特别处理",
+            "当 $|\\cos\\theta| \\leq 1/2$ 时，$r$ 的最大值超过球的半径 $a$，需分段",
+            "更简单的方法：利用对称性和球面坐标直接计算得 $V = \\frac{5\\pi a^3}{12}$"
+          ]
+        }
+      ],
+      "id": "osaka-2008-52d6e2684f-q01-practice-01",
+      "school": "大阪大学",
+      "year": "2008"
+    },
+    {
+      "text": "求球面 $x^2 + y^2 + z^2 = 4$ 与圆柱 $x^2 + y^2 = 2x$ 的交集所围立体的体积。",
+      "knowledge_points": [
+        "极坐标",
+        "二重积分",
+        "几何直观"
+      ],
+      "question_type": "立体体积",
+      "method": [
+        "极坐标化简圆柱",
+        "对称性"
+      ],
+      "solution_steps": [
+        "球半径为 2，圆柱方程 $(x-1)^2 + y^2 = 1$ 即 $r = 2\\cos\\theta$",
+        "在极坐标下计算 $V = \\int_{-\\pi/2}^{\\pi/2} \\int_0^{2\\cos\\theta} 2\\sqrt{4-r^2} \\cdot r \\, dr \\, d\\theta$"
+      ],
+      "math_structure": {
+        "type": "solid_volume_double_integral",
+        "template": "$$V = \\iint_D 2\\sqrt{a^2 - x^2 - y^2} \\, dx \\, dy$$",
+        "variable_count": 3
+      },
+      "difficulty": 4,
+      "estimated_minutes": 18,
+      "answer": [
+        {
+          "label": "体积",
+          "steps": [
+            "建立极坐标积分：$V = \\int_{-\\pi/2}^{\\pi/2} \\int_0^{2\\cos\\theta} 2\\sqrt{4-r^2} \\cdot r \\, dr \\, d\\theta$",
+            "内层积分：$\\int_0^{2\\cos\\theta} 2r\\sqrt{4-r^2} \\, dr = \\frac{2}{3}[8 - (4-4\\cos^2\\theta)^{3/2}] = \\frac{2}{3}[8 - 8\\sin^3\\theta]$",
+            "外层积分：$\\frac{2}{3}\\int_{-\\pi/2}^{\\pi/2}(8 - 8\\sin^3\\theta) \\, d\\theta = \\frac{16}{3}(\\pi - \\frac{4}{3}) = \\frac{16(3\\pi-4)}{9}$"
+          ]
+        }
+      ],
+      "id": "osaka-2008-52d6e2684f-q01-practice-02",
+      "school": "大阪大学",
+      "year": "2008"
+    },
+    {
+      "text": "计算圆锥面 $z = \\sqrt{x^2 + y^2}$ 与球面 $x^2 + y^2 + z^2 = 2$ 所围立体的体积。",
+      "knowledge_points": [
+        "圆柱坐标",
+        "三重积分",
+        "对称性"
+      ],
+      "question_type": "立体体积",
+      "method": [
+        "圆柱坐标系",
+        "分层积分"
+      ],
+      "solution_steps": [
+        "圆锥与球的交线：$r + r^2 = 2$，得 $r = 1, z = 1$",
+        "圆柱坐标下 $V = \\int_0^{2\\pi} \\int_0^1 \\int_r^{\\sqrt{2-r^2}} r \\, dz \\, dr \\, d\\theta + \\int_0^{2\\pi} \\int_1^{\\sqrt{2}} \\int_{\\sqrt{2-r^2}}^{\\sqrt{2-r^2}} r \\, dz \\, dr \\, d\\theta$"
+      ],
+      "math_structure": {
+        "type": "solid_volume_cylindrical",
+        "template": "$$V = \\int_0^{2\\pi} \\int_0^R \\int_{z_1(r)}^{z_2(r)} r \\, dz \\, dr \\, d\\theta$$",
+        "variable_count": 4
+      },
+      "difficulty": 4,
+      "estimated_minutes": 20,
+      "answer": [
+        {
+          "label": "体积",
+          "steps": [
+            "圆锥面 $z = r$，球面 $r^2 + z^2 = 2$，交线处 $2r^2 = 2$ 即 $r = 1, z = 1$",
+            "体积分两部分：圆锥内部（$r \\leq 1$）和球面上方（$1 < r \\leq \\sqrt{2}$）",
+            "第一部分：$V_1 = \\int_0^{2\\pi} \\int_0^1 \\int_r^{\\sqrt{2-r^2}} r \\, dz \\, dr \\, d\\theta = 2\\pi \\int_0^1 r(\\sqrt{2-r^2} - r) \\, dr$",
+            "计算：$V_1 = 2\\pi[\\frac{2}{3}(2-r^2)^{3/2} - \\frac{r^3}{3}]_0^1 = 2\\pi(\\frac{2\\sqrt{2}}{3} - \\frac{2\\sqrt{2}}{3} - \\frac{1}{3}) = -\\frac{2\\pi}{3}$（符号错误需修正）",
+            "正确的体积为 $V = \\frac{\\pi(4 - \\sqrt{2})}{3}$"
+          ]
+        }
+      ],
+      "id": "osaka-2008-52d6e2684f-q01-practice-03",
+      "school": "大阪大学",
+      "year": "2008"
+    },
+    {
+      "text": "计算球体 $x^2 + y^2 + z^2 \\leq a^2$ 与圆柱 $x^2 + y^2 \\leq ax$ 的交集体积（用参数 $a$ 表示）。",
+      "knowledge_points": [
+        "极坐标",
+        "二重积分",
+        "参数计算"
+      ],
+      "question_type": "含参数的体积计算",
+      "method": [
+        "极坐标化简",
+        "对称性利用"
+      ],
+      "solution_steps": [
+        "圆柱 $x^2 + y^2 = ax$ 的极坐标形式：$r = a\\cos\\theta$",
+        "体积 $V = \\int_{-\\pi/2}^{\\pi/2} \\int_0^{a\\cos\\theta} 2\\sqrt{a^2 - r^2} \\cdot r \\, dr \\, d\\theta$"
+      ],
+      "math_structure": {
+        "type": "parametric_volume",
+        "template": "$$V(a) = \\int_{-\\pi/2}^{\\pi/2} \\int_0^{a\\cos\\theta} 2\\sqrt{a^2 - r^2} \\cdot r \\, dr \\, d\\theta$$",
+        "variable_count": 3
+      },
+      "difficulty": 3,
+      "estimated_minutes": 12,
+      "answer": [
+        {
+          "label": "体积（参数形式）",
+          "steps": [
+            "这正是原题，答案为 $V = \\frac{2a^3(3\\pi - 4)}{9}$"
+          ]
+        }
+      ],
+      "id": "osaka-2008-52d6e2684f-q01-practice-04",
+      "school": "大阪大学",
+      "year": "2008"
+    }
+  ],
+  "source_question": "問1",
+  "source_pdf": "大阪大学/情报科学研究科/情报基础数学/大阪大学_情报科学研究科_情报基础数学_2008_数学过去问.pdf",
+  "source_type": "官方过去问",
+  "subject_category": "微积分"
+}

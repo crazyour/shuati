@@ -1,0 +1,242 @@
+{
+  "id": "osaka-2026-245a941248-q01",
+  "school": "大阪大学",
+  "year": "2026",
+  "subject": "情报科学研究科_情报工学",
+  "text": "设 $f(x;\\theta)$ 是以参数集合 $\\theta$ 为参数的概率密度函数。特别地，当概率密度函数以均值 $\\mu$、方差 $\\sigma^2$ 为参数 $\\theta_N=\\{\\mu,\\sigma^2\\}$ 表示为\n$$N(x;\\theta_N)=N(x;\\mu,\\sigma^2)=\\frac{1}{\\sqrt{2\\pi\\sigma^2}}\\exp\\left(-\\frac{(x-\\mu)^2}{2\\sigma^2}\\right)\\qquad(1)$$\n时，称此分布为正态分布。给定数据集合 $\\mathcal{D}=\\{x_i\\in\\mathbb{R}\\mid i=1,\\dots,n\\}$（$n$ 为正整数），令似然函数 $L_f(\\theta)=\\prod_{i=1}^n f(x_i;\\theta)$，对数似然为 $\\log L_f(\\theta)=\\log\\prod_{i=1}^n f(x_i;\\theta)$。使对数似然最大化的 $\\theta$ 的求解问题称为最大似然估计。以下对数取自然对数。\n\n(1) 设某概率密度函数 $f(x;\\theta)$ 的对数似然 $\\log L_f(\\theta)$ 可微且上凸，写出求关于某参数 $\\theta_k\\in\\theta$ 的对数似然极大值的偏微分方程。\n\n(2-1) 当数据集合 $\\mathcal{D}$ 服从正态分布 $N(x;\\mu,\\sigma^2)$ 时，证明对数似然可写成以下形式，并求出此时的 $\\alpha,\\beta$：\n$$\\log L_f(\\theta_N)=\\log L_f(\\mu,\\sigma^2)=\\alpha\\log(2\\pi\\sigma^2)-\\beta\\sum_{i=1}^n(x_i-\\mu)^2\\qquad(2)$$\n\n(2-2) 将式(2)代入(1)中所得的微分方程，证明关于正态分布 $N(x;\\mu,\\sigma^2)$ 中 $\\mu$ 的对数似然最大化（最大似然估计）结果为 $\\hat\\mu=\\frac{1}{n}\\sum_{i=1}^n x_i$，其中 $\\hat\\mu$ 表示使对数似然最大化的 $\\mu$。\n\n(3) 最小二乘法是求使观测向量 $y$ 与模型 $g(x;\\phi)$ 的输出向量 $\\hat y$ 之间残差平方和最小化的模型参数集合 $\\hat\\phi$ 的方法，可表述为（$y,\\hat y\\in\\mathbb{R}^n$）：\n$$\\hat\\phi=\\arg\\min_\\phi\\|y-g(x;\\phi)\\|_2^2=\\arg\\min_\\phi\\|y-\\hat y\\|_2^2=\\arg\\min_\\phi\\sum_{i=1}^n(y_i-\\hat y_i)^2\\qquad(3)$$\n设残差 $r=y-\\hat y$ 各维独立，且 $r_i=y_i-\\hat y_i$（$i=1,\\dots,n$）服从均值0、方差 $\\sigma^2$ 的正态分布 $N(r_i;0,\\sigma^2)$。证明此时关于模型参数 $\\phi$ 的最大似然估计与最小二乘法一致（可适当利用(2)的推导过程）。\n\n(4) 对于单一正弦波构成的连续时间原信号 $y^*(t)$，加入未知噪声后以窗宽 $n\\,[\\mathrm{sec}]$、采样频率 $1\\,[\\mathrm{Hz}]$ 观测得到离散时间信号 $y[i]$（$i=1,\\dots,n$）。以观测 $y[1],\\dots,y[n]$ 为基础，用模型 $\\hat y(t;\\gamma,\\omega)=\\gamma\\sin\\omega t$ 通过最小二乘法估计参数 $\\phi=\\{\\gamma,\\omega\\}$。结果表明部分情形能复原原信号而部分情形不能。请说明能够复原和不能复原的原因，须明确论述对噪声所作的假设。",
+  "knowledge_points": [
+    "最大似然估计",
+    "正态分布的对数似然",
+    "偏导数求极值",
+    "最小二乘法与MLE的等价性",
+    "高斯噪声假设",
+    "采样定理与混叠",
+    "参数估计的可辨识性"
+  ],
+  "question_type": "证明与推导题（最大似然估计与最小二乘法）",
+  "method": [
+    "对数似然函数构造",
+    "偏微分求极值（一阶条件）",
+    "正态分布概率密度的对数展开",
+    "最小二乘目标函数与对数似然的对应关系",
+    "采样定理（Nyquist）分析"
+  ],
+  "solution_steps": [
+    "写出对参数 $\\theta_k$ 求偏导并令其为0的极值条件方程",
+    "将正态分布密度函数代入似然函数，取对数展开求和，得到含 $\\log(2\\pi\\sigma^2)$ 和 $\\sum(x_i-\\mu)^2$ 的表达式，比对系数得 $\\alpha,\\beta$",
+    "对 $\\mu$ 求偏导，令其为0，解出 $\\hat\\mu$ 的解析表达式",
+    "把最小二乘的残差看作独立同正态分布的随机变量，写出其似然函数与对数似然，说明对数似然中与 $\\phi$ 无关的项可忽略，从而证明最大化对数似然等价于最小化残差平方和",
+    "结合采样频率与信号频率的关系（Nyquist定理）以及噪声独立同分布假设，解释哪些情形下最小二乘估计能收敛到真实参数，哪些情形因欠采样混叠或噪声假设失效而无法复原"
+  ],
+  "math_structure": {
+    "type": "mle_normal_and_least_squares_equivalence",
+    "template": "\\log L_f(\\theta)=\\sum_i \\log f(x_i;\\theta),\\quad \\frac{\\partial \\log L_f}{\\partial \\theta_k}=0,\\quad N(x;\\mu,\\sigma^2),\\quad \\hat\\phi=\\arg\\min_\\phi\\|y-\\hat y(\\phi)\\|_2^2",
+    "variable_count": 3
+  },
+  "difficulty": 4,
+  "answer": [
+    {
+      "label": "(1)",
+      "steps": [
+        "对数似然 $\\log L_f(\\theta)$ 在参数空间内可微且上凸，说明它是关于每个分量 $\\theta_k$ 的凹函数（一元情形下上凸即为凹函数）。",
+        "由多元函数极值的必要条件，极大值点处对每个参数的偏导数均为零。",
+        "因此求 $\\theta_k$ 处对数似然极大值的偏微分方程为：$$\\dfrac{\\partial}{\\partial \\theta_k}\\log L_f(\\theta)=0.$$",
+        "由于对数似然上凸（即为凹函数），该驻点即为全局极大值点，保证该方程的解就是最大似然估计量。"
+      ]
+    },
+    {
+      "label": "(2-1)",
+      "steps": [
+        "由式(1)，单个样本的对数密度为 $$\\log f(x_i;\\mu,\\sigma^2)=-\\tfrac12\\log(2\\pi\\sigma^2)-\\dfrac{(x_i-\\mu)^2}{2\\sigma^2}.$$",
+        "似然函数为各样本密度之积：$L_f(\\mu,\\sigma^2)=\\prod_{i=1}^n f(x_i;\\mu,\\sigma^2)$，对数似然为对数之和：$$\\log L_f(\\mu,\\sigma^2)=\\sum_{i=1}^n\\left[-\\tfrac12\\log(2\\pi\\sigma^2)-\\dfrac{(x_i-\\mu)^2}{2\\sigma^2}\\right].$$",
+        "把常数 $-\\tfrac12\\log(2\\pi\\sigma^2)$ 求和 $n$ 次得 $-\\dfrac{n}{2}\\log(2\\pi\\sigma^2)$，第二项求和得 $-\\dfrac{1}{2\\sigma^2}\\sum_{i=1}^n(x_i-\\mu)^2$。",
+        "整理得 $$\\log L_f(\\mu,\\sigma^2)=-\\dfrac{n}{2}\\log(2\\pi\\sigma^2)-\\dfrac{1}{2\\sigma^2}\\sum_{i=1}^n(x_i-\\mu)^2,$$ 与式(2)比较，得 $\\alpha=-\\dfrac{n}{2}$，$\\beta=\\dfrac{1}{2\\sigma^2}$。"
+      ]
+    },
+    {
+      "label": "(2-2)",
+      "steps": [
+        "由(1)中极值条件，对 $\\mu$ 求偏导并令为0：$$\\dfrac{\\partial}{\\partial \\mu}\\log L_f(\\mu,\\sigma^2)=0.$$",
+        "代入(2-1)结果：$$\\dfrac{\\partial}{\\partial \\mu}\\left[-\\dfrac{n}{2}\\log(2\\pi\\sigma^2)-\\dfrac{1}{2\\sigma^2}\\sum_{i=1}^n(x_i-\\mu)^2\\right] = \\dfrac{1}{\\sigma^2}\\sum_{i=1}^n(x_i-\\mu).$$（第一项与 $\\mu$ 无关，导数为0；第二项对 $\\mu$ 求导，链式法则给出 $-\\dfrac{1}{2\\sigma^2}\\cdot 2\\sum(x_i-\\mu)\\cdot(-1)=\\dfrac{1}{\\sigma^2}\\sum(x_i-\\mu)$）",
+        "令该式为0：$$\\sum_{i=1}^n(x_i-\\mu)=0 \\;\\Longrightarrow\\; \\sum_{i=1}^n x_i = n\\mu.$$",
+        "解得 $$\\hat\\mu=\\dfrac{1}{n}\\sum_{i=1}^n x_i,$$ 即样本均值，验证：将 $\\hat\\mu$ 代回原方程左边为0，满足极值条件；又因对数似然为上凸函数，该驻点为唯一最大值点。"
+      ]
+    },
+    {
+      "label": "(3)",
+      "steps": [
+        "由假设，残差 $r_i=y_i-\\hat y_i(\\phi)$ 独立同分布于 $N(0,\\sigma^2)$，似然函数为 $$L(\\phi)=\\prod_{i=1}^n \\dfrac{1}{\\sqrt{2\\pi\\sigma^2}}\\exp\\left(-\\dfrac{r_i^2}{2\\sigma^2}\\right).$$",
+        "仿照(2-1)的推导（把 $\\mu$ 替换为0，把 $x_i-\\mu$ 替换为 $r_i=y_i-\\hat y_i(\\phi)$），对数似然为 $$\\log L(\\phi)=-\\dfrac{n}{2}\\log(2\\pi\\sigma^2)-\\dfrac{1}{2\\sigma^2}\\sum_{i=1}^n r_i^2=-\\dfrac{n}{2}\\log(2\\pi\\sigma^2)-\\dfrac{1}{2\\sigma^2}\\sum_{i=1}^n(y_i-\\hat y_i(\\phi))^2.$$",
+        "求 $\\arg\\max_\\phi \\log L(\\phi)$：由于第一项 $-\\dfrac{n}{2}\\log(2\\pi\\sigma^2)$ 不依赖于 $\\phi$，最大化对数似然等价于最大化 $-\\dfrac{1}{2\\sigma^2}\\sum r_i^2$，又因 $\\sigma^2>0$，等价于最小化 $\\sum_{i=1}^n(y_i-\\hat y_i(\\phi))^2=\\|y-\\hat y(\\phi)\\|_2^2$。",
+        "因此 $$\\hat\\phi_{\\text{MLE}}=\\arg\\max_\\phi \\log L(\\phi)=\\arg\\min_\\phi\\|y-\\hat y(\\phi)\\|_2^2=\\hat\\phi_{\\text{LS}},$$ 即在残差服从独立同方差正态分布的假设下，最大似然估计与最小二乘估计给出完全相同的参数解，证毕。"
+      ]
+    },
+    {
+      "label": "(4)",
+      "steps": [
+        "(3)中的等价性成立的前提是噪声独立同分布且服从零均值正态分布（即残差为白高斯噪声）；只要这一假设满足且采样满足 Nyquist 采样定理（采样频率不低于信号频率的两倍，并且观测窗口足够长、覆盖足够多个周期使参数可辨识），最小二乘估计会以样本量增大而收敛到真实参数 $(\\gamma^*,\\omega^*)$，因此在满足此条件的情形下能够复原出原信号（对应能复原的情形）。",
+        "而在不能复原的情形中，通常是因为：①采样频率相对于信号真实频率过低，导致产生频率混叠（aliasing），此时存在多个不同的 $\\omega$（包括别的混叠频率）使模型拟合观测数据的残差平方和几乎相同，参数不可辨识；或②观测窗口 $n$ 过短，不足以覆盖至少一个完整周期，导致正弦波的振幅与频率参数在最小二乘意义下高度相关（存在多组 $(\\gamma,\\omega)$ 给出几乎相同的拟合），从而无法唯一确定真实参数。",
+        "综上，最小二乘法能够复原原信号的关键在于：噪声满足独立同分布的零均值正态假设（保证 MLE = LS），以及采样过程满足奈奎斯特采样条件且观测窗口足够长以保证参数的可辨识性；违反其中任一条件（尤其是欠采样导致的混叠或窗口过短导致的不可辨识）都会导致无法从含噪观测中正确复原原始正弦信号的参数。"
+      ]
+    }
+  ],
+  "practice_questions": [
+    {
+      "text": "设数据集合 $\\mathcal{D}=\\{x_1,\\dots,x_n\\}$ 服从正态分布 $N(x;\\mu_0,\\sigma^2)$，其中 $\\mu_0$ 已知，$\\sigma^2$ 未知。写出对数似然函数关于 $\\sigma^2$ 的表达式，并求使对数似然最大化的 $\\hat{\\sigma^2}$。",
+      "knowledge_points": [
+        "正态分布对数似然",
+        "单参数最大似然估计",
+        "偏导数求极值"
+      ],
+      "question_type": "最大似然估计计算",
+      "method": [
+        "对数似然展开",
+        "对 $\\sigma^2$ 求偏导",
+        "解方程"
+      ],
+      "solution_steps": [
+        "写出对数似然表达式",
+        "对 $\\sigma^2$ 求偏导并令为0",
+        "解出 $\\hat{\\sigma^2}$ 并验证"
+      ],
+      "math_structure": {
+        "type": "mle_variance_known_mean",
+        "template": "\\log L(\\sigma^2)=-\\frac{n}{2}\\log(2\\pi\\sigma^2)-\\frac{1}{2\\sigma^2}\\sum(x_i-\\mu_0)^2",
+        "variable_count": 1
+      },
+      "difficulty": 2,
+      "estimated_minutes": 8,
+      "answer": [
+        {
+          "label": "求 $\\hat{\\sigma^2}$",
+          "steps": [
+            "对数似然为 $\\log L(\\sigma^2)=-\\dfrac{n}{2}\\log(2\\pi\\sigma^2)-\\dfrac{1}{2\\sigma^2}\\sum_{i=1}^n(x_i-\\mu_0)^2$。",
+            "对 $\\sigma^2$ 求偏导：令 $u=\\sigma^2$，$\\dfrac{\\partial}{\\partial u}\\left[-\\dfrac{n}{2}\\log(2\\pi u)-\\dfrac{S}{2u}\\right]=-\\dfrac{n}{2u}+\\dfrac{S}{2u^2}$，其中 $S=\\sum(x_i-\\mu_0)^2$。",
+            "令导数为0：$-\\dfrac{n}{2u}+\\dfrac{S}{2u^2}=0 \\Rightarrow nu=S \\Rightarrow u=\\dfrac{S}{n}$。",
+            "所以 $\\hat{\\sigma^2}=\\dfrac1n\\sum_{i=1}^n(x_i-\\mu_0)^2$，代回验证二阶导数为负，确认为极大值点。"
+          ]
+        }
+      ],
+      "id": "osaka-2026-245a941248-q01-practice-01",
+      "school": "大阪大学",
+      "year": "2026"
+    },
+    {
+      "text": "已知数据集合 $\\{2,4,6,8,10\\}$ 服从正态分布，求其均值的最大似然估计值 $\\hat\\mu$。",
+      "knowledge_points": [
+        "最大似然估计公式应用",
+        "样本均值计算"
+      ],
+      "question_type": "数值计算题",
+      "method": [
+        "直接代入 $\\hat\\mu=\\frac1n\\sum x_i$ 公式"
+      ],
+      "solution_steps": [
+        "求样本个数 $n$",
+        "求样本和",
+        "计算样本均值"
+      ],
+      "math_structure": {
+        "type": "mle_mean_numeric",
+        "template": "\\hat\\mu=\\frac1n\\sum_{i=1}^n x_i",
+        "variable_count": 0
+      },
+      "difficulty": 1,
+      "estimated_minutes": 3,
+      "answer": [
+        {
+          "label": "$\\hat\\mu$",
+          "steps": [
+            "样本个数 $n=5$，样本和为 $2+4+6+8+10=30$。",
+            "由公式 $\\hat\\mu=\\dfrac1n\\sum x_i=\\dfrac{30}{5}=6$。",
+            "验证：样本均值即为使 $\\sum(x_i-\\mu)^2$ 最小的 $\\mu$，符合最小二乘性质，结果 $\\hat\\mu=6$。"
+          ]
+        }
+      ],
+      "id": "osaka-2026-245a941248-q01-practice-02",
+      "school": "大阪大学",
+      "year": "2026"
+    },
+    {
+      "text": "设残差 $r_i=y_i-\\hat y_i(\\phi)$（$i=1,\\dots,n$）独立同分布，但服从拉普拉斯分布（Laplace distribution）$f(r_i)=\\dfrac{1}{2b}\\exp\\left(-\\dfrac{|r_i|}{b}\\right)$而非正态分布。请写出此时的对数似然函数，并说明其最大化是否仍等价于最小二乘法，若不等价，说明等价于哪种优化问题。",
+      "knowledge_points": [
+        "最大似然估计",
+        "非正态噪声下的参数估计",
+        "L1范数最小化",
+        "拉普拉斯分布性质"
+      ],
+      "question_type": "推导与比较题",
+      "method": [
+        "写出拉普拉斯分布的对数似然",
+        "分析与 $\\phi$ 有关的项"
+      ],
+      "solution_steps": [
+        "写出似然函数",
+        "取对数化简",
+        "识别与 $\\phi$ 相关部分并判断优化目标"
+      ],
+      "math_structure": {
+        "type": "mle_laplace_noise",
+        "template": "\\log L(\\phi)=-n\\log(2b)-\\frac1b\\sum_i|y_i-\\hat y_i(\\phi)|",
+        "variable_count": 1
+      },
+      "difficulty": 3,
+      "estimated_minutes": 10,
+      "answer": [
+        {
+          "label": "结论",
+          "steps": [
+            "似然函数为 $L(\\phi)=\\prod_{i=1}^n \\dfrac{1}{2b}\\exp\\left(-\\dfrac{|r_i|}{b}\\right)$，对数似然为 $$\\log L(\\phi)=-n\\log(2b)-\\dfrac1b\\sum_{i=1}^n |y_i-\\hat y_i(\\phi)|.$$",
+            "由于第一项 $-n\\log(2b)$ 与 $\\phi$ 无关，最大化对数似然等价于最小化 $\\sum_{i=1}^n|y_i-\\hat y_i(\\phi)|$，即残差的 $L_1$ 范数之和，而不是残差平方和。",
+            "因此在拉普拉斯噪声假设下，最大似然估计不再等价于最小二乘法（$L_2$范数最小化），而是等价于最小绝对偏差法（Least Absolute Deviation, $L_1$ 范数最小化）。这说明最小二乘法与MLE的等价性依赖于噪声服从正态分布这一具体假设。"
+          ]
+        }
+      ],
+      "id": "osaka-2026-245a941248-q01-practice-03",
+      "school": "大阪大学",
+      "year": "2026"
+    },
+    {
+      "text": "某连续时间正弦信号频率为 $5\\,\\mathrm{Hz}$，若以采样频率 $6\\,\\mathrm{Hz}$ 对其采样，请判断是否满足奈奎斯特（Nyquist）采样定理，并说明在此采样频率下用最小二乘拟合正弦模型是否可能出现频率估计不唯一（混叠）的问题。",
+      "knowledge_points": [
+        "Nyquist采样定理",
+        "频率混叠现象",
+        "采样频率与信号频率关系"
+      ],
+      "question_type": "概念判断题",
+      "method": [
+        "比较采样频率与信号频率的2倍关系",
+        "分析混叠条件"
+      ],
+      "solution_steps": [
+        "计算信号频率的2倍",
+        "与采样频率比较",
+        "判断是否满足定理并说明混叠风险"
+      ],
+      "math_structure": {
+        "type": "nyquist_check",
+        "template": "f_s \\ge 2f_0",
+        "variable_count": 2
+      },
+      "difficulty": 2,
+      "estimated_minutes": 6,
+      "answer": [
+        {
+          "label": "判断结果",
+          "steps": [
+            "信号频率 $f_0=5\\,\\mathrm{Hz}$，其奈奎斯特频率（临界采样频率）为 $2f_0=10\\,\\mathrm{Hz}$。",
+            "实际采样频率 $f_s=6\\,\\mathrm{Hz}<10\\,\\mathrm{Hz}$，不满足 $f_s\\ge 2f_0$ 的奈奎斯特采样定理条件，属于欠采样。",
+            "在欠采样情形下，频率为 $f_0=5$ 的信号采样后会与频率 $f_s-f_0=1\\,\\mathrm{Hz}$ 的信号产生相同的采样点序列，即发生频率混叠，因此用最小二乘法拟合正弦模型 $\\gamma\\sin\\omega t$ 时，$\\omega$ 对应的多个候选频率（如 $2\\pi\\cdot5$ 与 $2\\pi\\cdot1$ 等）都可能给出几乎相同的拟合残差，导致频率参数估计不唯一（混叠问题确实可能出现）。"
+          ]
+        }
+      ],
+      "id": "osaka-2026-245a941248-q01-practice-04",
+      "school": "大阪大学",
+      "year": "2026"
+    }
+  ],
+  "source_question": "問7",
+  "source_pdf": "大阪大学/情报科学研究科/情报工学/大阪大学_情报科学研究科_情报工学_2026_数学过去问.pdf",
+  "source_type": "官方过去问",
+  "subject_category": "概率统计"
+}

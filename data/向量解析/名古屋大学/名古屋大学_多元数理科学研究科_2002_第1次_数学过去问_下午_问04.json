@@ -1,0 +1,213 @@
+{
+  "id": "nagoya-2002-70eece48bf-q04",
+  "school": "名古屋大学",
+  "year": "2002",
+  "subject": "多元数理科学研究科_全专攻",
+  "text": "在 $xy$ 平面 $\\mathbb{R}^2$ 上考虑微分形式\n$$\\lambda=x\\,dy,\\qquad \\omega=dx\\wedge dy$$\n另设 $\\varphi:\\mathbb{R}^2\\to\\mathbb{R}^2$，$\\varphi(x,y)=(f(x,y),g(x,y))$ 是保持 $\\omega$ 的双射 $C^\\infty$ 映射，即满足 $\\varphi^*\\omega=\\omega$。回答以下问题：\n(1) 设 $\\varphi$ 在点 $(x,y)$ 处的雅可比矩阵为 $J=J(x,y)=\\begin{pmatrix}\\dfrac{\\partial f}{\\partial x}&\\dfrac{\\partial f}{\\partial y}\\\\ \\dfrac{\\partial g}{\\partial x}&\\dfrac{\\partial g}{\\partial y}\\end{pmatrix}$。计算 ${}^tJ\\,\\Omega\\,J$，其中 $\\Omega=\\begin{pmatrix}0&1\\\\-1&0\\end{pmatrix}$，${}^tJ$ 是 $J$ 的转置。\n(2) 对 $\\eta=\\lambda-\\varphi^*\\lambda$，证明 $d\\eta=0$。\n(3) 设 $D\\subset\\mathbb{R}^2$ 为一区域，其边界 $c=\\partial D$ 是 $C^\\infty$ 级单纯闭曲线。证明\n$$\\int_c\\lambda=\\int_{\\varphi(c)}\\lambda$$\n其中 $c$ 取逆时针方向，$\\varphi(c)$ 取由 $\\varphi$ 诱导的方向。",
+  "knowledge_points": [
+    "外微分形式",
+    "拉回(pullback)运算",
+    "雅可比行列式",
+    "斯托克斯定理",
+    "面积保持映射"
+  ],
+  "question_type": "微分形式的拉回与斯托克斯定理应用",
+  "method": [
+    "利用2×2矩阵恒等式 ᵗJΩJ=det(J)Ω",
+    "计算外微分d(φ*λ)=φ*(dλ)",
+    "应用斯托克斯定理证明线积分不变性"
+  ],
+  "solution_steps": [
+    "证明对任意2×2矩阵J恒有 ᵗJΩJ=det(J)Ω，再用φ*ω=ω(即det J=1)得结论",
+    "计算dλ=dx∧dy=ω，及d(φ*λ)=φ*(dλ)=φ*ω=ω，从而dη=0",
+    "由dη=0及斯托克斯定理，∫_c η=∫_D dη=0，展开η=λ-φ*λ并利用拉回下线积分的变换公式得到结果"
+  ],
+  "math_structure": {
+    "type": "area_preserving_map_differential_form_pullback",
+    "template": "φ:R²→R²为保持ω=dx∧dy的双射C∞映射，λ=xdy，证明相关雅可比矩阵恒等式、d(λ-φ*λ)=0，并用斯托克斯定理证明∫_cλ=∫_{φ(c)}λ",
+    "variable_count": 0
+  },
+  "difficulty": 4,
+  "answer": [
+    {
+      "label": "(1)",
+      "steps": [
+        "设 $J=\\begin{pmatrix}p&q\\\\r&s\\end{pmatrix}$，直接计算：$\\Omega J=\\begin{pmatrix}0&1\\\\-1&0\\end{pmatrix}\\begin{pmatrix}p&q\\\\r&s\\end{pmatrix}=\\begin{pmatrix}r&s\\\\-p&-q\\end{pmatrix}$。",
+        "再计算 ${}^tJ\\,\\Omega J=\\begin{pmatrix}p&r\\\\q&s\\end{pmatrix}\\begin{pmatrix}r&s\\\\-p&-q\\end{pmatrix}=\\begin{pmatrix}pr-rp&ps-rq\\\\qr-sp&qs-sq\\end{pmatrix}=\\begin{pmatrix}0&ps-qr\\\\qr-ps&0\\end{pmatrix}=(ps-qr)\\Omega=\\det(J)\\,\\Omega$。",
+        "由于 $\\varphi^*\\omega=\\omega$ 等价于雅可比行列式 $\\det J=1$（因为 $\\varphi^*(dx\\wedge dy)=\\det J\\,dx\\wedge dy$），代入得 ${}^tJ\\Omega J=1\\cdot\\Omega=\\Omega$。"
+      ]
+    },
+    {
+      "label": "(2)",
+      "steps": [
+        "计算 $d\\lambda=d(x\\,dy)=dx\\wedge dy=\\omega$。",
+        "拉回与外微分交换：$d(\\varphi^*\\lambda)=\\varphi^*(d\\lambda)=\\varphi^*\\omega$。",
+        "由假设 $\\varphi^*\\omega=\\omega$，得 $d(\\varphi^*\\lambda)=\\omega=d\\lambda$。",
+        "因此 $d\\eta=d\\lambda-d(\\varphi^*\\lambda)=\\omega-\\omega=0$，证毕。"
+      ]
+    },
+    {
+      "label": "(3)",
+      "steps": [
+        "由(2)，$\\eta=\\lambda-\\varphi^*\\lambda$ 是闭形式（$d\\eta=0$）。对区域 $D$ 应用斯托克斯定理：$\\int_{\\partial D}\\eta=\\int_D d\\eta=0$，即 $\\int_c\\eta=0$。",
+        "展开：$\\int_c\\lambda-\\int_c\\varphi^*\\lambda=0$，即 $\\int_c\\lambda=\\int_c\\varphi^*\\lambda$。",
+        "由拉回积分的变量替换公式，$\\int_c\\varphi^*\\lambda=\\int_{\\varphi(c)}\\lambda$（其中$\\varphi(c)$取由$\\varphi$诱导的方向，这是微分形式沿映射的线积分变换的标准性质）。",
+        "结合以上两式，得 $\\int_c\\lambda=\\int_{\\varphi(c)}\\lambda$，证毕。"
+      ]
+    }
+  ],
+  "practice_questions": [
+    {
+      "text": "设线性映射 $\\varphi(x,y)=(2x+y,\\,x+y)$。验证 $\\varphi$ 是否满足 $\\varphi^*\\omega=\\omega$（即面积保持），并计算相应的 ${}^tJ\\Omega J$。",
+      "knowledge_points": [
+        "线性映射的雅可比矩阵",
+        "行列式",
+        "面积保持条件"
+      ],
+      "question_type": "计算验证题",
+      "method": [
+        "求雅可比矩阵",
+        "计算行列式",
+        "代入公式ᵗJΩJ=det(J)Ω"
+      ],
+      "solution_steps": [
+        "写出J",
+        "计算detJ",
+        "计算ᵗJΩJ"
+      ],
+      "math_structure": {
+        "type": "linear_map_jacobian_area_check",
+        "template": "验证线性映射(2x+y,x+y)是否保持面积形式",
+        "variable_count": 0
+      },
+      "difficulty": 2,
+      "estimated_minutes": 5,
+      "answer": [
+        {
+          "label": "求解",
+          "steps": [
+            "$J=\\begin{pmatrix}2&1\\\\1&1\\end{pmatrix}$，$\\det J=2\\cdot1-1\\cdot1=1$。",
+            "由恒等式${}^tJ\\Omega J=\\det(J)\\Omega=1\\cdot\\Omega=\\Omega$。",
+            "因为$\\det J=1$，故$\\varphi^*\\omega=\\det J\\cdot\\omega=\\omega$，即$\\varphi$确实保持面积形式。"
+          ]
+        }
+      ],
+      "id": "nagoya-2002-70eece48bf-q04-practice-01",
+      "school": "名古屋大学",
+      "year": "2002"
+    },
+    {
+      "text": "直接计算 $d(x\\,dy)$，并说明其与 $dx\\wedge dy$ 的关系。",
+      "knowledge_points": [
+        "外微分运算"
+      ],
+      "question_type": "基础计算题",
+      "method": [
+        "外微分的莱布尼兹法则"
+      ],
+      "solution_steps": [
+        "应用d(fg)=df∧g+f dg规则展开",
+        "化简"
+      ],
+      "math_structure": {
+        "type": "exterior_derivative_basic",
+        "template": "计算d(x dy)",
+        "variable_count": 0
+      },
+      "difficulty": 1,
+      "estimated_minutes": 3,
+      "answer": [
+        {
+          "label": "求解",
+          "steps": [
+            "$d(x\\,dy)=dx\\wedge dy+x\\,d(dy)=dx\\wedge dy+x\\cdot0=dx\\wedge dy$（因为$d(dy)=0$）。",
+            "所以 $d(x\\,dy)=dx\\wedge dy=\\omega$，与原题中$d\\lambda=\\omega$一致。"
+          ]
+        }
+      ],
+      "id": "nagoya-2002-70eece48bf-q04-practice-02",
+      "school": "名古屋大学",
+      "year": "2002"
+    },
+    {
+      "text": "设剪切映射 $\\varphi(x,y)=(x+y,y)$（保面积，$\\det J=1$）。设 $D$ 为单位正方形 $[0,1]\\times[0,1]$，$c=\\partial D$。直接验证 $\\int_c x\\,dy=\\int_{\\varphi(c)}x\\,dy$（即验证两者都等于区域面积1）。",
+      "knowledge_points": [
+        "格林公式",
+        "面积计算",
+        "剪切变换"
+      ],
+      "method": [
+        "用格林公式∮x dy=区域面积",
+        "计算变换后区域面积不变"
+      ],
+      "question_type": "验证计算题",
+      "solution_steps": [
+        "计算原正方形∮x dy的值",
+        "确定φ(D)的形状与面积",
+        "验证两积分相等"
+      ],
+      "math_structure": {
+        "type": "shear_map_area_preserving_verification",
+        "template": "验证剪切映射下∮x dy不变（面积不变）",
+        "variable_count": 0
+      },
+      "difficulty": 3,
+      "estimated_minutes": 8,
+      "answer": [
+        {
+          "label": "求解",
+          "steps": [
+            "由格林公式，$\\oint_c x\\,dy=\\iint_D dx\\wedge dy=\\text{Area}(D)=1$（单位正方形面积为1）。",
+            "$\\varphi(D)$是原正方形经过剪切变换后得到的平行四边形，顶点为$(0,0),(1,0),(2,1),(1,1)$，其面积可用叉积计算：以(1,0)与(1,1)为邻边向量，面积=|1×1-0×1|=1，面积不变（因为$\\det J=1$）。",
+            "同理$\\oint_{\\varphi(c)}x\\,dy=\\text{Area}(\\varphi(D))=1$，故 $\\int_c x\\,dy=\\int_{\\varphi(c)}x\\,dy=1$，验证了结论。"
+          ]
+        }
+      ],
+      "id": "nagoya-2002-70eece48bf-q04-practice-03",
+      "school": "名古屋大学",
+      "year": "2002"
+    },
+    {
+      "text": "证明：若 $\\varphi:\\mathbb{R}^2\\to\\mathbb{R}^2$ 是保持 $\\omega=dx\\wedge dy$ 的双射 $C^\\infty$ 映射，则对任意 $C^\\infty$ 级单纯闭曲线 $c$ 所围区域 $D$，有 $\\varphi(D)$ 的面积等于 $D$ 的面积。",
+      "knowledge_points": [
+        "雅可比行列式与面积变换",
+        "斯托克斯/格林定理",
+        "面积保持映射的性质"
+      ],
+      "question_type": "证明题",
+      "method": [
+        "用变量替换公式将面积积分转化为雅可比行列式积分"
+      ],
+      "solution_steps": [
+        "写出面积作为二重积分",
+        "用变量替换公式",
+        "代入detJ=1得面积相等"
+      ],
+      "math_structure": {
+        "type": "area_preserving_map_area_invariance_proof",
+        "template": "证明面积保持映射下区域面积不变",
+        "variable_count": 0
+      },
+      "difficulty": 3,
+      "estimated_minutes": 8,
+      "answer": [
+        {
+          "label": "证明",
+          "steps": [
+            "区域D的面积为 $\\text{Area}(D)=\\iint_D dx\\,dy=\\iint_D \\omega$。",
+            "$\\varphi(D)$的面积为 $\\text{Area}(\\varphi(D))=\\iint_{\\varphi(D)}dX\\,dY$，由二重积分变量替换公式，$=\\iint_D |\\det J|\\,dx\\,dy$。",
+            "因为$\\varphi^*\\omega=\\omega$意味着$\\det J=1$（这里假设保持定向，$\\det J>0$），所以$\\iint_D|\\det J|dxdy=\\iint_D dxdy=\\text{Area}(D)$。",
+            "故 $\\text{Area}(\\varphi(D))=\\text{Area}(D)$，证毕。这与原题(3)中$\\int_c\\lambda=\\int_{\\varphi(c)}\\lambda$（两者都等于各自区域面积，由格林公式）的结论是一致的特例。"
+          ]
+        }
+      ],
+      "id": "nagoya-2002-70eece48bf-q04-practice-04",
+      "school": "名古屋大学",
+      "year": "2002"
+    }
+  ],
+  "source_question": "問8",
+  "source_pdf": "名古屋大学/多元数理科学研究科/全专攻/名古屋大学_多元数理科学研究科_2002_第1次_数学过去问_下午.pdf",
+  "source_type": "官方过去问",
+  "subject_category": "向量解析"
+}

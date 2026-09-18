@@ -1,0 +1,309 @@
+{
+  "id": "hokkaido-2025-4e2df90338-q01",
+  "school": "北海道大学",
+  "year": "2025",
+  "subject": "情报科学院_生体情报工学",
+  "text": "求次の微分方程式の一般解 $y(x)$ を求めよ。\n\n$$\\left(\\frac{d^2y}{dx^2} + 2\\frac{dy}{dx} + y + 2x\\right)e^{2x} = 1$$\n\n次に、二元関数 $z(x, t)$ に対して、拡散方程式①を考える：\n\n$$\\frac{\\partial z}{\\partial t} - \\frac{\\partial^2 z}{\\partial x^2} = 0 \\quad \\text{①}$$\n\n$t \\to \\infty$ で発散しない条件において、拡散方程式①の一般解は、式②で表される。\n\n$$z(x, t) = e^{-c^2t}\\{Z_1\\cos(cx) + Z_2\\sin(cx)\\} \\quad \\text{②}$$\n\nここで、$c, Z_1, Z_2$ は任意の実数である。\n\n(1) 式②を導出せよ。\n\n(2) 次の2つの境界条件と1つの初期条件を全て満たした拡散方程式①の解 $z(x, t)$ を求めよ。\n\n2つの境界条件を\n$$z(x=0, t) = 0$$\n$$z(x=\\pi, t) = 0$$\n\nとする。\n\n1つの初期条件（範囲は、$0 \\leq x \\leq \\pi$）を\n$$z(x, t=0) = 1 - \\cos^2 x$$\n\nとする。",
+  "knowledge_points": [
+    "二階線形常微分方程式の特性方程式法",
+    "非同次ODE の特解（未定係数法）",
+    "一次偏微分方程式（熱方程式・拡散方程式）",
+    "変数分離法",
+    "フーリエ級数展開",
+    "境界条件の適用",
+    "初期条件の適用"
+  ],
+  "question_type": "微分方程式の一般解・特解求解問題",
+  "method": [
+    "特性方程式を用いた同次解の導出",
+    "未定係数法による特解の計算",
+    "変数分離法による PDE の一般解導出",
+    "フーリエ級数による境界条件の処理",
+    "初期条件からのフーリエ係数の決定"
+  ],
+  "solution_steps": [
+    "ODE を標準形に変形：$\\frac{d^2y}{dx^2} + 2\\frac{dy}{dx} + y = e^{-2x} - 2x$",
+    "特性方程式 $r^2 + 2r + 1 = 0$ より重根 $r = -1$ を得る",
+    "同次解 $y_h = (C_1 + C_2 x)e^{-x}$ を構成",
+    "特解を $y_p = Ae^{-2x} + Bx + C$ と設定し係数決定",
+    "ODE 一般解を統合",
+    "PDE について変数分離 $z(x,t) = X(x)T(t)$ を適用",
+    "固有値問題と時間発展方程式に分離",
+    "境界条件から固有値と固有関数の関係を導出",
+    "初期条件をフーリエ正弦級数で展開",
+    "最終解を無限級数で表現"
+  ],
+  "math_structure": {
+    "type": "linear_ode_and_pde_system",
+    "template": "Linear ODE: $(\\frac{d^2y}{dx^2} + a\\frac{dy}{dx} + by + f(x))e^{\\alpha x} = g(x)$; Heat equation: $\\frac{\\partial z}{\\partial t} - \\frac{\\partial^2 z}{\\partial x^2} = 0$ with Dirichlet BC and separable IC",
+    "variable_count": 4
+  },
+  "difficulty": 4,
+  "answer": [
+    {
+      "label": "(1) ODE一般解",
+      "steps": [
+        "与方程を変形：$(\\frac{d^2y}{dx^2} + 2\\frac{dy}{dx} + y + 2x)e^{2x} = 1$ から $\\frac{d^2y}{dx^2} + 2\\frac{dy}{dx} + y = e^{-2x} - 2x$",
+        "同次方程式 $\\frac{d^2y}{dx^2} + 2\\frac{dy}{dx} + y = 0$ の特性方程式：$r^2 + 2r + 1 = 0$",
+        "$(r+1)^2 = 0$ より $r = -1$（二重根）",
+        "同次解：$y_h = (C_1 + C_2 x)e^{-x}$",
+        "特解計算：$e^{-2x}$ に対して $y_{p1} = Ae^{-2x}$ と設定",
+        "$y''_{p1} + 2y'_{p1} + y_{p1} = 4Ae^{-2x} - 4Ae^{-2x} + Ae^{-2x} = Ae^{-2x} = e^{-2x}$ より $A = 1$",
+        "$-2x$ に対して $y_{p2} = Bx + C$ と設定",
+        "$0 + 2B + Bx + C = -2x$ より $B = -2, 2B + C = 0$ したがって $C = 4$",
+        "特解：$y_p = e^{-2x} - 2x + 4$",
+        "一般解：$$y(x) = (C_1 + C_2 x)e^{-x} + e^{-2x} - 2x + 4$$"
+      ]
+    },
+    {
+      "label": "(2) PDE解導出と検証",
+      "steps": [
+        "式②を $t, x$ で偏微分：$\\frac{\\partial z}{\\partial t} = -c^2 e^{-c^2t}\\{Z_1\\cos(cx) + Z_2\\sin(cx)\\}$",
+        "$\\frac{\\partial z}{\\partial x} = e^{-c^2t}\\{-cZ_1\\sin(cx) + cZ_2\\cos(cx)\\}$",
+        "$\\frac{\\partial^2 z}{\\partial x^2} = -c^2 e^{-c^2t}\\{Z_1\\cos(cx) + Z_2\\sin(cx)\\}$",
+        "$\\frac{\\partial z}{\\partial t} - \\frac{\\partial^2 z}{\\partial x^2} = 0$ を確認（式②は解）"
+      ]
+    },
+    {
+      "label": "(2) 境界条件・初期条件下での解",
+      "steps": [
+        "境界条件 $z(0,t) = 0$ より：$e^{-c^2t}Z_1 = 0$ 全ての $t$ で成立するには $Z_1 = 0$",
+        "$z(\\pi,t) = 0$ より：$e^{-c^2t}Z_2\\sin(c\\pi) = 0$ より $\\sin(c\\pi) = 0$, 故に $c = n$ ($n = 1,2,3,\\ldots$)",
+        "一般解は和：$z(x,t) = \\sum_{n=1}^{\\infty} Z_n e^{-n^2t}\\sin(nx)$",
+        "初期条件 $z(x,0) = 1 - \\cos^2 x$ を利用",
+        "$1 - \\cos^2 x = \\sin^2 x = \\frac{1 - \\cos 2x}{2}$ と変形",
+        "フーリエ正弦級数展開：$Z_n = \\frac{2}{\\pi}\\int_0^{\\pi} \\sin^2 x \\sin(nx) dx$",
+        "$n = 1$：$Z_1 = \\frac{2}{\\pi}\\int_0^{\\pi} \\sin^3 x dx = \\frac{2}{\\pi}\\cdot\\frac{4}{3} = \\frac{8}{3\\pi}$",
+        "$n \\geq 2$ の場合は三角関数の積分公式により計算",
+        "最終解：$$z(x,t) = \\sum_{n=1}^{\\infty} Z_n e^{-n^2 t}\\sin(nx) \\text{ ここで } Z_n = \\frac{2}{\\pi}\\int_0^{\\pi}(1-\\cos^2 x)\\sin(nx)dx$$"
+      ]
+    }
+  ],
+  "practice_questions": [
+    {
+      "text": "次の二階線形常微分方程式の一般解を求めよ。\n\n$$\\frac{d^2y}{dx^2} + 3\\frac{dy}{dx} + 2y = 0$$",
+      "knowledge_points": [
+        "特性方程式法",
+        "実根の場合の一般解"
+      ],
+      "question_type": "同次ODE解法",
+      "method": [
+        "特性方程式の導出と求解",
+        "異なる実根の一般解構成"
+      ],
+      "solution_steps": [
+        "特性方程式：$r^2 + 3r + 2 = 0$",
+        "因数分解：$(r+1)(r+2) = 0$",
+        "根：$r_1 = -1, r_2 = -2$",
+        "一般解の構成"
+      ],
+      "math_structure": {
+        "type": "linear_homogeneous_ode",
+        "template": "$\\frac{d^2y}{dx^2} + a\\frac{dy}{dx} + by = 0$ with distinct real roots",
+        "variable_count": 2
+      },
+      "difficulty": 2,
+      "estimated_minutes": 5,
+      "answer": [
+        {
+          "label": "一般解",
+          "steps": [
+            "特性方程式：$r^2 + 3r + 2 = 0$",
+            "$(r+1)(r+2) = 0$ より $r_1 = -1, r_2 = -2$",
+            "異なる実根のため：$$y = C_1 e^{-x} + C_2 e^{-2x}$$"
+          ]
+        }
+      ],
+      "id": "hokkaido-2025-4e2df90338-q01-practice-01",
+      "school": "北海道大学",
+      "year": "2025"
+    },
+    {
+      "text": "次の非同次微分方程式の特解を未定係数法で求めよ。\n\n$$\\frac{d^2y}{dx^2} - y = 3e^{2x}$$",
+      "knowledge_points": [
+        "未定係数法",
+        "指数関数を含む非同次項"
+      ],
+      "question_type": "特解計算",
+      "method": [
+        "未定係数法",
+        "試行関数の設定と代入"
+      ],
+      "solution_steps": [
+        "試行関数の選択",
+        "導関数計算",
+        "原方程式への代入",
+        "係数決定"
+      ],
+      "math_structure": {
+        "type": "linear_nonhomogeneous_ode_exponential",
+        "template": "$\\frac{d^2y}{dx^2} + py = qe^{\\alpha x}$ with $\\alpha$ not a characteristic root",
+        "variable_count": 2
+      },
+      "difficulty": 2,
+      "estimated_minutes": 8,
+      "answer": [
+        {
+          "label": "特解",
+          "steps": [
+            "試行関数：$y_p = Ae^{2x}$（$2$ は特性方程式の根ではない）",
+            "導関数：$y'_p = 2Ae^{2x}, y''_p = 4Ae^{2x}$",
+            "代入：$4Ae^{2x} - Ae^{2x} = 3e^{2x}$",
+            "$3Ae^{2x} = 3e^{2x}$ より $A = 1$",
+            "特解：$$y_p = e^{2x}$$"
+          ]
+        }
+      ],
+      "id": "hokkaido-2025-4e2df90338-q01-practice-02",
+      "school": "北海道大学",
+      "year": "2025"
+    },
+    {
+      "text": "次の偏微分方程式を変数分離法で解け。\n\n$$\\frac{\\partial u}{\\partial t} = \\frac{\\partial^2 u}{\\partial x^2}$$\n\n境界条件：$u(0,t) = 0, u(1,t) = 0$\n\n初期条件：$u(x,0) = x(1-x)$",
+      "knowledge_points": [
+        "変数分離法",
+        "固有値問題",
+        "フーリエ級数",
+        "初期条件の処理"
+      ],
+      "question_type": "熱方程式の求解",
+      "method": [
+        "変数分離",
+        "Sturm-Liouville 問題の構成",
+        "フーリエ正弦級数展開"
+      ],
+      "solution_steps": [
+        "変数分離：$u(x,t) = X(x)T(t)$",
+        "固有値問題の導出",
+        "境界条件の適用",
+        "フーリエ係数計算",
+        "級数形の最終解"
+      ],
+      "math_structure": {
+        "type": "heat_equation_homogeneous",
+        "template": "$\\frac{\\partial u}{\\partial t} = \\frac{\\partial^2 u}{\\partial x^2}$ with Dirichlet BC on $[0,L]$ and separable IC",
+        "variable_count": 2
+      },
+      "difficulty": 4,
+      "estimated_minutes": 25,
+      "answer": [
+        {
+          "label": "解の形式",
+          "steps": [
+            "変数分離：$u = X(x)T(t)$ とおくと $\\frac{T'}{T} = \\frac{X''}{X} = -\\lambda$",
+            "空間問題：$X'' + \\lambda X = 0, X(0) = X(1) = 0$",
+            "固有値：$\\lambda_n = n^2\\pi^2, n = 1,2,3,\\ldots$",
+            "固有関数：$X_n(x) = \\sin(n\\pi x)$",
+            "時間方程式：$T'_n + n^2\\pi^2 T_n = 0$ より $T_n = e^{-n^2\\pi^2 t}$",
+            "一般解：$u(x,t) = \\sum_{n=1}^{\\infty} c_n e^{-n^2\\pi^2 t}\\sin(n\\pi x)$",
+            "初期条件から：$c_n = 2\\int_0^1 x(1-x)\\sin(n\\pi x)dx$",
+            "部分積分で $c_n = \\frac{4}{n^3\\pi^3}$ ($n$ が奇数のとき），$c_n = 0$ ($n$ が偶数のとき）",
+            "最終解：$$u(x,t) = \\sum_{n=1,3,5,\\ldots} \\frac{4}{n^3\\pi^3} e^{-n^2\\pi^2 t}\\sin(n\\pi x)$$"
+          ]
+        }
+      ],
+      "id": "hokkaido-2025-4e2df90338-q01-practice-03",
+      "school": "北海道大学",
+      "year": "2025"
+    },
+    {
+      "text": "次の二階非同次方程式を解け。\n\n$$\\frac{d^2y}{dx^2} + 4y = \\cos 2x$$",
+      "knowledge_points": [
+        "特性方程式法",
+        "三角関数を含む非同次項",
+        "共鳴（resonance）現象"
+      ],
+      "question_type": "共鳴を含む特解計算",
+      "method": [
+        "同次解の導出",
+        "試行関数法（共鳴の考慮）",
+        "一般解の統合"
+      ],
+      "solution_steps": [
+        "同次方程式の特性方程式",
+        "複素根の処理",
+        "三角関数表現への変換",
+        "試行関数の共鳴調整",
+        "係数決定"
+      ],
+      "math_structure": {
+        "type": "linear_nonhomogeneous_ode_resonance",
+        "template": "$\\frac{d^2y}{dx^2} + a^2 y = \\cos(ax)$ with forcing frequency equal to natural frequency",
+        "variable_count": 2
+      },
+      "difficulty": 3,
+      "estimated_minutes": 15,
+      "answer": [
+        {
+          "label": "完全解",
+          "steps": [
+            "特性方程式：$r^2 + 4 = 0$ より $r = \\pm 2i$",
+            "同次解：$y_h = C_1\\cos 2x + C_2\\sin 2x$",
+            "共鳴が発生（強制振動周波数 = 固有周波数 = 2）",
+            "試行関数：$y_p = x(A\\sin 2x + B\\cos 2x)$",
+            "$y'_p = A\\sin 2x + B\\cos 2x + 2x(A\\cos 2x - B\\sin 2x)$",
+            "$y''_p = 4A\\cos 2x - 4B\\sin 2x - 4x(A\\sin 2x + B\\cos 2x)$",
+            "代入：$4A\\cos 2x - 4B\\sin 2x = \\cos 2x$",
+            "$A = \\frac{1}{4}, B = 0$",
+            "特解：$y_p = \\frac{x}{4}\\sin 2x$",
+            "一般解：$$y = C_1\\cos 2x + C_2\\sin 2x + \\frac{x}{4}\\sin 2x$$"
+          ]
+        }
+      ],
+      "id": "hokkaido-2025-4e2df90338-q01-practice-04",
+      "school": "北海道大学",
+      "year": "2025"
+    },
+    {
+      "text": "次の初期値問題を解け。\n\n$$\\frac{dy}{dx} + 2xy = x, \\quad y(0) = 1$$",
+      "knowledge_points": [
+        "1階線形微分方程式",
+        "積分因子法",
+        "初期条件の適用"
+      ],
+      "question_type": "初期値問題",
+      "method": [
+        "積分因子の導出",
+        "両辺に積分因子を乗算",
+        "完全微分形への変換",
+        "積分と初期条件"
+      ],
+      "solution_steps": [
+        "標準形の確認",
+        "積分因子 $\\mu(x) = e^{\\int 2x dx} = e^{x^2}$ の計算",
+        "両辺に $e^{x^2}$ を乗算",
+        "左辺が完全微分であることを確認",
+        "積分",
+        "初期条件から積分定数決定"
+      ],
+      "math_structure": {
+        "type": "linear_first_order_ode_ivp",
+        "template": "$\\frac{dy}{dx} + p(x)y = q(x)$ with $y(x_0) = y_0$",
+        "variable_count": 2
+      },
+      "difficulty": 2,
+      "estimated_minutes": 10,
+      "answer": [
+        {
+          "label": "特解",
+          "steps": [
+            "標準形：$\\frac{dy}{dx} + 2xy = x$",
+            "積分因子：$\\mu = e^{\\int 2x dx} = e^{x^2}$",
+            "両辺に $e^{x^2}$ を乗算：$e^{x^2}\\frac{dy}{dx} + 2xye^{x^2} = xe^{x^2}$",
+            "左辺は $\\frac{d}{dx}(ye^{x^2})$",
+            "積分：$ye^{x^2} = \\int xe^{x^2}dx = \\frac{1}{2}e^{x^2} + C$",
+            "初期条件 $y(0) = 1$：$1 \\cdot e^0 = \\frac{1}{2}e^0 + C$ より $C = \\frac{1}{2}$",
+            "特解：$$y = \\frac{1}{2} + \\frac{1}{2}e^{-x^2}$$"
+          ]
+        }
+      ],
+      "id": "hokkaido-2025-4e2df90338-q01-practice-05",
+      "school": "北海道大学",
+      "year": "2025"
+    }
+  ],
+  "source_question": "問1",
+  "source_pdf": "北海道大学/情报科学院/生体情报工学/北海道大学_情报科学院_生体情报工学_2025_数学过去问_专业科目2.pdf",
+  "source_type": "官方过去问",
+  "subject_category": "微分方程"
+}

@@ -1,0 +1,170 @@
+{
+  "id": "utokyo-2026-ist-common-q3",
+  "school": "东京大学",
+  "year": "2026",
+  "subject": "情报理工学系研究科_全专攻",
+  "text": "考虑数轴上的一个动点，初始位置为 $0$。每一步分别以概率 $1/2$ 向正方向或负方向移动 $1$，各步相互独立。设正整数 $n$ 步后的位置为 $P_n$。对随机变量 $X$，以 $E(X)$、$V(X)$ 分别表示期望和方差。回答：\n\n(1) 求 $E(P_n)$。\n(2) 求 $V(P_n)$。\n(3) 证明对任意正整数 $k$，$$\\Pr(|P_n|\\ge k)\\le\\frac{V(P_n)}{k^2}.$$\n(4) 证明对任意 $t>0$ 和正整数 $k$，$$\\Pr(P_n\\ge k)=\\Pr(e^{tP_n}\\ge e^{tk})\\le\\frac{E(e^{tP_n})}{e^{tk}}.$$\n(5) 证明对任意 $t>0$，$$E(e^{tP_n})\\le e^{t^2n/2}.$$\n(6) 证明对任意正整数 $k$，$$\\Pr(P_n\\ge k)\\le e^{-k^2/(2n)}.$$\n(7) 证明：当 $n=10^{10}$ 时，$\\Pr(|P_n|\\ge10^6)<10^{-4}$。",
+  "knowledge_points": [
+    "概率统计",
+    "简单对称随机游走",
+    "期望与方差的可加性",
+    "Chebyshev 不等式",
+    "Markov 不等式",
+    "矩母函数",
+    "Chernoff 界",
+    "尾概率估计"
+  ],
+  "question_type": "随机游走矩与指数尾界证明综合题",
+  "method": [
+    "独立随机变量求和",
+    "Chebyshev 不等式",
+    "对指数随机变量应用 Markov 不等式",
+    "矩母函数乘法性",
+    "优化指数参数",
+    "对称性与并集界"
+  ],
+  "solution_steps": [
+    "把位置写成独立 Rademacher 随机变量之和",
+    "计算单步均值和方差并求和",
+    "用 Chebyshev 不等式控制双侧偏差",
+    "对 $e^{tP_n}$ 应用 Markov 不等式",
+    "计算矩母函数并证明 $\\cosh t\\le e^{t^2/2}$",
+    "选择最优参数 $t=k/n$ 得到单侧 Chernoff 界",
+    "利用分布对称性转为双侧界并代入数值"
+  ],
+  "math_structure": {
+    "type": "symmetric_random_walk_chernoff_bound",
+    "template": "$P_n=\\sum_{i=1}^nX_i$，$\\Pr(P_n\\ge k)\\le\\inf_{t>0}e^{-tk}E(e^{tP_n})$",
+    "variable_count": 4
+  },
+  "difficulty": 4,
+  "answer": [
+    {
+      "label": "(1) 求期望",
+      "steps": [
+        "令第 $i$ 步的位移为 $X_i$，则 $X_i$ 以相同概率取 $1$ 与 $-1$，而且 $P_n=\\sum_{i=1}^nX_i$。",
+        "$E(X_i)=(1/2)\\cdot1+(1/2)\\cdot(-1)=0$。由期望的线性性，$$E(P_n)=\\sum_{i=1}^nE(X_i)=0.$$"
+      ]
+    },
+    {
+      "label": "(2) 求方差",
+      "steps": [
+        "因为 $X_i^2=1$ 且 $E(X_i)=0$，所以 $V(X_i)=E(X_i^2)-E(X_i)^2=1$。",
+        "各步独立，故方差相加：$$V(P_n)=\\sum_{i=1}^nV(X_i)=n.$$"
+      ]
+    },
+    {
+      "label": "(3) 证明双侧 Chebyshev 界",
+      "steps": [
+        "由 (1) 知 $E(P_n)=0$。随机变量 $P_n^2$ 非负，而且事件 $|P_n|\\ge k$ 等价于 $P_n^2\\ge k^2$。",
+        "对 $P_n^2$ 使用 Markov 不等式，得到 $$\\Pr(|P_n|\\ge k)=\\Pr(P_n^2\\ge k^2)\\le\\frac{E(P_n^2)}{k^2}.$$",
+        "又因为 $E(P_n)=0$，有 $E(P_n^2)=V(P_n)$，故 $$\\Pr(|P_n|\\ge k)\\le\\frac{V(P_n)}{k^2}.$$"
+      ]
+    },
+    {
+      "label": "(4) 对指数随机变量应用 Markov 不等式",
+      "steps": [
+        "当 $t>0$ 时，函数 $x\\mapsto e^{tx}$ 严格递增，所以事件 $P_n\\ge k$ 与 $e^{tP_n}\\ge e^{tk}$ 相同。",
+        "由于 $e^{tP_n}$ 非负，Markov 不等式给出 $$\\Pr(e^{tP_n}\\ge e^{tk})\\le\\frac{E(e^{tP_n})}{e^{tk}}.$$",
+        "因此所要求的不等式成立。"
+      ]
+    },
+    {
+      "label": "(5) 估计矩母函数",
+      "steps": [
+        "由独立性，$$E(e^{tP_n})=E\\left(\\prod_{i=1}^ne^{tX_i}\\right)=\\prod_{i=1}^nE(e^{tX_i}).$$",
+        "单步矩母函数为 $$E(e^{tX_i})=\\frac{e^t+e^{-t}}2=\\cosh t,$$ 因而 $E(e^{tP_n})=(\\cosh t)^n$。",
+        "证明 $\\cosh t\\le e^{t^2/2}$：令 $g(t)=t^2/2-\\log(\\cosh t)$。对 $t\\ge0$，$g(0)=0$，且 $g'(t)=t-\\tanh t$。再令 $h(t)=t-\\tanh t$，则 $h(0)=0$、$h'(t)=\\tanh^2t\\ge0$，故 $g'(t)\\ge0$、$g(t)\\ge0$。",
+        "于是 $$E(e^{tP_n})=(\\cosh t)^n\\le e^{t^2n/2}.$$"
+      ]
+    },
+    {
+      "label": "(6) 优化 $t$ 得到 Chernoff 界",
+      "steps": [
+        "结合 (4)、(5)，对任意 $t>0$ 有 $$\\Pr(P_n\\ge k)\\le\\exp\\left(\\frac{nt^2}{2}-tk\\right).$$",
+        "指数中的二次函数在 $t=k/n>0$ 处取得最小值。代入得 $$\\frac n2\\left(\\frac{k}{n}\\right)^2-k\\frac{k}{n}=-\\frac{k^2}{2n}.$$",
+        "因此 $$\\Pr(P_n\\ge k)\\le e^{-k^2/(2n)}.$$"
+      ]
+    },
+    {
+      "label": "(7) 代入 $n=10^{10}$、$k=10^6$",
+      "steps": [
+        "$P_n$ 与 $-P_n$ 同分布，所以由 (6)，$$\\Pr(P_n\\le-k)=\\Pr(P_n\\ge k)\\le e^{-k^2/(2n)}.$$",
+        "由并集界，$$\\Pr(|P_n|\\ge k)\\le2e^{-k^2/(2n)}.$$",
+        "取 $n=10^{10}$、$k=10^6$，得到 $$\\Pr(|P_n|\\ge10^6)\\le2e^{-50}.$$",
+        "因为 $e^{10}>10^4$，所以 $2e^{-50}=2(e^{-10})^5<2\\times10^{-20}<10^{-4}$，结论成立。"
+      ]
+    }
+  ],
+  "practice_questions": [
+    {
+      "id": "utokyo-2026-ist-common-q3-practice-01",
+      "school": "东京大学",
+      "year": "2026",
+      "text": "设 $X_1,\\ldots,X_n$ 独立，且 $\\Pr(X_i=2)=1/3$、$\\Pr(X_i=-1)=2/3$。令 $S_n=\\sum_{i=1}^nX_i$。求 $E(S_n)$ 与 $V(S_n)$。",
+      "knowledge_points": ["离散随机变量", "期望", "方差", "独立随机变量之和"],
+      "question_type": "计算独立和的期望与方差",
+      "method": ["计算单变量矩", "期望与方差可加性"],
+      "solution_steps": ["计算 $E(X_i)$ 与 $E(X_i^2)$", "求单步方差", "对 $n$ 步求和"],
+      "math_structure": {"type": "iid_sum_mean_variance", "template": "$S_n=\\sum_{i=1}^nX_i$", "variable_count": 2},
+      "difficulty": 1,
+      "estimated_minutes": 6,
+      "answer": [
+        {
+          "label": "求均值和方差",
+          "steps": [
+            "$E(X_i)=2/3-2/3=0$，而 $E(X_i^2)=4/3+2/3=2$，所以 $V(X_i)=2$。",
+            "由独立性，$$E(S_n)=nE(X_i)=0,\\qquad V(S_n)=nV(X_i)=2n.$$"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "utokyo-2026-ist-common-q3-practice-02",
+      "school": "东京大学",
+      "year": "2026",
+      "text": "设随机变量 $X$ 满足 $E(X)=3$、$V(X)=4$。分别用 Markov 不等式作用于 $(X-3)^2$，以及直接使用 Chebyshev 不等式，估计 $\\Pr(|X-3|\\ge5)$。",
+      "knowledge_points": ["Markov 不等式", "Chebyshev 不等式", "方差"],
+      "question_type": "用矩不等式估计尾概率",
+      "method": ["平方化事件", "Markov 不等式", "Chebyshev 不等式"],
+      "solution_steps": ["把双侧事件改写为平方事件", "代入二阶中心矩", "比较两种写法"],
+      "math_structure": {"type": "chebyshev_tail_bound", "template": "$\\Pr(|X-E(X)|\\ge a)\\le V(X)/a^2$", "variable_count": 2},
+      "difficulty": 2,
+      "estimated_minutes": 7,
+      "answer": [
+        {
+          "label": "估计概率",
+          "steps": [
+            "事件 $|X-3|\\ge5$ 等价于 $(X-3)^2\\ge25$。对非负随机变量 $(X-3)^2$ 使用 Markov 不等式，得到 $$\\Pr(|X-3|\\ge5)\\le\\frac{E((X-3)^2)}{25}=\\frac4{25}.$$",
+            "Chebyshev 不等式直接给出同一结果 $V(X)/5^2=4/25$；它本质上就是对平方偏差使用 Markov 不等式。"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "utokyo-2026-ist-common-q3-practice-03",
+      "school": "东京大学",
+      "year": "2026",
+      "text": "设 $X_1,\\ldots,X_n$ 独立，且 $\\Pr(X_i=1)=\\Pr(X_i=-1)=1/2$。令 $S_n=\\sum_{i=1}^nX_i$。证明对任意 $a>0$，$$\\Pr(|S_n|\\ge a\\sqrt n)\\le2e^{-a^2/2}.$$",
+      "knowledge_points": ["矩母函数", "Chernoff 界", "对称性", "次高斯随机变量"],
+      "question_type": "证明标准化随机游走的双侧尾界",
+      "method": ["指数 Markov 不等式", "优化参数", "并集界"],
+      "solution_steps": ["建立单侧指数界", "令阈值为 $a\\sqrt n$", "利用对称性合并两侧"],
+      "math_structure": {"type": "two_sided_subgaussian_bound", "template": "$\\Pr(|S_n|\\ge x)\\le2e^{-x^2/(2n)}$", "variable_count": 3},
+      "difficulty": 3,
+      "estimated_minutes": 12,
+      "answer": [
+        {
+          "label": "证明双侧尾界",
+          "steps": [
+            "由 $E(e^{tS_n})=(\\cosh t)^n\\le e^{nt^2/2}$ 及 Markov 不等式，对 $x>0$ 有 $$\\Pr(S_n\\ge x)\\le\\inf_{t>0}e^{nt^2/2-tx}=e^{-x^2/(2n)},$$ 最优点为 $t=x/n$。",
+            "$S_n$ 的分布关于 $0$ 对称，故 $\\Pr(S_n\\le-x)=\\Pr(S_n\\ge x)$。由并集界，$$\\Pr(|S_n|\\ge x)\\le2e^{-x^2/(2n)}.$$",
+            "令 $x=a\\sqrt n$，便得到 $$\\Pr(|S_n|\\ge a\\sqrt n)\\le2e^{-a^2/2}.$$"
+          ]
+        }
+      ]
+    }
+  ],
+  "source_pdf": "东京大学/情报理工学系研究科/全专攻/东京大学_情报理工学系研究科_全专攻_2026_数学过去问.pdf",
+  "source_type": "官方过去问"
+}

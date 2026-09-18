@@ -1,0 +1,235 @@
+{
+  "id": "tohoku-2019-48163c7ac0-q05",
+  "school": "东北大学",
+  "year": "2019",
+  "subject": "情报科学研究科_数学教室",
+  "text": "考虑复平面上的有理型函数 $f(z)=\\dfrac{1+z}{1-z}$。对正数 $r>0$，定义开圆盘 $D_r=\\{z\\in\\mathbb{C}\\mid |z|<r\\}$。\n(1) 对 $0<r\\le1$，求 $D_r$ 在 $f$ 下的像 $f(D_r)$。\n(2) 求 $f(z)$ 在原点为中心的洛朗级数展开，分别在区域 $0<|z|<1$ 和 $|z|>1$ 上给出。\n(3) 对 $r\\ne1$ 的正数，设 $C_r$ 为逆时针取向的圆周 $\\partial D_r$。对 $2$ 以上的整数 $n$，求复积分 $\\displaystyle\\int_{C_r}\\dfrac{f(z)}{z^n}dz$ 的值。",
+  "knowledge_points": [
+    "莫比乌斯变换的圆到圆映射",
+    "洛朗级数展开",
+    "留数定理",
+    "围道积分计算",
+    "解析延拓与极点分析"
+  ],
+  "question_type": "分式线性变换的像、洛朗展开与留数积分综合题",
+  "method": [
+    "利用 $|z-1|/|z+1|$ 型关系解出圆方程",
+    "对 $1/(1-z)$ 做几何级数展开",
+    "利用留数定理分区域（$r<1$与$r>1$）计算积分"
+  ],
+  "solution_steps": [
+    "对 $0<r<1$，代入 $w=(1+z)/(1-z)\\iff z=(w-1)/(w+1)$，把 $|z|=r$ 化为 $w$ 平面上的阿波罗尼奥斯圆方程，配方求圆心半径；$r=1$ 时直接用已知的‘单位圆到虚轴、单位圆盘到右半平面’的结论",
+    "在 $|z|<1$ 用 $\\frac{1}{1-z}=\\sum z^n$ 展开；在 $|z|>1$ 用 $\\frac1{1-z}=-\\frac1z\\cdot\\frac1{1-1/z}$ 按 $1/z$ 展开",
+    "对 $0<r<1$，$z=0$ 是被积函数唯一奇点，取洛朗系数中 $z^{n-1}$ 项的系数作为留数；对 $r>1$，$z=0,z=1$ 均为奇点，分别求留数并求和"
+  ],
+  "math_structure": {
+    "type": "mobius_laurent_residue",
+    "template": "$f(z)=\\dfrac{1+z}{1-z}$；求 $f(D_r)$（$0<r\\le1$），求 $0<|z|<1$ 与 $|z|>1$ 处洛朗展开，计算 $\\oint_{C_r}f(z)z^{-n}dz$（$n\\ge2$，$r\\ne1$）",
+    "variable_count": 2
+  },
+  "difficulty": 4,
+  "answer": [
+    {
+      "label": "(1)",
+      "steps": [
+        "对 $0<r<1$：由 $z=(w-1)/(w+1)$，$|z|=r\\iff|w-1|=r|w+1|$。设 $w=u+iv$，平方得 $(u-1)^2+v^2=r^2[(u+1)^2+v^2]$，展开整理为 $(1-r^2)(u^2+v^2)-2u(1+r^2)+(1-r^2)=0$。",
+        "除以 $1-r^2$（$r\\ne1$）并配方：$\\left(u-\\dfrac{1+r^2}{1-r^2}\\right)^2+v^2=\\dfrac{4r^2}{(1-r^2)^2}$，即圆心为 $\\dfrac{1+r^2}{1-r^2}$（实轴上），半径为 $\\dfrac{2r}{1-r^2}$ 的圆。",
+        "因 $D_r$ 内部映为该圆内部（验证 $f(0)=1$ 到圆心距离 $\\dfrac{2r^2}{1-r^2}<$半径 $\\dfrac{2r}{1-r^2}$，成立），故 $f(D_r)$ 为以 $\\dfrac{1+r^2}{1-r^2}$ 为圆心、$\\dfrac{2r}{1-r^2}$ 为半径的开圆盘。",
+        "对 $r=1$：$f$ 把单位圆 $|z|=1$（去掉 $z=1$）映为虚轴 $\\mathrm{Re}\\,w=0$（标准莫比乌斯变换性质），且 $f(0)=1$ 落在右半平面，故 $f(D_1)=\\{w\\in\\mathbb C:\\mathrm{Re}\\,w>0\\}$（开右半平面）。"
+      ]
+    },
+    {
+      "label": "(2)",
+      "steps": [
+        "在 $0<|z|<1$（实际上 $z=0$ 处 $f$ 解析，故为泰勒级数）：$f(z)=(1+z)\\sum_{n=0}^\\infty z^n=\\sum_{n=0}^\\infty z^n+\\sum_{n=0}^\\infty z^{n+1}=1+2\\sum_{n=1}^\\infty z^n$，即 $f(z)=1+2z+2z^2+2z^3+\\cdots$。",
+        "在 $|z|>1$：写 $f(z)=-\\dfrac{1+z}{z-1}=-\\left(1+\\dfrac{2}{z-1}\\right)$，再令 $\\zeta=1/z$（$|\\zeta|<1$），$\\dfrac{1}{z-1}=\\dfrac1z\\cdot\\dfrac1{1-1/z}=\\zeta\\sum_{k=0}^\\infty\\zeta^k=\\sum_{k=0}^\\infty \\zeta^{k+1}=\\sum_{n=1}^\\infty z^{-n}$。",
+        "代入得 $f(z)=-1-2\\sum_{n=1}^\\infty z^{-n}=-1-\\dfrac2z-\\dfrac2{z^2}-\\cdots$，此即 $|z|>1$ 上的洛朗级数。"
+      ]
+    },
+    {
+      "label": "(3)",
+      "steps": [
+        "情形 $0<r<1$：$f(z)/z^n$ 在 $D_r$ 内仅有一个奇点 $z=0$（$n$ 阶极点），用 (2) 中 $|z|<1$ 的泰勒系数 $a_k$（$a_0=1,a_k=2,k\\ge1$），留数 $=$ 展开式 $\\sum a_kz^{k-n}$ 中 $z^{-1}$ 的系数，即 $k=n-1$ 时的 $a_{n-1}$；因 $n\\ge2$，$n-1\\ge1$，故 $a_{n-1}=2$，留数为 $2$。",
+        "由留数定理，$\\int_{C_r}\\dfrac{f(z)}{z^n}dz=2\\pi i\\cdot2=4\\pi i$（对一切 $n\\ge2$，$0<r<1$）。",
+        "情形 $r>1$：此时 $C_r$ 内部含 $z=0$（$n$ 阶极点）与 $z=1$（$f$ 的简单极点）两个奇点。$z=1$ 处 $f$ 的留数为 $\\lim_{z\\to1}(z-1)\\dfrac{1+z}{1-z}=\\lim_{z\\to1}[-(1+z)]=-2$，而 $z^n$ 在 $z=1$ 处解析且非零，故 $f(z)/z^n$ 在 $z=1$ 处的留数为 $-2/1^n=-2$。",
+        "$z=0$ 处的留数与半径无关（由局部泰勒展开决定），仍为 $a_{n-1}=2$（$n\\ge2$）。两留数之和为 $2+(-2)=0$，故由留数定理 $\\int_{C_r}\\dfrac{f(z)}{z^n}dz=2\\pi i\\cdot0=0$（对一切 $n\\ge2$，$r>1$）。"
+      ]
+    }
+  ],
+  "practice_questions": [
+    {
+      "text": "求莫比乌斯变换 $g(z)=\\dfrac{z}{1-z}$ 把单位圆盘 $|z|<1$ 映成什么区域。",
+      "knowledge_points": [
+        "莫比乌斯变换",
+        "圆到圆映射"
+      ],
+      "question_type": "基础莫比乌斯像求解",
+      "method": [
+        "代入边界点法或直接代数配方"
+      ],
+      "solution_steps": [
+        "求 $g(0),g$ 在边界的极限行为",
+        "确定像区域为半平面或圆盘"
+      ],
+      "math_structure": {
+        "type": "mobius_image_basic",
+        "template": "$g(z)=z/(1-z)$ 求 $g(D_1)$",
+        "variable_count": 0
+      },
+      "difficulty": 2,
+      "estimated_minutes": 6,
+      "answer": [
+        {
+          "label": "结果",
+          "steps": [
+            "$g(0)=0$，$z=1$ 为极点对应 $w=\\infty$，边界 $|z|=1$（去掉1）映为一条直线",
+            "计算 $|z|=1\\iff |w/(1+w)|=1\\iff|w|=|1+w|$，即 $\\mathrm{Re}(w)=-1/2$ 的直线",
+            "故 $g(D_1)$ 为半平面 $\\mathrm{Re}(w)>-1/2$"
+          ]
+        }
+      ],
+      "id": "tohoku-2019-48163c7ac0-q05-practice-01",
+      "school": "东北大学",
+      "year": "2019"
+    },
+    {
+      "text": "求 $h(z)=\\dfrac1{1-z}$ 在 $|z|>1$ 处的洛朗级数展开。",
+      "knowledge_points": [
+        "洛朗级数展开"
+      ],
+      "question_type": "基础洛朗展开",
+      "method": [
+        "按 $1/z$ 的几何级数展开"
+      ],
+      "solution_steps": [
+        "令 $\\zeta=1/z$ 展开",
+        "整理为 $z$ 的负幂级数"
+      ],
+      "math_structure": {
+        "type": "laurent_series_basic",
+        "template": "$h(z)=1/(1-z)$，$|z|>1$",
+        "variable_count": 0
+      },
+      "difficulty": 2,
+      "estimated_minutes": 5,
+      "answer": [
+        {
+          "label": "结果",
+          "steps": [
+            "$\\frac1{1-z}=-\\frac1z\\cdot\\frac1{1-1/z}=-\\frac1z\\sum_{k=0}^\\infty z^{-k}=-\\sum_{n=1}^\\infty z^{-n}$",
+            "即 $h(z)=-\\dfrac1z-\\dfrac1{z^2}-\\cdots$（$|z|>1$）"
+          ]
+        }
+      ],
+      "id": "tohoku-2019-48163c7ac0-q05-practice-02",
+      "school": "东北大学",
+      "year": "2019"
+    },
+    {
+      "text": "计算积分 $\\displaystyle\\int_{|z|=2}\\dfrac{1}{z^3(1-z)}dz$。",
+      "knowledge_points": [
+        "留数定理",
+        "多极点积分"
+      ],
+      "question_type": "留数计算练习",
+      "method": [
+        "求各奇点留数并求和"
+      ],
+      "solution_steps": [
+        "找出奇点 $z=0$（三阶）与 $z=1$（一阶）",
+        "分别求留数",
+        "求和乘 $2\\pi i$"
+      ],
+      "math_structure": {
+        "type": "residue_multi_pole",
+        "template": "$\\int_{|z|=2}\\dfrac1{z^3(1-z)}dz$",
+        "variable_count": 0
+      },
+      "difficulty": 3,
+      "estimated_minutes": 8,
+      "answer": [
+        {
+          "label": "结果",
+          "steps": [
+            "$\\frac1{1-z}=\\sum_{k\\ge0}z^k$ 在 $|z|<1$ 附近，$z=0$ 处留数即 $z^2$ 系数 $=1$",
+            "$z=1$ 处留数 $=\\lim_{z\\to1}(z-1)\\cdot\\frac1{z^3(1-z)}=\\lim_{z\\to1}\\frac{-1}{z^3}=-1$",
+            "两者之和 $1+(-1)=0$，故积分 $=2\\pi i\\cdot0=0$"
+          ]
+        }
+      ],
+      "id": "tohoku-2019-48163c7ac0-q05-practice-03",
+      "school": "东北大学",
+      "year": "2019"
+    },
+    {
+      "text": "求 $f(z)=(1+z)/(1-z)$ 在 $z=1$ 处的留数。",
+      "knowledge_points": [
+        "简单极点留数"
+      ],
+      "question_type": "留数基础计算",
+      "method": [
+        "公式 $\\mathrm{Res}=\\lim(z-z_0)f(z)$"
+      ],
+      "solution_steps": [
+        "代入公式计算极限"
+      ],
+      "math_structure": {
+        "type": "simple_pole_residue",
+        "template": "$\\mathrm{Res}_{z=1}\\dfrac{1+z}{1-z}$",
+        "variable_count": 0
+      },
+      "difficulty": 1,
+      "estimated_minutes": 4,
+      "answer": [
+        {
+          "label": "结果",
+          "steps": [
+            "$\\mathrm{Res}_{z=1}f=\\lim_{z\\to1}(z-1)\\dfrac{1+z}{1-z}=\\lim_{z\\to1}[-(1+z)]=-2$"
+          ]
+        }
+      ],
+      "id": "tohoku-2019-48163c7ac0-q05-practice-04",
+      "school": "东北大学",
+      "year": "2019"
+    },
+    {
+      "text": "对 $n=2$，直接验证原题结论：即计算 $\\int_{C_{0.5}}\\dfrac{f(z)}{z^2}dz$ 应为 $4\\pi i$。",
+      "knowledge_points": [
+        "留数定理应用验证"
+      ],
+      "question_type": "结论验证题",
+      "method": [
+        "直接用洛朗系数求留数"
+      ],
+      "solution_steps": [
+        "写出 $f(z)/z^2$ 的洛朗展开",
+        "取 $z^{-1}$ 系数",
+        "乘 $2\\pi i$"
+      ],
+      "math_structure": {
+        "type": "residue_verification",
+        "template": "验证 $\\int_{C_{0.5}}f(z)z^{-2}dz=4\\pi i$",
+        "variable_count": 0
+      },
+      "difficulty": 2,
+      "estimated_minutes": 6,
+      "answer": [
+        {
+          "label": "验证",
+          "steps": [
+            "$f(z)=1+2z+2z^2+\\cdots$，故 $f(z)/z^2=z^{-2}+2z^{-1}+2+\\cdots$",
+            "$z^{-1}$ 系数为 $2$，留数为 $2$",
+            "积分 $=2\\pi i\\cdot2=4\\pi i$，与原题公式（$n=2$）一致"
+          ]
+        }
+      ],
+      "id": "tohoku-2019-48163c7ac0-q05-practice-05",
+      "school": "东北大学",
+      "year": "2019"
+    }
+  ],
+  "source_question": "7",
+  "source_pdf": "东北大学/情报科学研究科/数学教室/东北大学_情报科学研究科_数学_2019_数学过去问.pdf",
+  "source_type": "官方过去问",
+  "subject_category": "复变函数"
+}

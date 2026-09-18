@@ -1,0 +1,237 @@
+{
+  "id": "kobe-2025-3dacc32c2e-q04",
+  "school": "神户大学",
+  "year": "2025",
+  "subject": "系统情报学研究科_全专攻",
+  "text": "给定独立变数$x$和从属变数$y$的二阶常微分方程 $$y'' + a(x)y' + b(x)y = 0 \\quad (*)$$ 的两个解$y_1(x)$和$y_2(x)$，定义朗斯基行列式为 $$W(x) = \\begin{vmatrix} y_1(x) & y_2(x) \\\\ y_1'(x) & y_2'(x) \\end{vmatrix}$$\n\n(1) 证明$W(x)$满足微分方程$W' = -a(x)W$。\n\n(2) 已知$x \\geq 0$时，$a(x) = -\\frac{3x+4}{3x+1}$，$b(x) = -\\frac{6x+5}{3x+1}$，$y_1(x) = e^{-x}$，初值条件$y_2(0) = 0$，$y_2'(0) = 1$。求$W(x)$和$y_2(x)$。",
+  "knowledge_points": [
+    "二阶常微分方程",
+    "朗斯基行列式",
+    "方程的通解",
+    "初值问题",
+    "解的存在唯一性"
+  ],
+  "question_type": "证明与计算",
+  "method": [
+    "利用微分方程性质推导朗斯基行列式的微分方程",
+    "求解一阶线性微分方程",
+    "利用初值条件求特解"
+  ],
+  "solution_steps": [
+    "对朗斯基行列式求导",
+    "利用原方程消去二阶导数",
+    "求解$W'=-a(x)W$",
+    "利用$W(x)$和初值条件求$y_2(x)$"
+  ],
+  "math_structure": {
+    "type": "wronskian_differential_equation",
+    "template": "$W' + a(x)W = 0$",
+    "variable_count": 3
+  },
+  "difficulty": 4,
+  "answer": [
+    {
+      "label": "(1) 证明$W' = -a(x)W$",
+      "steps": [
+        "计算$W'(x) = \\frac{d}{dx}\\begin{vmatrix} y_1 & y_2 \\\\ y_1' & y_2' \\end{vmatrix} = \\begin{vmatrix} y_1' & y_2' \\\\ y_1' & y_2' \\end{vmatrix} + \\begin{vmatrix} y_1 & y_2 \\\\ y_1'' & y_2'' \\end{vmatrix}$",
+        "第一个行列式为0，所以$W' = \\begin{vmatrix} y_1 & y_2 \\\\ y_1'' & y_2'' \\end{vmatrix}$",
+        "由微分方程$(*)$，有$y_1'' = -a(x)y_1' - b(x)y_1$和$y_2'' = -a(x)y_2' - b(x)y_2$",
+        "因此$W' = \\begin{vmatrix} y_1 & y_2 \\\\ -a(x)y_1' - b(x)y_1 & -a(x)y_2' - b(x)y_2 \\end{vmatrix} = -a(x)\\begin{vmatrix} y_1 & y_2 \\\\ y_1' & y_2' \\end{vmatrix} - b(x)\\begin{vmatrix} y_1 & y_2 \\\\ y_1 & y_2 \\end{vmatrix}$",
+        "由于第二个行列式为0，得$W' = -a(x)W$"
+      ]
+    },
+    {
+      "label": "(2) 求$W(x)$",
+      "steps": [
+        "由$W' = -a(x)W = -(-\\frac{3x+4}{3x+1})W = \\frac{3x+4}{3x+1}W$",
+        "这是一阶线性常微分方程，分离变量：$\\frac{dW}{W} = \\frac{3x+4}{3x+1}dx$",
+        "积分：$\\ln|W| = \\int \\frac{3x+4}{3x+1}dx = \\int (1 + \\frac{1}{3x+1})dx = x + \\frac{1}{3}\\ln|3x+1| + C$",
+        "因此$W(x) = A e^{x + \\frac{1}{3}\\ln(3x+1)} = A(3x+1)^{1/3}e^x$，其中$A$是常数",
+        "计算初值：$W(0) = \\begin{vmatrix} y_1(0) & y_2(0) \\\\ y_1'(0) & y_2'(0) \\end{vmatrix} = \\begin{vmatrix} 1 & 0 \\\\ -1 & 1 \\end{vmatrix} = 1$",
+        "因此$1 = A \\cdot 1^{1/3} \\cdot e^0 = A$，得$A = 1$",
+        "所以$W(x) = (3x+1)^{1/3}e^x$"
+      ]
+    },
+    {
+      "label": "(2) 求$y_2(x)$",
+      "steps": [
+        "由朗斯基行列式的定义：$W(x) = y_1(x)y_2'(x) - y_1'(x)y_2(x)$",
+        "代入已知值：$(3x+1)^{1/3}e^x = e^{-x}y_2'(x) - (-e^{-x})y_2(x) = e^{-x}(y_2'(x) + y_2(x))$",
+        "因此$y_2'(x) + y_2(x) = (3x+1)^{1/3}e^{2x}$",
+        "这是一阶线性微分方程，积分因子为$e^x$：$\\frac{d}{dx}(e^x y_2) = (3x+1)^{1/3}e^{3x}$",
+        "$e^x y_2(x) = \\int (3x+1)^{1/3}e^{3x}dx + C$",
+        "利用初值$y_2(0) = 0$：$0 = \\int_0^0 (3x+1)^{1/3}e^{3x}dx + C = C$，所以$C = 0$",
+        "因此$y_2(x) = e^{-x}\\int_0^x (3t+1)^{1/3}e^{3t}dt$",
+        "注：具体的不定积分较复杂，但上式给出了$y_2(x)$的显式表达"
+      ]
+    }
+  ],
+  "practice_questions": [
+    {
+      "text": "对二阶微分方程$y'' - y = 0$，求朗斯基行列式$W(x)$满足的微分方程，以及该微分方程在初值$W(0) = 2$下的解。",
+      "knowledge_points": [
+        "朗斯基行列式",
+        "微分方程"
+      ],
+      "question_type": "计算",
+      "method": [
+        "使用朗斯基行列式的性质",
+        "求解一阶微分方程"
+      ],
+      "solution_steps": [
+        "识别$a(x)=0$",
+        "写出$W'=-a(x)W$",
+        "求解"
+      ],
+      "math_structure": {
+        "type": "wronskian_differential_equation",
+        "template": "$W' = -a(x)W$",
+        "variable_count": 1
+      },
+      "difficulty": 2,
+      "estimated_minutes": 4,
+      "answer": [
+        {
+          "label": "求$W(x)$",
+          "steps": [
+            "对$y'' - y = 0$，有$a(x) = 0, b(x) = -1$",
+            "由朗斯基行列式性质：$W' = -a(x)W = 0$",
+            "因此$W(x) = C$（常数）",
+            "由初值$W(0) = 2$得$W(x) = 2$"
+          ]
+        }
+      ],
+      "id": "kobe-2025-3dacc32c2e-q04-practice-01",
+      "school": "神户大学",
+      "year": "2025"
+    },
+    {
+      "text": "对二阶微分方程$y'' + y' + y = 0$，求朗斯基行列式$W(x)$满足的微分方程，以及该微分方程在初值$W(0) = 1$下的解。",
+      "knowledge_points": [
+        "朗斯基行列式",
+        "一阶线性微分方程"
+      ],
+      "question_type": "计算",
+      "method": [
+        "应用朗斯基行列式的微分方程公式",
+        "分离变量求解"
+      ],
+      "solution_steps": [
+        "识别$a(x)=1$",
+        "建立$W$的微分方程",
+        "求解一阶ODE"
+      ],
+      "math_structure": {
+        "type": "wronskian_differential_equation",
+        "template": "$W' + W = 0$",
+        "variable_count": 1
+      },
+      "difficulty": 2,
+      "estimated_minutes": 4,
+      "answer": [
+        {
+          "label": "求$W(x)$",
+          "steps": [
+            "对$y'' + y' + y = 0$，有$a(x) = 1$",
+            "$W' = -a(x)W = -W$",
+            "分离变量：$\\frac{dW}{W} = -dx$",
+            "积分：$\\ln|W| = -x + C$，即$W(x) = Ae^{-x}$",
+            "由$W(0) = 1$得$A = 1$，所以$W(x) = e^{-x}$"
+          ]
+        }
+      ],
+      "id": "kobe-2025-3dacc32c2e-q04-practice-02",
+      "school": "神户大学",
+      "year": "2025"
+    },
+    {
+      "text": "对二阶微分方程$xy'' + 2y' + xy = 0$（$x > 0$），求朗斯基行列式$W(x)$满足的微分方程，并求该微分方程在初值$W(1) = 1$下的解。",
+      "knowledge_points": [
+        "朗斯基行列式",
+        "一阶线性微分方程"
+      ],
+      "question_type": "计算",
+      "method": [
+        "化为标准形式",
+        "应用朗斯基公式",
+        "分离变量"
+      ],
+      "solution_steps": [
+        "除以$x$得标准形式",
+        "识别$a(x)$",
+        "建立$W$的微分方程",
+        "求解"
+      ],
+      "math_structure": {
+        "type": "wronskian_differential_equation",
+        "template": "$W' + \\frac{2}{x}W = 0$",
+        "variable_count": 1
+      },
+      "difficulty": 3,
+      "estimated_minutes": 5,
+      "answer": [
+        {
+          "label": "求$W(x)$",
+          "steps": [
+            "化为标准形式：$y'' + \\frac{2}{x}y' + y = 0$，所以$a(x) = \\frac{2}{x}$",
+            "$W' = -a(x)W = -\\frac{2}{x}W$",
+            "分离变量：$\\frac{dW}{W} = -\\frac{2}{x}dx$",
+            "积分：$\\ln|W| = -2\\ln x + C = \\ln(x^{-2}) + C$，即$W(x) = \\frac{A}{x^2}$",
+            "由$W(1) = 1$得$A = 1$，所以$W(x) = \\frac{1}{x^2}$"
+          ]
+        }
+      ],
+      "id": "kobe-2025-3dacc32c2e-q04-practice-03",
+      "school": "神户大学",
+      "year": "2025"
+    },
+    {
+      "text": "对二阶微分方程$y'' + 2xy' + 2y = 0$，给定$y_1(x) = e^{-x^2}$是一个解。利用朗斯基行列式求第二个线性无关的解$y_2(x)$，使得$y_2(0) = 0, y_2'(0) = 1$。",
+      "knowledge_points": [
+        "朗斯基行列式",
+        "微分方程的第二解",
+        "一阶ODE"
+      ],
+      "question_type": "计算",
+      "method": [
+        "利用朗斯基行列式求第二解",
+        "求初值问题"
+      ],
+      "solution_steps": [
+        "建立$W$的方程",
+        "求$W(x)$",
+        "由$W(x) = y_1(x)y_2'(x) - y_1'(x)y_2(x)$求$y_2$"
+      ],
+      "math_structure": {
+        "type": "wronskian_second_solution",
+        "template": "$y_2(x)$通过$W(x)$确定",
+        "variable_count": 2
+      },
+      "difficulty": 4,
+      "estimated_minutes": 8,
+      "answer": [
+        {
+          "label": "求$y_2(x)$",
+          "steps": [
+            "对$y'' + 2xy' + 2y = 0$，$a(x) = 2x$",
+            "$W' = -2xW$，积分得$\\ln|W| = -x^2 + C$，即$W(x) = Ae^{-x^2}$",
+            "由初值：$W(0) = y_1(0)y_2'(0) - y_1'(0)y_2(0) = 1 \\cdot 1 - 0 \\cdot 0 = 1$",
+            "所以$W(x) = e^{-x^2}$",
+            "由$W(x) = e^{-x^2}y_2'(x) - (-2x)e^{-x^2}y_2(x) = e^{-x^2}$",
+            "即$y_2'(x) + 2xy_2(x) = 1$",
+            "积分因子为$e^{x^2}$：$\\frac{d}{dx}(e^{x^2}y_2) = e^{x^2}$",
+            "$e^{x^2}y_2(x) = \\int e^{x^2}dx + C$",
+            "由$y_2(0) = 0$得$C = 0$，所以$y_2(x) = e^{-x^2}\\int_0^x e^{t^2}dt$"
+          ]
+        }
+      ],
+      "id": "kobe-2025-3dacc32c2e-q04-practice-04",
+      "school": "神户大学",
+      "year": "2025"
+    }
+  ],
+  "source_question": "问3",
+  "source_pdf": "神户大学/系统情报学研究科/全专攻/神户大学_系统情报学研究科_2025_数学过去问.pdf",
+  "source_type": "官方过去问",
+  "subject_category": "微分方程"
+}

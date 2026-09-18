@@ -1,0 +1,272 @@
+{
+  "id": "kobe-2026-a798af0c90-q04",
+  "school": "神户大学",
+  "year": "2026",
+  "subject": "系统情报学研究科_全专攻",
+  "text": "考虑 $x \\geq 0$ 时的二阶微分方程\n$$y' = (4x - y + 2)^2 \\quad (*)$$\n\n(1) 设 $\\alpha, \\beta$ 为实数。若 $y(x) = \\alpha x + \\beta$ 为方程 $(*)$ 的解，求所有满足条件的 $\\alpha, \\beta$ 对。\n\n(2) 用变量变换 $u = 4x - y + 2$，导出关于 $u$ 的微分方程。\n\n(3) 解出(2)中的微分方程，并求满足初始条件 $y(0) = 1$ 的方程 $(*)$ 的解 $y(x)$。",
+  "knowledge_points": [
+    "一阶微分方程",
+    "变量分离",
+    "特解与通解",
+    "初值问题",
+    "代换法"
+  ],
+  "question_type": "多步骤微分方程问题",
+  "method": [
+    "线性解的代入",
+    "变量变换",
+    "变量分离法"
+  ],
+  "solution_steps": [
+    "将线性函数代入方程求特解",
+    "进行变量变换简化方程",
+    "用分离变量法求解新方程",
+    "反变换得原方程的通解",
+    "利用初值条件确定特解"
+  ],
+  "math_structure": {
+    "type": "nonlinear_ode_substitution",
+    "template": "非线性一阶ODE通过变量变换化为可分离方程",
+    "variable_count": 2
+  },
+  "difficulty": 4,
+  "answer": [
+    {
+      "label": "(1) 线性特解",
+      "steps": [
+        "若 $y(x) = \\alpha x + \\beta$ 是解，则 $y' = \\alpha$",
+        "代入方程：$\\alpha = (4x - (\\alpha x + \\beta) + 2)^2 = ((4-\\alpha)x + (2-\\beta))^2$",
+        "展开右边：$((4-\\alpha)x + (2-\\beta))^2 = (4-\\alpha)^2 x^2 + 2(4-\\alpha)(2-\\beta)x + (2-\\beta)^2$",
+        "左边 $\\alpha$ 是常数，右边是关于 $x$ 的多项式",
+        "要使等式对所有 $x \\geq 0$ 恒成立，必须：",
+        "  - $x^2$ 系数：$(4-\\alpha)^2 = 0 \\Rightarrow \\alpha = 4$",
+        "  - $x$ 系数：$2(4-\\alpha)(2-\\beta) = 0$，由 $\\alpha = 4$ 自动满足",
+        "  - 常数项：$(2-\\beta)^2 = \\alpha = 4 \\Rightarrow 2-\\beta = \\pm 2$",
+        "得 $\\beta = 0$ 或 $\\beta = 4$",
+        "验证：",
+        "  - $\\alpha = 4, \\beta = 0$：$y = 4x$，$y' = 4 = (4x - 4x + 2)^2 = 4$ ✓",
+        "  - $\\alpha = 4, \\beta = 4$：$y = 4x + 4$，$y' = 4 = (4x - 4x - 4 + 2)^2 = 4$ ✓",
+        "**答：$(\\alpha, \\beta) = (4, 0)$ 或 $(4, 4)$**"
+      ]
+    },
+    {
+      "label": "(2) 变量变换后的方程",
+      "steps": [
+        "令 $u = 4x - y + 2$",
+        "对 $x$ 求导：$\\frac{du}{dx} = 4 - \\frac{dy}{dx}$",
+        "因此 $\\frac{dy}{dx} = 4 - \\frac{du}{dx}$",
+        "原方程 $y' = (4x - y + 2)^2$ 变为：$4 - \\frac{du}{dx} = u^2$",
+        "整理得：$\\frac{du}{dx} = 4 - u^2$",
+        "**答：$\\frac{du}{dx} = 4 - u^2$**"
+      ]
+    },
+    {
+      "label": "(3) 求通解及特解",
+      "steps": [
+        "方程为 $\\frac{du}{dx} = 4 - u^2 = (2-u)(2+u)$",
+        "用分离变量法：$\\frac{du}{(2-u)(2+u)} = dx$",
+        "部分分式分解：$\\frac{1}{(2-u)(2+u)} = \\frac{A}{2-u} + \\frac{B}{2+u}$",
+        "得 $1 = A(2+u) + B(2-u)$",
+        "令 $u = 2$：$1 = 4A \\Rightarrow A = \\frac{1}{4}$",
+        "令 $u = -2$：$1 = 4B \\Rightarrow B = \\frac{1}{4}$",
+        "因此 $\\frac{du}{4(2-u)} + \\frac{du}{4(2+u)} = dx$",
+        "积分：$-\\frac{1}{4}\\ln|2-u| + \\frac{1}{4}\\ln|2+u| = x + C$",
+        "$\\frac{1}{4}\\ln\\left|\\frac{2+u}{2-u}\\right| = x + C$",
+        "$\\ln\\left|\\frac{2+u}{2-u}\\right| = 4x + C'$（其中 $C' = 4C$）",
+        "$\\frac{2+u}{2-u} = Ke^{4x}$（其中 $K = \\pm e^{C'}$）",
+        "$2 + u = (2-u)Ke^{4x}$",
+        "$2 + u = 2Ke^{4x} - uKe^{4x}$",
+        "$u(1 + Ke^{4x}) = 2Ke^{4x} - 2$",
+        "$u = \\frac{2(Ke^{4x} - 1)}{1 + Ke^{4x}}$",
+        "利用初值条件 $y(0) = 1$：",
+        "$u(0) = 4(0) - 1 + 2 = 1$",
+        "$1 = \\frac{2(K - 1)}{1 + K}$",
+        "$1 + K = 2K - 2$",
+        "$K = 3$",
+        "因此 $u = \\frac{2(3e^{4x} - 1)}{1 + 3e^{4x}} = \\frac{6e^{4x} - 2}{1 + 3e^{4x}}$",
+        "由 $u = 4x - y + 2$ 得 $y = 4x + 2 - u$",
+        "$y = 4x + 2 - \\frac{6e^{4x} - 2}{1 + 3e^{4x}} = 4x + 2 - \\frac{6e^{4x} - 2}{1 + 3e^{4x}}$",
+        "$y = \\frac{(4x+2)(1+3e^{4x}) - (6e^{4x}-2)}{1+3e^{4x}} = \\frac{4x + 2 + 12xe^{4x} + 6e^{4x} - 6e^{4x} + 2}{1+3e^{4x}}$",
+        "$y = \\frac{4x + 4 + 12xe^{4x}}{1 + 3e^{4x}} = \\frac{4(x+1+3xe^{4x})}{1+3e^{4x}}$",
+        "**答：通解为 $u = \\frac{2(Ke^{4x} - 1)}{1 + Ke^{4x}}$；满足 $y(0) = 1$ 的特解为 $y = 4x + 2 - \\frac{6e^{4x} - 2}{1 + 3e^{4x}}$**"
+      ]
+    }
+  ],
+  "practice_questions": [
+    {
+      "text": "求微分方程 $y' = (y - 2x)^2$ 的通解。",
+      "knowledge_points": [
+        "变量变换",
+        "变量分离",
+        "反正切函数"
+      ],
+      "question_type": "非线性微分方程",
+      "method": [
+        "变换法",
+        "分离变量"
+      ],
+      "solution_steps": [
+        "设 $u = y - 2x$",
+        "化为 $\\frac{du}{dx} = u^2 + 2$",
+        "分离变量求解"
+      ],
+      "math_structure": {
+        "type": "bernoulli_type_ode",
+        "template": "形如 $y' = (ay + bx + c)^n$ 的方程",
+        "variable_count": 1
+      },
+      "difficulty": 3,
+      "estimated_minutes": 12,
+      "answer": [
+        {
+          "label": "通解",
+          "steps": [
+            "令 $u = y - 2x$，则 $\\frac{du}{dx} = \\frac{dy}{dx} - 2 = u^2 - 2$",
+            "等等，$y' = (y-2x)^2 = u^2$，所以 $\\frac{du}{dx} = u^2 + 2$",
+            "分离变量：$\\frac{du}{u^2+2} = dx$",
+            "$\\int \\frac{du}{u^2+2} = \\int dx$",
+            "$\\frac{1}{\\sqrt{2}}\\arctan\\frac{u}{\\sqrt{2}} = x + C$",
+            "$\\arctan\\frac{u}{\\sqrt{2}} = \\sqrt{2}(x + C)$",
+            "$\\frac{u}{\\sqrt{2}} = \\tan(\\sqrt{2}(x+C))$",
+            "$u = \\sqrt{2}\\tan(\\sqrt{2}(x+C))$",
+            "$y = 2x + \\sqrt{2}\\tan(\\sqrt{2}(x+C))$",
+            "**答：$y = 2x + \\sqrt{2}\\tan(\\sqrt{2}(x+C))$**"
+          ]
+        }
+      ],
+      "id": "kobe-2026-a798af0c90-q04-practice-01",
+      "school": "神户大学",
+      "year": "2026"
+    },
+    {
+      "text": "求解方程 $y' = (x + y)^2$，初值 $y(0) = 0$。",
+      "knowledge_points": [
+        "变量变换",
+        "变量分离",
+        "反正切"
+      ],
+      "question_type": "初值问题",
+      "method": [
+        "代换法",
+        "分离变量"
+      ],
+      "solution_steps": [
+        "令 $u = x + y$",
+        "导出 $u$ 的方程",
+        "分离变量",
+        "用初值确定常数"
+      ],
+      "math_structure": {
+        "type": "substitution_ivp",
+        "template": "形如 $y' = f(x+y)$ 的初值问题",
+        "variable_count": 2
+      },
+      "difficulty": 3,
+      "estimated_minutes": 10,
+      "answer": [
+        {
+          "label": "特解",
+          "steps": [
+            "令 $u = x + y$，则 $\\frac{du}{dx} = 1 + \\frac{dy}{dx} = 1 + u^2$",
+            "分离变量：$\\frac{du}{1+u^2} = dx$",
+            "$\\arctan u = x + C$",
+            "$u = \\tan(x + C)$",
+            "$y = \\tan(x+C) - x$",
+            "初值条件 $y(0) = 0$：$0 = \\tan C$，得 $C = 0$",
+            "**答：$y = \\tan x - x$**"
+          ]
+        }
+      ],
+      "id": "kobe-2026-a798af0c90-q04-practice-02",
+      "school": "神户大学",
+      "year": "2026"
+    },
+    {
+      "text": "对于方程 $y' = 1 + y^2$，求满足 $y(0) = 0$ 的特解。",
+      "knowledge_points": [
+        "反正切函数",
+        "三角替换"
+      ],
+      "question_type": "直接分离变量",
+      "method": [
+        "分离变量",
+        "反三角函数"
+      ],
+      "solution_steps": [
+        "分离变量",
+        "积分",
+        "利用初值"
+      ],
+      "math_structure": {
+        "type": "standard_ode",
+        "template": "$\\frac{dy}{1+y^2} = dx$ 型",
+        "variable_count": 0
+      },
+      "difficulty": 2,
+      "estimated_minutes": 5,
+      "answer": [
+        {
+          "label": "特解",
+          "steps": [
+            "$\\frac{dy}{1+y^2} = dx$",
+            "$\\arctan y = x + C$",
+            "初值 $y(0) = 0$：$C = 0$",
+            "**答：$y = \\tan x$**"
+          ]
+        }
+      ],
+      "id": "kobe-2026-a798af0c90-q04-practice-03",
+      "school": "神户大学",
+      "year": "2026"
+    },
+    {
+      "text": "求方程 $y' = 2y(1-y)$ 的通解和特殊解。",
+      "knowledge_points": [
+        "Logistic方程",
+        "分离变量",
+        "部分分式"
+      ],
+      "question_type": "经典方程",
+      "method": [
+        "分离变量",
+        "部分分式"
+      ],
+      "solution_steps": [
+        "分离变量",
+        "部分分式分解",
+        "积分"
+      ],
+      "math_structure": {
+        "type": "logistic_equation",
+        "template": "Logistic增长模型 $y' = ry(1-\\frac{y}{K})$",
+        "variable_count": 2
+      },
+      "difficulty": 3,
+      "estimated_minutes": 10,
+      "answer": [
+        {
+          "label": "通解",
+          "steps": [
+            "$\\frac{dy}{2y(1-y)} = dx$",
+            "部分分式：$\\frac{1}{y(1-y)} = \\frac{1}{y} + \\frac{1}{1-y}$",
+            "$\\int \\frac{1}{2}(\\frac{1}{y} + \\frac{1}{1-y})dy = \\int dx$",
+            "$\\frac{1}{2}(\\ln|y| - \\ln|1-y|) = x + C$",
+            "$\\ln\\left|\\frac{y}{1-y}\\right| = 2x + 2C$",
+            "$\\frac{y}{1-y} = Ke^{2x}$（$K = \\pm e^{2C}$）",
+            "$y = (1-y)Ke^{2x}$",
+            "$y(1 + Ke^{2x}) = Ke^{2x}$",
+            "$y = \\frac{Ke^{2x}}{1+Ke^{2x}}$",
+            "**答：$y = \\frac{Ke^{2x}}{1+Ke^{2x}}$；特殊解 $y \\equiv 0$，$y \\equiv 1$**"
+          ]
+        }
+      ],
+      "id": "kobe-2026-a798af0c90-q04-practice-04",
+      "school": "神户大学",
+      "year": "2026"
+    }
+  ],
+  "source_question": "問3",
+  "source_pdf": "神户大学/系统情报学研究科/全专攻/神户大学_系统情报学研究科_2026_数学过去问.pdf",
+  "source_type": "官方过去问",
+  "subject_category": "微分方程"
+}

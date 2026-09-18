@@ -1,0 +1,210 @@
+{
+  "id": "nagoya-2012-d55c63eac6-q02",
+  "school": "名古屋大学",
+  "year": "2012",
+  "subject": "多元数理科学研究科_全专攻",
+  "text": "设 $f(x,y)=x^3+y^3-3xy\\ (x,y\\in\\mathbb{R})$，考虑平面曲线 $C:\\ f(x,y)=0$。\n\n(1) 通过考察直线 $y=tx$ 与 $C$ 的交点，给出 $C$ 关于参数 $t$ 的表示。\n\n(2) 求曲线 $C$ 中对应参数 $0\\le t<\\infty$ 的部分所围成区域（$C$ 的补集中的有界连通分量）的面积。\n\n提示：逆时针方向的闭曲线 $C_0$ 所围的面积由 $\\displaystyle\\int_{C_0}x\\,dy=-\\int_{C_0}y\\,dx$ 给出。",
+  "knowledge_points": [
+    "参数化曲线",
+    "笛卡尔叶形线",
+    "格林公式面积公式",
+    "有理函数换元积分",
+    "线积分计算面积"
+  ],
+  "question_type": "曲线参数化与面积计算",
+  "method": [
+    "代入 $y=tx$ 求参数表示",
+    "利用 $\\text{Area}=\\int x\\,dy$ 计算",
+    "换元积分求定积分"
+  ],
+  "solution_steps": [
+    "将 $y=tx$ 代入 $f(x,y)=0$，因式分解提取公共因子 $x^2$",
+    "解出非零分支 $x(t),y(t)$",
+    "对参数化曲线计算 $x\\,dy/dt$",
+    "用换元 $s=t^3$ 化简积分",
+    "求出定积分数值即为所围面积"
+  ],
+  "math_structure": {
+    "type": "folium_of_descartes_area",
+    "template": "x^3+y^3-3xy=0,\\ y=tx,\\ 0\\le t<\\infty,\\ \\text{find enclosed area}",
+    "variable_count": 1
+  },
+  "difficulty": 3,
+  "answer": [
+    {
+      "label": "(1)",
+      "steps": [
+        "代入 $y=tx$ 到 $x^3+y^3-3xy=0$：$x^3+t^3x^3-3x\\cdot tx=0$，即 $x^3(1+t^3)-3tx^2=0$。",
+        "提出公因子：$x^2\\left[x(1+t^3)-3t\\right]=0$。$x=0$ 对应原点（$t$ 任意的退化点），非零分支要求 $x(1+t^3)=3t$。",
+        "当 $t^3\\ne-1$ 时，$x(t)=\\dfrac{3t}{1+t^3}$，从而 $y(t)=tx(t)=\\dfrac{3t^2}{1+t^3}$。这就是 $C$（笛卡尔叶形线）的参数表示。"
+      ]
+    },
+    {
+      "label": "(2)",
+      "steps": [
+        "由参数表示 $x(t)=\\dfrac{3t}{1+t^3},\\ y(t)=\\dfrac{3t^2}{1+t^3}$，当 $t:0\\to\\infty$ 时曲线从原点出发又回到原点，形成一个闭合环（叶形线的叶）。",
+        "计算 $\\dfrac{dy}{dt}$：记 $D=1+t^3$，$y=3t^2/D$，$\\dfrac{dy}{dt}=\\dfrac{6t D-3t^2\\cdot3t^2}{D^2}=\\dfrac{6t+6t^4-9t^4}{D^2}=\\dfrac{6t-3t^4}{D^2}=\\dfrac{3t(2-t^3)}{D^2}$。",
+        "故 $x\\,\\dfrac{dy}{dt}=\\dfrac{3t}{D}\\cdot\\dfrac{3t(2-t^3)}{D^2}=\\dfrac{9t^2(2-t^3)}{D^3}$，面积 $S=\\displaystyle\\int_0^\\infty \\dfrac{9t^2(2-t^3)}{(1+t^3)^3}\\,dt$。",
+        "换元 $s=t^3,\\ ds=3t^2dt$：$S=\\displaystyle\\int_0^\\infty \\dfrac{9(2-s)}{(1+s)^3}\\cdot\\dfrac{ds}{3}=3\\int_0^\\infty\\dfrac{2-s}{(1+s)^3}\\,ds$。",
+        "再换元 $w=1+s$（$s=w-1$，$2-s=3-w$）：$S=3\\displaystyle\\int_1^\\infty\\dfrac{3-w}{w^3}\\,dw=3\\int_1^\\infty\\left(\\dfrac{3}{w^3}-\\dfrac{1}{w^2}\\right)dw=3\\left[-\\dfrac{3}{2w^2}+\\dfrac1w\\right]_1^\\infty$。",
+        "上限 $w\\to\\infty$ 时括号内 $\\to0$；下限 $w=1$ 时括号内 $=-\\dfrac32+1=-\\dfrac12$。故 $S=3\\left(0-\\left(-\\dfrac12\\right)\\right)=3\\cdot\\dfrac12=\\dfrac32$。",
+        "所以所围区域的面积为 $\\boxed{\\dfrac{3}{2}}$，这与经典结果“笛卡尔叶形线 $x^3+y^3=3xy$ 的叶面积为 $3/2$”一致。"
+      ]
+    }
+  ],
+  "practice_questions": [
+    {
+      "text": "求直线 $y=tx$ 与圆 $x^2+y^2-2x=0$ 的交点，给出圆的参数表示（以 $t$ 为参数）。",
+      "knowledge_points": [
+        "直线与曲线交点法参数化",
+        "隐式方程转参数方程"
+      ],
+      "question_type": "参数化练习",
+      "method": [
+        "代入消元法"
+      ],
+      "solution_steps": [
+        "代入 $y=tx$",
+        "解出 $x(t)$",
+        "求出 $y(t)$"
+      ],
+      "math_structure": {
+        "type": "line_intersect_curve_param",
+        "template": "x^2+y^2-2x=0,\\ y=tx,\\ \\text{find } x(t),y(t)",
+        "variable_count": 1
+      },
+      "difficulty": 1,
+      "estimated_minutes": 6,
+      "answer": [
+        {
+          "label": "参数表示",
+          "steps": [
+            "代入 $y=tx$：$x^2+t^2x^2-2x=0$，即 $x[x(1+t^2)-2]=0$。",
+            "非零分支：$x(t)=\\dfrac{2}{1+t^2}$，从而 $y(t)=tx(t)=\\dfrac{2t}{1+t^2}$。",
+            "验证 $t=0$ 时 $(x,y)=(2,0)$，代入原方程 $4+0-4=0$成立。"
+          ]
+        }
+      ],
+      "id": "nagoya-2012-d55c63eac6-q02-practice-01",
+      "school": "名古屋大学",
+      "year": "2012"
+    },
+    {
+      "text": "利用公式 $\\text{Area}=\\displaystyle\\int_{C_0} x\\,dy$，求参数曲线 $x(t)=\\cos t,\\ y(t)=\\sin t$（$t\\in[0,2\\pi]$，逆时针单位圆）所围面积。",
+      "knowledge_points": [
+        "格林公式面积公式",
+        "参数曲线积分"
+      ],
+      "question_type": "面积计算基础练习",
+      "method": [
+        "直接代入公式积分"
+      ],
+      "solution_steps": [
+        "计算 $dy/dt$",
+        "代入积分公式",
+        "求定积分值"
+      ],
+      "math_structure": {
+        "type": "parametric_area_basic",
+        "template": "x=\\cos t, y=\\sin t,\\ \\text{Area}=\\int_0^{2\\pi} x\\,dy",
+        "variable_count": 0
+      },
+      "difficulty": 1,
+      "estimated_minutes": 5,
+      "answer": [
+        {
+          "label": "面积",
+          "steps": [
+            "$dy/dt=\\cos t$，故 $x\\,dy/dt=\\cos^2 t$。",
+            "$\\text{Area}=\\int_0^{2\\pi}\\cos^2t\\,dt=\\int_0^{2\\pi}\\dfrac{1+\\cos2t}{2}dt=\\pi$。",
+            "与已知单位圆面积 $\\pi\\cdot1^2=\\pi$ 一致，验证正确。"
+          ]
+        }
+      ],
+      "id": "nagoya-2012-d55c63eac6-q02-practice-02",
+      "school": "名古屋大学",
+      "year": "2012"
+    },
+    {
+      "text": "设 $a>0$，考虑曲线 $x^3+y^3-3axy=0$。用直线 $y=tx$ 求其参数表示 $x(t,a),\\ y(t,a)$（$0\\le t<\\infty$）。",
+      "knowledge_points": [
+        "含参数的曲线参数化",
+        "笛卡尔叶形线一般形式"
+      ],
+      "question_type": "参数化练习",
+      "method": [
+        "代入消元并因式分解"
+      ],
+      "solution_steps": [
+        "代入 $y=tx$",
+        "因式分解提取公因子",
+        "解出非零分支表达式"
+      ],
+      "math_structure": {
+        "type": "general_folium_param",
+        "template": "x^3+y^3-3axy=0,\\ y=tx,\\ \\text{find } x(t),y(t)",
+        "variable_count": 1
+      },
+      "difficulty": 2,
+      "estimated_minutes": 8,
+      "answer": [
+        {
+          "label": "参数表示",
+          "steps": [
+            "代入：$x^3+t^3x^3-3axtx=0$，即 $x^3(1+t^3)-3atx^2=0$。",
+            "提出 $x^2$：$x^2[x(1+t^3)-3at]=0$，非零分支 $x(1+t^3)=3at$。",
+            "解得 $x(t)=\\dfrac{3at}{1+t^3},\\ y(t)=tx(t)=\\dfrac{3at^2}{1+t^3}$。当 $a=1$ 即为原题的参数化。"
+          ]
+        }
+      ],
+      "id": "nagoya-2012-d55c63eac6-q02-practice-03",
+      "school": "名古屋大学",
+      "year": "2012"
+    },
+    {
+      "text": "利用上一题的参数表示 $x(t)=\\dfrac{3at}{1+t^3},\\ y(t)=\\dfrac{3at^2}{1+t^3}$，仿照原题方法证明曲线 $x^3+y^3=3axy$（$0\\le t<\\infty$）所围叶形区域的面积为 $\\dfrac{3a^2}{2}$。",
+      "knowledge_points": [
+        "格林公式面积公式",
+        "换元积分",
+        "含参数曲线面积"
+      ],
+      "question_type": "面积计算（一般参数）",
+      "method": [
+        "计算 $x\\,dy/dt$",
+        "换元 $s=t^3$ 再换元 $w=1+s$",
+        "求定积分"
+      ],
+      "solution_steps": [
+        "求导 $dy/dt$",
+        "写出面积积分表达式",
+        "两次换元化简",
+        "计算定积分得出一般公式"
+      ],
+      "math_structure": {
+        "type": "general_folium_area",
+        "template": "x(t)=3at/(1+t^3),\\ y(t)=3at^2/(1+t^3),\\ \\text{Area}=\\int_0^\\infty x\\,dy",
+        "variable_count": 1
+      },
+      "difficulty": 4,
+      "estimated_minutes": 15,
+      "answer": [
+        {
+          "label": "面积 $=3a^2/2$",
+          "steps": [
+            "记 $D=1+t^3$，$y=3at^2/D$，求导得 $dy/dt=\\dfrac{6atD-3at^2\\cdot3t^2}{D^2}=\\dfrac{3at(2-t^3)}{D^2}$（与 $a=1$ 情形结构相同，只多一因子 $a$）。",
+            "$x\\,dy/dt=\\dfrac{3at}{D}\\cdot\\dfrac{3at(2-t^3)}{D^2}=\\dfrac{9a^2t^2(2-t^3)}{D^3}$，故 $S=9a^2\\displaystyle\\int_0^\\infty\\dfrac{t^2(2-t^3)}{(1+t^3)^3}dt$。",
+            "换元 $s=t^3$：$S=9a^2\\cdot\\dfrac13\\displaystyle\\int_0^\\infty\\dfrac{2-s}{(1+s)^3}ds=3a^2\\int_0^\\infty\\dfrac{2-s}{(1+s)^3}ds$。",
+            "由原题已算得 $\\displaystyle\\int_0^\\infty\\dfrac{2-s}{(1+s)^3}ds=\\dfrac12$（换元 $w=1+s$ 后计算），故 $S=3a^2\\cdot\\dfrac12=\\dfrac{3a^2}{2}$，得证。当 $a=1$ 时退化为原题结果 $3/2$。"
+          ]
+        }
+      ],
+      "id": "nagoya-2012-d55c63eac6-q02-practice-04",
+      "school": "名古屋大学",
+      "year": "2012"
+    }
+  ],
+  "source_question": "2",
+  "source_pdf": "名古屋大学/多元数理科学研究科/全专攻/名古屋大学_多元数理科学研究科_2012_第1次_数学过去问_下午.pdf",
+  "source_type": "官方过去问",
+  "subject_category": "微积分"
+}

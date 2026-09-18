@@ -1,0 +1,246 @@
+{
+  "id": "nagoya-2008-4cbe2e15d5-q04",
+  "school": "名古屋大学",
+  "year": "2008",
+  "subject": "多元数理科学研究科_全专攻",
+  "text": "回答以下问题。(1)(3)(4)中不仅要给出答案，还需简要说明理由。\n(1) 对 $f(x,y)=e^{2x+3y}$，求 $x,y$ 的二次多项式 $g(x,y)$，使得 $\\lim_{(x,y)\\to(0,0)}\\dfrac{f(x,y)-g(x,y)}{x^2+y^2}=0$。\n(2) 设 $f(x,y)$ 是第一象限 $D=\\{(x,y)\\in\\mathbb{R}^2:x>0,y>0\\}$ 上的 $C^1$ 类函数。证明：\"$f(x,y)$ 可用某个一元函数 $g(t)$ 表示为 $f(x,y)=g(xy)$\" 与 \"$x\\dfrac{\\partial f}{\\partial x}-y\\dfrac{\\partial f}{\\partial y}=0$ 成立\" 两者等价。（必要时可考虑变量替换 $s=x,\\ t=xy$。）\n(3) 设 $a,b$ 为正数。求广义积分 $\\displaystyle\\int_0^\\infty \\dfrac{r^{2b}}{1+r^{2a}}\\,dr$ 收敛的关于 $a,b$ 的条件。\n(4) 设 $a,b$ 为正数。求第一象限 $D=\\{(x,y)\\in\\mathbb{R}^2:x>0,y>0\\}$ 上的广义积分 $\\displaystyle\\iint_D \\dfrac{x^{2b}+y^{2b}}{1+x^{2a}+y^{2a}}\\,dx\\,dy$ 收敛的关于 $a,b$ 的条件。",
+  "knowledge_points": [
+    "二元函数泰勒展开",
+    "齐次函数的偏微分方程刻画",
+    "变量替换",
+    "广义积分收敛判别",
+    "多重积分极坐标/比较判别法"
+  ],
+  "question_type": "多变量微积分综合题",
+  "method": [
+    "二阶泰勒公式",
+    "变量替换将PDE化为常微分方程",
+    "p-积分判别法比较大小",
+    "分区域比较法处理二重广义积分"
+  ],
+  "solution_steps": [
+    "对f在原点做二阶泰勒展开求出g",
+    "利用变量替换s=x,t=xy将偏微分方程化为对s的常微分方程从而证明等价性",
+    "分析被积函数在0与无穷处的阶数判断单变量积分敛散性",
+    "将第一象限按x≥y与y≥x分区间比较被积函数与单变量情形，得出二重积分敛散条件"
+  ],
+  "math_structure": {
+    "type": "multivariable_taylor_pde_improper_integral",
+    "template": "f(x,y)=e^{2x+3y}; xf_x-yf_y=0 iff f=g(xy); \\int_0^\\infty r^{2b}/(1+r^{2a})dr; \\iint_D (x^{2b}+y^{2b})/(1+x^{2a}+y^{2a})dxdy",
+    "variable_count": 2
+  },
+  "difficulty": 4,
+  "answer": [
+    {
+      "label": "(1)",
+      "steps": [
+        "计算各阶偏导在原点的值：$f(0,0)=1$；$f_x=2e^{2x+3y}\\Rightarrow f_x(0,0)=2$；$f_y=3e^{2x+3y}\\Rightarrow f_y(0,0)=3$",
+        "二阶偏导：$f_{xx}=4e^{2x+3y}\\Rightarrow f_{xx}(0,0)=4$；$f_{yy}=9e^{2x+3y}\\Rightarrow f_{yy}(0,0)=9$；$f_{xy}=6e^{2x+3y}\\Rightarrow f_{xy}(0,0)=6$",
+        "由多元泰勒公式，二阶泰勒多项式为 $g(x,y)=f(0,0)+f_x(0,0)x+f_y(0,0)y+\\dfrac12\\left(f_{xx}(0,0)x^2+2f_{xy}(0,0)xy+f_{yy}(0,0)y^2\\right)=1+2x+3y+2x^2+6xy+\\dfrac{9}{2}y^2$",
+        "由带皮亚诺余项的泰勒定理，$C^2$函数与其二阶泰勒多项式之差为 $o(x^2+y^2)$，故此 $g$ 满足所要求极限为0的条件"
+      ]
+    },
+    {
+      "label": "(2)",
+      "steps": [
+        "（必要性）若 $f(x,y)=g(xy)$，则 $f_x=g'(xy)\\cdot y$，$f_y=g'(xy)\\cdot x$，故 $xf_x-yf_y=xy\\,g'(xy)-yx\\,g'(xy)=0$",
+        "（充分性）设 $xf_x-yf_y=0$在$D$上成立。作变量替换 $s=x,\\ t=xy$（当$x>0$时是$D$到$\\{s>0,t>0\\}$的可逆变换，且 $y=t/s$），令 $F(s,t)=f(s,t/s)$",
+        "计算 $\\dfrac{\\partial F}{\\partial s}=f_x\\cdot1+f_y\\cdot\\left(-\\dfrac{t}{s^2}\\right)=f_x-f_y\\cdot\\dfrac{y}{x}=\\dfrac{1}{x}\\left(xf_x-yf_y\\right)=0$（因为$t/s^2=(xy)/x^2=y/x$）",
+        "因此对固定 $t>0$，$F(s,t)$ 不依赖于 $s$（$s$的定义域$(0,\\infty)$连通），故 $F(s,t)=g(t)$（某个只依赖$t$的函数），即 $f(x,y)=F(x,xy)=g(xy)$，充分性得证，从而两者等价"
+      ]
+    },
+    {
+      "label": "(3)",
+      "steps": [
+        "在 $r\\to0^+$附近，被积函数 $\\dfrac{r^{2b}}{1+r^{2a}}\\sim r^{2b}$，由 $b>0$知 $2b>-1$，故该积分在$0$附近总是收敛（无论$a,b$取何正值）",
+        "在 $r\\to\\infty$附近，被积函数 $\\sim r^{2b-2a}$，由 $p$-积分判别法，$\\int^\\infty r^{p}dr$ 收敛当且仅当 $p<-1$，此处需 $2b-2a<-1$",
+        "整理得收敛条件为 $2a-2b>1$，即 $a-b>\\dfrac12$",
+        "结论：积分收敛的充要条件是 $a-b>\\dfrac{1}{2}$（等价地 $b<a-\\dfrac12$）"
+      ]
+    },
+    {
+      "label": "(4)",
+      "steps": [
+        "将第一象限划分为 $R_1=\\{0<y\\le x\\}$ 与 $R_2=\\{0<x\\le y\\}$，由对称性（互换$x,y$后被积函数形式不变）只需分析$R_1$上的积分",
+        "在 $R_1$中，因 $0<y\\le x$，有 $y^{2b}\\le x^{2b}$，故分子 $x^{2b}+y^{2b}\\in[x^{2b},2x^{2b}]$；同理分母 $1+x^{2a}+y^{2a}\\in[1+x^{2a},1+2x^{2a}]$，故被积函数与 $\\dfrac{x^{2b}}{1+x^{2a}}$相差不超过常数因子",
+        "于是 $\\iint_{R_1}\\dfrac{x^{2b}+y^{2b}}{1+x^{2a}+y^{2a}}dxdy$ 的敛散性与 $\\int_0^\\infty\\left(\\int_0^x dy\\right)\\dfrac{x^{2b}}{1+x^{2a}}dx=\\int_0^\\infty \\dfrac{x^{2b+1}}{1+x^{2a}}dx$ 相同（相差有界正常数因子）",
+        "对此单变量积分应用(3)的方法：$x\\to0$处指数 $2b+1>-1$恒成立（因$b>0$）；$x\\to\\infty$处需 $2b+1-2a<-1$，即 $2a-2b>2$，即 $a-b>1$；故 $R_1$上积分收敛当且仅当 $a>b+1$；由对称性 $R_2$给出相同条件",
+        "结论：二重广义积分收敛的充要条件为 $a-b>1$，即 $a>b+1$"
+      ]
+    }
+  ],
+  "practice_questions": [
+    {
+      "text": "对 $f(x,y)=e^{x+y}$，求其在原点处的二阶泰勒多项式 $g(x,y)$，并说明 $f-g=o(x^2+y^2)$成立的理由。",
+      "knowledge_points": [
+        "多元泰勒展开"
+      ],
+      "question_type": "基础计算题",
+      "method": [
+        "泰勒公式"
+      ],
+      "solution_steps": [
+        "计算各阶偏导在原点值",
+        "写出二阶泰勒多项式"
+      ],
+      "math_structure": {
+        "type": "taylor_polynomial_2var",
+        "template": "f(x,y)=e^{ax+by}, find 2nd order Taylor polynomial at origin",
+        "variable_count": 2
+      },
+      "difficulty": 1,
+      "estimated_minutes": 6,
+      "answer": [
+        {
+          "label": "结果",
+          "steps": [
+            "$f(0,0)=1,f_x(0,0)=1,f_y(0,0)=1,f_{xx}(0,0)=1,f_{yy}(0,0)=1,f_{xy}(0,0)=1$",
+            "$g(x,y)=1+x+y+\\dfrac12(x^2+2xy+y^2)=1+x+y+\\dfrac12x^2+xy+\\dfrac12y^2$",
+            "由带皮亚诺余项的泰勒定理，$C^\\infty$函数的二阶泰勒多项式余项为$o(x^2+y^2)$，故满足条件"
+          ]
+        }
+      ],
+      "id": "nagoya-2008-4cbe2e15d5-q04-practice-01",
+      "school": "名古屋大学",
+      "year": "2008"
+    },
+    {
+      "text": "设 $f(x,y)=x^2y^2$（$x,y>0$），验证 $xf_x-yf_y=0$，并求对应的一元函数 $g(t)$使 $f(x,y)=g(xy)$。",
+      "knowledge_points": [
+        "齐次函数PDE验证"
+      ],
+      "question_type": "验证与求解",
+      "method": [
+        "直接求偏导"
+      ],
+      "solution_steps": [
+        "求偏导验证方程",
+        "由f的形式直接猜出g"
+      ],
+      "math_structure": {
+        "type": "verify_homogeneous_pde",
+        "template": "verify xf_x-yf_y=0 for f=x^2y^2 and find g with f(x,y)=g(xy)",
+        "variable_count": 1
+      },
+      "difficulty": 1,
+      "estimated_minutes": 5,
+      "answer": [
+        {
+          "label": "结果",
+          "steps": [
+            "$f_x=2xy^2,f_y=2x^2y$，故 $xf_x-yf_y=2x^2y^2-2x^2y^2=0$，验证成立",
+            "由 $f(x,y)=x^2y^2=(xy)^2$，取 $g(t)=t^2$，则 $f(x,y)=g(xy)$"
+          ]
+        }
+      ],
+      "id": "nagoya-2008-4cbe2e15d5-q04-practice-02",
+      "school": "名古屋大学",
+      "year": "2008"
+    },
+    {
+      "text": "用变量替换 $s=x,t=xy$ 的方法，证明：若 $C^1$函数 $f(x,y)$（$x>0$）满足 $xf_x-yf_y=f$，则 $f(x,y)=x\\,h(xy)$对某个一元函数$h$成立。",
+      "knowledge_points": [
+        "变量替换解PDE"
+      ],
+      "method": [
+        "变量替换法"
+      ],
+      "question_type": "推广型证明题",
+      "solution_steps": [
+        "作变量替换定义F(s,t)=f(s,t/s)/s或类似形式",
+        "求偏导找到关于s的常微分方程",
+        "求解并还原"
+      ],
+      "math_structure": {
+        "type": "pde_variable_substitution_extended",
+        "template": "xf_x-yf_y=f \\Rightarrow f(x,y)=x h(xy)",
+        "variable_count": 2
+      },
+      "difficulty": 3,
+      "estimated_minutes": 12,
+      "answer": [
+        {
+          "label": "证明",
+          "steps": [
+            "令 $s=x,t=xy$，设 $F(s,t)=f(s,t/s)$，则如前面推导 $\\partial F/\\partial s=(1/x)(xf_x-yf_y)=f/x=F/s$",
+            "即 $\\dfrac{\\partial F}{\\partial s}=\\dfrac{F}{s}$，对固定$t$，这是关于$s$的一阶线性常微分方程，解得 $F(s,t)=C(t)\\cdot s$（其中$C(t)$为积分常数，可依赖于$t$）",
+            "还原 $F(s,t)=f(s,t/s)$，令 $h=C$，则 $f(x,y)=F(x,xy)=h(xy)\\cdot x$，即 $f(x,y)=x\\,h(xy)$，证毕"
+          ]
+        }
+      ],
+      "id": "nagoya-2008-4cbe2e15d5-q04-practice-03",
+      "school": "名古屋大学",
+      "year": "2008"
+    },
+    {
+      "text": "求广义积分 $\\displaystyle\\int_0^\\infty \\dfrac{r^{3}}{1+r^{4}}\\,dr$ 是否收敛，并说明理由（视为(3)中 $a=2,b=3/2$的特例）。",
+      "knowledge_points": [
+        "p-积分判别法"
+      ],
+      "question_type": "计算题",
+      "method": [
+        "直接判断p-积分"
+      ],
+      "solution_steps": [
+        "判断0附近与无穷远处的阶数"
+      ],
+      "math_structure": {
+        "type": "single_improper_integral_convergence",
+        "template": "\\int_0^\\infty r^{2b}/(1+r^{2a})dr with specific a,b",
+        "variable_count": 0
+      },
+      "difficulty": 2,
+      "estimated_minutes": 6,
+      "answer": [
+        {
+          "label": "结果",
+          "steps": [
+            "此处 $2a=4\\Rightarrow a=2$，$2b=3\\Rightarrow b=3/2$。由一般结论，收敛条件为 $a-b>1/2$，此处 $a-b=2-1.5=0.5$，恰好不满足严格大于（等号情形）",
+            "验证：$r\\to\\infty$时被积函数 $\\sim r^{3-4}=r^{-1}$，而 $\\int^\\infty r^{-1}dr$发散（对数发散）",
+            "故该积分发散"
+          ]
+        }
+      ],
+      "id": "nagoya-2008-4cbe2e15d5-q04-practice-04",
+      "school": "名古屋大学",
+      "year": "2008"
+    },
+    {
+      "text": "判断二重广义积分 $\\displaystyle\\iint_D \\dfrac{x^2+y^2}{1+x^4+y^4}dxdy$（$D$为第一象限）是否收敛（对应(4)中$a=2,b=1$的情形）。",
+      "knowledge_points": [
+        "二重广义积分收敛判别"
+      ],
+      "question_type": "计算题",
+      "method": [
+        "区域分割比较法"
+      ],
+      "solution_steps": [
+        "套用(4)结论a-b与1比较"
+      ],
+      "math_structure": {
+        "type": "double_improper_integral_convergence",
+        "template": "\\iint_D (x^{2b}+y^{2b})/(1+x^{2a}+y^{2a})dxdy with specific a,b",
+        "variable_count": 0
+      },
+      "difficulty": 2,
+      "estimated_minutes": 6,
+      "answer": [
+        {
+          "label": "结果",
+          "steps": [
+            "此处 $2a=4\\Rightarrow a=2$，$2b=2\\Rightarrow b=1$，由一般结论收敛条件为 $a-b>1$",
+            "计算 $a-b=2-1=1$，不满足严格大于1，故积分发散",
+            "可验证：沿$y=0$方向（$x\\to\\infty$）截面积分 $\\int_0^\\infty \\dfrac{x^2}{1+x^4}\\cdot(\\text{有限y区间贡献})dx$ 的增长导致沿 $R_1$ 区域积分 $\\sim\\int^\\infty x^{2b+1-2a}dx=\\int^\\infty x^{-1}dx$发散，验证了发散结论"
+          ]
+        }
+      ],
+      "id": "nagoya-2008-4cbe2e15d5-q04-practice-05",
+      "school": "名古屋大学",
+      "year": "2008"
+    }
+  ],
+  "source_question": "問題4",
+  "source_pdf": "名古屋大学/多元数理科学研究科/全专攻/名古屋大学_多元数理科学研究科_2008_第1次_数学过去问_上午.pdf",
+  "source_type": "官方过去问",
+  "subject_category": "微积分"
+}

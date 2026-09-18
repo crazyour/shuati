@@ -1,0 +1,148 @@
+{
+  "id": "osaka-2007-7f6c301d96-q02",
+  "school": "大阪大学",
+  "year": "2007",
+  "subject": "情报科学研究科_情报基础数学",
+  "text": "用留数的方法证明下列等式：$$\\int_0^{\\infty} \\frac{dx}{1+x^4} = \\frac{\\pi}{2\\sqrt{2}}$$",
+  "knowledge_points": [
+    "留数定理",
+    "围道积分",
+    "极点分析",
+    "偶函数性质"
+  ],
+  "question_type": "证明题",
+  "method": [
+    "留数定理法",
+    "上半圆形围道"
+  ],
+  "solution_steps": [
+    "求 $1+z^4=0$ 的根",
+    "找上半平面极点",
+    "计算留数",
+    "应用留数定理"
+  ],
+  "math_structure": {
+    "type": "residue_theorem_integral",
+    "template": "$$\\int_0^\\infty \\frac{dx}{1+x^4} = \\frac{1}{2}\\int_{-\\infty}^\\infty \\frac{dx}{1+x^4}$$",
+    "variable_count": 1
+  },
+  "difficulty": 4,
+  "answer": [
+    {
+      "label": "用留数定理证明",
+      "steps": [
+        "极点为 $z_k = e^{i\\pi(2k+1)/4}, k=0,1,2,3$",
+        "上半平面极点：$z_0=e^{i\\pi/4}, z_1=e^{i3\\pi/4}$",
+        "留数：$\\text{Res}(f,z_j)=\\frac{1}{4z_j^3}$",
+        "$e^{-i3\\pi/4}+e^{-i\\pi/4} = -i\\sqrt{2}$",
+        "$\\int_{-\\infty}^\\infty \\frac{dx}{1+x^4} = 2\\pi i \\cdot \\frac{-i\\sqrt{2}}{4} = \\frac{\\pi\\sqrt{2}}{2}$",
+        "由偶函数性：$\\int_0^\\infty \\frac{dx}{1+x^4} = \\frac{\\pi}{2\\sqrt{2}}$"
+      ]
+    }
+  ],
+  "practice_questions": [
+    {
+      "text": "求 $\\int_{-\\infty}^{\\infty} \\frac{dx}{1+x^2}$",
+      "knowledge_points": [
+        "简单极点",
+        "留数"
+      ],
+      "question_type": "计算题",
+      "method": [
+        "留数定理"
+      ],
+      "solution_steps": [
+        "极点 $z=i$",
+        "留数 $\\frac{1}{2i}$"
+      ],
+      "math_structure": {
+        "type": "simple_residue",
+        "template": "$$\\int_{-\\infty}^\\infty \\frac{dx}{1+x^2} = \\pi$$",
+        "variable_count": 1
+      },
+      "difficulty": 2,
+      "estimated_minutes": 4,
+      "answer": [
+        {
+          "label": "积分值",
+          "steps": [
+            "$\\pi$"
+          ]
+        }
+      ],
+      "id": "osaka-2007-7f6c301d96-q02-practice-01",
+      "school": "大阪大学",
+      "year": "2007"
+    },
+    {
+      "text": "求 $\\int_0^{\\infty} \\frac{dx}{1+x^8}$",
+      "knowledge_points": [
+        "留数定理",
+        "高阶极点"
+      ],
+      "question_type": "计算题",
+      "method": [
+        "留数定理"
+      ],
+      "solution_steps": [
+        "上半平面有4个极点",
+        "计算留数和"
+      ],
+      "math_structure": {
+        "type": "higher_order_residue",
+        "template": "$$\\int_0^\\infty \\frac{dx}{1+x^8}$$",
+        "variable_count": 1
+      },
+      "difficulty": 3,
+      "estimated_minutes": 10,
+      "answer": [
+        {
+          "label": "积分值",
+          "steps": [
+            "$\\frac{\\pi}{4\\sqrt{2}}$"
+          ]
+        }
+      ],
+      "id": "osaka-2007-7f6c301d96-q02-practice-02",
+      "school": "大阪大学",
+      "year": "2007"
+    },
+    {
+      "text": "求 $\\int_{-\\infty}^{\\infty} \\frac{dx}{(1+x^2)^2}$",
+      "knowledge_points": [
+        "重极点",
+        "留数"
+      ],
+      "question_type": "计算题",
+      "method": [
+        "留数定理"
+      ],
+      "solution_steps": [
+        "$z=i$ 是二重极点",
+        "计算二重极点留数"
+      ],
+      "math_structure": {
+        "type": "double_pole_residue",
+        "template": "二重极点留数计算",
+        "variable_count": 1
+      },
+      "difficulty": 3,
+      "estimated_minutes": 8,
+      "answer": [
+        {
+          "label": "积分值",
+          "steps": [
+            "$\\frac{\\pi}{2}$"
+          ]
+        }
+      ],
+      "id": "osaka-2007-7f6c301d96-q02-practice-03",
+      "school": "大阪大学",
+      "year": "2007"
+    }
+  ],
+  "source_question": "問3",
+  "source_pdf": "大阪大学/情报科学研究科/情报基础数学/大阪大学_情报科学研究科_情报基础数学_2007_数学过去问.pdf",
+  "source_type": "官方过去问",
+  "subject_category": "复变函数"
+}

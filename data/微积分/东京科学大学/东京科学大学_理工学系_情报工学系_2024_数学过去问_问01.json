@@ -1,0 +1,180 @@
+{
+  "id": "isct-2024-18d20a0bec-q01",
+  "school": "东京科学大学",
+  "year": "2024",
+  "subject": "理工学系_情报工学系",
+  "text": "对下列实函数求导。已知 $x, y \\in (0, \\infty)$，$\\alpha$ 为正常数。\n\na) 求函数 $f(x) = (\\alpha + \\sqrt{x})^2$ 的二阶导数 $f''(x)$。\n\nb) 求函数 $f(x,y) = \\frac{\\log_\\alpha(\\alpha + x)}{\\alpha + y}$ 的所有二阶偏导数 $f_{xx}, f_{yy}, f_{xy}$。",
+  "knowledge_points": [
+    "基本求导法则",
+    "链式法则",
+    "幂函数求导",
+    "对数函数求导",
+    "二阶导数",
+    "偏导数",
+    "混合偏导数"
+  ],
+  "question_type": "求导与偏导数",
+  "method": [
+    "链式法则求导",
+    "幂律求导",
+    "对数求导",
+    "偏导数计算"
+  ],
+  "solution_steps": [
+    "对a)使用链式法则和幂函数求导法则",
+    "对a)再求一次导",
+    "对b)分别对x和y求偏导",
+    "化简结果"
+  ],
+  "math_structure": {
+    "type": "derivative_problem",
+    "template": "给定 $f(x) = (\\alpha + g(x))^m$ 和 $h(x,y) = \\frac{p(x)}{q(y)}$，求 $f''(x)$ 和 $h$ 的二阶偏导数",
+    "variable_count": 3
+  },
+  "difficulty": 2,
+  "answer": [
+    {
+      "label": "a) 二阶导数",
+      "steps": [
+        "令 $u = \\alpha + \\sqrt{x}$，则 $f(x) = u^2$",
+        "由链式法则：$f'(x) = 2u \\cdot u' = 2(\\alpha + \\sqrt{x}) \\cdot \\frac{1}{2\\sqrt{x}} = \\frac{\\alpha + \\sqrt{x}}{\\sqrt{x}}$",
+        "改写：$f'(x) = \\frac{\\alpha}{\\sqrt{x}} + 1 = \\alpha x^{-1/2} + 1$",
+        "再求导：$f''(x) = \\alpha \\cdot (-\\frac{1}{2}) x^{-3/2} = -\\frac{\\alpha}{2x^{3/2}}$",
+        "最终答案：$f''(x) = -\\frac{\\alpha}{2x^{3/2}}$ 或 $f''(x) = -\\frac{\\alpha}{2\\sqrt{x^3}}$"
+      ]
+    },
+    {
+      "label": "b) 二阶偏导数",
+      "steps": [
+        "对x求偏导：$f_x = \\frac{1}{\\alpha + y} \\cdot \\frac{d}{dx}\\log_\\alpha(\\alpha + x) = \\frac{1}{\\alpha + y} \\cdot \\frac{1}{(\\alpha + x)\\ln \\alpha}$",
+        "对y求偏导：$f_y = \\log_\\alpha(\\alpha + x) \\cdot \\frac{d}{dy}\\frac{1}{\\alpha + y} = -\\frac{\\log_\\alpha(\\alpha + x)}{(\\alpha + y)^2}$",
+        "求 $f_{xx}$：$f_{xx} = \\frac{\\partial}{\\partial x}\\left[\\frac{1}{(\\alpha + y)(\\alpha + x)\\ln \\alpha}\\right] = -\\frac{1}{(\\alpha + y)(\\alpha + x)^2\\ln \\alpha}$",
+        "求 $f_{yy}$：$f_{yy} = \\frac{\\partial}{\\partial y}\\left[-\\frac{\\log_\\alpha(\\alpha + x)}{(\\alpha + y)^2}\\right] = \\frac{2\\log_\\alpha(\\alpha + x)}{(\\alpha + y)^3}$",
+        "求 $f_{xy}$：$f_{xy} = \\frac{\\partial}{\\partial y}\\left[\\frac{1}{(\\alpha + y)(\\alpha + x)\\ln \\alpha}\\right] = -\\frac{1}{(\\alpha + y)^2(\\alpha + x)\\ln \\alpha}$"
+      ]
+    }
+  ],
+  "practice_questions": [
+    {
+      "text": "对函数 $f(x) = (\\beta + \\sqrt[3]{x})^2$ 求二阶导数，其中 $\\beta > 0$ 为常数。",
+      "knowledge_points": [
+        "幂函数求导",
+        "链式法则",
+        "二阶导数"
+      ],
+      "question_type": "求导",
+      "method": [
+        "链式法则",
+        "幂律"
+      ],
+      "solution_steps": [
+        "使用链式法则计算一阶导数",
+        "再次应用求导法则得二阶导数"
+      ],
+      "math_structure": {
+        "type": "derivative_problem",
+        "template": "$(a + x^{m/n})^k$ 型函数的二阶导数",
+        "variable_count": 2
+      },
+      "difficulty": 2,
+      "estimated_minutes": 5,
+      "answer": [
+        {
+          "label": "二阶导数",
+          "steps": [
+            "$f(x) = (\\beta + x^{1/3})^2$",
+            "$f'(x) = 2(\\beta + x^{1/3}) \\cdot \\frac{1}{3}x^{-2/3} = \\frac{2(\\beta + x^{1/3})}{3x^{2/3}}$",
+            "$f''(x) = \\frac{2}{3}\\left[\\frac{\\frac{1}{3}x^{-2/3} \\cdot x^{2/3} - (\\beta + x^{1/3}) \\cdot \\frac{2}{3}x^{-5/3}}{x^{4/3}}\\right]$",
+            "化简得：$f''(x) = \\frac{2}{9x^{2/3}} - \\frac{4\\beta}{9x^{5/3}}$"
+          ]
+        }
+      ],
+      "id": "isct-2024-18d20a0bec-q01-practice-01",
+      "school": "东京科学大学",
+      "year": "2024"
+    },
+    {
+      "text": "设 $f(x,y) = \\frac{e^x}{y+1}$，求 $f_{xx}, f_{yy}, f_{xy}$。",
+      "knowledge_points": [
+        "偏导数",
+        "指数函数求导",
+        "二阶偏导数"
+      ],
+      "question_type": "偏导数计算",
+      "method": [
+        "分别对x和y求偏导",
+        "连续求偏导"
+      ],
+      "solution_steps": [
+        "对x求偏导",
+        "对y求偏导",
+        "再次求偏导得二阶偏导数"
+      ],
+      "math_structure": {
+        "type": "partial_derivative_problem",
+        "template": "$f(x,y) = \\frac{g(x)}{h(y)}$ 型二阶偏导",
+        "variable_count": 2
+      },
+      "difficulty": 2,
+      "estimated_minutes": 5,
+      "answer": [
+        {
+          "label": "所有二阶偏导数",
+          "steps": [
+            "$f_x = \\frac{e^x}{y+1}$",
+            "$f_y = -\\frac{e^x}{(y+1)^2}$",
+            "$f_{xx} = \\frac{e^x}{y+1}$",
+            "$f_{yy} = \\frac{2e^x}{(y+1)^3}$",
+            "$f_{xy} = -\\frac{e^x}{(y+1)^2}$"
+          ]
+        }
+      ],
+      "id": "isct-2024-18d20a0bec-q01-practice-02",
+      "school": "东京科学大学",
+      "year": "2024"
+    },
+    {
+      "text": "已知 $f(x,y) = \\ln(x+y)$，其中 $x+y > 0$，求 $f_{xx} + f_{yy}$。",
+      "knowledge_points": [
+        "对数函数求导",
+        "偏导数",
+        "二阶偏导数"
+      ],
+      "question_type": "二阶偏导数与求和",
+      "method": [
+        "分别求偏导",
+        "化简表达式"
+      ],
+      "solution_steps": [
+        "求 $f_x$ 和 $f_y$",
+        "求 $f_{xx}$ 和 $f_{yy}$",
+        "计算和式"
+      ],
+      "math_structure": {
+        "type": "partial_derivative_sum",
+        "template": "$\\ln(x+y)$ 型函数的二阶偏导数和",
+        "variable_count": 2
+      },
+      "difficulty": 2,
+      "estimated_minutes": 5,
+      "answer": [
+        {
+          "label": "二阶偏导数之和",
+          "steps": [
+            "$f_x = \\frac{1}{x+y}$，$f_y = \\frac{1}{x+y}$",
+            "$f_{xx} = -\\frac{1}{(x+y)^2}$",
+            "$f_{yy} = -\\frac{1}{(x+y)^2}$",
+            "$f_{xx} + f_{yy} = -\\frac{2}{(x+y)^2}$"
+          ]
+        }
+      ],
+      "id": "isct-2024-18d20a0bec-q01-practice-03",
+      "school": "东京科学大学",
+      "year": "2024"
+    }
+  ],
+  "source_question": "問1-1",
+  "source_pdf": "东京科学大学/理工学系/情报工学系/东京科学大学_理工学系_情报工学系_2024_数学过去问.pdf",
+  "source_type": "官方过去问",
+  "subject_category": "微积分"
+}

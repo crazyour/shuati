@@ -1,0 +1,189 @@
+{
+  "id": "osaka-2016-7b3eda5342-q03",
+  "school": "大阪大学",
+  "year": "2016",
+  "subject": "情报科学研究科_情报基础数学",
+  "text": "利用留数定理，计算广义积分\n$$\\int_{-\\infty}^{\\infty}\\frac{\\cos x}{1+x^2}\\,dx.$$",
+  "knowledge_points": [
+    "留数定理",
+    "围道积分",
+    "上半平面极点",
+    "约当引理",
+    "复变函数与实积分的联系"
+  ],
+  "question_type": "留数定理计算广义积分",
+  "method": [
+    "构造 $e^{iz}/(1+z^2)$ 沿上半平面半圆围道积分",
+    "留数计算",
+    "约当引理估计弧上积分趋于零"
+  ],
+  "solution_steps": [
+    "考虑辅助函数 $g(z)=e^{iz}/(1+z^2)$，取上半平面以 $[-R,R]$ 和上半圆弧组成的围道",
+    "确定围道内的极点 $z=i$ 并计算留数",
+    "用约当引理说明圆弧部分积分当 $R\\to\\infty$ 时趋于零",
+    "取实部得到目标积分的值"
+  ],
+  "math_structure": {
+    "type": "residue_theorem_improper_integral",
+    "template": "$\\int_{-\\infty}^{\\infty}\\dfrac{\\cos x}{1+x^2}dx$，用 $g(z)=e^{iz}/(1+z^2)$ 及上半平面留数计算",
+    "variable_count": 1
+  },
+  "difficulty": 2,
+  "answer": [
+    {
+      "label": "计算",
+      "steps": [
+        "设 $g(z)=\\dfrac{e^{iz}}{1+z^2}=\\dfrac{e^{iz}}{(z-i)(z+i)}$，考虑由 $[-R,R]$ 与上半圆弧 $C_R:z=Re^{i\\theta},\\theta\\in[0,\\pi]$ 组成的闭围道（$R>1$，逆时针方向），围道内部只有极点 $z=i$（因为 $z=-i$ 在下半平面）。",
+        "$z=i$ 是简单极点，留数为 $\\mathrm{Res}_{z=i}g(z)=\\lim_{z\\to i}(z-i)\\dfrac{e^{iz}}{(z-i)(z+i)}=\\dfrac{e^{i\\cdot i}}{2i}=\\dfrac{e^{-1}}{2i}$。",
+        "由留数定理，$\\oint_{[-R,R]\\cup C_R} g(z)\\,dz=2\\pi i\\cdot\\dfrac{e^{-1}}{2i}=\\dfrac{\\pi}{e}$。当 $z=Re^{i\\theta}\\in C_R$ 时 $|e^{iz}|=e^{-R\\sin\\theta}\\le 1$（$\\theta\\in[0,\\pi]$），由约当引理，$\\left|\\int_{C_R}g(z)dz\\right|\\to 0$（$R\\to\\infty$），因为分母增长为 $R^2$ 量级而弧长为 $\\pi R$。",
+        "故 $\\lim_{R\\to\\infty}\\int_{-R}^{R}\\dfrac{e^{ix}}{1+x^2}dx=\\dfrac{\\pi}{e}$，即 $\\int_{-\\infty}^{\\infty}\\dfrac{\\cos x+i\\sin x}{1+x^2}dx=\\dfrac{\\pi}{e}$。由于 $\\sin x/(1+x^2)$ 是奇函数，其在对称区间上的积分为 $0$，取实部即得 $\\int_{-\\infty}^{\\infty}\\dfrac{\\cos x}{1+x^2}dx=\\dfrac{\\pi}{e}$。"
+      ]
+    }
+  ],
+  "practice_questions": [
+    {
+      "text": "利用留数定理计算 $\\displaystyle\\int_{-\\infty}^{\\infty}\\frac{dx}{1+x^2}$（先掌握不含三角函数的最简单情形）。",
+      "knowledge_points": [
+        "留数定理",
+        "上半平面极点"
+      ],
+      "question_type": "留数定理计算广义积分",
+      "method": [
+        "上半平面围道积分"
+      ],
+      "solution_steps": [
+        "确定极点与留数",
+        "取极限得积分值"
+      ],
+      "math_structure": {
+        "type": "residue_basic_rational_integral",
+        "template": "$\\int_{-\\infty}^{\\infty}\\dfrac{dx}{1+x^2}$",
+        "variable_count": 1
+      },
+      "difficulty": 1,
+      "estimated_minutes": 6,
+      "answer": [
+        {
+          "label": "计算",
+          "steps": [
+            "考虑 $g(z)=1/(1+z^2)$，上半平面内唯一极点为 $z=i$，留数为 $\\lim_{z\\to i}(z-i)\\cdot\\dfrac{1}{(z-i)(z+i)}=\\dfrac{1}{2i}$。",
+            "由留数定理并结合圆弧部分积分当 $R\\to\\infty$ 趋于零（分母增长快于弧长），得 $\\int_{-\\infty}^\\infty\\dfrac{dx}{1+x^2}=2\\pi i\\cdot\\dfrac{1}{2i}=\\pi$。",
+            "这与初等积分 $\\arctan x$ 的结果 $[\\arctan x]_{-\\infty}^{\\infty}=\\pi/2-(-\\pi/2)=\\pi$ 一致，验证正确。"
+          ]
+        }
+      ],
+      "id": "osaka-2016-7b3eda5342-q03-practice-01",
+      "school": "大阪大学",
+      "year": "2016"
+    },
+    {
+      "text": "利用留数定理计算 $\\displaystyle\\int_{-\\infty}^{\\infty}\\frac{\\cos x}{x^2+4}\\,dx$。",
+      "knowledge_points": [
+        "留数定理",
+        "极点位置随分母参数变化"
+      ],
+      "question_type": "留数定理计算广义积分",
+      "method": [
+        "构造 $e^{iz}/(z^2+4)$ 并用上半平面留数"
+      ],
+      "solution_steps": [
+        "找极点 $z=2i$",
+        "计算留数并取实部"
+      ],
+      "math_structure": {
+        "type": "residue_cos_integral_variant",
+        "template": "$\\int_{-\\infty}^{\\infty}\\dfrac{\\cos x}{x^2+4}dx$",
+        "variable_count": 1
+      },
+      "difficulty": 2,
+      "estimated_minutes": 8,
+      "answer": [
+        {
+          "label": "计算",
+          "steps": [
+            "设 $g(z)=e^{iz}/(z^2+4)=e^{iz}/((z-2i)(z+2i))$，上半平面内的极点为 $z=2i$。",
+            "留数为 $\\lim_{z\\to 2i}(z-2i)\\dfrac{e^{iz}}{(z-2i)(z+2i)}=\\dfrac{e^{i\\cdot 2i}}{4i}=\\dfrac{e^{-2}}{4i}$。",
+            "由留数定理及约当引理（弧上积分趋于零），$\\int_{-\\infty}^\\infty \\dfrac{e^{ix}}{x^2+4}dx=2\\pi i\\cdot\\dfrac{e^{-2}}{4i}=\\dfrac{\\pi e^{-2}}{2}$，取实部（虚部由奇函数积分为零）得 $\\int_{-\\infty}^\\infty\\dfrac{\\cos x}{x^2+4}dx=\\dfrac{\\pi}{2e^2}$。"
+          ]
+        }
+      ],
+      "id": "osaka-2016-7b3eda5342-q03-practice-02",
+      "school": "大阪大学",
+      "year": "2016"
+    },
+    {
+      "text": "不用围道积分，直接利用奇函数性质说明 $\\displaystyle\\int_{-\\infty}^{\\infty}\\frac{\\sin x}{1+x^2}\\,dx=0$，并解释它与原题解法中舍去虚部步骤的关系。",
+      "knowledge_points": [
+        "奇偶函数积分性质",
+        "留数法中虚部的处理"
+      ],
+      "question_type": "对称性分析",
+      "method": [
+        "奇函数在对称区间积分为零"
+      ],
+      "solution_steps": [
+        "验证被积函数为奇函数",
+        "说明积分区间对称"
+      ],
+      "math_structure": {
+        "type": "odd_function_symmetric_integral",
+        "template": "$\\int_{-\\infty}^{\\infty}\\dfrac{\\sin x}{1+x^2}dx$",
+        "variable_count": 1
+      },
+      "difficulty": 1,
+      "estimated_minutes": 4,
+      "answer": [
+        {
+          "label": "说明",
+          "steps": [
+            "设 $h(x)=\\sin x/(1+x^2)$，则 $h(-x)=\\sin(-x)/(1+x^2)=-\\sin x/(1+x^2)=-h(x)$，即 $h$ 是奇函数。",
+            "奇函数在关于原点对称的区间 $(-\\infty,\\infty)$ 上的广义积分（若收敛）为零，因为 $\\int_{-R}^{0}h(x)dx=-\\int_0^R h(x)dx$ 两部分相消。",
+            "这正是原题中将 $\\int e^{ix}/(1+x^2)dx=\\pi/e$（复数）取实部得到 $\\int\\cos x/(1+x^2)dx$ 的原因：虚部对应的正是 $\\int\\sin x/(1+x^2)dx=0$，两者吻合。"
+          ]
+        }
+      ],
+      "id": "osaka-2016-7b3eda5342-q03-practice-03",
+      "school": "大阪大学",
+      "year": "2016"
+    },
+    {
+      "text": "利用留数定理计算 $\\displaystyle\\int_{-\\infty}^{\\infty}\\frac{\\cos x}{x^2+9}\\,dx$，作为逼近原题（分母为 $1+x^2$）的进一步练习。",
+      "knowledge_points": [
+        "留数定理",
+        "参数化极点"
+      ],
+      "question_type": "留数定理计算广义积分",
+      "method": [
+        "上半平面留数计算"
+      ],
+      "solution_steps": [
+        "确定极点 $z=3i$",
+        "计算留数并取实部"
+      ],
+      "math_structure": {
+        "type": "residue_cos_integral_variant",
+        "template": "$\\int_{-\\infty}^{\\infty}\\dfrac{\\cos x}{x^2+9}dx$",
+        "variable_count": 1
+      },
+      "difficulty": 2,
+      "estimated_minutes": 8,
+      "answer": [
+        {
+          "label": "计算",
+          "steps": [
+            "设 $g(z)=e^{iz}/(z^2+9)=e^{iz}/((z-3i)(z+3i))$，上半平面内极点为 $z=3i$。",
+            "留数为 $\\lim_{z\\to 3i}(z-3i)\\dfrac{e^{iz}}{(z-3i)(z+3i)}=\\dfrac{e^{-3}}{6i}$。",
+            "由留数定理与弧上积分趋于零，$\\int_{-\\infty}^\\infty\\dfrac{e^{ix}}{x^2+9}dx=2\\pi i\\cdot\\dfrac{e^{-3}}{6i}=\\dfrac{\\pi e^{-3}}{3}$，取实部得 $\\int_{-\\infty}^\\infty\\dfrac{\\cos x}{x^2+9}dx=\\dfrac{\\pi}{3e^3}$，与原题分母为 $1$ 时得到 $\\pi/e$ 的结构一致（一般地 $\\int\\cos x/(x^2+a^2)dx=\\pi e^{-a}/a$）。"
+          ]
+        }
+      ],
+      "id": "osaka-2016-7b3eda5342-q03-practice-04",
+      "school": "大阪大学",
+      "year": "2016"
+    }
+  ],
+  "source_question": "問3",
+  "source_pdf": "大阪大学/情报科学研究科/情报基础数学/大阪大学_情报科学研究科_情报基础数学_2016_数学过去问.pdf",
+  "source_type": "官方过去问",
+  "subject_category": "复变函数"
+}

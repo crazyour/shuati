@@ -1,0 +1,193 @@
+{
+  "id": "isct-2015-3867f3ae42-q03",
+  "school": "东京科学大学",
+  "year": "2015",
+  "subject": "理工学系_数学系",
+  "text": "设 $a,b$ 为非零实数，$$A=\\begin{pmatrix}a&0&0&b\\\\0&b&a&0\\\\0&a&b&0\\\\b&0&0&a\\end{pmatrix}.$$ 求 $A$ 的所有特征值，并对每个特征空间求出一组基；同时求 $A$ 的最小多项式。",
+  "knowledge_points": [
+    "特征值与特征向量",
+    "对称矩阵可对角化",
+    "块结构分解",
+    "最小多项式",
+    "分类讨论"
+  ],
+  "question_type": "矩阵特征值与最小多项式求解",
+  "method": [
+    "重排基底揭示块对角结构",
+    "分别求两个2×2块的特征值特征向量",
+    "分类讨论a,b关系确定最小多项式"
+  ],
+  "solution_steps": [
+    "观察A是对称矩阵；将基重排为$(e_1,e_4,e_2,e_3)$后A呈两个2×2块对角形式",
+    "求块$\\begin{pmatrix}a&b\\\\b&a\\end{pmatrix}$与块$\\begin{pmatrix}b&a\\\\a&b\\end{pmatrix}$的特征值特征向量",
+    "还原到原坐标，写出对应的四维特征向量",
+    "根据$a=b$与$a\\ne b$两种情形，确定特征值的重数与最小多项式"
+  ],
+  "math_structure": {
+    "type": "symmetric_block_matrix_eigen",
+    "template": "$A=\\begin{pmatrix}a&0&0&b\\\\0&b&a&0\\\\0&a&b&0\\\\b&0&0&a\\end{pmatrix}$，求特征值、特征空间基与最小多项式",
+    "variable_count": 2
+  },
+  "difficulty": 3,
+  "answer": [
+    {
+      "label": "特征值与特征空间",
+      "steps": [
+        "用重排后的基$(e_1,e_4,e_2,e_3)$观察到$A$分解为两个2×2块：块1（作用于$e_1,e_4$）为$\\begin{pmatrix}a&b\\\\b&a\\end{pmatrix}$，块2（作用于$e_2,e_3$）为$\\begin{pmatrix}b&a\\\\a&b\\end{pmatrix}$。",
+        "块1特征值为 $a+b$（特征向量对应系数$(1,1)$，即$e_1+e_4$）和$a-b$（特征向量系数$(1,-1)$，即$e_1-e_4$）。",
+        "块2特征值为 $b+a=a+b$（特征向量系数$(1,1)$，即$e_2+e_3$）和$b-a=-(a-b)$（特征向量系数$(1,-1)$，即$e_2-e_3$）。",
+        "验证：$A(e_1+e_4)=(a+b)(e_1+e_4)$，$A(e_2+e_3)=(a+b)(e_2+e_3)$，$A(e_1-e_4)=(a-b)(e_1-e_4)$，$A(e_2-e_3)=(b-a)(e_2-e_3)$，均代入原矩阵核实成立。",
+        "情形1（$a\\ne b$）：因$a,b\\ne0$知$a+b\\ne a-b$且$a+b\\ne b-a$，又$a\\ne b$使$a-b\\ne b-a$，故三个不同特征值：$a+b$（二重，特征空间为$\\mathrm{span}\\{e_1+e_4,\\,e_2+e_3\\}$），$a-b$（单重，特征空间为$\\mathrm{span}\\{e_1-e_4\\}$），$b-a$（单重，特征空间为$\\mathrm{span}\\{e_2-e_3\\}$）。",
+        "情形2（$a=b$）：此时$a-b=b-a=0$。特征值为 $2a$（二重，特征空间$\\mathrm{span}\\{e_1+e_4,\\,e_2+e_3\\}$）和 $0$（二重，特征空间$\\mathrm{span}\\{e_1-e_4,\\,e_2-e_3\\}$）。"
+      ]
+    },
+    {
+      "label": "最小多项式",
+      "steps": [
+        "$A$是实对称矩阵（因$A_{14}=A_{41}=b,\\ A_{23}=A_{32}=a$，其余对称），故必可对角化，最小多项式为各不同特征值对应一次因子之积。",
+        "情形1（$a\\ne b$）：三个不同特征值$a+b,\\,a-b,\\,b-a$，故最小多项式为$$m(x)=(x-(a+b))(x-(a-b))(x-(b-a))=(x-(a+b))\\left(x^2-(a-b)^2\\right).$$",
+        "情形2（$a=b$）：两个不同特征值$2a,0$，故最小多项式为$$m(x)=x(x-2a).$$"
+      ]
+    }
+  ],
+  "practice_questions": [
+    {
+      "text": "求矩阵 $B=\\begin{pmatrix}2&3\\\\3&2\\end{pmatrix}$ 的特征值与特征向量。",
+      "knowledge_points": [
+        "2×2矩阵特征值"
+      ],
+      "question_type": "基础特征值计算",
+      "method": [
+        "特征方程求解"
+      ],
+      "solution_steps": [
+        "写特征方程",
+        "求根",
+        "求特征向量"
+      ],
+      "math_structure": {
+        "type": "two_by_two_eigen",
+        "template": "$\\begin{pmatrix}p&q\\\\q&p\\end{pmatrix}$型矩阵特征值",
+        "variable_count": 2
+      },
+      "difficulty": 1,
+      "estimated_minutes": 5,
+      "answer": [
+        {
+          "label": "结果",
+          "steps": [
+            "特征方程 $(2-\\lambda)^2-9=0\\Rightarrow \\lambda=2\\pm3$，即$\\lambda_1=5,\\lambda_2=-1$",
+            "$\\lambda_1=5$对应特征向量 $(1,1)^T$；$\\lambda_2=-1$对应特征向量$(1,-1)^T$"
+          ]
+        }
+      ],
+      "id": "isct-2015-3867f3ae42-q03-practice-01",
+      "school": "东京科学大学",
+      "year": "2015"
+    },
+    {
+      "text": "对一般形如 $\\begin{pmatrix}p&q\\\\q&p\\end{pmatrix}$（$p,q$实数）的矩阵，证明其特征值为 $p+q$ 与 $p-q$，且对应特征向量分别为 $(1,1)^T$ 与 $(1,-1)^T$。",
+      "knowledge_points": [
+        "对称2×2矩阵特征结构"
+      ],
+      "question_type": "一般化证明",
+      "method": [
+        "直接验证Av=λv"
+      ],
+      "solution_steps": [
+        "代入验证两组特征向量"
+      ],
+      "math_structure": {
+        "type": "symmetric_2x2_general_eigen",
+        "template": "证明 $\\begin{pmatrix}p&q\\\\q&p\\end{pmatrix}$ 特征值为$p\\pm q$",
+        "variable_count": 2
+      },
+      "difficulty": 2,
+      "estimated_minutes": 6,
+      "answer": [
+        {
+          "label": "结果",
+          "steps": [
+            "$\\begin{pmatrix}p&q\\\\q&p\\end{pmatrix}\\begin{pmatrix}1\\\\1\\end{pmatrix}=\\begin{pmatrix}p+q\\\\q+p\\end{pmatrix}=(p+q)\\begin{pmatrix}1\\\\1\\end{pmatrix}$，验证特征值$p+q$成立",
+            "$\\begin{pmatrix}p&q\\\\q&p\\end{pmatrix}\\begin{pmatrix}1\\\\-1\\end{pmatrix}=\\begin{pmatrix}p-q\\\\q-p\\end{pmatrix}=(p-q)\\begin{pmatrix}1\\\\-1\\end{pmatrix}$，验证特征值$p-q$成立"
+          ]
+        }
+      ],
+      "id": "isct-2015-3867f3ae42-q03-practice-02",
+      "school": "东京科学大学",
+      "year": "2015"
+    },
+    {
+      "text": "已知一个4×4矩阵在重排基后分解为两个相同的2×2块 $\\begin{pmatrix}c&d\\\\d&c\\end{pmatrix}$（$c,d\\ne0$），求该4×4矩阵的所有特征值及各特征空间维数。",
+      "knowledge_points": [
+        "块对角矩阵特征值合并"
+      ],
+      "question_type": "块对角矩阵特征值",
+      "method": [
+        "块分解后合并特征值"
+      ],
+      "solution_steps": [
+        "求单块特征值",
+        "合并成4维矩阵特征值及重数"
+      ],
+      "math_structure": {
+        "type": "block_diagonal_repeated_eigen",
+        "template": "两相同2×2块 $\\begin{pmatrix}c&d\\\\d&c\\end{pmatrix}$ 组成4×4矩阵的特征值",
+        "variable_count": 2
+      },
+      "difficulty": 2,
+      "estimated_minutes": 6,
+      "answer": [
+        {
+          "label": "结果",
+          "steps": [
+            "单块特征值为$c+d,c-d$，各重数1",
+            "两块相同时4×4矩阵特征值为$c+d$（二重）、$c-d$（二重），每个特征空间维数为2"
+          ]
+        }
+      ],
+      "id": "isct-2015-3867f3ae42-q03-practice-03",
+      "school": "东京科学大学",
+      "year": "2015"
+    },
+    {
+      "text": "对原题矩阵 $A$，验证当 $a=2,b=1$（即$a\\ne b$情形）时，最小多项式 $m(x)=(x-3)(x^2-1)$，并具体写出$A$作用在特征向量$e_1-e_4=(1,0,0,-1)^T$上的结果核实特征值为1。",
+      "knowledge_points": [
+        "最小多项式验证",
+        "特征向量代入验证"
+      ],
+      "question_type": "具体数值验证",
+      "method": [
+        "直接代入矩阵乘法"
+      ],
+      "solution_steps": [
+        "写出具体矩阵",
+        "代入验证"
+      ],
+      "math_structure": {
+        "type": "eigenvalue_numeric_verification",
+        "template": "取 $a=2,b=1$ 验证原题矩阵$A$的特征值与最小多项式",
+        "variable_count": 0
+      },
+      "difficulty": 2,
+      "estimated_minutes": 7,
+      "answer": [
+        {
+          "label": "结果",
+          "steps": [
+            "$A=\\begin{pmatrix}2&0&0&1\\\\0&1&2&0\\\\0&2&1&0\\\\1&0&0&2\\end{pmatrix}$，$a+b=3,a-b=1,b-a=-1$",
+            "$A(1,0,0,-1)^T=(2-1,0,0,1-2)^T=(1,0,0,-1)^T=1\\cdot(1,0,0,-1)^T$，验证特征值为$1=a-b$成立",
+            "由三个不同特征值$3,1,-1$，最小多项式为$(x-3)(x-1)(x+1)=(x-3)(x^2-1)$，与理论一致"
+          ]
+        }
+      ],
+      "id": "isct-2015-3867f3ae42-q03-practice-04",
+      "school": "东京科学大学",
+      "year": "2015"
+    }
+  ],
+  "source_question": "[３]（上午）",
+  "source_pdf": "东京科学大学/理工学系/数学系/东京科学大学_理工学系_数学系_2015_数学过去问.pdf",
+  "source_type": "官方过去问",
+  "subject_category": "线性代数"
+}

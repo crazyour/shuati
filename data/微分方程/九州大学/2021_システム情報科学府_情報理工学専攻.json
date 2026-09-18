@@ -1,0 +1,150 @@
+{
+  "id": "kyushu-2021-ist-differential-equations",
+  "school": "九州大学",
+  "year": "2021",
+  "subject": "システム情報科学府_情報理工学専攻",
+  "text": "求通解：(1) $y'=(x^2+6y^2)/(4xy)$；(2) $y'=e^{2x+y+1}-1$。",
+  "knowledge_points": [
+    "齐次一阶方程",
+    "指数代换",
+    "可化线性方程"
+  ],
+  "question_type": "非线性一阶方程题",
+  "method": [
+    "令 y 除以 x",
+    "令 u 等于 e 的负 y 次方"
+  ],
+  "solution_steps": [
+    "第一题作齐次代换并分离",
+    "第二题指数代换",
+    "解所得一阶线性方程"
+  ],
+  "math_structure": {
+    "type": "nonlinear_first_order_transformations",
+    "template": "$v=y/x,\\ u=e^{-y}$",
+    "variable_count": 2
+  },
+  "difficulty": 4,
+  "answer": [
+    {
+      "label": "(1)",
+      "steps": [
+        "思路：采用令 y 除以 x、令 u 等于 e 的负 y 次方，先第一题作齐次代换并分离。",
+        "令 $v=y/x$，积分得 $1+2v^2=Cx$，故 $$x^2+2y^2=Cx^3.$$。",
+        "将所得函数及其导数代回原方程，可核对等式成立。"
+      ]
+    },
+    {
+      "label": "(2)",
+      "steps": [
+        "思路：采用令 y 除以 x、令 u 等于 e 的负 y 次方，先第二题指数代换。",
+        "令 $u=e^{-y}$，则 $u'-u=-e^{2x+1}$，所以 $u=Ce^x-e^{2x+1}$。",
+        "故 $$y=-\\log(Ce^x-e^{2x+1}).$$。"
+      ]
+    }
+  ],
+  "practice_questions": [
+    {
+      "id": "kyushu-2021-ist-de-p1",
+      "school": "九州大学",
+      "year": "2021",
+      "text": "若 $v=y/x$，写出 $y'$。",
+      "knowledge_points": [
+        "齐次代换"
+      ],
+      "question_type": "基础拆解题",
+      "method": [
+        "直接计算"
+      ],
+      "solution_steps": [
+        "识别原题中的单一步骤",
+        "代入并化简"
+      ],
+      "math_structure": {
+        "type": "scoped_practice",
+        "template": "原题的单一步骤练习",
+        "variable_count": 1
+      },
+      "difficulty": 1,
+      "estimated_minutes": 4,
+      "answer": [
+        {
+          "label": "答案",
+          "steps": [
+            "先识别本题考查的齐次代换，再按直接计算写出所需关系。",
+            "$y'=v+xv'$。",
+            "最后按题设的符号、范围和方向检查，得到所列结论。"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "kyushu-2021-ist-de-p2",
+      "school": "九州大学",
+      "year": "2021",
+      "text": "若 $u=e^{-y}$，写出 $u'$。",
+      "knowledge_points": [
+        "链式法则"
+      ],
+      "question_type": "基础拆解题",
+      "method": [
+        "直接计算"
+      ],
+      "solution_steps": [
+        "识别原题中的单一步骤",
+        "代入并化简"
+      ],
+      "math_structure": {
+        "type": "scoped_practice",
+        "template": "原题的单一步骤练习",
+        "variable_count": 1
+      },
+      "difficulty": 1,
+      "estimated_minutes": 4,
+      "answer": [
+        {
+          "label": "答案",
+          "steps": [
+            "先识别本题考查的链式法则，再按直接计算写出所需关系。",
+            "$u'=-y'e^{-y}$。",
+            "最后按题设的符号、范围和方向检查，得到所列结论。"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "kyushu-2021-ist-de-p3",
+      "school": "九州大学",
+      "year": "2021",
+      "text": "解 $u'-u=-e^{2x+1}$。",
+      "knowledge_points": [
+        "一阶线性方程"
+      ],
+      "question_type": "基础拆解题",
+      "method": [
+        "直接计算"
+      ],
+      "solution_steps": [
+        "识别原题中的单一步骤",
+        "代入并化简"
+      ],
+      "math_structure": {
+        "type": "scoped_practice",
+        "template": "原题的单一步骤练习",
+        "variable_count": 1
+      },
+      "difficulty": 1,
+      "estimated_minutes": 4,
+      "answer": [
+        {
+          "label": "答案",
+          "steps": [
+            "先识别本题考查的一阶线性方程，再按直接计算写出所需关系。",
+            "$u=Ce^x-e^{2x+1}$。",
+            "最后按题设的符号、范围和方向检查，得到所列结论。"
+          ]
+        }
+      ]
+    }
+  ]
+}

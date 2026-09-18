@@ -1,0 +1,174 @@
+{
+  "id": "utokyo-2026-ist-common-q2",
+  "school": "东京大学",
+  "year": "2026",
+  "subject": "情报理工学系研究科_全专攻",
+  "text": "设 $x$ 为实自变量，$y(x)$ 为实值函数，$a,b,c,d$ 为实常数，并假定 $x+cy+d\\ne0$。考虑常微分方程\n$$\\frac{dy}{dx}=\\frac{ax+y+b}{x+cy+d}.\\tag{2.1}$$\n(1) 当 $a=c=0$ 时，求方程 (2.1) 的一般解。\n(2) 当 $ac=1$ 时，通过适当的变量变换把方程 (2.1) 化为可分离变量方程。\n(3) 当 $ac\\ne1$ 时，通过适当的变量变换把方程 (2.1) 化为齐次方程。\n\n再考虑方程\n$$\\frac{dy}{dx}+P(x)+Q(x)y+R(x)y^2=0.\\tag{2.2}$$\n其中 $P,Q,R$ 仅依赖于 $x$。\n(4) 当 $R(x)=0$ 时，求方程 (2.2) 的一般解。\n(5) 当 $P(x)=0$ 时，证明通过关于 $y$ 的适当变量变换，可将方程 (2.2) 化为与 (4) 同类的一阶线性方程，并求该方程的一般解。\n(6) 设 $y_1(x)$ 是方程 (2.2) 的一个特解。证明通过变换 $z=y-y_1$，方程 (2.2) 可化为与 (5) 同类的方程。\n(7) 当 $P(x)=x^2+x+1$、$Q(x)=2x+1$、$R(x)=1$ 时，求方程 (2.2) 的一般解。",
+  "knowledge_points": [
+    "一阶常微分方程",
+    "可分离变量方程",
+    "齐次微分方程",
+    "一阶线性微分方程",
+    "Bernoulli 型方程",
+    "Riccati 方程",
+    "已知特解降阶"
+  ],
+  "question_type": "一阶微分方程的分类、变量代换与通解综合题",
+  "method": [
+    "变量分离",
+    "平移变量消去常数项",
+    "积分因子",
+    "倒数代换",
+    "利用 Riccati 特解降阶"
+  ],
+  "solution_steps": [
+    "对特殊参数直接分离变量",
+    "在 $ac=1$ 时选择使分子分母线性相关的新变量",
+    "在 $ac\\ne1$ 时平移坐标使分子分母成为齐次一次式",
+    "用积分因子求一阶线性方程通解",
+    "用 $u=1/y$ 将无常数项的 Riccati 方程线性化",
+    "减去一个特解后再次作倒数代换",
+    "识别具体 Riccati 方程的特解并完成积分"
+  ],
+  "math_structure": {
+    "type": "first_order_ode_transformations_and_riccati",
+    "template": "$y'=(ax+y+b)/(x+cy+d)$；$y'+P+Qy+Ry^2=0$",
+    "variable_count": 8
+  },
+  "difficulty": 4,
+  "answer": [
+    {
+      "label": "(1) $a=c=0$",
+      "steps": [
+        "方程化为 $y'=(y+b)/(x+d)$。在题设区间内 $x+d\\ne0$，可写成 $dy/(y+b)=dx/(x+d)$。",
+        "积分得 $\\log|y+b|=\\log|x+d|+C_0$，把符号并入任意常数后得到 $$y+b=C(x+d).$$",
+        "因此一般解为 $y=C(x+d)-b$。其中 $C=0$ 包含常值解 $y=-b$。"
+      ]
+    },
+    {
+      "label": "(2) $ac=1$ 时化为可分离变量形式",
+      "steps": [
+        "由 $ac=1$ 可知 $c\\ne0$。令 $u=x+cy+d$，则利用 $a=1/c$，有 $ax+y+b=a(u-d)+b=au+(b-ad)$。",
+        "因此 $$\\frac{du}{dx}=1+c\\frac{dy}{dx}=1+c\\frac{au+b-ad}{u}=2+\\frac{c(b-ad)}{u}.$$",
+        "记 $K=c(b-ad)$，则 $$\\frac{du}{dx}=\\frac{2u+K}{u},\\qquad \\frac{u}{2u+K}\\,du=dx,$$ 这就是可分离变量形式。",
+        "若需积分，当 $K\\ne0$ 时有 $x+C=u/2-(K/4)\\log|2u+K|$；当 $K=0$ 时有 $u=2x+C$。最后代回 $u=x+cy+d$。"
+      ]
+    },
+    {
+      "label": "(3) $ac\\ne1$ 时化为齐次形式",
+      "steps": [
+        "令 $x=X+h$、$y=Y+k$，要求常数项满足 $ah+k+b=0$、$h+ck+d=0$。由于系数行列式为 $ac-1\\ne0$，方程组有唯一解。",
+        "解得 $$h=\\frac{d-bc}{ac-1},\\qquad k=\\frac{b-ad}{ac-1}.$$",
+        "由于 $dx=dX$、$dy=dY$，代入后得到 $$\\frac{dY}{dX}=\\frac{aX+Y}{X+cY},$$ 右端是 $Y/X$ 的函数，故为一阶齐次方程。",
+        "进一步令 $v=Y/X$，则 $Y'=v+Xv'$，从而 $$X\\frac{dv}{dX}=\\frac{a+v}{1+cv}-v,$$ 可继续分离变量。"
+      ]
+    },
+    {
+      "label": "(4) $R=0$ 时的一阶线性方程",
+      "steps": [
+        "方程为 $y'+Q(x)y=-P(x)$。取积分因子 $$\\mu(x)=\\exp\\left(\\int Q(x)\\,dx\\right).$$",
+        "两边乘以 $\\mu$，得到 $(\\mu y)'=-\\mu P$。",
+        "因此一般解为 $$y(x)=\\mu(x)^{-1}\\left[C-\\int \\mu(x)P(x)\\,dx\\right].$$"
+      ]
+    },
+    {
+      "label": "(5) $P=0$ 时作倒数代换",
+      "steps": [
+        "方程为 $y'+Qy+Ry^2=0$。首先 $y=0$ 是一个解。对不恒为零的解，在不穿过零点的区间上令 $u=1/y$。",
+        "因为 $u'=-y'/y^2$，由原方程得到 $u'=Qu+R$，即 $$u'-Q(x)u=R(x),$$ 这是与 (4) 同类的一阶线性方程。",
+        "取积分因子 $\\nu(x)=\\exp(-\\int Q(x)\\,dx)$，有 $(\\nu u)'=\\nu R$，故 $$u=e^{\\int Q(x)\\,dx}\\left[C+\\int e^{-\\int Q(x)\\,dx}R(x)\\,dx\\right].$$",
+        "因此非零解为 $$y=\\frac{e^{-\\int Q(x)\\,dx}}{C+\\int e^{-\\int Q(x)\\,dx}R(x)\\,dx},$$ 并须另列解 $y=0$。"
+      ]
+    },
+    {
+      "label": "(6) 利用特解 $y_1$ 降阶",
+      "steps": [
+        "令 $y=y_1+z$。将其代入 (2.2)，再减去 $y_1'+P+Qy_1+Ry_1^2=0$，得到 $$z'+(Q+2Ry_1)z+Rz^2=0.$$",
+        "该方程不含与 $z$ 无关的项，正是 (5) 的类型。$z=0$ 对应原方程的已知特解 $y=y_1$。",
+        "对 $z\\ne0$ 令 $w=1/z$，则 $$w'-(Q+2Ry_1)w=R,$$ 这是一个一阶线性方程，可由积分因子求解。"
+      ]
+    },
+    {
+      "label": "(7) 求给定 Riccati 方程的一般解",
+      "steps": [
+        "方程为 $$y'+x^2+x+1+(2x+1)y+y^2=0.$$ 试取 $y_1=-x$，代入左端得到 $-1+x^2+x+1-(2x+1)x+x^2=0$，故 $y_1$ 确为特解。",
+        "令 $z=y-y_1=y+x$。由 (6)，这里 $Q+2Ry_1=(2x+1)-2x=1$，故 $$z'+z+z^2=0.$$",
+        "$z=0$ 给出解 $y=-x$。当 $z\\ne0$ 时令 $w=1/z$，得到 $w'-w=1$。其通解为 $w=Ce^x-1$。",
+        "所以非零分支为 $$z=\\frac{1}{Ce^x-1},\\qquad y=-x+\\frac{1}{Ce^x-1},$$ 定义在分母不为零的区间上。连同 $y=-x$ 即为全部解。"
+      ]
+    }
+  ],
+  "practice_questions": [
+    {
+      "id": "utokyo-2026-ist-common-q2-practice-01",
+      "school": "东京大学",
+      "year": "2026",
+      "text": "求微分方程 $y'+2y=e^{-x}$ 的一般解。",
+      "knowledge_points": ["一阶线性微分方程", "积分因子"],
+      "question_type": "求一阶线性方程通解",
+      "method": ["积分因子法"],
+      "solution_steps": ["确定积分因子", "把左端写成乘积导数", "积分并解出 $y$"],
+      "math_structure": {"type": "first_order_linear_ode", "template": "$y'+p(x)y=q(x)$", "variable_count": 1},
+      "difficulty": 1,
+      "estimated_minutes": 6,
+      "answer": [
+        {
+          "label": "求一般解",
+          "steps": [
+            "积分因子为 $\\mu=e^{\\int2\\,dx}=e^{2x}$。方程两边乘以 $e^{2x}$ 得 $(e^{2x}y)'=e^x$。",
+            "积分得到 $e^{2x}y=e^x+C$，所以 $$y=e^{-x}+Ce^{-2x}.$$"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "utokyo-2026-ist-common-q2-practice-02",
+      "school": "东京大学",
+      "year": "2026",
+      "text": "求微分方程 $y'-y+xy^2=0$ 的全部实值解。",
+      "knowledge_points": ["Bernoulli 型方程", "倒数代换", "一阶线性微分方程"],
+      "question_type": "通过倒数代换求通解",
+      "method": ["分离零解", "令 $u=1/y$", "积分因子法"],
+      "solution_steps": ["先记录零解", "将非零解线性化", "求线性方程并代回"],
+      "math_structure": {"type": "bernoulli_reciprocal_substitution", "template": "$y'+Q(x)y+R(x)y^2=0$", "variable_count": 1},
+      "difficulty": 2,
+      "estimated_minutes": 10,
+      "answer": [
+        {
+          "label": "求全部解",
+          "steps": [
+            "$y=0$ 是一个解。对非零解令 $u=1/y$，由 $y'=y-xy^2$ 得 $u'=-y'/y^2=-u+x$，故 $u'+u=x$。",
+            "乘积分因子 $e^x$，得 $(e^xu)'=xe^x$。积分后 $e^xu=e^x(x-1)+C$，即 $u=x-1+Ce^{-x}$。",
+            "因此全部解为 $y=0$，或 $$y=\\frac{1}{x-1+Ce^{-x}},$$ 后者定义在分母不为零的区间上。"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "utokyo-2026-ist-common-q2-practice-03",
+      "school": "东京大学",
+      "year": "2026",
+      "text": "已知 Riccati 方程 $y'+y^2-2xy+x^2-1=0$ 有特解 $y_1=x$。利用该特解求一般解。",
+      "knowledge_points": ["Riccati 方程", "已知特解降阶", "倒数代换"],
+      "question_type": "利用特解求 Riccati 方程通解",
+      "method": ["令 $z=y-y_1$", "令 $w=1/z$", "一阶线性方程"],
+      "solution_steps": ["验证特解", "消去常数项", "线性化并积分", "代回原变量"],
+      "math_structure": {"type": "riccati_known_solution_reduction", "template": "$y'+P+Qy+Ry^2=0$，$y=y_1+z$", "variable_count": 2},
+      "difficulty": 3,
+      "estimated_minutes": 14,
+      "answer": [
+        {
+          "label": "求一般解",
+          "steps": [
+            "代入 $y_1=x$ 得 $1+x^2-2x^2+x^2-1=0$，故它确为特解。令 $z=y-x$。",
+            "这里 $Q=-2x$、$R=1$，所以 $Q+2Ry_1=0$。降阶方程为 $z'+z^2=0$。",
+            "$z=0$ 给出 $y=x$。对 $z\\ne0$，有 $dz/z^2=-dx$，积分得 $-1/z=-x+C_0$，即 $z=1/(x+C)$。",
+            "因此全部解为 $y=x$，或 $$y=x+\\frac{1}{x+C}.$$"
+          ]
+        }
+      ]
+    }
+  ],
+  "source_pdf": "东京大学/情报理工学系研究科/全专攻/东京大学_情报理工学系研究科_全专攻_2026_数学过去问.pdf",
+  "source_type": "官方过去问"
+}

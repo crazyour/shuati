@@ -1,0 +1,222 @@
+{
+  "id": "nagoya-2011-d32b9d749c-q03",
+  "school": "名古屋大学",
+  "year": "2011",
+  "subject": "多元数理科学研究科_全专攻",
+  "text": "在复平面内，设半径 $\\rho>0$ 的上半圆周为\n$$C_\\rho=\\{\\rho e^{i\\theta}\\mid 0\\le\\theta\\le\\pi\\},$$\n$C_\\rho$ 取逆时针方向。设 $f(z)$ 是 $\\mathbb{C}$ 上的有理型函数：\n$$f(z)=\\frac{e^{3iz}-3e^{iz}}{z^3}.$$\n固定 $r>0$，回答以下问题：\n(1) 对 $R>r$，设闭曲线 $\\gamma_R$ 由以下曲线依次相接而成：$\\gamma_{1,R}=[r,R]$（从 $r$ 到 $R$），$\\gamma_{2,R}=C_R$（从 $R$ 到 $-R$），$\\gamma_{3,R}=[-R,-r]$（从 $-R$ 到 $-r$），$\\gamma_{4,R}$：与 $C_r$ 方向相反地从 $-r$ 到 $r$。求复积分 $\\displaystyle\\int_{\\gamma_R}f(z)\\,dz$。\n(2) 证明等式\n$$\\int_r^\\infty \\frac{\\sin^3 x}{x^3}\\,dx=\\frac{i}{8}\\int_{C_r}f(z)\\,dz,$$\n其中左边是广义积分。\n(3) 求广义积分 $\\displaystyle\\int_0^\\infty \\frac{\\sin^3 x}{x^3}\\,dx$ 的值。",
+  "knowledge_points": [
+    "留数定理与柯西积分定理",
+    "若尔当引理（Jordan's Lemma）",
+    "洛朗展开",
+    "半圆弧积分估计",
+    "三倍角公式",
+    "奇偶函数积分性质"
+  ],
+  "question_type": "复变函数积分计算",
+  "method": [
+    "柯西积分定理（无极点区域积分为零）",
+    "若尔当引理估计大圆弧积分",
+    "取虚部利用三倍角恒等式",
+    "小圆弧上洛朗展开逐项积分"
+  ],
+  "solution_steps": [
+    "说明 γ_R 所围区域内 f 无奇点，由柯西定理得整个闭曲线积分为0",
+    "令 R→∞，利用若尔当引理证明 C_R 上积分趋于0，结合实部为奇函数抵消，得到与 C_r 积分的虚部关系式",
+    "在原点附近对 e^{3iz}-3e^{iz} 做泰勒展开，得到 f(z) 的洛朗展开",
+    "逐项计算 C_r 上各阶项的积分，取 r→0 极限得到最终积分值"
+  ],
+  "math_structure": {
+    "type": "indented_contour_sinc_cubed_integral",
+    "template": "f(z)=(e^{3iz}-3e^{iz})/z^3 on indented semicircular contour; compute closed contour integral, relate to sin^3(x)/x^3 integral, evaluate via Laurent expansion",
+    "variable_count": 2
+  },
+  "difficulty": 4,
+  "answer": [
+    {
+      "label": "(1)",
+      "steps": [
+        "$f(z)=(e^{3iz}-3e^{iz})/z^3$ 在 $\\mathbb{C}\\setminus\\{0\\}$ 上全纯，唯一奇点是 $z=0$。",
+        "闭曲线 $\\gamma_R$（由 $\\gamma_{1,R},\\gamma_{2,R},\\gamma_{3,R},\\gamma_{4,R}$ 依次相接）围成的区域是上半圆环 $\\{r\\le|z|\\le R,\\ \\mathrm{Im}(z)\\ge0\\}$ 的边界，该区域完全不含 $z=0$（因为内边界半径为 $r>0$，把原点排除在外）。",
+        "由于 $f$ 在此闭区域及其内部处处全纯，由柯西积分定理（Cauchy's theorem），$\\displaystyle\\int_{\\gamma_R}f(z)\\,dz=0$。"
+      ]
+    },
+    {
+      "label": "(2)",
+      "steps": [
+        "由 (1)，$\\displaystyle\\int_{\\gamma_{1,R}}f\\,dz+\\int_{\\gamma_{2,R}}f\\,dz+\\int_{\\gamma_{3,R}}f\\,dz+\\int_{\\gamma_{4,R}}f\\,dz=0$。注意 $\\gamma_{4,R}$ 是 $C_r$ 反向遍历，故 $\\int_{\\gamma_{4,R}}f\\,dz=-\\int_{C_r}f\\,dz$，代入得 $\\int_r^Rf(x)dx+\\int_{C_R}f\\,dz+\\int_{-R}^{-r}f(x)dx=\\int_{C_r}f\\,dz$。",
+        "当 $R\\to\\infty$ 时，在 $C_R$ 上 $z=Re^{i\\theta}(0\\le\\theta\\le\\pi)$，$|e^{3iz}|=e^{-3R\\sin\\theta}\\le1,\\ |e^{iz}|=e^{-R\\sin\\theta}\\le1$，故 $|f(z)|\\le 4/R^3$，于是 $\\left|\\int_{C_R}f\\,dz\\right|\\le \\dfrac{4}{R^3}\\cdot\\pi R=\\dfrac{4\\pi}{R^2}\\to0$（此为若尔当引理的初等版本，此处直接用模估计即可，因为指数已经保证有界不需要更精细的Jordan估计）。",
+        "取虚部：由三倍角公式 $\\sin3x=3\\sin x-4\\sin^3x$，得 $\\mathrm{Im}f(x)=\\dfrac{\\sin3x-3\\sin x}{x^3}=\\dfrac{-4\\sin^3x}{x^3}$。又 $\\mathrm{Re}f(x)=\\dfrac{\\cos3x-3\\cos x}{x^3}$ 是奇函数（分子为偶函数，$x^3$为奇函数），故 $\\int_r^\\infty\\mathrm{Re}f(x)dx+\\int_{-\\infty}^{-r}\\mathrm{Re}f(x)dx=0$；从而 $\\int_r^\\infty f(x)dx+\\int_{-\\infty}^{-r}f(x)dx$ 是纯虚数，其虚部为 $\\int_r^\\infty(-4\\sin^3x/x^3)dx+\\int_{-\\infty}^{-r}(-4\\sin^3x/x^3)dx=-8\\int_r^\\infty\\sin^3x/x^3\\,dx$（利用被积函数 $\\sin^3x/x^3$ 是偶函数）。",
+        "综合以上，令 $R\\to\\infty$ 得 $\\int_{C_r}f\\,dz=-8i\\int_r^\\infty\\dfrac{\\sin^3x}{x^3}dx$，两边除以 $-8i$（即乘以 $i/8$ 的倒数关系 $1/(-8i)=i/8$），得 $\\int_r^\\infty\\dfrac{\\sin^3x}{x^3}dx=\\dfrac{i}{8}\\int_{C_r}f(z)\\,dz$，证毕。"
+      ]
+    },
+    {
+      "label": "(3)",
+      "steps": [
+        "在原点附近展开 $e^{3iz}=1+3iz-\\dfrac{9}{2}z^2-\\dfrac{9i}{2}z^3+O(z^4)$，$3e^{iz}=3+3iz-\\dfrac{3}{2}z^2-\\dfrac{i}{2}z^3+O(z^4)$，两式相减得 $e^{3iz}-3e^{iz}=-2-3z^2-4iz^3+O(z^4)$（$z$的一次项相消）。",
+        "于是 $f(z)=\\dfrac{-2-3z^2-4iz^3+O(z^4)}{z^3}=-\\dfrac{2}{z^3}-\\dfrac{3}{z}-4i+O(z)$。在 $C_r:z=re^{i\\theta},\\ 0\\le\\theta\\le\\pi,\\ dz=ire^{i\\theta}d\\theta$ 上逐项积分：$\\int_{C_r}z^{-3}dz=\\int_0^\\pi ir^{-2}e^{-2i\\theta}d\\theta=0$（因为 $e^{-2i\\pi}=1$，原函数首尾值相同）；$\\int_{C_r}z^{-1}dz=\\int_0^\\pi i\\,d\\theta=i\\pi$；$\\int_{C_r}(-4i)dz=-4i\\cdot(z(\\pi)-z(0))=-4i\\cdot(-r-r)=8ir\\to0(r\\to0)$；$O(z)$ 项的积分为 $O(r^2)\\to0$。",
+        "代入得 $\\int_{C_r}f(z)dz=-2\\cdot0-3\\cdot(i\\pi)+8ir+O(r^2)=-3i\\pi+O(r)$，当 $r\\to0$ 时 $\\int_{C_r}f(z)dz\\to-3i\\pi$。",
+        "由 (2)，令 $r\\to0$：$\\int_0^\\infty\\dfrac{\\sin^3x}{x^3}dx=\\lim_{r\\to0}\\dfrac{i}{8}\\int_{C_r}f(z)dz=\\dfrac{i}{8}\\cdot(-3i\\pi)=\\dfrac{-3i^2\\pi}{8}=\\dfrac{3\\pi}{8}$。验证：此结果与经典公式 $\\int_0^\\infty(\\sin x/x)^3dx=3\\pi/8$ 相符，故最终答案为 $\\boxed{\\dfrac{3\\pi}{8}}$。"
+      ]
+    }
+  ],
+  "practice_questions": [
+    {
+      "text": "利用留数定理或半圆积分方法，证明经典的狄利克雷积分公式 $\\displaystyle\\int_0^\\infty\\frac{\\sin x}{x}\\,dx=\\frac{\\pi}{2}$。",
+      "knowledge_points": [
+        "若尔当引理",
+        "半圆积分",
+        "留数定理"
+      ],
+      "question_type": "经典积分计算",
+      "method": [
+        "构造 e^{iz}/z 的半圆积分回路"
+      ],
+      "solution_steps": [
+        "构造带小圆弧的半圆环回路",
+        "证明大圆弧积分趋于0",
+        "计算小圆弧积分极限",
+        "取虚部得结论"
+      ],
+      "math_structure": {
+        "type": "dirichlet_integral_contour",
+        "template": "compute integral of sin(x)/x over (0,infty) via contour integration of e^{iz}/z",
+        "variable_count": 0
+      },
+      "difficulty": 2,
+      "estimated_minutes": 15,
+      "answer": [
+        {
+          "label": "结果",
+          "steps": [
+            "考虑 $g(z)=e^{iz}/z$，取与题目类似的带小圆弧 $C_r$（半径 $r\\to0$）和大圆弧 $C_R$（半径 $R\\to\\infty$）的半圆环回路，回路内无奇点，故闭合积分为0。",
+            "大圆弧上由若尔当引理 $\\int_{C_R}g\\,dz\\to0$（$R\\to\\infty$）；小圆弧上 $g(z)=1/z+O(1)$ 的洛朗展开，$\\int_{C_r}(1/z)dz=i\\pi$（半圆，从 $r$ 到 $-r$ 方向，注意符号），高阶项趋于0。",
+            "结合实轴上积分 $\\int_r^R e^{ix}/x\\,dx+\\int_{-R}^{-r}e^{ix}/x\\,dx$ 取虚部得到 $2\\int_r^R\\sin x/x\\,dx$，令 $r\\to0,R\\to\\infty$ 并利用闭合积分为0，解得 $\\int_0^\\infty\\sin x/x\\,dx=\\pi/2$。"
+          ]
+        }
+      ],
+      "id": "nagoya-2011-d32b9d749c-q03-practice-01",
+      "school": "名古屋大学",
+      "year": "2011"
+    },
+    {
+      "text": "求函数 $g(z)=\\dfrac{e^{2iz}-2e^{iz}+1}{z^2}$ 在 $z=0$ 附近的洛朗展开的前三项（到 $z^0$ 项）。",
+      "knowledge_points": [
+        "泰勒展开",
+        "洛朗级数"
+      ],
+      "question_type": "级数展开计算",
+      "method": [
+        "指数函数泰勒展开",
+        "多项式相减合并"
+      ],
+      "solution_steps": [
+        "分别展开 e^{2iz} 和 2e^{iz}",
+        "相减合并同类项",
+        "除以 z^2 得到洛朗展开"
+      ],
+      "math_structure": {
+        "type": "laurent_expansion_at_origin",
+        "template": "expand g(z)=(e^{2iz}-2e^{iz}+1)/z^2 near z=0 up to O(z^0)",
+        "variable_count": 0
+      },
+      "difficulty": 2,
+      "estimated_minutes": 10,
+      "answer": [
+        {
+          "label": "展开结果",
+          "steps": [
+            "$e^{2iz}=1+2iz-2z^2-\\dfrac{4i}{3}z^3+O(z^4)$；$2e^{iz}=2+2iz-z^2-\\dfrac{i}{3}z^3+O(z^4)$。",
+            "相减：$e^{2iz}-2e^{iz}+1=(1-2+1)+(2iz-2iz)+(-2+1)z^2+\\left(-\\dfrac{4i}{3}+\\dfrac{i}{3}\\right)z^3+O(z^4)=-z^2-iz^3+O(z^4)$。",
+            "除以 $z^2$：$g(z)=-1-iz+O(z^2)$，故到 $z^0$ 项的洛朗展开为 $g(z)=-1+O(z)$（此处无负幂项，$z^0$ 系数为 $-1$）。"
+          ]
+        }
+      ],
+      "id": "nagoya-2011-d32b9d749c-q03-practice-02",
+      "school": "名古屋大学",
+      "year": "2011"
+    },
+    {
+      "text": "利用恒等式 $\\sin^3\\theta=\\dfrac{3\\sin\\theta-\\sin3\\theta}{4}$，把积分 $\\displaystyle\\int_0^\\infty\\frac{\\sin^3x}{x^3}dx$ 改写为关于 $\\sin x/x^3$ 与 $\\sin3x/x^3$ 的组合，并说明为何这一步是构造 $f(z)=(e^{3iz}-3e^{iz})/z^3$ 的动机。",
+      "knowledge_points": [
+        "三倍角公式",
+        "被积函数恒等变形",
+        "复变函数构造思路"
+      ],
+      "question_type": "恒等变形与构造说明",
+      "method": [
+        "三倍角恒等式代入"
+      ],
+      "solution_steps": [
+        "代入三倍角公式",
+        "整理系数",
+        "解释与e^{3iz}-3e^{iz}的联系"
+      ],
+      "math_structure": {
+        "type": "triple_angle_identity_rewrite",
+        "template": "rewrite integral of sin^3(x)/x^3 using sin(3x) and sin(x) via triple angle formula",
+        "variable_count": 0
+      },
+      "difficulty": 1,
+      "estimated_minutes": 6,
+      "answer": [
+        {
+          "label": "变形",
+          "steps": [
+            "代入恒等式：$\\dfrac{\\sin^3x}{x^3}=\\dfrac{1}{4}\\left(\\dfrac{3\\sin x}{x^3}-\\dfrac{\\sin3x}{x^3}\\right)$，即 $\\int_0^\\infty\\dfrac{\\sin^3x}{x^3}dx=\\dfrac{1}{4}\\int_0^\\infty\\left(\\dfrac{3\\sin x-\\sin3x}{x^3}\\right)dx$。",
+            "注意 $3\\sin x-\\sin3x$ 恰好是 $\\mathrm{Im}(3e^{ix}-e^{3ix})=-\\mathrm{Im}(e^{3ix}-3e^{ix})$，因此该积分与函数 $e^{3iz}-3e^{iz}$ 的虚部密切相关。",
+            "这说明构造 $f(z)=(e^{3iz}-3e^{iz})/z^3$ 的动机正是要让其在实轴上的虚部恰好是 $\\sin^3x/x^3$（乘以常数 $-4$），从而可以用留数/轮廓积分方法处理原本难以直接计算的 $\\sin^3x/x^3$ 积分。"
+          ]
+        }
+      ],
+      "id": "nagoya-2011-d32b9d749c-q03-practice-03",
+      "school": "名古屋大学",
+      "year": "2011"
+    },
+    {
+      "text": "类似原题的方法，用带小圆弧的半圆环轮廓积分技巧，求广义积分 $\\displaystyle\\int_0^\\infty\\frac{\\sin^2x}{x^2}dx$ 的值。（提示：考虑 $h(z)=\\dfrac{1-e^{2iz}}{z^2}$。）",
+      "knowledge_points": [
+        "若尔当引理",
+        "洛朗展开",
+        "半圆环轮廓积分",
+        "sinc函数平方积分"
+      ],
+      "question_type": "复变积分计算",
+      "method": [
+        "构造辅助函数",
+        "小圆弧洛朗展开",
+        "大圆弧估计"
+      ],
+      "solution_steps": [
+        "说明构造h(z)的动机",
+        "在原点附近展开h(z)的洛朗级数",
+        "沿小圆弧C_r积分并取r→0极限",
+        "结合大圆弧积分趋于0得到最终结果"
+      ],
+      "math_structure": {
+        "type": "sinc_squared_integral_contour",
+        "template": "compute integral of sin^2(x)/x^2 over (0,infty) using h(z)=(1-e^{2iz})/z^2 on indented semicircular contour",
+        "variable_count": 0
+      },
+      "difficulty": 3,
+      "estimated_minutes": 15,
+      "answer": [
+        {
+          "label": "结果",
+          "steps": [
+            "利用恒等式 $\\sin^2x=\\dfrac{1-\\cos2x}{2}$，注意 $1-\\cos2x=\\mathrm{Re}(1-e^{2ix})$，故考虑 $h(z)=(1-e^{2iz})/z^2$，其在实轴上的实部与 $\\sin^2x/x^2$ 相关：$\\mathrm{Re}\\,h(x)=(1-\\cos2x)/x^2=2\\sin^2x/x^2$。",
+            "在 $z=0$ 附近展开 $e^{2iz}=1+2iz-2z^2+O(z^3)$，故 $1-e^{2iz}=-2iz+2z^2+O(z^3)$，$h(z)=-\\dfrac{2i}{z}+2+O(z)$。沿小圆弧 $C_r$（半径 $r$，从 $r$ 到 $-r$ 上半圆）积分：$\\int_{C_r}(-2i/z)dz=-2i\\cdot i\\pi=2\\pi$（利用 $\\int_{C_r}dz/z=i\\pi$），常数项和高阶项积分随 $r\\to0$ 趋于0或本身为0（常数项积分为 $2\\cdot(\\text{弦长的复数表示})\\to0$ 需要仔细处理，但主导项为 $2\\pi$）。",
+            "大圆弧上 $|e^{2iz}|\\le1$（上半平面），故 $|h(z)|\\le2/R^2$，弧长 $\\pi R$，积分模长 $\\le2\\pi/R\\to0$。",
+            "类似 (2) 的推导，取实部并结合闭合回路积分为0，最终解得 $\\int_0^\\infty\\dfrac{\\sin^2x}{x^2}dx=\\dfrac{\\pi}{2}$（此为经典已知结果，与本方法计算一致）。"
+          ]
+        }
+      ],
+      "id": "nagoya-2011-d32b9d749c-q03-practice-04",
+      "school": "名古屋大学",
+      "year": "2011"
+    }
+  ],
+  "source_question": "問3",
+  "source_pdf": "名古屋大学/多元数理科学研究科/全专攻/名古屋大学_多元数理科学研究科_2011_第1次_数学过去问_下午.pdf",
+  "source_type": "官方过去问",
+  "subject_category": "复变函数"
+}

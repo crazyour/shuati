@@ -1,0 +1,245 @@
+{
+  "id": "tohoku-2019-48163c7ac0-q01",
+  "school": "东北大学",
+  "year": "2019",
+  "subject": "情报科学研究科_数学教室",
+  "text": "设 $n$ 为非负整数。\n(1) 求函数 $f(x)=x^n e^{-x}$ 在 $x\\ge 0$ 上的最大值。\n(2) 计算广义积分 $I_n=\\displaystyle\\int_0^{\\infty} x^n e^{-x}\\,dx$。\n(3) 对一切 $a>0,\\ b>0$，均有\n$$a^n\\int_a^{\\infty} e^{-bx}\\,dx \\le C\\int_0^{\\infty} x^n e^{-bx}\\,dx$$\n成立的常数 $C>0$ 中，最小的记为 $C_n$，求 $C_n$。",
+  "knowledge_points": [
+    "函数极值与导数符号分析",
+    "广义积分",
+    "伽玛函数与阶乘",
+    "不等式的最优常数",
+    "变量替换"
+  ],
+  "question_type": "最值、反常积分与最优不等式常数综合题",
+  "method": [
+    "对 $f(x)$ 求导确定驻点并判断增减性",
+    "利用 $\\Gamma$ 函数公式或分部积分求 $I_n$",
+    "换元 $u=ab$ 把不等式化为一元不等式，取上确界"
+  ],
+  "solution_steps": [
+    "对 $f(x)=x^n e^{-x}$ 求导 $f'(x)=x^{n-1}e^{-x}(n-x)$，分析符号得极大点",
+    "利用 $\\int_0^\\infty x^n e^{-x}dx=n!$（伽玛函数）",
+    "将不等式两边积分算出显式表达式，令 $u=ab$，化为 $u^n e^{-u}\\le C\\,n!$ 对一切 $u>0$ 成立",
+    "结合(1)的结果取上确界确定最小 $C_n$"
+  ],
+  "math_structure": {
+    "type": "extremal_and_improper_integral",
+    "template": "$f(x)=x^n e^{-x}$ 在 $[0,\\infty)$ 上求最大值；计算 $\\int_0^\\infty x^n e^{-x}dx$；求使 $a^n\\int_a^\\infty e^{-bx}dx\\le C\\int_0^\\infty x^n e^{-bx}dx$ 对一切 $a,b>0$ 成立的最小常数 $C_n$",
+    "variable_count": 1
+  },
+  "difficulty": 3,
+  "answer": [
+    {
+      "label": "(1)",
+      "steps": [
+        "当 $n=0$ 时 $f(x)=e^{-x}$ 在 $[0,\\infty)$ 上单调递减，最大值在 $x=0$ 取得，为 $f(0)=1$。",
+        "当 $n\\ge 1$ 时，$f'(x)=nx^{n-1}e^{-x}-x^n e^{-x}=x^{n-1}e^{-x}(n-x)$。因为 $x^{n-1}e^{-x}>0$（$x>0$），所以当 $0<x<n$ 时 $f'(x)>0$，当 $x>n$ 时 $f'(x)<0$，故 $x=n$ 为最大点。",
+        "代入得最大值 $f(n)=n^n e^{-n}$。约定 $0^0=1$ 时该式在 $n=0$ 也给出 $1$，与前一情形一致。",
+        "结论：$\\displaystyle\\max_{x\\ge 0} f(x)=n^n e^{-n}$（$n=0$ 时理解为 $1$）。"
+      ]
+    },
+    {
+      "label": "(2)",
+      "steps": [
+        "$I_n=\\int_0^\\infty x^n e^{-x}dx$ 恰为伽玛函数 $\\Gamma(n+1)$。",
+        "用分部积分递推：$I_n=\\left[-x^n e^{-x}\\right]_0^\\infty+n\\int_0^\\infty x^{n-1}e^{-x}dx=nI_{n-1}$，且 $I_0=\\int_0^\\infty e^{-x}dx=1$。",
+        "递推得 $I_n=n(n-1)\\cdots 1\\cdot I_0=n!$。",
+        "结论：$I_n=n!$。"
+      ]
+    },
+    {
+      "label": "(3)",
+      "steps": [
+        "计算左边：$\\int_a^\\infty e^{-bx}dx=\\dfrac{e^{-ab}}{b}$，故左边 $=a^n\\dfrac{e^{-ab}}{b}$。",
+        "计算右边：令 $x=u/b$，$\\int_0^\\infty x^n e^{-bx}dx=\\dfrac{1}{b^{n+1}}\\int_0^\\infty u^n e^{-u}du=\\dfrac{n!}{b^{n+1}}$，故右边 $=C\\dfrac{n!}{b^{n+1}}$。",
+        "不等式化为 $a^n e^{-ab}b^n\\le Cn!$，即 $(ab)^n e^{-ab}\\le Cn!$。令 $u=ab$（$u$ 可取遍一切正数，因 $a,b>0$ 独立），需 $u^ne^{-u}\\le Cn!$ 对一切 $u>0$ 成立。",
+        "由 (1)，$\\sup_{u>0}u^n e^{-u}=n^n e^{-n}$，故最小的 $C$ 满足 $Cn!=n^ne^{-n}$，即 $C_n=\\dfrac{n^n}{n!\\,e^n}$。",
+        "验证 $n=0$：$C_0=\\dfrac{1}{1\\cdot1}=1$，与直接验证 $\\sup u^0e^{-u}=1$ 一致。"
+      ]
+    }
+  ],
+  "practice_questions": [
+    {
+      "text": "求函数 $g(x)=xe^{-x}$（$x\\ge0$）的最大值。",
+      "knowledge_points": [
+        "导数求极值"
+      ],
+      "question_type": "基础极值题",
+      "method": [
+        "求导判号"
+      ],
+      "solution_steps": [
+        "求 $g'(x)=e^{-x}(1-x)$，得驻点 $x=1$",
+        "判断增减性确定为最大点",
+        "代入求值"
+      ],
+      "math_structure": {
+        "type": "extremal_single_variable",
+        "template": "$g(x)=xe^{-x}$ 在 $[0,\\infty)$ 上求最大值",
+        "variable_count": 0
+      },
+      "difficulty": 1,
+      "estimated_minutes": 4,
+      "answer": [
+        {
+          "label": "最大值",
+          "steps": [
+            "$g'(x)=e^{-x}-xe^{-x}=e^{-x}(1-x)$，在 $x<1$ 为正，$x>1$ 为负，故 $x=1$ 为最大点",
+            "代入得 $g(1)=e^{-1}$",
+            "最大值为 $\\dfrac{1}{e}$"
+          ]
+        }
+      ],
+      "id": "tohoku-2019-48163c7ac0-q01-practice-01",
+      "school": "东北大学",
+      "year": "2019"
+    },
+    {
+      "text": "计算 $\\displaystyle\\int_0^\\infty x^2e^{-x}dx$。",
+      "knowledge_points": [
+        "伽玛函数",
+        "分部积分"
+      ],
+      "question_type": "反常积分计算",
+      "method": [
+        "分部积分递推"
+      ],
+      "solution_steps": [
+        "用分部积分把 $x^2$ 降幂",
+        "递推到 $\\int e^{-x}dx$",
+        "求出数值"
+      ],
+      "math_structure": {
+        "type": "gamma_integral",
+        "template": "$\\int_0^\\infty x^2 e^{-x}dx$",
+        "variable_count": 0
+      },
+      "difficulty": 1,
+      "estimated_minutes": 5,
+      "answer": [
+        {
+          "label": "结果",
+          "steps": [
+            "$\\int_0^\\infty x^2e^{-x}dx=2!=2$（用 $I_n=nI_{n-1}$，$I_0=1$ 递推：$I_1=1,I_2=2$）",
+            "验证：$\\Gamma(3)=2!=2$，一致"
+          ]
+        }
+      ],
+      "id": "tohoku-2019-48163c7ac0-q01-practice-02",
+      "school": "东北大学",
+      "year": "2019"
+    },
+    {
+      "text": "求函数 $h(x)=x^2e^{-2x}$（$x\\ge0$）的最大值，并与 $n=2,b=2$ 的一般公式比较。",
+      "knowledge_points": [
+        "含参数极值",
+        "变量替换"
+      ],
+      "question_type": "带参数指数衰减函数最值",
+      "method": [
+        "求导找驻点",
+        "换元法验证"
+      ],
+      "solution_steps": [
+        "对 $h(x)$ 求导找驻点",
+        "确定最大值表达式",
+        "与一般公式 $\\sup (bx)^n e^{-bx}/b^n$ 对照"
+      ],
+      "math_structure": {
+        "type": "extremal_with_parameter",
+        "template": "$h(x)=x^ne^{-bx}$ 求最大值，$n=2,b=2$",
+        "variable_count": 2
+      },
+      "difficulty": 2,
+      "estimated_minutes": 6,
+      "answer": [
+        {
+          "label": "最大值",
+          "steps": [
+            "$h'(x)=2xe^{-2x}-2x^2e^{-2x}=2xe^{-2x}(1-x)$，驻点 $x=1$（$x>0$）",
+            "判断 $0<x<1$ 时 $h'>0$，$x>1$ 时 $h'<0$，故 $x=1$ 为最大点",
+            "$h(1)=1\\cdot e^{-2}=e^{-2}$，为最大值"
+          ]
+        }
+      ],
+      "id": "tohoku-2019-48163c7ac0-q01-practice-03",
+      "school": "东北大学",
+      "year": "2019"
+    },
+    {
+      "text": "验证等式 $\\displaystyle\\int_0^\\infty x^n e^{-bx}dx=\\dfrac{n!}{b^{n+1}}$（$b>0$）对 $n=3,b=2$ 成立。",
+      "knowledge_points": [
+        "积分换元",
+        "伽玛函数"
+      ],
+      "question_type": "换元积分验证",
+      "method": [
+        "换元 $u=bx$"
+      ],
+      "solution_steps": [
+        "代入 $u=bx$",
+        "化为标准伽玛积分",
+        "代入数值验证"
+      ],
+      "math_structure": {
+        "type": "scaled_gamma_integral",
+        "template": "$\\int_0^\\infty x^ne^{-bx}dx=n!/b^{n+1}$，$n=3,b=2$",
+        "variable_count": 2
+      },
+      "difficulty": 2,
+      "estimated_minutes": 6,
+      "answer": [
+        {
+          "label": "验证",
+          "steps": [
+            "令 $u=2x$，$dx=du/2$，得 $\\int_0^\\infty (u/2)^3e^{-u}\\frac{du}{2}=\\frac{1}{16}\\int_0^\\infty u^3e^{-u}du=\\frac{3!}{16}=\\frac{6}{16}=\\frac{3}{8}$",
+            "按公式 $n!/b^{n+1}=6/2^4=6/16=3/8$，两者一致"
+          ]
+        }
+      ],
+      "id": "tohoku-2019-48163c7ac0-q01-practice-04",
+      "school": "东北大学",
+      "year": "2019"
+    },
+    {
+      "text": "求使不等式 $a^2\\int_a^\\infty e^{-bx}dx\\le C\\int_0^\\infty x^2e^{-bx}dx$ 对一切 $a,b>0$ 成立的最小常数 $C_2$。",
+      "knowledge_points": [
+        "最优不等式常数",
+        "换元与上确界"
+      ],
+      "question_type": "最优常数问题（原题 $n=2$ 特例）",
+      "method": [
+        "化简不等式为一元函数上确界问题"
+      ],
+      "solution_steps": [
+        "计算两边积分表达式",
+        "换元 $u=ab$ 化简",
+        "利用 $n=2$ 时 $\\sup u^2e^{-u}=4e^{-2}$ 求出 $C_2$"
+      ],
+      "math_structure": {
+        "type": "optimal_constant_case",
+        "template": "求 $n=2$ 时的 $C_n$",
+        "variable_count": 0
+      },
+      "difficulty": 3,
+      "estimated_minutes": 8,
+      "answer": [
+        {
+          "label": "$C_2$",
+          "steps": [
+            "按一般公式 $C_n=n^n/(n!e^n)$，代入 $n=2$：$C_2=4/(2\\cdot e^2)=2/e^2$",
+            "验证：不等式化为 $u^2e^{-u}\\le 2C$ 对一切 $u>0$，最大值 $u^2e^{-u}$ 在 $u=2$ 处为 $4e^{-2}$，故 $C=4e^{-2}/2=2e^{-2}$，一致"
+          ]
+        }
+      ],
+      "id": "tohoku-2019-48163c7ac0-q01-practice-05",
+      "school": "东北大学",
+      "year": "2019"
+    }
+  ],
+  "source_question": "1",
+  "source_pdf": "东北大学/情报科学研究科/数学教室/东北大学_情报科学研究科_数学_2019_数学过去问.pdf",
+  "source_type": "官方过去问",
+  "subject_category": "微积分"
+}

@@ -1,0 +1,203 @@
+{
+  "id": "osaka-2012-30579dc571-q01",
+  "school": "大阪大学",
+  "year": "2012",
+  "subject": "情报科学研究科_情报基础数学",
+  "text": "求二重积分 $\\displaystyle\\iint_D xy\\log(x^2+y^2)\\,dx\\,dy$ 的值，其中 $D=\\{(x,y)\\mid x^2+y^2\\le 1,\\ x,y\\ge0\\}$。",
+  "knowledge_points": [
+    "极坐标变换",
+    "二重积分",
+    "变量分离",
+    "分部积分",
+    "瑕积分（对数在原点的可积性）"
+  ],
+  "question_type": "二重积分计算（极坐标法）",
+  "method": [
+    "极坐标代换 x=r\\cosθ, y=r\\sinθ",
+    "将被积函数与Jacobian化为r、θ可分离的乘积",
+    "分别计算θ积分与r积分",
+    "对r积分用分部积分"
+  ],
+  "solution_steps": [
+    "引入极坐标，将区域D表示为 r∈[0,1], θ∈[0,π/2]",
+    "把xy log(x^2+y^2)及Jacobian r用r,θ表示，化为r^3\\log r\\sin2θ",
+    "把二重积分写成θ积分与r积分的乘积",
+    "分别计算两个一元积分并相乘得到结果"
+  ],
+  "math_structure": {
+    "type": "polar_double_integral_log",
+    "template": "\\iint_{x^2+y^2\\le1,\\,x,y\\ge0} xy\\log(x^2+y^2)\\,dx\\,dy",
+    "variable_count": 2
+  },
+  "difficulty": 3,
+  "answer": [
+    {
+      "label": "問1(1)",
+      "steps": [
+        "极坐标代换：$x=r\\cosθ,\\ y=r\\sinθ,\\ dx\\,dy=r\\,dr\\,dθ$，区域D对应 $r\\in[0,1],\\ θ\\in[0,\\pi/2]$。",
+        "被积函数化简：$xy=r^2\\sinθ\\cosθ=\\tfrac12 r^2\\sin2θ$，$\\log(x^2+y^2)=\\log r^2=2\\log r$，乘以Jacobian $r$ 后得到 $\\tfrac12 r^2\\sin2θ\\cdot2\\log r\\cdot r=r^3\\log r\\,\\sin2θ$。",
+        "分离变量：$I=\\left(\\displaystyle\\int_0^{\\pi/2}\\sin2θ\\,dθ\\right)\\left(\\int_0^1 r^3\\log r\\,dr\\right)$。",
+        "计算θ积分：$\\displaystyle\\int_0^{\\pi/2}\\sin2θ\\,dθ=\\left[-\\tfrac12\\cos2θ\\right]_0^{\\pi/2}=\\tfrac12-(-\\tfrac12)=1$。",
+        "计算r积分（分部积分）：$\\displaystyle\\int_0^1 r^3\\log r\\,dr=\\left[\\tfrac{r^4}{4}\\log r\\right]_0^1-\\int_0^1\\tfrac{r^3}{4}\\,dr=0-\\tfrac1{16}=-\\tfrac1{16}$（端点处 $r^4\\log r\\to0$）。",
+        "结论：$I=1\\times\\left(-\\tfrac1{16}\\right)=-\\dfrac{1}{16}$。"
+      ]
+    }
+  ],
+  "practice_questions": [
+    {
+      "text": "计算定积分 $\\displaystyle\\int_0^1 r^2\\log r\\,dr$。",
+      "knowledge_points": [
+        "分部积分",
+        "反常积分极限"
+      ],
+      "question_type": "一元积分计算",
+      "method": [
+        "分部积分",
+        "极限 $r^n\\log r\\to0\\ (r\\to0^+)$"
+      ],
+      "solution_steps": [
+        "设 $u=\\log r, dv=r^2dr$",
+        "分部积分并处理端点极限",
+        "得到结果"
+      ],
+      "math_structure": {
+        "type": "power_log_integral",
+        "template": "\\int_0^1 r^n\\log r\\,dr",
+        "variable_count": 1
+      },
+      "difficulty": 1,
+      "estimated_minutes": 5,
+      "answer": [
+        {
+          "label": "结果",
+          "steps": [
+            "取 $u=\\log r,\\ dv=r^2dr$，则 $du=\\tfrac1r dr,\\ v=\\tfrac{r^3}{3}$。",
+            "$\\int_0^1 r^2\\log r\\,dr=\\left[\\tfrac{r^3}{3}\\log r\\right]_0^1-\\int_0^1\\tfrac{r^2}{3}dr=0-\\tfrac19$（因为 $r^3\\log r\\to0$ 当 $r\\to0^+$）。",
+            "最终结果：$-\\dfrac19$。"
+          ]
+        }
+      ],
+      "id": "osaka-2012-30579dc571-q01-practice-01",
+      "school": "大阪大学",
+      "year": "2012"
+    },
+    {
+      "text": "计算三角积分 $\\displaystyle\\int_0^{\\pi/3}\\sin2θ\\,dθ$。",
+      "knowledge_points": [
+        "三角函数积分",
+        "换元/凑微分"
+      ],
+      "question_type": "一元三角积分",
+      "method": [
+        "直接凑微分积分"
+      ],
+      "solution_steps": [
+        "求原函数 $-\\tfrac12\\cos2θ$",
+        "代入上下限相减"
+      ],
+      "math_structure": {
+        "type": "trig_integral",
+        "template": "\\int_0^{a}\\sin2θ\\,dθ",
+        "variable_count": 1
+      },
+      "difficulty": 1,
+      "estimated_minutes": 4,
+      "answer": [
+        {
+          "label": "结果",
+          "steps": [
+            "原函数：$\\int\\sin2θ\\,dθ=-\\tfrac12\\cos2θ+C$。",
+            "代入：$\\left[-\\tfrac12\\cos2θ\\right]_0^{\\pi/3}=-\\tfrac12\\cos\\tfrac{2\\pi}3-\\left(-\\tfrac12\\cos0\\right)=-\\tfrac12\\left(-\\tfrac12\\right)+\\tfrac12=\\tfrac14+\\tfrac12$。",
+            "最终结果：$\\dfrac34$。"
+          ]
+        }
+      ],
+      "id": "osaka-2012-30579dc571-q01-practice-02",
+      "school": "大阪大学",
+      "year": "2012"
+    },
+    {
+      "text": "在同一区域 $D=\\{(x,y)\\mid x^2+y^2\\le1,\\ x,y\\ge0\\}$ 上，计算 $\\displaystyle\\iint_D xy\\,dx\\,dy$（不含对数因子）。",
+      "knowledge_points": [
+        "极坐标变换",
+        "二重积分"
+      ],
+      "question_type": "二重积分计算",
+      "method": [
+        "极坐标代换",
+        "变量分离"
+      ],
+      "solution_steps": [
+        "极坐标代换",
+        "分离θ、r积分",
+        "分别计算并相乘"
+      ],
+      "math_structure": {
+        "type": "polar_double_integral",
+        "template": "\\iint_{D} xy\\,dx\\,dy",
+        "variable_count": 2
+      },
+      "difficulty": 2,
+      "estimated_minutes": 8,
+      "answer": [
+        {
+          "label": "结果",
+          "steps": [
+            "极坐标：$xy\\cdot r=r^3\\sinθ\\cosθ$，$D$ 对应 $r\\in[0,1],θ\\in[0,\\pi/2]$。",
+            "$\\displaystyle\\iint_D xy\\,dxdy=\\left(\\int_0^{\\pi/2}\\sinθ\\cosθ\\,dθ\\right)\\left(\\int_0^1 r^3dr\\right)$。",
+            "$\\int_0^{\\pi/2}\\sinθ\\cosθ\\,dθ=\\left[\\tfrac12\\sin^2θ\\right]_0^{\\pi/2}=\\tfrac12$；$\\int_0^1 r^3dr=\\tfrac14$。",
+            "结果：$\\tfrac12\\times\\tfrac14=\\dfrac18$。"
+          ]
+        }
+      ],
+      "id": "osaka-2012-30579dc571-q01-practice-03",
+      "school": "大阪大学",
+      "year": "2012"
+    },
+    {
+      "text": "在同一区域 $D$ 上，计算 $\\displaystyle\\iint_D x^2y\\log(x^2+y^2)\\,dx\\,dy$。",
+      "knowledge_points": [
+        "极坐标变换",
+        "分部积分",
+        "三角函数幂积分"
+      ],
+      "question_type": "二重积分计算（含对数）",
+      "method": [
+        "极坐标代换",
+        "变量分离",
+        "分部积分"
+      ],
+      "solution_steps": [
+        "极坐标化简被积函数",
+        "分离θ与r积分",
+        "分别计算θ积分（含 $\\cos^2θ\\sinθ$）与r积分（分部积分）",
+        "相乘得到结果"
+      ],
+      "math_structure": {
+        "type": "polar_double_integral_log",
+        "template": "\\iint_{D} x^2y\\log(x^2+y^2)\\,dx\\,dy",
+        "variable_count": 2
+      },
+      "difficulty": 3,
+      "estimated_minutes": 12,
+      "answer": [
+        {
+          "label": "结果",
+          "steps": [
+            "极坐标：$x^2y=r^3\\cos^2θ\\sinθ$，$\\log(x^2+y^2)=2\\log r$，乘以Jacobian $r$ 得 $2r^4\\log r\\,\\cos^2θ\\sinθ$。",
+            "$I=2\\left(\\int_0^{\\pi/2}\\cos^2θ\\sinθ\\,dθ\\right)\\left(\\int_0^1 r^4\\log r\\,dr\\right)$。",
+            "$\\int_0^{\\pi/2}\\cos^2θ\\sinθ\\,dθ=\\left[-\\tfrac13\\cos^3θ\\right]_0^{\\pi/2}=\\tfrac13$；分部积分得 $\\int_0^1 r^4\\log r\\,dr=-\\tfrac1{25}$。",
+            "结果：$2\\times\\tfrac13\\times\\left(-\\tfrac1{25}\\right)=-\\dfrac{2}{75}$。"
+          ]
+        }
+      ],
+      "id": "osaka-2012-30579dc571-q01-practice-04",
+      "school": "大阪大学",
+      "year": "2012"
+    }
+  ],
+  "source_question": "問1(1)",
+  "source_pdf": "大阪大学/情报科学研究科/情报基础数学/大阪大学_情报科学研究科_情报基础数学_2012_数学过去问.pdf",
+  "source_type": "官方过去问",
+  "subject_category": "微积分"
+}

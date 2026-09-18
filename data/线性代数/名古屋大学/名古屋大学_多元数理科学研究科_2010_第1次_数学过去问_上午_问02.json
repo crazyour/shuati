@@ -1,0 +1,215 @@
+{
+  "id": "nagoya-2010-db71f0cd2e-q02",
+  "school": "名古屋大学",
+  "year": "2010",
+  "subject": "多元数理科学研究科_全专攻",
+  "text": "设实系数三次以下多项式全体构成的 $\\mathbb{R}$ 上线性空间为\n$$V=\\{p+qx+rx^2+sx^3 \\mid p,q,r,s\\in\\mathbb{R}\\}.$$\n对 $f(x)\\in V$，定义\n$$T(f(x))=\\frac{1}{x-1}\\int_1^x (t-1)f'(t)\\,dt.$$\n(1) 证明 $T$ 是从 $V$ 到 $V$ 的线性映射（特别说明其在 $x=1$ 处的取值有意义）。\n(2) 求 $T$ 关于基 $1,x,x^2,x^3$ 的表示矩阵。\n(3) 设 $g(x)=p+qx+rx^2+sx^3\\in V$，求存在 $f(x)\\in V$ 使 $T(f(x))=g(x)$ 的充要条件（用 $p,q,r,s$ 表示）。\n(4) 设 $k\\in\\mathbb{R}$，$g(x)=1-x+kx^2-3x^3$。判断是否存在满足 $T(f(x))=g(x)$ 的 $f(x)\\in V$；若存在，求出所有这样的 $f(x)$。",
+  "knowledge_points": [
+    "线性映射的良定义性",
+    "多项式空间的基与表示矩阵",
+    "线性方程组的相容性条件",
+    "积分与微分的复合运算",
+    "多项式除法（因式定理应用）"
+  ],
+  "question_type": "多项式空间上线性算子的表示矩阵与像空间问题",
+  "method": [
+    "利用 $F(1)=0$ 说明 $(x-1)\\mid F(x)$ 从而 $T(f)$ 为多项式",
+    "逐一代入基向量计算像",
+    "把表示矩阵方程组化简得相容性条件",
+    "代入具体数值求解线性方程组"
+  ],
+  "solution_steps": [
+    "证明 $\\int_1^x(t-1)f'(t)dt$ 是次数不超过4的多项式且在 $x=1$ 处为零，从而可被 $(x-1)$ 整除，商为多项式，故 $T(f)\\in V$；线性性由积分/求导的线性性得出",
+    "分别对 $f=1,x,x^2,x^3$ 计算 $T(f)$，用多项式除法求出商",
+    "把结果排成矩阵 $M$",
+    "解线性方程组 $M\\cdot(a,b,c,d)^T=(p,q,r,s)^T$ 得到相容性条件",
+    "代入具体 $g$ 的系数求解 $k$ 及对应 $f$"
+  ],
+  "math_structure": {
+    "type": "linear_operator_representation_on_polynomials",
+    "template": "operator $T(f)(x)=\\frac{1}{x-1}\\int_1^x(t-1)f'(t)dt$ on degree-$\\le3$ polynomials; find matrix, image condition, and solve for specific target with parameter k",
+    "variable_count": 1
+  },
+  "difficulty": 4,
+  "answer": [
+    {
+      "label": "(1)",
+      "steps": [
+        "设 $F(x)=\\int_1^x(t-1)f'(t)dt$。因 $f'(t)$ 是次数 $\\le2$ 的多项式，故 $(t-1)f'(t)$ 是次数 $\\le3$ 的多项式，其原函数 $F(x)$ 是次数 $\\le4$ 的多项式。",
+        "显然 $F(1)=\\int_1^1(\\cdot)dt=0$，故多项式 $F(x)$ 在 $x=1$ 处有根，从而可写成 $F(x)=(x-1)Q(x)$，其中 $Q(x)$ 是次数 $\\le3$ 的多项式；于是 $T(f)(x)=Q(x)$ 对 $x\\neq1$ 成立，在 $x=1$ 处按连续延拓定义为 $Q(1)$，因此 $T(f)\\in V$。",
+        "线性性：对 $f,g\\in V,\\alpha,\\beta\\in\\mathbb{R}$，$(\\alpha f+\\beta g)'=\\alpha f'+\\beta g'$，积分线性性给出 $T(\\alpha f+\\beta g)=\\alpha T(f)+\\beta T(g)$，故 $T$ 为线性映射 $V\\to V$。"
+      ]
+    },
+    {
+      "label": "(2)",
+      "steps": [
+        "$T(1)$：$f'=0$，故 $T(1)=0$。",
+        "$T(x)$：$f'=1$，$\\int_1^x(t-1)dt=\\frac{(x-1)^2}{2}$，除以 $(x-1)$ 得 $T(x)=\\frac{x-1}{2}=-\\frac12+\\frac12x$。",
+        "$T(x^2)$：$f'=2t$，$\\int_1^x(t-1)2t\\,dt=\\frac{2}{3}x^3-x^2+\\frac13$，用综合除法除以 $(x-1)$（系数 $2/3,-1,0,1/3$）得商 $\\frac23x^2-\\frac13x-\\frac13$，即 $T(x^2)=-\\frac13-\\frac13x+\\frac23x^2$。",
+        "$T(x^3)$：$f'=3t^2$，$\\int_1^x(t-1)3t^2dt=\\frac34x^4-x^3+\\frac14$，综合除法（系数 $3/4,-1,0,0,1/4$）得商 $\\frac34x^3-\\frac14x^2-\\frac14x-\\frac14$，即 $T(x^3)=-\\frac14-\\frac14x-\\frac14x^2+\\frac34x^3$。",
+        "整理为矩阵（列为各基向量的像的系数向量）：$$M=\\begin{pmatrix}0&-1/2&-1/3&-1/4\\\\0&1/2&-1/3&-1/4\\\\0&0&2/3&-1/4\\\\0&0&0&3/4\\end{pmatrix}$$"
+      ]
+    },
+    {
+      "label": "(3)",
+      "steps": [
+        "设 $f=a+bx+cx^2+dx^3$，由矩阵 $M$ 得方程组：$-\\frac12b-\\frac13c-\\frac14d=p$，$\\frac12b-\\frac13c-\\frac14d=q$，$\\frac23c-\\frac14d=r$，$\\frac34d=s$。",
+        "由第四式 $d=\\frac{4s}{3}$；代入第三式解得 $c=\\frac32r+\\frac{s}{2}$；代入第二式解得 $b=2q+r+s$。",
+        "代入第一式：$-\\frac12(2q+r+s)-\\frac13(\\frac32r+\\frac s2)-\\frac14\\cdot\\frac{4s}{3}=p$，化简得 $-q-r-s=p$，即 $p+q+r+s=0$。",
+        "由于 $a$ 对应的列全为零，$a$ 可任意取值不影响方程，故存在性的充要条件仅为 $p+q+r+s=0$（此时 $b,c,d$ 唯一确定，$a$ 自由）。"
+      ]
+    },
+    {
+      "label": "(4)",
+      "steps": [
+        "此处 $p=1,q=-1,r=k,s=-3$，代入条件 $p+q+r+s=0$：$1-1+k-3=0\\Rightarrow k=3$。",
+        "故仅当 $k=3$ 时存在解；此时用(3)中公式：$d=\\frac{4(-3)}{3}=-4$，$c=\\frac32(3)+\\frac{-3}{2}=4.5-1.5=3$，$b=2(-1)+3+(-3)=-2$，$a$ 任意。",
+        "所以 $f(x)=a-2x+3x^2-4x^3\\ (a\\in\\mathbb{R}$ 任意$)$。",
+        "验证：代入(2)中矩阵计算 $T(f)=a\\cdot0+(-2)T(x)+3T(x^2)+(-4)T(x^3)=(1-x)+(-1-x+2x^2)+(1+x+x^2-3x^3)=1-x+3x^2-3x^3$，与 $k=3$ 时 $g(x)=1-x+3x^2-3x^3$ 完全一致，验证通过。"
+      ]
+    }
+  ],
+  "practice_questions": [
+    {
+      "text": "设 $S(f)(x)=\\int_0^x f'(t)\\,dt$ 定义在三次以下多项式空间 $V$ 上，证明 $S$ 是 $V$ 到 $V$ 的线性映射，并求其关于基 $1,x,x^2,x^3$ 的表示矩阵。",
+      "knowledge_points": [
+        "线性映射验证",
+        "多项式空间表示矩阵"
+      ],
+      "method": [
+        "直接计算基向量的像"
+      ],
+      "solution_steps": [
+        "验证线性性",
+        "计算 $S(1),S(x),S(x^2),S(x^3)$",
+        "写出矩阵"
+      ],
+      "math_structure": {
+        "type": "simple_linear_operator_matrix",
+        "template": "$S(f)(x)=\\int_0^x f'(t)dt$ on degree$\\le3$ polynomials; find matrix",
+        "variable_count": 0
+      },
+      "difficulty": 2,
+      "estimated_minutes": 10,
+      "answer": [
+        {
+          "label": "结果",
+          "steps": [
+            "$S(f)(x)=f(x)-f(0)$，故 $S(1)=0, S(x)=x, S(x^2)=x^2, S(x^3)=x^3$。",
+            "线性性由积分线性性显然成立，且结果均为原次数多项式，故 $S:V\\to V$。",
+            "表示矩阵为 $\\mathrm{diag}(0,1,1,1)$（第一列全零，其余为单位向量）。"
+          ]
+        }
+      ],
+      "id": "nagoya-2010-db71f0cd2e-q02-practice-01",
+      "school": "名古屋大学",
+      "year": "2010"
+    },
+    {
+      "text": "对 $f(x)\\in V$（三次以下多项式），定义 $U(f)(x)=\\frac{1}{x}\\int_0^x f(t)\\,dt$。说明为何在 $x=0$ 处该式有意义，并求 $U(1), U(x)$。",
+      "knowledge_points": [
+        "积分定义的良定义性",
+        "多项式除法"
+      ],
+      "method": [
+        "利用原函数在0处为零，因式分解"
+      ],
+      "solution_steps": [
+        "证明原函数被 $x$ 整除",
+        "计算具体像"
+      ],
+      "math_structure": {
+        "type": "well_definedness_check",
+        "template": "operator $U(f)(x)=\\frac1x\\int_0^x f(t)dt$; verify well-defined and compute simple images",
+        "variable_count": 0
+      },
+      "difficulty": 2,
+      "estimated_minutes": 8,
+      "answer": [
+        {
+          "label": "结果",
+          "steps": [
+            "记 $G(x)=\\int_0^x f(t)dt$，则 $G(0)=0$，故 $G(x)$ 可被 $x$ 整除，商为多项式，从而 $U(f)$ 在 $x=0$ 处可连续延拓，为多项式。",
+            "$U(1)$：$G(x)=x$，商为1，即 $U(1)=1$。",
+            "$U(x)$：$G(x)=x^2/2$，商为 $x/2$，即 $U(x)=x/2$。"
+          ]
+        }
+      ],
+      "id": "nagoya-2010-db71f0cd2e-q02-practice-02",
+      "school": "名古屋大学",
+      "year": "2010"
+    },
+    {
+      "text": "已知线性映射 $T$ 在基 $1,x,x^2$（二次以下多项式空间）下的表示矩阵为 $N=\\begin{pmatrix}0&-1&1\\\\0&1&-1\\\\0&0&1\\end{pmatrix}$。求使 $g=p+qx+rx^2$ 属于 $T$ 的像空间的充要条件。",
+      "knowledge_points": [
+        "线性方程组相容性",
+        "像空间的刻画"
+      ],
+      "method": [
+        "解线性方程组，逐步消元"
+      ],
+      "solution_steps": [
+        "设 $f=a+bx+cx^2$，写出方程组",
+        "逐步求解 $b,c$",
+        "代回首方程得相容性条件"
+      ],
+      "math_structure": {
+        "type": "image_condition_linear_map",
+        "template": "given 3x3 matrix $N$ for operator on degree$\\le2$ polynomials; find condition on $p,q,r$ for solvability",
+        "variable_count": 0
+      },
+      "difficulty": 3,
+      "estimated_minutes": 10,
+      "answer": [
+        {
+          "label": "结果",
+          "steps": [
+            "方程组：$-b+c=p$，$b-c=q$，$c=r$。",
+            "由第三式 $c=r$；代入第二式 $b=q+c=q+r$；代入第一式验证：$-b+c=-(q+r)+r=-q=p$，即需 $p=-q$。",
+            "故充要条件为 $p+q=0$（此时 $c=r$ 任意由 $r$ 给定，$b=q+r$ 确定，$a$ 自由，因为 $N$ 第一列全零）。"
+          ]
+        }
+      ],
+      "id": "nagoya-2010-db71f0cd2e-q02-practice-03",
+      "school": "名古屋大学",
+      "year": "2010"
+    },
+    {
+      "text": "沿用原题中的算子 $T$，设 $g(x)=2-4x+rx^2+sx^3$ 满足 $T(f)=g$ 有解，且要求 $s=1$，求 $r$ 的值。",
+      "knowledge_points": [
+        "相容性条件的具体应用"
+      ],
+      "method": [
+        "直接代入原题(3)所得条件 $p+q+r+s=0$"
+      ],
+      "solution_steps": [
+        "代入 $p=2,q=-4,s=1$",
+        "解出 $r$"
+      ],
+      "math_structure": {
+        "type": "solve_for_parameter_given_condition",
+        "template": "given $p+q+r+s=0$ with fixed $p,q,s$; solve for $r$",
+        "variable_count": 1
+      },
+      "difficulty": 1,
+      "estimated_minutes": 4,
+      "answer": [
+        {
+          "label": "结果",
+          "steps": [
+            "条件：$p+q+r+s=0\\Rightarrow 2-4+r+1=0$",
+            "化简：$r-1=0$",
+            "故 $r=1$。"
+          ]
+        }
+      ],
+      "id": "nagoya-2010-db71f0cd2e-q02-practice-04",
+      "school": "名古屋大学",
+      "year": "2010"
+    }
+  ],
+  "source_question": "問2",
+  "source_pdf": "名古屋大学/多元数理科学研究科/全专攻/名古屋大学_多元数理科学研究科_2010_第1次_数学过去问_上午.pdf",
+  "source_type": "官方过去问",
+  "subject_category": "线性代数"
+}

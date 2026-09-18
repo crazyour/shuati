@@ -1,0 +1,203 @@
+{
+  "id": "nagoya-2001-fc465515e5-q04",
+  "school": "名古屋大学",
+  "year": "2001",
+  "subject": "多元数理科学研究科_全专攻",
+  "text": "设 $a$ 为满足 $0<a<1$ 的常数。\n(1) 将 $\\theta$ 的函数 $\\dfrac{\\cos^2\\theta}{1-2a\\cos\\theta+a^2}$ 表示为 $z$ 的函数，其中 $z=e^{i\\theta}$。\n(2) 求积分 $\\displaystyle\\int_0^{2\\pi}\\dfrac{\\cos^2\\theta}{1-2a\\cos\\theta+a^2}\\,d\\theta$ 的值。",
+  "knowledge_points": [
+    "单位圆参数化 $z=e^{i\\theta}$",
+    "三角函数的复数表示",
+    "留数定理",
+    "三角积分的复变换法",
+    "极点的判定与留数计算"
+  ],
+  "question_type": "利用留数定理计算含参数三角积分",
+  "method": [
+    "设 $z=e^{i\\theta}$ 将实积分转化为围道积分",
+    "将 $\\cos^2\\theta$ 及 $1-2a\\cos\\theta+a^2$ 用 $z$ 表示",
+    "确定单位圆内的极点并计算留数",
+    "应用留数定理求出积分值"
+  ],
+  "solution_steps": [
+    "用 $z+1/z=2\\cos\\theta$ 表示分母，因式分解为 $(1-az)(1-a/z)$；分子用 $((z+1/z)/2)^2$ 展开，化简为z的有理式",
+    "把 $d\\theta=dz/(iz)$ 代入，整理被积函数",
+    "识别单位圆 $|z|=1$ 内的极点 $z=0$（二重极点）和 $z=a$（单极点），逐一计算留数",
+    "由留数定理 $I=2\\pi i\\cdot(\\text{留数之和})/i$ 化简得最终结果"
+  ],
+  "math_structure": {
+    "type": "trigonometric_integral_via_residues",
+    "template": "参数化被积函数 cos^2θ/(1-2acosθ+a^2)（0<a<1），求 $\\int_0^{2\\pi}$ 上的积分",
+    "variable_count": 1
+  },
+  "difficulty": 4,
+  "answer": [
+    {
+      "label": "(1)",
+      "steps": [
+        "记 $z=e^{i\\theta}$，则 $\\cos\\theta=\\dfrac{z+z^{-1}}{2}$，且 $1-2a\\cos\\theta+a^2=1-a(z+z^{-1})+a^2=(1-az)(1-az^{-1})$",
+        "验证展开：$(1-az)(1-az^{-1})=1-az^{-1}-az+a^2=1-a(z+z^{-1})+a^2$，与左边一致",
+        "$\\cos^2\\theta=\\left(\\dfrac{z+z^{-1}}{2}\\right)^2=\\dfrac{z^2+2+z^{-2}}{4}$，故原式 $=\\dfrac{z^2+2+z^{-2}}{4(1-az)(1-az^{-1})}$；两边乘 $z^2/z^2$ 消去负指数，得 $\\dfrac{z^4+2z^2+1}{4z(1-az)(z-a)}=\\dfrac{(z^2+1)^2}{4z(1-az)(z-a)}$"
+      ]
+    },
+    {
+      "label": "(2)",
+      "steps": [
+        "设 $I=\\displaystyle\\oint_{|z|=1}\\dfrac{(z^2+1)^2}{4z(1-az)(z-a)}\\cdot\\dfrac{dz}{iz}=\\dfrac{1}{4i}\\oint_{|z|=1}\\dfrac{(z^2+1)^2}{z^2(1-az)(z-a)}\\,dz$，记被积函数为 $g(z)$",
+        "单位圆内的极点为 $z=0$（二重）和 $z=a$（单极点，因 $0<a<1$）；$z=1/a$ 在圆外不计",
+        "计算 $\\mathrm{Res}_{z=a}g$：去掉因子 $(z-a)$ 后代入 $z=a$，得 $\\dfrac{(a^2+1)^2}{a^2(1-a^2)}$",
+        "计算 $\\mathrm{Res}_{z=0}g$：设 $h(z)=\\dfrac{(z^2+1)^2}{(1-az)(z-a)}$，则 $g=h(z)/z^2$，留数等于 $h'(0)$；直接计算 $h(0)=\\dfrac{1}{-a}=-\\dfrac1a$，$h'(0)=\\dfrac{N'(0)D(0)-N(0)D'(0)}{D(0)^2}=\\dfrac{0\\cdot(-a)-1\\cdot(1+a^2)}{a^2}=-\\dfrac{1+a^2}{a^2}$（其中 $N(z)=(z^2+1)^2,N'(0)=0$；$D(z)=(1-az)(z-a),D(0)=-a,D'(0)=1+a^2$）",
+        "留数之和 $=-\\dfrac{1+a^2}{a^2}+\\dfrac{(a^2+1)^2}{a^2(1-a^2)}=\\dfrac{1+a^2}{a^2}\\left(-1+\\dfrac{1+a^2}{1-a^2}\\right)=\\dfrac{1+a^2}{a^2}\\cdot\\dfrac{2a^2}{1-a^2}=\\dfrac{2(1+a^2)}{1-a^2}$",
+        "由留数定理，$I=\\dfrac{1}{4i}\\cdot2\\pi i\\cdot\\dfrac{2(1+a^2)}{1-a^2}=\\dfrac{\\pi(1+a^2)}{1-a^2}$；当 $a=0$ 时验证 $I=\\int_0^{2\\pi}\\cos^2\\theta\\,d\\theta=\\pi$，代入公式得 $\\pi(1+0)/(1-0)=\\pi$，一致；故最终结果为 $\\displaystyle\\int_0^{2\\pi}\\dfrac{\\cos^2\\theta}{1-2a\\cos\\theta+a^2}\\,d\\theta=\\dfrac{\\pi(1+a^2)}{1-a^2}$"
+      ]
+    }
+  ],
+  "practice_questions": [
+    {
+      "text": "证明恒等式 $1-2a\\cos\\theta+a^2=(1-ae^{i\\theta})(1-ae^{-i\\theta})$，其中 $a$ 为实数。",
+      "knowledge_points": [
+        "复数表示三角函数",
+        "代数恒等式验证"
+      ],
+      "question_type": "基础恒等式证明",
+      "method": [
+        "展开右边并化简"
+      ],
+      "solution_steps": [
+        "展开乘积",
+        "利用 $e^{i\\theta}+e^{-i\\theta}=2\\cos\\theta$ 化简"
+      ],
+      "math_structure": {
+        "type": "trig_identity_complex_verification",
+        "template": "验证1-2acosθ+a^2的复数因式分解",
+        "variable_count": 1
+      },
+      "difficulty": 1,
+      "estimated_minutes": 4,
+      "answer": [
+        {
+          "label": "证明",
+          "steps": [
+            "展开 $(1-ae^{i\\theta})(1-ae^{-i\\theta})=1-ae^{-i\\theta}-ae^{i\\theta}+a^2$",
+            "$=1-a(e^{i\\theta}+e^{-i\\theta})+a^2=1-2a\\cos\\theta+a^2$，恒等式得证"
+          ]
+        }
+      ],
+      "id": "nagoya-2001-fc465515e5-q04-practice-01",
+      "school": "名古屋大学",
+      "year": "2001"
+    },
+    {
+      "text": "用留数定理计算 $\\displaystyle\\int_0^{2\\pi}\\dfrac{d\\theta}{1-2a\\cos\\theta+a^2}$（$0<a<1$）的值。",
+      "knowledge_points": [
+        "留数定理",
+        "单位圆参数化",
+        "单极点留数"
+      ],
+      "question_type": "基础留数积分计算",
+      "method": [
+        "设 $z=e^{i\\theta}$ 转化为围道积分",
+        "求圆内极点留数"
+      ],
+      "solution_steps": [
+        "转化被积函数为z的有理式",
+        "求圆内极点 $z=a$ 的留数并应用留数定理"
+      ],
+      "math_structure": {
+        "type": "basic_trig_integral_residue",
+        "template": "求 $\\int_0^{2\\pi}\\frac{d\\theta}{1-2a\\cos\\theta+a^2}$ 的值",
+        "variable_count": 1
+      },
+      "difficulty": 2,
+      "estimated_minutes": 8,
+      "answer": [
+        {
+          "label": "结果",
+          "steps": [
+            "被积函数用 $z$ 表示为 $\\dfrac{1}{(1-az)(1-a/z)}$，乘以 $dz/(iz)$ 得 $\\dfrac{1}{i}\\cdot\\dfrac{1}{z(1-az)(1-a/z)}dz=\\dfrac1i\\cdot\\dfrac{1}{(1-az)(z-a)}dz$",
+            "圆内唯一极点为 $z=a$（$z=1/a$在圆外），留数为 $\\dfrac{1}{1-a^2}$",
+            "$I=\\dfrac1i\\cdot2\\pi i\\cdot\\dfrac{1}{1-a^2}=\\dfrac{2\\pi}{1-a^2}$"
+          ]
+        }
+      ],
+      "id": "nagoya-2001-fc465515e5-q04-practice-02",
+      "school": "名古屋大学",
+      "year": "2001"
+    },
+    {
+      "text": "计算留数 $\\mathrm{Res}_{z=0}\\dfrac{(z+1)^2}{z^2(z-2)}$。",
+      "knowledge_points": [
+        "高阶极点留数计算"
+      ],
+      "question_type": "基础留数计算（二重极点）",
+      "method": [
+        "用导数法求二重极点留数"
+      ],
+      "solution_steps": [
+        "写出 $h(z)=(z+1)^2/(z-2)$，留数为 $h'(0)$"
+      ],
+      "math_structure": {
+        "type": "double_pole_residue_basic",
+        "template": "计算给定有理函数在原点处二重极点的留数",
+        "variable_count": 1
+      },
+      "difficulty": 2,
+      "estimated_minutes": 5,
+      "answer": [
+        {
+          "label": "结果",
+          "steps": [
+            "设 $h(z)=(z+1)^2/(z-2)$，则原函数 $=h(z)/z^2$，留数 $=h'(0)$",
+            "$h'(z)=\\dfrac{2(z+1)(z-2)-(z+1)^2}{(z-2)^2}$，代入 $z=0$：$h'(0)=\\dfrac{2\\cdot1\\cdot(-2)-1}{4}=\\dfrac{-4-1}{4}=-\\dfrac54$",
+            "故留数为 $-\\dfrac54$"
+          ]
+        }
+      ],
+      "id": "nagoya-2001-fc465515e5-q04-practice-03",
+      "school": "名古屋大学",
+      "year": "2001"
+    },
+    {
+      "text": "利用留数定理计算积分 $\\displaystyle\\int_0^{2\\pi}\\dfrac{\\sin^2\\theta}{1-2a\\cos\\theta+a^2}\\,d\\theta$（$0<a<1$）。",
+      "knowledge_points": [
+        "留数定理",
+        "三角积分变换",
+        "多极点留数求和"
+      ],
+      "question_type": "类似结构积分计算（与原题对照）",
+      "method": [
+        "z参数化",
+        "分子用sin表示为z的表达式",
+        "求圆内极点留数并求和"
+      ],
+      "solution_steps": [
+        "用 $\\sin\\theta=(z-z^{-1})/(2i)$ 表示分子",
+        "整理为z的有理函数，确定圆内极点",
+        "求各极点留数并应用留数定理求积分"
+      ],
+      "math_structure": {
+        "type": "trig_integral_sin_squared_residue",
+        "template": "求 $\\int_0^{2\\pi}\\frac{\\sin^2\\theta}{1-2a\\cos\\theta+a^2}d\\theta$ 的值",
+        "variable_count": 1
+      },
+      "difficulty": 4,
+      "estimated_minutes": 12,
+      "answer": [
+        {
+          "label": "结果",
+          "steps": [
+            "$\\sin^2\\theta=1-\\cos^2\\theta$，故 $I=\\int_0^{2\\pi}\\dfrac{1}{1-2a\\cos\\theta+a^2}d\\theta-\\int_0^{2\\pi}\\dfrac{\\cos^2\\theta}{1-2a\\cos\\theta+a^2}d\\theta$",
+            "由前面练习知第一项 $=\\dfrac{2\\pi}{1-a^2}$；由原题结果第二项 $=\\dfrac{\\pi(1+a^2)}{1-a^2}$",
+            "故 $I=\\dfrac{2\\pi}{1-a^2}-\\dfrac{\\pi(1+a^2)}{1-a^2}=\\dfrac{2\\pi-\\pi(1+a^2)}{1-a^2}=\\dfrac{\\pi(1-a^2)}{1-a^2}=\\pi$；验证：当 $a=0$，$\\int_0^{2\\pi}\\sin^2\\theta\\,d\\theta=\\pi$，与结果一致"
+          ]
+        }
+      ],
+      "id": "nagoya-2001-fc465515e5-q04-practice-04",
+      "school": "名古屋大学",
+      "year": "2001"
+    }
+  ],
+  "source_question": "問4",
+  "source_pdf": "名古屋大学/多元数理科学研究科/全专攻/名古屋大学_多元数理科学研究科_2001_第2次_数学过去问_上午.pdf",
+  "source_type": "官方过去问",
+  "subject_category": "复变函数"
+}

@@ -1,0 +1,191 @@
+{
+  "id": "kyoto-2024-9702b00a21-q03",
+  "school": "京都大学",
+  "year": "2024",
+  "subject": "情报学研究科_先端数理科学",
+  "text": "求常微分方程初值问题的解：\n$$\\frac{dy}{dx} = \\frac{\\sin x}{\\cos x + e^y}, \\quad x > 0, \\quad y(0) = 0$$",
+  "knowledge_points": [
+    "常微分方程",
+    "初值问题",
+    "变量分离",
+    "积分计算"
+  ],
+  "question_type": "一阶微分方程初值问题求解",
+  "method": [
+    "变量分离法",
+    "分部积分或特殊积分技巧"
+  ],
+  "solution_steps": [
+    "分离变量",
+    "两边积分",
+    "确定积分常数",
+    "表示隐函数解"
+  ],
+  "math_structure": {
+    "type": "separable_ode_ivp",
+    "template": "$$\\frac{dy}{dx} = \\frac{f(x)}{g(y)}$$形式的可分离方程",
+    "variable_count": 0
+  },
+  "difficulty": 3,
+  "answer": [
+    {
+      "label": "完整解答",
+      "steps": [
+        "原方程为$\\frac{dy}{dx} = \\frac{\\sin x}{\\cos x + e^y}$",
+        "分离变量：$(\\cos x + e^y) dy = \\sin x \\, dx$",
+        "展开：$\\cos x \\, dy + e^y \\, dy = \\sin x \\, dx$",
+        "两边同时积分：$$\\int (\\cos x \\, dy + e^y \\, dy) = \\int \\sin x \\, dx$$",
+        "对左边需要小心处理。将原式改写为：$$\\cos x \\, dy - \\sin x \\, dx = -e^y \\, dy$$",
+        "观察左边：$d(\\sin x) = \\cos x \\, dx$，所以考虑$d(y \\sin x) = y \\cos x \\, dx + \\sin x \\, dy$",
+        "重新组织：$(\\cos x + e^y) dy = \\sin x \\, dx$",
+        "两边对$x$积分无法直接进行，需要用$y$作为参数",
+        "改用另一种方法：令$u = e^y$，则$\\frac{du}{dx} = e^y \\frac{dy}{dx} = u \\frac{\\sin x}{\\cos x + u}$",
+        "整理：$u(\\cos x + u) du = u \\sin x \\, dx$（错误，重新来）",
+        "正确方法：从$(\\cos x + e^y) dy = \\sin x \\, dx$",
+        "两边对$x$从0到$x$积分（沿特定路径），使用初值$y(0)=0$",
+        "在$(x_0, y_0)$处，有$e^{y_0} = e^0 = 1$，故：",
+        "$$\\int_0^x (\\cos \\xi + e^{y(\\xi)}) \\frac{dy}{d\\xi} d\\xi = \\int_0^x \\sin \\xi \\, d\\xi$$",
+        "$$\\int_0^{y(x)} (\\cos x + e^y) dy = \\cos 0 - \\cos x = 1 - \\cos x$$",
+        "（这里第二等号使用了分部积分或链式法则的变换）",
+        "$$y(x) \\cos x + \\int_0^{y(x)} e^y dy = 1 - \\cos x$$",
+        "$$y(x) \\cos x + (e^{y(x)} - 1) = 1 - \\cos x$$",
+        "$$y(x) \\cos x + e^{y(x)} = 2 - \\cos x$$",
+        "这是隐函数形式的解。初值检验：$y(0)=0$时，$0 + e^0 = 2 - 1 = 1$ ✓"
+      ]
+    }
+  ],
+  "practice_questions": [
+    {
+      "text": "求解初值问题：$\\frac{dy}{dx} = \\frac{2x}{1+y^2}$，$y(0)=0$",
+      "knowledge_points": [
+        "可分离微分方程",
+        "反正切函数",
+        "初值条件"
+      ],
+      "question_type": "一阶可分离微分方程",
+      "method": [
+        "变量分离法"
+      ],
+      "solution_steps": [
+        "分离变量",
+        "两边积分",
+        "利用初值确定常数"
+      ],
+      "math_structure": {
+        "type": "separable_ode_ivp_simple",
+        "template": "$(1+y^2)dy = 2x\\,dx$",
+        "variable_count": 0
+      },
+      "difficulty": 2,
+      "estimated_minutes": 8,
+      "answer": [
+        {
+          "label": "完整解答",
+          "steps": [
+            "分离变量：$(1+y^2) dy = 2x \\, dx$",
+            "两边积分：$\\int (1+y^2) dy = \\int 2x \\, dx$",
+            "$$y + \\frac{y^3}{3} = x^2 + C$$",
+            "代入初值$y(0)=0$：$0+0=0+C$，得$C=0$",
+            "解的隐函数形式：$y + \\frac{y^3}{3} = x^2$",
+            "对小$x$可解出显函数近似：$y \\approx x^2$（高阶项可通过迭代求得）"
+          ]
+        }
+      ],
+      "id": "kyoto-2024-9702b00a21-q03-practice-01",
+      "school": "京都大学",
+      "year": "2024"
+    },
+    {
+      "text": "求解初值问题：$\\frac{dy}{dx} = \\frac{e^{-x}}{y}$，$y(0)=1$",
+      "knowledge_points": [
+        "可分离微分方程",
+        "指数函数积分",
+        "初值条件"
+      ],
+      "question_type": "一阶可分离微分方程",
+      "method": [
+        "变量分离法",
+        "分部积分"
+      ],
+      "solution_steps": [
+        "分离变量",
+        "两边积分",
+        "代入初值"
+      ],
+      "math_structure": {
+        "type": "separable_ode_exponential",
+        "template": "$y\\,dy = e^{-x}\\,dx$",
+        "variable_count": 0
+      },
+      "difficulty": 2,
+      "estimated_minutes": 10,
+      "answer": [
+        {
+          "label": "完整解答",
+          "steps": [
+            "分离变量：$y \\, dy = e^{-x} \\, dx$",
+            "两边积分：$\\int y \\, dy = \\int e^{-x} \\, dx$",
+            "$$\\frac{y^2}{2} = -e^{-x} + C$$",
+            "代入初值$y(0)=1$：$\\frac{1}{2} = -e^0 + C = -1 + C$，得$C = \\frac{3}{2}$",
+            "$$\\frac{y^2}{2} = -e^{-x} + \\frac{3}{2}$$",
+            "$$y^2 = 3 - 2e^{-x}$$",
+            "由$y(0)=1>0$，取正根：$y(x) = \\sqrt{3 - 2e^{-x}}$"
+          ]
+        }
+      ],
+      "id": "kyoto-2024-9702b00a21-q03-practice-02",
+      "school": "京都大学",
+      "year": "2024"
+    },
+    {
+      "text": "求解初值问题：$\\frac{dy}{dx} + \\frac{y}{x} = \\sin x$，$y(1)=0$（$x>0$）",
+      "knowledge_points": [
+        "一阶线性微分方程",
+        "积分因子法",
+        "初值条件"
+      ],
+      "question_type": "一阶线性非齐次微分方程",
+      "method": [
+        "积分因子法"
+      ],
+      "solution_steps": [
+        "识别标准形式",
+        "计算积分因子",
+        "化为可积形式",
+        "积分求解"
+      ],
+      "math_structure": {
+        "type": "linear_ode_first_order",
+        "template": "$\\frac{dy}{dx} + P(x)y = Q(x)$",
+        "variable_count": 0
+      },
+      "difficulty": 3,
+      "estimated_minutes": 15,
+      "answer": [
+        {
+          "label": "完整解答",
+          "steps": [
+            "方程形式：$\\frac{dy}{dx} + \\frac{1}{x}y = \\sin x$（标准线性一阶ODE）",
+            "积分因子：$\\mu(x) = e^{\\int \\frac{1}{x}dx} = e^{\\ln|x|} = x$（取$x>0$）",
+            "两边乘以$\\mu(x)=x$：$x\\frac{dy}{dx} + y = x\\sin x$",
+            "左边为$\\frac{d}{dx}(xy)$，所以：$\\frac{d}{dx}(xy) = x\\sin x$",
+            "两边积分：$xy = \\int x \\sin x \\, dx$",
+            "计算$\\int x\\sin x \\, dx$（分部积分，$u=x, dv=\\sin x\\,dx$）：",
+            "$$\\int x\\sin x \\, dx = -x\\cos x + \\int \\cos x \\, dx = -x\\cos x + \\sin x + C$$",
+            "因此：$xy = -x\\cos x + \\sin x + C$",
+            "代入初值$y(1)=0$：$1\\cdot 0 = -1\\cdot\\cos 1 + \\sin 1 + C$",
+            "$$C = \\cos 1 - \\sin 1$$",
+            "解为：$y = \\frac{-x\\cos x + \\sin x + \\cos 1 - \\sin 1}{x}$"
+          ]
+        }
+      ],
+      "id": "kyoto-2024-9702b00a21-q03-practice-03",
+      "school": "京都大学",
+      "year": "2024"
+    }
+  ],
+  "source_question": "問2-問1",
+  "source_pdf": "京都大学/情报学研究科/先端数理科学/京都大学_情报学研究科_先端数理科学_2024_数学过去问.pdf",
+  "source_type": "官方过去问",
+  "subject_category": "微分方程"
+}

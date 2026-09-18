@@ -1,0 +1,200 @@
+{
+  "id": "osaka-2025-8c31d1727d-q04",
+  "school": "大阪大学",
+  "year": "2025",
+  "subject": "情报科学研究科_情报数理学",
+  "text": "设随机变量 $X$ 与 $Y$ 相互独立且均服从标准正态分布，令 $R=\\sqrt{X^2+Y^2}$。求以下各项：\n(1) 累积分布函数 $F(r)=\\mathrm{Pr}[R<r]$；\n(2) 期望 $E[R]$；\n(3) 方差 $V[R]$。",
+  "knowledge_points": [
+    "二维正态分布的极坐标变换",
+    "瑞利分布（Rayleigh分布）",
+    "累积分布函数的推导",
+    "伽玛函数与矩的计算",
+    "方差公式 $V[R]=E[R^2]-(E[R])^2$"
+  ],
+  "question_type": "由正态分布导出瑞利分布及其矩",
+  "question_type_placeholder": "",
+  "method": [
+    "把联合密度化为极坐标形式，通过对角度积分求出 $R$ 的分布函数",
+    "对分布函数求导得到概率密度函数",
+    "用变量替换 $u=r^2/2$ 结合伽玛函数计算矩"
+  ],
+  "solution_steps": [
+    "写出 $X,Y$ 联合密度并转换为极坐标",
+    "对角度积分求出 $F(r)$",
+    "求导得密度函数并计算 $E[R]$、$E[R^2]$，进而求方差"
+  ],
+  "math_structure": {
+    "type": "rayleigh_distribution_from_bivariate_normal",
+    "template": "X,Y ~ iid N(0,1); R = sqrt(X^2+Y^2); find CDF, E[R], V[R]",
+    "variable_count": 2
+  },
+  "difficulty": 3,
+  "answer": [
+    {
+      "label": "(1)",
+      "steps": [
+        "$X,Y$ 独立标准正态，联合密度为 $\\dfrac{1}{2\\pi}e^{-(x^2+y^2)/2}$。用极坐标 $x=\\rho\\cos\\theta,\\ y=\\rho\\sin\\theta$，面积元 $dx\\,dy=\\rho\\,d\\rho\\,d\\theta$。",
+        "对 $r>0$：$F(r)=\\mathrm{Pr}[R<r]=\\displaystyle\\int_0^{2\\pi}\\int_0^{r}\\dfrac{1}{2\\pi}e^{-\\rho^2/2}\\rho\\,d\\rho\\,d\\theta=\\int_0^r \\rho e^{-\\rho^2/2}\\,d\\rho$。",
+        "计算积分：$\\displaystyle\\int_0^r\\rho e^{-\\rho^2/2}d\\rho=\\left[-e^{-\\rho^2/2}\\right]_0^r=1-e^{-r^2/2}$，故 $F(r)=1-e^{-r^2/2}\\ (r\\ge0)$，且 $F(r)=0\\ (r<0)$。"
+      ]
+    },
+    {
+      "label": "(2)",
+      "steps": [
+        "由 $F(r)$ 求导得密度 $f(r)=F'(r)=re^{-r^2/2}\\ (r\\ge0)$（这是标准瑞利分布密度）。",
+        "$E[R]=\\displaystyle\\int_0^\\infty r\\cdot re^{-r^2/2}\\,dr=\\int_0^\\infty r^2e^{-r^2/2}\\,dr$。用已知的高斯积分结果（或分部积分）：$\\int_0^\\infty r^2e^{-r^2/2}dr=\\sqrt{\\dfrac{\\pi}{2}}$。",
+        "故 $E[R]=\\sqrt{\\dfrac{\\pi}{2}}$。"
+      ]
+    },
+    {
+      "label": "(3)",
+      "steps": [
+        "$E[R^2]=\\displaystyle\\int_0^\\infty r^2\\cdot re^{-r^2/2}\\,dr=\\int_0^\\infty r^3e^{-r^2/2}\\,dr$，令 $u=r^2/2$（$du=r\\,dr$，$r^2=2u$）：$=\\int_0^\\infty 2u\\,e^{-u}\\,du=2\\Gamma(2)=2$。",
+        "由方差公式 $V[R]=E[R^2]-(E[R])^2=2-\\dfrac{\\pi}{2}=\\dfrac{4-\\pi}{2}$。",
+        "数值验算：$\\pi/2\\approx1.5708$，$E[R]\\approx1.2533$，$(E[R])^2\\approx1.5708$，$V[R]\\approx2-1.5708=0.4292\\approx(4-\\pi)/2=0.4292$，一致。"
+      ]
+    }
+  ],
+  "practice_questions": [
+    {
+      "text": "设 $X\\sim N(0,1)$。已知标准正态分布的四阶矩 $E[X^4]=3$，求 $E[X^2]$ 与 $\\mathrm{Var}(X^2)$。",
+      "knowledge_points": [
+        "正态分布矩",
+        "卡方分布基础"
+      ],
+      "question_type": "矩计算",
+      "method": [
+        "直接用已知矩公式计算"
+      ],
+      "solution_steps": [
+        "利用 $E[X^2]=\\mathrm{Var}(X)=1$",
+        "利用 $\\mathrm{Var}(X^2)=E[X^4]-(E[X^2])^2$ 计算"
+      ],
+      "math_structure": {
+        "type": "chi_square_1df_moments",
+        "template": "X~N(0,1); compute E[X^2], Var(X^2)",
+        "variable_count": 1
+      },
+      "difficulty": 1,
+      "estimated_minutes": 5,
+      "answer": [
+        {
+          "label": "结果",
+          "steps": [
+            "$X\\sim N(0,1)$ 意味着 $E[X]=0,\\ \\mathrm{Var}(X)=1$，故 $E[X^2]=\\mathrm{Var}(X)+ (E[X])^2=1$。",
+            "$\\mathrm{Var}(X^2)=E[X^4]-(E[X^2])^2=3-1^2=2$（即 $\\chi^2_1$ 分布方差为 $2$）。"
+          ]
+        }
+      ],
+      "id": "osaka-2025-8c31d1727d-q04-practice-01",
+      "school": "大阪大学",
+      "year": "2025"
+    },
+    {
+      "text": "设 $X,Y$ 独立同分布于 $N(0,1)$，$S=X^2+Y^2$。求 $S$ 的概率密度函数。",
+      "knowledge_points": [
+        "极坐标变换",
+        "卡方/指数分布关系"
+      ],
+      "question_type": "分布推导",
+      "method": [
+        "由累积分布函数出发求导得密度"
+      ],
+      "solution_steps": [
+        "写出 $F_S(s)=\\mathrm{Pr}[S<s]$ 的极坐标积分",
+        "求导得密度"
+      ],
+      "math_structure": {
+        "type": "chi_square_2df_density",
+        "template": "X,Y~iid N(0,1); S=X^2+Y^2; find density of S",
+        "variable_count": 2
+      },
+      "difficulty": 2,
+      "estimated_minutes": 8,
+      "answer": [
+        {
+          "label": "密度",
+          "steps": [
+            "用极坐标，$F_S(s)=\\mathrm{Pr}[X^2+Y^2<s]=\\displaystyle\\int_0^{\\sqrt s}\\rho e^{-\\rho^2/2}\\,d\\rho=1-e^{-s/2}\\ (s\\ge0)$（与 $R=\\sqrt S$ 的分布函数关系 $F_S(s)=F_R(\\sqrt s)$一致）。",
+            "求导：$f_S(s)=F_S'(s)=\\dfrac12e^{-s/2}\\ (s\\ge0)$，这正是参数为 $\\tfrac12$ 的指数分布（即自由度为2的 $\\chi^2$ 分布）密度。"
+          ]
+        }
+      ],
+      "id": "osaka-2025-8c31d1727d-q04-practice-02",
+      "school": "大阪大学",
+      "year": "2025"
+    },
+    {
+      "text": "沿用上题记号，$R=\\sqrt S=\\sqrt{X^2+Y^2}$ 服从标准瑞利分布，密度 $f(r)=re^{-r^2/2}$。求 $R$ 的众数（mode）与中位数。",
+      "knowledge_points": [
+        "瑞利分布的众数与中位数"
+      ],
+      "question_type": "分布特征量计算",
+      "method": [
+        "对密度求导找极值点求众数；解 $F(r)=1/2$ 求中位数"
+      ],
+      "solution_steps": [
+        "对密度求导求众数",
+        "解累积分布函数等于二分之一求中位数"
+      ],
+      "math_structure": {
+        "type": "rayleigh_distribution_mode_median",
+        "template": "f(r)=r exp(-r^2/2); find mode and median",
+        "variable_count": 0
+      },
+      "difficulty": 3,
+      "estimated_minutes": 10,
+      "answer": [
+        {
+          "label": "结果",
+          "steps": [
+            "$f(r)=re^{-r^2/2}$，$f'(r)=e^{-r^2/2}(1-r^2)$，令 $f'(r)=0$ 得 $r=1$（$r>0$），且 $f'(r)>0$ 当 $r<1$、$f'(r)<0$ 当 $r>1$，故众数为 $r=1$。",
+            "中位数满足 $F(r)=1-e^{-r^2/2}=\\dfrac12$，即 $e^{-r^2/2}=\\dfrac12$，解得 $r^2=2\\ln2$，即中位数 $r=\\sqrt{2\\ln2}\\approx1.1774$。"
+          ]
+        }
+      ],
+      "id": "osaka-2025-8c31d1727d-q04-practice-03",
+      "school": "大阪大学",
+      "year": "2025"
+    },
+    {
+      "text": "设 $X,Y$ 独立同分布于 $N(0,\\sigma^2)$（$\\sigma>0$ 为一般参数），$R=\\sqrt{X^2+Y^2}$。求 $R$ 的累积分布函数、期望 $E[R]$ 与方差 $V[R]$（用 $\\sigma$ 表示）。",
+      "knowledge_points": [
+        "瑞利分布的尺度参数推广",
+        "矩的尺度变换"
+      ],
+      "question_type": "一般瑞利分布的矩计算",
+      "method": [
+        "类比标准情形推导一般 $\\sigma$ 下的分布函数，或用尺度变换 $R=\\sigma R_1$（$R_1$为标准瑞利分布）"
+      ],
+      "solution_steps": [
+        "写出联合密度并用极坐标求 $F(r)$",
+        "利用尺度变换或直接积分求 $E[R],V[R]$"
+      ],
+      "math_structure": {
+        "type": "rayleigh_distribution_general_scale",
+        "template": "X,Y~iid N(0,sigma^2); R=sqrt(X^2+Y^2); find CDF, E[R], V[R] in terms of sigma",
+        "variable_count": 3
+      },
+      "difficulty": 4,
+      "estimated_minutes": 15,
+      "answer": [
+        {
+          "label": "结果",
+          "steps": [
+            "联合密度 $\\dfrac{1}{2\\pi\\sigma^2}e^{-(x^2+y^2)/(2\\sigma^2)}$，同样的极坐标积分给出 $F(r)=1-e^{-r^2/(2\\sigma^2)}\\ (r\\ge0)$，密度 $f(r)=\\dfrac{r}{\\sigma^2}e^{-r^2/(2\\sigma^2)}$。",
+            "注意到若令 $R_1=R/\\sigma$，则 $R_1$ 恰为标准瑞利分布（$\\sigma=1$ 情形），故 $E[R]=\\sigma E[R_1]=\\sigma\\sqrt{\\pi/2}$。",
+            "同理方差按尺度平方变换：$V[R]=\\sigma^2 V[R_1]=\\sigma^2\\cdot\\dfrac{4-\\pi}{2}$；当 $\\sigma=1$ 时退化为原题结果 $E[R]=\\sqrt{\\pi/2}$、$V[R]=(4-\\pi)/2$，验证一致。"
+          ]
+        }
+      ],
+      "id": "osaka-2025-8c31d1727d-q04-practice-04",
+      "school": "大阪大学",
+      "year": "2025"
+    }
+  ],
+  "source_question": "数理基础 2",
+  "source_pdf": "大阪大学/情报科学研究科/情报数理学/大阪大学_情报科学研究科_情报数理学_2025_数学过去问.pdf",
+  "source_type": "官方过去问",
+  "subject_category": "概率统计"
+}

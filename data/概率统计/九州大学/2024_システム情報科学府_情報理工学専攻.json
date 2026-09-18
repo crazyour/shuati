@@ -1,0 +1,168 @@
+{
+  "school": "九州大学",
+  "year": 2024,
+  "knowledge_points": [
+    "概率统计",
+    "古典概率",
+    "组合",
+    "不等式"
+  ],
+  "question_type": "古典概率模型中参数最小值问题",
+  "method": [
+    "古典概率公式",
+    "分类讨论奇偶性",
+    "不等式分析"
+  ],
+  "solution_steps": [
+    "对 (1)：抽出不放回（古典概率）P = C(N1,2)/C(N,2) = N1(N1-1)/(N(N-1)) = 1/2",
+    "对 (2)：同样公式",
+    "对 (3)：枚举 N"
+  ],
+  "math_structure": {
+    "type": "classical_probability_minimum_problem",
+    "template": "C(N1,2)/C(N1+N2,2)=1/2; find min N1 for N2 odd/even",
+    "variable_count": 3
+  },
+  "difficulty": 3,
+  "answer": [
+    {
+      "label": "(1) $N_2$ 为奇数",
+      "steps": [
+        "条件等价于 $2N_1(N_1-1)=N(N-1)$，即 $(2N_2+1)^2+8N_2^2$ 的相应 Pell 型条件为 $x^2-8N_2^2=1$，且 $N_1=\\frac{2N_2+1+x}{2}$。",
+        "最小正奇数解为 $N_2=1,x=3$，故 $N_1=3$。"
+      ]
+    },
+    {
+      "label": "(2) $N_2$ 为偶数",
+      "steps": [
+        "同一 Pell 方程 $x^2-8N_2^2=1$ 的最小正偶数解为 $N_2=6,x=17$。因此 $N_1=\\frac{13+17}{2}=15$。"
+      ]
+    },
+    {
+      "label": "(3) 求最小的三个 $N$",
+      "steps": [
+        "Pell 方程的前三个正解给出 $(N_1,N_2)=(3,1),(15,6),(85,35)$。",
+        "因此 $N=N_1+N_2$ 的三个最小值为 $4,21,120$。"
+      ]
+    }
+  ],
+  "id": "2024_システム情報科学府_情報理工学専攻",
+  "subject": "システム情報科学府_情報理工学専攻",
+  "text": "箱中有 $N_1$ 个白球和 $N_2$ 个黑球，总数为 $N = N_1 + N_2$。从箱中随机抽出 2 个球，两个都是白球的概率为 $1/2$。回答下列问题。\n\n(1) 当 $N_2$ 为奇数时，求 $N_1$ 的最小值。\n\n(2) 当 $N_2$ 为偶数时，求 $N_1$ 的最小值。\n\n(3) 求 $N$ 的三个最小值。",
+  "practice_questions": [
+    {
+      "id": "kyushu-2024-ist-prob-practice-01",
+      "school": "九州大学",
+      "year": "2024",
+      "text": "袋中有 $N_1$ 个白球和 $N_2$ 个黑球，不放回地抽取两个球。写出两球都是白球的概率，并把该概率等于 $1/2$ 的条件化为关于 $N_1,N_2$ 的整式方程。",
+      "knowledge_points": [
+        "超几何概率",
+        "组合计数",
+        "丢番图方程"
+      ],
+      "question_type": "由抽样概率建立整数方程",
+      "method": [
+        "组合数比值",
+        "代数化简"
+      ],
+      "solution_steps": [
+        "写出两白球的组合概率",
+        "令其等于二分之一",
+        "消去分母并展开"
+      ],
+      "math_structure": {
+        "type": "urn_diophantine_equation",
+        "template": "$\\frac{\\binom{N_1}{2}}{\\binom{N_1+N_2}{2}}=\\frac12$",
+        "variable_count": 2
+      },
+      "difficulty": 1,
+      "estimated_minutes": 5,
+      "answer": [
+        {
+          "label": "建立方程",
+          "steps": [
+            "两球都是白球的概率为 $$\\frac{\\binom{N_1}{2}}{\\binom{N_1+N_2}{2}}=\\frac{N_1(N_1-1)}{(N_1+N_2)(N_1+N_2-1)}.$$",
+            "令其等于 $1/2$，得到 $$2N_1(N_1-1)=(N_1+N_2)(N_1+N_2-1).$$ "
+          ]
+        }
+      ]
+    },
+    {
+      "id": "kyushu-2024-ist-prob-practice-02",
+      "school": "九州大学",
+      "year": "2024",
+      "text": "在两球均为白球的概率等于 $1/2$ 的条件下，设 $N_2=1$。求所有正整数解中的 $N_1$。",
+      "knowledge_points": [
+        "二次方程",
+        "整数解",
+        "抽样概率"
+      ],
+      "question_type": "求给定黑球数时的整数解",
+      "method": [
+        "代入概率方程",
+        "解二次方程"
+      ],
+      "solution_steps": [
+        "把 $N_2=1$ 代入整式方程",
+        "解关于 $N_1$ 的方程",
+        "筛选正整数解"
+      ],
+      "math_structure": {
+        "type": "fixed_black_ball_solution",
+        "template": "$2N_1(N_1-1)=(N_1+1)N_1$",
+        "variable_count": 1
+      },
+      "difficulty": 2,
+      "estimated_minutes": 5,
+      "answer": [
+        {
+          "label": "求 $N_1$",
+          "steps": [
+            "代入 $N_2=1$ 后，方程为 $2N_1(N_1-1)=N_1(N_1+1)$。",
+            "因为 $N_1>0$，约去 $N_1$ 得 $2N_1-2=N_1+1$。",
+            "所以 $N_1=3$。检验得 $\\binom32/\\binom42=3/6=1/2$。"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "kyushu-2024-ist-prob-practice-03",
+      "school": "九州大学",
+      "year": "2024",
+      "text": "已知上述整数解可转化为 Pell 方程 $x^2-8y^2=1$，其中 $y=N_2$、$N_1=(2y+1+x)/2$。证明若 $(x,y)$ 是正整数解，则 $(3x+8y,x+3y)$ 也是解，并由 $(3,1)$ 生成前三组 $(N_1,N_2)$。",
+      "knowledge_points": [
+        "Pell 方程",
+        "递推构造",
+        "整数解"
+      ],
+      "question_type": "生成抽样方程的整数解",
+      "method": [
+        "代数恒等式",
+        "递推计算"
+      ],
+      "solution_steps": [
+        "验证变换保持 Pell 方程",
+        "从最小解递推两次",
+        "换回球数变量"
+      ],
+      "math_structure": {
+        "type": "pell_recurrence",
+        "template": "$(x',y')=(3x+8y,x+3y)$，$x'^2-8y'^2=1$",
+        "variable_count": 2
+      },
+      "difficulty": 4,
+      "estimated_minutes": 15,
+      "answer": [
+        {
+          "label": "验证递推并生成解",
+          "steps": [
+            "令 $x'=3x+8y$、$y'=x+3y$。直接展开得 $$x'^2-8y'^2=(9x^2+48xy+64y^2)-8(x^2+6xy+9y^2)=x^2-8y^2=1.$$",
+            "从 $(x,y)=(3,1)$ 出发，下一解为 $(17,6)$，再下一解为 $(99,35)$。",
+            "由 $N_1=(2y+1+x)/2$，三组 $(N_1,N_2)$ 依次为 $(3,1)$、$(15,6)$、$(85,35)$。",
+            "对应总球数为 $4,21,120$。"
+          ]
+        }
+      ]
+    }
+  ]
+}

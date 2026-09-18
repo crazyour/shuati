@@ -1,0 +1,264 @@
+{
+  "id": "kobe-2025-07c5afeba8-q04",
+  "school": "神户大学",
+  "year": "2025",
+  "subject": "系统情报学研究科_全专攻",
+  "text": "考虑关于 $y = y(x)$ 的Riccati微分方程：\n$$y' + y^2 + 2y + 1 = 0 \\quad (*)$$\n\n(1) 求满足 $y'=0$ 的方程 $(*)$ 的解，记为 $y_1 = y_1(x)$。\n\n(2) 通过变量替换 $u = y - y_1$，导出关于 $u$ 的微分方程。\n\n(3) 求解(2)中的微分方程，并利用初值条件 $y(0) = 0$ 求得满足方程 $(*)$ 的解 $y$。",
+  "knowledge_points": [
+    "Riccati微分方程",
+    "变量替换",
+    "一阶线性微分方程",
+    "初值问题",
+    "积分因子"
+  ],
+  "question_type": "Riccati方程的求解",
+  "method": [
+    "特解求法",
+    "变量替换",
+    "一阶线性微分方程求解",
+    "初值条件应用"
+  ],
+  "solution_steps": [
+    "求特解 $y_1$ 使 $y_1' = 0$",
+    "将原方程改写为 $y^2 + 2y + 1 = 0$ 的形式",
+    "进行变量替换化为一阶线性方程",
+    "求解线性方程得通解",
+    "应用初值条件确定常数"
+  ],
+  "math_structure": {
+    "type": "riccati_equation_reduction",
+    "template": "Riccati方程 $y' + P(x)y + Q(x)y^2 + R(x) = 0$ 通过特解化简为线性方程",
+    "variable_count": 1
+  },
+  "difficulty": 4,
+  "answer": [
+    {
+      "label": "(1) 求特解 $y_1$",
+      "steps": [
+        "由条件 $y' = 0$，代入方程 $(*)$：",
+        "$$0 + y_1^2 + 2y_1 + 1 = 0$$",
+        "$$y_1^2 + 2y_1 + 1 = 0$$",
+        "$$(y_1 + 1)^2 = 0$$",
+        "$$y_1 = -1$$",
+        "因此特解为 $y_1(x) = -1$（常函数）"
+      ]
+    },
+    {
+      "label": "(2) 推导关于 $u$ 的微分方程",
+      "steps": [
+        "令 $u = y - y_1 = y - (-1) = y + 1$",
+        "则 $y = u - 1$，$y' = u'$",
+        "代入原方程 $(*)$：",
+        "$$u' + (u-1)^2 + 2(u-1) + 1 = 0$$",
+        "展开 $(u-1)^2$：$(u-1)^2 = u^2 - 2u + 1$",
+        "$$u' + u^2 - 2u + 1 + 2u - 2 + 1 = 0$$",
+        "$$u' + u^2 = 0$$",
+        "这是关于 $u$ 的一阶微分方程"
+      ]
+    },
+    {
+      "label": "(3) 求解关于 $u$ 的方程并确定 $y$",
+      "steps": [
+        "从 $u' + u^2 = 0$ 得 $u' = -u^2$",
+        "这是可分离变量的方程：$\\frac{du}{dx} = -u^2$",
+        "分离变量：$\\frac{du}{u^2} = -dx$",
+        "两边积分：$\\int \\frac{du}{u^2} = \\int -dx$",
+        "$$-\\frac{1}{u} = -x + C$$",
+        "$$\\frac{1}{u} = x - C$$",
+        "$$u = \\frac{1}{x - C}$$",
+        "利用初值条件 $y(0) = 0$，即 $u(0) = y(0) + 1 = 0 + 1 = 1$：",
+        "$$u(0) = \\frac{1}{0 - C} = 1$$",
+        "$$\\frac{1}{-C} = 1$$",
+        "$$C = -1$$",
+        "因此 $u = \\frac{1}{x + 1}$",
+        "原函数 $y = u - 1 = \\frac{1}{x+1} - 1 = \\frac{1 - (x+1)}{x+1} = \\frac{-x}{x+1}$",
+        "验证初值：$y(0) = \\frac{0}{1} = 0$ ✓",
+        "$$\\boxed{y(x) = \\frac{-x}{x+1}}$$"
+      ]
+    }
+  ],
+  "practice_questions": [
+    {
+      "text": "求一阶线性微分方程 $\\frac{du}{dx} + 2u = 0$ 的通解。",
+      "knowledge_points": [
+        "一阶线性齐次微分方程",
+        "可分离变量方程"
+      ],
+      "question_type": "一阶线性微分方程",
+      "method": [
+        "分离变量法",
+        "积分因子法"
+      ],
+      "solution_steps": [
+        "识别为可分离变量方程",
+        "分离变量并积分"
+      ],
+      "math_structure": {
+        "type": "first_order_linear_homogeneous",
+        "template": "$\\frac{du}{dx} + au = 0$ 的通解",
+        "variable_count": 1
+      },
+      "difficulty": 1,
+      "estimated_minutes": 5,
+      "answer": [
+        {
+          "label": "完整解答",
+          "steps": [
+            "分离变量：$\\frac{du}{u} = -2dx$",
+            "两边积分：$\\int \\frac{du}{u} = \\int -2dx$",
+            "$$\\ln|u| = -2x + C_0$$",
+            "$$|u| = e^{-2x + C_0} = e^{C_0} \\cdot e^{-2x}$$",
+            "设 $C = \\pm e^{C_0}$，则通解为：",
+            "$$u(x) = Ce^{-2x}$$"
+          ]
+        }
+      ],
+      "id": "kobe-2025-07c5afeba8-q04-practice-01",
+      "school": "神户大学",
+      "year": "2025"
+    },
+    {
+      "text": "求微分方程 $\\frac{du}{dx} = -4u$ 满足初值条件 $u(0) = 3$ 的解。",
+      "knowledge_points": [
+        "一阶线性齐次微分方程",
+        "初值问题"
+      ],
+      "question_type": "初值问题",
+      "method": [
+        "分离变量法",
+        "初值条件应用"
+      ],
+      "solution_steps": [
+        "分离变量求通解",
+        "利用初值条件确定常数"
+      ],
+      "math_structure": {
+        "type": "first_order_initial_value_problem",
+        "template": "$\\frac{du}{dx} = au$ 满足 $u(x_0) = u_0$ 的初值问题",
+        "variable_count": 1
+      },
+      "difficulty": 1,
+      "estimated_minutes": 6,
+      "answer": [
+        {
+          "label": "完整解答",
+          "steps": [
+            "分离变量：$\\frac{du}{u} = -4dx$",
+            "两边积分：$\\ln|u| = -4x + C_0$",
+            "通解：$u(x) = Ce^{-4x}$",
+            "应用初值条件 $u(0) = 3$：",
+            "$$3 = Ce^{0} = C$$",
+            "所以 $C = 3$",
+            "特解：$$u(x) = 3e^{-4x}$$"
+          ]
+        }
+      ],
+      "id": "kobe-2025-07c5afeba8-q04-practice-02",
+      "school": "神户大学",
+      "year": "2025"
+    },
+    {
+      "text": "对微分方程 $u' = -u^2$ 进行变量替换 $v = \\frac{1}{u}$，导出关于 $v$ 的方程，并求通解。",
+      "knowledge_points": [
+        "可分离变量方程",
+        "变量替换",
+        "倒数变换"
+      ],
+      "question_type": "变量替换求解微分方程",
+      "method": [
+        "变量替换",
+        "分离变量法"
+      ],
+      "solution_steps": [
+        "进行变量替换 $v = \\frac{1}{u}$",
+        "求导数关系",
+        "得到关于 $v$ 的方程",
+        "求解并回代"
+      ],
+      "math_structure": {
+        "type": "separable_equation_reciprocal_substitution",
+        "template": "$u' = -u^2$ 型方程通过倒数变换化为一阶线性方程",
+        "variable_count": 1
+      },
+      "difficulty": 2,
+      "estimated_minutes": 8,
+      "answer": [
+        {
+          "label": "完整解答",
+          "steps": [
+            "令 $v = \\frac{1}{u}$，则 $u = \\frac{1}{v}$",
+            "对 $u = \\frac{1}{v}$ 求导：",
+            "$$u' = -\\frac{1}{v^2} \\cdot v'$$",
+            "代入 $u' = -u^2$：",
+            "$$-\\frac{1}{v^2} \\cdot v' = -\\left(\\frac{1}{v}\\right)^2 = -\\frac{1}{v^2}$$",
+            "两边同乘 $v^2$：",
+            "$$-v' = -1$$",
+            "$$v' = 1$$",
+            "积分：",
+            "$$v = x + C$$",
+            "回代 $u = \\frac{1}{v}$：",
+            "$$u = \\frac{1}{x + C}$$"
+          ]
+        }
+      ],
+      "id": "kobe-2025-07c5afeba8-q04-practice-03",
+      "school": "神户大学",
+      "year": "2025"
+    },
+    {
+      "text": "求微分方程 $y' = -(y+1)^2$ 满足初值条件 $y(0) = 0$ 的解。",
+      "knowledge_points": [
+        "可分离变量方程",
+        "初值问题",
+        "倒数变换"
+      ],
+      "question_type": "初值问题",
+      "method": [
+        "变量替换",
+        "分离变量法"
+      ],
+      "solution_steps": [
+        "通过平移变换化简方程",
+        "分离变量求通解",
+        "应用初值条件"
+      ],
+      "math_structure": {
+        "type": "separable_initial_value_shifted",
+        "template": "$y' = -(y + a)^2$ 满足初值条件的方程",
+        "variable_count": 1
+      },
+      "difficulty": 2,
+      "estimated_minutes": 9,
+      "answer": [
+        {
+          "label": "完整解答",
+          "steps": [
+            "令 $w = y + 1$，则 $y = w - 1$，$y' = w'$",
+            "代入方程：",
+            "$$w' = -w^2$$",
+            "分离变量：",
+            "$$\\frac{dw}{w^2} = -dx$$",
+            "积分：",
+            "$$-\\frac{1}{w} = -x + C_0$$",
+            "$$\\frac{1}{w} = x - C_0$$",
+            "$$w = \\frac{1}{x - C_0}$$",
+            "由初值条件 $y(0) = 0$，得 $w(0) = y(0) + 1 = 1$：",
+            "$$1 = \\frac{1}{0 - C_0} = \\frac{1}{-C_0}$$",
+            "$$C_0 = -1$$",
+            "因此 $w = \\frac{1}{x+1}$",
+            "回代：",
+            "$$y = w - 1 = \\frac{1}{x+1} - 1 = \\frac{1-(x+1)}{x+1} = \\frac{-x}{x+1}$$",
+            "验证：$y(0) = \\frac{0}{1} = 0$ ✓"
+          ]
+        }
+      ],
+      "id": "kobe-2025-07c5afeba8-q04-practice-04",
+      "school": "神户大学",
+      "year": "2025"
+    }
+  ],
+  "source_question": "問3(1)(2)(3)",
+  "source_pdf": "神户大学/系统情报学研究科/全专攻/神户大学_系统情报学研究科_2025_二期_数学过去问.pdf",
+  "source_type": "官方过去问",
+  "subject_category": "微分方程"
+}

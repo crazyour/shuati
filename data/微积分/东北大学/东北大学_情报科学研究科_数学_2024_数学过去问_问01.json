@@ -1,0 +1,224 @@
+{
+  "id": "tohoku-2024-94ed6e28c4-q01",
+  "school": "东北大学",
+  "year": "2024",
+  "subject": "情报科学研究科_数学教室",
+  "text": "设 $D = \\{(x,y)\\in\\mathbb{R}^2 \\mid x^2+4y^2\\le 4,\\; x^2+4\\left(y-\\dfrac12\\right)^2\\ge 1\\}$。\n\n(1) 在 $xy$ 平面上画出区域 $D$。\n\n(2) 求变量替换 $x=2r\\cos\\theta,\\ y=r\\sin\\theta$ 的雅可比行列式。\n\n(3) 在 $\\{(r,\\theta)\\in\\mathbb{R}^2 \\mid r>0,\\ 0<\\theta<2\\pi\\}$ 中，画出经过(2)中变量替换后被映射到 $D$ 内部的点集。\n\n(4) 计算下列二重积分：\n$$\\iint_D (x^2+4y^2)^{\\frac{3}{2}}\\,dx\\,dy.$$",
+  "knowledge_points": [
+    "二重积分",
+    "变量替换与雅可比行列式",
+    "椭圆坐标变换",
+    "区域描述与不等式",
+    "极坐标型积分计算"
+  ],
+  "question_type": "二重积分与变量替换综合题",
+  "method": [
+    "椭圆极坐标变换 $x=2r\\cos\\theta, y=r\\sin\\theta$",
+    "雅可比行列式计算",
+    "不等式转化确定积分区域",
+    "分离变量后逐次积分"
+  ],
+  "solution_steps": [
+    "画出外椭圆 $x^2+4y^2=4$（半轴2,1）与内椭圆 $x^2+4(y-1/2)^2=1$（中心$(0,1/2)$，半轴1,1/2），D为外椭圆内部减去内椭圆内部",
+    "计算雅可比矩阵的偏导数并求其行列式",
+    "将两个不等式用 $r,\\theta$ 表示，得到 $r\\le 1$ 与 $r\\ge\\sin\\theta$",
+    "利用 $x^2+4y^2=4r^2$ 化简被积函数，写出 $dxdy=2r\\,dr\\,d\\theta$",
+    "对 $\\theta$ 分段（$\\sin\\theta\\ge0$ 与 $\\sin\\theta<0$）积分并求出最终数值"
+  ],
+  "math_structure": {
+    "type": "double_integral_change_of_variables",
+    "template": "region defined by $x^2+4y^2\\le a^2$, $x^2+4(y-c)^2\\ge b^2$; integrate $(x^2+4y^2)^{3/2}$ using $x=2r\\cos\\theta,y=r\\sin\\theta$",
+    "variable_count": 3
+  },
+  "difficulty": 4,
+  "answer": [
+    {
+      "label": "(1)",
+      "steps": [
+        "外边界为椭圆 $x^2+4y^2=4$，即 $\\frac{x^2}{4}+y^2=1$，长半轴2（沿x方向），短半轴1（沿y方向），中心在原点",
+        "内边界为椭圆 $x^2+4(y-1/2)^2=1$，即 $\\frac{x^2}{1}+\\frac{(y-1/2)^2}{1/4}=1$，长半轴1（沿x方向），短半轴1/2（沿y方向），中心在 $(0,1/2)$",
+        "D 是外椭圆内部（含边界，$\\le$）去掉内椭圆内部（$\\ge$表示D在内椭圆外侧或边界上），即两椭圆之间的环状区域，内椭圆完全包含在外椭圆内部（可验证内椭圆最高点$(0,1)$在外椭圆边界$x^2+4y^2=4$上因$0+4=4$，说明两椭圆在$(0,1)$处相切）"
+      ]
+    },
+    {
+      "label": "(2)",
+      "steps": [
+        "$\\dfrac{\\partial x}{\\partial r}=2\\cos\\theta,\\ \\dfrac{\\partial x}{\\partial\\theta}=-2r\\sin\\theta,\\ \\dfrac{\\partial y}{\\partial r}=\\sin\\theta,\\ \\dfrac{\\partial y}{\\partial\\theta}=r\\cos\\theta$",
+        "雅可比行列式 $J=\\dfrac{\\partial(x,y)}{\\partial(r,\\theta)}=2\\cos\\theta\\cdot r\\cos\\theta-(-2r\\sin\\theta)\\cdot\\sin\\theta=2r\\cos^2\\theta+2r\\sin^2\\theta$",
+        "化简得 $J=2r$"
+      ]
+    },
+    {
+      "label": "(3)",
+      "steps": [
+        "代入 $x=2r\\cos\\theta, y=r\\sin\\theta$，得 $x^2+4y^2=4r^2\\cos^2\\theta+4r^2\\sin^2\\theta=4r^2$，外边界条件 $4r^2\\le4$ 即 $r\\le1$",
+        "内边界：$x^2+4(y-\\frac12)^2=4r^2\\cos^2\\theta+4(r\\sin\\theta-\\frac12)^2=4r^2-4r\\sin\\theta+1\\ge1$，化简得 $4r(r-\\sin\\theta)\\ge0$，因 $r>0$，得 $r\\ge\\sin\\theta$",
+        "综合两条件：$\\sin\\theta\\le r\\le1$（当 $\\sin\\theta\\le0$ 时此条件自动满足，退化为 $0<r\\le1$）",
+        "在 $r\\theta$ 平面画出：当 $0<\\theta<\\pi$ 时区域为 $\\sin\\theta\\le r\\le1$（一个被正弦曲线下方切去的带状区域），当 $\\pi<\\theta<2\\pi$ 时为整条 $0<r\\le1$"
+      ]
+    },
+    {
+      "label": "(4)",
+      "steps": [
+        "被积函数化简：$(x^2+4y^2)^{3/2}=(4r^2)^{3/2}=8r^3$，结合 $dxdy=2r\\,dr\\,d\\theta$，被积表达式变为 $16r^4\\,dr\\,d\\theta$",
+        "对 $r$ 积分（下限 $L(\\theta)=\\max(\\sin\\theta,0)$，上限1）：$\\int_{L(\\theta)}^{1}16r^4dr=\\dfrac{16}{5}\\left(1-L(\\theta)^5\\right)$",
+        "对 $\\theta$ 积分：$\\int_0^{2\\pi}\\frac{16}{5}(1-L(\\theta)^5)d\\theta=\\frac{16}{5}\\left[2\\pi-\\int_0^{\\pi}\\sin^5\\theta\\,d\\theta\\right]$（因 $\\theta\\in(\\pi,2\\pi)$ 时 $L=0$）",
+        "计算 $\\int_0^{\\pi}\\sin^5\\theta\\,d\\theta=2\\int_0^{\\pi/2}\\sin^5\\theta\\,d\\theta=2\\cdot\\frac{8}{15}=\\frac{16}{15}$",
+        "代入得 $\\frac{16}{5}\\left(2\\pi-\\frac{16}{15}\\right)=\\frac{32\\pi}{5}-\\frac{256}{75}=\\frac{480\\pi-256}{75}$，即最终结果 $\\iint_D(x^2+4y^2)^{3/2}dxdy=\\dfrac{32\\pi}{5}-\\dfrac{256}{75}$"
+      ]
+    }
+  ],
+  "practice_questions": [
+    {
+      "text": "对标准极坐标变换 $x=r\\cos\\theta, y=r\\sin\\theta$，求雅可比行列式 $\\dfrac{\\partial(x,y)}{\\partial(r,\\theta)}$。",
+      "knowledge_points": [
+        "雅可比行列式",
+        "极坐标变换"
+      ],
+      "question_type": "雅可比行列式计算",
+      "method": [
+        "偏导数计算与行列式展开"
+      ],
+      "solution_steps": [
+        "计算四个偏导数",
+        "展开2x2行列式"
+      ],
+      "math_structure": {
+        "type": "jacobian_computation",
+        "template": "$x=r\\cos\\theta, y=r\\sin\\theta$ 的雅可比行列式",
+        "variable_count": 2
+      },
+      "difficulty": 1,
+      "estimated_minutes": 5,
+      "answer": [
+        {
+          "label": "结果",
+          "steps": [
+            "$\\partial x/\\partial r=\\cos\\theta,\\partial x/\\partial\\theta=-r\\sin\\theta,\\partial y/\\partial r=\\sin\\theta,\\partial y/\\partial\\theta=r\\cos\\theta$",
+            "$J=\\cos\\theta\\cdot r\\cos\\theta-(-r\\sin\\theta)\\sin\\theta=r\\cos^2\\theta+r\\sin^2\\theta=r$",
+            "最终结果：$J=r$"
+          ]
+        }
+      ],
+      "id": "tohoku-2024-94ed6e28c4-q01-practice-01",
+      "school": "东北大学",
+      "year": "2024"
+    },
+    {
+      "text": "设 $E=\\{(x,y)\\in\\mathbb{R}^2\\mid x^2+y^2\\le4,\\ x^2+(y-1)^2\\ge1\\}$。利用极坐标 $x=r\\cos\\theta, y=r\\sin\\theta$，写出映射到 $E$ 内部的 $(r,\\theta)$ 集合（$r>0,0<\\theta<2\\pi$）。",
+      "knowledge_points": [
+        "极坐标变换",
+        "不等式化简",
+        "区域描述"
+      ],
+      "question_type": "极坐标区域确定",
+      "method": [
+        "代入坐标变换化简不等式"
+      ],
+      "solution_steps": [
+        "代入外圆条件得到 $r\\le2$",
+        "代入内圆条件得到 $r\\ge2\\sin\\theta$",
+        "合并两条件按 $\\theta$ 分段描述"
+      ],
+      "math_structure": {
+        "type": "polar_region_determination",
+        "template": "region $x^2+y^2\\le a^2, x^2+(y-c)^2\\ge b^2$ in polar coordinates",
+        "variable_count": 3
+      },
+      "difficulty": 2,
+      "estimated_minutes": 8,
+      "answer": [
+        {
+          "label": "结果",
+          "steps": [
+            "外圆：$r^2\\le4\\Rightarrow r\\le2$",
+            "内圆：$r^2-2r\\sin\\theta+1\\ge1\\Rightarrow r(r-2\\sin\\theta)\\ge0\\Rightarrow r\\ge2\\sin\\theta$（因$r>0$）",
+            "最终区域：$\\{(r,\\theta):0<\\theta<2\\pi,\\ \\max(2\\sin\\theta,0)\\le r\\le2\\}$"
+          ]
+        }
+      ],
+      "id": "tohoku-2024-94ed6e28c4-q01-practice-02",
+      "school": "东北大学",
+      "year": "2024"
+    },
+    {
+      "text": "用极坐标计算二重积分 $\\displaystyle\\iint_{x^2+y^2\\le4}(x^2+y^2)\\,dx\\,dy$。",
+      "knowledge_points": [
+        "极坐标下的二重积分",
+        "雅可比行列式应用"
+      ],
+      "question_type": "圆域上的二重积分计算",
+      "method": [
+        "极坐标替换",
+        "分离变量逐次积分"
+      ],
+      "solution_steps": [
+        "代入 $x^2+y^2=r^2$，$dxdy=r\\,dr\\,d\\theta$",
+        "对 $r$ 从0到2、$\\theta$ 从0到 $2\\pi$ 积分"
+      ],
+      "math_structure": {
+        "type": "polar_double_integral",
+        "template": "$\\iint_{x^2+y^2\\le a^2}(x^2+y^2)dxdy$",
+        "variable_count": 1
+      },
+      "difficulty": 2,
+      "estimated_minutes": 6,
+      "answer": [
+        {
+          "label": "结果",
+          "steps": [
+            "被积函数化为 $r^2$，结合 $dxdy=r\\,dr\\,d\\theta$，积分式为 $r^3\\,dr\\,d\\theta$",
+            "$\\int_0^{2\\pi}\\int_0^2 r^3\\,dr\\,d\\theta=2\\pi\\cdot\\left[\\frac{r^4}{4}\\right]_0^2=2\\pi\\cdot4=8\\pi$",
+            "最终结果：$8\\pi$"
+          ]
+        }
+      ],
+      "id": "tohoku-2024-94ed6e28c4-q01-practice-03",
+      "school": "东北大学",
+      "year": "2024"
+    },
+    {
+      "text": "用变量替换 $x=2r\\cos\\theta,\\ y=r\\sin\\theta$ 计算 $\\displaystyle\\iint_{x^2+4y^2\\le4}(x^2+4y^2)^{1/2}\\,dx\\,dy$（无内部椭圆孔洞的完整椭圆区域）。",
+      "knowledge_points": [
+        "椭圆型变量替换",
+        "雅可比行列式",
+        "二重积分计算"
+      ],
+      "question_type": "椭圆域上的二重积分",
+      "method": [
+        "椭圆极坐标替换",
+        "化简被积函数",
+        "逐次积分"
+      ],
+      "solution_steps": [
+        "代入替换得 $x^2+4y^2=4r^2$，$dxdy=2r\\,dr\\,d\\theta$",
+        "确定区域为 $0\\le r\\le1, 0\\le\\theta\\le2\\pi$（无内部限制）",
+        "计算积分"
+      ],
+      "math_structure": {
+        "type": "elliptical_polar_double_integral",
+        "template": "$\\iint_{x^2+4y^2\\le4}(x^2+4y^2)^{1/2}dxdy$ via $x=2r\\cos\\theta,y=r\\sin\\theta$",
+        "variable_count": 2
+      },
+      "difficulty": 3,
+      "estimated_minutes": 10,
+      "answer": [
+        {
+          "label": "结果",
+          "steps": [
+            "被积函数 $(4r^2)^{1/2}=2r$，乘以 $dxdy=2r\\,dr\\,d\\theta$ 得到 $4r^2\\,dr\\,d\\theta$",
+            "$\\int_0^{2\\pi}\\int_0^1 4r^2\\,dr\\,d\\theta=2\\pi\\cdot\\left[\\frac{4r^3}{3}\\right]_0^1=2\\pi\\cdot\\frac{4}{3}=\\frac{8\\pi}{3}$",
+            "最终结果：$\\dfrac{8\\pi}{3}$"
+          ]
+        }
+      ],
+      "id": "tohoku-2024-94ed6e28c4-q01-practice-04",
+      "school": "东北大学",
+      "year": "2024"
+    }
+  ],
+  "source_question": "1",
+  "source_pdf": "东北大学/情报科学研究科/数学教室/东北大学_情报科学研究科_数学_2024_数学过去问.pdf",
+  "source_type": "官方过去问",
+  "subject_category": "微积分"
+}

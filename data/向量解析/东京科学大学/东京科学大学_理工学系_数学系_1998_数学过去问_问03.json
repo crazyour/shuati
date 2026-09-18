@@ -1,0 +1,201 @@
+{
+  "id": "isct-1998-ecc9f1f22d-q03",
+  "school": "东京科学大学",
+  "year": "1998",
+  "subject": "理工学系_数学系",
+  "text": "设 $S^2=\\{(x,y,z)\\in\\mathbb{R}^3\\mid x^2+y^2+z^2=1\\}$，考虑其上的函数 $f(x,y,z)=z^2$。\n(1) 证明 $f$ 是 $S^2$ 上的 $C^{\\infty}$ 函数。\n(2) 求出使 $df=0$ 的点。",
+  "knowledge_points": [
+    "曲面上的光滑函数",
+    "限制映射的可微性",
+    "切平面与法向量",
+    "拉格朗日乘数法",
+    "临界点的判定"
+  ],
+  "question_type": "曲面上函数的光滑性与临界点",
+  "method": [
+    "利用嵌入子曼形与限制映射的光滑性",
+    "拉格朗日乘数法求临界点",
+    "直接分析微分形式在切空间上的作用"
+  ],
+  "solution_steps": [
+    "(1)说明 $f$ 是 $\\mathbb{R}^3$ 上光滑函数 $F(x,y,z)=z^2$ 限制到嵌入子曼形 $S^2$ 上，从而 $C^\\infty$",
+    "(2)用拉格朗日乘数法求解 $\\nabla f=\\lambda\\nabla g$（$g=x^2+y^2+z^2-1$），分情形 $\\lambda=0$ 与 $\\lambda\\ne0$",
+    "综合两种情形给出全部临界点集合，并用切空间直接验证"
+  ],
+  "math_structure": {
+    "type": "critical_points_on_sphere",
+    "template": "f(x,y,z)=z^2 \\text{ on } S^2,\\ \\text{find } df=0",
+    "variable_count": 0
+  },
+  "difficulty": 3,
+  "answer": [
+    {
+      "label": "(1)",
+      "steps": [
+        "$S^2$ 是 $\\mathbb{R}^3$ 中的 $C^\\infty$ 嵌入子曼形（正则曲面，因为 $\\nabla g=(2x,2y,2z)\\ne0$ 在 $S^2$ 上处处成立，$g=x^2+y^2+z^2-1$）。",
+        "$F(x,y,z)=z^2$ 是 $\\mathbb{R}^3$ 上的 $C^\\infty$（多项式）函数。",
+        "$f=F|_{S^2}$ 是光滑子曼形上光滑函数的限制，按光滑结构的定义（局部坐标图下的表达式仍为光滑函数的复合），$f\\in C^\\infty(S^2)$。"
+      ]
+    },
+    {
+      "label": "(2)",
+      "steps": [
+        "用拉格朗日乘数法：临界点满足 $\\nabla f=\\lambda\\nabla g$，即 $(0,0,2z)=\\lambda(2x,2y,2z)$，联立方程 $2\\lambda x=0,\\ 2\\lambda y=0,\\ 2z=2\\lambda z$。",
+        "情形一 $\\lambda=0$：则由第三式 $2z=0\\Rightarrow z=0$，$x,y$ 满足 $x^2+y^2=1$（约束方程），即得到整条赤道圆 $\\{(x,y,0):x^2+y^2=1\\}$ 上的所有点都是临界点。",
+        "情形二 $\\lambda\\ne0$：由前两式 $x=0,y=0$，代入约束得 $z=\\pm1$，再由第三式 $2z=2\\lambda z$（$z\\ne0$）得 $\\lambda=1$，自洽，故极点 $(0,0,\\pm1)$ 也是临界点。",
+        "直接验证（不依赖乘数法）：$df=2z\\,dz$，在点 $p=(x,y,z)\\in S^2$ 处切空间为 $\\{v:v\\cdot p=0\\}$，$df_p(v)=2z\\,v_3$。当 $z=0$ 时对一切切向量 $df_p\\equiv0$；当 $p=(0,0,\\pm1)$ 时切平面恰为 $\\{v_3=0\\}$，故 $df_p\\equiv0$ 自动成立；其余点 $z\\ne0$ 且 $p\\ne(0,0,\\pm1)$ 时可取到 $v_3\\ne0$ 的切向量使 $df_p(v)\\ne0$，非临界点。两种方法结果一致。",
+        "结论：$df=0$ 的点集为赤道圆 $\\{z=0\\}\\cup\\{(0,0,1),(0,0,-1)\\}$，即全体 $z=0$ 的点以及南北两极。"
+      ]
+    }
+  ],
+  "practice_questions": [
+    {
+      "text": "在单位圆 $S^1=\\{(x,y):x^2+y^2=1\\}$ 上考虑函数 $h(x,y)=y$。证明 $h$ 是 $C^\\infty$ 函数，并求其临界点。",
+      "knowledge_points": [
+        "低维情形的光滑限制函数",
+        "拉格朗日乘数法"
+      ],
+      "question_type": "曲线上函数的临界点",
+      "method": [
+        "限制映射光滑性",
+        "拉格朗日乘数法"
+      ],
+      "solution_steps": [
+        "说明限制光滑性",
+        "求解 $\\nabla h=\\lambda\\nabla g$"
+      ],
+      "math_structure": {
+        "type": "critical_points_on_circle",
+        "template": "h(x,y)=y \\text{ on } S^1",
+        "variable_count": 0
+      },
+      "difficulty": 1,
+      "estimated_minutes": 5,
+      "answer": [
+        {
+          "label": "求临界点",
+          "steps": [
+            "$h$ 是 $\\mathbb{R}^2$ 上光滑函数限制到光滑曲线 $S^1$，故 $C^\\infty$",
+            "$\\nabla h=(0,1)=\\lambda(2x,2y)$，得 $x=0,\\ 2\\lambda y=1$，结合 $x^2+y^2=1$ 得 $y=\\pm1$",
+            "结论：临界点为 $(0,1)$ 与 $(0,-1)$"
+          ]
+        }
+      ],
+      "id": "isct-1998-ecc9f1f22d-q03-practice-01",
+      "school": "东京科学大学",
+      "year": "1998"
+    },
+    {
+      "text": "在 $S^2$ 上考虑函数 $f_1(x,y,z)=x$。求 $f_1$ 的全部临界点。",
+      "knowledge_points": [
+        "拉格朗日乘数法",
+        "线性函数在球面上的临界点"
+      ],
+      "question_type": "临界点求解",
+      "method": [
+        "拉格朗日乘数法"
+      ],
+      "solution_steps": [
+        "设 $\\nabla f_1=\\lambda\\nabla g$ 求解方程组"
+      ],
+      "math_structure": {
+        "type": "critical_points_on_sphere",
+        "template": "f_1(x,y,z)=x \\text{ on } S^2",
+        "variable_count": 0
+      },
+      "difficulty": 2,
+      "estimated_minutes": 6,
+      "answer": [
+        {
+          "label": "求临界点",
+          "steps": [
+            "$\\nabla f_1=(1,0,0)=\\lambda(2x,2y,2z)$，得 $2\\lambda y=0,2\\lambda z=0,2\\lambda x=1$，故 $\\lambda\\ne0\\Rightarrow y=z=0$",
+            "代入约束 $x^2=1\\Rightarrow x=\\pm1$",
+            "结论：临界点为 $(\\pm1,0,0)$，仅两点（因为 $f_1$ 是所谓的“高度函数”类型，非退化Morse函数）"
+          ]
+        }
+      ],
+      "id": "isct-1998-ecc9f1f22d-q03-practice-02",
+      "school": "东京科学大学",
+      "year": "1998"
+    },
+    {
+      "text": "在 $S^2$ 上考虑 $f_2(x,y,z)=z^2+2z$。求其全部临界点（提示：先化简为关于 $z$ 的二次函数在约束下的问题）。",
+      "knowledge_points": [
+        "拉格朗日乘数法",
+        "非齐次函数在球面上的临界点"
+      ],
+      "question_type": "综合练习",
+      "method": [
+        "拉格朗日乘数法",
+        "参数分类讨论"
+      ],
+      "solution_steps": [
+        "写出方程组 $\\nabla f_2=\\lambda\\nabla g$",
+        "分类讨论 $\\lambda=0$ 与否"
+      ],
+      "math_structure": {
+        "type": "critical_points_on_sphere",
+        "template": "f_2(x,y,z)=z^2+2z \\text{ on } S^2",
+        "variable_count": 0
+      },
+      "difficulty": 3,
+      "estimated_minutes": 10,
+      "answer": [
+        {
+          "label": "求临界点",
+          "steps": [
+            "$\\nabla f_2=(0,0,2z+2)=\\lambda(2x,2y,2z)$，得 $\\lambda x=0,\\lambda y=0,\\ z+1=\\lambda z$",
+            "情形 $\\lambda=0$：$z=-1$，结合约束得 $x=y=0$，即点 $(0,0,-1)$（此时约束 $x^2+y^2=0$ 强制取该点，而非整条曲线，区别于原题情形）",
+            "情形 $\\lambda\\ne0$：$x=y=0\\Rightarrow z=\\pm1$，检验 $z=1$：$1+1=\\lambda\\Rightarrow\\lambda=2\\ne0$成立；$z=-1$：$-1+1=-\\lambda\\Rightarrow\\lambda=0$矛盾（已在上一情形处理）",
+            "结论：临界点为 $(0,0,1)$ 与 $(0,0,-1)$，共两点"
+          ]
+        }
+      ],
+      "id": "isct-1998-ecc9f1f22d-q03-practice-03",
+      "school": "东京科学大学",
+      "year": "1998"
+    },
+    {
+      "text": "证明原题中函数 $f(x,y,z)=z^2$ 在临界点集 $\\{z=0\\}$ 上取得最小值 $0$，在极点 $(0,0,\\pm1)$ 处取得最大值 $1$，并说明为何赤道处的临界点集不是孤立点（与Morse理论中非退化临界点的区别）。",
+      "knowledge_points": [
+        "临界点与极值分析",
+        "退化临界点",
+        "Morse理论初步"
+      ],
+      "question_type": "极值与退化性分析",
+      "method": [
+        "直接代入验证极值",
+        "分析Hessian退化性"
+      ],
+      "solution_steps": [
+        "代入验证赤道与极点处的函数值",
+        "说明赤道处Hessian退化导致非孤立临界点"
+      ],
+      "math_structure": {
+        "type": "critical_points_extrema_analysis",
+        "template": "f(x,y,z)=z^2 \\text{ on } S^2,\\ \\text{extrema and degeneracy}",
+        "variable_count": 0
+      },
+      "difficulty": 3,
+      "estimated_minutes": 8,
+      "answer": [
+        {
+          "label": "分析",
+          "steps": [
+            "在 $z=0$ 上 $f=0$ 为最小值（因 $f=z^2\\ge0$，等号当且仅当 $z=0$）",
+            "在 $(0,0,\\pm1)$ 处 $f=1$，且由 $z^2\\le1$ 恒成立，故为最大值",
+            "赤道处 $f=z^2$ 在局部展开为 $z^2$（沿切方向 $z$ 的二阶变化），由于赤道是一维连续集合而非孤立点，说明该处Hessian在切空间的某个方向上退化（沿纬线方向二阶导数为零），这正是与Morse函数（临界点孤立、Hessian非退化）的本质区别，$f=z^2$ 不是$S^2$上的Morse函数"
+          ]
+        }
+      ],
+      "id": "isct-1998-ecc9f1f22d-q03-practice-04",
+      "school": "东京科学大学",
+      "year": "1998"
+    }
+  ],
+  "source_question": "午前 問5",
+  "source_pdf": "东京科学大学/理工学系/数学系/东京科学大学_理工学系_数学系_1998_数学过去问.pdf",
+  "source_type": "官方过去问",
+  "subject_category": "向量解析"
+}

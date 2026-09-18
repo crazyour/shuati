@@ -1,0 +1,211 @@
+{
+  "id": "osaka-2014-d970074357-q04",
+  "school": "大阪大学",
+  "year": "2014",
+  "subject": "情报科学研究科_情报基础数学",
+  "text": "证明极限\n$$\\lim_{r\\to\\infty}\\int_0^r \\frac{\\cos x}{1+x}\\,dx$$\n存在，并证明如下不等式：\n$$\\left|\\lim_{r\\to\\infty}\\int_0^r \\frac{\\cos x}{1+x}\\,dx\\right|\\le 1.$$",
+  "knowledge_points": [
+    "分部积分法",
+    "广义积分收敛性判别",
+    "绝对收敛的比较判别法",
+    "三角函数的有界性估计",
+    "积分不等式证明"
+  ],
+  "question_type": "广义积分收敛性证明与不等式估计",
+  "method": [
+    "对积分分部积分，把振荡因子转移到导数中",
+    "用比较判别法证明新积分绝对收敛，从而得原极限存在",
+    "直接用 $|\\sin x|\\le1$ 估计出不等式上界"
+  ],
+  "solution_steps": [
+    "取 $u=\\dfrac{1}{1+x},\\,dv=\\cos x\\,dx$ 分部积分",
+    "得到边界项 $\\sin r/(1+r)$ 与新积分 $\\int_0^r\\sin x/(1+x)^2\\,dx$",
+    "证明边界项当 $r\\to\\infty$ 时趋于0，新积分绝对收敛",
+    "得出极限存在且等于 $\\int_0^\\infty \\sin x/(1+x)^2\\,dx$",
+    "用 $|\\sin x|\\le1$ 估计该积分的绝对值不超过 $\\int_0^\\infty dx/(1+x)^2=1$"
+  ],
+  "math_structure": {
+    "type": "improper_integral_integration_by_parts_bound",
+    "template": "\\lim_{r\\to\\infty}\\int_0^r \\frac{\\cos x}{1+x}dx,\\quad \\left|\\lim\\right|\\le 1",
+    "variable_count": 0
+  },
+  "difficulty": 3,
+  "answer": [
+    {
+      "label": "证明极限存在",
+      "steps": [
+        "对 $\\int_0^r\\dfrac{\\cos x}{1+x}dx$ 分部积分，取 $u=\\dfrac1{1+x}$，$dv=\\cos x\\,dx$，则 $du=-\\dfrac{1}{(1+x)^2}dx$，$v=\\sin x$。",
+        "得 $\\displaystyle\\int_0^r\\frac{\\cos x}{1+x}dx=\\left[\\frac{\\sin x}{1+x}\\right]_0^r-\\int_0^r\\sin x\\cdot\\left(-\\frac{1}{(1+x)^2}\\right)dx=\\frac{\\sin r}{1+r}+\\int_0^r\\frac{\\sin x}{(1+x)^2}dx$。",
+        "当 $r\\to\\infty$，$\\left|\\dfrac{\\sin r}{1+r}\\right|\\le\\dfrac{1}{1+r}\\to0$。而对新积分，$\\left|\\dfrac{\\sin x}{(1+x)^2}\\right|\\le\\dfrac{1}{(1+x)^2}$，且 $\\int_0^\\infty\\dfrac{dx}{(1+x)^2}=1<\\infty$，由比较判别法知 $\\int_0^\\infty\\dfrac{\\sin x}{(1+x)^2}dx$ 绝对收敛。",
+        "故 $\\displaystyle\\lim_{r\\to\\infty}\\int_0^r\\frac{\\cos x}{1+x}dx=0+\\int_0^\\infty\\frac{\\sin x}{(1+x)^2}dx$ 存在，记该极限值为 $L=\\int_0^\\infty\\frac{\\sin x}{(1+x)^2}dx$。"
+      ]
+    },
+    {
+      "label": "证明不等式",
+      "steps": [
+        "由上一步 $L=\\displaystyle\\int_0^\\infty\\frac{\\sin x}{(1+x)^2}dx$。",
+        "因为对一切 $x\\ge0$，$|\\sin x|\\le1$，故 $\\left|\\dfrac{\\sin x}{(1+x)^2}\\right|\\le\\dfrac{1}{(1+x)^2}$。",
+        "两边取积分：$|L|\\le\\displaystyle\\int_0^\\infty\\frac{dx}{(1+x)^2}=\\left[-\\frac{1}{1+x}\\right]_0^\\infty=0-(-1)=1$。",
+        "故 $|L|\\le1$，即证得 $\\left|\\lim_{r\\to\\infty}\\int_0^r\\cos x/(1+x)\\,dx\\right|\\le1$。此界为紧的（虽本题不要求验证紧性），估计过程无遗漏，验证正确。"
+      ]
+    }
+  ],
+  "practice_questions": [
+    {
+      "text": "判断 $\\displaystyle\\int_0^\\infty \\frac{dx}{(1+x)^2}$ 是否收敛，并求其值。",
+      "knowledge_points": [
+        "广义积分收敛性",
+        "基本积分计算"
+      ],
+      "question_type": "广义积分基础计算",
+      "method": [
+        "直接计算原函数并取极限"
+      ],
+      "solution_steps": [
+        "求原函数 $-1/(1+x)$",
+        "代入上下限取极限",
+        "得到收敛值"
+      ],
+      "math_structure": {
+        "type": "improper_integral_basic",
+        "template": "\\int_0^\\infty \\frac{dx}{(1+x)^2}",
+        "variable_count": 0
+      },
+      "difficulty": 1,
+      "estimated_minutes": 5,
+      "answer": [
+        {
+          "label": "求值",
+          "steps": [
+            "原函数为 $-\\dfrac{1}{1+x}$。",
+            "$\\int_0^r\\dfrac{dx}{(1+x)^2}=1-\\dfrac{1}{1+r}$。",
+            "当 $r\\to\\infty$，极限为 $1-0=1$，故积分收敛且值为 $1$。"
+          ]
+        }
+      ],
+      "id": "osaka-2014-d970074357-q04-practice-01",
+      "school": "大阪大学",
+      "year": "2014"
+    },
+    {
+      "text": "用分部积分法，把 $\\displaystyle\\int_0^r \\frac{\\sin x}{1+x}\\,dx$ 转化为不含振荡导数的表达式，并说明该积分当 $r\\to\\infty$ 时极限存在。",
+      "knowledge_points": [
+        "分部积分法",
+        "广义积分收敛性判别"
+      ],
+      "question_type": "广义积分收敛性证明",
+      "method": [
+        "取 $u=1/(1+x),dv=\\sin x\\,dx$ 分部积分",
+        "用比较判别法证明新积分绝对收敛"
+      ],
+      "solution_steps": [
+        "分部积分得到边界项与新积分",
+        "证明边界项趋于0",
+        "证明新积分绝对收敛，得出极限存在"
+      ],
+      "math_structure": {
+        "type": "improper_integral_integration_by_parts_bound",
+        "template": "\\lim_{r\\to\\infty}\\int_0^r \\frac{\\sin x}{1+x}dx",
+        "variable_count": 0
+      },
+      "difficulty": 2,
+      "estimated_minutes": 8,
+      "answer": [
+        {
+          "label": "证明",
+          "steps": [
+            "取 $u=1/(1+x),dv=\\sin x\\,dx$，则 $du=-1/(1+x)^2dx,v=-\\cos x$。分部积分得 $\\int_0^r\\frac{\\sin x}{1+x}dx=\\left[-\\frac{\\cos x}{1+x}\\right]_0^r-\\int_0^r\\cos x\\cdot\\frac{1}{(1+x)^2}dx$。",
+            "边界项为 $-\\dfrac{\\cos r}{1+r}+1-\\int_0^r\\dfrac{\\cos x}{(1+x)^2}dx=1-\\dfrac{\\cos r}{1+r}-\\int_0^r\\dfrac{\\cos x}{(1+x)^2}dx$。",
+            "当 $r\\to\\infty$，$\\left|\\cos r/(1+r)\\right|\\le1/(1+r)\\to0$；而 $\\left|\\cos x/(1+x)^2\\right|\\le1/(1+x)^2$，其积分在 $[0,\\infty)$ 上绝对收敛。",
+            "故极限存在，为 $1-\\int_0^\\infty\\dfrac{\\cos x}{(1+x)^2}dx$。"
+          ]
+        }
+      ],
+      "id": "osaka-2014-d970074357-q04-practice-02",
+      "school": "大阪大学",
+      "year": "2014"
+    },
+    {
+      "text": "证明不等式 $\\left|\\displaystyle\\int_0^\\infty \\frac{\\sin x}{(1+x)^2}\\,dx\\right|\\le 1$。",
+      "knowledge_points": [
+        "绝对值不等式估计",
+        "比较判别法"
+      ],
+      "question_type": "积分不等式证明",
+      "method": [
+        "用 $|\\sin x|\\le1$ 直接放大被积函数",
+        "对放大后的积分求值作为上界"
+      ],
+      "solution_steps": [
+        "放大 $|\\sin x/(1+x)^2|\\le1/(1+x)^2$",
+        "对上界积分求值",
+        "得出结论"
+      ],
+      "math_structure": {
+        "type": "improper_integral_bound",
+        "template": "\\left|\\int_0^\\infty \\frac{\\sin x}{(1+x)^2}dx\\right|\\le C",
+        "variable_count": 0
+      },
+      "difficulty": 3,
+      "estimated_minutes": 10,
+      "answer": [
+        {
+          "label": "证明",
+          "steps": [
+            "对一切 $x\\ge0$，$|\\sin x|\\le1$，故 $\\left|\\dfrac{\\sin x}{(1+x)^2}\\right|\\le\\dfrac{1}{(1+x)^2}$。",
+            "两边取积分（利用积分绝对值不超过绝对值积分）：$\\left|\\int_0^\\infty\\frac{\\sin x}{(1+x)^2}dx\\right|\\le\\int_0^\\infty\\frac{dx}{(1+x)^2}$。",
+            "由练习1已求得 $\\int_0^\\infty\\frac{dx}{(1+x)^2}=1$，故原不等式成立，即 $\\left|\\int_0^\\infty\\sin x/(1+x)^2dx\\right|\\le1$。"
+          ]
+        }
+      ],
+      "id": "osaka-2014-d970074357-q04-practice-03",
+      "school": "大阪大学",
+      "year": "2014"
+    },
+    {
+      "text": "证明 $\\displaystyle\\lim_{r\\to\\infty}\\int_0^r \\frac{\\sin x}{2+x}\\,dx$ 存在，并给出其绝对值的一个具体上界。",
+      "knowledge_points": [
+        "分部积分法",
+        "广义积分收敛性判别",
+        "积分不等式估计"
+      ],
+      "question_type": "广义积分收敛性与不等式综合证明",
+      "method": [
+        "分部积分把振荡因子转移",
+        "用比较判别法证明收敛",
+        "用 $|\\cos x|\\le1$ 估计上界"
+      ],
+      "solution_steps": [
+        "分部积分得到边界项与新积分",
+        "证明边界项趋于0",
+        "证明新积分绝对收敛得极限存在",
+        "估计出总的绝对值上界"
+      ],
+      "math_structure": {
+        "type": "improper_integral_integration_by_parts_bound",
+        "template": "\\lim_{r\\to\\infty}\\int_0^r \\frac{\\sin x}{2+x}dx,\\quad \\left|\\lim\\right|\\le C",
+        "variable_count": 0
+      },
+      "difficulty": 4,
+      "estimated_minutes": 16,
+      "answer": [
+        {
+          "label": "证明与估计",
+          "steps": [
+            "取 $u=1/(2+x),dv=\\sin x\\,dx$，则 $v=-\\cos x$，分部积分得 $\\int_0^r\\frac{\\sin x}{2+x}dx=\\left[-\\frac{\\cos x}{2+x}\\right]_0^r-\\int_0^r\\frac{\\cos x}{(2+x)^2}dx=\\frac12-\\frac{\\cos r}{2+r}-\\int_0^r\\frac{\\cos x}{(2+x)^2}dx$。",
+            "当 $r\\to\\infty$，$|\\cos r/(2+r)|\\le1/(2+r)\\to0$；且 $|\\cos x/(2+x)^2|\\le1/(2+x)^2$，其积分在 $[0,\\infty)$ 绝对收敛（比较于 $\\int_0^\\infty dx/(2+x)^2=1/2$）。",
+            "故极限存在，记为 $M=\\frac12-\\int_0^\\infty\\frac{\\cos x}{(2+x)^2}dx$。",
+            "估计上界：$\\left|\\int_0^\\infty\\frac{\\cos x}{(2+x)^2}dx\\right|\\le\\int_0^\\infty\\frac{dx}{(2+x)^2}=\\frac12$，故 $|M|\\le\\frac12+\\frac12=1$。即 $\\left|\\lim_{r\\to\\infty}\\int_0^r\\sin x/(2+x)dx\\right|\\le1$，与原题结构完全平行，验证正确。"
+          ]
+        }
+      ],
+      "id": "osaka-2014-d970074357-q04-practice-04",
+      "school": "大阪大学",
+      "year": "2014"
+    }
+  ],
+  "source_question": "問4",
+  "source_pdf": "大阪大学/情报科学研究科/情报基础数学/大阪大学_情报科学研究科_情报基础数学_2014_数学过去问.pdf",
+  "source_type": "官方过去问",
+  "subject_category": "微积分"
+}

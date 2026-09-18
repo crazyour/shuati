@@ -1,0 +1,143 @@
+{
+  "id": "kyushu-2019-ist-complex-analysis",
+  "school": "九州大学",
+  "year": "2019",
+  "subject": "システム情報科学府_情報理工学専攻",
+  "text": "从直角坐标的 Cauchy-Riemann 方程出发，证明极坐标形式 $u_r=v_\\theta/r$、$v_r=-u_\\theta/r$。",
+  "knowledge_points": [
+    "Cauchy-Riemann 方程",
+    "极坐标",
+    "链式法则"
+  ],
+  "question_type": "极坐标 Cauchy-Riemann 证明题",
+  "method": [
+    "坐标变换",
+    "链式法则"
+  ],
+  "solution_steps": [
+    "写出各坐标变量的偏导",
+    "将 $u_r$ 等量展开",
+    "代入直角坐标 Cauchy-Riemann 方程"
+  ],
+  "math_structure": {
+    "type": "polar_cauchy_riemann",
+    "template": "$x=r\\cos\\theta,y=r\\sin\\theta$",
+    "variable_count": 2
+  },
+  "difficulty": 3,
+  "answer": [
+    {
+      "label": "证明",
+      "steps": [
+        "思路：采用坐标变换、链式法则，先写出各坐标变量的偏导。",
+        "链式法则给出 $u_r=u_x\\cos\\theta+u_y\\sin\\theta$，$v_\\theta=-rv_x\\sin\\theta+rv_y\\cos\\theta$。",
+        "代入 $u_x=v_y,u_y=-v_x$ 得 $u_r=v_\\theta/r$。",
+        "同理可得 $v_r=-u_\\theta/r$。"
+      ]
+    }
+  ],
+  "practice_questions": [
+    {
+      "id": "kyushu-2019-ist-ca-p1",
+      "school": "九州大学",
+      "year": "2019",
+      "text": "写出 $x_r,y_r$。",
+      "knowledge_points": [
+        "极坐标"
+      ],
+      "question_type": "基础拆解题",
+      "method": [
+        "直接计算"
+      ],
+      "solution_steps": [
+        "识别原题中的单一步骤",
+        "代入并化简"
+      ],
+      "math_structure": {
+        "type": "scoped_practice",
+        "template": "原题的单一步骤练习",
+        "variable_count": 1
+      },
+      "difficulty": 1,
+      "estimated_minutes": 4,
+      "answer": [
+        {
+          "label": "答案",
+          "steps": [
+            "先识别本题考查的极坐标，再按直接计算写出所需关系。",
+            "$x_r=\\cos\\theta,y_r=\\sin\\theta$。",
+            "最后按题设的符号、范围和方向检查，得到所列结论。"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "kyushu-2019-ist-ca-p2",
+      "school": "九州大学",
+      "year": "2019",
+      "text": "写出 $x_\\theta,y_\\theta$。",
+      "knowledge_points": [
+        "极坐标"
+      ],
+      "question_type": "基础拆解题",
+      "method": [
+        "直接计算"
+      ],
+      "solution_steps": [
+        "识别原题中的单一步骤",
+        "代入并化简"
+      ],
+      "math_structure": {
+        "type": "scoped_practice",
+        "template": "原题的单一步骤练习",
+        "variable_count": 1
+      },
+      "difficulty": 1,
+      "estimated_minutes": 4,
+      "answer": [
+        {
+          "label": "答案",
+          "steps": [
+            "先识别本题考查的极坐标，再按直接计算写出所需关系。",
+            "$x_\\theta=-r\\sin\\theta,y_\\theta=r\\cos\\theta$。",
+            "最后按题设的符号、范围和方向检查，得到所列结论。"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "kyushu-2019-ist-ca-p3",
+      "school": "九州大学",
+      "year": "2019",
+      "text": "写出直角坐标 Cauchy-Riemann 方程。",
+      "knowledge_points": [
+        "Cauchy-Riemann 方程"
+      ],
+      "question_type": "基础拆解题",
+      "method": [
+        "直接计算"
+      ],
+      "solution_steps": [
+        "识别原题中的单一步骤",
+        "代入并化简"
+      ],
+      "math_structure": {
+        "type": "scoped_practice",
+        "template": "原题的单一步骤练习",
+        "variable_count": 1
+      },
+      "difficulty": 1,
+      "estimated_minutes": 4,
+      "answer": [
+        {
+          "label": "答案",
+          "steps": [
+            "先识别本题考查的Cauchy-Riemann 方程，再按直接计算写出所需关系。",
+            "$u_x=v_y$，$u_y=-v_x$。",
+            "最后按题设的符号、范围和方向检查，得到所列结论。"
+          ]
+        }
+      ]
+    }
+  ]
+}

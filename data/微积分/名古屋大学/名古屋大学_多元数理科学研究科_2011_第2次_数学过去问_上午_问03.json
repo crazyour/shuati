@@ -1,0 +1,203 @@
+{
+  "id": "nagoya-2011-82550a1ff6-q03",
+  "school": "名古屋大学",
+  "year": "2011",
+  "subject": "多元数理科学研究科_全专攻",
+  "text": "设 $a$ 为实数，定义函数 $f:\\mathbb{R}^2\\to\\mathbb{R}$ 为\n$$f(x,y)=xy+ay^2-x^3.$$\n求 $f(x,y)$ 在 $\\mathbb{R}^2$ 上的极值以及取得极值的点（讨论对参数 $a$ 的依赖关系）。",
+  "knowledge_points": [
+    "多元函数极值",
+    "偏导数与临界点",
+    "Hessian判别法",
+    "参数讨论"
+  ],
+  "question_type": "多元函数极值分析题",
+  "method": [
+    "求一阶偏导得临界点方程组",
+    "求二阶偏导构造Hessian矩阵/判别式",
+    "按Hessian行列式符号及f_xx符号判定极大/极小/鞍点",
+    "分参数a=0与a≠0讨论"
+  ],
+  "solution_steps": [
+    "计算f_x=y-3x^2, f_y=x+2ay，令二者为0求临界点",
+    "解得(0,0)恒为临界点；当a≠0时另有临界点(-1/(6a), 1/(12a^2))",
+    "计算Hessian H=f_xx f_yy - f_xy^2 = -12ax-1，判断各临界点处符号",
+    "在(0,0)处H=-1<0恒为鞍点；在另一临界点处H=1>0，结合f_xx=1/a的符号判断极大/极小并求极值"
+  ],
+  "math_structure": {
+    "type": "two_variable_extrema_with_parameter",
+    "template": "f(x,y)=xy+ay^2-x^3, find critical points and classify extrema depending on parameter a",
+    "variable_count": 1
+  },
+  "difficulty": 3,
+  "answer": [
+    {
+      "label": "极值分析",
+      "steps": [
+        "一阶偏导：$f_x=y-3x^2=0\\Rightarrow y=3x^2$；$f_y=x+2ay=0\\Rightarrow x=-2ay$。代入得 $x=-2a(3x^2)=-6ax^2$，即 $x(1+6ax)=0$。",
+        "当 $a=0$ 时，方程组化为 $y=3x^2, x=0$，只有临界点 $(0,0)$。当 $a\\ne0$ 时，除 $x=0$（对应 $(0,0)$）外还有 $x=-\\dfrac{1}{6a}$，代入 $y=3x^2$ 得 $y=\\dfrac{1}{12a^2}$，即第二临界点 $\\left(-\\dfrac{1}{6a},\\dfrac{1}{12a^2}\\right)$。",
+        "二阶偏导：$f_{xx}=-6x,\\ f_{yy}=2a,\\ f_{xy}=1$，Hessian判别式 $H(x,y)=f_{xx}f_{yy}-f_{xy}^2=-12ax-1$。",
+        "在 $(0,0)$ 处：$H=-1<0$，对任意 $a$（含 $a=0$）该点都是鞍点，不是极值点。",
+        "当 $a\\ne0$，在 $\\left(-\\dfrac1{6a},\\dfrac1{12a^2}\\right)$ 处：$H=-12a\\cdot\\left(-\\dfrac1{6a}\\right)-1=2-1=1>0$，故该点为极值点；此处 $f_{xx}=-6\\cdot\\left(-\\dfrac1{6a}\\right)=\\dfrac1a$。",
+        "若 $a>0$，则 $f_{xx}=1/a>0$，为极小值点；若 $a<0$，则 $f_{xx}=1/a<0$，为极大值点。",
+        "计算该点处函数值：$f\\left(-\\dfrac1{6a},\\dfrac1{12a^2}\\right)=x_1y_1+ay_1^2-x_1^3=-\\dfrac1{72a^3}+\\dfrac1{144a^3}+\\dfrac1{216a^3}=-\\dfrac1{432a^3}$（通分：$-6/432+3/432+2/432=-1/432$）。",
+        "结论：当 $a=0$ 时，$f$ 无极值（唯一临界点 $(0,0)$ 是鞍点）。当 $a\\ne0$ 时，$(0,0)$ 恒为鞍点；点 $\\left(-\\dfrac1{6a},\\dfrac1{12a^2}\\right)$ 为极值点，极值为 $-\\dfrac1{432a^3}$，当 $a>0$ 时是极小值，当 $a<0$ 时是极大值。"
+      ]
+    }
+  ],
+  "practice_questions": [
+    {
+      "text": "求函数 $g(x,y)=x^2+xy+y^2-3x$ 的临界点，并用Hessian判别法确定其类型（极大、极小或鞍点）。",
+      "knowledge_points": [
+        "多元函数极值",
+        "Hessian判别法"
+      ],
+      "question_type": "计算题",
+      "method": [
+        "求偏导找临界点",
+        "Hessian符号判定"
+      ],
+      "solution_steps": [
+        "求g_x,g_y并解方程组",
+        "计算二阶偏导和判别式",
+        "判断极值类型"
+      ],
+      "math_structure": {
+        "type": "two_variable_extrema_no_parameter",
+        "template": "find and classify critical points of g(x,y)=x^2+xy+y^2-3x",
+        "variable_count": 0
+      },
+      "difficulty": 2,
+      "estimated_minutes": 8,
+      "answer": [
+        {
+          "label": "结果",
+          "steps": [
+            "$g_x=2x+y-3=0,\\ g_y=x+2y=0$。由第二式 $x=-2y$，代入第一式：$-4y+y-3=0\\Rightarrow y=-1,\\ x=2$，临界点为$(2,-1)$。",
+            "$g_{xx}=2,g_{yy}=2,g_{xy}=1$，Hessian判别式 $H=2\\cdot2-1^2=3>0$，且$g_{xx}=2>0$，故$(2,-1)$为极小值点。",
+            "极小值为 $g(2,-1)=4-2+1-6=-3$。"
+          ]
+        }
+      ],
+      "id": "nagoya-2011-82550a1ff6-q03-practice-01",
+      "school": "名古屋大学",
+      "year": "2011"
+    },
+    {
+      "text": "验证函数 $h(x,y)=x^2-y^2$ 的唯一临界点 $(0,0)$ 是鞍点，并说明鞍点的几何含义。",
+      "knowledge_points": [
+        "鞍点判别",
+        "Hessian行列式为负"
+      ],
+      "question_type": "证明题",
+      "method": [
+        "求偏导及Hessian判定"
+      ],
+      "solution_steps": [
+        "求临界点",
+        "计算Hessian行列式符号",
+        "结论说明鞍点含义"
+      ],
+      "math_structure": {
+        "type": "saddle_point_verification",
+        "template": "verify (0,0) is saddle point of h(x,y)=x^2-y^2",
+        "variable_count": 0
+      },
+      "difficulty": 1,
+      "estimated_minutes": 5,
+      "answer": [
+        {
+          "label": "结果",
+          "steps": [
+            "$h_x=2x=0,h_y=-2y=0$，唯一临界点$(0,0)$。",
+            "$h_{xx}=2,h_{yy}=-2,h_{xy}=0$，Hessian判别式 $H=2\\cdot(-2)-0=-4<0$，故为鞍点。",
+            "沿x轴方向h(x,0)=x^2随x增大而增大（局部看是极小方向），沿y轴方向h(0,y)=-y^2随|y|增大而减小（局部看是极大方向），两个方向表现相反，正是鞍点的几何特征。"
+          ]
+        }
+      ],
+      "id": "nagoya-2011-82550a1ff6-q03-practice-02",
+      "school": "名古屋大学",
+      "year": "2011"
+    },
+    {
+      "text": "设 $b$ 为实数参数，考虑函数 $\\varphi(x,y)=x^2y-by^2-x^2$。求所有临界点，并讨论当 $b>0$ 与 $b<0$ 时各临界点的类型。",
+      "knowledge_points": [
+        "带参数的多元函数极值",
+        "Hessian判别法",
+        "参数讨论"
+      ],
+      "question_type": "参数讨论题",
+      "method": [
+        "求偏导得临界点方程组",
+        "按参数b分类讨论Hessian符号"
+      ],
+      "solution_steps": [
+        "求φ_x,φ_y并解出临界点（含参数b的表达式）",
+        "计算二阶偏导及判别式",
+        "按b>0,b<0,b=0分类讨论"
+      ],
+      "math_structure": {
+        "type": "two_variable_extrema_with_parameter_practice",
+        "template": "phi(x,y)=x^2y - b y^2 - x^2, classify critical points by sign of parameter b",
+        "variable_count": 1
+      },
+      "difficulty": 3,
+      "estimated_minutes": 15,
+      "answer": [
+        {
+          "label": "结果",
+          "steps": [
+            "$\\varphi_x=2xy-2x=2x(y-1)=0\\Rightarrow x=0$ 或 $y=1$。$\\varphi_y=x^2-2by=0$。",
+            "若 $x=0$：代入第二式得 $y=0$（假设$b\\ne0$），临界点 $(0,0)$。若 $y=1$：代入第二式得 $x^2=2b$，当 $b>0$ 时 $x=\\pm\\sqrt{2b}$，得两个临界点 $(\\pm\\sqrt{2b},1)$；当 $b<0$ 时无实数解，只有 $(0,0)$ 一个临界点；当$b=0$时，$y=1$分支给出$x=0$，与另一分支重合于原点附近需单独分析（此处仅讨论$b\\ne0$情形）。",
+            "二阶偏导：$\\varphi_{xx}=2y-2,\\varphi_{yy}=-2b,\\varphi_{xy}=2x$，判别式 $H=(2y-2)(-2b)-4x^2$。",
+            "在 $(0,0)$：$H=(-2)(-2b)-0=4b$。若 $b>0$，$H>0$且$\\varphi_{xx}=-2<0$，为极大值点；若$b<0$，$H<0$，为鞍点。",
+            "在 $(\\pm\\sqrt{2b},1)$（仅$b>0$时存在）：$H=(2-2)(-2b)-4(2b)=0-8b=-8b<0$，故这两点均为鞍点。"
+          ]
+        }
+      ],
+      "id": "nagoya-2011-82550a1ff6-q03-practice-03",
+      "school": "名古屋大学",
+      "year": "2011"
+    },
+    {
+      "text": "求函数 $\\psi(x,y)=x^3-3xy+y^3$ 的所有临界点并用二阶判别法分类。",
+      "knowledge_points": [
+        "三次函数极值",
+        "Hessian判别法"
+      ],
+      "question_type": "计算题",
+      "method": [
+        "求偏导得临界点",
+        "Hessian判定"
+      ],
+      "solution_steps": [
+        "求ψ_x,ψ_y解方程组",
+        "计算二阶偏导和判别式判断类型"
+      ],
+      "math_structure": {
+        "type": "cubic_two_variable_extrema",
+        "template": "find and classify critical points of psi(x,y)=x^3-3xy+y^3",
+        "variable_count": 0
+      },
+      "difficulty": 3,
+      "estimated_minutes": 12,
+      "answer": [
+        {
+          "label": "结果",
+          "steps": [
+            "$\\psi_x=3x^2-3y=0\\Rightarrow y=x^2$；$\\psi_y=-3x+3y^2=0\\Rightarrow x=y^2=x^4\\Rightarrow x^4-x=0\\Rightarrow x(x^3-1)=0$，得 $x=0$ 或 $x=1$。",
+            "$x=0\\Rightarrow y=0$，临界点 $(0,0)$；$x=1\\Rightarrow y=1$，临界点 $(1,1)$。",
+            "$\\psi_{xx}=6x,\\psi_{yy}=6y,\\psi_{xy}=-3$，判别式 $H=36xy-9$。",
+            "在 $(0,0)$：$H=-9<0$，鞍点。在 $(1,1)$：$H=36-9=27>0$，且 $\\psi_{xx}=6>0$，为极小值点，极小值 $\\psi(1,1)=1-3+1=-1$。"
+          ]
+        }
+      ],
+      "id": "nagoya-2011-82550a1ff6-q03-practice-04",
+      "school": "名古屋大学",
+      "year": "2011"
+    }
+  ],
+  "source_question": "問4",
+  "source_pdf": "名古屋大学/多元数理科学研究科/全专攻/名古屋大学_多元数理科学研究科_2011_第2次_数学过去问_上午.pdf",
+  "source_type": "官方过去问",
+  "subject_category": "微积分"
+}

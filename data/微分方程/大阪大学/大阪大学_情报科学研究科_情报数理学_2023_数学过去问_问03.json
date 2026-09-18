@@ -1,0 +1,232 @@
+{
+  "id": "osaka-2023-0a7e765bb5-q03",
+  "school": "大阪大学",
+  "year": "2023",
+  "subject": "情报科学研究科_情报数理学",
+  "text": "设 $n$ 为正整数。求关于实值函数 $x(t)$ 的微分方程 $\\dfrac{d^n x}{dt^n}=x$ 的一般解（通解）。",
+  "knowledge_points": [
+    "高阶线性常系数齐次微分方程",
+    "特征方程与特征根",
+    "n次单位根",
+    "复共轭根对应的实值解(欧拉公式)",
+    "通解中任意常数个数与方程阶数的关系"
+  ],
+  "question_type": "高阶常系数线性微分方程通解",
+  "method": [
+    "假设指数解 $x=e^{rt}$ 代入求特征方程",
+    "求解特征方程 $r^n=1$ 得到 $n$ 个 $n$ 次单位根",
+    "将复共轭根对合并为实值解",
+    "写出含 $n$ 个任意常数的通解"
+  ],
+  "solution_steps": [
+    "代入 $x=e^{rt}$ 得特征方程 $r^n=1$",
+    "求出 $n$ 个根 $r_j=e^{2\\pi ij/n}\\ (j=0,\\ldots,n-1)$（$n$ 次单位根）",
+    "识别实根（$r=1$ 恒为根，$n$ 为偶数时 $r=-1$ 也是根）与共轭复根对",
+    "将共轭复根对组合为实值形式 $e^{at}(A\\cos bt+B\\sin bt)$",
+    "写出含 $n$ 个独立任意常数的通解表达式并验算独立常数个数"
+  ],
+  "math_structure": {
+    "type": "linear_ode_nth_root_characteristic",
+    "template": "x^{(n)}(t)=x(t),\\ n\\in\\mathbb{Z}_{>0}",
+    "variable_count": 1
+  },
+  "difficulty": 3,
+  "answer": [
+    {
+      "label": "通解",
+      "steps": [
+        "设 $x(t)=e^{rt}$ 代入方程 $\\dfrac{d^nx}{dt^n}=x$，得 $r^ne^{rt}=e^{rt}$，即特征方程 $r^n=1$。",
+        "该方程有 $n$ 个互不相同的复数根，即 $n$ 次单位根：$r_j=e^{2\\pi ij/n}=\\cos\\dfrac{2\\pi j}{n}+i\\sin\\dfrac{2\\pi j}{n}\\ (j=0,1,\\ldots,n-1)$。特征方程无重根，对应 $n$ 个线性无关的复值解 $e^{r_jt}$。",
+        "因要求 $x(t)$ 为实值函数，需将复值解组合为实值解。注意 $j=0$ 给出实根 $r_0=1$；若 $n$ 为偶数，$j=n/2$ 给出另一实根 $r_{n/2}=e^{i\\pi}=-1$。其余 $j$（排除0及可能的 $n/2$）两两共轭：$r_{n-j}=\\overline{r_j}$，因为 $\\cos\\frac{2\\pi(n-j)}{n}=\\cos\\frac{2\\pi j}{n}$，$\\sin\\frac{2\\pi(n-j)}{n}=-\\sin\\frac{2\\pi j}{n}$。",
+        "对每一对共轭复根 $r_j=a_j+ib_j$（$a_j=\\cos\\frac{2\\pi j}{n},\\ b_j=\\sin\\frac{2\\pi j}{n}>0,\\ j=1,\\ldots,\\lfloor(n-1)/2\\rfloor$），组合出实值解 $e^{a_jt}(A_j\\cos(b_jt)+B_j\\sin(b_jt))$，其中 $A_j,B_j$ 为任意实常数。",
+        "汇总得通解：$$x(t)=C_1e^{t}+\\varepsilon\\,C_2e^{-t}+\\sum_{j=1}^{\\lfloor(n-1)/2\\rfloor}e^{\\cos(2\\pi j/n)\\,t}\\Big[A_j\\cos\\big(\\sin(2\\pi j/n)\\,t\\big)+B_j\\sin\\big(\\sin(2\\pi j/n)\\,t\\big)\\Big]$$ 其中 $n$ 为偶数时 $\\varepsilon=1$（含 $C_2e^{-t}$ 项），$n$ 为奇数时 $\\varepsilon=0$（无此项）。",
+        "验算独立常数个数：$n$ 为偶数时，$1+1+2(n/2-1)=n$；$n$ 为奇数时，$1+0+2\\cdot\\frac{n-1}{2}=n$。均恰好为 $n$ 个任意常数，与 $n$ 阶线性常系数齐次方程解空间维数为 $n$ 吻合。",
+        "举例验算：$n=2$ 时根为 $r=\\pm1$，通解 $x=C_1e^t+C_2e^{-t}$，代入验证 $x''=C_1e^t+C_2e^{-t}=x$ 成立；$n=4$ 时根为 $1,i,-1,-i$，通解 $x=C_1e^t+C_2e^{-t}+A_1\\cos t+B_1\\sin t$，因 $\\cos t,\\sin t$ 求四次导后恢复自身，方程成立。"
+      ]
+    }
+  ],
+  "practice_questions": [
+    {
+      "text": "求微分方程 $x''=x$（即 $n=2$ 的具体情形）的通解。",
+      "knowledge_points": [
+        "特征方程",
+        "二阶常系数线性ODE"
+      ],
+      "question_type": "二阶ODE通解",
+      "method": [
+        "特征方程法"
+      ],
+      "solution_steps": [
+        "求特征方程 $r^2=1$ 的根",
+        "写出通解并代入验证"
+      ],
+      "math_structure": {
+        "type": "linear_ode_order2_positive",
+        "template": "x''(t)=x(t)",
+        "variable_count": 1
+      },
+      "difficulty": 1,
+      "estimated_minutes": 5,
+      "answer": [
+        {
+          "label": "通解",
+          "steps": [
+            "特征方程 $r^2=1$，解得 $r=\\pm1$。",
+            "通解为 $x(t)=C_1e^t+C_2e^{-t}$。",
+            "验算：$x''=C_1e^t+C_2e^{-t}=x(t)$，满足原方程。"
+          ]
+        }
+      ],
+      "id": "osaka-2023-0a7e765bb5-q03-practice-01",
+      "school": "大阪大学",
+      "year": "2023"
+    },
+    {
+      "text": "求微分方程 $x''=-x$ 的通解（与上一题对比：右端符号相反，特征根为纯虚数）。",
+      "knowledge_points": [
+        "特征方程",
+        "复数根的实值解表示"
+      ],
+      "question_type": "二阶ODE通解(振荡型)",
+      "method": [
+        "特征方程法与欧拉公式"
+      ],
+      "solution_steps": [
+        "求特征方程 $r^2=-1$ 的根",
+        "用欧拉公式写出实值通解并验证"
+      ],
+      "math_structure": {
+        "type": "linear_ode_order2_negative",
+        "template": "x''(t)=-x(t)",
+        "variable_count": 1
+      },
+      "difficulty": 1,
+      "estimated_minutes": 5,
+      "answer": [
+        {
+          "label": "通解",
+          "steps": [
+            "特征方程 $r^2=-1$，解得 $r=\\pm i$。",
+            "对应实值通解为 $x(t)=A\\cos t+B\\sin t$。",
+            "验算：$x''=-A\\cos t-B\\sin t=-x(t)$，满足原方程。"
+          ]
+        }
+      ],
+      "id": "osaka-2023-0a7e765bb5-q03-practice-02",
+      "school": "大阪大学",
+      "year": "2023"
+    },
+    {
+      "text": "求微分方程 $x'''=x$（$n=3$ 情形）的通解。",
+      "knowledge_points": [
+        "三次单位根",
+        "复共轭根对应实值解"
+      ],
+      "question_type": "三阶ODE通解",
+      "method": [
+        "特征方程法：求三次单位根并组合实值解"
+      ],
+      "solution_steps": [
+        "求特征方程 $r^3=1$ 的三个根",
+        "识别一个实根和一对共轭复根",
+        "写出实值通解"
+      ],
+      "math_structure": {
+        "type": "linear_ode_order3_cube_roots",
+        "template": "x'''(t)=x(t)",
+        "variable_count": 1
+      },
+      "difficulty": 2,
+      "estimated_minutes": 10,
+      "answer": [
+        {
+          "label": "通解",
+          "steps": [
+            "特征方程 $r^3=1$ 的根为 $r_0=1$，$r_1=e^{2\\pi i/3}=-\\dfrac12+i\\dfrac{\\sqrt3}{2}$，$r_2=e^{4\\pi i/3}=-\\dfrac12-i\\dfrac{\\sqrt3}{2}$（$r_1,r_2$ 互为共轭）。",
+            "实根 $r_0=1$ 给出解 $C_1e^t$；共轭复根对 $a=-1/2,\\ b=\\sqrt3/2$ 给出解 $e^{-t/2}\\big[A\\cos(\\sqrt3t/2)+B\\sin(\\sqrt3t/2)\\big]$。",
+            "通解：$x(t)=C_1e^{t}+e^{-t/2}\\Big[A\\cos\\big(\\tfrac{\\sqrt3}{2}t\\big)+B\\sin\\big(\\tfrac{\\sqrt3}{2}t\\big)\\Big]$，含3个任意常数 $C_1,A,B$，与三阶方程解空间维数3吻合。"
+          ]
+        }
+      ],
+      "id": "osaka-2023-0a7e765bb5-q03-practice-03",
+      "school": "大阪大学",
+      "year": "2023"
+    },
+    {
+      "text": "求微分方程 $x''''=x$（$n=4$ 情形）的通解，并核对是否与本题给出的一般公式（取 $n=4$）一致。",
+      "knowledge_points": [
+        "四次单位根",
+        "通解一般公式的特例验证"
+      ],
+      "question_type": "四阶ODE通解",
+      "method": [
+        "特征方程法"
+      ],
+      "solution_steps": [
+        "求特征方程 $r^4=1$ 的四个根",
+        "组合出实值通解",
+        "代入一般公式核对"
+      ],
+      "math_structure": {
+        "type": "linear_ode_order4_fourth_roots",
+        "template": "x''''(t)=x(t)",
+        "variable_count": 1
+      },
+      "difficulty": 3,
+      "estimated_minutes": 10,
+      "answer": [
+        {
+          "label": "通解",
+          "steps": [
+            "特征方程 $r^4=1$ 的根为 $1,-1,i,-i$。",
+            "对应通解：$x(t)=C_1e^{t}+C_2e^{-t}+A\\cos t+B\\sin t$。",
+            "核对一般公式（$n=4$）：$\\lfloor(4-1)/2\\rfloor=1$，$j=1$ 时 $a_1=\\cos(2\\pi/4)=0,\\ b_1=\\sin(2\\pi/4)=1$，给出 $e^{0\\cdot t}(A\\cos t+B\\sin t)=A\\cos t+B\\sin t$；又 $n=4$ 为偶数含 $C_2e^{-t}$ 项，与直接求解结果完全一致。"
+          ]
+        }
+      ],
+      "id": "osaka-2023-0a7e765bb5-q03-practice-04",
+      "school": "大阪大学",
+      "year": "2023"
+    },
+    {
+      "text": "证明对任意正整数 $n$，特征方程 $r^n=1$ 的 $n$ 个根 $r_j=e^{2\\pi ij/n}\\ (j=0,\\ldots,n-1)$ 两两不同，从而对应的 $n$ 个解 $e^{r_jt}$ 线性无关。",
+      "knowledge_points": [
+        "n次单位根的性质",
+        "特征根互异与解的线性无关性"
+      ],
+      "question_type": "理论证明",
+      "method": [
+        "反证法结合模运算"
+      ],
+      "solution_steps": [
+        "假设两根相等推出矛盾",
+        "得出所有根互异",
+        "说明互异特征根对应线性无关解"
+      ],
+      "math_structure": {
+        "type": "distinct_nth_roots_of_unity_proof",
+        "template": "r_j=e^{2\\pi ij/n},\\ j=0,\\ldots,n-1",
+        "variable_count": 1
+      },
+      "difficulty": 3,
+      "estimated_minutes": 10,
+      "answer": [
+        {
+          "label": "证明",
+          "steps": [
+            "反设存在 $j\\ne k$，$j,k\\in\\{0,\\ldots,n-1\\}$，使得 $r_j=r_k$，即 $e^{2\\pi ij/n}=e^{2\\pi ik/n}$，等价于 $e^{2\\pi i(j-k)/n}=1$。",
+            "$e^{2\\pi i(j-k)/n}=1$ 当且仅当 $(j-k)/n$ 为整数，即 $n\\mid(j-k)$。但 $j,k\\in\\{0,\\ldots,n-1\\}$ 意味着 $|j-k|<n$，而 $j\\ne k$ 使 $j-k\\ne0$，与 $n\\mid(j-k)$ 且 $0<|j-k|<n$ 矛盾。",
+            "故所有 $r_j\\ (j=0,\\ldots,n-1)$ 两两不同，即特征方程 $r^n=1$ 有 $n$ 个互异根，无重根。由常系数线性齐次ODE理论，互异特征根对应的指数解 $e^{r_jt}$ 线性无关，构成解空间的一组基，故解空间维数恰为 $n$，与方程阶数相符。"
+          ]
+        }
+      ],
+      "id": "osaka-2023-0a7e765bb5-q03-practice-05",
+      "school": "大阪大学",
+      "year": "2023"
+    }
+  ],
+  "source_question": "数学解析 問1",
+  "source_pdf": "大阪大学/情报科学研究科/情报数理学/大阪大学_情报科学研究科_情报数理学_2023_数学过去问.pdf",
+  "source_type": "官方过去问",
+  "subject_category": "微分方程"
+}

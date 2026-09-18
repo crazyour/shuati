@@ -1,0 +1,199 @@
+{
+  "id": "osaka-2012-30579dc571-q02",
+  "school": "大阪大学",
+  "year": "2012",
+  "subject": "情报科学研究科_情报基础数学",
+  "text": "求累次积分的值：$\\displaystyle\\int_0^{\\sqrt{\\pi/2}}\\left(\\int_y^{\\sqrt{\\pi/2}}\\cos(x^2)\\,dx\\right)dy$。",
+  "knowledge_points": [
+    "积分次序交换",
+    "积分区域图示",
+    "换元积分",
+    "不能初等求出原函数的被积函数（$\\cos(x^2)$）"
+  ],
+  "question_type": "交换积分次序求累次积分",
+  "method": [
+    "画出积分区域",
+    "交换dx,dy的积分顺序",
+    "先积分与y无关的内层",
+    "换元 $u=x^2$ 求外层积分"
+  ],
+  "solution_steps": [
+    "确定原积分区域：$0\\le y\\le\\sqrt{\\pi/2}$，$y\\le x\\le\\sqrt{\\pi/2}$，即 $0\\le y\\le x\\le\\sqrt{\\pi/2}$",
+    "交换次序：先对y（从0到x）积分，再对x（从0到$\\sqrt{\\pi/2}$）积分",
+    "内层积分得到 $x\\cos(x^2)$",
+    "外层积分换元 $u=x^2$ 求得最终结果"
+  ],
+  "math_structure": {
+    "type": "swap_order_iterated_integral",
+    "template": "\\int_0^{a}\\left(\\int_y^{a}\\cos(x^2)\\,dx\\right)dy,\\ a=\\sqrt{\\pi/2}",
+    "variable_count": 1
+  },
+  "difficulty": 2,
+  "answer": [
+    {
+      "label": "問1(2)",
+      "steps": [
+        "原区域 $R=\\{(x,y):0\\le y\\le\\sqrt{\\pi/2},\\ y\\le x\\le\\sqrt{\\pi/2}\\}$，等价于 $0\\le y\\le x\\le\\sqrt{\\pi/2}$。",
+        "交换积分顺序：$\\displaystyle\\int_0^{\\sqrt{\\pi/2}}\\int_0^{x}\\cos(x^2)\\,dy\\,dx$。",
+        "内层积分（被积函数与y无关）：$\\int_0^x\\cos(x^2)\\,dy=x\\cos(x^2)$。",
+        "外层积分：$\\displaystyle\\int_0^{\\sqrt{\\pi/2}}x\\cos(x^2)\\,dx$，令 $u=x^2,\\ du=2x\\,dx$，得 $\\tfrac12\\int_0^{\\pi/2}\\cos u\\,du=\\tfrac12\\left[\\sin u\\right]_0^{\\pi/2}=\\tfrac12$。",
+        "结论：原积分的值为 $\\dfrac12$。"
+      ]
+    }
+  ],
+  "practice_questions": [
+    {
+      "text": "计算 $\\displaystyle\\int_0^{1}\\left(\\int_y^{1}x\\,dx\\right)dy$，并用交换积分顺序验证结果。",
+      "knowledge_points": [
+        "积分次序交换",
+        "基础二重积分"
+      ],
+      "question_type": "交换积分次序（多项式）",
+      "method": [
+        "直接计算内层积分",
+        "交换次序验证"
+      ],
+      "solution_steps": [
+        "直接对内层积分计算",
+        "对外层积分计算",
+        "用交换次序法验证结果一致"
+      ],
+      "math_structure": {
+        "type": "swap_order_iterated_integral",
+        "template": "\\int_0^1\\left(\\int_y^1 x\\,dx\\right)dy",
+        "variable_count": 0
+      },
+      "difficulty": 1,
+      "estimated_minutes": 5,
+      "answer": [
+        {
+          "label": "结果",
+          "steps": [
+            "直接法：内层 $\\int_y^1x\\,dx=\\tfrac{1-y^2}2$，外层 $\\int_0^1\\tfrac{1-y^2}2dy=\\tfrac12\\left(1-\\tfrac13\\right)=\\tfrac13$。",
+            "交换次序验证：区域为 $0\\le y\\le x\\le1$，交换后 $\\int_0^1\\int_0^x x\\,dy\\,dx=\\int_0^1x^2dx=\\tfrac13$，与直接法一致。",
+            "最终结果：$\\dfrac13$。"
+          ]
+        }
+      ],
+      "id": "osaka-2012-30579dc571-q02-practice-01",
+      "school": "大阪大学",
+      "year": "2012"
+    },
+    {
+      "text": "计算 $\\displaystyle\\int_0^{2}\\left(\\int_y^{2}x^3\\,dx\\right)dy$。",
+      "knowledge_points": [
+        "积分次序交换",
+        "多项式积分"
+      ],
+      "question_type": "交换积分次序（多项式）",
+      "method": [
+        "交换积分顺序"
+      ],
+      "solution_steps": [
+        "确定区域并交换次序",
+        "计算内层积分",
+        "计算外层积分"
+      ],
+      "math_structure": {
+        "type": "swap_order_iterated_integral",
+        "template": "\\int_0^{2}\\left(\\int_y^{2}x^3\\,dx\\right)dy",
+        "variable_count": 0
+      },
+      "difficulty": 2,
+      "estimated_minutes": 6,
+      "answer": [
+        {
+          "label": "结果",
+          "steps": [
+            "区域 $0\\le y\\le x\\le2$，交换次序：$\\int_0^2\\int_0^x x^3\\,dy\\,dx=\\int_0^2x^4\\,dx$。",
+            "计算：$\\int_0^2x^4dx=\\left[\\tfrac{x^5}5\\right]_0^2=\\tfrac{32}5$。",
+            "最终结果：$\\dfrac{32}{5}$。"
+          ]
+        }
+      ],
+      "id": "osaka-2012-30579dc571-q02-practice-02",
+      "school": "大阪大学",
+      "year": "2012"
+    },
+    {
+      "text": "计算 $\\displaystyle\\int_0^{\\sqrt{\\pi}}\\left(\\int_y^{\\sqrt{\\pi}}\\sin(x^2)\\,dx\\right)dy$。",
+      "knowledge_points": [
+        "积分次序交换",
+        "换元积分",
+        "三角函数复合"
+      ],
+      "question_type": "交换积分次序（三角函数）",
+      "method": [
+        "交换积分顺序",
+        "换元 $u=x^2$"
+      ],
+      "solution_steps": [
+        "确定区域并交换次序",
+        "内层积分消去y",
+        "外层积分换元求值"
+      ],
+      "math_structure": {
+        "type": "swap_order_iterated_integral",
+        "template": "\\int_0^{\\sqrt{\\pi}}\\left(\\int_y^{\\sqrt{\\pi}}\\sin(x^2)dx\\right)dy",
+        "variable_count": 0
+      },
+      "difficulty": 3,
+      "estimated_minutes": 10,
+      "answer": [
+        {
+          "label": "结果",
+          "steps": [
+            "区域 $0\\le y\\le x\\le\\sqrt{\\pi}$，交换次序：$\\int_0^{\\sqrt{\\pi}}\\int_0^x\\sin(x^2)\\,dy\\,dx=\\int_0^{\\sqrt{\\pi}}x\\sin(x^2)dx$。",
+            "换元 $u=x^2,du=2xdx$：$\\tfrac12\\int_0^{\\pi}\\sin u\\,du=\\tfrac12\\left[-\\cos u\\right]_0^{\\pi}=\\tfrac12(1-(-1))$。",
+            "最终结果：$1$。"
+          ]
+        }
+      ],
+      "id": "osaka-2012-30579dc571-q02-practice-03",
+      "school": "大阪大学",
+      "year": "2012"
+    },
+    {
+      "text": "计算 $\\displaystyle\\int_0^{\\sqrt{\\pi/6}}\\left(\\int_y^{\\sqrt{\\pi/6}}\\cos(3x^2)\\,dx\\right)dy$。",
+      "knowledge_points": [
+        "积分次序交换",
+        "换元积分",
+        "带系数的三角复合函数"
+      ],
+      "question_type": "交换积分次序（进阶）",
+      "method": [
+        "交换积分顺序",
+        "换元 $u=3x^2$"
+      ],
+      "solution_steps": [
+        "确定区域并交换次序",
+        "内层积分消去y",
+        "换元并计算外层积分"
+      ],
+      "math_structure": {
+        "type": "swap_order_iterated_integral",
+        "template": "\\int_0^{a}\\left(\\int_y^{a}\\cos(3x^2)dx\\right)dy",
+        "variable_count": 1
+      },
+      "difficulty": 3,
+      "estimated_minutes": 10,
+      "answer": [
+        {
+          "label": "结果",
+          "steps": [
+            "区域 $0\\le y\\le x\\le\\sqrt{\\pi/6}$，交换次序：$\\int_0^{\\sqrt{\\pi/6}}\\int_0^x\\cos(3x^2)dy\\,dx=\\int_0^{\\sqrt{\\pi/6}}x\\cos(3x^2)dx$。",
+            "换元 $u=3x^2,\\ du=6x\\,dx$，当 $x=\\sqrt{\\pi/6}$ 时 $u=\\pi/2$：$\\tfrac16\\int_0^{\\pi/2}\\cos u\\,du=\\tfrac16\\left[\\sin u\\right]_0^{\\pi/2}=\\tfrac16$。",
+            "最终结果：$\\dfrac16$。"
+          ]
+        }
+      ],
+      "id": "osaka-2012-30579dc571-q02-practice-04",
+      "school": "大阪大学",
+      "year": "2012"
+    }
+  ],
+  "source_question": "問1(2)",
+  "source_pdf": "大阪大学/情报科学研究科/情报基础数学/大阪大学_情报科学研究科_情报基础数学_2012_数学过去问.pdf",
+  "source_type": "官方过去问",
+  "subject_category": "微积分"
+}

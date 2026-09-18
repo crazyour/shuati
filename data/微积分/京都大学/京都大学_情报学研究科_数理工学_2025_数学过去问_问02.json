@@ -1,0 +1,149 @@
+{
+  "id": "kyoto-2025-0964b49f99-q02",
+  "school": "京都大学",
+  "year": "2025",
+  "subject": "情报学研究科_数理工学",
+  "text": "求定积分 $\\displaystyle\\int_{\\pi/3}^{\\pi/2}\\dfrac{1}{\\sin x}dx$。",
+  "knowledge_points": [
+    "三角函数积分",
+    "csc x 的原函数",
+    "半角公式"
+  ],
+  "question_type": "定积分计算",
+  "method": [
+    "利用 $\\int \\csc x\\,dx=\\ln|\\tan(x/2)|+C$"
+  ],
+  "solution_steps": [
+    "写出 $\\csc x$ 的原函数",
+    "代入上下限计算",
+    "化简对数结果"
+  ],
+  "math_structure": {
+    "type": "definite_integral_trig",
+    "template": "\\int_{\\pi/3}^{\\pi/2}\\dfrac{1}{\\sin x}dx",
+    "variable_count": 2
+  },
+  "difficulty": 2,
+  "answer": [
+    {
+      "label": "结果",
+      "steps": [
+        "$\\int \\csc x\\,dx=\\ln\\left|\\tan\\dfrac{x}{2}\\right|+C$",
+        "在 $x=\\pi/2$：$\\tan(\\pi/4)=1$，$\\ln 1=0$；在 $x=\\pi/3$：$\\tan(\\pi/6)=1/\\sqrt3$，$\\ln(1/\\sqrt3)=-\\dfrac12\\ln 3$",
+        "积分值 $=0-\\left(-\\dfrac12\\ln3\\right)=\\dfrac12\\ln 3$",
+        "验证：数值上 $\\dfrac12\\ln3\\approx0.549$，与直接数值积分估计一致"
+      ]
+    }
+  ],
+  "practice_questions": [
+    {
+      "text": "求 $\\displaystyle\\int \\dfrac{1}{\\sin x}dx$ 的一般原函数表达式。",
+      "knowledge_points": [
+        "csc x 积分公式推导"
+      ],
+      "question_type": "不定积分",
+      "method": [
+        "用 $u=\\tan(x/2)$ 代换"
+      ],
+      "solution_steps": [
+        "令 $u=\\tan(x/2)$，化 $\\sin x=2u/(1+u^2)$",
+        "代入积分并化简",
+        "还原变量"
+      ],
+      "math_structure": {
+        "type": "indefinite_integral_csc",
+        "template": "\\int \\dfrac{1}{\\sin x}dx",
+        "variable_count": 1
+      },
+      "difficulty": 1,
+      "estimated_minutes": 6,
+      "answer": [
+        {
+          "label": "结果",
+          "steps": [
+            "令 $u=\\tan(x/2)$，则 $dx=\\dfrac{2}{1+u^2}du$，$\\sin x=\\dfrac{2u}{1+u^2}$",
+            "$\\int\\dfrac{1}{\\sin x}dx=\\int\\dfrac{1+u^2}{2u}\\cdot\\dfrac{2}{1+u^2}du=\\int\\dfrac{du}{u}=\\ln|u|+C$",
+            "还原：$\\ln|\\tan(x/2)|+C$"
+          ]
+        }
+      ],
+      "id": "kyoto-2025-0964b49f99-q02-practice-01",
+      "school": "京都大学",
+      "year": "2025"
+    },
+    {
+      "text": "求 $\\displaystyle\\int_{\\pi/4}^{\\pi/2}\\dfrac{1}{\\sin x}dx$ 的值。",
+      "knowledge_points": [
+        "csc x 积分公式应用"
+      ],
+      "question_type": "定积分计算",
+      "method": [
+        "直接套用 $\\ln|\\tan(x/2)|$"
+      ],
+      "solution_steps": [
+        "计算上下限对应的 $\\tan(x/2)$ 值",
+        "求对数差"
+      ],
+      "math_structure": {
+        "type": "definite_integral_trig",
+        "template": "\\int_{\\pi/4}^{\\pi/2}\\dfrac{1}{\\sin x}dx",
+        "variable_count": 2
+      },
+      "difficulty": 2,
+      "estimated_minutes": 5,
+      "answer": [
+        {
+          "label": "结果",
+          "steps": [
+            "$x=\\pi/2$：$\\tan(\\pi/4)=1,\\ln1=0$",
+            "$x=\\pi/4$：$\\tan(\\pi/8)=\\sqrt2-1$，故 $\\ln(\\sqrt2-1)$",
+            "积分值 $=0-\\ln(\\sqrt2-1)=\\ln\\dfrac{1}{\\sqrt2-1}=\\ln(\\sqrt2+1)$"
+          ]
+        }
+      ],
+      "id": "kyoto-2025-0964b49f99-q02-practice-02",
+      "school": "京都大学",
+      "year": "2025"
+    },
+    {
+      "text": "求 $\\displaystyle\\int_{\\pi/6}^{\\pi/3}\\dfrac{1}{\\sin x}dx$ 的值，并与原题 $\\int_{\\pi/3}^{\\pi/2}$ 的结果比较大小。",
+      "knowledge_points": [
+        "csc x 积分公式应用",
+        "积分区间比较"
+      ],
+      "question_type": "定积分计算与比较",
+      "method": [
+        "套用原函数计算两积分值再比较"
+      ],
+      "solution_steps": [
+        "计算 $\\int_{\\pi/6}^{\\pi/3}$ 的值",
+        "与 $\\frac12\\ln3$ 比较"
+      ],
+      "math_structure": {
+        "type": "definite_integral_comparison",
+        "template": "\\int_{\\pi/6}^{\\pi/3}\\dfrac{1}{\\sin x}dx \\text{ vs } \\int_{\\pi/3}^{\\pi/2}\\dfrac{1}{\\sin x}dx",
+        "variable_count": 2
+      },
+      "difficulty": 3,
+      "estimated_minutes": 8,
+      "answer": [
+        {
+          "label": "结果与比较",
+          "steps": [
+            "$x=\\pi/3$：$\\tan(\\pi/6)=1/\\sqrt3$，$\\ln(1/\\sqrt3)=-\\frac12\\ln3$",
+            "$x=\\pi/6$：$\\tan(\\pi/12)=2-\\sqrt3$，$\\ln(2-\\sqrt3)$",
+            "积分值 $=-\\frac12\\ln3-\\ln(2-\\sqrt3)$；数值约为 $-0.549-(-1.317)=0.768$",
+            "比较：$0.768>0.549=\\frac12\\ln3$，说明 $[\\pi/6,\\pi/3]$ 上积分值更大，因 $\\sin x$ 在此区间更小使 $1/\\sin x$ 更大"
+          ]
+        }
+      ],
+      "id": "kyoto-2025-0964b49f99-q02-practice-03",
+      "school": "京都大学",
+      "year": "2025"
+    }
+  ],
+  "source_question": "問1(ii)",
+  "source_pdf": "京都大学/情报学研究科/数理工学/京都大学_情报学研究科_数理工学_2025_数学过去问.pdf",
+  "source_type": "官方过去问",
+  "subject_category": "微积分"
+}

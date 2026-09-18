@@ -1,0 +1,213 @@
+{
+  "id": "nagoya-2012-cf31afabcd-q03",
+  "school": "名古屋大学",
+  "year": "2012",
+  "subject": "多元数理科学研究科_全专攻",
+  "text": "回答以下问题：\n(1) 求二元函数 $\\cos\\left(\\dfrac{x}{1+y^2}\\right)$ 在原点附近关于 $x,y$ 的泰勒级数，展开到四次项为止。\n(2) 判断函数 $f(x,y)=x^2+2x^2y-xy^2\\ (x,y\\in\\mathbb{R})$ 是否具有极值。\n(3) 设平面区域 $D=\\{(x,y)\\in\\mathbb{R}^2\\mid 0\\le x\\le y\\}$，求积分 $\\displaystyle\\iint_D \\frac{1}{1+(x^2+y^2)^2}\\,dx\\,dy$ 的值。",
+  "knowledge_points": [
+    "多元函数泰勒展开",
+    "复合函数级数代入",
+    "临界点与黑塞矩阵判别法",
+    "退化临界点的路径分析",
+    "极坐标换元计算二重积分",
+    "反正切积分公式"
+  ],
+  "question_type": "多元微积分综合题（泰勒展开、极值判定、二重积分）",
+  "method": [
+    "把内层函数展开为幂级数后代入外层函数的麦克劳林级数并保留指定阶数",
+    "求偏导数得临界点，用黑塞矩阵判别，退化时用特殊路径分析符号变化",
+    "将积分区域用极坐标表示，分离径向与角度积分"
+  ],
+  "solution_steps": [
+    "把 $u=x/(1+y^2)$ 展开为 $x-xy^2+O(五阶)$，代入 $\\cos u=1-u^2/2+u^4/24-\\cdots$ 并保留到四次项",
+    "求 $f_x,f_y$ 并解出所有临界点",
+    "对每个临界点计算黑塞矩阵行列式，判别是否为极值点；退化情形沿特殊曲线检验符号变化",
+    "将区域 D 用极坐标表示为 $\\theta\\in[\\pi/4,\\pi/2],r\\in[0,\\infty)$，分离变量积分并用反正切公式计算径向积分"
+  ],
+  "math_structure": {
+    "type": "multivariable_calculus_mixed",
+    "template": "Taylor expansion of cos(x/(1+y^2)); extrema of x^2+2x^2y-xy^2; polar double integral of 1/(1+(x^2+y^2)^2) over sector region",
+    "variable_count": 2
+  },
+  "difficulty": 4,
+  "answer": [
+    {
+      "label": "(1)",
+      "steps": [
+        "设 $u=\\dfrac{x}{1+y^2}=x(1-y^2+y^4-\\cdots)=x-xy^2+O(xy^4)$，保留到总次数4的项：$u=x-xy^2+O(\\deg\\ge5)$。",
+        "利用 $\\cos u=1-\\dfrac{u^2}{2}+\\dfrac{u^4}{24}-\\cdots$，计算 $u^2=(x-xy^2)^2=x^2-2x^2y^2+O(\\deg\\ge6)$，$u^4=x^4+O(\\deg\\ge6)$。",
+        "代入得 $\\cos u=1-\\dfrac12(x^2-2x^2y^2)+\\dfrac1{24}x^4+O(\\deg\\ge5)=1-\\dfrac{x^2}{2}+x^2y^2+\\dfrac{x^4}{24}+\\cdots$，即为所求四次泰勒展开。"
+      ]
+    },
+    {
+      "label": "(2)",
+      "steps": [
+        "求偏导：$f_x=2x+4xy-y^2$，$f_y=2x^2-2xy=2x(x-y)$。由 $f_y=0$ 得 $x=0$ 或 $x=y$。",
+        "当 $x=0$ 时代入 $f_x=0$ 得 $-y^2=0\\Rightarrow y=0$，得临界点 $(0,0)$；当 $x=y$ 时代入 $f_x=0$ 得 $2x+3x^2=0\\Rightarrow x=0$ 或 $x=-2/3$，得另一临界点 $(-2/3,-2/3)$。",
+        "黑塞矩阵：$f_{xx}=2+4y,f_{xy}=4x-2y,f_{yy}=-2x$。在 $(0,0)$：$f_{xx}=2,f_{xy}=0,f_{yy}=0$，判别式为 $0$，退化；沿路径 $x=y^2$ 代入得 $f(y^2,y)=y^4+2y^5-y^4=2y^5$，在 $y$ 的两侧异号，说明 $(0,0)$ 附近函数取正负两种值，故 $(0,0)$ 不是极值点。",
+        "在 $(-2/3,-2/3)$：$f_{xx}=2+4(-2/3)=-2/3$，$f_{yy}=-2(-2/3)=4/3$，$f_{xy}=4(-2/3)-2(-2/3)=-4/3$，判别式 $=(-2/3)(4/3)-(-4/3)^2=-8/9-16/9=-8/3<0$，为鞍点，也非极值点。结论：$f$ 在整个定义域上没有极值。"
+      ]
+    },
+    {
+      "label": "(3)",
+      "steps": [
+        "区域 $D=\\{0\\le x\\le y\\}$ 等价于 $x\\ge0,y\\ge x$，在极坐标 $x=r\\cos\\theta,y=r\\sin\\theta$ 下对应 $\\theta\\in[\\pi/4,\\pi/2],\\ r\\in[0,\\infty)$（因为 $\\cos\\theta\\ge0$ 且 $\\tan\\theta\\ge1$）。",
+        "积分变为 $\\displaystyle\\int_{\\pi/4}^{\\pi/2}\\!\\!\\int_0^\\infty \\frac{r}{1+r^4}\\,dr\\,d\\theta$。对径向积分令 $u=r^2,du=2r\\,dr$，得 $\\int_0^\\infty \\frac{r}{1+r^4}dr=\\frac12\\int_0^\\infty\\frac{du}{1+u^2}=\\frac12\\cdot\\frac{\\pi}{2}=\\frac{\\pi}{4}$。",
+        "角度积分为 $\\frac{\\pi}{2}-\\frac{\\pi}{4}=\\frac{\\pi}{4}$，故总积分为 $\\frac{\\pi}{4}\\times\\frac{\\pi}{4}=\\dfrac{\\pi^2}{16}$。"
+      ]
+    }
+  ],
+  "practice_questions": [
+    {
+      "text": "求 $\\sin\\left(\\dfrac{y}{1+x^2}\\right)$ 在原点附近关于 $x,y$ 的泰勒级数，展开到三次项。",
+      "knowledge_points": [
+        "复合函数幂级数展开",
+        "麦克劳林级数代入"
+      ],
+      "question_type": "泰勒展开练习",
+      "method": [
+        "内层函数级数展开后代入外层正弦级数"
+      ],
+      "solution_steps": [
+        "展开内层函数",
+        "代入 sin 的级数",
+        "保留到三次项"
+      ],
+      "math_structure": {
+        "type": "taylor_series_composite",
+        "template": "expand sin(y/(1+x^2)) to degree 3",
+        "variable_count": 2
+      },
+      "difficulty": 2,
+      "estimated_minutes": 8,
+      "answer": [
+        {
+          "label": "解",
+          "steps": [
+            "设 $u=\\dfrac{y}{1+x^2}=y(1-x^2+\\cdots)=y-x^2y+O(\\deg\\ge5)$。",
+            "利用 $\\sin u=u-\\dfrac{u^3}{6}+\\cdots$，且 $u^3=y^3+O(\\deg\\ge5)$（保留到三次即可用 $u^3\\approx y^3$）。",
+            "代入得 $\\sin u = (y-x^2y) - \\dfrac{y^3}{6}+O(\\deg\\ge4) = y - x^2y - \\dfrac{y^3}{6}$，即为所求三次泰勒展开。"
+          ]
+        }
+      ],
+      "id": "nagoya-2012-cf31afabcd-q03-practice-01",
+      "school": "名古屋大学",
+      "year": "2012"
+    },
+    {
+      "text": "判断函数 $g(x,y)=x^2-y^2$ 是否具有极值，并说明理由。",
+      "knowledge_points": [
+        "黑塞矩阵判别法",
+        "鞍点判定"
+      ],
+      "question_type": "极值判定基础题",
+      "method": [
+        "求临界点",
+        "黑塞矩阵判别符号"
+      ],
+      "solution_steps": [
+        "求偏导得临界点",
+        "计算黑塞矩阵行列式",
+        "判断类型"
+      ],
+      "math_structure": {
+        "type": "saddle_point_basic",
+        "template": "classify critical point of x^2-y^2",
+        "variable_count": 2
+      },
+      "difficulty": 1,
+      "estimated_minutes": 4,
+      "answer": [
+        {
+          "label": "解",
+          "steps": [
+            "$g_x=2x,g_y=-2y$，令二者为零得唯一临界点 $(0,0)$。",
+            "黑塞矩阵为 $\\begin{pmatrix}2&0\\\\0&-2\\end{pmatrix}$，行列式为 $2\\times(-2)-0=-4<0$，故 $(0,0)$ 为鞍点。",
+            "所以 $g$ 在整个平面上没有局部极值（原点是鞍点，沿 x 轴方向函数递增，沿 y 轴方向函数递减）。"
+          ]
+        }
+      ],
+      "id": "nagoya-2012-cf31afabcd-q03-practice-02",
+      "school": "名古屋大学",
+      "year": "2012"
+    },
+    {
+      "text": "判断函数 $h(x,y)=x^3-3xy^2$（“猴鞍”函数）在原点是否取得极值。",
+      "knowledge_points": [
+        "退化临界点分析",
+        "路径检验法"
+      ],
+      "question_type": "退化临界点极值判定",
+      "method": [
+        "求临界点",
+        "黑塞矩阵退化时用特殊路径检验符号"
+      ],
+      "solution_steps": [
+        "求偏导得唯一临界点",
+        "计算黑塞矩阵发现退化",
+        "沿特殊路径检验函数值符号变化"
+      ],
+      "math_structure": {
+        "type": "monkey_saddle_degenerate",
+        "template": "classify critical point of x^3-3xy^2 at origin",
+        "variable_count": 2
+      },
+      "difficulty": 3,
+      "estimated_minutes": 8,
+      "answer": [
+        {
+          "label": "解",
+          "steps": [
+            "$h_x=3x^2-3y^2=0\\Rightarrow x=\\pm y$；$h_y=-6xy=0\\Rightarrow x=0$或$y=0$。联立得唯一临界点 $(0,0)$。",
+            "黑塞矩阵：$h_{xx}=6x,h_{xy}=-6y,h_{yy}=-6x$，在原点全为零，判别式为0，属退化情形，需进一步分析。",
+            "沿路径 $y=0$：$h(x,0)=x^3$，当 $x$ 由负变正时函数值由负变正，说明原点附近函数同时取正负值，故 $(0,0)$ 不是极值点（这是经典的“猴鞍点”）。"
+          ]
+        }
+      ],
+      "id": "nagoya-2012-cf31afabcd-q03-practice-03",
+      "school": "名古屋大学",
+      "year": "2012"
+    },
+    {
+      "text": "计算 $\\displaystyle\\iint_D \\dfrac{1}{1+x^2+y^2}\\,dx\\,dy$，其中 $D=\\{(x,y)\\mid x\\ge0,y\\ge0,x^2+y^2\\le1\\}$（第一象限单位圆内的四分之一圆盘）。",
+      "knowledge_points": [
+        "极坐标换元",
+        "二重积分分离变量"
+      ],
+      "question_type": "极坐标二重积分",
+      "method": [
+        "转换为极坐标",
+        "分离径向与角度积分"
+      ],
+      "solution_steps": [
+        "写出极坐标下的积分区域和被积函数",
+        "分离变量计算径向积分",
+        "计算角度积分并相乘"
+      ],
+      "math_structure": {
+        "type": "polar_double_integral_quarter_disk",
+        "template": "compute ∬_{quarter disk} 1/(1+x^2+y^2) dxdy",
+        "variable_count": 0
+      },
+      "difficulty": 3,
+      "estimated_minutes": 8,
+      "answer": [
+        {
+          "label": "解",
+          "steps": [
+            "区域对应极坐标 $\\theta\\in[0,\\pi/2],\\ r\\in[0,1]$，被积函数变为 $\\dfrac{1}{1+r^2}$，雅可比为 $r$，积分变为 $\\int_0^{\\pi/2}\\!\\!\\int_0^1 \\dfrac{r}{1+r^2}dr\\,d\\theta$。",
+            "计算径向积分：$\\int_0^1\\dfrac{r}{1+r^2}dr=\\dfrac12\\ln(1+r^2)\\Big|_0^1=\\dfrac12\\ln2$。",
+            "角度积分为 $\\pi/2$，故总积分为 $\\dfrac{\\pi}{2}\\times\\dfrac12\\ln2=\\dfrac{\\pi}{4}\\ln2$。"
+          ]
+        }
+      ],
+      "id": "nagoya-2012-cf31afabcd-q03-practice-04",
+      "school": "名古屋大学",
+      "year": "2012"
+    }
+  ],
+  "source_question": "問3",
+  "source_pdf": "名古屋大学/多元数理科学研究科/全专攻/名古屋大学_多元数理科学研究科_2012_第1次_数学过去问_上午.pdf",
+  "source_type": "官方过去问",
+  "subject_category": "微积分"
+}

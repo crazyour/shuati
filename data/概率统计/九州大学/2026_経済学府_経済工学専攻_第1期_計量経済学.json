@@ -1,0 +1,55 @@
+{
+  "id": "2026_経済学府_経済工学専攻_第1期_計量経済学",
+  "school": "九州大学",
+  "year": 2026,
+  "subject": "経済学府_経済工学専攻_第1期_計量経済学",
+  "text": "从以下两题中选一题作答。\n\n问题 1：用截面数据（随机抽样）估计以下简单回归模型，考虑职业训练项目对工资的因果效应：\n$Y_i = \\alpha + \\beta T_i + u_i$，其中 $T_i$ 为是否参加职业训练（参加 1，不参加 0），$Y_i$ 是工资，$u_i$ 是误差项。回答下列问题。\n\n(1) 若 $E[u_i | T_i] = 0$ 成立，证明 $\\beta = E[Y_i | T_i = 1] - E[Y_i | T_i = 0]$。\n\n(2) 估计职业训练项目的因果效应时，$E[u_i | T_i] = 0$ 在何种情况下不成立？举例说明。\n\n(3) 若 $E[u_i | T_i] \\neq 0$。但有个人 $i$ 是否住在职业训练项目有补助金的地区的虚拟变量 $Z_i$（住为 1，不住为 0），且 $E[u_i | Z_i] = 0$。证明 $\\beta = \\frac{\\text{Cov}(Y_i, Z_i)}{\\text{Cov}(T_i, Z_i)}$。\n\n(4) 证明 $\\beta = \\frac{E[Y_i | Z_i = 1] - E[Y_i | Z_i = 0]}{E[T_i | Z_i = 1] - E[T_i | Z_i = 0]}$。\n\n(5) (4) 的结果对应计算什么？解释之。",
+  "knowledge_points": [
+    "概率统计",
+    "因果效应",
+    "选择偏误",
+    "工具变量",
+    "IV 估计",
+    "Wald 估计量",
+    "LATE"
+  ],
+  "question_type": "职业训练项目的因果效应与工具变量估计",
+  "method": [
+    "条件期望",
+    "工具变量法",
+    "Wald 估计量",
+    "LATE 解释"
+  ],
+  "solution_steps": [
+    "(1) 简单差分 = 因果效应（在 $E[u|T]=0$ 下）",
+    "(2) 选择偏误",
+    "(3) IV 推导",
+    "(4) Wald 估计量",
+    "(5) LATE 解释"
+  ],
+  "math_structure": {
+    "type": "iv_causal_inference_program_evaluation",
+    "template": "β=Cov(Y,Z)/Cov(T,Z) (Wald); E[Y|Z=1]-E[Y|Z=0] over E[T|Z=1]-E[T|Z=0]",
+    "variable_count": 3
+  },
+  "difficulty": 4,
+  "answer": [
+    {
+      "label": "问题 $1$ 全部",
+      "steps": [
+        "(1) $E[Y_i | T_i = 1] = \\alpha + \\beta + E[u_i | T_i = 1] = \\alpha + \\beta$（用 $E[u_i|T_i]=0$）。",
+        "$E[Y_i | T_i = 0] = \\alpha + E[u_i | T_i = 0] = \\alpha$。",
+        "相减：$E[Y_i | T_i = 1] - E[Y_i | T_i = 0] = \\beta$。",
+        "(2) 选择偏误：参加职业训练的人本身更积极或更有动机（自选择）。$E[u_i | T_i = 1] \\neq E[u_i | T_i = 0]$。例：能力强者更愿意参加训练，能力又影响工资。",
+        "(3) $\\beta = \\frac{\\text{Cov}(Y_i, Z_i)}{\\text{Cov}(T_i, Z_i)}$：",
+        "$Y_i = \\alpha + \\beta T_i + u_i$ 两边同乘 $Z_i$ 取协方差：$\\text{Cov}(Y, Z) = \\beta \\text{Cov}(T, Z) + \\text{Cov}(u, Z)$。",
+        "若 $\\text{Cov}(u, Z) = 0$（$Z$ 是外生工具变量），$\\beta = \\text{Cov}(Y, Z) / \\text{Cov}(T, Z)$。",
+        "(4) 分子：$\\text{Cov}(Y, Z) = E[YZ] - E[Y]E[Z] = E[Y|Z=1]P(Z=1) + E[Y|Z=0]P(Z=0) - E[Y](P(Z=1)+P(Z=0))$。利用 $E[YZ] = \\sum_z z P(Z=z) E[Y|Z=z]$ 等：",
+        "$\\text{Cov}(Y, Z) = P(Z=1)(1-P(Z=1)) (E[Y|Z=1] - E[Y|Z=0])$。",
+        "类似 $\\text{Cov}(T, Z) = P(Z=1)(1-P(Z=1))(E[T|Z=1] - E[T|Z=0])$。",
+        "$\\beta = \\frac{E[Y|Z=1] - E[Y|Z=0]}{E[T|Z=1] - E[T|Z=0]}$（Wald 估计量）。",
+        "(5) 分子是补助金地区与非补助金地区的平均工资差（处理效应 + 选择偏误），分母是补助金地区与非补助金地区的参加率差（first stage）。Wald 估计量是 LATE：对补助金地区（$Z_i = 1$）子群体的因果效应。"
+      ]
+    }
+  ]
+}

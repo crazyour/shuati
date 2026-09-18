@@ -1,0 +1,268 @@
+{
+  "id": "tohoku-2025-4edab22cfc-q03",
+  "school": "东北大学",
+  "year": "2025",
+  "subject": "情报科学研究科_数学教室",
+  "text": "考虑 $\\mathbb{R}^2$ 上的二元函数 $f(x,y)=(x-y)(|x|+|y|+1)$。\n(1) 证明 $f(x,y)$ 在点 $(0,0)$ 处可偏微分（偏导数存在）。\n(2) 证明 $f(x,y)$ 在点 $(0,0)$ 处可（全）微分。\n(3) 证明 $f(x,y)$ 在 $\\mathbb{R}^2$ 上不是 $C^1$ 类函数。",
+  "knowledge_points": [
+    "偏导数的定义",
+    "全微分（可微性）的定义与判定",
+    "极限不等式估计",
+    "分段函数（含绝对值）的求导",
+    "$C^1$ 类函数与偏导数连续性"
+  ],
+  "question_type": "多元函数可微性证明题",
+  "method": [
+    "用定义直接计算偏导数极限",
+    "用不等式（Cauchy-Schwarz型）估计余项证明可微",
+    "按象限分区计算偏导数公式，找出偏导数不连续的点"
+  ],
+  "solution_steps": [
+    "用极限定义分别计算 $f_x(0,0)$ 和 $f_y(0,0)$",
+    "写出可微性判据的极限表达式，化简余项为 $(x-y)(|x|+|y|)$",
+    "用 $|x|+|y|\\le\\sqrt2\\sqrt{x^2+y^2}$ 等不等式估计余项，证明极限为0",
+    "在四个象限分别求出 $f$ 的显式表达式及偏导数公式",
+    "比较坐标轴上偏导数从不同象限逼近的极限，找出不连续点，从而证明非 $C^1$"
+  ],
+  "math_structure": {
+    "type": "multivariable_differentiability_absvalue",
+    "template": "f(x,y)=(x-y)(|x|+|y|+1),\\ \\text{differentiability at origin and } C^1 \\text{ failure}",
+    "variable_count": 2
+  },
+  "difficulty": 4,
+  "answer": [
+    {
+      "label": "(1)",
+      "steps": [
+        "$f_x(0,0)=\\lim_{h\\to0}\\dfrac{f(h,0)-f(0,0)}{h}=\\lim_{h\\to0}\\dfrac{h(|h|+1)-0}{h}=\\lim_{h\\to0}(|h|+1)=1$，极限存在。",
+        "$f_y(0,0)=\\lim_{h\\to0}\\dfrac{f(0,h)-f(0,0)}{h}=\\lim_{h\\to0}\\dfrac{(-h)(|h|+1)-0}{h}=\\lim_{h\\to0}-(|h|+1)=-1$，极限存在。",
+        "两个极限均存在，故 $f$ 在 $(0,0)$ 处偏微分可能，且 $f_x(0,0)=1,\\ f_y(0,0)=-1$。"
+      ]
+    },
+    {
+      "label": "(2)",
+      "steps": [
+        "全微分定义要求：$\\displaystyle\\lim_{(x,y)\\to(0,0)}\\dfrac{f(x,y)-f(0,0)-f_x(0,0)x-f_y(0,0)y}{\\sqrt{x^2+y^2}}=0$。",
+        "余项为 $R(x,y)=f(x,y)-x+y=(x-y)(|x|+|y|+1)-(x-y)=(x-y)(|x|+|y|)$（因 $f(0,0)=0$）。",
+        "利用 $|x-y|\\le|x|+|y|\\le\\sqrt2\\sqrt{x^2+y^2}$（Cauchy-Schwarz），得 $|R(x,y)|\\le(|x|+|y|)^2\\le2(x^2+y^2)$。",
+        "于是 $\\left|\\dfrac{R(x,y)}{\\sqrt{x^2+y^2}}\\right|\\le\\dfrac{2(x^2+y^2)}{\\sqrt{x^2+y^2}}=2\\sqrt{x^2+y^2}\\to0$，故该极限为0，$f$ 在 $(0,0)$ 处全微分可能，且 $df(0,0)=dx-dy$。"
+      ]
+    },
+    {
+      "label": "(3)",
+      "steps": [
+        "在第一象限 $x>0,y>0$：$f=(x-y)(x+y+1)=x^2-y^2+x-y$，故 $f_y=-2y-1$，当 $y\\to0^+$ 时 $f_y\\to-1$（对任意固定 $x>0$）。",
+        "在第四象限 $x>0,y<0$：$f=(x-y)(x-y+1)=(x-y)^2+(x-y)$，故 $f_y=-2(x-y)-1$，当 $y\\to0^-$（固定 $x=a>0$）时 $f_y\\to-2a-1$。",
+        "在点 $(a,0)$（$a>0$）处，从上方逼近的极限为 $-1$，从下方逼近的极限为 $-2a-1$；两者相等只当 $-1=-2a-1$，即 $a=0$。",
+        "因此对所有 $a>0$，$f_y$ 在点 $(a,0)$ 处不连续（正 $x$ 轴上，原点除外），即偏导数 $f_y$ 在 $\\mathbb{R}^2$ 上不是处处连续的函数。",
+        "由 $C^1$ 类的定义（要求所有一阶偏导数在整个区域上连续），$f$ 存在偏导数不连续的点，故 $f$ 不是 $\\mathbb{R}^2$ 上的 $C^1$ 类函数。"
+      ]
+    }
+  ],
+  "practice_questions": [
+    {
+      "text": "设 $g(x,y)=x|y|$。计算 $g_x(0,0)$ 与 $g_y(0,0)$，并说明它们是否存在。",
+      "knowledge_points": [
+        "偏导数定义",
+        "含绝对值函数"
+      ],
+      "question_type": "偏导数计算",
+      "method": [
+        "用极限定义直接计算"
+      ],
+      "solution_steps": [
+        "按定义写出差商极限",
+        "分别求出g_x,g_y"
+      ],
+      "math_structure": {
+        "type": "partial_derivative_absvalue",
+        "template": "g(x,y)=x|y|,\\ \\text{find } g_x(0,0),g_y(0,0)",
+        "variable_count": 2
+      },
+      "difficulty": 1,
+      "estimated_minutes": 5,
+      "answer": [
+        {
+          "label": "结果",
+          "steps": [
+            "$g_x(0,0)=\\lim_{h\\to0}\\frac{g(h,0)-0}{h}=\\lim_{h\\to0}\\frac{h\\cdot0}{h}=0$。",
+            "$g_y(0,0)=\\lim_{h\\to0}\\frac{g(0,h)-0}{h}=\\lim_{h\\to0}\\frac{0\\cdot|h|}{h}=0$。",
+            "两个极限均存在且为0，故 $g$ 在 $(0,0)$ 处偏微分可能，$g_x(0,0)=g_y(0,0)=0$。"
+          ]
+        }
+      ],
+      "id": "tohoku-2025-4edab22cfc-q03-practice-01",
+      "school": "东北大学",
+      "year": "2025"
+    },
+    {
+      "text": "对上题的 $g(x,y)=x|y|$，证明 $g$ 在 $(0,0)$ 处可（全）微分。",
+      "knowledge_points": [
+        "全微分定义",
+        "不等式估计"
+      ],
+      "question_type": "可微性证明",
+      "method": [
+        "用绝对值不等式估计余项"
+      ],
+      "solution_steps": [
+        "写出可微性极限表达式",
+        "用均值不等式 |x||y|≤(x²+y²)/2 估计",
+        "证明极限为0"
+      ],
+      "math_structure": {
+        "type": "total_differentiability_absvalue",
+        "template": "g(x,y)=x|y|,\\ \\text{differentiability at origin}",
+        "variable_count": 2
+      },
+      "difficulty": 2,
+      "estimated_minutes": 8,
+      "answer": [
+        {
+          "label": "结果",
+          "steps": [
+            "需证 $\\lim_{(x,y)\\to0}\\dfrac{g(x,y)-0}{\\sqrt{x^2+y^2}}=\\lim\\dfrac{x|y|}{\\sqrt{x^2+y^2}}=0$。",
+            "由均值不等式 $|x||y|\\le\\dfrac{x^2+y^2}{2}$，得 $\\left|\\dfrac{x|y|}{\\sqrt{x^2+y^2}}\\right|\\le\\dfrac{\\sqrt{x^2+y^2}}{2}\\to0$。",
+            "故极限为0，$g$ 在原点处全微分可能，且 $dg(0,0)=0$。"
+          ]
+        }
+      ],
+      "id": "tohoku-2025-4edab22cfc-q03-practice-02",
+      "school": "东北大学",
+      "year": "2025"
+    },
+    {
+      "text": "继续研究 $g(x,y)=x|y|$：分别在 $y>0$ 与 $y<0$ 区域求出 $g_y$ 的表达式，说明 $g$ 在 $\\mathbb{R}^2$ 上是否为 $C^1$ 类函数。",
+      "knowledge_points": [
+        "分区求偏导数",
+        "偏导数连续性",
+        "C1类判定"
+      ],
+      "question_type": "C1类判定",
+      "method": [
+        "按符号分区计算偏导数并比较极限"
+      ],
+      "solution_steps": [
+        "在y>0，y<0分别写出g的显式表达式",
+        "求出g_y并比较沿y=0两侧的极限"
+      ],
+      "math_structure": {
+        "type": "c1_class_failure_absvalue",
+        "template": "g(x,y)=x|y|,\\ \\text{check } C^1",
+        "variable_count": 2
+      },
+      "difficulty": 2,
+      "estimated_minutes": 10,
+      "answer": [
+        {
+          "label": "结果",
+          "steps": [
+            "$y>0$：$g=xy$，$g_y=x$；当 $y\\to0^+$（固定 $x=a$）时 $g_y\\to a$。",
+            "$y<0$：$g=-xy$，$g_y=-x$；当 $y\\to0^-$（固定 $x=a$）时 $g_y\\to-a$。",
+            "在点 $(a,0)$，$a\\ne0$ 时两侧极限 $a\\ne-a$，$g_y$ 不连续，故 $g$ 不是 $\\mathbb{R}^2$ 上的 $C^1$ 类函数（除非只在 $a=0$ 处连续）。"
+          ]
+        }
+      ],
+      "id": "tohoku-2025-4edab22cfc-q03-practice-03",
+      "school": "东北大学",
+      "year": "2025"
+    },
+    {
+      "text": "设 $h(x,y)=(x+y)(|x|-|y|)$。证明 $h$ 在 $(0,0)$ 处可偏微分且可全微分，并求 $h_x(0,0),h_y(0,0)$。",
+      "knowledge_points": [
+        "偏导数定义",
+        "全微分判定",
+        "不等式估计"
+      ],
+      "question_type": "混合绝对值函数的可微性",
+      "method": [
+        "定义计算偏导数",
+        "不等式估计余项"
+      ],
+      "solution_steps": [
+        "计算h(x,0)、h(0,y)求偏导数",
+        "写出余项并用不等式估计其趋于0"
+      ],
+      "math_structure": {
+        "type": "multivariable_differentiability_absvalue",
+        "template": "h(x,y)=(x+y)(|x|-|y|),\\ \\text{differentiability at origin}",
+        "variable_count": 2
+      },
+      "difficulty": 3,
+      "estimated_minutes": 12,
+      "answer": [
+        {
+          "label": "结果",
+          "steps": [
+            "$h(x,0)=x\\cdot|x|$，故 $h_x(0,0)=\\lim_{x\\to0}\\dfrac{x|x|}{x}=\\lim_{x\\to0}|x|=0$。",
+            "$h(0,y)=y\\cdot(0-|y|)=-y|y|$，故 $h_y(0,0)=\\lim_{y\\to0}\\dfrac{-y|y|}{y}=\\lim_{y\\to0}-|y|=0$。",
+            "全微分：余项 $R(x,y)=h(x,y)-0=(x+y)(|x|-|y|)$，满足 $|R|\\le(|x|+|y|)^2\\le2(x^2+y^2)$（因 $|x+y|\\le|x|+|y|$，$||x|-|y||\\le|x|+|y|$），故 $|R|/\\sqrt{x^2+y^2}\\le2\\sqrt{x^2+y^2}\\to0$，全微分可能，$dh(0,0)=0$。"
+          ]
+        }
+      ],
+      "id": "tohoku-2025-4edab22cfc-q03-practice-04",
+      "school": "东北大学",
+      "year": "2025"
+    },
+    {
+      "text": "设 $f_1(x,y)=(x+2y)(|x|+|y|+2)$。\n(a) 证明 $f_1$ 在 $(0,0)$ 处可偏微分，求 $f_{1x}(0,0)$ 与 $f_{1y}(0,0)$；\n(b) 证明 $f_1$ 在 $(0,0)$ 处可全微分；\n(c) 证明 $f_1$ 在 $\\mathbb{R}^2$ 上不是 $C^1$ 类函数。",
+      "knowledge_points": [
+        "偏导数定义",
+        "全微分判定",
+        "不等式估计",
+        "分区求导判定C1类"
+      ],
+      "question_type": "综合可微性证明",
+      "method": [
+        "定义法求偏导数",
+        "Cauchy-Schwarz型不等式估计余项",
+        "按象限求偏导数表达式比较边界极限"
+      ],
+      "solution_steps": [
+        "用极限定义计算f1_x(0,0),f1_y(0,0)",
+        "写出余项(x+2y)(|x|+|y|)并用不等式估计其趋于0",
+        "在正x正y与正x负y象限求f1_y表达式，比较y→0两侧极限判断不连续"
+      ],
+      "math_structure": {
+        "type": "multivariable_differentiability_absvalue",
+        "template": "f_1(x,y)=(x+2y)(|x|+|y|+2),\\ \\text{differentiability and } C^1 \\text{ failure}",
+        "variable_count": 2
+      },
+      "difficulty": 4,
+      "estimated_minutes": 20,
+      "answer": [
+        {
+          "label": "(a)",
+          "steps": [
+            "$f_1(h,0)=h(|h|+2)$，故 $f_{1x}(0,0)=\\lim_{h\\to0}\\dfrac{h(|h|+2)}{h}=\\lim_{h\\to0}(|h|+2)=2$。",
+            "$f_1(0,h)=2h(|h|+2)$，故 $f_{1y}(0,0)=\\lim_{h\\to0}\\dfrac{2h(|h|+2)}{h}=\\lim_{h\\to0}2(|h|+2)=4$。",
+            "两极限均存在，故偏微分可能，$f_{1x}(0,0)=2,\\ f_{1y}(0,0)=4$。"
+          ]
+        },
+        {
+          "label": "(b)",
+          "steps": [
+            "余项 $R=f_1(x,y)-2x-4y=(x+2y)(|x|+|y|+2)-2x-4y=(x+2y)(|x|+|y|)$（因 $2x+4y=2(x+2y)$恰好消去常数2的部分）。",
+            "由 $|x+2y|\\le\\sqrt5\\sqrt{x^2+y^2}$（Cauchy-Schwarz，向量$(1,2)$），$|x|+|y|\\le\\sqrt2\\sqrt{x^2+y^2}$，得 $|R|\\le\\sqrt{10}(x^2+y^2)$。",
+            "故 $|R|/\\sqrt{x^2+y^2}\\le\\sqrt{10}\\sqrt{x^2+y^2}\\to0$，全微分可能，$df_1(0,0)=2dx+4dy$。"
+          ]
+        },
+        {
+          "label": "(c)",
+          "steps": [
+            "$x>0,y>0$：$f_1=(x+2y)(x+y+2)$，$\\partial_y f_1=2(x+y+2)+(x+2y)=3x+4y+... $ 具体求导：$\\partial_y[(x+2y)(x+y+2)]=2(x+y+2)+(x+2y)\\cdot1=2x+2y+4+x+2y=3x+4y+4$；当 $y\\to0^+$（固定 $x=a$）：极限 $3a+4$。",
+            "$x>0,y<0$：$f_1=(x+2y)(x-y+2)$，$\\partial_y f_1=2(x-y+2)+(x+2y)(-1)=2x-2y+4-x-2y=x-4y+4$；当 $y\\to0^-$（固定 $x=a$）：极限 $a+4$。",
+            "在点 $(a,0)$，$a>0$：两侧极限 $3a+4$ 与 $a+4$，相等要求 $3a+4=a+4\\Rightarrow a=0$，故对所有 $a>0$ 偏导数 $f_{1y}$ 不连续，因此 $f_1$ 不是 $C^1$ 类函数。"
+          ]
+        }
+      ],
+      "id": "tohoku-2025-4edab22cfc-q03-practice-05",
+      "school": "东北大学",
+      "year": "2025"
+    }
+  ],
+  "source_question": "3",
+  "source_pdf": "东北大学/情报科学研究科/数学教室/东北大学_情报科学研究科_数学_2025_数学过去问.pdf",
+  "source_type": "官方过去问",
+  "subject_category": "微积分"
+}

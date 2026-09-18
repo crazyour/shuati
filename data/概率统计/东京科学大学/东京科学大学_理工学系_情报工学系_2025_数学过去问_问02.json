@@ -1,0 +1,159 @@
+{
+  "id": "isct-2025-fecac37ff9-q02",
+  "school": "东京科学大学",
+  "year": "2025",
+  "subject": "理工学系_情报工学系",
+  "text": "设连续随机变量 $X$ 服从区间 $[0,5]$ 上的连续均匀分布。求 $X$ 的期望值和方差 $\\sigma^2$。",
+  "knowledge_points": [
+    "均匀分布",
+    "期望值",
+    "方差",
+    "概率密度函数"
+  ],
+  "question_type": "连续分布的数字特征",
+  "method": [
+    "均匀分布的标准公式",
+    "期望值的定义",
+    "方差的定义"
+  ],
+  "solution_steps": [
+    "确定均匀分布的参数",
+    "使用标准公式计算期望",
+    "使用标准公式计算方差"
+  ],
+  "math_structure": {
+    "type": "uniform_distribution",
+    "template": "对于$X \\sim U[a,b]$，$E[X] = \\frac{a+b}{2}$，$\\text{Var}(X) = \\frac{(b-a)^2}{12}$",
+    "variable_count": 2
+  },
+  "difficulty": 2,
+  "answer": [
+    {
+      "label": "求期望值和方差",
+      "steps": [
+        "对于区间 $[0,5]$ 上的连续均匀分布 $X \\sim U[0,5]$",
+        "期望值：$E[X] = \\frac{a+b}{2} = \\frac{0+5}{2} = 2.5$",
+        "方差：$\\sigma^2 = \\text{Var}(X) = \\frac{(b-a)^2}{12} = \\frac{(5-0)^2}{12} = \\frac{25}{12}$",
+        "答案：$E[X] = 2.5$，$\\sigma^2 = \\frac{25}{12}$"
+      ]
+    }
+  ],
+  "practice_questions": [
+    {
+      "text": "随机变量 $Y$ 服从区间 $[1,4]$ 上的连续均匀分布。求 $Y$ 的期望值、方差和标准差。",
+      "knowledge_points": [
+        "均匀分布",
+        "期望值",
+        "方差",
+        "标准差"
+      ],
+      "question_type": "均匀分布的数字特征",
+      "method": [
+        "均匀分布公式"
+      ],
+      "solution_steps": [
+        "确定参数a=1，b=4",
+        "计算期望值",
+        "计算方差和标准差"
+      ],
+      "math_structure": {
+        "type": "uniform_distribution",
+        "template": "$Y \\sim U[a,b]$的期望和方差",
+        "variable_count": 2
+      },
+      "difficulty": 2,
+      "estimated_minutes": 5,
+      "answer": [
+        {
+          "label": "求期望值、方差和标准差",
+          "steps": [
+            "$E[Y] = \\frac{1+4}{2} = 2.5$",
+            "$\\text{Var}(Y) = \\frac{(4-1)^2}{12} = \\frac{9}{12} = \\frac{3}{4} = 0.75$",
+            "标准差 $\\sigma = \\sqrt{0.75} = \\frac{\\sqrt{3}}{2} \\approx 0.866$"
+          ]
+        }
+      ],
+      "id": "isct-2025-fecac37ff9-q02-practice-01",
+      "school": "东京科学大学",
+      "year": "2025"
+    },
+    {
+      "text": "设 $Z \\sim U[a,b]$，且 $E[Z] = 3$，$\\text{Var}(Z) = \\frac{4}{3}$。求参数 $a$ 和 $b$ 的值。",
+      "knowledge_points": [
+        "均匀分布",
+        "期望值和方差的关系"
+      ],
+      "question_type": "由数字特征求分布参数",
+      "method": [
+        "均匀分布参数方程"
+      ],
+      "solution_steps": [
+        "建立期望值方程",
+        "建立方差方程",
+        "求解参数"
+      ],
+      "math_structure": {
+        "type": "inverse_distribution_params",
+        "template": "由期望和方差反解均匀分布参数",
+        "variable_count": 2
+      },
+      "difficulty": 2,
+      "estimated_minutes": 6,
+      "answer": [
+        {
+          "label": "求参数a和b",
+          "steps": [
+            "由期望值：$\\frac{a+b}{2} = 3$，得 $a+b = 6$",
+            "由方差：$\\frac{(b-a)^2}{12} = \\frac{4}{3}$，得 $(b-a)^2 = 16$，$b-a = 4$（因为$b>a$）",
+            "联立方程组：$a+b=6$，$b-a=4$",
+            "解得：$b = 5$，$a = 1$"
+          ]
+        }
+      ],
+      "id": "isct-2025-fecac37ff9-q02-practice-02",
+      "school": "东京科学大学",
+      "year": "2025"
+    },
+    {
+      "text": "在区间 $[-2,3]$ 上均匀分布的随机变量 $W$，求 $P(W \\leq 0)$、$P(0 < W < 2)$ 和 $P(W \\geq 1)$。",
+      "knowledge_points": [
+        "均匀分布",
+        "概率计算"
+      ],
+      "question_type": "连续均匀分布的概率",
+      "method": [
+        "均匀分布的几何概率"
+      ],
+      "solution_steps": [
+        "确定密度函数",
+        "利用几何意义计算概率"
+      ],
+      "math_structure": {
+        "type": "uniform_probability",
+        "template": "在均匀分布中，概率等于区间长度比",
+        "variable_count": 2
+      },
+      "difficulty": 2,
+      "estimated_minutes": 6,
+      "answer": [
+        {
+          "label": "求三个概率",
+          "steps": [
+            "区间长度为 $3-(-2)=5$",
+            "密度函数 $f(w) = \\frac{1}{5}$，$w \\in [-2,3]$",
+            "$P(W \\leq 0) = \\frac{0-(-2)}{5} = \\frac{2}{5}$",
+            "$P(0 < W < 2) = \\frac{2-0}{5} = \\frac{2}{5}$",
+            "$P(W \\geq 1) = \\frac{3-1}{5} = \\frac{2}{5}$"
+          ]
+        }
+      ],
+      "id": "isct-2025-fecac37ff9-q02-practice-03",
+      "school": "东京科学大学",
+      "year": "2025"
+    }
+  ],
+  "source_question": "問1)b)",
+  "source_pdf": "东京科学大学/理工学系/情报工学系/东京科学大学_理工学系_情报工学系_2025_数学过去问.pdf",
+  "source_type": "官方过去问",
+  "subject_category": "概率统计"
+}

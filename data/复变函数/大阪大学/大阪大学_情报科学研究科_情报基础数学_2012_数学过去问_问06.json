@@ -1,0 +1,212 @@
+{
+  "id": "osaka-2012-30579dc571-q06",
+  "school": "大阪大学",
+  "year": "2012",
+  "subject": "情报科学研究科_情报基础数学",
+  "text": "利用留数计算，求以下积分的值：$$\\int_0^\\infty\\frac{(\\log x)^2}{x^2+1}dx$$（提示：在复平面上半平面上，对任意 $\\epsilon\\in(0,1)$ 与 $R\\in(1,\\infty)$，考虑积分路径 $\\Gamma_{\\epsilon,R}^{+}+\\Gamma_R+\\Gamma_{\\epsilon,R}^{-}+\\Gamma_\\epsilon$，其中 $\\Gamma_{\\epsilon,R}^{+}:z=t\\ (\\epsilon\\le t\\le R)$；$\\Gamma_R:z=Re^{it}\\ (0\\le t\\le\\pi)$；$\\Gamma_{\\epsilon,R}^{-}:z=t\\ (-R\\le t\\le-\\epsilon)$；$\\Gamma_\\epsilon:z=\\epsilon e^{i(\\pi-t)}\\ (0\\le t\\le\\pi)$。）",
+  "knowledge_points": [
+    "留数定理",
+    "复对数函数的分支选取",
+    "围道积分",
+    "ML不等式估计弧上积分",
+    "参量积分对称性（$x\\to1/x$代换验证）",
+    "反常积分的复分析求法"
+  ],
+  "question_type": "利用留数计算含对数平方的反常积分",
+  "method": [
+    "取分支 $\\log z=\\ln r+i\\theta,\\theta\\in[0,\\pi]$ 定义 $f(z)=(\\log z)^2/(z^2+1)$",
+    "留数定理计算围道内在 $z=i$ 处的留数",
+    "用ML不等式说明大圆弧与小圆弧积分趋于0",
+    "把负实轴积分代换为正实轴积分并展开",
+    "比较实部虚部求出目标积分与恒等式 $\\int_0^\\infty\\ln x/(x^2+1)dx=0$"
+  ],
+  "solution_steps": [
+    "选取对数分支 $\\theta\\in[0,\\pi]$（切割沿负虚轴），定义 $f(z)=(\\log z)^2/(z^2+1)$，其在给定围道内部仅有极点 $z=i$",
+    "计算 $\\mathrm{Res}_{z=i}f$",
+    "证明 $\\Gamma_R,\\Gamma_\\epsilon$ 上的积分当 $R\\to\\infty,\\epsilon\\to0$ 时趋于0",
+    "将负实轴部分用 $t=-u$ 代换化为正实轴积分，展开 $(\\ln u+i\\pi)^2$",
+    "由留数定理列出复数方程，比较实部得到目标积分值，比较虚部验证 $\\int_0^\\infty\\ln x/(x^2+1)dx=0$"
+  ],
+  "math_structure": {
+    "type": "residue_keyhole_log_squared_integral",
+    "template": "\\int_0^\\infty\\frac{(\\log x)^2}{x^2+1}dx,\\ \\text{branch }\\theta\\in[0,\\pi]",
+    "variable_count": 0
+  },
+  "difficulty": 5,
+  "answer": [
+    {
+      "label": "解答",
+      "steps": [
+        "取分支 $\\log z=\\ln r+i\\theta$，$\\theta\\in[0,\\pi]$（切割沿负虚轴，不与围道相交），令 $f(z)=\\dfrac{(\\log z)^2}{z^2+1}$。围道内部唯一奇点为 $z=i$（另一极点 $z=-i$ 不在上半平面）。",
+        "在 $z=i$ 处，$\\log i=\\ln1+i\\tfrac\\pi2=i\\tfrac\\pi2$（简单极点），$\\mathrm{Res}_{z=i}f=\\dfrac{(\\log i)^2}{2i}=\\dfrac{(i\\pi/2)^2}{2i}=\\dfrac{-\\pi^2/4}{2i}=\\dfrac{i\\pi^2}{8}$。由留数定理，$\\oint f(z)dz=2\\pi i\\cdot\\dfrac{i\\pi^2}{8}=-\\dfrac{\\pi^3}{4}$。",
+        "大圆弧估计：在 $|z|=R$ 上 $|f(z)|\\sim\\dfrac{(\\ln R)^2}{R^2}$，弧长 $\\pi R$，故 $\\left|\\int_{\\Gamma_R}f\\right|\\le\\pi R\\cdot\\dfrac{(\\ln R)^2}{R^2}\\to0\\ (R\\to\\infty)$。小圆弧估计：在 $|z|=\\epsilon$ 上 $|f(z)|\\sim(\\ln\\epsilon)^2$，弧长 $\\pi\\epsilon$，故 $\\left|\\int_{\\Gamma_\\epsilon}f\\right|\\le\\pi\\epsilon(\\ln\\epsilon)^2\\to0\\ (\\epsilon\\to0)$。",
+        "正实轴部分：$\\Gamma_{\\epsilon,R}^{+}$ 上 $\\theta=0$，$\\log z=\\ln t$，故 $\\int_{\\Gamma_{\\epsilon,R}^{+}}f\\to I:=\\int_0^\\infty\\dfrac{(\\ln x)^2}{x^2+1}dx$。",
+        "负实轴部分：$\\Gamma_{\\epsilon,R}^{-}$ 上 $z=t<0$，$\\theta=\\pi$，故 $\\log z=\\ln|t|+i\\pi$。令 $t=-u$（$u>0$），$\\int_{\\Gamma_{\\epsilon,R}^{-}}f(z)dz=\\int_\\epsilon^{R}\\dfrac{(\\ln u+i\\pi)^2}{u^2+1}du\\to\\int_0^\\infty\\dfrac{(\\ln u)^2+2i\\pi\\ln u-\\pi^2}{u^2+1}du=I+2i\\pi J-\\pi^2K$，其中 $J=\\int_0^\\infty\\dfrac{\\ln x}{x^2+1}dx,\\ K=\\int_0^\\infty\\dfrac{dx}{x^2+1}=\\dfrac\\pi2$。",
+        "取 $R\\to\\infty,\\epsilon\\to0$，围道积分方程为：$I+(I+2i\\pi J-\\pi^2K)=-\\dfrac{\\pi^3}4$，即 $2I-\\dfrac{\\pi^3}2+2i\\pi J=-\\dfrac{\\pi^3}4$（用 $K=\\pi/2$）。",
+        "比较虚部：$2\\pi J=0\\Rightarrow J=0$（验证了已知恒等式 $\\int_0^\\infty\\ln x/(x^2+1)dx=0$，可用 $x\\to1/x$ 代换独立验证：$J=\\int_0^\\infty\\frac{-\\ln x}{x^2+1}dx=-J\\Rightarrow J=0$）。",
+        "比较实部：$2I-\\dfrac{\\pi^3}2=-\\dfrac{\\pi^3}4\\Rightarrow 2I=\\dfrac{\\pi^3}4\\Rightarrow I=\\dfrac{\\pi^3}{8}$。",
+        "结论：$\\displaystyle\\int_0^\\infty\\frac{(\\log x)^2}{x^2+1}dx=\\dfrac{\\pi^3}{8}$。"
+      ]
+    }
+  ],
+  "practice_questions": [
+    {
+      "text": "求函数 $f(z)=\\dfrac1{z^2+1}$ 在 $z=i$ 处的留数。",
+      "knowledge_points": [
+        "简单极点留数公式"
+      ],
+      "question_type": "基础留数计算",
+      "method": [
+        "简单极点留数公式 $\\mathrm{Res}=g(z_0)/h'(z_0)$"
+      ],
+      "solution_steps": [
+        "因式分解分母",
+        "用简单极点留数公式计算"
+      ],
+      "math_structure": {
+        "type": "residue_keyhole_log_squared_integral",
+        "template": "\\mathrm{Res}_{z=i}\\frac1{z^2+1}",
+        "variable_count": 0
+      },
+      "difficulty": 1,
+      "estimated_minutes": 4,
+      "answer": [
+        {
+          "label": "结果",
+          "steps": [
+            "$z^2+1=(z-i)(z+i)$，简单极点留数公式：$\\mathrm{Res}_{z=i}\\dfrac1{z^2+1}=\\dfrac1{z+i}\\Big|_{z=i}=\\dfrac1{2i}$。",
+            "化简：$\\dfrac1{2i}=-\\dfrac i2$。"
+          ]
+        }
+      ],
+      "id": "osaka-2012-30579dc571-q06-practice-01",
+      "school": "大阪大学",
+      "year": "2012"
+    },
+    {
+      "text": "用留数定理（半圆围道，不含对数）计算 $\\displaystyle\\int_0^\\infty\\frac{dx}{x^2+1}$，验证结果为 $\\pi/2$。",
+      "knowledge_points": [
+        "留数定理",
+        "半圆围道",
+        "偶函数对称性"
+      ],
+      "question_type": "基础留数积分",
+      "method": [
+        "半圆围道",
+        "留数定理",
+        "偶函数对称性拆分区间"
+      ],
+      "solution_steps": [
+        "构造上半圆围道",
+        "计算留数并用留数定理",
+        "大圆弧趋于0，得到全直线积分，再由偶性得半直线积分"
+      ],
+      "math_structure": {
+        "type": "residue_keyhole_log_squared_integral",
+        "template": "\\int_0^\\infty\\frac{dx}{x^2+1}",
+        "variable_count": 0
+      },
+      "difficulty": 2,
+      "estimated_minutes": 8,
+      "answer": [
+        {
+          "label": "结果",
+          "steps": [
+            "考虑 $f(z)=1/(z^2+1)$ 沿实轴 $[-R,R]$ 加上半圆 $\\Gamma_R$ 的围道，内部唯一极点 $z=i$，$\\mathrm{Res}_{z=i}f=1/(2i)$。",
+            "留数定理：$\\oint f=2\\pi i\\cdot\\dfrac1{2i}=\\pi$。大圆弧上 $|f|\\sim1/R^2$，弧长$\\pi R$，积分趋于0，故 $\\int_{-\\infty}^{\\infty}\\dfrac{dx}{x^2+1}=\\pi$。",
+            "被积函数为偶函数，故 $\\int_0^\\infty\\dfrac{dx}{x^2+1}=\\dfrac12\\times\\pi=\\dfrac{\\pi}2$。"
+          ]
+        }
+      ],
+      "id": "osaka-2012-30579dc571-q06-practice-02",
+      "school": "大阪大学",
+      "year": "2012"
+    },
+    {
+      "text": "用与原题相同的围道和分支，计算 $\\displaystyle\\int_0^\\infty\\frac{\\ln x}{x^2+1}dx$（只含一次对数，非平方），并说明结果与原题(虚部比较)的关系。",
+      "knowledge_points": [
+        "留数定理",
+        "对数分支选取",
+        "复数方程实虚部分离"
+      ],
+      "question_type": "留数法计算含对数的反常积分",
+      "method": [
+        "同样的围道与分支",
+        "留数计算",
+        "负实轴代换后比较实虚部"
+      ],
+      "solution_steps": [
+        "计算f(z)=log z/(z^2+1)在z=i处留数",
+        "写出围道积分方程",
+        "分离实虚部求出目标积分"
+      ],
+      "math_structure": {
+        "type": "residue_keyhole_log_squared_integral",
+        "template": "\\int_0^\\infty\\frac{\\ln x}{x^2+1}dx",
+        "variable_count": 0
+      },
+      "difficulty": 4,
+      "estimated_minutes": 15,
+      "answer": [
+        {
+          "label": "结果",
+          "steps": [
+            "取 $g(z)=\\log z/(z^2+1)$，同一分支 $\\theta\\in[0,\\pi]$。$\\mathrm{Res}_{z=i}g=\\dfrac{\\log i}{2i}=\\dfrac{i\\pi/2}{2i}=\\dfrac\\pi4$，故 $\\oint g=2\\pi i\\cdot\\dfrac\\pi4=\\dfrac{i\\pi^2}2$。",
+            "正实轴给出 $J=\\int_0^\\infty\\ln x/(x^2+1)dx$；负实轴代换 $t=-u$ 给出 $\\int_0^\\infty\\dfrac{\\ln u+i\\pi}{u^2+1}du=J+i\\pi K$，其中 $K=\\pi/2$。大圆弧、小圆弧积分同理趋于0。",
+            "方程：$J+(J+i\\pi\\cdot\\tfrac\\pi2)=\\dfrac{i\\pi^2}2\\Rightarrow 2J+\\dfrac{i\\pi^2}2=\\dfrac{i\\pi^2}2$。",
+            "比较实部：$2J=0\\Rightarrow J=0$。这与原题中比较虚部得到的恒等式 $\\int_0^\\infty\\ln x/(x^2+1)dx=0$完全一致，说明两种阶数的对数积分通过同一围道técnica可以互相印证。"
+          ]
+        }
+      ],
+      "id": "osaka-2012-30579dc571-q06-practice-03",
+      "school": "大阪大学",
+      "year": "2012"
+    },
+    {
+      "text": "用同样的方法（分母改为 $x^2+4$，即极点在 $z=2i$），计算 $\\displaystyle\\int_0^\\infty\\frac{(\\log x)^2}{x^2+4}dx$。",
+      "knowledge_points": [
+        "留数定理",
+        "一般化极点位置",
+        "复数展开与实虚部分离"
+      ],
+      "question_type": "留数法计算含对数平方的反常积分（进阶）",
+      "method": [
+        "同一围道与分支，极点改为2i",
+        "留数计算",
+        "实虚部分离求出目标积分及附带恒等式"
+      ],
+      "solution_steps": [
+        "计算f(z)=(log z)^2/(z^2+4)在z=2i处的留数",
+        "写出围道积分方程（含ln2项）",
+        "分离实虚部解出目标积分"
+      ],
+      "math_structure": {
+        "type": "residue_keyhole_log_squared_integral",
+        "template": "\\int_0^\\infty\\frac{(\\log x)^2}{x^2+4}dx",
+        "variable_count": 0
+      },
+      "difficulty": 5,
+      "estimated_minutes": 20,
+      "answer": [
+        {
+          "label": "结果",
+          "steps": [
+            "极点 $z=2i$，$\\log(2i)=\\ln2+i\\tfrac\\pi2$。$\\mathrm{Res}_{z=2i}f=\\dfrac{(\\ln2+i\\pi/2)^2}{2\\cdot2i}=\\dfrac{\\ln^22-\\pi^2/4+i\\pi\\ln2}{4i}$。",
+            "化简（乘 $-i/4$）：$\\mathrm{Res}=\\dfrac{\\pi\\ln2}4-\\dfrac i4\\left(\\ln^22-\\dfrac{\\pi^2}4\\right)$，故 $\\oint f=2\\pi i\\cdot\\mathrm{Res}=\\dfrac\\pi2\\left(\\ln^22-\\dfrac{\\pi^2}4\\right)+i\\dfrac{\\pi^2\\ln2}2$。",
+            "设 $I'=\\int_0^\\infty(\\ln x)^2/(x^2+4)dx,\\ J'=\\int_0^\\infty\\ln x/(x^2+4)dx,\\ K'=\\int_0^\\infty dx/(x^2+4)=\\pi/4$。同原题推导：$2I'-\\pi^2K'+2i\\pi J'=\\oint f$。",
+            "比较实部：$2I'-\\dfrac{\\pi^3}4=\\dfrac\\pi2\\ln^22-\\dfrac{\\pi^3}8\\Rightarrow 2I'=\\dfrac{\\pi^3}8+\\dfrac\\pi2\\ln^22\\Rightarrow I'=\\dfrac{\\pi^3}{16}+\\dfrac\\pi4\\ln^22$。",
+            "比较虚部：$2\\pi J'=\\dfrac{\\pi^2\\ln2}2\\Rightarrow J'=\\dfrac{\\pi\\ln2}4$（与已知公式 $\\int_0^\\infty\\ln x/(x^2+a^2)dx=\\pi\\ln a/(2a)$，取 $a=2$ 一致，互为验证）。",
+            "结论：$\\displaystyle\\int_0^\\infty\\frac{(\\log x)^2}{x^2+4}dx=\\dfrac{\\pi^3}{16}+\\dfrac\\pi4\\ln^22$。"
+          ]
+        }
+      ],
+      "id": "osaka-2012-30579dc571-q06-practice-04",
+      "school": "大阪大学",
+      "year": "2012"
+    }
+  ],
+  "source_question": "問5",
+  "source_pdf": "大阪大学/情报科学研究科/情报基础数学/大阪大学_情报科学研究科_情报基础数学_2012_数学过去问.pdf",
+  "source_type": "官方过去问",
+  "subject_category": "复变函数"
+}

@@ -1,0 +1,254 @@
+{
+  "id": "kyoto-2023-ebb8b7896f-q01",
+  "school": "京都大学",
+  "year": "2023",
+  "subject": "情报学研究科_智能信息学",
+  "text": "设矩阵 $D \\in \\mathbb{C}^{4\\times4}$ 定义为\n$$D=\\frac{1}{2}\\begin{pmatrix}1&1&1&1\\\\1&-i&-1&i\\\\1&-1&1&-1\\\\1&i&-1&-i\\end{pmatrix}$$\n（其中 $i$ 为虚数单位，$\\mathbb{C}$ 表示复数全体的集合，对矩阵 $A$，$A^H$ 表示 $A$ 的共轭转置（埃尔米特转置），$A^{-1}$ 表示 $A$ 的逆矩阵。）回答下列问题：\n(1) 证明 $D$ 是单位（酉）矩阵。\n(2) 设矩阵 $G\\in\\mathbb{C}^{4\\times4}$ 定义为\n$$G=\\begin{pmatrix}1&0&0&0\\\\0&i&0&0\\\\0&0&1&0\\\\0&0&0&i\\end{pmatrix}$$\n求 $D^HGD$ 的逆矩阵。",
+  "knowledge_points": [
+    "酉矩阵的定义与判定",
+    "共轭转置的计算",
+    "离散傅里叶变换矩阵",
+    "矩阵乘积逆的性质",
+    "相似变换",
+    "对角矩阵求逆"
+  ],
+  "question_type": "矩阵证明与计算题",
+  "method": [
+    "直接计算 D^H D 验证等于单位矩阵",
+    "利用酉矩阵性质 (D^H G D)^{-1} = D^H G^{-1} D 化简",
+    "分块/逐项矩阵乘法求出显式结果"
+  ],
+  "solution_steps": [
+    "写出D^H，把D^HD的每个元素表示为等比数列求和形式",
+    "利用四次单位根的性质证明求和结果为单位矩阵",
+    "求G的逆矩阵G^{-1}=diag(1,-i,1,-i)",
+    "利用D的酉性把(D^HGD)^{-1}化为D^HG^{-1}D",
+    "逐项做矩阵乘法得到最终的4×4矩阵"
+  ],
+  "math_structure": {
+    "type": "unitary_matrix_similarity_inverse",
+    "template": "D=\\frac{1}{2}[\\omega^{jk}]_{4\\times4},\\ \\omega=e^{-i\\pi/2};\\ G=\\mathrm{diag}(g_1,g_2,g_3,g_4);\\ \\text{求}\\ (D^HGD)^{-1}",
+    "variable_count": 4
+  },
+  "difficulty": 4,
+  "answer": [
+    {
+      "label": "(1)",
+      "steps": [
+        "记 D 的第 j 行第 k 列（j,k=0,1,2,3）元素为 D_{jk}=\\frac12\\omega^{jk}，其中 \\omega=-i；直接核对：j=0行全为1；j=1行为1,(-i)^1=-i,(-i)^2=-1,(-i)^3=i，即1,-i,-1,i；j=2行为(-i)^{2k}=(-1)^k，即1,-1,1,-1；j=3行为(-i)^{3k}，即1,i,-1,-i；均与给定矩阵各行一致，故D确为该形式的（归一化）离散傅里叶变换矩阵",
+        "由于D的每一行(1,2)元与(2,4)元互为共轭对之外整体对称（D_{jk}=D_{kj}），可知D为对称矩阵，从而 D^H=\\overline{D^{T}}=\\overline{D}，即把D中所有i换成-i、-i换成i即得D^H",
+        "计算(D^HD)_{kl}=\\sum_{j=0}^3\\overline{D_{jk}}D_{jl}=\\frac14\\sum_{j=0}^{3}\\omega^{-jk}\\omega^{jl}=\\frac14\\sum_{j=0}^3\\omega^{j(l-k)}",
+        "当 l=k 时，\\sum_{j=0}^3\\omega^0=4，故对角元为1；当 l\\ne k（l-k\\in\\{\\pm1,\\pm2,\\pm3\\}\\ \\mathrm{mod}\\ 4，均不为0）时，\\omega 是4次单位原根，等比数列求和 \\sum_{j=0}^3\\omega^{j(l-k)}=\\frac{\\omega^{4(l-k)}-1}{\\omega^{l-k}-1}=0（因\\omega^4=1）",
+        "因此 (D^HD)_{kl}=\\delta_{kl}，即 D^HD=I_4，结合D为4×4方阵可知 D^H=D^{-1}，D是单位（酉）矩阵，证毕"
+      ]
+    },
+    {
+      "label": "(2)",
+      "steps": [
+        "由(1)知D为酉矩阵，即D^{-1}=D^H，(D^H)^{-1}=D。对可逆矩阵G，利用逆矩阵的乘积公式：(D^HGD)^{-1}=D^{-1}G^{-1}(D^H)^{-1}=D^HG^{-1}D",
+        "G=\\mathrm{diag}(1,i,1,i)可逆，其逆为对角元取倒数：G^{-1}=\\mathrm{diag}\\left(1,\\frac1i,1,\\frac1i\\right)=\\mathrm{diag}(1,-i,1,-i)（因为1/i=-i）",
+        "记 A 为使 D=\\frac12A 的整数-虚数矩阵。先计算 B=G^{-1}A（把A的第2、4行乘以-i）：第1、3行不变为(1,1,1,1)和(1,-1,1,-1)；第2行 -i\\cdot(1,-i,-1,i)=(-i,-1,i,1)；第4行 -i\\cdot(1,i,-1,-i)=(-i,1,i,-1)",
+        "再计算 A^H（把A的第2、4行的i,-i互换得到，因为A对称，A^H=\\overline{A}）：第1、3行同上不变，第2行(1,i,-1,-i)，第4行(1,-i,-1,i)",
+        "逐项计算 P=A^HB（4×4矩阵乘法），结果为 P=\\begin{pmatrix}2-2i&0&2+2i&0\\\\0&2-2i&0&2+2i\\\\2+2i&0&2-2i&0\\\\0&2+2i&0&2-2i\\end{pmatrix}，最终 D^HG^{-1}D=\\frac14P=\\frac12\\begin{pmatrix}1-i&0&1+i&0\\\\0&1-i&0&1+i\\\\1+i&0&1-i&0\\\\0&1+i&0&1-i\\end{pmatrix}",
+        "验算：由酉性可得 (D^HGD)(D^HG^{-1}D)=D^HG(DD^H)G^{-1}D=D^HGG^{-1}D=D^HD=I，说明上式确为D^HGD的逆矩阵而无需先算出D^HGD本身，从而 $(D^HGD)^{-1}=\\dfrac12\\begin{pmatrix}1-i&0&1+i&0\\\\0&1-i&0&1+i\\\\1+i&0&1-i&0\\\\0&1+i&0&1-i\\end{pmatrix}$"
+      ]
+    }
+  ],
+  "practice_questions": [
+    {
+      "text": "证明矩阵 $U=\\dfrac{1}{\\sqrt2}\\begin{pmatrix}1&1\\\\1&-1\\end{pmatrix}$ 是（实）正交（酉）矩阵，即验证 $U^TU=I$。",
+      "knowledge_points": [
+        "正交矩阵",
+        "转置",
+        "矩阵乘法"
+      ],
+      "question_type": "矩阵证明题",
+      "method": [
+        "直接计算U^TU"
+      ],
+      "solution_steps": [
+        "写出U^T",
+        "计算U^TU各元素",
+        "对照单位矩阵得出结论"
+      ],
+      "math_structure": {
+        "type": "orthogonal_matrix_verification",
+        "template": "U=\\frac{1}{\\sqrt2}\\begin{pmatrix}1&1\\\\1&-1\\end{pmatrix},\\ \\text{验证}\\ U^TU=I",
+        "variable_count": 0
+      },
+      "difficulty": 1,
+      "estimated_minutes": 4,
+      "answer": [
+        {
+          "label": "证明",
+          "steps": [
+            "U^T=\\frac1{\\sqrt2}\\begin{pmatrix}1&1\\\\1&-1\\end{pmatrix}=U（U本身对称）",
+            "计算U^TU=\\frac12\\begin{pmatrix}1&1\\\\1&-1\\end{pmatrix}\\begin{pmatrix}1&1\\\\1&-1\\end{pmatrix}=\\frac12\\begin{pmatrix}1+1&1-1\\\\1-1&1+1\\end{pmatrix}=\\frac12\\begin{pmatrix}2&0\\\\0&2\\end{pmatrix}=I",
+            "结果为单位矩阵，故U为正交（酉）矩阵"
+          ]
+        }
+      ],
+      "id": "kyoto-2023-ebb8b7896f-q01-practice-01",
+      "school": "京都大学",
+      "year": "2023"
+    },
+    {
+      "text": "求矩阵 $A=\\begin{pmatrix}1&i\\\\-i&2\\end{pmatrix}$ 的共轭转置 $A^H$，并说明 $A$ 是否为埃尔米特（Hermitian）矩阵。",
+      "knowledge_points": [
+        "共轭转置",
+        "埃尔米特矩阵"
+      ],
+      "question_type": "矩阵计算题",
+      "method": [
+        "先转置再取共轭"
+      ],
+      "solution_steps": [
+        "求A的转置A^T",
+        "对A^T的每个元素取复共轭得到A^H",
+        "比较A^H与A"
+      ],
+      "math_structure": {
+        "type": "conjugate_transpose_computation",
+        "template": "A=\\begin{pmatrix}a&bi\\\\-bi&c\\end{pmatrix},\\ \\text{求}A^H",
+        "variable_count": 3
+      },
+      "difficulty": 1,
+      "estimated_minutes": 3,
+      "answer": [
+        {
+          "label": "结果",
+          "steps": [
+            "A^T=\\begin{pmatrix}1&-i\\\\i&2\\end{pmatrix}",
+            "对A^T取共轭：\\overline{-i}=i,\\ \\overline{i}=-i，得A^H=\\begin{pmatrix}1&i\\\\-i&2\\end{pmatrix}",
+            "比较发现A^H=A，故A是埃尔米特矩阵"
+          ]
+        }
+      ],
+      "id": "kyoto-2023-ebb8b7896f-q01-practice-02",
+      "school": "京都大学",
+      "year": "2023"
+    },
+    {
+      "text": "设 $U=\\dfrac12\\begin{pmatrix}1&1&1&1\\\\1&i&-1&-i\\\\1&-1&1&-1\\\\1&-i&-1&i\\end{pmatrix}$（与原题中D的第2、4行符号相反的类似构造）。证明 $U^HU=I_4$。",
+      "knowledge_points": [
+        "酉矩阵",
+        "共轭转置",
+        "等比数列求和",
+        "单位根"
+      ],
+      "question_type": "矩阵证明题",
+      "method": [
+        "利用四次单位根的等比数列求和性质"
+      ],
+      "solution_steps": [
+        "写出U^H",
+        "计算U^HU的一般元素为等比数列求和",
+        "分对角元与非对角元讨论求和结果"
+      ],
+      "math_structure": {
+        "type": "unitary_matrix_verification",
+        "template": "U_{jk}=\\frac12\\omega^{jk},\\ \\omega=i;\\ \\text{验证}\\ U^HU=I",
+        "variable_count": 0
+      },
+      "difficulty": 2,
+      "estimated_minutes": 8,
+      "answer": [
+        {
+          "label": "证明",
+          "steps": [
+            "U的第j行(j=0,1,2,3)可写成U_{jk}=\\frac12 i^{jk}（k=0,1,2,3），逐行核对：j=0全1；j=1为1,i,-1,-i；j=2为1,-1,1,-1；j=3为1,-i,-1,i，均与给定矩阵一致",
+            "由U对称，U^H=\\overline U，把矩阵中i,-i互换即得U^H",
+            "(U^HU)_{kl}=\\sum_j\\overline{U_{jk}}U_{jl}=\\frac14\\sum_{j=0}^3 i^{-jk}i^{jl}=\\frac14\\sum_{j=0}^3 i^{j(l-k)}",
+            "当l=k时和为4/4=1；当l\\ne k时，因i是4次单位原根且l-k\\not\\equiv0\\pmod4，等比数列求和\\sum_{j=0}^3 i^{j(l-k)}=\\frac{i^{4(l-k)}-1}{i^{l-k}-1}=0",
+            "故U^HU=I_4，U是酉矩阵，证毕"
+          ]
+        }
+      ],
+      "id": "kyoto-2023-ebb8b7896f-q01-practice-03",
+      "school": "京都大学",
+      "year": "2023"
+    },
+    {
+      "text": "设 $U$ 为任意酉矩阵，$G=\\mathrm{diag}(2,-1,3,-2)$ 为可逆对角矩阵。用$G^{-1}$表示 $(U^HGU)^{-1}$，并求出$G^{-1}$的具体数值矩阵。",
+      "knowledge_points": [
+        "酉矩阵性质",
+        "矩阵乘积的逆",
+        "对角矩阵求逆"
+      ],
+      "question_type": "矩阵性质推导题",
+      "method": [
+        "利用酉矩阵逆等于共轭转置的性质"
+      ],
+      "solution_steps": [
+        "利用(ABC)^{-1}=C^{-1}B^{-1}A^{-1}展开",
+        "代入U^{-1}=U^H,(U^H)^{-1}=U化简",
+        "直接对角元取倒数求G^{-1}"
+      ],
+      "math_structure": {
+        "type": "unitary_similarity_inverse_formula",
+        "template": "(U^HGU)^{-1}=U^HG^{-1}U,\\ G=\\mathrm{diag}(g_1,g_2,g_3,g_4)",
+        "variable_count": 4
+      },
+      "difficulty": 3,
+      "estimated_minutes": 6,
+      "answer": [
+        {
+          "label": "结果",
+          "steps": [
+            "由(U^HGU)^{-1}=U^{-1}G^{-1}(U^H)^{-1}，且U酉矩阵满足U^{-1}=U^H,(U^H)^{-1}=U，代入得(U^HGU)^{-1}=U^HG^{-1}U",
+            "对角矩阵的逆为各对角元取倒数：G^{-1}=\\mathrm{diag}\\left(\\frac12,-1,\\frac13,-\\frac12\\right)",
+            "验算：G\\cdot G^{-1}=\\mathrm{diag}(2\\cdot\\frac12,-1\\cdot(-1),3\\cdot\\frac13,-2\\cdot(-\\frac12))=\\mathrm{diag}(1,1,1,1)=I，结果正确，故(U^HGU)^{-1}=U^H\\,\\mathrm{diag}\\left(\\frac12,-1,\\frac13,-\\frac12\\right)U"
+          ]
+        }
+      ],
+      "id": "kyoto-2023-ebb8b7896f-q01-practice-04",
+      "school": "京都大学",
+      "year": "2023"
+    },
+    {
+      "text": "利用原题中的矩阵 $D$，设 $G'=\\mathrm{diag}(1,-1,1,-1)$，求 $(D^HG'D)^{-1}$。",
+      "knowledge_points": [
+        "酉矩阵性质",
+        "对角矩阵求逆",
+        "矩阵乘法",
+        "置换矩阵"
+      ],
+      "question_type": "矩阵计算题",
+      "method": [
+        "利用(D^HG'D)^{-1}=D^HG'^{-1}D并注意G'自逆",
+        "逐项矩阵乘法"
+      ],
+      "solution_steps": [
+        "注意到G'对角元均为±1，故G'^{-1}=G'",
+        "计算D^HG'D=D^HG'^{-1}D即为所求逆矩阵",
+        "逐项矩阵乘法求出显式结果并验证其为置换矩阵"
+      ],
+      "math_structure": {
+        "type": "unitary_matrix_similarity_inverse",
+        "template": "D=\\frac12[\\omega^{jk}],\\ \\omega=-i;\\ G'=\\mathrm{diag}(1,-1,1,-1);\\ \\text{求}(D^HG'D)^{-1}",
+        "variable_count": 0
+      },
+      "difficulty": 4,
+      "estimated_minutes": 15,
+      "answer": [
+        {
+          "label": "结果",
+          "steps": [
+            "G'的对角元为1,-1,1,-1，均满足平方为1，故G'^{-1}=G'，所以(D^HG'D)^{-1}=D^HG'^{-1}D=D^HG'D，只需直接计算D^HG'D本身",
+            "记A为使D=A/2的矩阵，先算B'=G'A（第2、4行取负）：第1行(1,1,1,1)，第2行-(1,-i,-1,i)=(-1,i,1,-i)，第3行(1,-1,1,-1)，第4行-(1,i,-1,-i)=(-1,-i,1,i)",
+            "A^H的四行分别为(1,1,1,1),(1,i,-1,-i),(1,-1,1,-1),(1,-i,-1,i)；逐项计算P'=A^HB'得到P'=\\begin{pmatrix}0&0&4&0\\\\0&0&0&4\\\\4&0&0&0\\\\0&4&0&0\\end{pmatrix}",
+            "故D^HG'D=\\frac14P'=\\begin{pmatrix}0&0&1&0\\\\0&0&0&1\\\\1&0&0&0\\\\0&1&0&0\\end{pmatrix}，这是交换(第1,3行)与(第2,4行)的置换矩阵",
+            "验算：该矩阵表示对换(1 3)(2 4)，是自身的逆（平方为单位矩阵），与G'自逆的事实吻合，故 $(D^HG'D)^{-1}=\\begin{pmatrix}0&0&1&0\\\\0&0&0&1\\\\1&0&0&0\\\\0&1&0&0\\end{pmatrix}$"
+          ]
+        }
+      ],
+      "id": "kyoto-2023-ebb8b7896f-q01-practice-05",
+      "school": "京都大学",
+      "year": "2023"
+    }
+  ],
+  "source_question": "F1-1 設問1",
+  "source_pdf": "京都大学/情报学研究科/智能信息学/京都大学_情报学研究科_智能信息学_2023_数学过去问.pdf",
+  "source_type": "官方过去问",
+  "subject_category": "线性代数"
+}

@@ -1,0 +1,212 @@
+{
+  "id": "isct-2019-77ea76af2b-q07",
+  "school": "东京科学大学",
+  "year": "2019",
+  "subject": "理工学系_数学系",
+  "text": "设 $f$ 是定义在 $\\mathbb{R}$ 上取正值的 $C^1$ 级函数。考虑初值问题\n$$\\frac{d}{dt}u(t)=f(u(t)),\\quad u(0)=0$$\n的解 $u(t)\\ (t>0)$，回答以下问题：\n(1) 若 $f$ 满足 $\\displaystyle\\int_0^\\infty\\frac{1}{f(u)}\\,du=\\infty$，证明解对所有 $t>0$ 都存在，且 $\\displaystyle\\lim_{t\\to\\infty}u(t)=\\infty$；\n(2) 若 $f$ 满足 $\\displaystyle T=\\int_0^\\infty\\frac{1}{f(u)}\\,du<\\infty$，证明 $\\displaystyle\\lim_{t\\to T-0}u(t)=\\infty$；\n(3) 若 $f$ 满足 $\\displaystyle\\limsup_{u\\to\\infty}\\frac{f(u)}{u}<\\infty$，证明存在正常数 $a$，使 $\\displaystyle\\lim_{t\\to\\infty}e^{-at}u(t)=0$。",
+  "knowledge_points": [
+    "可分离变量常微分方程",
+    "解的存在区间与爆破",
+    "比较定理",
+    "格朗沃尔不等式",
+    "指数增长估计"
+  ],
+  "question_type": "证明题",
+  "method": [
+    "分离变量求隐式解",
+    "单调函数的反函数分析",
+    "微分不等式比较定理"
+  ],
+  "solution_steps": [
+    "利用 $f>0$ 得 $u$ 严格单调递增，分离变量得 $\\varphi(u)=\\int_0^u du'/f(u')=t$",
+    "分析 $\\varphi$ 作为 $[0,\\infty)$ 上严格递增连续函数的值域，讨论其是否趋于$\\infty$或有限值$T$",
+    "情形1：值域为$[0,\\infty)$，则反函数定义在全部 $t\\ge0$ 上，且 $u(t)\\to\\infty$ 当 $t\\to\\infty$",
+    "情形2：值域为$[0,T)$，则反函数只定义在 $[0,T)$，且当 $t\\to T^-$，$u(t)\\to\\infty$",
+    "利用线性增长上界和比较定理，得指数型上界，进而证明存在 $a$ 使 $e^{-at}u(t)\\to0$"
+  ],
+  "math_structure": {
+    "type": "separable_ode_blowup_growth_rate",
+    "template": "IVP u'=f(u), u(0)=0 with f>0 C^1, analyze finite/infinite time blow-up via integral condition on 1/f, and exponential growth bound",
+    "variable_count": 1
+  },
+  "difficulty": 4,
+  "answer": [
+    {
+      "label": "(1)",
+      "steps": [
+        "由 $f(u)>0$，$u'(t)=f(u(t))>0$，故 $u$ 严格单调递增，从 $u(0)=0$ 出发。方程可分离变量：$\\dfrac{du}{f(u)}=dt$，积分得 $\\varphi(v):=\\displaystyle\\int_0^v\\frac{du}{f(u)}=t$，其中 $v=u(t)$。",
+        "$\\varphi:[0,\\infty)\\to[0,\\infty)$ 是严格递增（因被积函数 $1/f(u)>0$）、连续（$f$连续正值使 $1/f$ 局部可积）的函数，$\\varphi(0)=0$。由假设 $\\displaystyle\\int_0^\\infty\\frac{du}{f(u)}=\\lim_{v\\to\\infty}\\varphi(v)=\\infty$，故 $\\varphi$ 的值域恰为 $[0,\\infty)$，从而 $\\varphi$ 是 $[0,\\infty)$ 到 $[0,\\infty)$ 的严格递增连续双射，存在连续严格递增的反函数 $\\psi=\\varphi^{-1}:[0,\\infty)\\to[0,\\infty)$。",
+        "则 $u(t)=\\psi(t)$ 对所有 $t\\ge0$ 有定义（解在所有 $t>0$ 存在），且由 $\\varphi(v)\\to\\infty$ 当 $v\\to\\infty$，反函数 $\\psi(t)\\to\\infty$ 当 $t\\to\\infty$，即 $\\lim_{t\\to\\infty}u(t)=\\infty$，证毕。"
+      ]
+    },
+    {
+      "label": "(2)",
+      "steps": [
+        "同(1)，$\\varphi(v)=\\int_0^v du/f(u)$ 严格递增连续，但此时 $\\lim_{v\\to\\infty}\\varphi(v)=T<\\infty$（给定条件），故 $\\varphi:[0,\\infty)\\to[0,T)$ 是严格递增连续双射（值域恰为 $[0,T)$，因 $\\varphi$ 从0连续增至上确界$T$但不能达到，否则积分在有限点发散或矛盾于$f$连续正值使$\\varphi$在任何有限点取有限值）。",
+        "其反函数 $\\psi:[0,T)\\to[0,\\infty)$ 同样严格递增连续，且 $u(t)=\\psi(t)$ 对 $t\\in[0,T)$ 是原方程的解（在 $t\\to T^-$ 之前解都良好定义）。",
+        "由 $\\varphi(v)\\to T$ 当 $v\\to\\infty$，其反函数满足 $\\psi(t)\\to\\infty$ 当 $t\\to T^-$（严格增函数值域趋于上确界对应自变量趋于其自身的上确界），即 $\\lim_{t\\to T-0}u(t)=\\infty$，证毕（该解无法延拓过 $t=T$，是有限时间内的解爆破）。"
+      ]
+    },
+    {
+      "label": "(3)",
+      "steps": [
+        "由 $\\limsup_{u\\to\\infty}f(u)/u<\\infty$，存在 $U_0>0$ 和常数 $K>0$，使当 $u\\ge U_0$ 时，$f(u)\\le Ku$。此线性上界意味着 $\\int_{U_0}^\\infty du/f(u)\\ge\\int_{U_0}^\\infty du/(Ku)=\\infty$（对数积分发散），从而 $\\int_0^\\infty du/f(u)=\\infty$，落入情形(1)，即 $u(t)$ 对所有 $t\\ge0$ 存在，且 $u(t)\\to\\infty$（$t\\to\\infty$），单调递增。",
+        "由 $u(t)$ 从0连续增到 $\\infty$，存在唯一 $t_0\\ge0$ 使 $u(t_0)=U_0$（若 $U_0\\le0$特殊处理，一般设 $U_0>0$则由介值定理存在 $t_0>0$）。对 $t\\ge t_0$，$u(t)\\ge U_0$（单调性保证），故 $u'(t)=f(u(t))\\le Ku(t)$。",
+        "由微分不等式比较定理：设 $v(t)$ 满足 $v'=Kv$，$v(t_0)=u(t_0)=U_0$，则 $v(t)=U_0e^{K(t-t_0)}$。由 $u'\\le Ku$ 且初值相同，可证 $u(t)\\le v(t)=U_0e^{K(t-t_0)}$ 对所有 $t\\ge t_0$（标准比较原理：设 $w=u-v$，$w(t_0)=0$，$w'=u'-Kv\\le Ku-Kv=Kw$，由格朗沃尔不等式 $w(t)\\le0$，即$u(t)\\le v(t)$）。",
+        "取 $a=K+1>K$，则对 $t\\ge t_0$：$e^{-at}u(t)\\le e^{-at}U_0e^{K(t-t_0)}=U_0e^{-Kt_0}e^{(K-a)t}=U_0e^{-Kt_0}e^{-t}\\to0$（当 $t\\to\\infty$，因指数为负）。又 $e^{-at}u(t)>0$恒成立，由夹逼定理，$\\lim_{t\\to\\infty}e^{-at}u(t)=0$，证毕（此处 $a=K+1$ 为满足要求的正常数）。"
+      ]
+    }
+  ],
+  "practice_questions": [
+    {
+      "text": "求初值问题 $u'=u^2+1,\\ u(0)=0$ 的解，并判断解是否在有限时间内爆破。",
+      "knowledge_points": [
+        "可分离变量ODE",
+        "反正切函数",
+        "有限时间爆破"
+      ],
+      "question_type": "计算题",
+      "method": [
+        "分离变量积分"
+      ],
+      "solution_steps": [
+        "分离变量",
+        "积分求隐式解",
+        "分析爆破时间"
+      ],
+      "math_structure": {
+        "type": "separable_ode_arctan_blowup",
+        "template": "solve u'=u^2+1, u(0)=0 and determine finite-time blow-up",
+        "variable_count": 0
+      },
+      "difficulty": 2,
+      "estimated_minutes": 8,
+      "answer": [
+        {
+          "label": "结果",
+          "steps": [
+            "分离变量：$\\dfrac{du}{u^2+1}=dt$，两边积分：$\\arctan u=t+C$，由 $u(0)=0$得$C=0$，故 $u(t)=\\tan t$。",
+            "由于 $\\tan t$ 在 $t\\to\\pi/2^-$时趋于$\\infty$，解在有限时间 $T=\\pi/2$ 内爆破，与 $\\int_0^\\infty\\frac{du}{u^2+1}=\\arctan(\\infty)=\\pi/2<\\infty$ 吻合（验证了(2)的一般结论：$T=\\pi/2$恰是积分值）。",
+            "结论：解为 $u(t)=\\tan t$，$t\\in[0,\\pi/2)$，在 $t\\to\\pi/2^-$时 $u(t)\\to\\infty$。"
+          ]
+        }
+      ],
+      "id": "isct-2019-77ea76af2b-q07-practice-01",
+      "school": "东京科学大学",
+      "year": "2019"
+    },
+    {
+      "text": "验证 $f(u)=1+u$ 满足 $\\int_0^\\infty du/f(u)=\\infty$，并求初值问题 $u'=1+u,u(0)=0$ 的解，验证其对所有 $t>0$存在且趋于$\\infty$。",
+      "knowledge_points": [
+        "可分离变量ODE",
+        "线性微分方程",
+        "无穷时间存在性"
+      ],
+      "question_type": "计算题",
+      "method": [
+        "积分判敛散",
+        "分离变量求解"
+      ],
+      "solution_steps": [
+        "计算积分判断发散",
+        "求解ODE",
+        "验证极限"
+      ],
+      "math_structure": {
+        "type": "linear_growth_ode_global_existence",
+        "template": "verify divergence of integral for f(u)=1+u and solve resulting linear ODE globally",
+        "variable_count": 0
+      },
+      "difficulty": 1,
+      "estimated_minutes": 6,
+      "answer": [
+        {
+          "label": "结果",
+          "steps": [
+            "$\\int_0^\\infty \\frac{du}{1+u}=[\\ln(1+u)]_0^\\infty=\\infty$，满足条件(1)的假设。",
+            "解方程 $u'=1+u$：分离变量 $\\dfrac{du}{1+u}=dt$，积分得 $\\ln(1+u)=t+C$，由 $u(0)=0$得$C=0$，故 $1+u=e^t$，$u(t)=e^t-1$。",
+            "验证：$u(t)=e^t-1$ 对所有 $t\\ge0$ 有定义，且 $\\lim_{t\\to\\infty}u(t)=\\infty$，与(1)结论一致。"
+          ]
+        }
+      ],
+      "id": "isct-2019-77ea76af2b-q07-practice-02",
+      "school": "东京科学大学",
+      "year": "2019"
+    },
+    {
+      "text": "设 $f(u)=2u$（$u\\ge0$区域内正值），验证 $\\limsup_{u\\to\\infty}f(u)/u=2<\\infty$，求解 $u'=2u,u(0)=\\epsilon>0$（近似初值避开 $u=0$为平衡点的退化情形）的显式解，并求满足 $\\lim_{t\\to\\infty}e^{-at}u(t)=0$的最小正常数 $a$ 的取值范围。",
+      "knowledge_points": [
+        "线性ODE",
+        "指数增长率估计"
+      ],
+      "question_type": "计算题",
+      "method": [
+        "直接求解线性ODE"
+      ],
+      "solution_steps": [
+        "求解ODE得指数解",
+        "分析指数增长率与a关系"
+      ],
+      "math_structure": {
+        "type": "linear_ode_exponential_growth_rate_bound",
+        "template": "solve u'=2u and determine range of a such that e^{-at}u(t)->0",
+        "variable_count": 1
+      },
+      "difficulty": 2,
+      "estimated_minutes": 8,
+      "answer": [
+        {
+          "label": "结果",
+          "steps": [
+            "$f(u)/u=2$ 为常数，故 $\\limsup_{u\\to\\infty}f(u)/u=2<\\infty$，满足题设条件，此处 $K=2$。",
+            "解方程 $u'=2u,u(0)=\\epsilon$：$u(t)=\\epsilon e^{2t}$。",
+            "$e^{-at}u(t)=\\epsilon e^{(2-a)t}$，当 $a>2$时指数为负，极限为0；当 $a=2$时极限为$\\epsilon\\ne0$；当$a<2$时极限为$\\infty$。故满足题目要求的 $a$ 需严格大于 $K=2$，即 $a\\in(2,\\infty)$，与原题证明中取 $a=K+1$ 的构造一致（$a=K+1=3$ 是该范围内的一个具体选择）。"
+          ]
+        }
+      ],
+      "id": "isct-2019-77ea76af2b-q07-practice-03",
+      "school": "东京科学大学",
+      "year": "2019"
+    },
+    {
+      "text": "叙述并证明常微分方程比较定理的简单版本：若 $u,v$ 在 $[t_0,t_1]$ 上可微，$u(t_0)\\le v(t_0)$，且 $u'(t)\\le Kv(t)$，$v'(t)=Kv(t)$（$K$为常数），证明 $u(t)\\le v(t)$ 对所有 $t\\in[t_0,t_1]$成立（假设过程中 $u(t)\\le v(t)$ 恒成立以简化，或用格朗沃尔不等式严格证明一般情形 $u'\\le Ku$）。",
+      "knowledge_points": [
+        "微分不等式比较定理",
+        "格朗沃尔不等式"
+      ],
+      "question_type": "证明题",
+      "method": [
+        "格朗沃尔不等式"
+      ],
+      "solution_steps": [
+        "构造差函数",
+        "求导估计",
+        "格朗沃尔不等式得出结论"
+      ],
+      "math_structure": {
+        "type": "gronwall_comparison_theorem_proof",
+        "template": "prove comparison theorem u'<=Ku implies exponential upper bound via Gronwall inequality",
+        "variable_count": 1
+      },
+      "difficulty": 3,
+      "estimated_minutes": 10,
+      "answer": [
+        {
+          "label": "结果",
+          "steps": [
+            "设 $u'(t)\\le Ku(t)$ 对 $t\\in[t_0,t_1]$，$u(t_0)=u_0$。令 $w(t)=u(t)e^{-Kt}$，求导：$w'(t)=[u'(t)-Ku(t)]e^{-Kt}\\le0$（由假设 $u'\\le Ku$）。",
+            "故 $w$ 在 $[t_0,t_1]$ 上单调不增，$w(t)\\le w(t_0)=u_0e^{-Kt_0}$ 对所有 $t\\ge t_0$。",
+            "即 $u(t)e^{-Kt}\\le u_0e^{-Kt_0}\\Rightarrow u(t)\\le u_0e^{K(t-t_0)}$，这正是格朗沃尔不等式的结论，也验证了原题(3)中 $u(t)\\le U_0e^{K(t-t_0)}$ 的比较论证方法。"
+          ]
+        }
+      ],
+      "id": "isct-2019-77ea76af2b-q07-practice-04",
+      "school": "东京科学大学",
+      "year": "2019"
+    }
+  ],
+  "source_question": "下午 [8]",
+  "source_pdf": "东京科学大学/理工学系/数学系/东京科学大学_理工学系_数学系_2019_数学过去问.pdf",
+  "source_type": "官方过去问",
+  "subject_category": "微分方程"
+}

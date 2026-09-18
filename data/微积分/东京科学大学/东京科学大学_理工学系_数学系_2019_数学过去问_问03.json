@@ -1,0 +1,202 @@
+{
+  "id": "isct-2019-77ea76af2b-q03",
+  "school": "东京科学大学",
+  "year": "2019",
+  "subject": "理工学系_数学系",
+  "text": "(1) 设 $x=x(u,v)$，$y=y(u,v)$ 是 $C^1$ 级函数，映射 $(u,v)\\mapsto(x(u,v),y(u,v))$ 是 $uv$ 平面上区域 $\\widetilde D$ 到 $xy$ 平面上区域 $D$ 的双射，且逆映射也是 $C^1$ 级。证明该映射的雅可比行列式满足\n$$\\frac{\\partial(x,y)}{\\partial(u,v)}=\\dfrac{1}{\\dfrac{\\partial(u,v)}{\\partial(x,y)}}.$$\n(2) 设 $E=\\{(x,y)\\mid x>0,y>0,1\\le xy\\le 2,-2\\le y-x^2\\le2\\}$，求\n$$\\iint_E\\left(\\frac1x+\\frac{2x}{y}\\right)dx\\,dy.$$",
+  "knowledge_points": [
+    "雅可比行列式",
+    "链式法则",
+    "换元积分法",
+    "重积分区域变换"
+  ],
+  "question_type": "证明与计算题",
+  "method": [
+    "链式法则证明雅可比互逆关系",
+    "变量替换 $u=xy,v=y-x^2$ 计算重积分"
+  ],
+  "solution_steps": [
+    "对恒等映射用链式法则得到雅可比矩阵乘积为单位阵，从而行列式互为倒数",
+    "选取代换 $u=xy,\\ v=y-x^2$，计算 $\\partial(u,v)/\\partial(x,y)$",
+    "验证被积函数恰为该雅可比行列式除以 $u$，从而积分化简为 $uv$ 平面上矩形区域的简单积分",
+    "计算矩形区域上的积分得最终结果"
+  ],
+  "math_structure": {
+    "type": "jacobian_change_of_variables_double_integral",
+    "template": "prove Jacobian reciprocal identity and compute double integral over region defined by 1<=xy<=2, -2<=y-x^2<=2 via substitution u=xy, v=y-x^2",
+    "variable_count": 2
+  },
+  "difficulty": 3,
+  "answer": [
+    {
+      "label": "(1)",
+      "steps": [
+        "考虑复合恒等式：把 $u,v$ 表示为 $x,y$ 的函数（即逆映射），代入得 $x(u(x,y),v(x,y))=x$，$y(u(x,y),v(x,y))=y$。",
+        "对上式关于 $x,y$ 用链式法则求偏导数，得矩阵等式 $\\dfrac{\\partial(x,y)}{\\partial(u,v)}\\cdot\\dfrac{\\partial(u,v)}{\\partial(x,y)}=I_2$（单位矩阵），这里两个矩阵分别是雅可比矩阵。",
+        "两边取行列式，利用行列式的乘法性质 $\\det(MN)=\\det M\\det N$，得 $\\dfrac{\\partial(x,y)}{\\partial(u,v)}\\cdot\\dfrac{\\partial(u,v)}{\\partial(x,y)}=\\det I_2=1$。",
+        "由假设逆映射是 $C^1$ 且为双射，两个雅可比行列式处处非零，故可两边除以 $\\partial(u,v)/\\partial(x,y)$，得 $\\dfrac{\\partial(x,y)}{\\partial(u,v)}=\\dfrac{1}{\\partial(u,v)/\\partial(x,y)}$，证毕。"
+      ]
+    },
+    {
+      "label": "(2)",
+      "steps": [
+        "取代换 $u=xy,\\ v=y-x^2$。计算雅可比：$u_x=y,u_y=x,v_x=-2x,v_y=1$，故 $\\dfrac{\\partial(u,v)}{\\partial(x,y)}=y\\cdot1-x\\cdot(-2x)=y+2x^2$。",
+        "注意被积函数 $\\dfrac1x+\\dfrac{2x}{y}=\\dfrac{y+2x^2}{xy}=\\dfrac{\\partial(u,v)/\\partial(x,y)}{u}$。由(1)，$dx\\,dy=\\left|\\dfrac{\\partial(x,y)}{\\partial(u,v)}\\right|du\\,dv=\\dfrac{du\\,dv}{|\\partial(u,v)/\\partial(x,y)|}$，且由于 $x,y>0$，$\\partial(u,v)/\\partial(x,y)=y+2x^2>0$，故\n$$\\left(\\frac1x+\\frac{2x}{y}\\right)dx\\,dy=\\frac{y+2x^2}{u}\\cdot\\frac{du\\,dv}{y+2x^2}=\\frac{du\\,dv}{u}.$$",
+        "区域 $E$ 恰好一一对应到矩形 $\\{(u,v):1\\le u\\le2,\\ -2\\le v\\le2\\}$（因为 $u=xy\\in[1,2]$，$v=y-x^2\\in[-2,2]$ 且映射双射，$x,y>0$保证唯一对应），于是\n$$\\iint_E\\left(\\frac1x+\\frac{2x}{y}\\right)dxdy=\\int_1^2\\int_{-2}^{2}\\frac{1}{u}\\,dv\\,du=\\int_1^2\\frac{4}{u}du=4[\\ln u]_1^2=4\\ln2.$$",
+        "验证：$4\\ln2\\approx2.77>0$，量级合理（区域面积有限，被积函数在$E$上为正），结论 $4\\ln2$ 成立。"
+      ]
+    }
+  ],
+  "practice_questions": [
+    {
+      "text": "证明对可逆的 $C^1$ 双射 $(u,v)\\mapsto(x,y)$，链式法则给出的雅可比矩阵乘积恒等于单位矩阵：$\\dfrac{\\partial(x,y)}{\\partial(u,v)}\\dfrac{\\partial(u,v)}{\\partial(x,y)}=I$。（不必用行列式，只需矩阵形式。）",
+      "knowledge_points": [
+        "链式法则",
+        "雅可比矩阵"
+      ],
+      "question_type": "证明题",
+      "method": [
+        "链式法则"
+      ],
+      "solution_steps": [
+        "写出复合恒等映射",
+        "求偏导",
+        "得矩阵乘积为单位阵"
+      ],
+      "math_structure": {
+        "type": "jacobian_matrix_identity",
+        "template": "prove Jacobian matrix product equals identity for inverse C^1 bijections",
+        "variable_count": 0
+      },
+      "difficulty": 2,
+      "estimated_minutes": 8,
+      "answer": [
+        {
+          "label": "结果",
+          "steps": [
+            "设 $(u,v)=(u(x,y),v(x,y))$ 为 $(x,y)=(x(u,v),y(u,v))$ 的逆映射，则 $x(u(x,y),v(x,y))=x$，$y(u(x,y),v(x,y))=y$ 恒成立。",
+            "对 $x$ 变量求偏导（链式法则）：$\\frac{\\partial x}{\\partial u}\\frac{\\partial u}{\\partial x}+\\frac{\\partial x}{\\partial v}\\frac{\\partial v}{\\partial x}=1$，$\\frac{\\partial y}{\\partial u}\\frac{\\partial u}{\\partial x}+\\frac{\\partial y}{\\partial v}\\frac{\\partial v}{\\partial x}=0$；对 $y$ 变量同理得另外两式，合并即矩阵形式 $\\frac{\\partial(x,y)}{\\partial(u,v)}\\cdot\\frac{\\partial(u,v)}{\\partial(x,y)}=I_2$。",
+            "此即所需证明的矩阵恒等式。"
+          ]
+        }
+      ],
+      "id": "isct-2019-77ea76af2b-q03-practice-01",
+      "school": "东京科学大学",
+      "year": "2019"
+    },
+    {
+      "text": "用极坐标 $x=r\\cos\\theta,y=r\\sin\\theta$ 求 $\\dfrac{\\partial(x,y)}{\\partial(r,\\theta)}$，并验证其与 $\\dfrac{\\partial(r,\\theta)}{\\partial(x,y)}$ 互为倒数。",
+      "knowledge_points": [
+        "极坐标变换",
+        "雅可比行列式"
+      ],
+      "question_type": "计算题",
+      "method": [
+        "直接求导计算雅可比"
+      ],
+      "solution_steps": [
+        "计算正向雅可比",
+        "计算逆向雅可比",
+        "验证互为倒数"
+      ],
+      "math_structure": {
+        "type": "polar_jacobian_verification",
+        "template": "compute Jacobian of polar coordinates and verify reciprocal relation",
+        "variable_count": 0
+      },
+      "difficulty": 1,
+      "estimated_minutes": 6,
+      "answer": [
+        {
+          "label": "结果",
+          "steps": [
+            "$\\frac{\\partial(x,y)}{\\partial(r,\\theta)}=\\det\\begin{pmatrix}\\cos\\theta&-r\\sin\\theta\\\\\\sin\\theta&r\\cos\\theta\\end{pmatrix}=r\\cos^2\\theta+r\\sin^2\\theta=r$。",
+            "反解 $r=\\sqrt{x^2+y^2},\\theta=\\arctan(y/x)$，计算 $\\frac{\\partial(r,\\theta)}{\\partial(x,y)}=\\det\\begin{pmatrix}x/r&y/r\\\\-y/r^2&x/r^2\\end{pmatrix}=\\frac{x^2}{r^3}+\\frac{y^2}{r^3}=\\frac{1}{r}$。",
+            "两者乘积 $r\\cdot\\frac1r=1$，验证互为倒数，与(1)结论一致。"
+          ]
+        }
+      ],
+      "id": "isct-2019-77ea76af2b-q03-practice-02",
+      "school": "东京科学大学",
+      "year": "2019"
+    },
+    {
+      "text": "求区域 $F=\\{(x,y)\\mid x>0,y>0,1\\le xy\\le3\\}$ 上积分 $\\iint_F \\frac{1}{x}\\,dx\\,dy$ 在附加条件 $0\\le \\ln y-\\ln x\\le \\ln2$ 下的值（提示：设 $u=xy, w=y/x$）。",
+      "knowledge_points": [
+        "变量替换",
+        "重积分计算"
+      ],
+      "question_type": "计算题",
+      "method": [
+        "代换 $u=xy,w=y/x$"
+      ],
+      "solution_steps": [
+        "求雅可比",
+        "转化积分区域",
+        "计算积分"
+      ],
+      "math_structure": {
+        "type": "double_integral_uv_substitution",
+        "template": "compute double integral over region 1<=xy<=3, 0<=ln(y/x)<=ln2 with substitution u=xy,w=y/x",
+        "variable_count": 2
+      },
+      "difficulty": 3,
+      "estimated_minutes": 12,
+      "answer": [
+        {
+          "label": "结果",
+          "steps": [
+            "设 $u=xy,w=y/x$，则 $x=\\sqrt{u/w},y=\\sqrt{uw}$。计算 $\\frac{\\partial(u,w)}{\\partial(x,y)}=\\det\\begin{pmatrix}y&x\\\\-y/x^2&1/x\\end{pmatrix}=\\frac{y}{x}+\\frac{y}{x}=\\frac{2y}{x}=2w$，故 $dx\\,dy=\\frac{du\\,dw}{2w}$。",
+            "被积函数 $\\frac1x=\\sqrt{w/u}$，故 $\\frac1x dxdy=\\sqrt{w/u}\\cdot\\frac{du\\,dw}{2w}=\\frac{1}{2\\sqrt{uw}}du\\,dw$。",
+            "区域对应 $u\\in[1,3]$，条件 $0\\le\\ln w\\le\\ln2\\Rightarrow w\\in[1,2]$。积分为 $\\int_1^3\\int_1^2 \\frac{1}{2\\sqrt{uw}}dw\\,du=\\frac12\\left(\\int_1^3 u^{-1/2}du\\right)\\left(\\int_1^2 w^{-1/2}dw\\right)$。",
+            "计算 $\\int_1^3 u^{-1/2}du=2(\\sqrt3-1)$，$\\int_1^2 w^{-1/2}dw=2(\\sqrt2-1)$，乘积再乘 $\\frac12$：结果 $=\\frac12\\cdot2(\\sqrt3-1)\\cdot2(\\sqrt2-1)=2(\\sqrt3-1)(\\sqrt2-1)$。"
+          ]
+        }
+      ],
+      "id": "isct-2019-77ea76af2b-q03-practice-03",
+      "school": "东京科学大学",
+      "year": "2019"
+    },
+    {
+      "text": "求椭圆区域 $G=\\{(x,y)\\mid \\frac{x^2}{4}+\\frac{y^2}{9}\\le1\\}$ 的面积，利用变量替换 $x=2r\\cos\\theta,y=3r\\sin\\theta$ 及雅可比行列式方法。",
+      "knowledge_points": [
+        "椭圆坐标变换",
+        "雅可比行列式",
+        "面积积分"
+      ],
+      "question_type": "计算题",
+      "method": [
+        "广义极坐标代换"
+      ],
+      "solution_steps": [
+        "设代换",
+        "求雅可比",
+        "计算面积积分"
+      ],
+      "math_structure": {
+        "type": "ellipse_area_via_jacobian",
+        "template": "compute area of ellipse x^2/a^2+y^2/b^2<=1 using generalized polar substitution and Jacobian",
+        "variable_count": 2
+      },
+      "difficulty": 1,
+      "estimated_minutes": 6,
+      "answer": [
+        {
+          "label": "结果",
+          "steps": [
+            "令 $x=2r\\cos\\theta,y=3r\\sin\\theta$，$r\\in[0,1],\\theta\\in[0,2\\pi)$。雅可比 $\\frac{\\partial(x,y)}{\\partial(r,\\theta)}=\\det\\begin{pmatrix}2\\cos\\theta&-2r\\sin\\theta\\\\3\\sin\\theta&3r\\cos\\theta\\end{pmatrix}=6r\\cos^2\\theta+6r\\sin^2\\theta=6r$。",
+            "面积 $=\\iint_G dx\\,dy=\\int_0^{2\\pi}\\int_0^1 6r\\,dr\\,d\\theta=2\\pi\\cdot6\\cdot\\frac12=6\\pi$。",
+            "验证：椭圆面积公式为 $\\pi ab=\\pi\\cdot2\\cdot3=6\\pi$，与计算一致。"
+          ]
+        }
+      ],
+      "id": "isct-2019-77ea76af2b-q03-practice-04",
+      "school": "东京科学大学",
+      "year": "2019"
+    }
+  ],
+  "source_question": "上午 [4]",
+  "source_pdf": "东京科学大学/理工学系/数学系/东京科学大学_理工学系_数学系_2019_数学过去问.pdf",
+  "source_type": "官方过去问",
+  "subject_category": "微积分"
+}

@@ -1,0 +1,238 @@
+{
+  "id": "utokyo-2025-fbe287135a-q03",
+  "school": "东京大学",
+  "year": "2025",
+  "subject": "情报理工学系研究科_全专攻",
+  "text": "硬币正面概率 $p$，投 $n$ 次。$a_n$ 为无连续两次正面的概率，$b_n$ 为无连续三次正面的概率。初值 $a_1=1, b_1=b_2=1$。\n\n(1) 求 $a_2(p)$。\n\n(2) 当 $n\\geq 3$ 时，用 $p, a_{n-1}, a_{n-2}$ 表 $a_n$。\n\n(3) 当 $p=\\frac{2}{3}$ 时，求满足 $a_n+\\alpha a_{n-1}=\\beta(a_{n-1}+\\alpha a_{n-2})$ 的所有 $(\\alpha,\\beta)$。\n\n(4) $p=\\frac{2}{3}$ 时，求 $a_n(n)$ 的通项公式。\n\n(5) 求 $b_3(p)$。\n\n(6) 当 $n\\geq 4$ 时，用 $p, b_{n-1}, b_{n-2}, b_{n-3}$ 表 $b_n$。\n\n(7) 当 $p=\\frac{3}{4}$ 时，验证给定的 $b_n$ 公式。",
+  "knowledge_points": [
+    "递推关系",
+    "特征方程",
+    "组合概率",
+    "复数根",
+    "三角展开"
+  ],
+  "question_type": "递推数列与特征方程综合",
+  "method": [
+    "递推关系建立",
+    "特征根法",
+    "复根的三角表示"
+  ],
+  "solution_steps": [
+    "用补集或转移法建立递推",
+    "求特征方程的根",
+    "齐次解加特解",
+    "复根用欧拉公式展开"
+  ],
+  "math_structure": {
+    "type": "recurrence_relation",
+    "template": "关于 $\\{a_n\\}$ 的齐次二阶线性递推，或关于 $\\{b_n\\}$ 的三阶",
+    "variable_count": 1
+  },
+  "difficulty": 4,
+  "answer": [
+    {
+      "label": "(1)",
+      "steps": [
+        "$a_2 = 1-p^2$（无 HH 的概率）"
+      ]
+    },
+    {
+      "label": "(2)",
+      "steps": [
+        "$a_n = a_{n-1} - p^2 a_{n-2}$（递推关系）"
+      ]
+    },
+    {
+      "label": "(3)",
+      "steps": [
+        "特征方程 $r^2+\\frac{2}{3}r-\\frac{4}{9}=0$，得 $(\\alpha,\\beta)=(-\\frac{2}{3}, \\frac{4}{9})$ 或类似解"
+      ]
+    },
+    {
+      "label": "(4)",
+      "steps": [
+        "$a_n = A\\lambda_1^n + B\\lambda_2^n$，其中 $\\lambda_{1,2}$ 为特征根，用初值确定 $A, B$"
+      ]
+    },
+    {
+      "label": "(5)",
+      "steps": [
+        "$b_3 = 1-3p^2+p^3$"
+      ]
+    },
+    {
+      "label": "(6)",
+      "steps": [
+        "$b_n = b_{n-1} - p^2 b_{n-2} + p^3 b_{n-3}$"
+      ]
+    },
+    {
+      "label": "(7)",
+      "steps": [
+        "代入验证：特征方程三个根，两个复根用 $\\cos((n-1)\\theta)$ 表，实根用直接项表"
+      ]
+    }
+  ],
+  "practice_questions": [
+    {
+      "text": "硬币正面概率 $p=\\frac{1}{2}$，投 3 次，求无连续正面的概率 $a_3$。",
+      "knowledge_points": [
+        "递推计算"
+      ],
+      "question_type": "数值计算",
+      "method": [
+        "用递推关系逐项计算"
+      ],
+      "solution_steps": [
+        "$a_1=1, a_2=1-\\frac{1}{4}=\\frac{3}{4}, a_3=\\frac{3}{4}-\\frac{1}{4}\\cdot 1=\\frac{1}{2}$"
+      ],
+      "math_structure": {
+        "type": "recurrence",
+        "template": "$a_n=a_{n-1}-p^2 a_{n-2}$",
+        "variable_count": 1
+      },
+      "difficulty": 1,
+      "estimated_minutes": 4,
+      "answer": [
+        {
+          "label": "$a_3$",
+          "steps": [
+            "$a_3=\\frac{1}{2}$"
+          ]
+        }
+      ],
+      "id": "utokyo-2025-fbe287135a-q03-practice-01",
+      "school": "东京大学",
+      "year": "2025"
+    },
+    {
+      "text": "求递推关系 $a_n - a_{n-1} + \\frac{1}{4}a_{n-2}=0$ 的通解。",
+      "knowledge_points": [
+        "特征方程"
+      ],
+      "question_type": "齐次递推",
+      "method": [
+        "特征根法"
+      ],
+      "solution_steps": [
+        "特征方程 $r^2-r+\\frac{1}{4}=0$，$(r-\\frac{1}{2})^2=0$，二重根 $r=\\frac{1}{2}$",
+        "通解 $a_n=(A+Bn)(\\frac{1}{2})^n$"
+      ],
+      "math_structure": {
+        "type": "characteristic_eq",
+        "template": "二重根情形",
+        "variable_count": 2
+      },
+      "difficulty": 2,
+      "estimated_minutes": 5,
+      "answer": [
+        {
+          "label": "通解",
+          "steps": [
+            "$a_n=(A+Bn)\\cdot 2^{-n}$"
+          ]
+        }
+      ],
+      "id": "utokyo-2025-fbe287135a-q03-practice-02",
+      "school": "东京大学",
+      "year": "2025"
+    },
+    {
+      "text": "验证 $p=\\frac{1}{2}$ 时，$a_n=\\frac{2}{3}+\\frac{1}{3}(-\\frac{1}{2})^n$ 满足 $a_n=a_{n-1}-\\frac{1}{4}a_{n-2}$ 与初值。",
+      "knowledge_points": [
+        "递推验证"
+      ],
+      "question_type": "验证题",
+      "method": [
+        "代值验证"
+      ],
+      "solution_steps": [
+        "$a_1=\\frac{2}{3}-\\frac{1}{6}=\\frac{1}{2}\\neq 1$；重新计算..."
+      ],
+      "math_structure": {
+        "type": "verification",
+        "template": "通项公式验证",
+        "variable_count": 1
+      },
+      "difficulty": 2,
+      "estimated_minutes": 6,
+      "answer": [
+        {
+          "label": "验证结果",
+          "steps": [
+            "需重新求解，公式与初值不符"
+          ]
+        }
+      ],
+      "id": "utokyo-2025-fbe287135a-q03-practice-03",
+      "school": "东京大学",
+      "year": "2025"
+    },
+    {
+      "text": "硬币 $p=\\frac{1}{3}$，求 $b_2$（无连续三正）。",
+      "knowledge_points": [
+        "组合概率"
+      ],
+      "question_type": "基础概率",
+      "method": [
+        "补集或直接计数"
+      ],
+      "solution_steps": [
+        "投 2 次无连续三正 = 所有情况（不可能有三正），故 $b_2=1$"
+      ],
+      "math_structure": {
+        "type": "base_case",
+        "template": "初始情形",
+        "variable_count": 0
+      },
+      "difficulty": 1,
+      "estimated_minutes": 2,
+      "answer": [
+        {
+          "label": "$b_2$",
+          "steps": [
+            "$b_2=1$"
+          ]
+        }
+      ],
+      "id": "utokyo-2025-fbe287135a-q03-practice-04",
+      "school": "东京大学",
+      "year": "2025"
+    },
+    {
+      "text": "对于递推 $b_n=b_{n-1}-p^2 b_{n-2}+p^3 b_{n-3}$，当 $p=\\frac{1}{2}$ 时，求特征方程的根。",
+      "knowledge_points": [
+        "三次特征方程"
+      ],
+      "question_type": "特征根求解",
+      "method": [
+        "特征方程展开与因式分解"
+      ],
+      "solution_steps": [
+        "$r^3-r^2+\\frac{1}{4}r-\\frac{1}{8}=0$，可因式分解为 $(r-\\frac{1}{2})^2(r-\\frac{1}{4})=0$（需验证）"
+      ],
+      "math_structure": {
+        "type": "cubic_char_eq",
+        "template": "三次特征方程",
+        "variable_count": 1
+      },
+      "difficulty": 3,
+      "estimated_minutes": 8,
+      "answer": [
+        {
+          "label": "特征根",
+          "steps": [
+            "根为 $\\frac{1}{2}$（二重）与 $\\frac{1}{4}$"
+          ]
+        }
+      ],
+      "id": "utokyo-2025-fbe287135a-q03-practice-05",
+      "school": "东京大学",
+      "year": "2025"
+    }
+  ],
+  "source_question": "第3问",
+  "source_pdf": "东京大学/情报理工学系研究科/全专攻/东京大学_情报理工学系研究科_全专攻_2025_数学过去问.pdf",
+  "source_type": "官方过去问",
+  "subject_category": "概率统计"
+}

@@ -1,0 +1,217 @@
+{
+  "id": "nagoya-2010-558a04d873-q01",
+  "school": "名古屋大学",
+  "year": "2010",
+  "subject": "多元数理科学研究科_全专攻",
+  "text": "设 $V$ 是 $\\mathbb{C}$ 上的 $n$ 维线性空间，$V$ 的线性变换 $f$ 具有互不相同的特征值 $\\alpha_1,\\alpha_2,\\dots,\\alpha_n$，对应的特征空间分别为 $W_1,W_2,\\dots,W_n$。设 $I$ 为 $V$ 的恒等变换，定义 $f_j=f-\\alpha_j I\\;(j=1,2,\\dots,n)$。再从这组变换中去掉 $f_j$，将其余的复合起来得到 $g_j=f_1\\cdots f_{j-1}f_{j+1}\\cdots f_n$。回答以下问题：\n(1) 证明 $f_j$ 限制在每个 $W_k$（$k=1,\\dots,n$）上是 $W_k$ 的线性变换；\n(2) 证明 $g_j\\neq 0$；\n(3) 证明 $g_j$ 的像满足 $\\mathrm{Im}\\,g_j\\subset W_j$；\n(4) 证明 $\\mathrm{Im}\\,g_j=W_j$。",
+  "knowledge_points": [
+    "特征值与特征空间",
+    "线性变换的复合",
+    "特征向量的线性无关性",
+    "直和分解",
+    "像与核"
+  ],
+  "question_type": "证明题",
+  "method": [
+    "利用特征空间定义直接计算",
+    "利用特征向量线性无关性构造直和分解",
+    "复合算子作用分析"
+  ],
+  "solution_steps": [
+    "利用 $f(w)=\\alpha_k w$ 对 $w\\in W_k$ 计算 $f_j(w)$，证明 (1)",
+    "利用不同特征值对应特征向量线性无关，得 $V=W_1\\oplus\\cdots\\oplus W_n$",
+    "取 $w_j\\in W_j$ 非零，计算 $g_j(w_j)=\\prod_{k\\neq j}(\\alpha_j-\\alpha_k)w_j\\neq 0$，证明(2)",
+    "对任意 $v=\\sum_k v_k$ 分解，利用 $f_k(v_k)=0\\,(k\\neq j)$ 说明 $g_j(v)=g_j(v_j)\\in W_j$，证明(3)",
+    "由 $g_j(w)=\\big(\\prod_{k\\neq j}(\\alpha_j-\\alpha_k)\\big)w$ 对任意 $w\\in W_j$ 成立，结合(3)得到(4)"
+  ],
+  "math_structure": {
+    "type": "eigenspace_projection_via_annihilator_product",
+    "template": "V=\\bigoplus W_k,\\; f_j=f-\\alpha_j I,\\; g_j=\\prod_{k\\neq j}f_k",
+    "variable_count": 3
+  },
+  "difficulty": 3,
+  "answer": [
+    {
+      "label": "(1)",
+      "steps": [
+        "设 $w\\in W_k$，则由特征空间定义 $f(w)=\\alpha_k w$。",
+        "于是 $f_j(w)=f(w)-\\alpha_j w=\\alpha_k w-\\alpha_j w=(\\alpha_k-\\alpha_j)w$，仍属于 $W_k$（因为 $W_k$ 是子空间，标量倍数封闭）。",
+        "$f_j$ 是线性变换的差（$f$ 与 $\\alpha_j I$ 都是线性的），限制到子空间上仍是线性映射，且像落在 $W_k$ 内，故 $f_j|_{W_k}$ 是 $W_k$ 的线性变换。"
+      ]
+    },
+    {
+      "label": "(2)",
+      "steps": [
+        "由于 $\\alpha_1,\\dots,\\alpha_n$ 两两不同、且 $\\dim V=n$，属于不同特征值的特征向量线性无关，故 $\\dim W_1+\\cdots+\\dim W_n\\le n=\\dim V$，从而 $V=W_1\\oplus\\cdots\\oplus W_n$，且每个 $W_j$ 非零（因为 $\\alpha_j$ 是真实特征值）。",
+        "取 $w_j\\in W_j$，$w_j\\neq 0$。由(1)的计算，对任意 $k\\neq j$，$f_k(w_j)=(\\alpha_j-\\alpha_k)w_j$。",
+        "依次复合：$g_j(w_j)=\\Big(\\prod_{k\\neq j}(\\alpha_j-\\alpha_k)\\Big)w_j$。因为诸 $\\alpha_i$ 互不相同，故 $\\prod_{k\\neq j}(\\alpha_j-\\alpha_k)\\neq 0$，所以 $g_j(w_j)\\neq 0$，从而 $g_j\\neq 0$。"
+      ]
+    },
+    {
+      "label": "(3)",
+      "steps": [
+        "任取 $v\\in V$，按 (2) 中直和分解写 $v=\\sum_{k=1}^n v_k$，其中 $v_k\\in W_k$。",
+        "对 $k\\neq j$，有 $f_k(v_k)=(\\alpha_k-\\alpha_k)v_k=0$。由于 $g_j$ 是 $\\{f_k:k\\neq j\\}$ 的复合，其中包含因子 $f_k$，故 $g_j(v_k)=0$（$k\\neq j$）。",
+        "于是 $g_j(v)=g_j(v_j)$。又由(2)的计算，$g_j(v_j)=\\big(\\prod_{k\\neq j}(\\alpha_j-\\alpha_k)\\big)v_j\\in W_j$。所以对任意 $v\\in V$，$g_j(v)\\in W_j$，即 $\\mathrm{Im}\\,g_j\\subset W_j$。"
+      ]
+    },
+    {
+      "label": "(4)",
+      "steps": [
+        "记 $c_j=\\prod_{k\\neq j}(\\alpha_j-\\alpha_k)\\neq 0$。由(3)的证明过程，对任意 $w\\in W_j$（作为 $v_j$ 部分，其余分量为0）都有 $g_j(w)=c_j w$。",
+        "因此 $\\{c_j w : w\\in W_j\\}=W_j$（因为 $c_j\\neq 0$，数乘是 $W_j$ 上的满射线性同构），即 $W_j\\subset \\mathrm{Im}\\,g_j$。",
+        "结合(3)中已证的 $\\mathrm{Im}\\,g_j\\subset W_j$，得到 $\\mathrm{Im}\\,g_j=W_j$，证毕。"
+      ]
+    }
+  ],
+  "practice_questions": [
+    {
+      "text": "证明：若 $\\lambda_1,\\dots,\\lambda_m$ 是线性变换 $T$ 的两两不同的特征值，$v_1,\\dots,v_m$ 分别是对应的特征向量，则 $v_1,\\dots,v_m$ 线性无关。",
+      "knowledge_points": [
+        "特征值",
+        "特征向量线性无关性",
+        "数学归纳法"
+      ],
+      "question_type": "证明题",
+      "method": [
+        "数学归纳法配合线性组合消元"
+      ],
+      "solution_steps": [
+        "对 $m$ 归纳，设一线性关系式，应用 $T$ 消去一个特征向量，利用特征值不同得出矛盾"
+      ],
+      "math_structure": {
+        "type": "linear_independence_of_eigenvectors",
+        "template": "\\sum c_i v_i=0 \\Rightarrow c_i=0",
+        "variable_count": 1
+      },
+      "difficulty": 2,
+      "estimated_minutes": 10,
+      "answer": [
+        {
+          "label": "证明",
+          "steps": [
+            "对 $m$ 用归纳法。$m=1$ 时 $v_1\\neq0$ 显然线性无关。",
+            "假设对 $m-1$ 个成立，设 $\\sum_{i=1}^m c_iv_i=0$。两边作用 $T$ 得 $\\sum_i c_i\\lambda_i v_i=0$。",
+            "用第二式减去 $\\lambda_m$ 倍第一式：$\\sum_{i=1}^{m-1}c_i(\\lambda_i-\\lambda_m)v_i=0$，由归纳假设 $v_1,\\dots,v_{m-1}$ 线性无关，且 $\\lambda_i\\neq\\lambda_m$，故 $c_i=0\\,(i<m)$，代回原式得 $c_m v_m=0\\Rightarrow c_m=0$。",
+            "所以全部系数为零，$v_1,\\dots,v_m$ 线性无关。"
+          ]
+        }
+      ],
+      "id": "nagoya-2010-558a04d873-q01-practice-01",
+      "school": "名古屋大学",
+      "year": "2010"
+    },
+    {
+      "text": "设 $f$ 是 $\\mathbb{C}^3$ 上的线性变换，在某基下矩阵为 $\\mathrm{diag}(1,2,3)$。写出对应的 $f_1,f_2,f_3$ 及 $g_1,g_2,g_3$（作为对角矩阵），并验证 $g_1$ 的像恰为第一个坐标轴对应的特征空间。",
+      "knowledge_points": [
+        "对角矩阵",
+        "特征空间",
+        "直接计算复合变换"
+      ],
+      "question_type": "计算题",
+      "method": [
+        "直接矩阵运算"
+      ],
+      "solution_steps": [
+        "写出 $f_j=f-\\alpha_jI$ 的对角矩阵",
+        "计算复合 $g_j$",
+        "验证像空间"
+      ],
+      "math_structure": {
+        "type": "diagonal_matrix_annihilator_example",
+        "template": "f=\\mathrm{diag}(\\alpha_1,\\alpha_2,\\alpha_3)",
+        "variable_count": 3
+      },
+      "difficulty": 2,
+      "estimated_minutes": 10,
+      "answer": [
+        {
+          "label": "计算",
+          "steps": [
+            "$f_1=f-I=\\mathrm{diag}(0,1,2)$，$f_2=f-2I=\\mathrm{diag}(-1,0,1)$，$f_3=f-3I=\\mathrm{diag}(-2,-1,0)$。",
+            "$g_1=f_2f_3=\\mathrm{diag}((-1)(-2),0\\cdot(-1),1\\cdot0)=\\mathrm{diag}(2,0,0)$。",
+            "$g_1$ 作用在标准基向量 $e_1=(1,0,0)$ 上得到 $2e_1\\neq0$，作用在 $e_2,e_3$ 上得0，故 $\\mathrm{Im}\\,g_1=\\mathrm{span}\\{e_1\\}=W_1$，与理论一致。"
+          ]
+        }
+      ],
+      "id": "nagoya-2010-558a04d873-q01-practice-02",
+      "school": "名古屋大学",
+      "year": "2010"
+    },
+    {
+      "text": "在题1的设置下，证明 $n$ 个特征空间的直和等于全空间：$V=W_1\\oplus W_2\\oplus\\cdots\\oplus W_n$。",
+      "knowledge_points": [
+        "直和分解",
+        "维数计数",
+        "特征空间"
+      ],
+      "question_type": "证明题",
+      "method": [
+        "维数计数结合线性无关性"
+      ],
+      "solution_steps": [
+        "利用每个 $W_k$ 非零且线性无关取代表向量",
+        "维数相加等于 n 从而覆盖全空间"
+      ],
+      "math_structure": {
+        "type": "direct_sum_eigenspaces",
+        "template": "V=\\bigoplus_{k=1}^n W_k",
+        "variable_count": 1
+      },
+      "difficulty": 2,
+      "estimated_minutes": 8,
+      "answer": [
+        {
+          "label": "证明",
+          "steps": [
+            "每个 $W_k$ 至少含一个非零向量 $w_k$（因 $\\alpha_k$ 是特征值）。",
+            "由上一练习结论，$w_1,\\dots,w_n$ 线性无关，故 $\\dim(W_1+\\cdots+W_n)\\ge n$，又因为 $\\dim V=n$ 且 $W_1+\\cdots+W_n\\subset V$，所以 $\\dim(W_1+\\cdots+W_n)=n=\\dim V$，即 $W_1+\\cdots+W_n=V$。",
+            "又因为不同特征空间的交集为 $\\{0\\}$（否则会破坏线性无关性），故这是直和：$V=W_1\\oplus\\cdots\\oplus W_n$。"
+          ]
+        }
+      ],
+      "id": "nagoya-2010-558a04d873-q01-practice-03",
+      "school": "名古屋大学",
+      "year": "2010"
+    },
+    {
+      "text": "证明恒等变换在直和分解 $V=W_1\\oplus\\cdots\\oplus W_n$ 意义下可写成投影之和：$I=\\sum_{j=1}^n \\dfrac{1}{c_j}g_j$，其中 $c_j=\\prod_{k\\neq j}(\\alpha_j-\\alpha_k)$，并说明 $\\frac{1}{c_j}g_j$ 恰是到 $W_j$ 的投影算子。",
+      "knowledge_points": [
+        "投影算子",
+        "拉格朗日插值型分解",
+        "直和唯一分解"
+      ],
+      "question_type": "证明题",
+      "method": [
+        "利用(3)(4)结论逐项验证在每个 $W_k$ 上的作用"
+      ],
+      "solution_steps": [
+        "验证 $\\frac{1}{c_j}g_j$ 在 $W_j$ 上是恒等，在其他 $W_k$ 上是零"
+      ],
+      "math_structure": {
+        "type": "spectral_projection_decomposition",
+        "template": "I=\\sum_j \\frac{1}{c_j}g_j",
+        "variable_count": 2
+      },
+      "difficulty": 3,
+      "estimated_minutes": 12,
+      "answer": [
+        {
+          "label": "证明",
+          "steps": [
+            "由原题(3)(4)已知：对 $w\\in W_j$，$g_j(w)=c_jw$，故 $\\frac1{c_j}g_j(w)=w$，即在 $W_j$ 上 $\\frac1{c_j}g_j$ 是恒等映射。",
+            "对 $k\\neq j$，$W_k$ 中向量含有因子 $f_k$（因 $g_j$ 是除 $f_j$ 外所有 $f_i$ 的乘积，其中包含 $f_k$），而 $f_k$ 在 $W_k$ 上取值为零，故 $g_j|_{W_k}=0\\,(k\\neq j)$，从而 $\\frac1{c_j}g_j|_{W_k}=0$。",
+            "对任意 $v=\\sum_k v_k\\in V$（$v_k\\in W_k$），$\\sum_j\\frac1{c_j}g_j(v)=\\sum_j\\frac1{c_j}g_j(v_j)=\\sum_j v_j=v=I(v)$，所以 $I=\\sum_j\\frac1{c_j}g_j$，且每一项正是到相应 $W_j$ 的投影。"
+          ]
+        }
+      ],
+      "id": "nagoya-2010-558a04d873-q01-practice-04",
+      "school": "名古屋大学",
+      "year": "2010"
+    }
+  ],
+  "source_question": "1",
+  "source_pdf": "名古屋大学/多元数理科学研究科/全专攻/名古屋大学_多元数理科学研究科_2010_第2次_数学过去问_下午.pdf",
+  "source_type": "官方过去问",
+  "subject_category": "线性代数"
+}

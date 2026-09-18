@@ -1,0 +1,199 @@
+{
+  "id": "nagoya-2002-35142bc6eb-q03",
+  "school": "名古屋大学",
+  "year": "2002",
+  "subject": "多元数理科学研究科_全专攻",
+  "text": "在半径为1、中心角为 $\\theta$（$0<\\theta<\\pi$）的扇形 $OAB$ 中，设弧 $AB$ 的长度为 $f(\\theta)$，弦 $AB$ 的长度为 $g(\\theta)$。回答以下问题：\n(1) $g(\\theta)$ 可以展开为幂级数 $g(\\theta)=\\displaystyle\\sum_{n=0}^{\\infty}a_n\\theta^n$，求系数 $a_n$。\n(2) 求实数 $\\alpha$ 的值，使得当 $\\theta\\to0$ 时，$\\dfrac{f(\\theta)-g(\\theta)}{g(\\theta)^\\alpha}$ 收敛于一个非零有限值，并求该极限值。",
+  "knowledge_points": [
+    "弧长与弦长公式",
+    "正弦函数的泰勒展开",
+    "幂级数系数比较",
+    "无穷小量阶数分析",
+    "极限的洛必达/泰勒展开法"
+  ],
+  "question_type": "幂级数展开与极限阶数分析",
+  "method": [
+    "利用弧长弦长几何公式 $f(\\theta)=\\theta,\\ g(\\theta)=2\\sin(\\theta/2)$",
+    "泰勒级数展开",
+    "比较主导阶数确定 $\\alpha$"
+  ],
+  "solution_steps": [
+    "写出 $f(\\theta)=\\theta$（弧长定义），$g(\\theta)=2\\sin(\\theta/2)$（余弦定理或几何直接得出弦长）",
+    "将 $\\sin(\\theta/2)$ 展开为泰勒级数，得到 $g(\\theta)$ 的幂级数表达式及系数 $a_n$",
+    "计算 $f(\\theta)-g(\\theta)$ 的泰勒展开，确定其最低阶项",
+    "比较 $f-g$ 与 $g^\\alpha$ 的阶数，令二者阶数相等求出 $\\alpha$ 并计算极限"
+  ],
+  "math_structure": {
+    "type": "power_series_asymptotic_order",
+    "template": "$g(\\theta)=2\\sin(\\theta/2)$, find power series and order-matching $\\alpha$ for $\\lim_{\\theta\\to0}\\frac{f(\\theta)-g(\\theta)}{g(\\theta)^\\alpha}$",
+    "variable_count": 1
+  },
+  "difficulty": 3,
+  "answer": [
+    {
+      "label": "(1)",
+      "steps": [
+        "半径为1，圆心角 $\\theta$ 的弧长为 $f(\\theta)=\\theta$；弦 $AB$ 是等腰三角形 $OAB$（$OA=OB=1$，夹角 $\\theta$）的底边，故 $g(\\theta)=2\\sin(\\theta/2)$（由等腰三角形性质：底边一半 $=\\sin(\\theta/2)$）。",
+        "利用正弦的泰勒级数 $\\sin u=\\sum_{k=0}^{\\infty}\\dfrac{(-1)^k}{(2k+1)!}u^{2k+1}$，代入 $u=\\theta/2$：$g(\\theta)=2\\sum_{k=0}^{\\infty}\\dfrac{(-1)^k}{(2k+1)!}\\left(\\dfrac{\\theta}{2}\\right)^{2k+1}=\\sum_{k=0}^{\\infty}\\dfrac{(-1)^k}{2^{2k}(2k+1)!}\\theta^{2k+1}$。",
+        "因此系数为：当 $n$ 为偶数时 $a_n=0$；当 $n=2k+1$（奇数）时 $a_{2k+1}=\\dfrac{(-1)^k}{4^k(2k+1)!}$。例如 $a_1=1,\\ a_3=-\\dfrac{1}{24},\\ a_5=\\dfrac{1}{1920}$，与直接展开 $2\\sin(\\theta/2)=\\theta-\\dfrac{\\theta^3}{24}+\\dfrac{\\theta^5}{1920}-\\cdots$ 一致，验证正确。"
+      ]
+    },
+    {
+      "label": "(2)",
+      "steps": [
+        "由 (1)，$f(\\theta)-g(\\theta)=\\theta-\\left(\\theta-\\dfrac{\\theta^3}{24}+\\dfrac{\\theta^5}{1920}-\\cdots\\right)=\\dfrac{\\theta^3}{24}-\\dfrac{\\theta^5}{1920}+\\cdots$，其最低阶项为 $\\theta^3/24$，即 $f(\\theta)-g(\\theta)\\sim\\dfrac{\\theta^3}{24}\\ (\\theta\\to0)$。",
+        "又 $g(\\theta)=\\theta-\\dfrac{\\theta^3}{24}+\\cdots\\sim\\theta\\ (\\theta\\to0)$，故 $g(\\theta)^\\alpha\\sim\\theta^\\alpha$。",
+        "要使 $\\dfrac{f(\\theta)-g(\\theta)}{g(\\theta)^\\alpha}$ 趋于非零有限值，需要分子分母同阶，即 $\\alpha=3$。",
+        "此时 $g(\\theta)^3=\\theta^3\\left(1-\\dfrac{\\theta^2}{24}+\\cdots\\right)^3=\\theta^3(1+O(\\theta^2))$，故 $\\dfrac{f(\\theta)-g(\\theta)}{g(\\theta)^3}=\\dfrac{\\theta^3/24+O(\\theta^5)}{\\theta^3(1+O(\\theta^2))}\\to\\dfrac{1}{24}$，即 $\\alpha=3$，极限值为 $\\dfrac{1}{24}$。"
+      ]
+    }
+  ],
+  "practice_questions": [
+    {
+      "text": "写出 $\\cos x$ 在 $x=0$ 处的泰勒级数（到 $x^4$ 项），并求 $1-\\cos x$ 的最低阶近似。",
+      "knowledge_points": [
+        "泰勒级数",
+        "无穷小阶数"
+      ],
+      "question_type": "泰勒展开基础",
+      "method": [
+        "直接展开"
+      ],
+      "solution_steps": [
+        "写出余弦级数",
+        "提取低阶项"
+      ],
+      "math_structure": {
+        "type": "taylor_series_basic",
+        "template": "expand $\\cos x$ near 0, find leading term of $1-\\cos x$",
+        "variable_count": 0
+      },
+      "difficulty": 1,
+      "estimated_minutes": 3,
+      "answer": [
+        {
+          "label": "结果",
+          "steps": [
+            "$\\cos x=1-\\dfrac{x^2}{2}+\\dfrac{x^4}{24}-\\cdots$",
+            "故 $1-\\cos x=\\dfrac{x^2}{2}-\\dfrac{x^4}{24}+\\cdots\\sim\\dfrac{x^2}{2}$（$x\\to0$）。"
+          ]
+        }
+      ],
+      "id": "nagoya-2002-35142bc6eb-q03-practice-01",
+      "school": "名古屋大学",
+      "year": "2002"
+    },
+    {
+      "text": "设 $h(\\theta)=\\tan(\\theta/2)$，将其展开为 $\\theta$ 的幂级数（写出前两个非零项），并指出该级数的最低阶项。",
+      "knowledge_points": [
+        "正切函数展开",
+        "幂级数系数"
+      ],
+      "question_type": "幂级数展开",
+      "method": [
+        "利用 $\\tan u=u+u^3/3+\\cdots$"
+      ],
+      "solution_steps": [
+        "代入 $u=\\theta/2$",
+        "整理系数"
+      ],
+      "math_structure": {
+        "type": "power_series_tangent",
+        "template": "expand $\\tan(\\theta/2)$ as power series in $\\theta$",
+        "variable_count": 0
+      },
+      "difficulty": 2,
+      "estimated_minutes": 5,
+      "answer": [
+        {
+          "label": "结果",
+          "steps": [
+            "$\\tan u=u+\\dfrac{u^3}{3}+\\dfrac{2u^5}{15}+\\cdots$，代入 $u=\\theta/2$：$h(\\theta)=\\dfrac{\\theta}{2}+\\dfrac{1}{3}\\cdot\\dfrac{\\theta^3}{8}+\\cdots=\\dfrac{\\theta}{2}+\\dfrac{\\theta^3}{24}+\\cdots$。",
+            "最低阶项为 $\\theta/2$，其后第一非零高阶项为 $\\theta^3/24$。"
+          ]
+        }
+      ],
+      "id": "nagoya-2002-35142bc6eb-q03-practice-02",
+      "school": "名古屋大学",
+      "year": "2002"
+    },
+    {
+      "text": "设 $p(\\theta)=\\theta-\\sin\\theta$。求当 $\\theta\\to0$ 时 $p(\\theta)$ 的最低阶近似，并求使 $\\dfrac{p(\\theta)}{\\theta^\\beta}$ 收敛到非零有限值的 $\\beta$ 及该极限值。",
+      "knowledge_points": [
+        "泰勒展开",
+        "极限阶数匹配"
+      ],
+      "question_type": "极限阶数分析",
+      "method": [
+        "泰勒展开",
+        "主导项比较"
+      ],
+      "solution_steps": [
+        "展开 $\\sin\\theta$",
+        "求 $p(\\theta)$ 的最低阶项",
+        "确定 $\\beta$ 并计算极限"
+      ],
+      "math_structure": {
+        "type": "asymptotic_order_matching",
+        "template": "find $\\beta$ such that $\\lim_{\\theta\\to0}\\frac{\\theta-\\sin\\theta}{\\theta^\\beta}$ is finite nonzero",
+        "variable_count": 1
+      },
+      "difficulty": 2,
+      "estimated_minutes": 6,
+      "answer": [
+        {
+          "label": "结果",
+          "steps": [
+            "$\\sin\\theta=\\theta-\\dfrac{\\theta^3}{6}+\\dfrac{\\theta^5}{120}-\\cdots$，故 $p(\\theta)=\\theta-\\sin\\theta=\\dfrac{\\theta^3}{6}-\\dfrac{\\theta^5}{120}+\\cdots\\sim\\dfrac{\\theta^3}{6}$。",
+            "要使 $p(\\theta)/\\theta^\\beta$ 趋于非零有限值，需 $\\beta=3$，此时极限为 $\\dfrac{1}{6}$。"
+          ]
+        }
+      ],
+      "id": "nagoya-2002-35142bc6eb-q03-practice-03",
+      "school": "名古屋大学",
+      "year": "2002"
+    },
+    {
+      "text": "在原题的几何设定中，若改用中心角 $2\\theta$ 的扇形（半径仍为1），弧长记为 $\\tilde f(\\theta)=2\\theta$，弦长记为 $\\tilde g(\\theta)=2\\sin\\theta$，求使 $\\dfrac{\\tilde f(\\theta)-\\tilde g(\\theta)}{\\tilde g(\\theta)^\\gamma}$ 当 $\\theta\\to0$ 收敛于非零有限值的 $\\gamma$ 及极限值。",
+      "knowledge_points": [
+        "弧长弦长关系",
+        "泰勒展开",
+        "阶数匹配"
+      ],
+      "question_type": "变体极限阶数分析",
+      "method": [
+        "泰勒展开",
+        "主导阶数匹配"
+      ],
+      "solution_steps": [
+        "展开 $\\tilde g(\\theta)=2\\sin\\theta$",
+        "求 $\\tilde f-\\tilde g$ 的最低阶项",
+        "确定 $\\gamma$ 并计算极限"
+      ],
+      "math_structure": {
+        "type": "asymptotic_order_matching_variant",
+        "template": "find $\\gamma$ for $\\lim_{\\theta\\to0}\\frac{2\\theta-2\\sin\\theta}{(2\\sin\\theta)^\\gamma}$",
+        "variable_count": 1
+      },
+      "difficulty": 3,
+      "estimated_minutes": 7,
+      "answer": [
+        {
+          "label": "结果",
+          "steps": [
+            "$2\\sin\\theta=2\\theta-\\dfrac{\\theta^3}{3}+\\dfrac{\\theta^5}{60}-\\cdots$，故 $\\tilde f(\\theta)-\\tilde g(\\theta)=2\\theta-\\left(2\\theta-\\dfrac{\\theta^3}{3}+\\cdots\\right)=\\dfrac{\\theta^3}{3}-\\cdots\\sim\\dfrac{\\theta^3}{3}$。",
+            "又 $\\tilde g(\\theta)\\sim2\\theta$，故 $\\tilde g(\\theta)^\\gamma\\sim(2\\theta)^\\gamma$，需 $\\gamma=3$ 使阶数匹配。",
+            "此时极限为 $\\dfrac{\\theta^3/3}{(2\\theta)^3}=\\dfrac{\\theta^3/3}{8\\theta^3}=\\dfrac{1}{24}$，即 $\\gamma=3$，极限值为 $\\dfrac{1}{24}$。"
+          ]
+        }
+      ],
+      "id": "nagoya-2002-35142bc6eb-q03-practice-04",
+      "school": "名古屋大学",
+      "year": "2002"
+    }
+  ],
+  "source_question": "3",
+  "source_pdf": "名古屋大学/多元数理科学研究科/全专攻/名古屋大学_多元数理科学研究科_2002_第2次_数学过去问_上午.pdf",
+  "source_type": "官方过去问",
+  "subject_category": "微积分"
+}

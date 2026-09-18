@@ -1,0 +1,203 @@
+{
+  "id": "kyoto-2021-80fb76336b-q03",
+  "school": "京都大学",
+  "year": "2021",
+  "subject": "情报学研究科_智能信息学",
+  "text": "在条件 $x^2+y^2-1=0$ 且 $0\\le x,y\\le1$ 下，求 $f(x,y)=x^3+2y^3$ 的极值。",
+  "knowledge_points": [
+    "约束极值",
+    "三角参数化",
+    "一元函数求导",
+    "临界点分析",
+    "端点比较"
+  ],
+  "question_type": "条件极值",
+  "method": [
+    "参数化 $x=\\cos\\theta,\\ y=\\sin\\theta$",
+    "对参数求导找临界点",
+    "比较边界值与临界值确定最值"
+  ],
+  "solution_steps": [
+    "利用约束参数化为x=cosθ,y=sinθ,θ∈[0,π/2]",
+    "代入目标函数得到关于θ的一元函数",
+    "求导找临界点",
+    "比较临界点函数值与端点值确定最大最小值"
+  ],
+  "math_structure": {
+    "type": "constrained_extremum_on_arc",
+    "template": "f(x,y)=x^3+2y^3 \\text{ s.t. } x^2+y^2=1,\\ 0\\le x,y\\le1",
+    "variable_count": 2
+  },
+  "difficulty": 3,
+  "answer": [
+    {
+      "label": "极值求解",
+      "steps": [
+        "由约束 $x^2+y^2=1$，$0\\le x,y\\le1$，可令 $x=\\cos\\theta,\\ y=\\sin\\theta$，$\\theta\\in[0,\\pi/2]$。",
+        "代入目标函数：$f(\\theta)=\\cos^3\\theta+2\\sin^3\\theta$。求导：$f'(\\theta)=-3\\cos^2\\theta\\sin\\theta+6\\sin^2\\theta\\cos\\theta=3\\sin\\theta\\cos\\theta(2\\sin\\theta-\\cos\\theta)$。",
+        "令 $f'(\\theta)=0$：得 $\\sin\\theta=0\\ (\\theta=0)$，或 $\\cos\\theta=0\\ (\\theta=\\pi/2)$，或 $\\tan\\theta=\\tfrac12$。当 $\\tan\\theta=\\tfrac12$ 时，$\\sin\\theta=\\tfrac{1}{\\sqrt5},\\ \\cos\\theta=\\tfrac{2}{\\sqrt5}$。",
+        "计算各点函数值：$\\theta=0$（点$(1,0)$）：$f=1$；$\\theta=\\pi/2$（点$(0,1)$）：$f=2$；$\\tan\\theta=1/2$（点$(\\tfrac{2}{\\sqrt5},\\tfrac{1}{\\sqrt5})$）：$f=\\left(\\tfrac{2}{\\sqrt5}\\right)^3+2\\left(\\tfrac{1}{\\sqrt5}\\right)^3=\\tfrac{8}{5\\sqrt5}+\\tfrac{2}{5\\sqrt5}=\\tfrac{10}{5\\sqrt5}=\\tfrac{2\\sqrt5}{5}\\approx0.894$。",
+        "分析符号：$\\theta$从0增大时 $2\\sin\\theta-\\cos\\theta<0$，$f'<0$（递减）；过临界点后 $2\\sin\\theta-\\cos\\theta>0$，$f'>0$（递增），故该临界点为局部极小值点。比较 $1,\\,2,\\,\\tfrac{2\\sqrt5}{5}\\approx0.894$，得最大值 $2$（在 $(x,y)=(0,1)$ 处取得），最小值 $\\tfrac{2\\sqrt5}{5}$（在 $(x,y)=(\\tfrac{2}{\\sqrt5},\\tfrac{1}{\\sqrt5})$ 处取得）。"
+      ]
+    }
+  ],
+  "practice_questions": [
+    {
+      "text": "在 $x^2+y^2=1$（$x,y\\ge0$）上求 $f(x,y)=x+y$ 的最大值与最小值。",
+      "knowledge_points": [
+        "三角参数化",
+        "一元函数极值"
+      ],
+      "question_type": "约束极值基础题",
+      "method": [
+        "参数化后利用和角公式"
+      ],
+      "solution_steps": [
+        "参数化",
+        "化简为单个正弦函数",
+        "求最值"
+      ],
+      "math_structure": {
+        "type": "constrained_extremum_on_arc",
+        "template": "f(x,y)=x+y \\text{ s.t. } x^2+y^2=1,x,y\\ge0",
+        "variable_count": 2
+      },
+      "difficulty": 1,
+      "estimated_minutes": 5,
+      "answer": [
+        {
+          "label": "结果",
+          "steps": [
+            "令 $x=\\cos\\theta,y=\\sin\\theta,\\theta\\in[0,\\pi/2]$，得 $f=\\cos\\theta+\\sin\\theta=\\sqrt2\\sin(\\theta+\\pi/4)$。",
+            "当 $\\theta=\\pi/4$ 时取最大值 $\\sqrt2$（对应 $(x,y)=(\\tfrac{\\sqrt2}{2},\\tfrac{\\sqrt2}{2})$）。",
+            "端点 $\\theta=0$ 或 $\\theta=\\pi/2$ 时 $f=1$，为最小值。故最大值 $\\sqrt2$，最小值 $1$。"
+          ]
+        }
+      ],
+      "id": "kyoto-2021-80fb76336b-q03-practice-01",
+      "school": "京都大学",
+      "year": "2021"
+    },
+    {
+      "text": "求 $g(x,y)=x^2+3y^2$ 在约束 $x^2+y^2=1,\\ x,y\\ge0$ 下的极值。",
+      "knowledge_points": [
+        "三角参数化",
+        "单调性分析"
+      ],
+      "question_type": "约束极值基础题",
+      "method": [
+        "参数化后化简为关于θ的单调函数"
+      ],
+      "solution_steps": [
+        "参数化",
+        "化简表达式",
+        "判断单调性",
+        "确定最值"
+      ],
+      "math_structure": {
+        "type": "constrained_extremum_on_arc",
+        "template": "g(x,y)=x^2+3y^2 \\text{ s.t. } x^2+y^2=1",
+        "variable_count": 2
+      },
+      "difficulty": 2,
+      "estimated_minutes": 6,
+      "answer": [
+        {
+          "label": "结果",
+          "steps": [
+            "令 $x=\\cos\\theta,y=\\sin\\theta$，得 $g(\\theta)=\\cos^2\\theta+3\\sin^2\\theta=1+2\\sin^2\\theta$，$\\theta\\in[0,\\pi/2]$。",
+            "因为 $\\sin^2\\theta$ 在 $[0,\\pi/2]$ 上单调递增，$g(\\theta)$ 也单调递增，无内部临界点。",
+            "最小值在 $\\theta=0$（点$(1,0)$）取得 $g=1$；最大值在 $\\theta=\\pi/2$（点$(0,1)$）取得 $g=3$。"
+          ]
+        }
+      ],
+      "id": "kyoto-2021-80fb76336b-q03-practice-02",
+      "school": "京都大学",
+      "year": "2021"
+    },
+    {
+      "text": "求 $h(x,y)=2x^3+y^3$ 在约束 $x^2+y^2=1,\\ 0\\le x,y\\le1$ 下的极值。",
+      "knowledge_points": [
+        "三角参数化",
+        "导数求临界点",
+        "符号分析"
+      ],
+      "question_type": "约束极值进阶题",
+      "method": [
+        "参数化后求导找临界点，比较端点"
+      ],
+      "solution_steps": [
+        "参数化",
+        "求导",
+        "解临界点",
+        "比较各点函数值确定最值"
+      ],
+      "math_structure": {
+        "type": "constrained_extremum_on_arc",
+        "template": "h(x,y)=2x^3+y^3 \\text{ s.t. } x^2+y^2=1,0\\le x,y\\le1",
+        "variable_count": 2
+      },
+      "difficulty": 3,
+      "estimated_minutes": 10,
+      "answer": [
+        {
+          "label": "结果",
+          "steps": [
+            "令 $x=\\cos\\theta,y=\\sin\\theta$，得 $h(\\theta)=2\\cos^3\\theta+\\sin^3\\theta$。求导：$h'(\\theta)=-6\\cos^2\\theta\\sin\\theta+3\\sin^2\\theta\\cos\\theta=3\\sin\\theta\\cos\\theta(\\sin\\theta-2\\cos\\theta)$。",
+            "临界点：$\\theta=0,\\ \\theta=\\pi/2$，或 $\\tan\\theta=2\\Rightarrow \\sin\\theta=\\tfrac{2}{\\sqrt5},\\cos\\theta=\\tfrac{1}{\\sqrt5}$。",
+            "计算函数值：$\\theta=0$：$h=2$；$\\theta=\\pi/2$：$h=1$；$\\tan\\theta=2$：$h=2\\left(\\tfrac{1}{\\sqrt5}\\right)^3+\\left(\\tfrac{2}{\\sqrt5}\\right)^3=\\tfrac{2}{5\\sqrt5}+\\tfrac{8}{5\\sqrt5}=\\tfrac{2\\sqrt5}{5}\\approx0.894$。",
+            "分析符号变化知临界点为局部极小值。比较三值 $2,1,\\tfrac{2\\sqrt5}{5}$，最大值为 $2$（点$(1,0)$），最小值为 $\\tfrac{2\\sqrt5}{5}$（点$(\\tfrac1{\\sqrt5},\\tfrac2{\\sqrt5})$）。"
+          ]
+        }
+      ],
+      "id": "kyoto-2021-80fb76336b-q03-practice-03",
+      "school": "京都大学",
+      "year": "2021"
+    },
+    {
+      "text": "用拉格朗日乘数法（不使用三角参数化）求 $f(x,y)=x^3+2y^3$ 在整个单位圆 $x^2+y^2=1$（不限定象限）上的最大值与最小值。",
+      "knowledge_points": [
+        "拉格朗日乘数法",
+        "方程组求解",
+        "极值比较"
+      ],
+      "question_type": "约束极值综合题",
+      "method": [
+        "拉格朗日乘数法",
+        "分类讨论求解方程组"
+      ],
+      "solution_steps": [
+        "建立拉格朗日方程",
+        "分类讨论求临界点",
+        "代入约束求坐标",
+        "比较所有候选点函数值"
+      ],
+      "math_structure": {
+        "type": "lagrange_multiplier_extremum",
+        "template": "\\nabla f=\\lambda\\nabla g,\\ f=x^3+2y^3,\\ g=x^2+y^2-1",
+        "variable_count": 2
+      },
+      "difficulty": 4,
+      "estimated_minutes": 15,
+      "answer": [
+        {
+          "label": "结果",
+          "steps": [
+            "拉格朗日条件：$3x^2=2\\lambda x$，$6y^2=2\\lambda y$，及约束 $x^2+y^2=1$。",
+            "若 $x\\ne0$，则 $\\lambda=\\tfrac{3x}{2}$；若 $y\\ne0$，则 $\\lambda=3y$。两者相等得 $\\tfrac{3x}{2}=3y\\Rightarrow x=2y$。代入约束：$4y^2+y^2=1\\Rightarrow y=\\pm\\tfrac{1}{\\sqrt5},\\ x=\\pm\\tfrac{2}{\\sqrt5}$（同号）。",
+            "此外还有边界候选点：$x=0,y=\\pm1$ 及 $y=0,x=\\pm1$（由 $x=0$ 或 $y=0$ 的退化情形）。",
+            "计算函数值：$(x,y)=(\\tfrac{2}{\\sqrt5},\\tfrac{1}{\\sqrt5})$：$f=\\tfrac{2\\sqrt5}{5}\\approx0.894$；$(-\\tfrac{2}{\\sqrt5},-\\tfrac{1}{\\sqrt5})$：$f=-\\tfrac{2\\sqrt5}{5}$；$(0,1)$：$f=2$；$(0,-1)$：$f=-2$；$(1,0)$：$f=1$；$(-1,0)$：$f=-1$。",
+            "比较全部候选值，最大值为 $2$（点$(0,1)$），最小值为 $-2$（点$(0,-1)$）。"
+          ]
+        }
+      ],
+      "id": "kyoto-2021-80fb76336b-q03-practice-04",
+      "school": "京都大学",
+      "year": "2021"
+    }
+  ],
+  "source_question": "F1-2 设问1(2)",
+  "source_pdf": "京都大学/情报学研究科/智能信息学/京都大学_情报学研究科_智能信息学_2021_数学过去问.pdf",
+  "source_type": "官方过去问",
+  "subject_category": "微积分"
+}

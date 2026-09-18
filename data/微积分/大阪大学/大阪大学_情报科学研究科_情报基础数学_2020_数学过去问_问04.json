@@ -1,0 +1,204 @@
+{
+  "id": "osaka-2020-c0d447f766-q04",
+  "school": "大阪大学",
+  "year": "2020",
+  "subject": "情报科学研究科_情报基础数学",
+  "text": "设 $a$ 为正常数，\n$$V=\\{(x,y,z)\\mid 0\\le x+y^{1/2}+z^{1/3}\\le a^2,\\ 0\\le x,\\ 0\\le y,\\ 0\\le z\\}$$\n求积分\n$$\\iiint_V dx\\,dy\\,dz$$\n的值。",
+  "knowledge_points": [
+    "三重积分变量替换",
+    "Dirichlet积分公式(广义Beta积分)",
+    "Gamma函数性质",
+    "非线性边界区域的体积计算",
+    "Jacobian变换"
+  ],
+  "question_type": "三重积分求体积（Dirichlet积分公式应用）",
+  "method": [
+    "令 $u=y^{1/2}, v=z^{1/3}$ 化简约束为线性单形",
+    "应用广义Dirichlet积分公式 $\\iiint_{x_i\\ge0,\\sum x_i\\le L}x_1^{a_1-1}\\cdots dx=L^{\\sum a_i}\\frac{\\prod\\Gamma(a_i)}{\\Gamma(1+\\sum a_i)}$",
+    "代入Gamma函数具体值化简"
+  ],
+  "solution_steps": [
+    "令 $u=y^{1/2}(y=u^2,dy=2u\\,du)$，$v=z^{1/3}(z=v^3,dz=3v^2dv)$，把区域化为 $x+u+v\\le a^2, x,u,v\\ge0$",
+    "把体积元 $dxdydz$ 化为 $6uv^2\\,dx\\,du\\,dv$",
+    "用Dirichlet积分公式计算 $\\iiint_{x+u+v\\le L} uv^2\\,dx\\,du\\,dv$（$L=a^2$，指数为 $x^0u^1v^2$）",
+    "代入 $\\Gamma(1)=\\Gamma(2)=1,\\Gamma(3)=2,\\Gamma(7)=720$ 化简，乘常数6得最终结果"
+  ],
+  "math_structure": {
+    "type": "dirichlet_integral_volume",
+    "template": "\\iiint_{x+y^{1/2}+z^{1/3}\\le a^2, x,y,z\\ge0} dxdydz",
+    "variable_count": 1
+  },
+  "difficulty": 4,
+  "answer": [
+    {
+      "label": "1",
+      "steps": [
+        "作变量替换 $u=\\sqrt y$（$y=u^2,dy=2u\\,du,u\\ge0$），$v=z^{1/3}$（$z=v^3,dz=3v^2dv,v\\ge0$）。区域 $V$ 对应到 $\\{(x,u,v):x+u+v\\le a^2,x,u,v\\ge0\\}$（记 $L=a^2$）。",
+        "于是 $\\displaystyle\\iiint_V dxdydz=\\iiint_{x+u+v\\le L,\\,x,u,v\\ge0}2u\\cdot3v^2\\,dx\\,du\\,dv=6\\iiint_{x+u+v\\le L}uv^2\\,dx\\,du\\,dv$。",
+        "利用广义Dirichlet积分公式：对 $x,u,v\\ge0,x+u+v\\le L$，$$\\iiint x^{p-1}u^{q-1}v^{r-1}dx\\,du\\,dv=L^{p+q+r}\\frac{\\Gamma(p)\\Gamma(q)\\Gamma(r)}{\\Gamma(p+q+r+1)}$$ 此处被积函数为 $x^0u^1v^2$，即 $p=1,q=2,r=3$，故 $$\\iiint uv^2\\,dx\\,du\\,dv=L^6\\frac{\\Gamma(1)\\Gamma(2)\\Gamma(3)}{\\Gamma(7)}=L^6\\cdot\\frac{1\\cdot1\\cdot2}{720}=\\frac{L^6}{360}$$",
+        "代回 $L=a^2$ 且乘以系数6：$$\\iiint_V dxdydz=6\\cdot\\frac{a^{12}}{360}=\\frac{a^{12}}{60}$$"
+      ]
+    }
+  ],
+  "practice_questions": [
+    {
+      "text": "验证Dirichlet积分公式的最基本情形：求 $\\displaystyle\\iint_{x,y\\ge0,\\,x+y\\le L} dx\\,dy$（$L>0$）。",
+      "knowledge_points": [
+        "二重积分",
+        "简单区域面积",
+        "Dirichlet积分公式基本情形"
+      ],
+      "question_type": "二维Dirichlet积分基础验证",
+      "method": [
+        "直接几何计算三角形面积",
+        "用Dirichlet公式核对"
+      ],
+      "solution_steps": [
+        "画出积分区域（直角三角形）",
+        "直接计算面积",
+        "用Dirichlet公式(p=q=1)核对"
+      ],
+      "math_structure": {
+        "type": "dirichlet_integral_volume",
+        "template": "\\iint_{x+y\\le L,x,y\\ge0} dxdy",
+        "variable_count": 1
+      },
+      "difficulty": 1,
+      "estimated_minutes": 5,
+      "answer": [
+        {
+          "label": "结果",
+          "steps": [
+            "区域是以 $(0,0),(L,0),(0,L)$ 为顶点的直角三角形，直接积分：$\\int_0^L\\int_0^{L-x}dy\\,dx=\\int_0^L(L-x)dx=L^2-\\frac{L^2}{2}=\\frac{L^2}{2}$。",
+            "用Dirichlet公式核对：$p=q=1$，$\\iint dxdy=L^{2}\\dfrac{\\Gamma(1)\\Gamma(1)}{\\Gamma(3)}=L^2\\cdot\\dfrac{1}{2}=\\dfrac{L^2}{2}$，与直接积分结果一致。"
+          ]
+        }
+      ],
+      "id": "osaka-2020-c0d447f766-q04-practice-01",
+      "school": "大阪大学",
+      "year": "2020"
+    },
+    {
+      "text": "求 $\\displaystyle\\iiint_{x,y,z\\ge0,\\,x+y+z\\le L}xyz\\,dx\\,dy\\,dz$（$L>0$）。",
+      "knowledge_points": [
+        "Dirichlet积分公式",
+        "Gamma函数值",
+        "三重积分"
+      ],
+      "question_type": "三重积分（Dirichlet公式直接应用）",
+      "method": [
+        "识别被积函数指数对应的Dirichlet参数",
+        "代入Dirichlet公式计算"
+      ],
+      "solution_steps": [
+        "确定 $p=q=r=2$",
+        "代入Dirichlet公式",
+        "化简Gamma函数值得结果"
+      ],
+      "math_structure": {
+        "type": "dirichlet_integral_volume",
+        "template": "\\iiint_{x+y+z\\le L,x,y,z\\ge0} xyz\\,dxdydz",
+        "variable_count": 1
+      },
+      "difficulty": 2,
+      "estimated_minutes": 6,
+      "answer": [
+        {
+          "label": "结果",
+          "steps": [
+            "被积函数 $xyz=x^1y^1z^1$，对应 $p-1=q-1=r-1=1$，即 $p=q=r=2$。",
+            "由Dirichlet公式：$\\iiint xyz\\,dxdydz=L^{p+q+r}\\dfrac{\\Gamma(2)\\Gamma(2)\\Gamma(2)}{\\Gamma(7)}=L^6\\cdot\\dfrac{1\\cdot1\\cdot1}{720}$。",
+            "所以结果为 $\\dfrac{L^6}{720}$。"
+          ]
+        }
+      ],
+      "id": "osaka-2020-c0d447f766-q04-practice-02",
+      "school": "大阪大学",
+      "year": "2020"
+    },
+    {
+      "text": "设 $b>0$，$V'=\\{(x,y,z)\\mid 0\\le x+\\sqrt y+z\\le b,\\ x,y,z\\ge0\\}$，求 $\\displaystyle\\iiint_{V'}dxdydz$。",
+      "knowledge_points": [
+        "单变量换元",
+        "Dirichlet积分公式",
+        "三重积分区域变换"
+      ],
+      "question_type": "单一变量替换的三重积分体积计算",
+      "method": [
+        "只对 $y$ 作 $u=\\sqrt y$ 换元",
+        "应用Dirichlet积分公式",
+        "化简得体积公式"
+      ],
+      "solution_steps": [
+        "令 $u=\\sqrt y$，$dy=2u\\,du$",
+        "把区域化为线性单形 $x+u+z\\le b$",
+        "用Dirichlet公式计算并化简"
+      ],
+      "math_structure": {
+        "type": "dirichlet_integral_volume",
+        "template": "\\iiint_{x+\\sqrt y+z\\le b,x,y,z\\ge0} dxdydz",
+        "variable_count": 1
+      },
+      "difficulty": 3,
+      "estimated_minutes": 10,
+      "answer": [
+        {
+          "label": "结果",
+          "steps": [
+            "令 $u=\\sqrt y$（$y=u^2,dy=2u\\,du,u\\ge0$），区域化为 $\\{(x,u,z):x+u+z\\le b,x,u,z\\ge0\\}$，体积 $=\\displaystyle\\iiint_{x+u+z\\le b}2u\\,dx\\,du\\,dz=2\\iiint u\\,dx\\,du\\,dz$。",
+            "对 $x^0u^1z^0$，即 $p=1,q=2,r=1$，由Dirichlet公式：$\\iiint u\\,dxdudz=b^{4}\\dfrac{\\Gamma(1)\\Gamma(2)\\Gamma(1)}{\\Gamma(5)}=b^4\\cdot\\dfrac{1}{24}$。",
+            "乘以系数2：$\\displaystyle\\iiint_{V'}dxdydz=2\\cdot\\dfrac{b^4}{24}=\\dfrac{b^4}{12}$。"
+          ]
+        }
+      ],
+      "id": "osaka-2020-c0d447f766-q04-practice-03",
+      "school": "大阪大学",
+      "year": "2020"
+    },
+    {
+      "text": "设 $a$ 为正常数，$V''=\\{(x,y,z)\\mid 0\\le x+y^{1/2}+z^{1/4}\\le a^3,\\ x,y,z\\ge0\\}$，求 $\\displaystyle\\iiint_{V''}dxdydz$（与原题结构相同但 $z$ 的指数与右端不同）。",
+      "knowledge_points": [
+        "多变量换元",
+        "Dirichlet积分公式",
+        "Gamma函数计算",
+        "与原题方法的迁移应用"
+      ],
+      "question_type": "推广型三重积分（不同指数）",
+      "method": [
+        "对 $y,z$ 分别作 $u=\\sqrt y,\\ w=z^{1/4}$ 换元",
+        "应用Dirichlet积分公式",
+        "代入更高阶Gamma函数值化简"
+      ],
+      "solution_steps": [
+        "设 $u=\\sqrt y,w=z^{1/4}$，求出 $dy,dz$",
+        "将区域化为线性单形",
+        "用Dirichlet公式计算并乘以Jacobian系数"
+      ],
+      "math_structure": {
+        "type": "dirichlet_integral_volume",
+        "template": "\\iiint_{x+y^{1/2}+z^{1/4}\\le a^3,x,y,z\\ge0} dxdydz",
+        "variable_count": 1
+      },
+      "difficulty": 4,
+      "estimated_minutes": 15,
+      "answer": [
+        {
+          "label": "结果",
+          "steps": [
+            "令 $u=\\sqrt y$（$y=u^2,dy=2u\\,du$）与 $w=z^{1/4}$（$z=w^4,dz=4w^3dw$），区域化为 $\\{(x,u,w):x+u+w\\le a^3,x,u,w\\ge0\\}$（记 $L=a^3$）。",
+            "体积 $=\\displaystyle\\iiint_{x+u+w\\le L}2u\\cdot4w^3\\,dx\\,du\\,dw=8\\iiint uw^3\\,dx\\,du\\,dw$。对 $x^0u^1w^3$，即 $p=1,q=2,r=4$。",
+            "由Dirichlet公式：$\\iiint uw^3\\,dxdudw=L^{7}\\dfrac{\\Gamma(1)\\Gamma(2)\\Gamma(4)}{\\Gamma(8)}=L^7\\cdot\\dfrac{1\\cdot1\\cdot6}{5040}=\\dfrac{L^7}{840}$。",
+            "乘以系数8并代回 $L=a^3$：$$\\iiint_{V''}dxdydz=8\\cdot\\frac{a^{21}}{840}=\\frac{a^{21}}{105}$$"
+          ]
+        }
+      ],
+      "id": "osaka-2020-c0d447f766-q04-practice-04",
+      "school": "大阪大学",
+      "year": "2020"
+    }
+  ],
+  "source_question": "4",
+  "source_pdf": "大阪大学/情报科学研究科/情报基础数学/大阪大学_情报科学研究科_情报基础数学_2020_数学过去问.pdf",
+  "source_type": "官方过去问",
+  "subject_category": "微积分"
+}

@@ -1,0 +1,251 @@
+{
+  "id": "nagoya-2009-53c879b0af-q02",
+  "school": "名古屋大学",
+  "year": "2009",
+  "subject": "多元数理科学研究科_全专攻",
+  "text": "设 $V=M_2(\\mathbb{C})$ 为复数域上全体 $2\\times2$ 矩阵构成的复线性空间。对 $A=\\begin{pmatrix}a&2\\\\-1&0\\end{pmatrix}\\in V$，定义线性变换 $F:V\\to V$ 为 $F(X)={}^tA\\,X\\,A-X$，其中 ${}^tA$ 表示 $A$ 的转置矩阵。回答以下问题：\n(1) 适当选取 $V$ 的一组基，求 $F$ 关于该基的表示矩阵。\n(2) 求使 $F$ 不是单射的 $a$ 的值。\n(3) 当 $a$ 取(2)中的值时，判定 $F$ 是否可对角化。",
+  "knowledge_points": [
+    "线性变换的矩阵表示",
+    "矩阵运算",
+    "转置矩阵与对称/反对称分解",
+    "特征值与特征多项式",
+    "行列式计算",
+    "可对角化的判定"
+  ],
+  "question_type": "线性变换的表示矩阵、单射性与可对角化判定",
+  "method": [
+    "取标准基 $E_{11},E_{12},E_{21},E_{22}$ 逐一计算 $F$ 的作用",
+    "利用对称/反对称矩阵子空间在 $F$ 下不变的性质分块简化",
+    "通过特征多项式与特征子空间维数判断可对角化"
+  ],
+  "solution_steps": [
+    "写出 $A^T$，逐一计算 $F(E_{11}),F(E_{12}),F(E_{21}),F(E_{22})$ 并表示为基向量的线性组合，得到 $4\\times4$ 表示矩阵",
+    "计算表示矩阵的行列式，令其为零求出 $a$ 的值",
+    "注意到对称矩阵子空间(3维)与反对称矩阵子空间(1维)在 $F$ 下均不变，将问题分块",
+    "在反对称子空间上直接用恒等式 $A^TJA=\\det(A)J$ 求出特征值",
+    "在对称子空间上计算 $3\\times3$ 矩阵的特征多项式，求出特征值并核对代数重数与几何重数是否相等"
+  ],
+  "math_structure": {
+    "type": "linear_map_matrix_diagonalization",
+    "template": "F(X)=A^T X A - X on M_2(C); find representation matrix, values of a making F non-injective, and diagonalizability",
+    "variable_count": 1
+  },
+  "difficulty": 4,
+  "answer": [
+    {
+      "label": "(1)",
+      "steps": [
+        "$A^T=\\begin{pmatrix}a&-1\\\\2&0\\end{pmatrix}$。逐一计算：$F(E_{11})=\\begin{pmatrix}a^2-1&2a\\\\2a&4\\end{pmatrix}=(a^2-1)E_{11}+2aE_{12}+2aE_{21}+4E_{22}$。",
+        "$F(E_{12})=\\begin{pmatrix}-a&-1\\\\-2&0\\end{pmatrix}=-aE_{11}-E_{12}-2E_{21}$；$F(E_{21})=\\begin{pmatrix}-a&-2\\\\-1&0\\end{pmatrix}=-aE_{11}-2E_{12}-E_{21}$；$F(E_{22})=\\begin{pmatrix}1&0\\\\0&-1\\end{pmatrix}=E_{11}-E_{22}$。",
+        "按基 $(E_{11},E_{12},E_{21},E_{22})$ 排列，得到表示矩阵（列为各基向量的像的坐标）：\n$$M=\\begin{pmatrix} a^2-1 & -a & -a & 1\\\\ 2a & -1 & -2 & 0\\\\ 2a & -2 & -1 & 0\\\\ 4 & 0 & 0 & -1\\end{pmatrix}$$"
+      ]
+    },
+    {
+      "label": "(2)",
+      "steps": [
+        "按第4列展开计算 $\\det M$：设去掉第1行第4列的余子式 $M_{14}=\\det\\begin{pmatrix}2a&-1&-2\\\\2a&-2&-1\\\\4&0&0\\end{pmatrix}$，沿第三行展开得 $M_{14}=4\\det\\begin{pmatrix}-1&-2\\\\-2&-1\\end{pmatrix}=4(1-4)=-12$。",
+        "设去掉第4行第4列的余子式为对称子空间的 $3\\times3$ 矩阵 $N=\\begin{pmatrix}a^2-1&-2a&1\\\\2a&-3&0\\\\4&0&-1\\end{pmatrix}$，沿第3列展开得 $\\det N=1\\cdot12-1\\cdot(a^2+3)=9-a^2$（其中中间步骤：$\\det\\begin{pmatrix}2a&-3\\\\4&0\\end{pmatrix}=12$，$\\det\\begin{pmatrix}a^2-1&-2a\\\\2a&-3\\end{pmatrix}=-3(a^2-1)+4a^2=a^2+3$）。",
+        "由展开公式 $\\det M=-M_{14}-\\det N=12-(9-a^2)+0$，重新核对：$\\det M=-M_{14}-M_{44}=-(-12)-(a^2+3)=12-a^2-3=9-a^2$。",
+        "令 $\\det M=9-a^2=0$，解得 $a=\\pm3$。此时 $F$ 不是单射（存在非零核）。"
+      ]
+    },
+    {
+      "label": "(3)",
+      "steps": [
+        "注意到 $A^TXA$ 保持 $X$ 的对称性：若 $X$ 对称则 $(A^TXA)^T=A^TX^TA=A^TXA$ 仍对称；若 $X$ 反对称则 $(A^TXA)^T=-A^TXA$ 仍反对称。故 $F$ 在对称子空间(3维，基 $E_{11},E_{12}+E_{21},E_{22}$)与反对称子空间(1维，基 $J=E_{12}-E_{21}$)上分别不变。",
+        "在反对称子空间上，利用恒等式 $A^TJA=\\det(A)J$（对2×2矩阵成立），而 $\\det A=a\\cdot0-2\\cdot(-1)=2$（与 $a$ 无关），故 $F(J)=(\\det A-1)J=J$，即该1维子空间上 $F$ 的特征值恒为 $1$。",
+        "在对称子空间上取基 $S_1=E_{11},S_2=E_{12}+E_{21},S_3=E_{22}$，计算得表示矩阵 $N=\\begin{pmatrix}a^2-1&-2a&1\\\\2a&-3&0\\\\4&0&-1\\end{pmatrix}$。当 $a=3$ 时 $N=\\begin{pmatrix}8&-6&1\\\\6&-3&0\\\\4&0&-1\\end{pmatrix}$，其特征多项式为 $\\lambda^3-4\\lambda^2+3\\lambda=\\lambda(\\lambda-1)(\\lambda-3)$（迹4，二阶主子式和为3，行列式为0），特征值为 $0,1,3$，三个不同特征值，故 $N$ 可对角化。",
+        "整个4维空间 $M$ 的特征值为对称块的 $\\{0,1,3\\}$ 与反对称块的 $\\{1\\}$ 合并，即 $\\{0,1,1,3\\}$：特征值 $1$ 的代数重数为2，但它来自两个互相独立的不变子空间(对称块与反对称块各贡献一个独立特征向量)，故几何重数也为2，与代数重数相等；特征值 $0,3$ 均为单根。因此 $F$（即 $a=3$ 时）可对角化。",
+        "当 $a=-3$ 时，令 $D=\\mathrm{diag}(1,-1,1)$，可验证 $D N(-3) D^{-1}=N(3)$（因为 $N(a)$ 中非对角项 $\\pm2a$ 在共轭下变号），故 $N(-3)$ 与 $N(3)$ 相似，特征值同为 $0,1,3$，同样可对角化。综上，$a=\\pm3$ 时 $F$ 均可对角化。"
+      ]
+    }
+  ],
+  "practice_questions": [
+    {
+      "text": "设 $B=\\begin{pmatrix}1&1\\\\0&1\\end{pmatrix}$，线性变换 $T:M_2(\\mathbb{R})\\to M_2(\\mathbb{R})$ 定义为 $T(X)=BXB-X$。求 $T$ 在基 $\\{E_{11},E_{12},E_{21},E_{22}\\}$ 下的表示矩阵。",
+      "knowledge_points": [
+        "线性变换的表示矩阵",
+        "矩阵乘法"
+      ],
+      "question_type": "表示矩阵计算",
+      "method": [
+        "逐一计算T在基向量上的作用"
+      ],
+      "solution_steps": [
+        "计算T(E_ij)对每个基向量",
+        "写出坐标向量",
+        "组装成矩阵"
+      ],
+      "math_structure": {
+        "type": "linear_map_matrix",
+        "template": "T(X)=BXB-X on M_2(R), find matrix representation",
+        "variable_count": 1
+      },
+      "difficulty": 3,
+      "estimated_minutes": 12,
+      "answer": [
+        {
+          "label": "结果",
+          "steps": [
+            "计算 $T(E_{11})=BE_{11}B-E_{11}$：$E_{11}B=\\begin{pmatrix}1&1\\\\0&0\\end{pmatrix}$，$B(E_{11}B)=\\begin{pmatrix}1&1\\\\0&0\\end{pmatrix}$，故 $T(E_{11})=\\begin{pmatrix}0&1\\\\0&0\\end{pmatrix}=E_{12}$。",
+            "计算 $T(E_{12})=0$；$T(E_{21})=\\begin{pmatrix}1&1\\\\0&1\\end{pmatrix}=E_{11}+E_{12}+E_{22}$；$T(E_{22})=E_{12}$。",
+            "组装表示矩阵（列为各基像的坐标，按$E_{11},E_{12},E_{21},E_{22}$排序）：$$\\begin{pmatrix}0&0&1&0\\\\1&0&1&1\\\\0&0&0&0\\\\0&0&1&0\\end{pmatrix}$$"
+          ]
+        }
+      ],
+      "id": "nagoya-2009-53c879b0af-q02-practice-01",
+      "school": "名古屋大学",
+      "year": "2009"
+    },
+    {
+      "text": "设 $C=\\mathrm{diag}(c_1,c_2)$，$T(X)=CXC^T$。求使 $T$ 不是单射的 $(c_1,c_2)$ 取值条件。",
+      "knowledge_points": [
+        "矩阵变换的可逆性",
+        "单射的判定"
+      ],
+      "question_type": "单射性判定",
+      "method": [
+        "利用T可逆等价于C可逆"
+      ],
+      "solution_steps": [
+        "分析T(X)=0何时有非零解",
+        "结合C对角矩阵结构讨论"
+      ],
+      "math_structure": {
+        "type": "injectivity_condition",
+        "template": "T(X)=CXC^T on M_2, find when T fails to be injective for diagonal C",
+        "variable_count": 2
+      },
+      "difficulty": 2,
+      "estimated_minutes": 5,
+      "answer": [
+        {
+          "label": "结果",
+          "steps": [
+            "若 $c_1,c_2\\neq0$，则 $C$ 可逆，$T(X)=0\\Rightarrow CXC^T=0\\Rightarrow X=C^{-1}\\cdot0\\cdot(C^T)^{-1}=0$，故T单射。",
+            "若 $c_1=0$（或$c_2=0$），取 $X=E_{11}$（当$c_1=0$时），则 $CXC^T$ 的第一行第一列为 $c_1^2\\cdot X_{11}=0$，且可验证整个 $CXC^T=0$，故存在非零核，T不是单射。",
+            "结论：T不是单射 $\\iff$ $c_1=0$ 或 $c_2=0$。"
+          ]
+        }
+      ],
+      "id": "nagoya-2009-53c879b0af-q02-practice-02",
+      "school": "名古屋大学",
+      "year": "2009"
+    },
+    {
+      "text": "证明：对任意 $2\\times2$ 矩阵 $A$，若 $X$ 是对称矩阵，则 $A^TXA$ 也是对称矩阵；若 $X$ 是反对称矩阵，则 $A^TXA$ 也是反对称矩阵。",
+      "knowledge_points": [
+        "转置运算性质",
+        "对称与反对称矩阵"
+      ],
+      "question_type": "证明题",
+      "method": [
+        "直接用转置运算规则"
+      ],
+      "solution_steps": [
+        "利用(A^TXA)^T=A^TX^TA的性质",
+        "分情况讨论X^T=X或X^T=-X"
+      ],
+      "math_structure": {
+        "type": "symmetry_preservation_proof",
+        "template": "prove A^T X A preserves symmetric/antisymmetric property of X",
+        "variable_count": 1
+      },
+      "difficulty": 1,
+      "estimated_minutes": 5,
+      "answer": [
+        {
+          "label": "证明",
+          "steps": [
+            "计算 $(A^TXA)^T=A^TX^T(A^T)^T=A^TX^TA$。",
+            "若 $X$ 对称，$X^T=X$，故 $(A^TXA)^T=A^TXA$，即 $A^TXA$ 对称。",
+            "若 $X$ 反对称，$X^T=-X$，故 $(A^TXA)^T=-A^TXA$，即 $A^TXA$ 反对称。证毕。"
+          ]
+        }
+      ],
+      "id": "nagoya-2009-53c879b0af-q02-practice-03",
+      "school": "名古屋大学",
+      "year": "2009"
+    },
+    {
+      "text": "求矩阵 $N=\\begin{pmatrix}3&-1&0\\\\2&0&0\\\\0&0&1\\end{pmatrix}$ 的特征值，并判断是否可对角化。",
+      "knowledge_points": [
+        "特征多项式",
+        "特征子空间维数",
+        "可对角化判定"
+      ],
+      "question_type": "特征值与可对角化判定",
+      "method": [
+        "展开特征多项式",
+        "求解零空间维数"
+      ],
+      "solution_steps": [
+        "计算det(N-λI)",
+        "分解因式求特征值",
+        "求每个特征值对应的特征子空间维数"
+      ],
+      "math_structure": {
+        "type": "eigenvalue_diagonalizability",
+        "template": "find eigenvalues of given 3x3 matrix and determine diagonalizability",
+        "variable_count": 0
+      },
+      "difficulty": 2,
+      "estimated_minutes": 8,
+      "answer": [
+        {
+          "label": "结果",
+          "steps": [
+            "特征多项式：$\\det(N-\\lambda I)=(1-\\lambda)[(3-\\lambda)(-\\lambda)+2]=(1-\\lambda)(\\lambda^2-3\\lambda+2)=(1-\\lambda)(\\lambda-1)(\\lambda-2)$，即 $-(\\lambda-1)^2(\\lambda-2)$。",
+            "特征值为 $\\lambda=1$（代数重数2），$\\lambda=2$（代数重数1）。",
+            "对 $\\lambda=1$：$N-I=\\begin{pmatrix}2&-1&0\\\\2&-1&0\\\\0&0&0\\end{pmatrix}$，秩为1，故零空间维数（几何重数）为 $3-1=2$，与代数重数相等。",
+            "结论：$N$ 可对角化，特征值为 $1$（重数2）和 $2$（重数1）。"
+          ]
+        }
+      ],
+      "id": "nagoya-2009-53c879b0af-q02-practice-04",
+      "school": "名古屋大学",
+      "year": "2009"
+    },
+    {
+      "text": "设 $A=\\begin{pmatrix}b&2\\\\-1&0\\end{pmatrix}$，恒有 $\\det A=2$（与 $b$ 无关）。请说明这一事实是否能保证线性变换 $F(X)=A^TXA-X$ 总是单射，并结合原题中 $a=\\pm3$ 时的情形说明理由。",
+      "knowledge_points": [
+        "行列式恒定性",
+        "线性变换单射性的必要与充分条件"
+      ],
+      "question_type": "概念辨析",
+      "method": [
+        "反证法结合原题结论"
+      ],
+      "solution_steps": [
+        "计算det A验证其恒为2",
+        "回顾原题中a=±3时F仍非单射的事实",
+        "得出A可逆不足以保证F单射的结论"
+      ],
+      "math_structure": {
+        "type": "conceptual_counterexample",
+        "template": "discuss whether invertibility of A guarantees injectivity of F(X)=A^TXA-X",
+        "variable_count": 1
+      },
+      "difficulty": 3,
+      "estimated_minutes": 6,
+      "answer": [
+        {
+          "label": "结果",
+          "steps": [
+            "计算 $\\det A=b\\cdot0-2\\cdot(-1)=2\\neq0$，对任意实数 $b$ 恒成立，故 $A$ 总是可逆。",
+            "然而原题中当 $a=\\pm3$（此矩阵 $A$ 的形式与原题相同，$b$ 对应 $a$）时，$F$ 的表示矩阵行列式为 $9-a^2=0$，说明 $F$ 存在非零核，不是单射。",
+            "因此 $A$ 可逆只保证 $X\\mapsto AXA^{-1}$ 型变换的可逆性，但 $F(X)=A^TXA-X$ 涉及 $-X$ 的抵消项，其单射性依赖于 $A^TXA=X$ 是否有非零解 $X$，与 $A$ 本身可逆与否是两个不同的问题。",
+            "结论：$A$ 可逆是 $F$ 单射的必要条件之一（若 $A$ 不可逆情形更复杂），但并非充分条件；$a=\\pm3$ 的反例说明即使 $A$ 恒可逆，$F$ 仍可能不是单射。"
+          ]
+        }
+      ],
+      "id": "nagoya-2009-53c879b0af-q02-practice-05",
+      "school": "名古屋大学",
+      "year": "2009"
+    }
+  ],
+  "source_question": "2",
+  "source_pdf": "名古屋大学/多元数理科学研究科/全专攻/名古屋大学_多元数理科学研究科_2009_第2次_数学过去问_上午.pdf",
+  "source_type": "官方过去问",
+  "subject_category": "线性代数"
+}

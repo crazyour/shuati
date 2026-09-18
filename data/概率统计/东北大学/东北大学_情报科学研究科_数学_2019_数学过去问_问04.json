@@ -1,0 +1,215 @@
+{
+  "id": "tohoku-2019-48163c7ac0-q04",
+  "school": "东北大学",
+  "year": "2019",
+  "subject": "情报科学研究科_数学教室",
+  "text": "在单位圆盘 $\\Omega=\\{(x,y)\\in\\mathbb{R}^2\\mid x^2+y^2\\le1\\}$ 上给定均匀分布，从中随机选取一点，记其坐标为 $(X,Y)$。\n(1) 求随机变量 $X$ 的概率密度函数 $f_X(x)$。\n(2) 求 $X$ 的均值 $E[X]$ 与方差 $V[X]$。\n(3) 求两个随机变量 $X,Y$ 的协方差 $\\mathrm{Cov}(X,Y)=E[(X-E[X])(Y-E[Y])]$。\n(4) 判断 $X,Y$ 是否相互独立，并说明理由。",
+  "knowledge_points": [
+    "二维连续型均匀分布",
+    "边缘密度函数求法",
+    "期望与方差计算",
+    "协方差计算",
+    "独立性判定与反例"
+  ],
+  "question_type": "圆盘上均匀分布的边缘分布、数字特征与独立性判定",
+  "method": [
+    "对联合密度积分求边缘密度",
+    "利用极坐标计算期望方差",
+    "由联合密度与边缘密度乘积是否相等判断独立性"
+  ],
+  "solution_steps": [
+    "写出联合密度 $f(x,y)=1/\\pi\\ (在\\Omega内)$，对 $y$ 积分求 $f_X(x)$",
+    "由对称性得 $E[X]=0$，用极坐标计算 $E[X^2]$ 得方差",
+    "同理用极坐标计算 $E[XY]$ 得协方差",
+    "比较 $f(x,y)$ 与 $f_X(x)f_Y(y)$ 是否处处相等，结合支撑集形状判断独立性"
+  ],
+  "math_structure": {
+    "type": "uniform_disk_distribution",
+    "template": "$(X,Y)$ 在 $\\{x^2+y^2\\le1\\}$ 上均匀分布，求 $f_X$，$E[X]$，$V[X]$，$\\mathrm{Cov}(X,Y)$ 及独立性",
+    "variable_count": 0
+  },
+  "difficulty": 3,
+  "answer": [
+    {
+      "label": "(1)",
+      "steps": [
+        "联合密度为 $f(x,y)=\\dfrac{1}{\\pi}$（当 $(x,y)\\in\\Omega$），否则为 $0$（因圆盘面积为 $\\pi$）。",
+        "对固定 $x\\in(-1,1)$，$y$ 的取值范围为 $-\\sqrt{1-x^2}\\le y\\le\\sqrt{1-x^2}$，故 $f_X(x)=\\int_{-\\sqrt{1-x^2}}^{\\sqrt{1-x^2}}\\dfrac{1}{\\pi}dy=\\dfrac{2\\sqrt{1-x^2}}{\\pi}$。",
+        "结论：$f_X(x)=\\dfrac{2\\sqrt{1-x^2}}{\\pi}\\ (-1<x<1)$，$f_X(x)=0$ 否则。"
+      ]
+    },
+    {
+      "label": "(2)",
+      "steps": [
+        "由 $f_X$ 关于 $x$ 偶对称，$E[X]=\\int_{-1}^1 xf_X(x)dx=0$。",
+        "用极坐标计算 $E[X^2]=\\iint_\\Omega x^2\\cdot\\dfrac{1}{\\pi}dA=\\dfrac1\\pi\\int_0^{2\\pi}\\int_0^1 (r\\cos\\theta)^2 r\\,dr\\,d\\theta=\\dfrac1\\pi\\int_0^{2\\pi}\\cos^2\\theta\\,d\\theta\\int_0^1 r^3dr$。",
+        "$\\int_0^{2\\pi}\\cos^2\\theta d\\theta=\\pi$，$\\int_0^1r^3dr=1/4$，故 $E[X^2]=\\dfrac1\\pi\\cdot\\pi\\cdot\\dfrac14=\\dfrac14$。",
+        "因 $E[X]=0$，方差 $V[X]=E[X^2]-(E[X])^2=\\dfrac14$。"
+      ]
+    },
+    {
+      "label": "(3)",
+      "steps": [
+        "因 $E[X]=E[Y]=0$（同理由对称性），$\\mathrm{Cov}(X,Y)=E[XY]$。",
+        "$E[XY]=\\iint_\\Omega xy\\cdot\\dfrac1\\pi dA=\\dfrac1\\pi\\int_0^{2\\pi}\\int_0^1 r^2\\cos\\theta\\sin\\theta\\cdot r\\,dr\\,d\\theta=\\dfrac1\\pi\\int_0^{2\\pi}\\cos\\theta\\sin\\theta\\,d\\theta\\int_0^1r^3dr$。",
+        "由 $\\int_0^{2\\pi}\\cos\\theta\\sin\\theta\\,d\\theta=0$，故 $E[XY]=0$，即 $\\mathrm{Cov}(X,Y)=0$。"
+      ]
+    },
+    {
+      "label": "(4)",
+      "steps": [
+        "边缘密度乘积为 $f_X(x)f_Y(y)=\\dfrac{4\\sqrt{1-x^2}\\sqrt{1-y^2}}{\\pi^2}$，其支撑集为整个正方形 $(-1,1)\\times(-1,1)$，而联合密度 $f(x,y)=1/\\pi$ 仅在圆盘 $x^2+y^2\\le1$ 内非零，两者支撑集不同（例如取 $x=y=0.9$，落在正方形内但不在圆盘内，此时 $f(x,y)=0$ 而 $f_X(x)f_Y(y)>0$）。",
+        "因此 $f(x,y)\\ne f_X(x)f_Y(y)$ 在某些点上成立，说明 $X,Y$ 不满足独立性的定义。",
+        "结论：尽管 $\\mathrm{Cov}(X,Y)=0$（不相关），但 $X,Y$ 并不独立，这是“不相关不蕴含独立”的一个典型反例，原因在于圆盘的支撑集不是矩形（乘积集合），$X,Y$ 之间存在几何约束 $x^2+y^2\\le1$。"
+      ]
+    }
+  ],
+  "practice_questions": [
+    {
+      "text": "设 $(X,Y)$ 在正方形 $[-1,1]\\times[-1,1]$ 上均匀分布，求 $f_X(x)$，并判断 $X,Y$ 是否独立。",
+      "knowledge_points": [
+        "均匀分布",
+        "独立性判定"
+      ],
+      "question_type": "矩形均匀分布基础题",
+      "method": [
+        "边缘密度积分",
+        "判断联合密度是否可分离"
+      ],
+      "solution_steps": [
+        "求联合密度",
+        "积分求边缘密度",
+        "判断可分离性"
+      ],
+      "math_structure": {
+        "type": "uniform_square_distribution",
+        "template": "$(X,Y)$ 在 $[-1,1]^2$ 上均匀分布",
+        "variable_count": 0
+      },
+      "difficulty": 1,
+      "estimated_minutes": 5,
+      "answer": [
+        {
+          "label": "结果",
+          "steps": [
+            "联合密度 $f(x,y)=1/4$ 在正方形内",
+            "$f_X(x)=\\int_{-1}^1\\frac14 dy=\\frac12,\\ -1<x<1$",
+            "$f(x,y)=f_X(x)f_Y(y)=1/2\\cdot1/2=1/4$ 恒成立，故 $X,Y$ 独立"
+          ]
+        }
+      ],
+      "id": "tohoku-2019-48163c7ac0-q04-practice-01",
+      "school": "东北大学",
+      "year": "2019"
+    },
+    {
+      "text": "求半径为 $2$ 的圆盘 $x^2+y^2\\le4$ 上均匀分布的 $X$ 的方差 $V[X]$。",
+      "knowledge_points": [
+        "均匀分布方差",
+        "极坐标积分"
+      ],
+      "question_type": "圆盘均匀分布方差计算",
+      "method": [
+        "极坐标积分求 $E[X^2]$"
+      ],
+      "solution_steps": [
+        "写出联合密度",
+        "极坐标积分计算 $E[X^2]$"
+      ],
+      "math_structure": {
+        "type": "uniform_disk_variance",
+        "template": "半径 $R=2$ 圆盘上 $X$ 的方差",
+        "variable_count": 1
+      },
+      "difficulty": 2,
+      "estimated_minutes": 6,
+      "answer": [
+        {
+          "label": "结果",
+          "steps": [
+            "联合密度 $f=1/(4\\pi)$（面积为 $4\\pi$）",
+            "$E[X^2]=\\frac{1}{4\\pi}\\int_0^{2\\pi}\\cos^2\\theta d\\theta\\int_0^2r^3dr=\\frac{1}{4\\pi}\\cdot\\pi\\cdot4=1$",
+            "$E[X]=0$，故 $V[X]=1$"
+          ]
+        }
+      ],
+      "id": "tohoku-2019-48163c7ac0-q04-practice-02",
+      "school": "东北大学",
+      "year": "2019"
+    },
+    {
+      "text": "计算圆盘 $x^2+y^2\\le1$ 上均匀分布时 $E[X^2Y^2]$。",
+      "knowledge_points": [
+        "极坐标积分",
+        "高阶矩计算"
+      ],
+      "question_type": "混合矩计算",
+      "method": [
+        "极坐标积分"
+      ],
+      "solution_steps": [
+        "用极坐标表示 $x^2y^2$",
+        "积分求值"
+      ],
+      "math_structure": {
+        "type": "mixed_moment_disk",
+        "template": "求 $E[X^2Y^2]$（单位圆盘均匀分布）",
+        "variable_count": 0
+      },
+      "difficulty": 3,
+      "estimated_minutes": 8,
+      "answer": [
+        {
+          "label": "结果",
+          "steps": [
+            "$E[X^2Y^2]=\\frac1\\pi\\int_0^{2\\pi}\\cos^2\\theta\\sin^2\\theta\\,d\\theta\\int_0^1r^5dr$",
+            "$\\int_0^{2\\pi}\\cos^2\\theta\\sin^2\\theta d\\theta=\\pi/4$，$\\int_0^1r^5dr=1/6$",
+            "$E[X^2Y^2]=\\frac1\\pi\\cdot\\frac\\pi4\\cdot\\frac16=\\frac1{24}$"
+          ]
+        }
+      ],
+      "id": "tohoku-2019-48163c7ac0-q04-practice-03",
+      "school": "东北大学",
+      "year": "2019"
+    },
+    {
+      "text": "证明：若 $\\mathrm{Cov}(X,Y)=0$ 但两随机变量不独立的例子，除单位圆盘外，另举一个反例（如 $Y=X^2$，$X$ 服从对称分布）。",
+      "knowledge_points": [
+        "不相关与独立性区别"
+      ],
+      "question_type": "概念辨析题",
+      "method": [
+        "构造反例并计算协方差"
+      ],
+      "solution_steps": [
+        "取 $X\\sim U(-1,1)$，$Y=X^2$",
+        "计算 $\\mathrm{Cov}(X,Y)$",
+        "说明 $Y$ 完全由 $X$ 决定，显然不独立"
+      ],
+      "math_structure": {
+        "type": "uncorrelated_not_independent",
+        "template": "$X\\sim U(-1,1),\\ Y=X^2$",
+        "variable_count": 0
+      },
+      "difficulty": 2,
+      "estimated_minutes": 6,
+      "answer": [
+        {
+          "label": "反例",
+          "steps": [
+            "$E[X]=0$（对称），$E[XY]=E[X^3]=0$（奇函数在对称区间积分为零）",
+            "故 $\\mathrm{Cov}(X,Y)=E[XY]-E[X]E[Y]=0$",
+            "但 $Y=X^2$ 是 $X$ 的确定性函数，二者显然不独立"
+          ]
+        }
+      ],
+      "id": "tohoku-2019-48163c7ac0-q04-practice-04",
+      "school": "东北大学",
+      "year": "2019"
+    }
+  ],
+  "source_question": "6",
+  "source_pdf": "东北大学/情报科学研究科/数学教室/东北大学_情报科学研究科_数学_2019_数学过去问.pdf",
+  "source_type": "官方过去问",
+  "subject_category": "概率统计"
+}

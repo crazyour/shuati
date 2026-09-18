@@ -1,0 +1,263 @@
+{
+  "id": "nagoya-2010-8a11c2a4d7-q01",
+  "school": "名古屋大学",
+  "year": "2010",
+  "subject": "多元数理科学研究科_全专攻",
+  "text": "设\n$$A=\\begin{pmatrix}1&2&-1&-2&2\\\\-1&-2&2&3&-2\\\\-1&-2&0&1&-2\\end{pmatrix},\\quad B=\\begin{pmatrix}1&3&2&0&3\\\\1&4&4&1&4\\end{pmatrix}$$\n定义复线性空间之间的线性映射 $T_A:\\mathbb{C}^5\\to\\mathbb{C}^3,\\ T_A(x)=Ax$ 及 $T_B:\\mathbb{C}^5\\to\\mathbb{C}^2,\\ T_B(x)=Bx$，其中 $x=(x_1,x_2,x_3,x_4,x_5)^T\\in\\mathbb{C}^5$。记 $V=\\ker T_A,\\ W=\\ker T_B$。\n(1) 求 $\\dim V,\\ \\dim W$。\n(2) 判断 $V\\cup W$ 与 $V+W$ 中哪个是 $\\mathbb{C}^5$ 的子空间。\n(3) 对(2)中是子空间的对象求其维数。",
+  "knowledge_points": [
+    "矩阵的秩",
+    "核空间(零空间)",
+    "秩-零度定理",
+    "子空间的并与和",
+    "维数公式 dim(V+W)=dimV+dimW-dim(V∩W)",
+    "线性方程组求解"
+  ],
+  "question_type": "线性代数计算与证明",
+  "method": [
+    "行简化求矩阵秩",
+    "求解线性方程组得到核空间基",
+    "利用维数公式计算V+W的维数",
+    "验证V∪W是否满足子空间条件"
+  ],
+  "solution_steps": [
+    "对A做行变换求rank(A)，由秩-零度定理得dim V",
+    "对B做行变换求rank(B)，由秩-零度定理得dim W",
+    "求V、W的基向量组",
+    "检验V是否包含于W或W是否包含于V，判断V∪W是否为子空间",
+    "联立A、B的约束方程求V∩W的维数，再用维数公式求dim(V+W)"
+  ],
+  "math_structure": {
+    "type": "kernel_intersection_sum",
+    "template": "given A (m x n), B (p x n), find dim(ker A), dim(ker B), and dim(ker A + ker B)",
+    "variable_count": 5
+  },
+  "difficulty": 4,
+  "answer": [
+    {
+      "label": "(1)",
+      "steps": [
+        "对A做行变换：R2+R1=(0,0,1,1,0)，R3+R1=(0,0,-1,-1,0)=-（R2+R1的结果），故A的行秩为2（R1与R2+R1独立，R3+R1与R2+R1线性相关）。",
+        "由秩-零度定理，dim V = 5 - rank(A) = 5-2 = 3。",
+        "对B做行变换：R2-R1=(0,1,2,1,1)，此行与R1线性独立（首非零位置不同），故rank(B)=2（B本身只有2行且独立）。",
+        "由秩-零度定理，dim W = 5 - rank(B) = 5-2 = 3。",
+        "结论：dim V = 3, dim W = 3。"
+      ]
+    },
+    {
+      "label": "(2)",
+      "steps": [
+        "求V的基：由AR行简化得约束 x1+2x2-x3-2x4+2x5=0 及 x3+x4=0，解得基向量 v1=(-2,1,0,0,0), v2=(1,0,-1,1,0), v3=(-2,0,0,0,1)。",
+        "求W的基：由B行简化得约束 x1+3x2+2x3+3x5=0 及 x2+2x3+x4+x5=0，解得基向量 w1=(-3,1,0,-1,0), w2=(-2,0,1,-2,0), w3=(-3,0,0,-1,1)。",
+        "验证v1是否属于W：代入B得 B·v1的第一分量 = -2+3=1≠0，故v1∉W，即V不包含于W；同理可验证W不包含于V。",
+        "由于dim V=dim W=3且V≠W，两者互不包含，故V∪W不是子空间（子空间的并要求一方包含另一方，或两者相等）。",
+        "而任意两个子空间之和V+W总是子空间（对加法和标量乘法封闭），故V+W是$\\mathbb{C}^5$的子空间，V∪W不是。"
+      ]
+    },
+    {
+      "label": "(3)",
+      "steps": [
+        "联立A、B的4个独立约束方程（A贡献2个独立方程，B贡献2个独立方程）：\n(i) x1+2x2-x3-2x4+2x5=0\n(ii) x3+x4=0\n(iii) x1+3x2+2x3+3x5=0\n(iv) x2+2x3+x4+x5=0",
+        "计算发现 (iii)=(i)+(ii)+(iv)（验证：(i)+(ii)+(iv)在各分量上化简得到与(iii)完全一致的方程），故4个方程中只有3个线性独立，联立系统的秩为3。",
+        "因此dim(V∩W) = 5 - 3 = 2。",
+        "由维数公式：dim(V+W) = dim V + dim W - dim(V∩W) = 3+3-2 = 4。",
+        "结论：V+W是$\\mathbb{C}^5$的4维子空间。"
+      ]
+    }
+  ],
+  "practice_questions": [
+    {
+      "text": "设 $A=\\begin{pmatrix}1&2&3\\\\2&4&6\\end{pmatrix}$，求线性映射 $T_A:\\mathbb{R}^3\\to\\mathbb{R}^2,\\ T_A(x)=Ax$ 的核 $\\ker T_A$ 的维数及一组基。",
+      "knowledge_points": [
+        "矩阵的秩",
+        "核空间",
+        "秩-零度定理"
+      ],
+      "question_type": "基础核空间计算",
+      "method": [
+        "行简化",
+        "求解齐次线性方程组"
+      ],
+      "solution_steps": [
+        "化简A得秩",
+        "解Ax=0",
+        "写出基向量"
+      ],
+      "math_structure": {
+        "type": "kernel_basic",
+        "template": "given A (m x n), find dim(ker A) and basis",
+        "variable_count": 3
+      },
+      "difficulty": 1,
+      "estimated_minutes": 5,
+      "answer": [
+        {
+          "label": "核空间维数与基",
+          "steps": [
+            "A的第二行=2×第一行，故rank(A)=1。",
+            "由秩-零度定理，dim(ker A)=3-1=2。",
+            "解方程 x1+2x2+3x3=0，取 x2=1,x3=0得x1=-2；取x2=0,x3=1得x1=-3。基为 (-2,1,0),(-3,0,1)。"
+          ]
+        }
+      ],
+      "id": "nagoya-2010-8a11c2a4d7-q01-practice-01",
+      "school": "名古屋大学",
+      "year": "2010"
+    },
+    {
+      "text": "设 $A=\\begin{pmatrix}1&0&1&2\\\\0&1&-1&1\\end{pmatrix}$，求 $\\ker T_A$ 的一组基及维数（$T_A:\\mathbb{R}^4\\to\\mathbb{R}^2$）。",
+      "knowledge_points": [
+        "核空间",
+        "自由变量参数化",
+        "秩-零度定理"
+      ],
+      "question_type": "核空间基础计算",
+      "method": [
+        "行简化",
+        "自由变量法求解方程组"
+      ],
+      "solution_steps": [
+        "确定rank(A)=2（两行独立）",
+        "自由变量为x3,x4",
+        "代入求x1,x2表达式",
+        "写出基"
+      ],
+      "math_structure": {
+        "type": "kernel_basic",
+        "template": "given A (2x4) in reduced form, find basis of kernel",
+        "variable_count": 4
+      },
+      "difficulty": 1,
+      "estimated_minutes": 5,
+      "answer": [
+        {
+          "label": "结果",
+          "steps": [
+            "A已是行最简形，rank(A)=2，故dim(ker A)=4-2=2。",
+            "由第一行：x1=-x3-2x4；由第二行：x2=x3-x4。",
+            "取x3=1,x4=0：得(-1,1,1,0)；取x3=0,x4=1：得(-2,-1,0,1)。基为这两个向量。"
+          ]
+        }
+      ],
+      "id": "nagoya-2010-8a11c2a4d7-q01-practice-02",
+      "school": "名古屋大学",
+      "year": "2010"
+    },
+    {
+      "text": "设 $V,W$ 是$\\mathbb{R}^3$的两个2维子空间，且$V\\neq W$。判断$V\\cup W$与$V+W$是否为$\\mathbb{R}^3$的子空间，并说明理由。",
+      "knowledge_points": [
+        "子空间的定义",
+        "子空间的并与和的性质"
+      ],
+      "question_type": "概念判断题",
+      "method": [
+        "利用子空间封闭性定义验证",
+        "反证法"
+      ],
+      "solution_steps": [
+        "取V、W中各一个向量的和进行验证",
+        "说明V+W总是子空间",
+        "构造反例说明V∪W不是子空间"
+      ],
+      "math_structure": {
+        "type": "union_sum_subspace_check",
+        "template": "given two distinct k-dim subspaces V,W of R^n, determine subspace status of union and sum",
+        "variable_count": 2
+      },
+      "difficulty": 2,
+      "estimated_minutes": 8,
+      "answer": [
+        {
+          "label": "结论及理由",
+          "steps": [
+            "V+W = {v+w : v∈V, w∈W}对加法与标量乘法封闭（因为(v1+w1)+(v2+w2)=(v1+v2)+(w1+w2)∈V+W，标量乘法类似），故V+W总是子空间。",
+            "对于V∪W，取v∈V\\W及w∈W\\V（存在，因V≠W），则v+w一般既不在V也不在W中（否则可推出v∈W或w∈V，矛盾），故v+w∉V∪W，说明V∪W对加法不封闭。",
+            "结论：V+W总是$\\mathbb{R}^3$的子空间；V∪W当且仅当V⊆W或W⊆V时才是子空间，一般情况下（V≠W且互不包含）V∪W不是子空间。"
+          ]
+        }
+      ],
+      "id": "nagoya-2010-8a11c2a4d7-q01-practice-03",
+      "school": "名古屋大学",
+      "year": "2010"
+    },
+    {
+      "text": "设$V,W$为$\\mathbb{R}^5$的子空间，$\\dim V=3,\\dim W=2$，且$\\dim(V\\cap W)=1$。求$\\dim(V+W)$。",
+      "knowledge_points": [
+        "维数公式",
+        "子空间的和与交"
+      ],
+      "question_type": "维数公式应用",
+      "method": [
+        "直接套用dim(V+W)=dimV+dimW-dim(V∩W)"
+      ],
+      "solution_steps": [
+        "套用公式代入数值计算"
+      ],
+      "math_structure": {
+        "type": "dimension_formula_application",
+        "template": "given dim V, dim W, dim(V∩W), find dim(V+W)",
+        "variable_count": 3
+      },
+      "difficulty": 1,
+      "estimated_minutes": 3,
+      "answer": [
+        {
+          "label": "结果",
+          "steps": [
+            "由维数公式：dim(V+W)=dimV+dimW-dim(V∩W)=3+2-1=4。",
+            "验证：V+W是$\\mathbb{R}^5$的子空间，维数不超过5，4是合理的值。"
+          ]
+        }
+      ],
+      "id": "nagoya-2010-8a11c2a4d7-q01-practice-04",
+      "school": "名古屋大学",
+      "year": "2010"
+    },
+    {
+      "text": "设 $A=\\begin{pmatrix}1&1&0&1\\\\1&2&1&1\\end{pmatrix}$，$B=\\begin{pmatrix}1&0&-1&2\\\\0&1&1&-1\\end{pmatrix}$，定义 $T_A,T_B:\\mathbb{R}^4\\to\\mathbb{R}^2$。设$V=\\ker T_A,W=\\ker T_B$。求$\\dim V,\\dim W$，并求$\\dim(V+W)$。",
+      "knowledge_points": [
+        "矩阵的秩",
+        "核空间",
+        "联立方程组求交空间维数",
+        "维数公式"
+      ],
+      "question_type": "综合核空间与维数公式应用",
+      "method": [
+        "行简化求各自秩",
+        "联立A、B的方程求V∩W的维数",
+        "套用维数公式"
+      ],
+      "solution_steps": [
+        "求rank(A)得dim V",
+        "求rank(B)得dim W",
+        "联立A,B行向量求总约束的秩，从而得dim(V∩W)",
+        "代入维数公式求dim(V+W)"
+      ],
+      "math_structure": {
+        "type": "kernel_intersection_sum",
+        "template": "given A (2x4), B(2x4), find dim(ker A), dim(ker B), dim(ker A+ker B)",
+        "variable_count": 4
+      },
+      "difficulty": 3,
+      "estimated_minutes": 12,
+      "answer": [
+        {
+          "label": "结果",
+          "steps": [
+            "A两行线性独立（行列式检验列1,2子式：1*2-1*1=1≠0），故rank(A)=2，dim V=4-2=2。",
+            "B两行线性独立（同理检验），rank(B)=2，dim W=4-2=2。",
+            "联立4个方程：x1+x2+x4=0;x1+2x2+x3+x4=0;x1-x3+2x4=0;x2+x3-x4=0。用行简化验证这4个方程中独立方程数为3（例如用消元法可验证第4个方程可由前三个线性组合得到）。",
+            "故联立系统的秩为3，dim(V∩W)=4-3=1。",
+            "由维数公式：dim(V+W)=2+2-1=3。"
+          ]
+        }
+      ],
+      "id": "nagoya-2010-8a11c2a4d7-q01-practice-05",
+      "school": "名古屋大学",
+      "year": "2010"
+    }
+  ],
+  "source_question": "1",
+  "source_pdf": "名古屋大学/多元数理科学研究科/全专攻/名古屋大学_多元数理科学研究科_2010_第2次_数学过去问_上午.pdf",
+  "source_type": "官方过去问",
+  "subject_category": "线性代数"
+}

@@ -1,0 +1,205 @@
+{
+  "id": "isct-2000-7e67416ed8-q06",
+  "school": "东京科学大学",
+  "year": "2000",
+  "subject": "理工学系_数学系",
+  "text": "设 $X_1,X_2,\\dots,X_n,\\dots$ 是相互独立的随机变量列，每个 $X_n$ 取值于 $\\{0,1\\}$，满足 $P(X_n=1)=\\alpha$，$P(X_n=0)=1-\\alpha$（$0<\\alpha<1$）。设 $Y$ 为满足 $X_n=X_{n-1}=1$ 的最初的下标 $n(\\ge2)$，即\n$$Y=\\min\\{n\\ge2\\mid X_n=X_{n-1}=1\\}$$\n(1) 令 $p(k)=P(Y=k)$（$k\\ge2$），求 $p(2),p(3),p(4),p(5)$。\n(2) 证明对 $k\\ge4$，$p(k)=\\alpha(1-\\alpha)p(k-2)+(1-\\alpha)p(k-1)$。\n(3) 求 $Y$ 的母函数 $G(s)=\\displaystyle\\sum_{k=2}^{\\infty}p(k)s^k$（$|s|\\le1$）以及 $Y$ 的期望 $E(Y)$。",
+  "knowledge_points": [
+    "独立伯努利序列",
+    "首次等待时间",
+    "递推关系构造（首步分析法）",
+    "概率生成函数",
+    "生成函数求期望"
+  ],
+  "question_type": "首次连续成功等待时间的分布与生成函数问题",
+  "method": [
+    "直接枚举计算低阶概率",
+    "首步（条件于X1）分析建立递推关系",
+    "递推关系代入生成函数级数求闭式",
+    "对生成函数求导在s=1处得期望"
+  ],
+  "solution_steps": [
+    "直接计算p(2),p(3),p(4),p(5)通过枚举满足首次连续两个1出现在指定位置的条件",
+    "用首步分析法：按X1=0，X1=1&X2=0，X1=1&X2=1三种情形分类建立k≥4的递推公式",
+    "将递推公式代入生成函数定义式，求解关于G(s)的线性方程得到闭式",
+    "在s=1处验证G(1)=1，并求G'(1)得到期望E(Y)"
+  ],
+  "math_structure": {
+    "type": "waiting_time_two_consecutive_successes",
+    "template": "Y=min{n>=2: X_n=X_{n-1}=1} for iid Bernoulli(alpha) sequence, find p(k), recursion, generating function, and E(Y)",
+    "variable_count": 1
+  },
+  "difficulty": 4,
+  "answer": [
+    {
+      "label": "(1)",
+      "steps": [
+        "$p(2)=P(Y=2)=P(X_1=1,X_2=1)=\\alpha^2$。",
+        "$p(3)=P(Y=3)$：要求 $X_2=X_3=1$ 且不满足 $X_1=X_2=1$（否则 $Y=2$）。因 $X_2=1$，故需 $X_1=0$。于是 $p(3)=P(X_1=0)P(X_2=1)P(X_3=1)=(1-\\alpha)\\alpha^2$。",
+        "$p(4)=P(Y=4)$：要求 $X_3=X_4=1$，且不满足 $X_2=X_3=1$（需 $X_2=0$，因 $X_3=1$），也不满足 $X_1=X_2=1$（因 $X_2=0$ 自动满足）。$X_1$ 自由。故 $p(4)=1\\cdot(1-\\alpha)\\cdot\\alpha\\cdot\\alpha=(1-\\alpha)\\alpha^2$（与$p(3)$相等）。",
+        "$p(5)=P(Y=5)$：要求 $X_4=X_5=1$，需 $X_3=0$（否则$Y=4$），$X_2$自由（因$X_3=0$使得$X_2X_3$条件自动满足），但需不满足 $X_1=X_2=1$。于是对 $(X_1,X_2)$ 的限制是“不同时为1”，概率为 $1-\\alpha^2$。故 $p(5)=(1-\\alpha^2)(1-\\alpha)\\alpha^2$。"
+      ]
+    },
+    {
+      "label": "(2)",
+      "steps": [
+        "对 $k\\ge4$，按 $X_1$ 的取值分类讨论（首步分析法）。",
+        "情形一：$X_1=0$（概率 $1-\\alpha$）。此时 $X_1$ 与后续无关，事件 $\\{Y=k\\}$ 等价于把序列 $X_2,X_3,\\dots$ 重新编号为 $X_1',X_2',\\dots$（即 $X_i'=X_{i+1}$）后，$Y'=\\min\\{n\\ge2:X_n'=X_{n-1}'=1\\}$ 满足 $Y'=k-1$。由独立同分布性，此情形概率贡献为 $(1-\\alpha)p(k-1)$。",
+        "情形二：$X_1=1,X_2=0$（概率 $\\alpha(1-\\alpha)$）。此时 $(X_1,X_2)$ 不构成连续两个1，且 $X_2=0$ 使得后续（从 $X_3$ 开始）与 $X_1,X_2$ 无关。类似地把 $X_3,X_4,\\dots$ 重编号，得 $Y''=k-2$ 对应的事件，贡献 $\\alpha(1-\\alpha)p(k-2)$。",
+        "情形三：$X_1=1,X_2=1$（概率 $\\alpha^2$）。此时直接得 $Y=2$，与 $k\\ge4$ 矛盾，故此情形对 $k\\ge4$ 的贡献为0。",
+        "综合三种情形（覆盖所有可能且互斥），得 $p(k)=(1-\\alpha)p(k-1)+\\alpha(1-\\alpha)p(k-2)$，即为所证的递推关系（对 $k\\ge4$成立，因为此时$k-1\\ge3,k-2\\ge2$均有定义）。"
+      ]
+    },
+    {
+      "label": "(3)",
+      "steps": [
+        "设 $G(s)=\\sum_{k\\ge2}p(k)s^k$。利用递推关系将 $k\\ge4$ 的项求和：$\\sum_{k\\ge4}p(k)s^k=(1-\\alpha)\\sum_{k\\ge4}p(k-1)s^k+\\alpha(1-\\alpha)\\sum_{k\\ge4}p(k-2)s^k$。",
+        "第一项 $=(1-\\alpha)s\\sum_{j\\ge3}p(j)s^j=(1-\\alpha)s[G(s)-p(2)s^2]$；第二项 $=\\alpha(1-\\alpha)s^2\\sum_{j\\ge2}p(j)s^j=\\alpha(1-\\alpha)s^2G(s)$。",
+        "于是 $G(s)=p(2)s^2+p(3)s^3+(1-\\alpha)s[G(s)-p(2)s^2]+\\alpha(1-\\alpha)s^2G(s)$。代入 $p(2)=\\alpha^2,\\ p(3)=\\alpha^2(1-\\alpha)$，注意到 $p(3)s^3-(1-\\alpha)s\\cdot p(2)s^2=\\alpha^2(1-\\alpha)s^3-\\alpha^2(1-\\alpha)s^3=0$ 恰好抵消。",
+        "化简得 $G(s)[1-(1-\\alpha)s-\\alpha(1-\\alpha)s^2]=\\alpha^2s^2$，故 $G(s)=\\dfrac{\\alpha^2s^2}{1-(1-\\alpha)s-\\alpha(1-\\alpha)s^2}$。验证：$s=1$时分母$=1-(1-\\alpha)-\\alpha(1-\\alpha)=\\alpha-\\alpha(1-\\alpha)=\\alpha^2$，分子也为$\\alpha^2$，故$G(1)=1$，符合概率归一化。",
+        "求期望：$E(Y)=G'(1)$。记 $D(s)=1-(1-\\alpha)s-\\alpha(1-\\alpha)s^2$，则 $D(1)=\\alpha^2$，$D'(s)=-(1-\\alpha)-2\\alpha(1-\\alpha)s$，$D'(1)=-(1-\\alpha)(1+2\\alpha)$。由商法则 $G'(1)=\\dfrac{2\\alpha^2 D(1)-\\alpha^2 D'(1)}{D(1)^2}=\\dfrac{2\\alpha^4+\\alpha^2(1-\\alpha)(1+2\\alpha)}{\\alpha^4}=\\dfrac{2\\alpha^2+(1-\\alpha)(1+2\\alpha)}{\\alpha^2}$。",
+        "展开 $(1-\\alpha)(1+2\\alpha)=1+\\alpha-2\\alpha^2$，于是分子 $=2\\alpha^2+1+\\alpha-2\\alpha^2=1+\\alpha$，故 $E(Y)=\\dfrac{1+\\alpha}{\\alpha^2}$。验证：当 $\\alpha\\to1$（几乎必成功）时 $E(Y)\\to2$，符合直觉（$Y$恒为2）。"
+      ]
+    }
+  ],
+  "practice_questions": [
+    {
+      "text": "设 $\\alpha=1/2$，求 $p(2),p(3),p(4)$ 的数值。",
+      "knowledge_points": [
+        "首次连续成功等待时间基础计算"
+      ],
+      "question_type": "数值计算题",
+      "method": [
+        "直接代入公式"
+      ],
+      "solution_steps": [
+        "代入α=1/2到p(2)=α²等公式"
+      ],
+      "math_structure": {
+        "type": "waiting_time_two_consecutive_successes",
+        "template": "compute p(2),p(3),p(4) for alpha=1/2",
+        "variable_count": 0
+      },
+      "difficulty": 1,
+      "estimated_minutes": 4,
+      "answer": [
+        {
+          "label": "结果",
+          "steps": [
+            "p(2)=1/4",
+            "p(3)=(1-1/2)(1/4)=1/8",
+            "p(4)=(1-1/2)(1/4)=1/8"
+          ]
+        }
+      ],
+      "id": "isct-2000-7e67416ed8-q06-practice-01",
+      "school": "东京科学大学",
+      "year": "2000"
+    },
+    {
+      "text": "证明 $\\sum_{k=2}^{\\infty}p(k)=1$（即 $Y$ 几乎必为有限值），不使用生成函数，仅用概率直觉说明理由。",
+      "knowledge_points": [
+        "伯努利试验的Borel-Cantelli型论证",
+        "几乎必然事件"
+      ],
+      "question_type": "理论证明题",
+      "method": [
+        "Borel-Cantelli第二引理或直接概率论证"
+      ],
+      "solution_steps": [
+        "说明因为α>0，连续两个1的模式几乎必然在有限步内出现",
+        "引用独立重复试验中正概率事件必然发生的原理"
+      ],
+      "math_structure": {
+        "type": "waiting_time_two_consecutive_successes",
+        "template": "prove Y is almost surely finite for iid Bernoulli sequence",
+        "variable_count": 0
+      },
+      "difficulty": 2,
+      "estimated_minutes": 8,
+      "answer": [
+        {
+          "label": "结论",
+          "steps": [
+            "把序列分成不重叠的两两一组：(X1,X2),(X3,X4),...，每组独立同分布，各组都为(1,1)的概率为α²>0",
+            "由独立试验中正概率事件重复发生，几乎必然会出现某一组恰为(1,1)（或更早出现跨组的11模式），故Y<∞ a.s.，即Σp(k)=1"
+          ]
+        }
+      ],
+      "id": "isct-2000-7e67416ed8-q06-practice-02",
+      "school": "东京科学大学",
+      "year": "2000"
+    },
+    {
+      "text": "利用原题(2)中的递推关系 $p(k)=(1-\\alpha)p(k-1)+\\alpha(1-\\alpha)p(k-2)$，验证 $p(4)=(1-\\alpha)\\alpha^2$（即与直接枚举结果一致）。",
+      "knowledge_points": [
+        "递推关系验证"
+      ],
+      "question_type": "验证计算题",
+      "method": [
+        "代入递推公式计算"
+      ],
+      "solution_steps": [
+        "代入p(2),p(3)到递推公式计算p(4)",
+        "与直接枚举结果比对"
+      ],
+      "math_structure": {
+        "type": "waiting_time_two_consecutive_successes",
+        "template": "verify recursion formula gives correct p(4)",
+        "variable_count": 0
+      },
+      "difficulty": 2,
+      "estimated_minutes": 6,
+      "answer": [
+        {
+          "label": "结论",
+          "steps": [
+            "p(4)=(1-α)p(3)+α(1-α)p(2)=(1-α)·α²(1-α)+α(1-α)·α²=α²(1-α)[(1-α)+α]=α²(1-α)",
+            "与直接枚举得到的p(4)=(1-α)α²一致，验证成立"
+          ]
+        }
+      ],
+      "id": "isct-2000-7e67416ed8-q06-practice-03",
+      "school": "东京科学大学",
+      "year": "2000"
+    },
+    {
+      "text": "对一般的等待『首次出现连续 $m$ 个1』（$m\\ge2$）的问题，写出类似的生成函数满足的方程形式（不必求闭式），并说明 $m=2$ 时如何还原本题结果。",
+      "knowledge_points": [
+        "一般化等待时间问题",
+        "递推方程的推广"
+      ],
+      "question_type": "推广理论题",
+      "method": [
+        "首步分析法推广到m个连续成功"
+      ],
+      "solution_steps": [
+        "按首次失败位置分类，建立涉及m个前置概率的递推关系",
+        "取m=2还原本题"
+      ],
+      "math_structure": {
+        "type": "waiting_time_k_consecutive_successes",
+        "template": "generalize waiting time for m consecutive successes in Bernoulli(alpha) trials",
+        "variable_count": 1
+      },
+      "difficulty": 3,
+      "estimated_minutes": 12,
+      "answer": [
+        {
+          "label": "结论",
+          "steps": [
+            "一般地，设T_m为首次出现m个连续1的时刻，其生成函数满足 G_m(s)=\\dfrac{(\\alpha s)^m(1-\\alpha s)}{1-s+(1-\\alpha)\\alpha^m s^{m+1}} 型公式（标准结果）",
+            "当m=2时，该公式退化为本题的G(s)=α²s²/[1-(1-α)s-α(1-α)s²]的形式（经代数变形可核对一致），从而验证一般公式与本题特例吻合"
+          ]
+        }
+      ],
+      "id": "isct-2000-7e67416ed8-q06-practice-04",
+      "school": "东京科学大学",
+      "year": "2000"
+    }
+  ],
+  "source_question": "専門科目（午後）問8",
+  "source_pdf": "东京科学大学/理工学系/数学系/东京科学大学_理工学系_数学系_2000_数学过去问.pdf",
+  "source_type": "官方过去问",
+  "subject_category": "概率统计"
+}

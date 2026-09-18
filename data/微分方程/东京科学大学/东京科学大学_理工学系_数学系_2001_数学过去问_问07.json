@@ -1,0 +1,171 @@
+{
+  "id": "isct-2001-21d177050b-q07",
+  "school": "东京科学大学",
+  "year": "2001",
+  "subject": "理工学系_数学系",
+  "text": "设 $A(t)=(a_{ij}(t))$ 是以 $\\mathbb R$ 上实值连续函数 $a_{ij}(t)$ 为元素的 $n\\times n$ 矩阵，考虑微分方程组\n$$(*)\\quad \\frac{dx(t)}{dt}=A(t)x(t),\\quad x(t)\\in\\mathbb R^n.$$\n\n(i) 对任意 $\\xi\\in\\mathbb R^n$，定义函数列 $\\{x_m(t)\\}_{m=0}^\\infty$：\n$$x_0(t)=\\xi,\\qquad x_m(t)=\\xi+\\int_0^t A(s)x_{m-1}(s)\\,ds\\quad(m=1,2,\\dots).$$\n证明该函数列对任意 $t\\in\\mathbb R$ 收敛，其极限函数 $x(t)=\\lim_{m\\to\\infty}x_m(t)$ 是方程 $(*)$ 满足初始条件 $x(0)=\\xi$ 的唯一解。\n\n(ii) 证明 $(*)$ 的全体解构成 $\\mathbb R$ 上的一个 $n$ 维向量空间。",
+  "knowledge_points": [
+    "Picard逐次逼近法",
+    "线性微分方程组存在唯一性定理",
+    "Gronwall不等式",
+    "解空间的线性结构",
+    "初值映射的同构"
+  ],
+  "question_type": "线性微分方程组存在唯一性与解空间维数",
+  "method": [
+    "Picard迭代法",
+    "一致收敛性估计（Weierstrass判别法）",
+    "Gronwall不等式证明唯一性",
+    "线性映射同构证明维数"
+  ],
+  "solution_steps": [
+    "(i) 在任意有界区间上用 $A(t)$ 连续从而有界的性质，估计 $x_m-x_{m-1}$ 的范数按阶乘衰减，证明级数一致收敛",
+    "对极限函数取极限验证其满足积分方程，从而满足微分方程与初值",
+    "用Gronwall不等式证明解的唯一性",
+    "(ii) 验证解的线性组合仍是解（叠加原理），构造 $x\\mapsto x(0)$ 的线性同构证明维数为$n$"
+  ],
+  "math_structure": {
+    "type": "linear_ode_system_picard_existence_uniqueness",
+    "template": "$x'=A(t)x$, $A(t)$ continuous; Picard iteration converges to unique solution; solution space is $n$-dimensional",
+    "variable_count": 1
+  },
+  "difficulty": 4,
+  "answer": [
+    {
+      "label": "(i) 存在唯一性",
+      "steps": [
+        "固定任意 $T>0$，在闭区间 $I=[-T,T]$ 上，$A(t)$ 每个分量连续，故存在 $M>0$ 使得对一切 $t\\in I$，算子范数 $\\|A(t)\\|\\le M$（$I$ 紧，连续函数在紧集上有界）",
+        "估计逐次逼近的差：$x_1(t)-x_0(t)=\\int_0^t A(s)\\xi\\,ds$，故 $\\|x_1(t)-x_0(t)\\|\\le M\\|\\xi\\|\\,|t|$。归纳假设 $\\|x_m(t)-x_{m-1}(t)\\|\\le \\|\\xi\\|\\frac{(M|t|)^m}{m!}$，则 $x_{m+1}(t)-x_m(t)=\\int_0^t A(s)(x_m(s)-x_{m-1}(s))ds$，故 $\\|x_{m+1}(t)-x_m(t)\\|\\le M\\int_0^{|t|}\\|\\xi\\|\\frac{(Ms)^m}{m!}ds=\\|\\xi\\|\\frac{(M|t|)^{m+1}}{(m+1)!}$，归纳成立，对一切 $t\\in I$",
+        "由此 $\\sum_{m=0}^\\infty\\|x_{m+1}(t)-x_m(t)\\|\\le\\|\\xi\\|\\sum_{m=0}^\\infty\\frac{(MT)^{m+1}}{(m+1)!}=\\|\\xi\\|(e^{MT}-1)<\\infty$，由Weierstrass判别法，级数 $x_0(t)+\\sum_{m=0}^\\infty(x_{m+1}(t)-x_m(t))$ 在 $I$ 上一致收敛，即 $x_m(t)$ 在 $I$ 上一致收敛于某连续函数 $x(t)$；因 $T$ 任意，$x(t)$ 在整个 $\\mathbb R$ 上有定义且连续",
+        "在积分方程 $x_m(t)=\\xi+\\int_0^t A(s)x_{m-1}(s)ds$ 中令 $m\\to\\infty$（一致收敛允许交换极限与积分），得 $x(t)=\\xi+\\int_0^t A(s)x(s)ds$；由 $A(t)x(t)$ 连续，右边关于 $t$ 可微，两边求导得 $x'(t)=A(t)x(t)$，且 $x(0)=\\xi$，即 $x$ 是$(*)$满足初值的解",
+        "唯一性：设 $y(t)$ 也是满足同一初值的解，令 $w(t)=x(t)-y(t)$，则 $w(0)=0$且 $w'(t)=A(t)w(t)$，故 $w(t)=\\int_0^t A(s)w(s)ds$，在 $[0,T]$上 $\\|w(t)\\|\\le M\\int_0^t\\|w(s)\\|ds$，由Gronwall不等式得 $\\|w(t)\\|\\le0\\cdot e^{Mt}=0$，故 $w\\equiv0$，即 $x=y$，解唯一（对$t<0$同理）"
+      ]
+    },
+    {
+      "label": "(ii) 解空间维数为n",
+      "steps": [
+        "设 $V$ 为 $(*)$ 的解全体。若 $x,y\\in V$，$c\\in\\mathbb R$，则 $(x+y)'=x'+y'=A(t)x+A(t)y=A(t)(x+y)$，$(cx)'=cx'=cA(t)x=A(t)(cx)$，故 $x+y,cx\\in V$，即 $V$ 是 $\\mathbb R$ 上的向量空间（零函数显然是解）",
+        "定义映射 $\\Phi:V\\to\\mathbb R^n$，$\\Phi(x)=x(0)$。$\\Phi$ 是线性映射（显然）",
+        "由(i)的存在唯一性定理，对任意 $\\xi\\in\\mathbb R^n$，存在唯一 $x\\in V$ 使 $x(0)=\\xi$，这说明 $\\Phi$ 是满射（存在性）且是单射（唯一性：若 $\\Phi(x)=\\Phi(y)=\\xi$，则由唯一性 $x=y$）",
+        "故 $\\Phi$ 是线性同构，$V\\cong\\mathbb R^n$，从而 $\\dim V=n$，即 $(*)$ 的全体解构成 $n$ 维向量空间"
+      ]
+    }
+  ],
+  "practice_questions": [
+    {
+      "text": "对标量方程 $x'(t)=a(t)x(t)$（$n=1$，$a(t)$连续），写出Picard迭代 $x_m(t)$ 的显式表达式，并验证其极限为 $x(t)=\\xi\\exp\\left(\\int_0^t a(s)ds\\right)$。",
+      "knowledge_points": [
+        "一维线性微分方程",
+        "Picard迭代具体计算"
+      ],
+      "question_type": "具体迭代计算",
+      "method": [
+        "逐项计算迭代",
+        "识别指数级数"
+      ],
+      "solution_steps": [
+        "计算前几项迭代",
+        "归纳出通项",
+        "求和识别为指数函数"
+      ],
+      "math_structure": {
+        "type": "scalar_linear_ode_picard_example",
+        "template": "$x'=a(t)x$, compute Picard iterates and show limit is $\\xi e^{\\int_0^t a}$",
+        "variable_count": 0
+      },
+      "difficulty": 2,
+      "estimated_minutes": 10,
+      "answer": [
+        {
+          "label": "结果",
+          "steps": [
+            "令 $\\alpha(t)=\\int_0^t a(s)ds$。$x_0=\\xi$，$x_1(t)=\\xi+\\int_0^t a(s)\\xi\\,ds=\\xi(1+\\alpha(t))$",
+            "$x_2(t)=\\xi+\\int_0^t a(s)\\xi(1+\\alpha(s))ds=\\xi\\left(1+\\alpha(t)+\\int_0^t a(s)\\alpha(s)ds\\right)=\\xi\\left(1+\\alpha(t)+\\frac{\\alpha(t)^2}{2}\\right)$（因 $\\int_0^t a(s)\\alpha(s)ds=\\int_0^t \\alpha(s)\\alpha'(s)ds=\\alpha(t)^2/2$）",
+            "归纳得 $x_m(t)=\\xi\\sum_{k=0}^m \\frac{\\alpha(t)^k}{k!}$，当 $m\\to\\infty$ 得 $x(t)=\\xi\\sum_{k=0}^\\infty\\frac{\\alpha(t)^k}{k!}=\\xi e^{\\alpha(t)}=\\xi\\exp\\left(\\int_0^t a(s)ds\\right)$，与已知解公式一致"
+          ]
+        }
+      ],
+      "id": "isct-2001-21d177050b-q07-practice-01",
+      "school": "东京科学大学",
+      "year": "2001"
+    },
+    {
+      "text": "叙述并证明Gronwall不等式的基本形式：若连续函数 $w(t)\\ge0$ 满足 $w(t)\\le C\\int_0^t w(s)ds$（$t\\ge0$，$C>0$为常数），则 $w(t)\\equiv0$。",
+      "knowledge_points": [
+        "Gronwall不等式"
+      ],
+      "question_type": "经典不等式证明",
+      "method": [
+        "构造辅助函数并求导"
+      ],
+      "solution_steps": [
+        "设$W(t)=\\int_0^tw$，得微分不等式",
+        "求解得$W(t)\\le0$",
+        "结合非负性得$W\\equiv0$从而$w\\equiv0$"
+      ],
+      "math_structure": {
+        "type": "gronwall_inequality_basic_form",
+        "template": "$w\\ge0$, $w(t)\\le C\\int_0^t w(s)ds$ implies $w\\equiv0$",
+        "variable_count": 1
+      },
+      "difficulty": 3,
+      "estimated_minutes": 10,
+      "answer": [
+        {
+          "label": "证明",
+          "steps": [
+            "令 $W(t)=\\int_0^t w(s)ds\\ge0$，则 $W'(t)=w(t)\\le CW(t)$，即 $W'(t)-CW(t)\\le0$",
+            "两边乘以 $e^{-Ct}>0$：$\\frac{d}{dt}\\left(e^{-Ct}W(t)\\right)=e^{-Ct}(W'(t)-CW(t))\\le0$，故 $e^{-Ct}W(t)$ 是非增函数",
+            "又 $W(0)=0$，故 $e^{-Ct}W(t)\\le e^{0}W(0)=0$对 $t\\ge0$成立，结合 $W(t)\\ge0$（因 $w\\ge0$）得 $W(t)=0$对一切$t\\ge0$",
+            "从而 $w(t)=W'(t)=0$，即 $w\\equiv0$"
+          ]
+        }
+      ],
+      "id": "isct-2001-21d177050b-q07-practice-02",
+      "school": "东京科学大学",
+      "year": "2001"
+    },
+    {
+      "text": "设 $A(t)$ 为 $2\\times2$ 常数矩阵 $A=\\begin{pmatrix}0&1\\\\-1&0\\end{pmatrix}$。写出方程 $x'=Ax$ 的通解，并验证解空间维数为2（通过给出一组基础解系）。",
+      "knowledge_points": [
+        "常系数线性方程组通解",
+        "基础解系",
+        "解空间维数验证"
+      ],
+      "question_type": "具体求解验证",
+      "method": [
+        "特征值法求通解",
+        "验证线性无关基础解系"
+      ],
+      "solution_steps": [
+        "求特征值特征向量",
+        "写出通解",
+        "验证两个特解线性无关构成基"
+      ],
+      "math_structure": {
+        "type": "constant_matrix_ode_basis_verification",
+        "template": "$A=\\begin{pmatrix}0&1\\\\-1&0\\end{pmatrix}$, find fundamental solution basis, verify dimension 2",
+        "variable_count": 0
+      },
+      "difficulty": 2,
+      "estimated_minutes": 10,
+      "answer": [
+        {
+          "label": "结果",
+          "steps": [
+            "特征方程 $\\det(A-\\lambda I)=\\lambda^2+1=0$，特征值 $\\lambda=\\pm i$，对应实解为三角函数形式",
+            "直接验证 $x^{(1)}(t)=(\\cos t,-\\sin t)^T$ 满足 $x'=Ax$：$(x^{(1)})'=(-\\sin t,-\\cos t)^T$，$Ax^{(1)}=(-\\sin t,-\\cos t)^T$，一致；同理 $x^{(2)}(t)=(\\sin t,\\cos t)^T$ 也是解",
+            "$x^{(1)}(0)=(1,0)^T$，$x^{(2)}(0)=(0,1)^T$线性无关（构成$\\mathbb R^2$的基），由存在唯一性定理及初值映射同构性，$\\{x^{(1)},x^{(2)}\\}$构成解空间的一组基，故解空间维数为2，通解为 $x(t)=c_1x^{(1)}(t)+c_2x^{(2)}(t)$"
+          ]
+        }
+      ],
+      "id": "isct-2001-21d177050b-q07-practice-03",
+      "school": "东京科学大学",
+      "year": "2001"
+    }
+  ],
+  "source_question": "解析系問題10",
+  "source_pdf": "东京科学大学/理工学系/数学系/东京科学大学_理工学系_数学系_2001_数学过去问.pdf",
+  "source_type": "官方过去问",
+  "subject_category": "微分方程"
+}

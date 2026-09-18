@@ -1,0 +1,222 @@
+{
+  "id": "nagoya-2011-82550a1ff6-q01",
+  "school": "名古屋大学",
+  "year": "2011",
+  "subject": "多元数理科学研究科_全专攻",
+  "text": "设 $V=\\left\\{A=\\begin{pmatrix}a&b\\\\c&d\\end{pmatrix}\\ \\middle|\\ a,b,c,d\\in\\mathbb{R},\\ a+d=0\\right\\}$，把 $V$ 关于矩阵的加法与数乘看作 $\\mathbb{R}$ 上的线性空间。回答以下问题。\n(1) 证明 $\\left\\langle \\begin{pmatrix}1&0\\\\0&-1\\end{pmatrix},\\begin{pmatrix}0&1\\\\0&0\\end{pmatrix},\\begin{pmatrix}0&0\\\\1&0\\end{pmatrix}\\right\\rangle$ 是 $V$ 的一组基。\n(2) 设 $A=\\begin{pmatrix}a&b\\\\c&-a\\end{pmatrix}\\in V$。对任意 $X\\in V$，令 $F_A(X)=AX-XA$。证明 $F_A$ 是 $V$ 到 $V$ 的线性映射，并求 $F_A$ 关于 (1) 中基的矩阵表示。\n(3) 当 $A=\\begin{pmatrix}1&3\\\\1&-1\\end{pmatrix}$ 时，求 $F_A$ 的特征值与特征向量。",
+  "knowledge_points": [
+    "迹为零矩阵空间",
+    "线性空间的基与维数",
+    "线性映射的矩阵表示",
+    "换位子（Lie括号）",
+    "特征值与特征向量",
+    "sl(2)伴随表示"
+  ],
+  "question_type": "线性代数综合题（基、线性映射矩阵表示、特征值）",
+  "method": [
+    "用坐标表出验证基",
+    "验证换位子迹为零证明像在V中",
+    "逐个基向量代入计算AX-XA得到矩阵表示",
+    "利用sl(2)的[H,E]=2E,[H,F]=-2F,[E,F]=H结构简化",
+    "求特征多项式并解特征向量"
+  ],
+  "solution_steps": [
+    "(1) 任意a+d=0的矩阵可唯一写成a·E1+b·E2+c·E3，说明生成且线性无关",
+    "(2) 验证trace(AX-XA)=0恒成立，说明F_A(X)∈V；验证可加性与齐次性",
+    "对基向量E1,E2,E3分别计算AE_i-E_iA，写成基的线性组合得到矩阵M",
+    "(3) 代入a=1,b=3,c=1得到具体3×3矩阵，求特征多项式λ(λ-4)(λ+4)=0",
+    "解线性方程组得到三个特征向量并转换回2×2矩阵形式"
+  ],
+  "math_structure": {
+    "type": "adjoint_representation_traceless_matrices",
+    "template": "V={A in M_2(R): tr(A)=0}, F_A(X)=AX-XA, find matrix representation and eigen-structure",
+    "variable_count": 3
+  },
+  "difficulty": 4,
+  "answer": [
+    {
+      "label": "(1)",
+      "steps": [
+        "设 $E_1=\\begin{pmatrix}1&0\\\\0&-1\\end{pmatrix}, E_2=\\begin{pmatrix}0&1\\\\0&0\\end{pmatrix}, E_3=\\begin{pmatrix}0&0\\\\1&0\\end{pmatrix}$。",
+        "任意 $A=\\begin{pmatrix}a&b\\\\c&d\\end{pmatrix}\\in V$ 满足 $d=-a$，故 $A=\\begin{pmatrix}a&b\\\\c&-a\\end{pmatrix}=aE_1+bE_2+cE_3$，说明 $E_1,E_2,E_3$ 生成 $V$。",
+        "若 $\\alpha E_1+\\beta E_2+\\gamma E_3=\\begin{pmatrix}\\alpha&\\beta\\\\\\gamma&-\\alpha\\end{pmatrix}=0$，则 $\\alpha=\\beta=\\gamma=0$，故三者线性无关。",
+        "因此 $\\{E_1,E_2,E_3\\}$ 是 $V$ 的一组基，$\\dim V=3$。"
+      ]
+    },
+    {
+      "label": "(2)",
+      "steps": [
+        "对任意方阵 $X,Y$ 有 $\\mathrm{tr}(XY)=\\mathrm{tr}(YX)$，故 $\\mathrm{tr}(AX-XA)=\\mathrm{tr}(AX)-\\mathrm{tr}(XA)=0$，即 $F_A(X)=AX-XA$ 恒为迹零矩阵，从而 $F_A(X)\\in V$ 对任意 $X\\in V$（实际上对任意 $X\\in M_2(\\mathbb{R})$）成立。",
+        "线性性：$F_A(X+Y)=A(X+Y)-(X+Y)A=(AX-XA)+(AY-YA)=F_A(X)+F_A(Y)$，$F_A(kX)=A(kX)-(kX)A=k(AX-XA)=kF_A(X)$，故 $F_A$ 是线性映射。",
+        "利用 $A=aE_1+bE_2+cE_3$ 及关系 $[E_1,E_2]=2E_2,\\ [E_1,E_3]=-2E_3,\\ [E_2,E_3]=E_1$，直接计算：\n$F_A(E_1)=[A,E_1]=-2bE_2+2cE_3$；\n$F_A(E_2)=[A,E_2]=-cE_1+2aE_2$；\n$F_A(E_3)=[A,E_3]=bE_1-2aE_3$。",
+        "故关于基 $(E_1,E_2,E_3)$ 的矩阵表示为\n$$M=\\begin{pmatrix}0&-c&b\\\\-2b&2a&0\\\\2c&0&-2a\\end{pmatrix}.$$"
+      ]
+    },
+    {
+      "label": "(3)",
+      "steps": [
+        "代入 $a=1,b=3,c=1$，得 $M=\\begin{pmatrix}0&-1&3\\\\-6&2&0\\\\2&0&-2\\end{pmatrix}$。",
+        "计算特征多项式：$\\mathrm{tr}M=0$，各主子式之和为 $(-4)+(-6)+(-6)=-16$，$\\det M=0$，故特征多项式为 $\\lambda^3-16\\lambda=\\lambda(\\lambda-4)(\\lambda+4)=0$，特征值为 $0,4,-4$（与 $A$ 的特征值 $\\pm2$ 满足 $\\mathrm{ad}_A$ 特征值为 $0,\\pm2\\lambda$ 的一般规律吻合）。",
+        "对 $\\lambda=0$：解 $Mv=0$ 得 $(v_1,v_2,v_3)=(1,3,1)$，对应矩阵 $E_1+3E_2+E_3=\\begin{pmatrix}1&3\\\\1&-1\\end{pmatrix}=A$（自身，符合 $[A,A]=0$）。",
+        "对 $\\lambda=4$：解 $(M-4I)v=0$ 得 $(v_1,v_2,v_3)=(3,-9,1)$，对应矩阵 $\\begin{pmatrix}3&-9\\\\1&-3\\end{pmatrix}$；经验证 $AX-XA=4X$ 成立。",
+        "对 $\\lambda=-4$：解 $(M+4I)v=0$ 得 $(v_1,v_2,v_3)=(-1,-1,1)$，对应矩阵 $\\begin{pmatrix}-1&-1\\\\1&1\\end{pmatrix}$；经验证 $AX-XA=-4X$ 成立。"
+      ]
+    }
+  ],
+  "practice_questions": [
+    {
+      "text": "证明：对任意实数域上 $n\\times n$ 矩阵 $X,Y$，恒有 $\\mathrm{tr}(XY-YX)=0$。并由此说明对任意 $2\\times2$ 矩阵 $A$（不要求迹为零），映射 $X\\mapsto AX-XA$ 把迹零矩阵映到迹零矩阵。",
+      "knowledge_points": [
+        "矩阵迹的性质",
+        "换位子"
+      ],
+      "question_type": "证明题",
+      "method": [
+        "利用tr(XY)=tr(YX)的基本性质"
+      ],
+      "solution_steps": [
+        "展开tr(XY)与tr(YX)按定义比较相等",
+        "得到tr(XY-YX)=0",
+        "对迹零X直接说明AX-XA仍迹零"
+      ],
+      "math_structure": {
+        "type": "trace_of_commutator",
+        "template": "prove tr(XY-YX)=0 for n×n real matrices",
+        "variable_count": 1
+      },
+      "difficulty": 2,
+      "estimated_minutes": 8,
+      "answer": [
+        {
+          "label": "结论",
+          "steps": [
+            "设 $X=(x_{ij}), Y=(y_{ij})$，则 $\\mathrm{tr}(XY)=\\sum_i\\sum_k x_{ik}y_{ki}$，$\\mathrm{tr}(YX)=\\sum_i\\sum_k y_{ik}x_{ki}$，交换求和指标名可见二者相等。",
+            "故 $\\mathrm{tr}(XY-YX)=\\mathrm{tr}(XY)-\\mathrm{tr}(YX)=0$，对任意方阵 $X,Y$ 成立。",
+            "对 $2\\times2$ 情形，若 $\\mathrm{tr}(X)=0$，则 $AX-XA$ 的迹也为 $0$（因为其迹恒为0，与A是否迹零无关），故 $AX-XA$ 仍属于迹零矩阵空间 $V$，这正是 $F_A(X)\\in V$ 的关键引理。"
+          ]
+        }
+      ],
+      "id": "nagoya-2011-82550a1ff6-q01-practice-01",
+      "school": "名古屋大学",
+      "year": "2011"
+    },
+    {
+      "text": "设 $H=\\begin{pmatrix}1&0\\\\0&-1\\end{pmatrix}\\in V$。求线性映射 $F_H(X)=HX-XH$ 关于基 $E_1=H,E_2=\\begin{pmatrix}0&1\\\\0&0\\end{pmatrix},E_3=\\begin{pmatrix}0&0\\\\1&0\\end{pmatrix}$ 的矩阵表示，并求其特征值。",
+      "knowledge_points": [
+        "线性映射的矩阵表示",
+        "特殊情形的伴随作用",
+        "特征值计算"
+      ],
+      "question_type": "计算题",
+      "method": [
+        "直接计算HE_i-E_iH",
+        "对角化观察"
+      ],
+      "solution_steps": [
+        "计算F_H(E1),F_H(E2),F_H(E3)",
+        "写出矩阵表示",
+        "读出对角矩阵的特征值"
+      ],
+      "math_structure": {
+        "type": "adjoint_representation_special_case",
+        "template": "F_H(X)=HX-XH for H=diag(1,-1), find matrix and eigenvalues",
+        "variable_count": 0
+      },
+      "difficulty": 2,
+      "estimated_minutes": 10,
+      "answer": [
+        {
+          "label": "矩阵表示与特征值",
+          "steps": [
+            "此时 $a=1,b=0,c=0$，代入通用公式 $M=\\begin{pmatrix}0&-c&b\\\\-2b&2a&0\\\\2c&0&-2a\\end{pmatrix}$ 得 $M=\\begin{pmatrix}0&0&0\\\\0&2&0\\\\0&0&-2\\end{pmatrix}$。",
+            "这是对角矩阵，特征值直接读出为 $0,2,-2$，对应特征向量分别为 $E_1,E_2,E_3$（即 $H,\\begin{pmatrix}0&1\\\\0&0\\end{pmatrix},\\begin{pmatrix}0&0\\\\1&0\\end{pmatrix}$）。",
+            "验证：$HE_2-E_2H=\\begin{pmatrix}0&1\\\\0&0\\end{pmatrix}\\cdot(-1)\\cdot... $直接计算 $HE_2=\\begin{pmatrix}0&1\\\\0&0\\end{pmatrix}$, $E_2H=\\begin{pmatrix}0&-1\\\\0&0\\end{pmatrix}$，差为 $\\begin{pmatrix}0&2\\\\0&0\\end{pmatrix}=2E_2$，特征值2成立。"
+          ]
+        }
+      ],
+      "id": "nagoya-2011-82550a1ff6-q01-practice-02",
+      "school": "名古屋大学",
+      "year": "2011"
+    },
+    {
+      "text": "设 $A=\\begin{pmatrix}0&2\\\\5&0\\end{pmatrix}\\in V$（即 $a=0,b=2,c=5$）。不直接列出 $F_A$ 的$3\\times3$矩阵，利用一般规律说明 $F_A$ 的三个特征值，并求出对应于非零特征值的特征向量所对应的 $2\\times2$ 矩阵。",
+      "knowledge_points": [
+        "sl(2)伴随表示的特征值规律",
+        "特征向量计算"
+      ],
+      "method": [
+        "利用A的特征值λ, -λ得到ad_A特征值0,2λ,-2λ",
+        "用通用公式M求特征向量"
+      ],
+      "question_type": "计算题",
+      "solution_steps": [
+        "求A的特征值：解det(A-xI)=0",
+        "由一般结论写出F_A的特征值",
+        "用矩阵M解特征方程求特征向量"
+      ],
+      "math_structure": {
+        "type": "adjoint_eigenvalue_general_rule",
+        "template": "for A traceless 2x2 with eigenvalues ±λ, F_A has eigenvalues 0, 2λ, -2λ",
+        "variable_count": 2
+      },
+      "difficulty": 3,
+      "estimated_minutes": 12,
+      "answer": [
+        {
+          "label": "特征值与特征向量",
+          "steps": [
+            "$A$ 的特征多项式为 $x^2-\\mathrm{tr}(A)x+\\det(A)=x^2+\\det(A)$，$\\det(A)=0\\cdot0-2\\cdot5=-10$，故 $x^2=10$，$A$ 的特征值为 $\\lambda=\\pm\\sqrt{10}$。",
+            "由一般规律，$F_A$ 的特征值为 $0, 2\\sqrt{10}, -2\\sqrt{10}$。",
+            "代入通用矩阵 $M=\\begin{pmatrix}0&-c&b\\\\-2b&2a&0\\\\2c&0&-2a\\end{pmatrix}=\\begin{pmatrix}0&-5&2\\\\-4&0&0\\\\10&0&0\\end{pmatrix}$，解 $(M-2\\sqrt{10}I)v=0$ 可得特征向量（用行化简）$(v_1,v_2,v_3)$ 满足 $-2\\sqrt{10}v_1-5v_2+2v_3=0,\\ -4v_1-2\\sqrt{10}v_2=0,\\ 10v_1-2\\sqrt{10}v_3=0$，取 $v_1=\\sqrt{10}$ 得 $v_2=-2\\sqrt{10}\\cdot\\sqrt{10}/(2\\sqrt{10})=$ 化简后得到 $(v_1,v_2,v_3)=(\\sqrt{10},-2, 5)$（可验证满足方程），对应矩阵 $\\sqrt{10}E_1-2E_2+5E_3=\\begin{pmatrix}\\sqrt{10}&-2\\\\5&-\\sqrt{10}\\end{pmatrix}$。",
+            "同理 $\\lambda=-2\\sqrt{10}$ 对应特征向量可取 $(-\\sqrt{10},-2,5)$，对应矩阵 $\\begin{pmatrix}-\\sqrt{10}&-2\\\\5&\\sqrt{10}\\end{pmatrix}$，特征值0对应A自身。"
+          ]
+        }
+      ],
+      "id": "nagoya-2011-82550a1ff6-q01-practice-03",
+      "school": "名古屋大学",
+      "year": "2011"
+    },
+    {
+      "text": "在基 $\\{E_1,E_2,E_3\\}$（同原题）下，验证矩阵 $M=\\begin{pmatrix}0&-c&b\\\\-2b&2a&0\\\\2c&0&-2a\\end{pmatrix}$ 的迹恒为零，并说明这与“$F_A$的特征值之和为0”的关系。取 $a=2,b=1,c=3$ 计算此时 $F_A$ 的特征多项式。",
+      "knowledge_points": [
+        "矩阵迹与特征值和的关系",
+        "特征多项式计算"
+      ],
+      "question_type": "证明+计算",
+      "method": [
+        "直接计算矩阵迹",
+        "利用tr(M)=sum of eigenvalues"
+      ],
+      "solution_steps": [
+        "计算tr(M)=0+2a-2a=0",
+        "代入具体a,b,c求特征多项式",
+        "求解三次方程得特征值"
+      ],
+      "math_structure": {
+        "type": "trace_eigenvalue_relation",
+        "template": "verify tr(M)=0 for adjoint matrix and compute characteristic polynomial for given a,b,c",
+        "variable_count": 3
+      },
+      "difficulty": 3,
+      "estimated_minutes": 10,
+      "answer": [
+        {
+          "label": "验证与计算",
+          "steps": [
+            "通用矩阵的迹为 $0+2a+(-2a)=0$，恒成立，说明三个特征值之和恒为0，这与一般结论“特征值为$0,2\\lambda,-2\\lambda$”一致（和为0）。",
+            "代入 $a=2,b=1,c=3$ 得 $M=\\begin{pmatrix}0&-3&1\\\\-2&4&0\\\\6&0&-4\\end{pmatrix}$。",
+            "计算 $\\det A=a\\cdot(-a)-bc=-4-3=-7$，故A特征值为 $\\pm\\sqrt7$，从而$F_A$特征值应为 $0,2\\sqrt7,-2\\sqrt7$，特征多项式为 $\\lambda(\\lambda^2-28)=\\lambda^3-28\\lambda$。",
+            "可直接验证：$\\mathrm{tr}M=0$，主子式之和应为$-28$，$\\det M=0$，与上式吻合。"
+          ]
+        }
+      ],
+      "id": "nagoya-2011-82550a1ff6-q01-practice-04",
+      "school": "名古屋大学",
+      "year": "2011"
+    }
+  ],
+  "source_question": "問2",
+  "source_pdf": "名古屋大学/多元数理科学研究科/全专攻/名古屋大学_多元数理科学研究科_2011_第2次_数学过去问_上午.pdf",
+  "source_type": "官方过去问",
+  "subject_category": "线性代数"
+}

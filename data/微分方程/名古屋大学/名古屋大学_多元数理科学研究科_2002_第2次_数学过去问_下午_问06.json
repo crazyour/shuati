@@ -1,0 +1,207 @@
+{
+  "id": "nagoya-2002-0dcbdbb1cf-q06",
+  "school": "名古屋大学",
+  "year": "2002",
+  "subject": "多元数理科学研究科_全专攻",
+  "text": "设 $P(x)=(x-\\alpha_1)(x-\\alpha_2)(x-\\alpha_3)$（$\\alpha_1<\\alpha_2<\\alpha_3$），考虑微分方程 $\\dfrac{d}{dt}x(t)=P(x(t))$ 的解 $x(t)$，满足 $x(0)=x_0$，其中 $\\alpha_1<x_0<\\alpha_2$ 或 $\\alpha_2<x_0<\\alpha_3$。\n(1) 证明：在任意有限时刻 $t_0$，$\\lim_{t\\to t_0}x(t)$ 都不可能等于 $\\alpha_1,\\alpha_2,\\alpha_3$ 中的任何一个。\n(2) 证明解 $x(t)$ 在整个 $\\mathbb{R}$ 上有定义。\n(3) 求极限值 $\\lim_{t\\to-\\infty}x(t)$ 与 $\\lim_{t\\to\\infty}x(t)$。",
+  "knowledge_points": [
+    "自治常微分方程",
+    "平衡点与解的唯一性",
+    "相图分析",
+    "单调有界原理",
+    "解的存在区间延拓"
+  ],
+  "question_type": "一维自治ODE定性分析",
+  "method": [
+    "利用解的唯一性说明轨道不能穿越或到达平衡点",
+    "利用有界单调性延拓解到整个实轴",
+    "分析P(x)在区间内的符号确定单调性从而求极限"
+  ],
+  "solution_steps": [
+    "利用常数解α_i与唯一性定理，说明非常数解不能在有限时间到达α_i",
+    "结合(1)说明解被夹在相邻平衡点之间，从而有界，故可延拓到全R",
+    "分析P(x)在(α1,α2)和(α2,α3)上的符号确定x(t)的单调性，结合单调有界得极限"
+  ],
+  "math_structure": {
+    "type": "autonomous_ode_cubic_equilibria",
+    "template": "dx/dt=P(x)=(x-a1)(x-a2)(x-a3), a1<a2<a3, x0 in (a1,a2) or (a2,a3)",
+    "variable_count": 3
+  },
+  "difficulty": 4,
+  "answer": [
+    {
+      "label": "(1)",
+      "steps": [
+        "注意 $x\\equiv\\alpha_i$（$i=1,2,3$）是方程 $\\dot x=P(x)$ 的解（常数解），因为 $P(\\alpha_i)=0$。",
+        "$P(x)$ 是多项式，是光滑（局部Lipschitz）函数，故对该ODE的初值问题解具有唯一性（Picard-Lindelöf定理）。",
+        "若非常数解 $x(t)$（$x_0\\ne\\alpha_i$）满足 $\\lim_{t\\to t_0}x(t)=\\alpha_i$（$t_0$有限），则可将解延拓定义 $x(t_0)=\\alpha_i$，此解与常数解 $x\\equiv\\alpha_i$ 在 $t=t_0$ 处取相同值，但按唯一性两者应重合，矛盾于 $x(t)\\ne\\alpha_i$ 对所有 $t$（因 $x_0\\ne\\alpha_i$ 且解连续不能提前等于$\\alpha_i$，否则同样违反唯一性倒推至t=0）。",
+        "故解不可能在有限时刻趋于任何 $\\alpha_i$。"
+      ]
+    },
+    {
+      "label": "(2)",
+      "steps": [
+        "由(1)及解的连续性（介值定理思想），解 $x(t)$ 在其存在区间内不能穿越或到达平衡值 $\\alpha_1,\\alpha_2$（或$\\alpha_2,\\alpha_3$），故始终保持在开区间 $(\\alpha_1,\\alpha_2)$（或$(\\alpha_2,\\alpha_3)$）内。",
+        "因此 $x(t)$ 在其最大存在区间上有界（被 $\\alpha_1,\\alpha_2$ 或 $\\alpha_2,\\alpha_3$ 夹住）。",
+        "由ODE解的延拓定理，若解在有限时间内不趋于无穷（即保持有界），则解可以延拓到该有限时刻之外；由于 $x(t)$ 始终有界，解不会在任何有限时刻发生爆破，故解可以延拓到整个 $\\mathbb{R}$。"
+      ]
+    },
+    {
+      "label": "(3)",
+      "steps": [
+        "情形A：$\\alpha_1<x_0<\\alpha_2$。对 $x\\in(\\alpha_1,\\alpha_2)$：$(x-\\alpha_1)>0,(x-\\alpha_2)<0,(x-\\alpha_3)<0$（因 $x<\\alpha_2<\\alpha_3$），乘积为正，故 $P(x)>0$，即 $\\dot x>0$，$x(t)$ 严格单调递增。",
+        "$x(t)$ 单调递增且被 $\\alpha_2$ 上界约束、被 $\\alpha_1$ 下界约束（由(2)），故 $t\\to\\infty$ 时 $x(t)\\to\\alpha_2$（单调有界收敛，且由(1)不能等于$\\alpha_2$的有限时刻到达，只能是极限），$t\\to-\\infty$ 时 $x(t)\\to\\alpha_1$。",
+        "情形B：$\\alpha_2<x_0<\\alpha_3$。对 $x\\in(\\alpha_2,\\alpha_3)$：$(x-\\alpha_1)>0,(x-\\alpha_2)>0,(x-\\alpha_3)<0$，乘积为负，故 $P(x)<0$，$x(t)$ 严格单调递减。",
+        "$x(t)$ 单调递减，$t\\to\\infty$ 时收敛于下界 $\\alpha_2$；$t\\to-\\infty$ 时收敛于上界 $\\alpha_3$。",
+        "综上：当 $\\alpha_1<x_0<\\alpha_2$ 时，$\\lim_{t\\to-\\infty}x(t)=\\alpha_1,\\ \\lim_{t\\to\\infty}x(t)=\\alpha_2$；当 $\\alpha_2<x_0<\\alpha_3$ 时，$\\lim_{t\\to-\\infty}x(t)=\\alpha_3,\\ \\lim_{t\\to\\infty}x(t)=\\alpha_2$。"
+      ]
+    }
+  ],
+  "practice_questions": [
+    {
+      "text": "考虑 $\\dot x=(x-1)(x-2)$，讨论初值 $x(0)=1.5$ 时解的单调性以及 $t\\to\\pm\\infty$ 的极限。",
+      "knowledge_points": [
+        "一维自治ODE",
+        "平衡点稳定性"
+      ],
+      "question_type": "基础相图分析",
+      "method": [
+        "分析P(x)符号确定单调性"
+      ],
+      "solution_steps": [
+        "判断区间内P(x)符号",
+        "确定单调性",
+        "求极限"
+      ],
+      "math_structure": {
+        "type": "autonomous_ode_quadratic_equilibria",
+        "template": "dx/dt=(x-1)(x-2), x0=1.5",
+        "variable_count": 0
+      },
+      "difficulty": 2,
+      "estimated_minutes": 6,
+      "answer": [
+        {
+          "label": "结果",
+          "steps": [
+            "在 $(1,2)$ 内，$(x-1)>0,(x-2)<0$，乘积为负，故 $\\dot x<0$，$x(t)$ 单调递减。",
+            "被下界1和上界2夹住，故 $t\\to\\infty$ 时 $x\\to1$，$t\\to-\\infty$ 时 $x\\to2$。"
+          ]
+        }
+      ],
+      "id": "nagoya-2002-0dcbdbb1cf-q06-practice-01",
+      "school": "名古屋大学",
+      "year": "2002"
+    },
+    {
+      "text": "证明：若 $g(x)$ 是局部Lipschitz函数，$g(\\alpha)=0$，则方程 $\\dot x=g(x)$ 满足 $x(0)=x_0\\ne\\alpha$ 的解不可能在任何有限时刻 $t_0$ 满足 $x(t_0)=\\alpha$。",
+      "knowledge_points": [
+        "常微分方程解的唯一性",
+        "平衡点性质"
+      ],
+      "question_type": "一般性理论证明",
+      "method": [
+        "反证法结合唯一性定理"
+      ],
+      "solution_steps": [
+        "假设解在某有限时刻到达平衡点",
+        "利用唯一性得出与常数解矛盾"
+      ],
+      "math_structure": {
+        "type": "ode_uniqueness_equilibrium_unreachable",
+        "template": "dx/dt=g(x), g(alpha)=0, x(0)=x0!=alpha",
+        "variable_count": 1
+      },
+      "difficulty": 3,
+      "estimated_minutes": 7,
+      "answer": [
+        {
+          "label": "证明",
+          "steps": [
+            "假设存在有限 $t_0$ 使 $x(t_0)=\\alpha$。",
+            "常数函数 $y(t)\\equiv\\alpha$ 也是该ODE满足 $y(t_0)=\\alpha$ 的解。",
+            "由 $g$ 局部Lipschitz，初值问题解唯一，故 $x(t)\\equiv y(t)=\\alpha$ 对所有 $t$（把 $t_0$ 视为初始时刻反向延拓），这与 $x(0)=x_0\\ne\\alpha$ 矛盾。",
+            "故解不可能在任何有限时刻到达 $\\alpha$。"
+          ]
+        }
+      ],
+      "id": "nagoya-2002-0dcbdbb1cf-q06-practice-02",
+      "school": "名古屋大学",
+      "year": "2002"
+    },
+    {
+      "text": "考虑 $\\dot x=(x+1)x(x-1)$，讨论初值 $x_0\\in(-1,0)$ 时解的单调性及 $t\\to\\pm\\infty$ 的极限。",
+      "knowledge_points": [
+        "三次多项式相图分析",
+        "平衡点稳定性判别"
+      ],
+      "question_type": "三平衡点系统分析",
+      "method": [
+        "确定P(x)在给定区间的符号"
+      ],
+      "solution_steps": [
+        "列出平衡点-1,0,1",
+        "判断区间(-1,0)内符号",
+        "确定单调性与极限"
+      ],
+      "math_structure": {
+        "type": "autonomous_ode_cubic_equilibria_example",
+        "template": "dx/dt=(x+1)x(x-1), x0 in (-1,0)",
+        "variable_count": 0
+      },
+      "difficulty": 3,
+      "estimated_minutes": 8,
+      "answer": [
+        {
+          "label": "结果",
+          "steps": [
+            "平衡点为 $-1,0,1$。在 $(-1,0)$ 内：$(x+1)>0, x<0, (x-1)<0$，乘积为 $(+)(-)(-)$ 为正，故 $\\dot x>0$，解单调递增。",
+            "解被夹在$(-1,0)$之间（由类似(1)(2)的论证不能到达边界），故 $t\\to\\infty$ 时 $x\\to0$，$t\\to-\\infty$ 时 $x\\to-1$。"
+          ]
+        }
+      ],
+      "id": "nagoya-2002-0dcbdbb1cf-q06-practice-03",
+      "school": "名古屋大学",
+      "year": "2002"
+    },
+    {
+      "text": "对原题结论进行总结：说明为何 $\\alpha_2$ 无论从哪个相邻区间出发都是 $t\\to\\infty$ 的极限，而 $\\alpha_1,\\alpha_3$ 只能作为 $t\\to-\\infty$ 的极限，这反映了平衡点怎样的稳定性质？",
+      "knowledge_points": [
+        "平衡点稳定性分类",
+        "相图整体行为总结"
+      ],
+      "question_type": "定性理论总结",
+      "method": [
+        "结合P(x)符号在三个区间的变化分析稳定性"
+      ],
+      "solution_steps": [
+        "分析P(x)在(α1,α2)和(α2,α3)符号得出流向α2",
+        "得出α2是（局部）稳定平衡点，α1,α3是不稳定平衡点"
+      ],
+      "math_structure": {
+        "type": "equilibrium_stability_summary",
+        "template": "P(x)=(x-a1)(x-a2)(x-a3), stability of a1,a2,a3",
+        "variable_count": 3
+      },
+      "difficulty": 3,
+      "estimated_minutes": 6,
+      "answer": [
+        {
+          "label": "结论",
+          "steps": [
+            "在 $(\\alpha_1,\\alpha_2)$ 内 $P(x)>0$（解向右即向 $\\alpha_2$ 移动），在 $(\\alpha_2,\\alpha_3)$ 内 $P(x)<0$（解向左即也向 $\\alpha_2$ 移动），说明从两侧解均被 $\\alpha_2$ 吸引，故 $\\alpha_2$ 是（局部）渐近稳定平衡点。",
+            "而 $\\alpha_1$（作为 $(\\alpha_1,\\alpha_2)$ 区间内解在 $t\\to-\\infty$ 时的极限）和 $\\alpha_3$（$(\\alpha_2,\\alpha_3)$ 区间内解在 $t\\to-\\infty$ 时的极限）都是解“逃离”的方向，故它们是不稳定平衡点。",
+            "这与三次多项式 $P(x)$ 在单根处的符号变化规律一致：符号由负变正（或正变负）决定局部稳定/不稳定类型，中间根通常为稳定结点，两端根为不稳定结点（一维情形下）。"
+          ]
+        }
+      ],
+      "id": "nagoya-2002-0dcbdbb1cf-q06-practice-04",
+      "school": "名古屋大学",
+      "year": "2002"
+    }
+  ],
+  "source_question": "問10",
+  "source_pdf": "名古屋大学/多元数理科学研究科/全专攻/名古屋大学_多元数理科学研究科_2002_第2次_数学过去问_下午.pdf",
+  "source_type": "官方过去问",
+  "subject_category": "微分方程"
+}

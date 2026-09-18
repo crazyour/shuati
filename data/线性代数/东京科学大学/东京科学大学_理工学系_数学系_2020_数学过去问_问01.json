@@ -1,0 +1,253 @@
+{
+  "id": "isct-2020-91ab071611-q01",
+  "school": "东京科学大学",
+  "year": "2020",
+  "subject": "理工学系_数学系",
+  "text": "设 $V$ 是由关于 $x$ 的函数 $e^x,\\ xe^x,\\ e^{2x}$ 在 $\\mathbb{R}$ 上生成的向量空间，即\n$$V=\\{ae^x+bxe^x+ce^{2x}\\mid a,b,c\\in\\mathbb{R}\\}.$$\n又设 $L(V)$ 表示由 $V$ 到 $V$ 的全体线性映射，在映射的加法与数乘之下构成的 $\\mathbb{R}$ 上向量空间。对每个正整数 $n$，定义 $L(V)$ 中的元素\n$$D_n(f)(x)=\\frac{d^n}{dx^n}f(x)\\quad (f=f(x)\\in V),$$\n并用 $D_0$ 表示恒等映射。\n(1) 证明 $\\{D_0,D_1,D_2\\}$ 在 $L(V)$ 中线性独立。\n(2) 求由 $\\{D_n\\mid n\\ge 0\\}$ 生成的 $L(V)$ 的子空间的维数。\n(3) 对每个正整数 $n$，求 $V$ 中方程\n$$(D_0f)(x)+(D_nf)(x)=e^x+xe^x+e^{2x}$$\n的解。",
+  "knowledge_points": [
+    "向量空间维数",
+    "线性映射空间",
+    "线性独立性判定",
+    "微分算子的矩阵表示",
+    "线性方程组求解"
+  ],
+  "question_type": "线性代数综合题（算子空间与方程求解）",
+  "method": [
+    "取基表示为矩阵",
+    "利用矩阵线性方程判断独立性",
+    "比较系数求维数",
+    "待定系数法解线性方程"
+  ],
+  "solution_steps": [
+    "取 $V$ 的基 $\\{e^x, xe^x, e^{2x}\\}$，把每个 $D_n$ 表示为 $3\\times3$ 矩阵",
+    "对 (1) 建立齐次方程 $aD_0+bD_1+cD_2=0$，比较矩阵各分量求出 $a=b=c=0$",
+    "对 (2) 注意到所有 $D_n$ 都具有相同形式 $\\begin{pmatrix}1&n&0\\\\0&1&0\\\\0&0&2^n\\end{pmatrix}$（在选定基下的相对形式），说明它们都落在由 $D_0,D_1,D_2$ 张成的三维空间中，从而确定维数",
+    "对 (3) 设 $f=ae^x+bxe^x+ce^{2x}$，计算 $D_0f+D_nf$ 并比较系数得到关于 $a,b,c$ 的线性方程组，解出唯一解"
+  ],
+  "math_structure": {
+    "type": "differential_operator_linear_algebra",
+    "template": "V = span{e^x, xe^x, e^{2x}}; D_n(f)=f^{(n)}; solve (D_0+D_n)f = RHS",
+    "variable_count": 3
+  },
+  "difficulty": 4,
+  "answer": [
+    {
+      "label": "(1)",
+      "steps": [
+        "取基 $\\{e^x,xe^x,e^{2x}\\}$。计算：$D_0(e^x)=e^x,\\ D_0(xe^x)=xe^x,\\ D_0(e^{2x})=e^{2x}$，故 $D_0$ 对应单位矩阵 $I$。",
+        "计算 $D_1$：$D_1(e^x)=e^x$；$D_1(xe^x)=e^x+xe^x$；$D_1(e^{2x})=2e^{2x}$，故 $D_1$ 对应矩阵 $\\begin{pmatrix}1&1&0\\\\0&1&0\\\\0&0&2\\end{pmatrix}$。",
+        "计算 $D_2$：$D_2(e^x)=e^x$；$D_2(xe^x)=2e^x+xe^x$；$D_2(e^{2x})=4e^{2x}$，故 $D_2$ 对应矩阵 $\\begin{pmatrix}1&2&0\\\\0&1&0\\\\0&0&4\\end{pmatrix}$。",
+        "设 $aD_0+bD_1+cD_2=0$。矩阵求和后 $(1,1)$ 与 $(2,2)$ 位置给出 $a+b+c=0$；$(1,2)$ 位置给出 $b+2c=0$；$(3,3)$ 位置给出 $a+2b+4c=0$。",
+        "由 $a+b+c=0$ 得 $a=-(b+c)$，代入 $a+2b+4c=0$ 得 $b+3c=0$；结合 $b+2c=0$ 相减得 $c=0$，从而 $b=0$，进而 $a=0$。因此 $\\{D_0,D_1,D_2\\}$ 线性独立。"
+      ]
+    },
+    {
+      "label": "(2)",
+      "steps": [
+        "对任意正整数 $n$，同理计算得 $D_n(e^x)=e^x$，$D_n(xe^x)=ne^x+xe^x$（对 $xe^x$ 做 $n$ 次求导，用归纳法验证：设 $\\frac{d^k}{dx^k}(xe^x)=ke^x+xe^x$，则求导一次得 $ke^x+(e^x+xe^x)=(k+1)e^x+xe^x$，归纳成立），$D_n(e^{2x})=2^ne^{2x}$。",
+        "故在同一基下 $D_n$ 对应矩阵 $\\begin{pmatrix}1&n&0\\\\0&1&0\\\\0&0&2^n\\end{pmatrix}$，此形式的矩阵全体构成一个至多 $3$ 维的子空间（参数为对角元 $x$、$(1,2)$ 元 $y$、$(3,3)$ 元 $z$）。",
+        "由 (1) 知 $D_0,D_1,D_2$ 三者线性独立，且它们都属于此 $3$ 维空间，故它们张成整个该 $3$ 维空间；又任何 $D_n$（$n\\ge3$）也落在此空间内（验证：设 $aD_0+bD_1+cD_2=D_n$，则 $a+b+c=1,\\ b+2c=n,\\ a+2b+4c=2^n$，此线性系统对每个 $n$ 都有解，例如 $n=3$ 时解得 $a=2,b=-5,c=4$，代入验证 $2\\cdot1-5\\cdot1+4\\cdot1=1$✓，$-5+8=3$✓，$2-10+16=8=2^3$✓）。",
+        "因此 $\\{D_n\\mid n\\ge0\\}$ 生成的子空间恰好等于由 $D_0,D_1,D_2$ 生成的三维空间，维数为 $3$。"
+      ]
+    },
+    {
+      "label": "(3)",
+      "steps": [
+        "设 $f=ae^x+bxe^x+ce^{2x}\\in V$。则 $D_0f=f=ae^x+bxe^x+ce^{2x}$；$D_nf=a e^x+b(ne^x+xe^x)+c\\cdot2^ne^{2x}=(a+bn)e^x+bxe^x+c\\cdot2^ne^{2x}$。",
+        "求和：$(D_0f+D_nf)=(2a+bn)e^x+2bxe^x+c(1+2^n)e^{2x}$。与右边 $e^x+xe^x+e^{2x}$ 比较系数，得方程组：$2a+bn=1,\\ 2b=1,\\ c(1+2^n)=1$。",
+        "由第二式 $b=\\dfrac12$；由第三式 $c=\\dfrac{1}{1+2^n}$；代入第一式 $2a+\\dfrac{n}{2}=1\\Rightarrow a=\\dfrac{2-n}{4}$。",
+        "验算 $n=1$：$a=\\dfrac14,b=\\dfrac12,c=\\dfrac13$；代入 $2a+bn=2\\cdot\\frac14+\\frac12\\cdot1=\\frac12+\\frac12=1$✓，$c(1+2)=\\frac13\\cdot3=1$✓，成立。",
+        "故对每个正整数 $n$，唯一解为 $f(x)=\\dfrac{2-n}{4}e^x+\\dfrac12xe^x+\\dfrac{1}{1+2^n}e^{2x}$。"
+      ]
+    }
+  ],
+  "practice_questions": [
+    {
+      "text": "设 $W=\\mathrm{span}_{\\mathbb R}\\{e^x,e^{2x}\\}$，定义 $D_n(f)=f^{(n)}$（$n\\ge0$，$D_0$为恒等映射）。证明 $\\{D_0,D_1\\}$ 在 $L(W)$ 中线性独立。",
+      "knowledge_points": [
+        "线性独立性",
+        "微分算子矩阵表示"
+      ],
+      "question_type": "线性独立性证明",
+      "method": [
+        "取基写矩阵",
+        "解齐次方程"
+      ],
+      "solution_steps": [
+        "取基 $\\{e^x,e^{2x}\\}$，写出 $D_0,D_1$ 的矩阵",
+        "设线性组合为零，比较系数求解"
+      ],
+      "math_structure": {
+        "type": "differential_operator_independence",
+        "template": "W = span{e^x, e^{2x}}; show {D_0, D_1} independent",
+        "variable_count": 2
+      },
+      "difficulty": 1,
+      "estimated_minutes": 5,
+      "answer": [
+        {
+          "label": "证明",
+          "steps": [
+            "在基 $\\{e^x,e^{2x}\\}$ 下，$D_0(e^x)=e^x,D_0(e^{2x})=e^{2x}$，故 $D_0=\\begin{pmatrix}1&0\\\\0&1\\end{pmatrix}$；$D_1(e^x)=e^x,D_1(e^{2x})=2e^{2x}$，故 $D_1=\\begin{pmatrix}1&0\\\\0&2\\end{pmatrix}$。",
+            "设 $aD_0+bD_1=0$，得 $a+b=0$ 及 $a+2b=0$，两式相减得 $b=0$，代入得 $a=0$。",
+            "故 $\\{D_0,D_1\\}$ 线性独立。"
+          ]
+        }
+      ],
+      "id": "isct-2020-91ab071611-q01-practice-01",
+      "school": "东京科学大学",
+      "year": "2020"
+    },
+    {
+      "text": "沿用上题的 $W=\\mathrm{span}\\{e^x,e^{2x}\\}$ 与 $D_n$，求由 $\\{D_n\\mid n\\ge0\\}$ 生成的 $L(W)$ 子空间的维数。",
+      "knowledge_points": [
+        "子空间维数",
+        "算子的对角矩阵表示"
+      ],
+      "question_type": "子空间维数计算",
+      "method": [
+        "矩阵形式归纳",
+        "用两个基本算子表出一般算子"
+      ],
+      "solution_steps": [
+        "写出一般 $D_n$ 的矩阵形式",
+        "证明所有 $D_n$ 都可由 $D_0,D_1$ 线性表出"
+      ],
+      "math_structure": {
+        "type": "differential_operator_span_dimension",
+        "template": "dim span{D_n : n>=0} on W=span{e^x,e^{2x}}",
+        "variable_count": 2
+      },
+      "difficulty": 2,
+      "estimated_minutes": 8,
+      "answer": [
+        {
+          "label": "求维数",
+          "steps": [
+            "由归纳法，$D_n(e^x)=e^x,\\ D_n(e^{2x})=2^ne^{2x}$，故 $D_n=\\begin{pmatrix}1&0\\\\0&2^n\\end{pmatrix}$。",
+            "设 $aD_0+bD_1=D_n$，即 $a+b=1,\\ a+2b=2^n$，解得 $b=2^n-1,\\ a=2-2^n$，对任意 $n$ 都有解，故所有 $D_n$ 都在 $D_0,D_1$ 张成的空间内。",
+            "结合上一题 $D_0,D_1$ 线性独立，故生成的子空间维数为 $2$。"
+          ]
+        }
+      ],
+      "id": "isct-2020-91ab071611-q01-practice-02",
+      "school": "东京科学大学",
+      "year": "2020"
+    },
+    {
+      "text": "在 $W=\\mathrm{span}\\{e^x,e^{2x}\\}$ 中求解方程 $(D_0f)(x)+(D_2f)(x)=e^x+3e^{2x}$。",
+      "knowledge_points": [
+        "待定系数法",
+        "线性方程求解",
+        "微分算子作用"
+      ],
+      "question_type": "算子方程求解",
+      "method": [
+        "设未知系数",
+        "比较对应基下系数"
+      ],
+      "solution_steps": [
+        "设 $f=\\alpha e^x+\\beta e^{2x}$，计算 $D_0f,D_2f$",
+        "比较系数求 $\\alpha,\\beta$"
+      ],
+      "math_structure": {
+        "type": "operator_equation_linear",
+        "template": "(D_0+D_2)f = c_1 e^x + c_2 e^{2x} on W",
+        "variable_count": 2
+      },
+      "difficulty": 3,
+      "estimated_minutes": 8,
+      "answer": [
+        {
+          "label": "解方程",
+          "steps": [
+            "设 $f=\\alpha e^x+\\beta e^{2x}$。则 $D_0f=\\alpha e^x+\\beta e^{2x}$，$D_2f=\\alpha e^x+4\\beta e^{2x}$，求和得 $2\\alpha e^x+5\\beta e^{2x}$。",
+            "比较系数：$2\\alpha=1\\Rightarrow\\alpha=\\frac12$；$5\\beta=3\\Rightarrow\\beta=\\frac35$。",
+            "验算：$2\\times\\frac12=1$✓，$5\\times\\frac35=3$✓。故 $f(x)=\\frac12e^x+\\frac35e^{2x}$。"
+          ]
+        }
+      ],
+      "id": "isct-2020-91ab071611-q01-practice-03",
+      "school": "东京科学大学",
+      "year": "2020"
+    },
+    {
+      "text": "在原题的 $V=\\mathrm{span}\\{e^x,xe^x,e^{2x}\\}$ 中，将 $D_3$ 表示为 $D_0,D_1,D_2$ 的线性组合，并验证结果。",
+      "knowledge_points": [
+        "矩阵表示",
+        "线性组合求系数"
+      ],
+      "question_type": "算子表出问题",
+      "method": [
+        "写矩阵方程",
+        "解三元线性方程组"
+      ],
+      "solution_steps": [
+        "写出 $D_3$ 的矩阵",
+        "设 $D_3=aD_0+bD_1+cD_2$ 并解出 $a,b,c$"
+      ],
+      "math_structure": {
+        "type": "operator_linear_combination",
+        "template": "express D_3 as combination of D_0, D_1, D_2 in V",
+        "variable_count": 3
+      },
+      "difficulty": 4,
+      "estimated_minutes": 10,
+      "answer": [
+        {
+          "label": "求系数",
+          "steps": [
+            "$D_3$ 矩阵为 $\\begin{pmatrix}1&3&0\\\\0&1&0\\\\0&0&8\\end{pmatrix}$（因为 $D_3(xe^x)=3e^x+xe^x$，$D_3(e^{2x})=8e^{2x}$）。",
+            "设 $aD_0+bD_1+cD_2=D_3$，得方程 $a+b+c=1,\\ b+2c=3,\\ a+2b+4c=8$。",
+            "由第一式 $a=1-b-c$，代入第三式：$1-b-c+2b+4c=8\\Rightarrow b+3c=7$；结合 $b+2c=3$，相减得 $c=4$，则 $b=3-8=-5$，$a=1-(-5)-4=2$。",
+            "验算：$a+b+c=2-5+4=1$✓，$b+2c=-5+8=3$✓，$a+2b+4c=2-10+16=8$✓。故 $D_3=2D_0-5D_1+4D_2$。"
+          ]
+        }
+      ],
+      "id": "isct-2020-91ab071611-q01-practice-04",
+      "school": "东京科学大学",
+      "year": "2020"
+    },
+    {
+      "text": "在 $V=\\mathrm{span}\\{e^x,xe^x,e^{2x}\\}$ 中求解方程 $(D_0f)(x)+(D_3f)(x)=2e^x+xe^x+e^{2x}$。",
+      "knowledge_points": [
+        "待定系数法",
+        "算子方程组求解",
+        "验算"
+      ],
+      "method": [
+        "设未知系数",
+        "利用一般公式代入 $n=3$"
+      ],
+      "question_type": "算子方程求解",
+      "solution_steps": [
+        "设 $f=ae^x+bxe^x+ce^{2x}$，计算 $D_0f+D_3f$",
+        "比较系数解出 $a,b,c$"
+      ],
+      "math_structure": {
+        "type": "operator_equation_general_n",
+        "template": "(D_0+D_n)f = p e^x + q xe^x + r e^{2x} in V, solve for specific n,p,q,r",
+        "variable_count": 3
+      },
+      "difficulty": 5,
+      "estimated_minutes": 12,
+      "answer": [
+        {
+          "label": "解方程",
+          "steps": [
+            "设 $f=ae^x+bxe^x+ce^{2x}$。利用原题推导的一般公式（$n=3$，右边为 $2e^x+xe^x+e^{2x}$）：方程为 $2a+3b=2,\\ 2b=1,\\ c(1+8)=1$。",
+            "由 $2b=1$ 得 $b=\\frac12$；代入第一式 $2a+\\frac32=2\\Rightarrow a=\\frac14$；由第三式 $c=\\frac19$。",
+            "验算：$2\\times\\frac14+3\\times\\frac12=\\frac12+\\frac32=2$✓，$c\\times9=1$✓。故 $f(x)=\\frac14e^x+\\frac12xe^x+\\frac19e^{2x}$。"
+          ]
+        }
+      ],
+      "id": "isct-2020-91ab071611-q01-practice-05",
+      "school": "东京科学大学",
+      "year": "2020"
+    }
+  ],
+  "source_question": "上午 [1]",
+  "source_pdf": "东京科学大学/理工学系/数学系/东京科学大学_理工学系_数学系_2020_数学过去问.pdf",
+  "source_type": "官方过去问",
+  "subject_category": "线性代数"
+}

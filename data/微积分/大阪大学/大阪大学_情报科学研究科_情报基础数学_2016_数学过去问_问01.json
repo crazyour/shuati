@@ -1,0 +1,199 @@
+{
+  "id": "osaka-2016-7b3eda5342-q01",
+  "school": "大阪大学",
+  "year": "2016",
+  "subject": "情报科学研究科_情报基础数学",
+  "text": "回答下列问题。\n(1) 考虑平面上的闭区域 $D=\\{(x,y)\\mid x^2+y^2\\le x\\}$，计算重积分\n$$\\iint_D x\\,dxdy.$$\n(2) 设函数 $f(x)$ 在开区间 $(a,b)$ 上可微，$x$ 为 $(a,b)$ 内任意一点。证明等式\n$$f'(x)=\\lim_{\\substack{h\\to +0\\\\ k\\to +0}}\\frac{f(x+h)-f(x-k)}{h+k}.$$",
+  "knowledge_points": [
+    "极坐标变换",
+    "重积分",
+    "圆域积分",
+    "导数的极限定义",
+    "中值定理思想",
+    "夹逼与加权平均估计"
+  ],
+  "question_type": "重积分计算与极限证明",
+  "method": [
+    "极坐标换元法（或平移对称法）",
+    "差商极限定义",
+    "加权平均不等式估计"
+  ],
+  "solution_steps": [
+    "(1) 用极坐标 $x=r\\cos\\theta,y=r\\sin\\theta$ 或平移 $x=1/2+u$ 化简区域并积分",
+    "(2) 将差商拆成两个标准差商的加权平均，利用两者都趋于 $f'(x)$ 得出结论"
+  ],
+  "math_structure": {
+    "type": "polar_double_integral_and_derivative_limit_proof",
+    "template": "$\\iint_D x\\,dxdy,\\ D=\\{(x,y)\\mid x^2+y^2\\le x\\}$；证明 $f'(x)=\\lim_{h,k\\to 0^+}\\dfrac{f(x+h)-f(x-k)}{h+k}$",
+    "variable_count": 4
+  },
+  "difficulty": 3,
+  "answer": [
+    {
+      "label": "(1)",
+      "steps": [
+        "$D=\\{x^2+y^2\\le x\\}$ 即以 $(1/2,0)$ 为心、半径 $1/2$ 的圆盘：$(x-1/2)^2+y^2\\le 1/4$。",
+        "作平移 $x=1/2+u$，则 $D$ 对应 $u^2+y^2\\le 1/4$（以原点为心的圆盘），且 $\\iint_D x\\,dxdy=\\iint_{u^2+y^2\\le 1/4}\\left(\\frac12+u\\right)dudy=\\frac12\\cdot\\text{Area}+\\iint u\\,dudy$。",
+        "由对称性 $\\iint_{u^2+y^2\\le 1/4} u\\,dudy=0$（关于 $u\\to -u$ 的奇函数在对称区域上积分为零），且圆盘面积为 $\\pi(1/2)^2=\\pi/4$。",
+        "故 $\\iint_D x\\,dxdy=\\frac12\\cdot\\frac{\\pi}{4}=\\frac{\\pi}{8}$。可用极坐标 $r\\le\\cos\\theta,\\ \\theta\\in[-\\pi/2,\\pi/2]$ 验算：$\\int_{-\\pi/2}^{\\pi/2}\\int_0^{\\cos\\theta} r^2\\cos\\theta\\,dr\\,d\\theta=\\frac13\\int_{-\\pi/2}^{\\pi/2}\\cos^4\\theta\\,d\\theta=\\frac13\\cdot\\frac{3\\pi}{8}=\\frac{\\pi}{8}$，两法一致。"
+      ]
+    },
+    {
+      "label": "(2)",
+      "steps": [
+        "将差商拆分为两个标准单侧差商的加权组合：$\\dfrac{f(x+h)-f(x-k)}{h+k}=\\dfrac{h}{h+k}\\cdot\\dfrac{f(x+h)-f(x)}{h}+\\dfrac{k}{h+k}\\cdot\\dfrac{f(x)-f(x-k)}{k}$。",
+        "由 $f$ 在 $x$ 处可微，当 $h\\to 0^+$ 时 $\\dfrac{f(x+h)-f(x)}{h}\\to f'(x)$，当 $k\\to 0^+$ 时 $\\dfrac{f(x)-f(x-k)}{k}\\to f'(x)$。",
+        "给定 $\\varepsilon>0$，取 $\\delta>0$ 使 $0<h<\\delta$ 时第一个差商与 $f'(x)$ 之差绝对值 $<\\varepsilon$，同理对 $k$。由于权重 $\\frac{h}{h+k},\\frac{k}{h+k}\\in(0,1)$ 且和为 $1$，故整体表达式减去 $f'(x)$ 的绝对值不超过 $\\varepsilon\\cdot\\frac{h}{h+k}+\\varepsilon\\cdot\\frac{k}{h+k}=\\varepsilon$。",
+        "因此当 $h\\to 0^+,k\\to 0^+$（无论以何种方式趋于零）时，差商都收敛到 $f'(x)$，等式得证。"
+      ]
+    }
+  ],
+  "practice_questions": [
+    {
+      "text": "计算重积分 $\\displaystyle\\iint_D 1\\,dxdy$，其中 $D=\\{(x,y)\\mid x^2+y^2\\le x\\}$（即求该圆盘的面积，作为极坐标积分的热身）。",
+      "knowledge_points": [
+        "极坐标变换",
+        "重积分",
+        "圆的面积"
+      ],
+      "question_type": "重积分计算",
+      "method": [
+        "极坐标换元法"
+      ],
+      "solution_steps": [
+        "用极坐标表示区域",
+        "积分求面积"
+      ],
+      "math_structure": {
+        "type": "polar_area_integral",
+        "template": "$\\iint_D 1\\,dxdy,\\ D=\\{x^2+y^2\\le x\\}$",
+        "variable_count": 2
+      },
+      "difficulty": 1,
+      "estimated_minutes": 5,
+      "answer": [
+        {
+          "label": "面积",
+          "steps": [
+            "$D$ 是圆心 $(1/2,0)$、半径 $1/2$ 的圆盘，其面积公式为 $\\pi r^2=\\pi(1/2)^2=\\pi/4$。",
+            "用极坐标验证：$\\int_{-\\pi/2}^{\\pi/2}\\int_0^{\\cos\\theta} r\\,dr\\,d\\theta=\\int_{-\\pi/2}^{\\pi/2}\\frac{\\cos^2\\theta}{2}d\\theta=\\frac12\\cdot\\frac{\\pi}{2}=\\frac{\\pi}{4}$。",
+            "两种方法一致，面积为 $\\pi/4$。"
+          ]
+        }
+      ],
+      "id": "osaka-2016-7b3eda5342-q01-practice-01",
+      "school": "大阪大学",
+      "year": "2016"
+    },
+    {
+      "text": "计算 $\\displaystyle\\iint_D y\\,dxdy$，其中 $D=\\{(x,y)\\mid x^2+y^2\\le x\\}$。",
+      "knowledge_points": [
+        "重积分",
+        "奇偶对称性"
+      ],
+      "question_type": "重积分计算",
+      "method": [
+        "对称性分析"
+      ],
+      "solution_steps": [
+        "分析被积函数关于 $y$ 的奇偶性",
+        "利用区域对 $y\\to -y$ 对称得出结果"
+      ],
+      "math_structure": {
+        "type": "symmetric_double_integral",
+        "template": "$\\iint_D y\\,dxdy,\\ D=\\{x^2+y^2\\le x\\}$",
+        "variable_count": 2
+      },
+      "difficulty": 2,
+      "estimated_minutes": 5,
+      "answer": [
+        {
+          "label": "结果",
+          "steps": [
+            "区域 $D$ 关于 $x$ 轴（即 $y\\to -y$）对称，因为条件 $x^2+y^2\\le x$ 只依赖 $y^2$。",
+            "被积函数 $y$ 是关于 $y$ 的奇函数，在关于 $y$ 轴对称（此处指 $x$ 轴对称）的区域上积分为零。",
+            "故 $\\iint_D y\\,dxdy=0$，可用极坐标 $\\int_{-\\pi/2}^{\\pi/2}\\sin\\theta\\cdot\\frac{\\cos^3\\theta}{3}d\\theta=0$（奇函数在对称区间上积分为零）验证。"
+          ]
+        }
+      ],
+      "id": "osaka-2016-7b3eda5342-q01-practice-02",
+      "school": "大阪大学",
+      "year": "2016"
+    },
+    {
+      "text": "设 $f$ 在 $x$ 处可微，证明单侧差商极限 $\\displaystyle\\lim_{h\\to 0^+}\\frac{f(x+h)-f(x)}{h}=f'(x)$。",
+      "knowledge_points": [
+        "导数定义",
+        "单侧极限"
+      ],
+      "question_type": "极限证明",
+      "method": [
+        "导数定义直接应用"
+      ],
+      "solution_steps": [
+        "回顾可微定义",
+        "取单侧极限说明结论"
+      ],
+      "math_structure": {
+        "type": "one_sided_difference_quotient",
+        "template": "$\\lim_{h\\to 0^+}\\dfrac{f(x+h)-f(x)}{h}=f'(x)$",
+        "variable_count": 1
+      },
+      "difficulty": 1,
+      "estimated_minutes": 4,
+      "answer": [
+        {
+          "label": "证明",
+          "steps": [
+            "$f$ 在 $x$ 处可微意味着双侧极限 $\\lim_{t\\to 0}\\dfrac{f(x+t)-f(x)}{t}=f'(x)$ 存在。",
+            "单侧极限是双侧极限沿 $t\\to 0^+$ 方向的子极限，若整体极限存在则任意子极限（含单侧极限）都等于同一值。",
+            "因此 $\\lim_{h\\to 0^+}\\dfrac{f(x+h)-f(x)}{h}=f'(x)$ 成立。"
+          ]
+        }
+      ],
+      "id": "osaka-2016-7b3eda5342-q01-practice-03",
+      "school": "大阪大学",
+      "year": "2016"
+    },
+    {
+      "text": "设 $f$ 在 $x$ 处可微，证明对称差商极限 $\\displaystyle\\lim_{h\\to 0^+}\\frac{f(x+h)-f(x-h)}{2h}=f'(x)$（即原题中 $h=k$ 的特殊情形）。",
+      "knowledge_points": [
+        "导数定义",
+        "对称差商",
+        "极限的线性运算"
+      ],
+      "question_type": "极限证明",
+      "method": [
+        "拆分为两个标准差商"
+      ],
+      "solution_steps": [
+        "把对称差商写成两个单侧差商的平均",
+        "分别取极限并相加"
+      ],
+      "math_structure": {
+        "type": "symmetric_difference_quotient",
+        "template": "$\\lim_{h\\to 0^+}\\dfrac{f(x+h)-f(x-h)}{2h}=f'(x)$",
+        "variable_count": 1
+      },
+      "difficulty": 2,
+      "estimated_minutes": 6,
+      "answer": [
+        {
+          "label": "证明",
+          "steps": [
+            "改写：$\\dfrac{f(x+h)-f(x-h)}{2h}=\\dfrac12\\cdot\\dfrac{f(x+h)-f(x)}{h}+\\dfrac12\\cdot\\dfrac{f(x)-f(x-h)}{h}$。",
+            "当 $h\\to 0^+$ 时，右边两项分别趋于 $f'(x)$（由可微性），故右边整体趋于 $\\frac12 f'(x)+\\frac12 f'(x)=f'(x)$。",
+            "因此 $\\lim_{h\\to 0^+}\\dfrac{f(x+h)-f(x-h)}{2h}=f'(x)$，此即原题 $h=k$ 时的特殊情形，为一般情形（$h,k$ 独立趋于零）的证明提供了思路基础。"
+          ]
+        }
+      ],
+      "id": "osaka-2016-7b3eda5342-q01-practice-04",
+      "school": "大阪大学",
+      "year": "2016"
+    }
+  ],
+  "source_question": "問1",
+  "source_pdf": "大阪大学/情报科学研究科/情报基础数学/大阪大学_情报科学研究科_情报基础数学_2016_数学过去问.pdf",
+  "source_type": "官方过去问",
+  "subject_category": "微积分"
+}

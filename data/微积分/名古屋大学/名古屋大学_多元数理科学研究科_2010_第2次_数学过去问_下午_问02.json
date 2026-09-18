@@ -1,0 +1,217 @@
+{
+  "id": "nagoya-2010-558a04d873-q02",
+  "school": "名古屋大学",
+  "year": "2010",
+  "subject": "多元数理科学研究科_全专攻",
+  "text": "设 $f(x)$ 是 $\\mathbb{R}$ 上的连续函数，且存在紧集 $K\\subset\\mathbb{R}$，使得 $f(x)=0$（对所有 $x\\notin K$）。设 $\\varphi(x)$ 是 $\\mathbb{R}$ 上的正值连续函数，满足 $\\displaystyle\\int_{-\\infty}^{\\infty}\\varphi(x)\\,dx=1$。对 $0\\neq t\\in\\mathbb{R}$，令\n$$g_t(x)=\\int_{-\\infty}^{\\infty}\\varphi_t(x-y)f(y)\\,dy,\\qquad \\varphi_t(x)=\\frac{1}{|t|}\\varphi\\!\\left(\\frac{x}{t}\\right).$$\n回答以下问题：\n(1) 证明 $\\displaystyle f(x)=\\int_{-\\infty}^{\\infty}\\varphi_t(x-y)f(x)\\,dy$；\n(2) 证明对任意 $\\delta>0$，$\\displaystyle\\lim_{t\\to0}\\int_{|x|\\ge\\delta}\\varphi_t(x)\\,dx=0$；\n(3) 说明 $f(x)$ 在 $\\mathbb{R}$ 上是有界且一致连续的；\n(4) 令 $\\|g_t-f\\|=\\sup_{x\\in\\mathbb{R}}|g_t(x)-f(x)|$，证明 $\\displaystyle\\lim_{t\\to0}\\|g_t-f\\|=0$。",
+  "knowledge_points": [
+    "逼近单位（mollifier）",
+    "紧支撑连续函数性质",
+    "一致连续性",
+    "卷积逼近",
+    "极限与积分交换"
+  ],
+  "question_type": "证明题",
+  "method": [
+    "变量替换验证归一化",
+    "利用尾部积分估计逼近单位性质",
+    "Heine-Cantor 定理",
+    "分割积分区域并利用一致连续性估计"
+  ],
+  "solution_steps": [
+    "利用 $\\int\\varphi_t=1$ 与变量替换证明(1)",
+    "对 $\\varphi_t$ 作变量替换 $y=x/t$ 化为固定函数 $\\varphi$ 的尾部积分，利用可积性得极限为0，证明(2)",
+    "利用紧支撑连续函数在闭区间上连续从而有界与一致连续，再延拓证明(3)",
+    "写出 $g_t(x)-f(x)=\\int\\varphi_t(x-y)[f(y)-f(x)]dy$，分裂积分区域并利用(2)(3)证明(4)"
+  ],
+  "math_structure": {
+    "type": "approximate_identity_convolution_convergence",
+    "template": "g_t=\\varphi_t * f,\\; \\varphi_t(x)=\\frac1{|t|}\\varphi(x/t),\\;\\int\\varphi=1",
+    "variable_count": 2
+  },
+  "difficulty": 4,
+  "answer": [
+    {
+      "label": "(1)",
+      "steps": [
+        "先证 $\\int_{-\\infty}^\\infty \\varphi_t(u)\\,du=1$：作变量替换 $u=tv$（若 $t>0$，$du=t\\,dv$；若 $t<0$，$du=t\\,dv$ 但积分限翻转，两者合并写作 $|t|$）：$\\int\\varphi_t(u)du=\\int\\frac{1}{|t|}\\varphi(u/t)du=\\int\\varphi(v)\\,|dv|=\\int\\varphi(v)dv=1$（这里用 $|t|$ 恰好抵消掉符号问题）。",
+        "对固定的 $x$，令 $u=x-y$，则 $\\int_{-\\infty}^\\infty \\varphi_t(x-y)\\,dy=\\int_{-\\infty}^\\infty\\varphi_t(u)\\,du=1$（$dy=-du$ 但积分限同时翻转，符号抵消）。",
+        "因此 $\\int_{-\\infty}^\\infty\\varphi_t(x-y)f(x)\\,dy=f(x)\\int_{-\\infty}^\\infty\\varphi_t(x-y)\\,dy=f(x)\\cdot1=f(x)$，得证。"
+      ]
+    },
+    {
+      "label": "(2)",
+      "steps": [
+        "作变量替换 $y=x/t$（即 $x=ty$），则 $dx=|t|\\,dy$，且 $|x|\\ge\\delta \\iff |y|\\ge \\delta/|t|$。",
+        "于是 $\\int_{|x|\\ge\\delta}\\varphi_t(x)\\,dx=\\int_{|x|\\ge\\delta}\\frac{1}{|t|}\\varphi(x/t)\\,dx=\\int_{|y|\\ge\\delta/|t|}\\varphi(y)\\,dy$。",
+        "因为 $\\varphi\\ge0$ 且 $\\int_{-\\infty}^{\\infty}\\varphi(y)dy=1<\\infty$（可积），当 $t\\to0$ 时 $\\delta/|t|\\to\\infty$，故尾部积分 $\\int_{|y|\\ge\\delta/|t|}\\varphi(y)dy\\to0$（这是可积函数尾部趋于0的标准事实，可由控制收敛定理或积分的绝对连续性得到）。"
+      ]
+    },
+    {
+      "label": "(3)",
+      "steps": [
+        "$f$ 在紧集 $K$ 上连续，由 Weierstrass 极值定理，$f$ 在 $K$ 上有界，设 $|f|\\le M$ 在 $K$ 上；而 $K$ 外 $f\\equiv 0$，故 $f$ 在整个 $\\mathbb{R}$ 上有界，且界为 $M$。",
+        "$f$ 在紧集 $K$ 上连续 $\\Rightarrow$ 由 Heine-Cantor 定理，$f|_K$ 在 $K$ 上一致连续。",
+        "对 $K$ 外的点，$f\\equiv0$，结合 $f$ 在 $K$ 的边界连续且趋于0（因为紧支撑函数在支撑集外为0，且连续性要求边界处极限为0），可以验证整体的一致连续性：任给 $\\varepsilon>0$，存在 $\\delta>0$ 使得只要 $|x-x'|<\\delta$（不论两点在 $K$ 内外），都有 $|f(x)-f(x')|<\\varepsilon$，从而 $f$ 在 $\\mathbb{R}$ 上一致连续。"
+      ]
+    },
+    {
+      "label": "(4)",
+      "steps": [
+        "由(1)，$g_t(x)-f(x)=\\int_{-\\infty}^\\infty \\varphi_t(x-y)\\big[f(y)-f(x)\\big]\\,dy$。",
+        "给定 $\\varepsilon>0$，由(3)的一致连续性，存在 $\\delta>0$，使得 $|x-y|<\\delta \\Rightarrow |f(y)-f(x)|<\\varepsilon/2$。将积分分为 $|x-y|<\\delta$ 和 $|x-y|\\ge\\delta$ 两部分：\n$|g_t(x)-f(x)|\\le \\int_{|x-y|<\\delta}\\varphi_t(x-y)|f(y)-f(x)|dy+\\int_{|x-y|\\ge\\delta}\\varphi_t(x-y)|f(y)-f(x)|dy$。",
+        "第一部分 $\\le \\frac{\\varepsilon}{2}\\int\\varphi_t(x-y)dy=\\frac{\\varepsilon}{2}$（由(1)的归一化）。第二部分中利用 $f$ 有界（设界 $2M$，因 $|f(y)-f(x)|\\le 2M$），故 $\\le 2M\\int_{|x-y|\\ge\\delta}\\varphi_t(x-y)dy=2M\\int_{|u|\\ge\\delta}\\varphi_t(u)du$（换元 $u=x-y$），由(2)当 $t\\to0$ 时该积分 $\\to0$，故存在 $t_0$，当 $|t|<t_0$ 时此部分 $<\\varepsilon/2$。",
+        "综合两部分，对任意 $x$，当 $|t|<t_0$ 时 $|g_t(x)-f(x)|<\\varepsilon$，且 $t_0$ 与 $x$ 无关，因此 $\\|g_t-f\\|=\\sup_x|g_t(x)-f(x)|\\to0\\;(t\\to0)$，证毕。"
+      ]
+    }
+  ],
+  "practice_questions": [
+    {
+      "text": "验证柯西型密度函数 $\\varphi(x)=\\dfrac{1}{\\pi(1+x^2)}$ 满足 $\\int_{-\\infty}^\\infty \\varphi(x)\\,dx=1$，并写出对应的 $\\varphi_t(x)$ 的显式表达式（$t>0$）。",
+      "knowledge_points": [
+        "归一化验证",
+        "反正切积分",
+        "尺度变换"
+      ],
+      "question_type": "计算题",
+      "method": [
+        "直接积分计算"
+      ],
+      "solution_steps": [
+        "用反正切函数原函数计算积分",
+        "代入定义写出 $\\varphi_t$"
+      ],
+      "math_structure": {
+        "type": "normalization_check_cauchy_density",
+        "template": "\\int \\frac{1}{\\pi(1+x^2)}dx=1",
+        "variable_count": 1
+      },
+      "difficulty": 1,
+      "estimated_minutes": 5,
+      "answer": [
+        {
+          "label": "计算",
+          "steps": [
+            "$\\int_{-\\infty}^{\\infty}\\frac{1}{\\pi(1+x^2)}dx=\\frac{1}{\\pi}\\big[\\arctan x\\big]_{-\\infty}^{\\infty}=\\frac{1}{\\pi}\\left(\\frac{\\pi}{2}-\\left(-\\frac{\\pi}{2}\\right)\\right)=\\frac{1}{\\pi}\\cdot\\pi=1$，验证完毕。",
+            "由定义 $\\varphi_t(x)=\\frac{1}{t}\\varphi(x/t)=\\frac{1}{t}\\cdot\\frac{1}{\\pi(1+(x/t)^2)}=\\frac{1}{\\pi}\\cdot\\frac{t}{t^2+x^2}$（$t>0$）。"
+          ]
+        }
+      ],
+      "id": "nagoya-2010-558a04d873-q02-practice-01",
+      "school": "名古屋大学",
+      "year": "2010"
+    },
+    {
+      "text": "设 $\\varphi(x)=\\dfrac{1}{\\sqrt{2\\pi}}e^{-x^2/2}$（标准正态密度），证明对任意 $\\delta>0$，$\\displaystyle\\lim_{t\\to0^+}\\int_{|x|\\ge\\delta}\\varphi_t(x)\\,dx=0$。",
+      "knowledge_points": [
+        "高斯积分尾部估计",
+        "变量替换",
+        "逼近单位集中性质"
+      ],
+      "question_type": "证明题",
+      "method": [
+        "变量替换化为固定函数的尾部积分"
+      ],
+      "solution_steps": [
+        "替换 $y=x/t$",
+        "利用高斯分布尾部趋于0"
+      ],
+      "math_structure": {
+        "type": "gaussian_mollifier_tail_limit",
+        "template": "\\int_{|y|\\ge\\delta/t}\\varphi(y)dy\\to0",
+        "variable_count": 1
+      },
+      "difficulty": 2,
+      "estimated_minutes": 8,
+      "answer": [
+        {
+          "label": "证明",
+          "steps": [
+            "令 $y=x/t$，则 $\\int_{|x|\\ge\\delta}\\varphi_t(x)dx=\\int_{|y|\\ge \\delta/t}\\varphi(y)dy$（$t>0$ 时直接替换即可，无需绝对值处理）。",
+            "由于 $\\int_{-\\infty}^\\infty \\varphi(y)dy=1$ 收敛，故 $\\int_{|y|\\ge R}\\varphi(y)dy\\to0\\,(R\\to\\infty)$。",
+            "当 $t\\to0^+$ 时 $R=\\delta/t\\to\\infty$，所以该尾部积分趋于0，即得证。"
+          ]
+        }
+      ],
+      "id": "nagoya-2010-558a04d873-q02-practice-02",
+      "school": "名古屋大学",
+      "year": "2010"
+    },
+    {
+      "text": "证明：若 $h(x)$ 在闭区间 $[a,b]$ 上连续，则 $h$ 在 $[a,b]$ 上一致连续（即 Heine-Cantor 定理的证明思路）。",
+      "knowledge_points": [
+        "紧性",
+        "一致连续性",
+        "反证法"
+      ],
+      "question_type": "证明题",
+      "method": [
+        "反证法结合有限覆盖/序列紧致性"
+      ],
+      "solution_steps": [
+        "假设不一致连续，构造矛盾的点列",
+        "利用紧性抽取收敛子列得矛盾"
+      ],
+      "math_structure": {
+        "type": "heine_cantor_theorem_proof",
+        "template": "h\\in C[a,b]\\Rightarrow h\\text{ uniformly continuous}",
+        "variable_count": 1
+      },
+      "difficulty": 3,
+      "estimated_minutes": 10,
+      "answer": [
+        {
+          "label": "证明",
+          "steps": [
+            "反证：假设 $h$ 不一致连续，则存在 $\\varepsilon_0>0$，对任意 $n\\in\\mathbb{N}$ 存在 $x_n,y_n\\in[a,b]$，$|x_n-y_n|<1/n$ 但 $|h(x_n)-h(y_n)|\\ge\\varepsilon_0$。",
+            "由 $[a,b]$ 紧致，$(x_n)$ 有收敛子列 $x_{n_k}\\to x_0\\in[a,b]$，且因 $|x_{n_k}-y_{n_k}|<1/n_k\\to0$，故 $y_{n_k}\\to x_0$ 同样成立。",
+            "由 $h$ 在 $x_0$ 连续，$h(x_{n_k})\\to h(x_0)$，$h(y_{n_k})\\to h(x_0)$，故 $|h(x_{n_k})-h(y_{n_k})|\\to0$，与假设 $\\ge\\varepsilon_0$ 矛盾，故 $h$ 一致连续。"
+          ]
+        }
+      ],
+      "id": "nagoya-2010-558a04d873-q02-practice-03",
+      "school": "名古屋大学",
+      "year": "2010"
+    },
+    {
+      "text": "设 $f$ 是支撑在 $[-1,1]$ 上、在该区间上取值 $f(x)=1-x^2$ 的连续函数（区间外为0），$\\varphi(x)=\\frac12\\mathbf{1}_{[-1,1]}(x)$（均匀密度）。计算 $g_t(0)=\\int\\varphi_t(-y)f(y)dy$ 当 $t=1$ 时的值，并与 $f(0)=1$ 比较，体会逼近过程。",
+      "knowledge_points": [
+        "卷积计算",
+        "分段函数积分",
+        "逼近单位实例"
+      ],
+      "question_type": "计算题",
+      "method": [
+        "直接计算卷积积分"
+      ],
+      "solution_steps": [
+        "写出 $\\varphi_1(x)=\\varphi(x)$",
+        "计算 $g_1(0)=\\int_{-1}^1 \\frac12 f(y) dy$"
+      ],
+      "math_structure": {
+        "type": "uniform_mollifier_convolution_example",
+        "template": "g_1(0)=\\int \\varphi(-y)f(y)dy",
+        "variable_count": 1
+      },
+      "difficulty": 2,
+      "estimated_minutes": 8,
+      "answer": [
+        {
+          "label": "计算",
+          "steps": [
+            "当 $t=1$，$\\varphi_1(x)=\\frac{1}{|1|}\\varphi(x/1)=\\varphi(x)=\\frac12\\mathbf{1}_{[-1,1]}(x)$，且 $\\varphi$ 是偶函数，故 $\\varphi_1(-y)=\\varphi(y)$。",
+            "$g_1(0)=\\int_{-\\infty}^\\infty \\varphi_1(-y)f(y)dy=\\int_{-1}^1 \\frac12(1-y^2)dy=\\frac12\\left[y-\\frac{y^3}{3}\\right]_{-1}^{1}=\\frac12\\left[\\left(1-\\frac13\\right)-\\left(-1+\\frac13\\right)\\right]=\\frac12\\cdot\\frac43=\\frac23$。",
+            "比较：$f(0)=1$，而 $g_1(0)=2/3$，说明 $t=1$ 时逼近效果并不好（因为 $t$ 不够小），这与定理中 $t\\to0$ 才趋于 $f(x)$ 的结论一致。"
+          ]
+        }
+      ],
+      "id": "nagoya-2010-558a04d873-q02-practice-04",
+      "school": "名古屋大学",
+      "year": "2010"
+    }
+  ],
+  "source_question": "2",
+  "source_pdf": "名古屋大学/多元数理科学研究科/全专攻/名古屋大学_多元数理科学研究科_2010_第2次_数学过去问_下午.pdf",
+  "source_type": "官方过去问",
+  "subject_category": "微积分"
+}

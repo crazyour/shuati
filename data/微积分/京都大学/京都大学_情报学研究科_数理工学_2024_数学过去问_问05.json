@@ -1,0 +1,154 @@
+{
+  "id": "kyoto-2024-a19745fad7-q05",
+  "school": "京都大学",
+  "year": "2024",
+  "subject": "情报学研究科_数理工学",
+  "text": "设 $D=\\{(x,y)\\in\\mathbb{R}^2\\mid 0\\le y\\le x\\}$。求广义积分 $\\displaystyle\\iint_D \\dfrac{1}{(x^2+y^2+1)^2}\\,dx\\,dy$ 的值。",
+  "knowledge_points": [
+    "二重广义积分",
+    "极坐标变换",
+    "反常积分收敛性"
+  ],
+  "question_type": "二重广义积分计算",
+  "method": [
+    "转换为极坐标",
+    "确定角度范围与半径范围",
+    "分离变量分别积分"
+  ],
+  "solution_steps": [
+    "分析区域 $D$ 在极坐标下对应的角度范围",
+    "写出极坐标下的积分表达式，代入 $x^2+y^2=r^2$，面积元 $r\\,dr\\,d\\theta$",
+    "先对 $r$ 积分（广义积分到无穷），再对 $\\theta$ 积分"
+  ],
+  "math_structure": {
+    "type": "double_improper_integral_polar",
+    "template": "\\iint_{0\\le y\\le x} \\dfrac{1}{(x^2+y^2+1)^2}dxdy",
+    "variable_count": 2
+  },
+  "difficulty": 3,
+  "answer": [
+    {
+      "label": "积分值",
+      "steps": [
+        "区域 $D=\\{0\\le y\\le x\\}$ 在极坐标 $(r,\\theta)$（$x=r\\cos\\theta,y=r\\sin\\theta$）下对应 $r\\ge0$，$\\theta\\in[0,\\pi/4]$（因为 $y\\le x$ 且 $y\\ge0$ 恰好是第一象限内到 $45°$ 线以下的部分）",
+        "积分变为 $\\displaystyle\\int_0^{\\pi/4}\\int_0^\\infty \\dfrac{r}{(r^2+1)^2}\\,dr\\,d\\theta$（面积元为 $r\\,dr\\,d\\theta$）",
+        "计算内层积分：令 $u=r^2+1$，$du=2r\\,dr$，$\\displaystyle\\int_0^\\infty \\dfrac{r}{(r^2+1)^2}dr=\\dfrac12\\int_1^\\infty \\dfrac{du}{u^2}=\\dfrac12\\left[-\\dfrac1u\\right]_1^\\infty=\\dfrac12(0-(-1))=\\dfrac12$",
+        "外层对 $\\theta$ 积分：$\\displaystyle\\int_0^{\\pi/4} \\dfrac12\\,d\\theta=\\dfrac12\\cdot\\dfrac{\\pi}{4}=\\dfrac{\\pi}{8}$。故积分值为 $\\dfrac{\\pi}{8}$。验算：被积函数处处为正且随$r\\to\\infty$按$r^{-3}$衰减，积分收敛，结果为正数 $\\pi/8$，合理"
+      ]
+    }
+  ],
+  "practice_questions": [
+    {
+      "text": "计算 $\\displaystyle\\int_0^\\infty \\dfrac{r}{(r^2+1)^2}\\,dr$。",
+      "knowledge_points": [
+        "换元积分",
+        "广义积分"
+      ],
+      "question_type": "一元广义积分计算",
+      "method": [
+        "换元$u=r^2+1$"
+      ],
+      "solution_steps": [
+        "换元",
+        "求原函数",
+        "代入极限计算"
+      ],
+      "math_structure": {
+        "type": "improper_integral_substitution",
+        "template": "\\int_0^\\infty \\dfrac{r}{(r^2+1)^2}dr",
+        "variable_count": 0
+      },
+      "difficulty": 1,
+      "estimated_minutes": 5,
+      "answer": [
+        {
+          "label": "结果",
+          "steps": [
+            "令$u=r^2+1$，$du=2rdr$，积分变为$\\dfrac12\\int_1^\\infty u^{-2}du$",
+            "$=\\dfrac12\\left[-u^{-1}\\right]_1^\\infty=\\dfrac12(0+1)=\\dfrac12$",
+            "结果为$1/2$，收敛"
+          ]
+        }
+      ],
+      "id": "kyoto-2024-a19745fad7-q05-practice-01",
+      "school": "京都大学",
+      "year": "2024"
+    },
+    {
+      "text": "求区域 $E=\\{(x,y):x\\ge0,y\\ge0\\}$（第一象限）上 $\\displaystyle\\iint_E \\dfrac{1}{(x^2+y^2+1)^2}dxdy$ 的值。",
+      "knowledge_points": [
+        "极坐标变换",
+        "角度范围确定"
+      ],
+      "question_type": "二重广义积分计算",
+      "method": [
+        "极坐标变换，角度范围$[0,\\pi/2]$"
+      ],
+      "solution_steps": [
+        "确定角度范围",
+        "计算径向积分",
+        "乘以角度区间长度"
+      ],
+      "math_structure": {
+        "type": "double_improper_integral_quadrant",
+        "template": "\\iint_{x\\ge0,y\\ge0}\\dfrac{1}{(x^2+y^2+1)^2}dxdy",
+        "variable_count": 2
+      },
+      "difficulty": 2,
+      "estimated_minutes": 6,
+      "answer": [
+        {
+          "label": "结果",
+          "steps": [
+            "第一象限对应 $\\theta\\in[0,\\pi/2]$，径向积分同前为$1/2$",
+            "积分值$=\\dfrac{\\pi}{2}\\cdot\\dfrac12=\\dfrac{\\pi}{4}$",
+            "验算：第一象限是原题区域$D$的两倍（$D$为其一半，按对称性$y\\le x$与$y\\ge x$各占一半），故$\\pi/4=2\\times\\pi/8$，与原题答案吻合"
+          ]
+        }
+      ],
+      "id": "kyoto-2024-a19745fad7-q05-practice-02",
+      "school": "京都大学",
+      "year": "2024"
+    },
+    {
+      "text": "求 $\\displaystyle\\iint_D \\dfrac{1}{(x^2+y^2+1)}\\,dx\\,dy$（把指数由2改为1）在原题区域 $D=\\{0\\le y\\le x\\}$ 上是否收敛，若收敛求其值。",
+      "knowledge_points": [
+        "广义积分收敛性判定",
+        "极坐标下的收敛阶数分析"
+      ],
+      "question_type": "反常积分收敛性与计算",
+      "method": [
+        "极坐标变换后分析被积函数在$r\\to\\infty$时的阶数"
+      ],
+      "solution_steps": [
+        "写出极坐标表达式",
+        "分析径向积分$\\int r/(r^2+1)dr$的收敛性",
+        "得出发散结论"
+      ],
+      "math_structure": {
+        "type": "improper_integral_divergence_check",
+        "template": "\\iint_{0\\le y\\le x}\\dfrac{1}{x^2+y^2+1}dxdy",
+        "variable_count": 2
+      },
+      "difficulty": 2,
+      "estimated_minutes": 7,
+      "answer": [
+        {
+          "label": "结论",
+          "steps": [
+            "极坐标下积分为 $\\int_0^{\\pi/4}\\int_0^\\infty \\dfrac{r}{r^2+1}dr\\,d\\theta$",
+            "径向部分 $\\int_0^\\infty \\dfrac{r}{r^2+1}dr=\\dfrac12\\ln(r^2+1)\\Big|_0^\\infty\\to\\infty$，发散",
+            "因此该广义积分发散，不存在有限值，这与原题中指数为2时被积函数按$r^{-3}$衰减（可积）形成对比，指数为1时按$r^{-1}$衰减（不可积）"
+          ]
+        }
+      ],
+      "id": "kyoto-2024-a19745fad7-q05-practice-03",
+      "school": "京都大学",
+      "year": "2024"
+    }
+  ],
+  "source_question": "第1問(v)",
+  "source_pdf": "京都大学/情报学研究科/数理工学/京都大学_情报学研究科_数理工学_2024_数学过去问.pdf",
+  "source_type": "官方过去问",
+  "subject_category": "微积分"
+}

@@ -1,0 +1,208 @@
+{
+  "id": "nagoya-2004-51004956ab-q04",
+  "school": "名古屋大学",
+  "year": "2004",
+  "subject": "多元数理科学研究科_全专攻",
+  "text": "以下设 $a$ 是满足 $0<a<1$ 的常数。\n(1) 定义函数 $f:\\mathbb{R}\\to\\mathbb{R},\\ f(x)=a^x$。设 $f(x)$ 在 $x=0$ 处的泰勒展开为 $\\displaystyle\\sum_{n=0}^\\infty a_n x^n$，求 $a_n$，并求该幂级数的收敛半径。\n(2) 求极限 $\\displaystyle\\lim_{n\\to\\infty} n\\left(1-a^{\\frac1n}\\right)$。\n(3) 判断级数 $\\displaystyle\\sum_{n=1}^\\infty\\left(1-a^{\\frac1n}\\right)$ 的收敛性，并说明理由。",
+  "knowledge_points": [
+    "泰勒展开",
+    "幂级数收敛半径",
+    "指数函数的极限",
+    "级数收敛判定",
+    "极限比较判别法"
+  ],
+  "question_type": "级数与极限综合",
+  "method": [
+    "利用指数函数e^x的泰勒级数",
+    "用比值判别法求收敛半径",
+    "洛必达法则或等价无穷小求极限",
+    "极限比较判别法（与调和级数比较）"
+  ],
+  "solution_steps": [
+    "将a^x写成e^{x ln a}并展开成幂级数，得到系数a_n",
+    "用比值判别法或已知e^z的收敛半径为无穷，得出该级数收敛半径",
+    "利用(1)的展开式，将a^{1/n}在n→∞时作泰勒近似求极限",
+    "利用(2)得到的极限判断级数通项的阶数，与调和级数比较得出收敛性"
+  ],
+  "math_structure": {
+    "type": "exponential_series_and_convergence",
+    "template": "f(x)=a^x, 0<a<1; Taylor series coefficients a_n; limit n(1-a^{1/n}); convergence of sum(1-a^{1/n})",
+    "variable_count": 1
+  },
+  "difficulty": 3,
+  "answer": [
+    {
+      "label": "(1)",
+      "steps": [
+        "由 $a^x=e^{x\\ln a}$，而 $e^z$ 的泰勒展开为 $\\displaystyle\\sum_{n=0}^\\infty\\frac{z^n}{n!}$，代入 $z=x\\ln a$ 得 $a^x=\\displaystyle\\sum_{n=0}^\\infty\\frac{(\\ln a)^n}{n!}x^n$。",
+        "故 $a_n=\\dfrac{(\\ln a)^n}{n!}$。",
+        "由比值判别法：$\\left|\\dfrac{a_{n+1}x^{n+1}}{a_nx^n}\\right|=\\dfrac{|\\ln a|}{n+1}|x|\\to0$（当 $n\\to\\infty$，对任意固定 $x$），故级数对任意 $x\\in\\mathbb{R}$ 收敛，收敛半径为 $R=\\infty$（这与 $e^z$ 作为整函数的性质一致）。"
+      ]
+    },
+    {
+      "label": "(2)",
+      "steps": [
+        "由(1)，$a^{1/n}=e^{(\\ln a)/n}=1+\\dfrac{\\ln a}{n}+\\dfrac{(\\ln a)^2}{2n^2}+O\\!\\left(\\dfrac{1}{n^3}\\right)$（Taylor展开）。",
+        "于是 $1-a^{1/n}=-\\dfrac{\\ln a}{n}-\\dfrac{(\\ln a)^2}{2n^2}+O(n^{-3})$，故 $n(1-a^{1/n})=-\\ln a-\\dfrac{(\\ln a)^2}{2n}+O(n^{-2})$。",
+        "取 $n\\to\\infty$ 得 $\\displaystyle\\lim_{n\\to\\infty} n(1-a^{1/n})=-\\ln a=\\ln\\dfrac{1}{a}$。",
+        "验证：因 $0<a<1$，$\\ln a<0$，故 $-\\ln a>0$，与 $1-a^{1/n}>0$（因 $0<a<1$ 时 $a^{1/n}<1$）以及极限应为正数的直觉一致。"
+      ]
+    },
+    {
+      "label": "(3)",
+      "steps": [
+        "由(2)知 $\\displaystyle\\lim_{n\\to\\infty}\\dfrac{1-a^{1/n}}{1/n}=\\lim_{n\\to\\infty}n(1-a^{1/n})=-\\ln a$，这是一个有限且非零的正数（因 $0<a<1\\Rightarrow -\\ln a>0$）。",
+        "由极限比较判别法，级数 $\\displaystyle\\sum_{n=1}^\\infty(1-a^{1/n})$ 与 $\\displaystyle\\sum_{n=1}^\\infty\\frac1n$（调和级数）具有相同的收敛性。",
+        "调和级数 $\\displaystyle\\sum\\frac1n$ 发散，故 $\\displaystyle\\sum_{n=1}^\\infty(1-a^{1/n})$ 也发散。"
+      ]
+    }
+  ],
+  "practice_questions": [
+    {
+      "text": "求函数 $h(x)=b^x$（$b>1$为常数）在 $x=0$ 处的泰勒展开系数，并说明其收敛半径。",
+      "knowledge_points": [
+        "指数函数的泰勒展开",
+        "收敛半径"
+      ],
+      "question_type": "泰勒展开",
+      "method": [
+        "利用e^x展开"
+      ],
+      "solution_steps": [
+        "写成e^{x ln b}",
+        "展开并读出系数"
+      ],
+      "math_structure": {
+        "type": "exponential_taylor_series",
+        "template": "h(x)=b^x, b>1; find Taylor coefficients and radius",
+        "variable_count": 1
+      },
+      "difficulty": 1,
+      "estimated_minutes": 4,
+      "answer": [
+        {
+          "label": "结论",
+          "steps": [
+            "$b^x=e^{x\\ln b}=\\sum_{n=0}^\\infty\\frac{(\\ln b)^n}{n!}x^n$，系数为 $a_n=\\frac{(\\ln b)^n}{n!}$。",
+            "收敛半径为 $\\infty$，因为该级数即为指数函数的展开，对所有实数x收敛。"
+          ]
+        }
+      ],
+      "id": "nagoya-2004-51004956ab-q04-practice-01",
+      "school": "名古屋大学",
+      "year": "2004"
+    },
+    {
+      "text": "求极限 $\\displaystyle\\lim_{n\\to\\infty}n\\left(1-b^{-1/n}\\right)$，其中 $b>1$ 为常数。",
+      "knowledge_points": [
+        "指数函数极限",
+        "泰勒近似"
+      ],
+      "question_type": "极限计算",
+      "method": [
+        "一阶泰勒展开"
+      ],
+      "solution_steps": [
+        "将b^{-1/n}用e^{-(ln b)/n}展开",
+        "取极限"
+      ],
+      "math_structure": {
+        "type": "exponential_limit",
+        "template": "lim n(1-b^{-1/n}), b>1",
+        "variable_count": 1
+      },
+      "difficulty": 2,
+      "estimated_minutes": 5,
+      "answer": [
+        {
+          "label": "结论",
+          "steps": [
+            "$b^{-1/n}=e^{-(\\ln b)/n}=1-\\frac{\\ln b}{n}+O(n^{-2})$。",
+            "故 $n(1-b^{-1/n})=\\ln b+O(n^{-1})\\to\\ln b$。",
+            "极限为 $\\ln b$。"
+          ]
+        }
+      ],
+      "id": "nagoya-2004-51004956ab-q04-practice-02",
+      "school": "名古屋大学",
+      "year": "2004"
+    },
+    {
+      "text": "判断级数 $\\displaystyle\\sum_{n=1}^\\infty\\left(1-\\cos\\frac1n\\right)$ 的收敛性。",
+      "knowledge_points": [
+        "三角函数极限阶数",
+        "极限比较判别法"
+      ],
+      "question_type": "级数收敛判定",
+      "method": [
+        "泰勒展开确定通项阶数",
+        "与p级数比较"
+      ],
+      "solution_steps": [
+        "用cos(1/n)≈1-1/(2n^2)展开",
+        "判断通项与1/n^2同阶",
+        "利用p=2的级数收敛性得出结论"
+      ],
+      "math_structure": {
+        "type": "series_convergence_comparison",
+        "template": "sum (1-cos(1/n))",
+        "variable_count": 1
+      },
+      "difficulty": 2,
+      "estimated_minutes": 6,
+      "answer": [
+        {
+          "label": "结论",
+          "steps": [
+            "$\\cos(1/n)=1-\\frac{1}{2n^2}+O(n^{-4})$，故 $1-\\cos(1/n)\\sim\\frac{1}{2n^2}$。",
+            "由极限比较判别法，级数与 $\\sum\\frac{1}{2n^2}$ 同收敛性。",
+            "因 $p=2>1$ 的p-级数收敛，故 $\\sum(1-\\cos(1/n))$ 收敛。"
+          ]
+        }
+      ],
+      "id": "nagoya-2004-51004956ab-q04-practice-03",
+      "school": "名古屋大学",
+      "year": "2004"
+    },
+    {
+      "text": "设 $0<a<1$。判断级数 $\\displaystyle\\sum_{n=1}^\\infty n^2\\left(1-a^{1/n}\\right)$ 的收敛性。",
+      "knowledge_points": [
+        "极限比较判别法",
+        "级数收敛判定"
+      ],
+      "question_type": "级数收敛判定",
+      "method": [
+        "利用已知极限n(1-a^{1/n})→-ln a确定通项阶数"
+      ],
+      "solution_steps": [
+        "由n(1-a^{1/n})→-ln a得1-a^{1/n}~(-ln a)/n",
+        "得通项n^2(1-a^{1/n})~ -n ln a",
+        "判断通项不趋于0，级数发散"
+      ],
+      "math_structure": {
+        "type": "series_divergence_via_order",
+        "template": "sum n^2(1-a^{1/n}), 0<a<1",
+        "variable_count": 1
+      },
+      "difficulty": 3,
+      "estimated_minutes": 7,
+      "answer": [
+        {
+          "label": "结论",
+          "steps": [
+            "由原题(2)结论，$1-a^{1/n}\\sim\\dfrac{-\\ln a}{n}$（$n\\to\\infty$）。",
+            "故通项 $n^2(1-a^{1/n})\\sim n^2\\cdot\\dfrac{-\\ln a}{n}=-n\\ln a\\to+\\infty$（因 $-\\ln a>0$）。",
+            "通项不趋于0（反而趋于无穷），故级数 $\\sum n^2(1-a^{1/n})$ 发散（通项判别法）。"
+          ]
+        }
+      ],
+      "id": "nagoya-2004-51004956ab-q04-practice-04",
+      "school": "名古屋大学",
+      "year": "2004"
+    }
+  ],
+  "source_question": "問4",
+  "source_pdf": "名古屋大学/多元数理科学研究科/全专攻/名古屋大学_多元数理科学研究科_2004_数学过去问_上午.pdf",
+  "source_type": "官方过去问",
+  "subject_category": "微积分"
+}

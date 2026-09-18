@@ -1,0 +1,328 @@
+{
+  "id": "tohoku-2022-e2bb433a4c-q03",
+  "school": "东北大学",
+  "year": "2022",
+  "subject": "情报科学研究科_数学教室",
+  "text": "说明复变函数论中的留数定理。给出留数的定义、留数定理的内容、具体应用例子和相关推广。",
+  "knowledge_points": [
+    "留数",
+    "留数定理",
+    "单独奇点",
+    "围道积分",
+    "Laurent级数"
+  ],
+  "question_type": "概念定义与应用",
+  "method": [
+    "Laurent展开",
+    "围道积分",
+    "奇点分类"
+  ],
+  "solution_steps": [
+    "定义奇点和留数概念",
+    "说明Laurent级数与留数的关系",
+    "阐述留数定理的内容",
+    "举具体的计算例子",
+    "讨论留数的计算方法",
+    "说明定理的应用"
+  ],
+  "math_structure": {
+    "type": "residue_theorem",
+    "template": "若 $f(z)$ 在闭合曲线 $C$ 内部有有限个孤立奇点 $z_1, z_2, \\ldots, z_n$，则 $\\oint_C f(z)dz = 2\\pi i \\sum_{k=1}^n \\text{Res}(f, z_k)$",
+    "variable_count": 3
+  },
+  "difficulty": 2,
+  "answer": [
+    {
+      "label": "奇点与留数的定义",
+      "steps": [
+        "**孤立奇点**：若点 $z_0$ 是函数 $f(z)$ 的奇点，且存在 $\\delta > 0$ 使得 $f(z)$ 在 $0 < |z - z_0| < \\delta$ 内解析，则称 $z_0$ 为 $f(z)$ 的孤立奇点。",
+        "",
+        "**Laurent级数展开**：在孤立奇点 $z_0$ 附近，$f(z)$ 可以展开为 Laurent 级数：",
+        "$$f(z) = \\sum_{n=-\\infty}^{+\\infty} a_n(z-z_0)^n = \\sum_{n=-\\infty}^{-1} a_n(z-z_0)^n + \\sum_{n=0}^{+\\infty} a_n(z-z_0)^n$$",
+        "",
+        "其中负幂次部分称为**主部**（principal part），非负幂次部分称为**正则部分**。",
+        "",
+        "**留数的定义**：在孤立奇点 $z_0$ 处，$f(z)$ 的 **留数**（residue）定义为 Laurent 级数中 $(z-z_0)^{-1}$ 的系数，记为：",
+        "$$\\text{Res}(f, z_0) = a_{-1} = \\frac{1}{2\\pi i}\\oint_{|z-z_0|=r} f(z)dz$$",
+        "",
+        "其中 $r$ 为足够小的正实数，使得在 $|z-z_0| < r$ 内 $f$ 除 $z_0$ 外解析。"
+      ]
+    },
+    {
+      "label": "奇点的分类",
+      "steps": [
+        "根据 Laurent 级数主部的性质，孤立奇点可分为三类：",
+        "",
+        "1. **可去奇点**（removable singularity）：主部为零，即 $a_{-1} = a_{-2} = \\cdots = 0$，此时 $\\text{Res}(f, z_0) = 0$。",
+        "",
+        "2. **极点**（pole）：主部只有有限项。若最低次项为 $a_{-m}(z-z_0)^{-m}$（$a_{-m} \\neq 0$），则 $z_0$ 为 $m$ 阶极点，此时 $\\text{Res}(f, z_0) = a_{-1}$。",
+        "",
+        "3. **本质奇点**（essential singularity）：主部有无穷多项。此时 $\\text{Res}(f, z_0) = a_{-1}$。",
+        "",
+        "注：在可去奇点处，可以重新定义函数值使其解析；在极点处，$|f(z)| \\to \\infty$ 当 $z \\to z_0$；在本质奇点附近函数行为极为复杂。"
+      ]
+    },
+    {
+      "label": "留数定理的陈述",
+      "steps": [
+        "**留数定理**（Residue Theorem）：",
+        "",
+        "设 $f(z)$ 在区域 $D$ 内除了有限个孤立奇点 $z_1, z_2, \\ldots, z_n$ 外处处解析，$C$ 是 $D$ 内的一条正向（逆时针）简单闭合曲线，若 $f(z)$ 的所有奇点都在 $C$ 的内部，则：",
+        "",
+        "$$\\oint_C f(z)dz = 2\\pi i \\sum_{k=1}^n \\text{Res}(f, z_k)$$",
+        "",
+        "即：**闭合曲线上的积分等于 $2\\pi i$ 乘以所有奇点留数之和**。",
+        "",
+        "**证明思路**：",
+        "1. 围绕每个奇点 $z_k$ 作一个小圆 $C_k$",
+        "2. 在各圆心不包含奇点的环形区域内应用 Cauchy 积分定理",
+        "3. 由 Laurent 展开式，$\\oint_{C_k} f(z)dz = 2\\pi i \\text{Res}(f, z_k)$",
+        "4. 求和得到结论"
+      ]
+    },
+    {
+      "label": "极点处留数的计算方法",
+      "steps": [
+        "对于 $m$ 阶极点 $z_0$，有以下计算公式：",
+        "",
+        "**一阶极点** ($m=1$)：",
+        "$$\\text{Res}(f, z_0) = \\lim_{z \\to z_0}(z-z_0)f(z)$$",
+        "",
+        "特别地，若 $f(z) = \\frac{g(z)}{h(z)}$ 其中 $g(z_0) \\neq 0$，$h(z_0) = 0$，$h'(z_0) \\neq 0$，则：",
+        "$$\\text{Res}(f, z_0) = \\frac{g(z_0)}{h'(z_0)}$$",
+        "",
+        "**$m$ 阶极点** ($m \\geq 2$)：",
+        "$$\\text{Res}(f, z_0) = \\frac{1}{(m-1)!}\\lim_{z \\to z_0}\\frac{d^{m-1}}{dz^{m-1}}[(z-z_0)^m f(z)]$$"
+      ]
+    },
+    {
+      "label": "具体计算例子",
+      "steps": [
+        "**例1**：计算 $\\oint_C \\frac{e^z}{z(z-1)}dz$，其中 $C$ 为 $|z|=2$。",
+        "",
+        "函数 $f(z) = \\frac{e^z}{z(z-1)}$ 在 $z=0$ 和 $z=1$ 处有一阶极点。",
+        "",
+        "在 $z=0$ 处的留数：",
+        "$$\\text{Res}(f, 0) = \\lim_{z \\to 0}z \\cdot \\frac{e^z}{z(z-1)} = \\lim_{z \\to 0}\\frac{e^z}{z-1} = \\frac{1}{-1} = -1$$",
+        "",
+        "在 $z=1$ 处的留数：",
+        "$$\\text{Res}(f, 1) = \\lim_{z \\to 1}(z-1) \\cdot \\frac{e^z}{z(z-1)} = \\lim_{z \\to 1}\\frac{e^z}{z} = \\frac{e}{1} = e$$",
+        "",
+        "因此：",
+        "$$\\oint_C \\frac{e^z}{z(z-1)}dz = 2\\pi i(-1 + e) = 2\\pi i(e-1)$$",
+        "",
+        "---",
+        "",
+        "**例2**：计算 $\\oint_C \\frac{1}{z^3(z-2)}dz$，其中 $C$ 为 $|z|=1$。",
+        "",
+        "在 $|z|=1$ 内，只有 $z=0$ 是三阶极点。",
+        "",
+        "计算留数：",
+        "$$\\text{Res}(f, 0) = \\frac{1}{2!}\\lim_{z \\to 0}\\frac{d^2}{dz^2}\\left[z^3 \\cdot \\frac{1}{z^3(z-2)}\\right] = \\frac{1}{2}\\lim_{z \\to 0}\\frac{d^2}{dz^2}\\left[\\frac{1}{z-2}\\right]$$",
+        "",
+        "$$= \\frac{1}{2}\\lim_{z \\to 0}\\frac{2}{(z-2)^3} = \\frac{1}{2} \\cdot \\frac{2}{(-2)^3} = \\frac{1}{2} \\cdot \\frac{2}{-8} = -\\frac{1}{8}$$",
+        "",
+        "因此：",
+        "$$\\oint_C \\frac{1}{z^3(z-2)}dz = 2\\pi i \\cdot (-\\frac{1}{8}) = -\\frac{\\pi i}{4}$$"
+      ]
+    },
+    {
+      "label": "应用：实积分的计算",
+      "steps": [
+        "留数定理的一个重要应用是计算某些实积分。",
+        "",
+        "**应用1**：计算形如 $\\int_{-\\infty}^{+\\infty} \\frac{P(x)}{Q(x)}dx$ 的积分，其中 $P$、$Q$ 是多项式，$\\deg Q \\geq \\deg P + 2$，$Q(x) \\neq 0$ 对所有实数 $x$。",
+        "",
+        "方法：",
+        "1. 作闭合围道 $C$：由实轴上 $[-R, R]$ 段和上半平面的半圆弧 $|z| = R$ 组成",
+        "2. 当 $R \\to \\infty$ 时，半圆弧上的积分 $\\to 0$",
+        "3. 利用留数定理计算上半平面极点的留数",
+        "",
+        "**例**：计算 $\\int_{-\\infty}^{+\\infty} \\frac{1}{1+x^2}dx$。",
+        "",
+        "函数 $f(z) = \\frac{1}{1+z^2} = \\frac{1}{(z-i)(z+i)}$ 在上半平面有一阶极点 $z=i$。",
+        "",
+        "$$\\text{Res}(f, i) = \\lim_{z \\to i}(z-i)\\frac{1}{(z-i)(z+i)} = \\frac{1}{2i}$$",
+        "",
+        "因此：",
+        "$$\\int_{-\\infty}^{+\\infty} \\frac{1}{1+x^2}dx = 2\\pi i \\cdot \\frac{1}{2i} = \\pi$$"
+      ]
+    }
+  ],
+  "practice_questions": [
+    {
+      "text": "计算积分 $\\oint_C \\frac{\\cos z}{z}dz$，其中 $C$ 为 $|z|=1$（单位圆）。",
+      "knowledge_points": [
+        "可去奇点",
+        "Laurent展开",
+        "留数"
+      ],
+      "question_type": "计算题",
+      "method": [
+        "Laurent级数",
+        "留数计算"
+      ],
+      "solution_steps": [
+        "确定奇点的类型",
+        "做 Laurent 展开",
+        "提取留数",
+        "应用留数定理"
+      ],
+      "math_structure": {
+        "type": "removable_singularity",
+        "template": "计算含可去奇点的闭合积分",
+        "variable_count": 1
+      },
+      "difficulty": 1,
+      "estimated_minutes": 5,
+      "answer": [
+        {
+          "label": "Laurent展开与留数",
+          "steps": [
+            "在 $z=0$ 处展开 $\\cos z$：",
+            "$$\\cos z = 1 - \\frac{z^2}{2!} + \\frac{z^4}{4!} - \\cdots$$",
+            "",
+            "因此：",
+            "$$\\frac{\\cos z}{z} = \\frac{1}{z}\\left(1 - \\frac{z^2}{2!} + \\frac{z^4}{4!} - \\cdots\\right) = \\frac{1}{z} - \\frac{z}{2!} + \\frac{z^3}{4!} - \\cdots$$",
+            "",
+            "这是一个在 $z=0$ 处包含 $\\frac{1}{z}$ 项的 Laurent 展开。",
+            "",
+            "$(z-0)^{-1}$ 的系数为 $1$，所以 $\\text{Res}\\left(\\frac{\\cos z}{z}, 0\\right) = 1$",
+            "",
+            "由留数定理：",
+            "$$\\oint_C \\frac{\\cos z}{z}dz = 2\\pi i \\cdot 1 = 2\\pi i$$"
+          ]
+        }
+      ],
+      "id": "tohoku-2022-e2bb433a4c-q03-practice-01",
+      "school": "东北大学",
+      "year": "2022"
+    },
+    {
+      "text": "计算积分 $\\oint_C \\frac{z^2}{(z-1)^3}dz$，其中 $C$ 为 $|z|=2$。",
+      "knowledge_points": [
+        "高阶极点",
+        "留数公式"
+      ],
+      "question_type": "计算题",
+      "method": [
+        "高阶极点留数公式"
+      ],
+      "solution_steps": [
+        "确定奇点和它的阶数",
+        "应用高阶极点的留数公式",
+        "计算导数",
+        "求留数并计算积分"
+      ],
+      "math_structure": {
+        "type": "higher_order_pole",
+        "template": "计算含高阶极点的闭合积分",
+        "variable_count": 3
+      },
+      "difficulty": 2,
+      "estimated_minutes": 8,
+      "answer": [
+        {
+          "label": "高阶极点留数计算",
+          "steps": [
+            "$z=1$ 是三阶极点。",
+            "",
+            "使用三阶极点的留数公式：",
+            "$$\\text{Res}(f, 1) = \\frac{1}{(3-1)!}\\lim_{z \\to 1}\\frac{d^2}{dz^2}[(z-1)^3 \\cdot \\frac{z^2}{(z-1)^3}]$$",
+            "",
+            "$$= \\frac{1}{2}\\lim_{z \\to 1}\\frac{d^2}{dz^2}(z^2) = \\frac{1}{2}\\lim_{z \\to 1}\\frac{d}{dz}(2z) = \\frac{1}{2} \\cdot 2 = 1$$",
+            "",
+            "由留数定理：",
+            "$$\\oint_C \\frac{z^2}{(z-1)^3}dz = 2\\pi i \\cdot 1 = 2\\pi i$$"
+          ]
+        }
+      ],
+      "id": "tohoku-2022-e2bb433a4c-q03-practice-02",
+      "school": "东北大学",
+      "year": "2022"
+    },
+    {
+      "text": "利用留数定理计算实积分 $\\int_0^{2\\pi} \\frac{1}{5-3\\cos\\theta}d\\theta$。",
+      "knowledge_points": [
+        "实积分计算",
+        "留数定理",
+        "Weierstrass代换"
+      ],
+      "question_type": "应用题",
+      "method": [
+        "Weierstrass替换",
+        "留数计算"
+      ],
+      "solution_steps": [
+        "用 Weierstrass 代换 $z = e^{i\\theta}$ 转化为复积分",
+        "确定奇点",
+        "计算留数",
+        "应用留数定理"
+      ],
+      "math_structure": {
+        "type": "trigonometric_integral",
+        "template": "用留数定理计算三角函数的定积分",
+        "variable_count": 2
+      },
+      "difficulty": 3,
+      "estimated_minutes": 12,
+      "answer": [
+        {
+          "label": "Weierstrass代换与复积分",
+          "steps": [
+            "令 $z = e^{i\\theta}$，则 $\\cos\\theta = \\frac{z + z^{-1}}{2}$，$d\\theta = \\frac{dz}{iz}$，积分路径为 $|z|=1$。",
+            "",
+            "$$\\int_0^{2\\pi} \\frac{1}{5-3\\cos\\theta}d\\theta = \\oint_{|z|=1} \\frac{1}{5-3 \\cdot \\frac{z+z^{-1}}{2}} \\cdot \\frac{dz}{iz}$$",
+            "",
+            "$$= \\oint_{|z|=1} \\frac{1}{5-\\frac{3z+3/z}{2}} \\cdot \\frac{dz}{iz} = \\oint_{|z|=1} \\frac{1}{\\frac{10-3z-3/z}{2}} \\cdot \\frac{dz}{iz}$$",
+            "",
+            "$$= \\oint_{|z|=1} \\frac{2}{10-3z-3/z} \\cdot \\frac{dz}{iz} = \\oint_{|z|=1} \\frac{2z}{iz(10-3z-3/z)} \\, dz$$",
+            "",
+            "$$= \\oint_{|z|=1} \\frac{2z}{iz(10-3z-3/z)} \\, dz = \\oint_{|z|=1} \\frac{2}{i(10-3z-3/z)} \\, dz$$",
+            "",
+            "分母化简：$10 - 3z - \\frac{3}{z} = \\frac{10z - 3z^2 - 3}{z} = \\frac{-3z^2 + 10z - 3}{z}$",
+            "",
+            "$$= \\oint_{|z|=1} \\frac{2z}{i(-3z^2 + 10z - 3)} \\, dz = \\oint_{|z|=1} \\frac{-2z}{i(3z^2 - 10z + 3)} \\, dz$$"
+          ]
+        },
+        {
+          "label": "求解奇点",
+          "steps": [
+            "分母 $3z^2 - 10z + 3 = 0$ 的根为：",
+            "$$z = \\frac{10 \\pm \\sqrt{100-36}}{6} = \\frac{10 \\pm 8}{6}$$",
+            "",
+            "$$z_1 = 3, \\quad z_2 = \\frac{1}{3}$$",
+            "",
+            "在 $|z|=1$ 内只有奇点 $z = \\frac{1}{3}$（一阶极点）。"
+          ]
+        },
+        {
+          "label": "计算留数",
+          "steps": [
+            "$$\\text{Res}\\left(\\frac{-2z}{i(3z^2-10z+3)}, \\frac{1}{3}\\right) = \\lim_{z \\to 1/3}\\left(z-\\frac{1}{3}\\right) \\cdot \\frac{-2z}{i(3z^2-10z+3)}$$",
+            "",
+            "分母因式分解：$3z^2 - 10z + 3 = 3(z-3)(z-1/3)$",
+            "",
+            "$$= \\lim_{z \\to 1/3}\\frac{-2z}{i \\cdot 3(z-3)} = \\frac{-2 \\cdot 1/3}{i \\cdot 3 \\cdot (1/3 - 3)} = \\frac{-2/3}{i \\cdot 3 \\cdot (-8/3)}$$",
+            "",
+            "$$= \\frac{-2/3}{-8i} = \\frac{2/3}{8i} = \\frac{1}{12i}$$"
+          ]
+        },
+        {
+          "label": "最终结果",
+          "steps": [
+            "由留数定理：",
+            "$$\\int_0^{2\\pi} \\frac{1}{5-3\\cos\\theta}d\\theta = 2\\pi i \\cdot \\frac{1}{12i} = 2\\pi \\cdot \\frac{1}{12} = \\frac{\\pi}{6}$$"
+          ]
+        }
+      ],
+      "id": "tohoku-2022-e2bb433a4c-q03-practice-03",
+      "school": "东北大学",
+      "year": "2022"
+    }
+  ],
+  "source_question": "問(II)(a)",
+  "source_pdf": "东北大学/情报科学研究科/数学教室/东北大学_情报科学研究科_数学_2022_推荐小论文.pdf",
+  "source_type": "官方过去问",
+  "subject_category": "复变函数"
+}

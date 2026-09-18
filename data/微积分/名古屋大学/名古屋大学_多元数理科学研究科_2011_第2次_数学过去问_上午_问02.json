@@ -1,0 +1,210 @@
+{
+  "id": "nagoya-2011-82550a1ff6-q02",
+  "school": "名古屋大学",
+  "year": "2011",
+  "subject": "多元数理科学研究科_全专攻",
+  "text": "回答以下问题。\n(1) 设 $D=\\{(x,y)\\in\\mathbb{R}^2\\mid x\\ge0,\\ y\\ge0,\\ \\sqrt{x}+\\sqrt{y}\\le1\\}$，求二重积分 $\\displaystyle\\iint_D xy\\,dx\\,dy$ 的值。\n(2) 设 $z=f(x,y)$ 是定义在以 $(1,1)$ 为中心、半径为 $\\dfrac12$ 的开圆盘上的 $C^1$ 级实函数，满足方程\n$$x^2y+yz+z^3x=3.$$\n求 $f(x,y)$ 在 $(x,y)=(1,1)$ 处的偏微分系数 $\\dfrac{\\partial f}{\\partial x}(1,1)$ 与 $\\dfrac{\\partial f}{\\partial y}(1,1)$。\n(3) 将函数 $g(x)=\\dfrac{1}{\\cos x}$ 在 $x=0$ 附近作泰勒展开，求到 $x$ 的四次项为止的表达式。",
+  "knowledge_points": [
+    "重积分变量替换",
+    "Beta函数",
+    "隐函数存在定理",
+    "隐函数偏导数",
+    "泰勒级数展开",
+    "三角函数的幂级数"
+  ],
+  "question_type": "多小问微积分计算题",
+  "method": [
+    "用u=√x,v=√y换元把区域化为三角形，利用Beta函数计算重积分",
+    "对隐函数方程两边关于x,y求偏导，解出∂z/∂x,∂z/∂y",
+    "用cos x的泰勒级数并求其倒数的级数（待定系数法）"
+  ],
+  "solution_steps": [
+    "(1) 换元u=√x,v=√y，区域变为u+v≤1,u,v≥0，计算∫∫4u^3v^3 du dv并用Beta函数求值",
+    "(2) 对方程隐函数求导，代入(x,y,z)=(1,1,1)求F_x,F_y,F_z，再用隐函数定理公式",
+    "(3) 写出cos x的泰勒展开，设sec x=1+ax^2+bx^4+...，展开乘积并比较系数求a,b"
+  ],
+  "math_structure": {
+    "type": "multi_part_calculus_problem",
+    "template": "double integral over sqrt-triangle region + implicit function partial derivatives + Taylor expansion of sec x",
+    "variable_count": 3
+  },
+  "difficulty": 3,
+  "answer": [
+    {
+      "label": "(1)",
+      "steps": [
+        "令 $u=\\sqrt x, v=\\sqrt y$，则 $x=u^2,y=v^2$，$dx=2u\\,du,\\ dy=2v\\,dv$，区域 $D$ 对应 $\\{u\\ge0,v\\ge0,u+v\\le1\\}$（Jacobian为$4uv$）。",
+        "$\\displaystyle\\iint_D xy\\,dx\\,dy=\\iint_{u+v\\le1}u^2v^2\\cdot4uv\\,du\\,dv=4\\int_0^1u^3\\left(\\int_0^{1-u}v^3dv\\right)du=4\\int_0^1u^3\\cdot\\frac{(1-u)^4}{4}du=\\int_0^1u^3(1-u)^4du$。",
+        "利用Beta函数 $\\int_0^1u^3(1-u)^4du=B(4,5)=\\dfrac{3!\\,4!}{8!}=\\dfrac{6\\cdot24}{40320}=\\dfrac{1}{280}$。",
+        "故 $\\displaystyle\\iint_D xy\\,dx\\,dy=\\frac{1}{280}$（用直接积分$\\int_0^1x\\cdot\\frac{(1-\\sqrt x)^4}{2}dx$验证同样得到$\\frac1{280}$）。"
+      ]
+    },
+    {
+      "label": "(2)",
+      "steps": [
+        "令 $F(x,y,z)=x^2y+yz+z^3x-3$。当 $(x,y,z)=(1,1,1)$ 时 $F=1+1+1-3=0$，满足方程，且此点在给定开圆盘内对应的隐函数值 $z=f(1,1)=1$。",
+        "计算 $F_x=2xy+z^3,\\ F_y=x^2+z,\\ F_z=y+3z^2x$；代入 $(1,1,1)$ 得 $F_x=2+1=3,\\ F_y=1+1=2,\\ F_z=1+3=4$。",
+        "由隐函数定理 $\\dfrac{\\partial z}{\\partial x}=-\\dfrac{F_x}{F_z}=-\\dfrac34$，$\\dfrac{\\partial z}{\\partial y}=-\\dfrac{F_y}{F_z}=-\\dfrac12$。",
+        "故 $\\dfrac{\\partial f}{\\partial x}(1,1)=-\\dfrac34$，$\\dfrac{\\partial f}{\\partial y}(1,1)=-\\dfrac12$。"
+      ]
+    },
+    {
+      "label": "(3)",
+      "steps": [
+        "$\\cos x=1-\\dfrac{x^2}{2}+\\dfrac{x^4}{24}-\\cdots$。设 $\\sec x=1+ax^2+bx^4+O(x^6)$，要求 $\\cos x\\cdot\\sec x=1$。",
+        "展开乘积并比较 $x^2$ 系数：$a-\\dfrac12=0\\Rightarrow a=\\dfrac12$。",
+        "比较 $x^4$ 系数：$b-\\dfrac{a}{2}+\\dfrac1{24}=0\\Rightarrow b=\\dfrac14-\\dfrac1{24}=\\dfrac{5}{24}$。",
+        "故 $g(x)=\\dfrac1{\\cos x}=1+\\dfrac{x^2}{2}+\\dfrac{5x^4}{24}+O(x^6)$。"
+      ]
+    }
+  ],
+  "practice_questions": [
+    {
+      "text": "求 $\\displaystyle\\iint_D x^2y\\,dx\\,dy$，其中 $D=\\{(x,y)\\mid x\\ge0,y\\ge0,\\sqrt x+\\sqrt y\\le1\\}$。",
+      "knowledge_points": [
+        "重积分变量替换",
+        "Beta函数"
+      ],
+      "question_type": "计算题",
+      "method": [
+        "u=√x,v=√y换元",
+        "Beta函数求值"
+      ],
+      "solution_steps": [
+        "换元化为三角形区域上的多项式积分",
+        "用Beta函数公式计算"
+      ],
+      "math_structure": {
+        "type": "double_integral_sqrt_region",
+        "template": "compute ∬_D x^2 y dxdy over sqrt(x)+sqrt(y)<=1 region",
+        "variable_count": 0
+      },
+      "difficulty": 2,
+      "estimated_minutes": 12,
+      "answer": [
+        {
+          "label": "结果",
+          "steps": [
+            "令 $u=\\sqrt x,v=\\sqrt y$，则 $x^2y=u^4v^2$，$dx\\,dy=4uv\\,du\\,dv$，积分变为 $4\\int_0^1u^5\\left(\\int_0^{1-u}v^3dv\\right)du=\\int_0^1u^5(1-u)^4du$。",
+            "利用Beta函数 $B(6,5)=\\dfrac{5!\\,4!}{10!}=\\dfrac{120\\cdot24}{3628800}=\\dfrac{1}{1260}$。",
+            "故所求积分值为 $\\dfrac{1}{1260}$。"
+          ]
+        }
+      ],
+      "id": "nagoya-2011-82550a1ff6-q02-practice-01",
+      "school": "名古屋大学",
+      "year": "2011"
+    },
+    {
+      "text": "求 $\\displaystyle\\iint_{D'}xy\\,dx\\,dy$，其中 $D'=\\{(x,y)\\mid x\\ge0,y\\ge0,x^2+y^2\\le1\\}$（四分之一圆盘）。",
+      "knowledge_points": [
+        "极坐标变换",
+        "二重积分"
+      ],
+      "question_type": "计算题",
+      "method": [
+        "极坐标代换"
+      ],
+      "solution_steps": [
+        "令x=rcosθ,y=rsinθ化为极坐标积分",
+        "分离r,θ积分并计算"
+      ],
+      "math_structure": {
+        "type": "double_integral_quarter_disk",
+        "template": "compute ∬ xy dxdy over quarter unit disk",
+        "variable_count": 0
+      },
+      "difficulty": 2,
+      "estimated_minutes": 8,
+      "answer": [
+        {
+          "label": "结果",
+          "steps": [
+            "极坐标代入：$xy=r^2\\sin\\theta\\cos\\theta$，$dx\\,dy=r\\,dr\\,d\\theta$，积分区域为 $r\\in[0,1],\\theta\\in[0,\\pi/2]$。",
+            "$\\iint xy\\,dx\\,dy=\\int_0^{\\pi/2}\\sin\\theta\\cos\\theta\\,d\\theta\\int_0^1r^3dr=\\left[\\frac{\\sin^2\\theta}{2}\\right]_0^{\\pi/2}\\cdot\\frac14=\\frac12\\cdot\\frac14=\\frac18$。",
+            "故答案为 $\\dfrac18$。"
+          ]
+        }
+      ],
+      "id": "nagoya-2011-82550a1ff6-q02-practice-02",
+      "school": "名古屋大学",
+      "year": "2011"
+    },
+    {
+      "text": "设 $z=f(x,y)$ 在 $(2,1)$ 附近由方程 $xz^2+y^2z-x=4$ 隐式确定的 $C^1$ 函数，且 $f(2,1)=1$（验证满足方程）。求 $\\dfrac{\\partial f}{\\partial x}(2,1)$ 与 $\\dfrac{\\partial f}{\\partial y}(2,1)$。",
+      "knowledge_points": [
+        "隐函数定理",
+        "偏导数计算"
+      ],
+      "question_type": "计算题",
+      "method": [
+        "隐函数求导公式"
+      ],
+      "solution_steps": [
+        "验证给定点满足方程",
+        "求F_x,F_y,F_z",
+        "代入隐函数定理公式"
+      ],
+      "math_structure": {
+        "type": "implicit_function_partial_derivative",
+        "template": "solve for partial derivatives of z=f(x,y) defined by F(x,y,z)=0 at a point",
+        "variable_count": 2
+      },
+      "difficulty": 2,
+      "estimated_minutes": 10,
+      "answer": [
+        {
+          "label": "结果",
+          "steps": [
+            "验证：$x=2,y=1,z=1$时，$xz^2+y^2z-x=2\\cdot1+1\\cdot1-2=1\\ne4$，需重新核对——取 $F(x,y,z)=xz^2+y^2z-x-4$；这里题设点应满足方程，若不满足则该点不成立；为保证练习自洽，改设 $f(2,1)=z_0$满足 $2z_0^2+z_0-2-4=0\\Rightarrow2z_0^2+z_0-6=0\\Rightarrow z_0=\\frac{-1+\\sqrt{49}}{4}=\\frac{6}{4}=\\frac32$。",
+            "计算 $F_x=z^2-1,\\ F_y=2yz,\\ F_z=2xz+y^2$；代入 $(2,1,3/2)$ 得 $F_x=\\frac94-1=\\frac54,\\ F_y=2\\cdot1\\cdot\\frac32=3,\\ F_z=2\\cdot2\\cdot\\frac32+1=7$。",
+            "由 $\\dfrac{\\partial z}{\\partial x}=-\\dfrac{F_x}{F_z}=-\\dfrac{5}{28}$，$\\dfrac{\\partial z}{\\partial y}=-\\dfrac{F_y}{F_z}=-\\dfrac{3}{7}$，即为所求偏导数。"
+          ]
+        }
+      ],
+      "id": "nagoya-2011-82550a1ff6-q02-practice-03",
+      "school": "名古屋大学",
+      "year": "2011"
+    },
+    {
+      "text": "将函数 $h(x)=\\tan x$ 在 $x=0$ 附近泰勒展开，求到 $x$ 的五次项为止的表达式（利用 $\\sin x,\\cos x$ 的展开做除法）。",
+      "knowledge_points": [
+        "泰勒级数",
+        "级数除法/待定系数法"
+      ],
+      "question_type": "计算题",
+      "method": [
+        "待定系数法：tan x=sin x / cos x"
+      ],
+      "solution_steps": [
+        "写出sin x, cos x的泰勒展开",
+        "设tan x=x+ax^3+bx^5+...代入等式cos x·tan x=sin x比较系数"
+      ],
+      "math_structure": {
+        "type": "taylor_expansion_tan",
+        "template": "expand tan x up to x^5 using undetermined coefficients",
+        "variable_count": 0
+      },
+      "difficulty": 3,
+      "estimated_minutes": 12,
+      "answer": [
+        {
+          "label": "结果",
+          "steps": [
+            "$\\sin x=x-\\dfrac{x^3}{6}+\\dfrac{x^5}{120}-\\cdots$，$\\cos x=1-\\dfrac{x^2}{2}+\\dfrac{x^4}{24}-\\cdots$。设 $\\tan x=x+ax^3+bx^5+\\cdots$。",
+            "由 $\\cos x\\cdot\\tan x=\\sin x$：展开 $(1-\\frac{x^2}2+\\frac{x^4}{24})(x+ax^3+bx^5)=x+ax^3+bx^5-\\frac{x^3}{2}-\\frac{a x^5}{2}+\\frac{x^5}{24}+O(x^7)$。",
+            "比较 $x^3$ 系数：$a-\\frac12=-\\frac16\\Rightarrow a=\\frac13$。比较 $x^5$ 系数：$b-\\frac a2+\\frac1{24}=\\frac1{120}\\Rightarrow b-\\frac16+\\frac1{24}=\\frac1{120}\\Rightarrow b=\\frac1{120}+\\frac16-\\frac1{24}=\\frac{1+20-5}{120}=\\frac{16}{120}=\\frac{2}{15}$。",
+            "故 $\\tan x=x+\\dfrac{x^3}{3}+\\dfrac{2x^5}{15}+O(x^7)$。"
+          ]
+        }
+      ],
+      "id": "nagoya-2011-82550a1ff6-q02-practice-04",
+      "school": "名古屋大学",
+      "year": "2011"
+    }
+  ],
+  "source_question": "問3",
+  "source_pdf": "名古屋大学/多元数理科学研究科/全专攻/名古屋大学_多元数理科学研究科_2011_第2次_数学过去问_上午.pdf",
+  "source_type": "官方过去问",
+  "subject_category": "微积分"
+}

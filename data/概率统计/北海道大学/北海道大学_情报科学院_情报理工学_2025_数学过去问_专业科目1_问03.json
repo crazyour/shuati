@@ -1,0 +1,257 @@
+{
+  "id": "hokkaido-2025-d025feaeaa-q03",
+  "school": "北海道大学",
+  "year": "2025",
+  "subject": "情报科学院_情报理工学",
+  "text": "设 $k$ 为自然数，$p$ 为实数（$0<p<1$）。对非负整数 $x$，定义函数 $f(x)$：\n$$f(x)=\\binom{x+k-1}{x}p^k(1-p)^x,\\quad x=0,1,2,\\ldots$$\n对实数 $\\alpha$ 与非负整数 $r$，定义广义二项系数：\n$$\\binom{\\alpha}{r}=\\begin{cases}\\dfrac{\\alpha(\\alpha-1)\\cdots(\\alpha-r+1)}{r!}, & r=1,2,3,\\ldots\\\\ 1, & r=0\\end{cases}$$\n(1) 证明 $f(x)=\\binom{-k}{x}p^k(p-1)^x$。\n(2) 证明函数 $f(x)$ 是样本空间 $\\Omega=\\{0,1,2,\\ldots\\}$ 上的概率函数。\n(3) 求以 $f(x)$ 为概率函数的随机变量 $X$ 的概率母函数 $\\mathbb{E}[s^X]$（$0\\le s\\le1$）。\n(4) 求以 $f(x)$ 为概率函数的随机变量 $X$ 的期望值和方差。",
+  "knowledge_points": [
+    "负二项分布",
+    "广义二项系数恒等式",
+    "概率生成函数(PGF)",
+    "级数求和判定概率函数归一性",
+    "利用生成函数求期望与方差"
+  ],
+  "question_type": "离散分布性质证明与矩计算",
+  "method": [
+    "广义二项系数展开与符号变换",
+    "负二项级数求和公式",
+    "构造概率生成函数并化简",
+    "对生成函数求导得期望与方差"
+  ],
+  "solution_steps": [
+    "展开广义二项系数 $\\binom{-k}{x}$ 并提取符号，与普通二项系数比较",
+    "验证 $f(x)$ 非负，并利用负二项级数恒等式证明总和为 $1$",
+    "构造 $E[s^X]$ 并利用同一级数恒等式化简为封闭形式",
+    "对生成函数求一阶、二阶导数在 $s=1$ 处的值，得到期望与方差"
+  ],
+  "math_structure": {
+    "type": "negative_binomial_distribution_moments",
+    "template": "$f(x)=\\binom{x+k-1}{x}p^k(1-p)^x$，$x=0,1,2,\\ldots$；证明 $f(x)=\\binom{-k}{x}p^k(p-1)^x$，验证归一性，求概率生成函数 $E[s^X]$、期望与方差",
+    "variable_count": 2
+  },
+  "difficulty": 3,
+  "answer": [
+    {
+      "label": "(1)",
+      "steps": [
+        "展开广义二项系数：$\\binom{-k}{x}=\\dfrac{(-k)(-k-1)\\cdots(-k-x+1)}{x!}$",
+        "提取符号：每个因子 $(-k-j)=-(k+j)$，共 $x$ 个因子，故 $\\binom{-k}{x}=(-1)^x\\dfrac{k(k+1)\\cdots(k+x-1)}{x!}=(-1)^x\\binom{x+k-1}{x}$",
+        "代入：$\\binom{-k}{x}p^k(p-1)^x=(-1)^x\\binom{x+k-1}{x}p^k(p-1)^x=\\binom{x+k-1}{x}p^k[-(p-1)]^x=\\binom{x+k-1}{x}p^k(1-p)^x=f(x)$，等式成立"
+      ]
+    },
+    {
+      "label": "(2)",
+      "steps": [
+        "非负性：$\\binom{x+k-1}{x}\\ge0$（正整数乘积除以$x!$），$p^k>0$，$(1-p)^x\\ge0$（因 $0<p<1$ 使 $1-p>0$），故 $f(x)\\ge0$ 对所有 $x$ 成立",
+        "归一性：$\\sum_{x=0}^{\\infty}f(x)=p^k\\sum_{x=0}^{\\infty}\\binom{x+k-1}{x}(1-p)^x$",
+        "利用负二项级数恒等式 $\\sum_{x=0}^{\\infty}\\binom{x+k-1}{x}t^x=(1-t)^{-k}$（$|t|<1$），取 $t=1-p\\in(0,1)$，得 $\\sum_x f(x)=p^k\\cdot(1-(1-p))^{-k}=p^k\\cdot p^{-k}=1$",
+        "非负且总和为1，故 $f(x)$ 是 $\\Omega$ 上合法的概率函数"
+      ]
+    },
+    {
+      "label": "(3)",
+      "steps": [
+        "写出定义：$\\mathbb{E}[s^X]=\\sum_{x=0}^{\\infty}s^xf(x)=p^k\\sum_{x=0}^{\\infty}\\binom{x+k-1}{x}[s(1-p)]^x$",
+        "由 $0\\le s\\le1,0<1-p<1$，得 $0\\le s(1-p)<1$，可套用同一负二项级数公式，取 $t=s(1-p)$：$\\sum_x\\binom{x+k-1}{x}t^x=(1-t)^{-k}$",
+        "代入化简：$\\mathbb{E}[s^X]=p^k(1-s(1-p))^{-k}=\\left(\\dfrac{p}{1-(1-p)s}\\right)^k$"
+      ]
+    },
+    {
+      "label": "(4)",
+      "steps": [
+        "记 $G(s)=\\mathbb{E}[s^X]=p^k(1-(1-p)s)^{-k}$，求导：$G'(s)=p^k\\cdot k(1-p)(1-(1-p)s)^{-k-1}$，代入 $s=1$：$G'(1)=p^kk(1-p)p^{-k-1}=\\dfrac{k(1-p)}{p}$，即 $\\mathbb{E}[X]=\\dfrac{k(1-p)}{p}$",
+        "再求导：$G''(s)=p^k\\cdot k(k+1)(1-p)^2(1-(1-p)s)^{-k-2}$，代入 $s=1$：$G''(1)=\\dfrac{k(k+1)(1-p)^2}{p^2}$",
+        "由 $\\mathrm{Var}(X)=G''(1)+G'(1)-[G'(1)]^2=\\dfrac{k(k+1)(1-p)^2}{p^2}+\\dfrac{k(1-p)}{p}-\\dfrac{k^2(1-p)^2}{p^2}$",
+        "化简：前两项含 $(1-p)^2$ 合并为 $\\dfrac{k(1-p)^2}{p^2}$，故 $\\mathrm{Var}(X)=\\dfrac{k(1-p)^2}{p^2}+\\dfrac{k(1-p)}{p}=\\dfrac{k(1-p)}{p^2}[(1-p)+p]=\\dfrac{k(1-p)}{p^2}$"
+      ]
+    }
+  ],
+  "practice_questions": [
+    {
+      "text": "对几何分布 $f(x)=p(1-p)^x,\\ x=0,1,2,\\ldots$（$0<p<1$），验证其总和为1，即验证它是合法的概率函数。",
+      "knowledge_points": [
+        "几何分布",
+        "等比级数求和"
+      ],
+      "question_type": "概率函数归一性验证",
+      "method": [
+        "等比级数求和公式"
+      ],
+      "solution_steps": [
+        "写出求和表达式",
+        "套用等比级数公式",
+        "得出结论"
+      ],
+      "math_structure": {
+        "type": "geometric_distribution_normalization",
+        "template": "f(x)=p(1-p)^x，验证sum f(x)=1",
+        "variable_count": 1
+      },
+      "difficulty": 1,
+      "estimated_minutes": 4,
+      "answer": [
+        {
+          "label": "归一性验证",
+          "steps": [
+            "$\\sum_{x=0}^{\\infty}f(x)=p\\sum_{x=0}^{\\infty}(1-p)^x$",
+            "由等比级数公式 $\\sum_{x=0}^{\\infty}t^x=\\dfrac{1}{1-t}$（$|t|<1$），取 $t=1-p$：$\\sum_x(1-p)^x=\\dfrac{1}{1-(1-p)}=\\dfrac{1}{p}$",
+            "故 $\\sum_x f(x)=p\\cdot\\dfrac{1}{p}=1$，验证 $f(x)$ 为合法概率函数"
+          ]
+        }
+      ],
+      "id": "hokkaido-2025-d025feaeaa-q03-practice-01",
+      "school": "北海道大学",
+      "year": "2025"
+    },
+    {
+      "text": "对几何分布 $f(x)=p(1-p)^x,\\ x=0,1,2,\\ldots$，求其概率生成函数 $G(s)=\\mathbb{E}[s^X]$（$0\\le s<\\frac1{1-p}$）。",
+      "knowledge_points": [
+        "概率生成函数",
+        "等比级数求和"
+      ],
+      "question_type": "概率生成函数计算",
+      "method": [
+        "等比级数求和公式"
+      ],
+      "solution_steps": [
+        "写出G(s)定义式",
+        "套用等比级数公式化简"
+      ],
+      "math_structure": {
+        "type": "pgf_geometric_distribution",
+        "template": "f(x)=p(1-p)^x，求G(s)=E[s^X]",
+        "variable_count": 1
+      },
+      "difficulty": 2,
+      "estimated_minutes": 5,
+      "answer": [
+        {
+          "label": "PGF计算",
+          "steps": [
+            "$G(s)=\\sum_{x=0}^{\\infty}s^xp(1-p)^x=p\\sum_{x=0}^{\\infty}[(1-p)s]^x$",
+            "当 $(1-p)s<1$ 时，套用等比级数公式：$\\sum_x[(1-p)s]^x=\\dfrac{1}{1-(1-p)s}$",
+            "故 $G(s)=\\dfrac{p}{1-(1-p)s}$"
+          ]
+        }
+      ],
+      "id": "hokkaido-2025-d025feaeaa-q03-practice-02",
+      "school": "北海道大学",
+      "year": "2025"
+    },
+    {
+      "text": "利用上题求得的几何分布概率生成函数 $G(s)=\\dfrac{p}{1-(1-p)s}$，求随机变量 $X$ 的期望值 $\\mathbb{E}[X]$。",
+      "knowledge_points": [
+        "生成函数求导",
+        "期望值计算"
+      ],
+      "question_type": "矩计算",
+      "method": [
+        "对G(s)求导后代入s=1"
+      ],
+      "solution_steps": [
+        "对G(s)求导",
+        "代入s=1"
+      ],
+      "math_structure": {
+        "type": "pgf_derivative_mean",
+        "template": "G(s)=p/(1-(1-p)s)，求E[X]=G'(1)",
+        "variable_count": 1
+      },
+      "difficulty": 2,
+      "estimated_minutes": 5,
+      "answer": [
+        {
+          "label": "期望值计算",
+          "steps": [
+            "求导：$G'(s)=\\dfrac{p(1-p)}{(1-(1-p)s)^2}$",
+            "代入 $s=1$：$G'(1)=\\dfrac{p(1-p)}{p^2}=\\dfrac{1-p}{p}$",
+            "故 $\\mathbb{E}[X]=\\dfrac{1-p}{p}$，与负二项分布 $k=1$ 时公式 $\\dfrac{k(1-p)}{p}$ 一致，验证正确"
+          ]
+        }
+      ],
+      "id": "hokkaido-2025-d025feaeaa-q03-practice-03",
+      "school": "北海道大学",
+      "year": "2025"
+    },
+    {
+      "text": "对 $k=2$ 的情形，利用广义二项系数定义直接计算 $\\binom{-2}{0},\\binom{-2}{1},\\binom{-2}{2},\\binom{-2}{3}$ 的值，并验证它们分别等于 $(-1)^x\\binom{x+1}{x}$（$x=0,1,2,3$）。",
+      "knowledge_points": [
+        "广义二项系数",
+        "组合数恒等式验证"
+      ],
+      "question_type": "恒等式数值验证",
+      "method": [
+        "按定义直接计算并比较"
+      ],
+      "solution_steps": [
+        "按定义计算左边各值",
+        "计算右边各值",
+        "逐一比较验证"
+      ],
+      "math_structure": {
+        "type": "generalized_binomial_identity_check",
+        "template": "验证C(-2,x)=(-1)^x C(x+1,x)，x=0,1,2,3",
+        "variable_count": 1
+      },
+      "difficulty": 3,
+      "estimated_minutes": 8,
+      "answer": [
+        {
+          "label": "数值验证",
+          "steps": [
+            "按定义计算：$\\binom{-2}{0}=1,\\ \\binom{-2}{1}=-2,\\ \\binom{-2}{2}=\\dfrac{(-2)(-3)}{2}=3,\\ \\binom{-2}{3}=\\dfrac{(-2)(-3)(-4)}{6}=-4$",
+            "计算右边：$(-1)^0\\binom{1}{0}=1,\\ (-1)^1\\binom{2}{1}=-2,\\ (-1)^2\\binom{3}{2}=3,\\ (-1)^3\\binom{4}{3}=-4$",
+            "四组结果逐一对应相等，验证恒等式 $\\binom{-k}{x}=(-1)^x\\binom{x+k-1}{x}$ 在 $k=2$ 时成立"
+          ]
+        }
+      ],
+      "id": "hokkaido-2025-d025feaeaa-q03-practice-04",
+      "school": "北海道大学",
+      "year": "2025"
+    },
+    {
+      "text": "对 $k=2$ 的负二项分布 $f(x)=\\binom{x+1}{x}p^2(1-p)^x$，利用概率生成函数直接求其期望值和方差，并验证与公式 $\\mathbb{E}[X]=\\dfrac{k(1-p)}{p},\\ \\mathrm{Var}(X)=\\dfrac{k(1-p)}{p^2}$（$k=2$）一致。",
+      "knowledge_points": [
+        "负二项分布",
+        "概率生成函数求导",
+        "矩计算"
+      ],
+      "question_type": "矩计算与公式验证",
+      "method": [
+        "构造PGF",
+        "求一阶二阶导数计算矩"
+      ],
+      "solution_steps": [
+        "写出k=2时的PGF",
+        "求一阶导数得期望",
+        "求二阶导数结合期望得方差",
+        "与通用公式比较验证"
+      ],
+      "math_structure": {
+        "type": "negative_binomial_moments_special_case",
+        "template": "k=2的负二项分布，求E[X]和Var(X)并与通用公式比较",
+        "variable_count": 1
+      },
+      "difficulty": 4,
+      "estimated_minutes": 10,
+      "answer": [
+        {
+          "label": "矩计算与验证",
+          "steps": [
+            "$G(s)=p^2(1-(1-p)s)^{-2}$，求导 $G'(s)=2p^2(1-p)(1-(1-p)s)^{-3}$，代入 $s=1$：$G'(1)=2p^2(1-p)p^{-3}=\\dfrac{2(1-p)}{p}$，即 $\\mathbb{E}[X]=\\dfrac{2(1-p)}{p}$，与通用公式 $k=2$ 时一致",
+            "再求导：$G''(s)=6p^2(1-p)^2(1-(1-p)s)^{-4}$，代入 $s=1$：$G''(1)=6p^2(1-p)^2p^{-4}=\\dfrac{6(1-p)^2}{p^2}$",
+            "$\\mathrm{Var}(X)=G''(1)+G'(1)-[G'(1)]^2=\\dfrac{6(1-p)^2}{p^2}+\\dfrac{2(1-p)}{p}-\\dfrac{4(1-p)^2}{p^2}=\\dfrac{2(1-p)^2}{p^2}+\\dfrac{2(1-p)}{p}$",
+            "化简：$=\\dfrac{2(1-p)}{p^2}[(1-p)+p]=\\dfrac{2(1-p)}{p^2}$，与通用公式 $\\dfrac{k(1-p)}{p^2}$（$k=2$）完全一致，验证成立"
+          ]
+        }
+      ],
+      "id": "hokkaido-2025-d025feaeaa-q03-practice-05",
+      "school": "北海道大学",
+      "year": "2025"
+    }
+  ],
+  "source_question": "問3[1]",
+  "source_pdf": "北海道大学/情报科学院/情报理工学/北海道大学_情报科学院_情报理工学_2025_数学过去问_专业科目1.pdf",
+  "source_type": "官方过去问",
+  "subject_category": "概率统计"
+}

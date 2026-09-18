@@ -1,0 +1,202 @@
+{
+  "id": "kyoto-2023-fc0b120ced-q05",
+  "school": "京都大学",
+  "year": "2023",
+  "subject": "情报学研究科_先端数理科学",
+  "text": "已知 $[0, 1]$ 上的 $C^1$ 级光滑函数 $f(x)$ 满足 $0 \\leq f(x) \\leq \\frac{1}{2}$ 且 $|f'(x)| \\leq \\frac{1}{2}$。设 $[0, 1]$ 上的实值连续函数 $\\varphi(x)$ 满足函数方程 $$\\varphi(x) = x(1-x) + f(\\varphi(x)), \\quad (0 \\leq x \\leq 1)$$ (1) 当函数方程满足上述条件时，证明满足该函数方程的 $\\varphi(x)$ 是唯一的。(2) 证明满足该函数方程的 $\\varphi(x)$ 存在。",
+  "knowledge_points": [
+    "函数方程的解的存在唯一性",
+    "Banach不动点定理",
+    "压缩映射原理",
+    "Lipschitz条件",
+    "函数空间的度量"
+  ],
+  "question_type": "函数方程的存在唯一性证明",
+  "method": [
+    "Banach压缩映射定理",
+    "Lipschitz条件的验证",
+    "不动点理论"
+  ],
+  "solution_steps": [
+    "定义映射T",
+    "验证压缩条件",
+    "应用不动点定理",
+    "证明解的存在"
+  ],
+  "math_structure": {
+    "type": "fixed_point_equation",
+    "template": "$\\varphi(x) = T[\\varphi](x) = x(1-x) + f(\\varphi(x))$，T是完备度量空间上的压缩映射",
+    "variable_count": 2
+  },
+  "difficulty": 4,
+  "answer": [
+    {
+      "label": "(1) 唯一性证明",
+      "steps": [
+        "定义算子 $T: C[0,1] \\to C[0,1]$，$(T\\varphi)(x) = x(1-x) + f(\\varphi(x))$",
+        "使用最大值范数：$\\|\\varphi\\|_\\infty = \\max_{x \\in [0,1]} |\\varphi(x)|$",
+        "对于任意两个函数 $\\varphi_1, \\varphi_2 \\in C[0,1]$，计算",
+        "$(T\\varphi_1)(x) - (T\\varphi_2)(x) = f(\\varphi_1(x)) - f(\\varphi_2(x))$",
+        "由中值定理，$|f(\\varphi_1(x)) - f(\\varphi_2(x))| = |f'(\\xi)| \\cdot |\\varphi_1(x) - \\varphi_2(x)|$",
+        "其中 $\\xi$ 在 $\\varphi_1(x)$ 和 $\\varphi_2(x)$ 之间",
+        "由条件 $|f'(x)| \\leq \\frac{1}{2}$，得 $|f(\\varphi_1(x)) - f(\\varphi_2(x))| \\leq \\frac{1}{2} |\\varphi_1(x) - \\varphi_2(x)|$",
+        "因此 $\\|T\\varphi_1 - T\\varphi_2\\|_\\infty \\leq \\frac{1}{2} \\|\\varphi_1 - \\varphi_2\\|_\\infty$",
+        "这表明T是Lipschitz常数为1/2的压缩映射",
+        "由Banach不动点定理，T在 $C[0,1]$ 中有唯一的不动点",
+        "该不动点就是函数方程的唯一解 $\\varphi(x)$"
+      ]
+    },
+    {
+      "label": "(2) 存在性证明",
+      "steps": [
+        "定义迭代序列：$\\varphi_0(x) = 0$（任意初值）",
+        "$\\varphi_{n+1}(x) = x(1-x) + f(\\varphi_n(x))$，$n = 0, 1, 2, ...$",
+        "第一步验证序列的有界性",
+        "对于 $\\varphi_0(x) = 0$，有 $|\\varphi_0(x)| \\leq 1$（显然）",
+        "假设 $|\\varphi_n(x)| \\leq 1$，则",
+        "$|\\varphi_{n+1}(x)| = |x(1-x) + f(\\varphi_n(x))| \\leq x(1-x) + |f(\\varphi_n(x))|$",
+        "由于 $0 \\leq x(1-x) \\leq 1/4$（当 $x = 1/2$ 时最大）且 $0 \\leq f(\\varphi_n(x)) \\leq 1/2$",
+        "得 $|\\varphi_{n+1}(x)| \\leq 1/4 + 1/2 = 3/4 < 1$",
+        "由归纳法，整个序列 $\\{\\varphi_n\\}$ 在 $C[0,1]$ 中有界",
+        "第二步利用压缩映射性质",
+        "$\\|\\varphi_{n+1} - \\varphi_n\\|_\\infty = \\|T\\varphi_n - T\\varphi_{n-1}\\|_\\infty \\leq \\frac{1}{2} \\|\\varphi_n - \\varphi_{n-1}\\|_\\infty$",
+        "因此 $\\|\\varphi_n - \\varphi_{n-1}\\|_\\infty \\leq (1/2)^{n-1} \\|\\varphi_1 - \\varphi_0\\|_\\infty$",
+        "序列 $\\{\\varphi_n\\}$ 是Cauchy列",
+        "第三步利用完备性",
+        "$C[0,1]$ 配备最大值范数是完备的Banach空间",
+        "因此 $\\{\\varphi_n\\}$ 收敛到某个 $\\varphi^* \\in C[0,1]$",
+        "由T的连续性，$\\varphi^* = T\\varphi^*$，即 $\\varphi^*$ 满足原函数方程"
+      ]
+    }
+  ],
+  "practice_questions": [
+    {
+      "text": "设 $g: [0, 1] \\to \\mathbb{R}$ 是Lipschitz函数，常数为 $L < 1$。证明方程 $\\psi(x) = c + g(\\psi(x))$ 在 $C[0,1]$ 中有唯一解，其中 $c$ 是常数。",
+      "knowledge_points": [
+        "Lipschitz连续性",
+        "Banach定理",
+        "压缩映射"
+      ],
+      "question_type": "存在唯一性证明",
+      "method": [
+        "不动点定理",
+        "映射分析"
+      ],
+      "solution_steps": [
+        "构造算子",
+        "验证压缩性",
+        "应用定理"
+      ],
+      "math_structure": {
+        "type": "contraction_mapping",
+        "template": "$T\\psi = c + g(\\psi)$ 是压缩映射当 $L < 1$",
+        "variable_count": 2
+      },
+      "difficulty": 3,
+      "estimated_minutes": 8,
+      "answer": [
+        {
+          "label": "证明",
+          "steps": [
+            "定义 $T\\psi(x) = c + g(\\psi(x))$",
+            "对任意 $\\psi_1, \\psi_2 \\in C[0,1]$",
+            "$|T\\psi_1(x) - T\\psi_2(x)| = |g(\\psi_1(x)) - g(\\psi_2(x))| \\leq L|\\psi_1(x) - \\psi_2(x)|$",
+            "因此 $\\|T\\psi_1 - T\\psi_2\\|_\\infty \\leq L\\|\\psi_1 - \\psi_2\\|_\\infty$",
+            "由于 $L < 1$，T是压缩映射",
+            "由Banach定理，存在唯一不动点即为方程的唯一解"
+          ]
+        }
+      ],
+      "id": "kyoto-2023-fc0b120ced-q05-practice-01",
+      "school": "京都大学",
+      "year": "2023"
+    },
+    {
+      "text": "对于迭代过程 $x_{n+1} = \\frac{1}{2}(x_n + a/x_n)$（其中 $a > 0$），证明数列收敛到 $\\sqrt{a}$。",
+      "knowledge_points": [
+        "迭代方法",
+        "函数不动点",
+        "收敛性分析"
+      ],
+      "question_type": "收敛性证明",
+      "method": [
+        "不动点分析",
+        "单调性与有界性"
+      ],
+      "solution_steps": [
+        "找不动点",
+        "证明单调性",
+        "证明有界性",
+        "推导收敛"
+      ],
+      "math_structure": {
+        "type": "newton_method_convergence",
+        "template": "$x_{n+1} = f(x_n)$ 其中 $f(x) = \\frac{1}{2}(x + a/x)$",
+        "variable_count": 2
+      },
+      "difficulty": 2,
+      "estimated_minutes": 7,
+      "answer": [
+        {
+          "label": "收敛性证明",
+          "steps": [
+            "不动点：$x^* = f(x^*) = \\frac{1}{2}(x^* + a/x^*) \\Rightarrow (x^*)^2 = a \\Rightarrow x^* = \\sqrt{a}$",
+            "对 $x_0 > 0$，有 $x_1 = \\frac{1}{2}(x_0 + a/x_0) \\geq \\sqrt{a}$（AM-GM不等式）",
+            "若 $x_n \\geq \\sqrt{a}$，则 $x_{n+1} = \\frac{1}{2}(x_n + a/x_n) \\leq \\frac{1}{2}(x_n + x_n) = x_n$（因为 $x_n \\geq \\sqrt{a}$ 意味着 $a/x_n \\leq x_n$）",
+            "因此数列单调递减且有下界 $\\sqrt{a}$",
+            "由单调有界定理，数列收敛到某个极限L",
+            "由连续性，$L = \\sqrt{a}$"
+          ]
+        }
+      ],
+      "id": "kyoto-2023-fc0b120ced-q05-practice-02",
+      "school": "京都大学",
+      "year": "2023"
+    },
+    {
+      "text": "设 $h(y)$ 在 $\\mathbb{R}$ 上连续，$|h(y)| \\leq M$。证明微分方程 $y' = h(y)$ 的Cauchy问题有全局解。",
+      "knowledge_points": [
+        "ODE解的存在唯一性",
+        "Picard-Lindelöf定理",
+        "全局解的条件"
+      ],
+      "question_type": "解的存在性",
+      "method": [
+        "Lipschitz条件",
+        "Peano定理的推论"
+      ],
+      "solution_steps": [
+        "分析h的性质",
+        "验证解的延拓条件",
+        "证明全局存在性"
+      ],
+      "math_structure": {
+        "type": "ode_global_existence",
+        "template": "$y' = h(y)$，$|h(y)| \\leq M$ $\\Rightarrow$ 全局解存在",
+        "variable_count": 2
+      },
+      "difficulty": 3,
+      "estimated_minutes": 8,
+      "answer": [
+        {
+          "label": "证明",
+          "steps": [
+            "由Peano存在定理，在初值附近存在局部解",
+            "关键是证明解可以延拓到 $t \\to \\infty$",
+            "如果解 $y(t)$ 在有限时间 $T$ 内无法延拓，则 $|y(t)| \\to \\infty$（在t→T时）",
+            "但 $|y'(t)| = |h(y(t))| \\leq M$，所以 $|y(t) - y(s)| \\leq M|t-s|$",
+            "这意味着y(t)不能在有限时间内趋向无穷，矛盾",
+            "因此解可无限延拓，全局解存在"
+          ]
+        }
+      ],
+      "id": "kyoto-2023-fc0b120ced-q05-practice-03",
+      "school": "京都大学",
+      "year": "2023"
+    }
+  ],
+  "source_question": "問1（専門科目）",
+  "source_pdf": "京都大学/情报学研究科/先端数理科学/京都大学_情报学研究科_先端数理科学_2023_数学过去问.pdf",
+  "source_type": "官方过去问",
+  "subject_category": "微分方程"
+}

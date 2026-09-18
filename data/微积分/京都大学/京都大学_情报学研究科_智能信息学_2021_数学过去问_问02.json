@@ -1,0 +1,202 @@
+{
+  "id": "kyoto-2021-80fb76336b-q02",
+  "school": "京都大学",
+  "year": "2021",
+  "subject": "情报学研究科_智能信息学",
+  "text": "求下列函数的导函数，并只用 $y$（不含 $x$）表示导函数，同时给出该导函数的值域：\n(A) $y=f(x)=\\dfrac{1}{1+e^{-x}}$\n(B) $y=f(x)=\\dfrac{e^{x}+e^{-x}}{e^{x}-e^{-x}}$（即 $y=\\coth x$，$x\\ne0$）",
+  "knowledge_points": [
+    "复合函数求导",
+    "双曲函数",
+    "sigmoid函数性质",
+    "反函数替换技巧",
+    "值域分析"
+  ],
+  "question_type": "导数计算与值域分析",
+  "method": [
+    "直接求导后用y替换x的表达式",
+    "利用双曲函数恒等式",
+    "由函数值域反推导数值域"
+  ],
+  "solution_steps": [
+    "对(A)求导并化简为y的表达式，分析y的取值范围得到导数值域",
+    "对(B)利用coth的导数恒等式化简为y的表达式，分析y的取值范围得到导数值域"
+  ],
+  "math_structure": {
+    "type": "derivative_in_terms_of_function_value",
+    "template": "y'=g(y)\\ \\text{对 sigmoid 与 } \\coth \\text{ 函数}",
+    "variable_count": 2
+  },
+  "difficulty": 2,
+  "answer": [
+    {
+      "label": "(A)",
+      "steps": [
+        "设 $y=\\dfrac{1}{1+e^{-x}}$（sigmoid函数）。求导：$y'=\\dfrac{e^{-x}}{(1+e^{-x})^2}$。",
+        "注意 $1-y=1-\\dfrac{1}{1+e^{-x}}=\\dfrac{e^{-x}}{1+e^{-x}}$，于是 $y'=\\dfrac{e^{-x}}{(1+e^{-x})^2}=y(1-y)$。",
+        "因为 $x\\in\\mathbb{R}$ 时 $y\\in(0,1)$，设 $g(y)=y(1-y)$，其在 $(0,1)$ 上是开口向下的抛物线，最大值在 $y=1/2$ 处取到 $g(1/2)=1/4$，端点处 $g\\to0$（不能取到0）。",
+        "因此导函数的值域为 $y'\\in(0,\\tfrac14]$。"
+      ]
+    },
+    {
+      "label": "(B)",
+      "steps": [
+        "设 $y=\\coth x$（$x\\neq0$）。利用双曲函数求导公式 $y'=-\\mathrm{csch}^2x=1-\\coth^2x$。",
+        "因此 $y'=1-y^2$，已完全用 $y$ 表示出导函数。",
+        "分析值域：$x\\ne0$ 时 $|\\coth x|>1$，即 $y\\in(-\\infty,-1)\\cup(1,\\infty)$，此时 $y^2>1$，故 $y'=1-y^2<0$；当 $|y|\\to1^+$ 时 $y'\\to0^-$，当 $|y|\\to\\infty$ 时 $y'\\to-\\infty$。",
+        "因此导函数的值域为 $y'\\in(-\\infty,0)$。"
+      ]
+    }
+  ],
+  "practice_questions": [
+    {
+      "text": "求 $y=e^{2x}$ 的导数，并用 $y$ 表示。",
+      "knowledge_points": [
+        "指数函数求导",
+        "变量替换"
+      ],
+      "question_type": "导数计算",
+      "method": [
+        "直接求导后代入y"
+      ],
+      "solution_steps": [
+        "求导",
+        "用y替换e^{2x}"
+      ],
+      "math_structure": {
+        "type": "derivative_exponential_basic",
+        "template": "y=e^{2x},\\ y'=2y",
+        "variable_count": 1
+      },
+      "difficulty": 1,
+      "estimated_minutes": 3,
+      "answer": [
+        {
+          "label": "结果",
+          "steps": [
+            "求导：$y'=2e^{2x}$。",
+            "因为 $y=e^{2x}$，代入得 $y'=2y$。"
+          ]
+        }
+      ],
+      "id": "kyoto-2021-80fb76336b-q02-practice-01",
+      "school": "京都大学",
+      "year": "2021"
+    },
+    {
+      "text": "求 $y=\\tanh x=\\dfrac{e^x-e^{-x}}{e^x+e^{-x}}$ 的导数，用 $y$ 表示，并给出该导数的值域。",
+      "knowledge_points": [
+        "双曲函数求导",
+        "值域分析"
+      ],
+      "question_type": "导数计算与值域分析",
+      "method": [
+        "利用tanh的导数恒等式"
+      ],
+      "solution_steps": [
+        "求导得到1-y^2的表达式",
+        "分析tanh值域得出导数值域"
+      ],
+      "math_structure": {
+        "type": "derivative_in_terms_of_function_value",
+        "template": "y=\\tanh x,\\ y'=1-y^2",
+        "variable_count": 1
+      },
+      "difficulty": 2,
+      "estimated_minutes": 6,
+      "answer": [
+        {
+          "label": "结果",
+          "steps": [
+            "利用恒等式 $\\dfrac{d}{dx}\\tanh x=\\mathrm{sech}^2x=1-\\tanh^2x$，故 $y'=1-y^2$。",
+            "因为 $x\\in\\mathbb{R}$ 时 $y=\\tanh x\\in(-1,1)$，故 $y^2\\in[0,1)$，因此 $y'=1-y^2\\in(0,1]$。",
+            "验证：$x=0$ 时 $y=0$，$y'=1$，恰为最大值，与直接求导 $y'(0)=\\mathrm{sech}^2(0)=1$ 一致。"
+          ]
+        }
+      ],
+      "id": "kyoto-2021-80fb76336b-q02-practice-02",
+      "school": "京都大学",
+      "year": "2021"
+    },
+    {
+      "text": "求 sigmoid 函数 $y=\\dfrac{1}{1+e^{-x}}$ 在 $x=0$ 处的导数值，并验证它与该导数在 $(0,1)$ 上的最大值是否吻合。",
+      "knowledge_points": [
+        "sigmoid函数",
+        "导数求值",
+        "极值验证"
+      ],
+      "question_type": "计算验证题",
+      "method": [
+        "直接代入y(1-y)公式"
+      ],
+      "solution_steps": [
+        "计算y(0)",
+        "代入y(1-y)",
+        "与最大值1/4比较"
+      ],
+      "math_structure": {
+        "type": "derivative_value_check",
+        "template": "y'(x_0)=y(1-y)\\big|_{x_0}",
+        "variable_count": 1
+      },
+      "difficulty": 2,
+      "estimated_minutes": 5,
+      "answer": [
+        {
+          "label": "结果",
+          "steps": [
+            "计算 $y(0)=\\dfrac{1}{1+e^0}=\\dfrac12$。",
+            "代入 $y'=y(1-y)$ 得 $y'(0)=\\dfrac12\\cdot\\dfrac12=\\dfrac14$。",
+            "这恰好等于原题(A)中求得的导数值域上界 $\\tfrac14$，说明 $x=0$（即 $y=1/2$）正是取得最大导数值的点，验证一致。"
+          ]
+        }
+      ],
+      "id": "kyoto-2021-80fb76336b-q02-practice-03",
+      "school": "京都大学",
+      "year": "2021"
+    },
+    {
+      "text": "设 $y=\\ln(1+e^x)$（softplus函数），求 $y'$，并尝试仅用 $y$ 表示，说明能否完全消去 $x$；若可以，写出用 $y$ 表示的导数并给出其值域。",
+      "knowledge_points": [
+        "softplus函数",
+        "复合函数求导",
+        "反函数替换",
+        "值域分析"
+      ],
+      "question_type": "综合计算题",
+      "method": [
+        "求导后利用e^x=e^y-1消去x"
+      ],
+      "solution_steps": [
+        "求导得到sigmoid形式",
+        "利用y的定义反解e^x",
+        "代入化简为y的表达式",
+        "分析值域"
+      ],
+      "math_structure": {
+        "type": "derivative_in_terms_of_function_value",
+        "template": "y=\\ln(1+e^x),\\ y'=1-e^{-y}",
+        "variable_count": 1
+      },
+      "difficulty": 3,
+      "estimated_minutes": 10,
+      "answer": [
+        {
+          "label": "结果",
+          "steps": [
+            "求导：$y'=\\dfrac{e^x}{1+e^x}$（即sigmoid函数）。",
+            "由 $y=\\ln(1+e^x)$ 得 $e^y=1+e^x$，故 $e^x=e^y-1$，从而 $1+e^x=e^y$。",
+            "代入得 $y'=\\dfrac{e^y-1}{e^y}=1-e^{-y}$，成功仅用 $y$ 表示导数，可以完全消去 $x$。",
+            "因为 $x\\in\\mathbb{R}$ 时 $y=\\ln(1+e^x)\\in(0,\\infty)$，故 $e^{-y}\\in(0,1)$，因此 $y'=1-e^{-y}\\in(0,1)$。"
+          ]
+        }
+      ],
+      "id": "kyoto-2021-80fb76336b-q02-practice-04",
+      "school": "京都大学",
+      "year": "2021"
+    }
+  ],
+  "source_question": "F1-2 设问1(1)",
+  "source_pdf": "京都大学/情报学研究科/智能信息学/京都大学_情报学研究科_智能信息学_2021_数学过去问.pdf",
+  "source_type": "官方过去问",
+  "subject_category": "微积分"
+}

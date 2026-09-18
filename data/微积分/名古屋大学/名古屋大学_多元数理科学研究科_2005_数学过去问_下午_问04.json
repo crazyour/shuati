@@ -1,0 +1,208 @@
+{
+  "id": "nagoya-2005-6554a6045f-q04",
+  "school": "名古屋大学",
+  "year": "2005",
+  "subject": "多元数理科学研究科_全专攻",
+  "text": "设 $\\mathbb{R}^N$ 为 $N$ 维欧几里得空间，$d(x,y)=|x-y|$ 为通常的距离。$\\mathbb{R}^N$ 中点列 $\\{x_n\\}_{n\\in\\mathbb{N}}$ 的子列是指：取严格单调递增的自然数列 $n(m)$（$m\\in\\mathbb{N}$），则 $\\{x_{n(m)}\\}_{m\\in\\mathbb{N}}$ 称为其一个子列。以下问题解答之。\n\n(1) 用距离 $d$ 叙述 $\\{x_n\\}_{n\\in\\mathbb{N}}$ 收敛到 $y$ 的定义。\n\n(2) 证明：若 $\\{x_n\\}_{n\\in\\mathbb{N}}$ 收敛到 $y\\in\\mathbb{R}^N$，则其任意子列 $\\{x_{n(m)}\\}_{m\\in\\mathbb{N}}$ 也收敛到 $y$。\n\n(3) 假设对 $\\{x_n\\}_{n\\in\\mathbb{N}}$ 的任意子列 $\\{x_{n(m)}\\}_{m\\in\\mathbb{N}}$，都存在其再子列 $\\{x_{n(m(\\ell))}\\}_{\\ell\\in\\mathbb{N}}$ 收敛到 $y\\in\\mathbb{R}^N$。证明：原点列 $\\{x_n\\}_{n\\in\\mathbb{N}}$ 也收敛到 $y$（用反证法证明）。",
+  "knowledge_points": [
+    "数列极限的ε-N定义",
+    "子列收敛性",
+    "反证法",
+    "度量空间收敛"
+  ],
+  "question_type": "序列极限性质证明",
+  "method": [
+    "ε-N语言直接证明",
+    "反证法构造反例子列"
+  ],
+  "solution_steps": [
+    "写出收敛的ε-N定义",
+    "利用子列指标n(m)≥m趋于无穷，证明子列也满足同一ε-N条件",
+    "假设原数列不收敛，构造存在ε及无穷多项与y距离≥ε的子列，再对该子列应用假设得矛盾"
+  ],
+  "math_structure": {
+    "type": "sequence_convergence_subsequence",
+    "template": "Definition and properties of convergence in R^N: every subsequence converges to same limit; converse via subsubsequence argument by contradiction",
+    "variable_count": 0
+  },
+  "difficulty": 3,
+  "answer": [
+    {
+      "label": "(1)",
+      "steps": [
+        "称点列 $\\{x_n\\}_{n\\in\\mathbb{N}}$ 收敛到 $y\\in\\mathbb{R}^N$，是指：对任意 $\\varepsilon>0$，都存在自然数 $N_0$，使得对所有 $n\\ge N_0$，都有 $d(x_n,y)=|x_n-y|<\\varepsilon$。",
+        "记作 $\\lim_{n\\to\\infty}x_n=y$ 或 $x_n\\to y\\ (n\\to\\infty)$。"
+      ]
+    },
+    {
+      "label": "(2)",
+      "steps": [
+        "设 $\\{x_n\\}$ 收敛到 $y$，即对任意 $\\varepsilon>0$ 存在 $N_0$，使 $n\\ge N_0\\Rightarrow d(x_n,y)<\\varepsilon$。",
+        "设 $\\{x_{n(m)}\\}$ 为任意子列，其中 $n(m)$ 是严格单调递增的自然数列。由严格单调递增，可证 $n(m)\\ge m$ 对所有 $m$ 成立（归纳法：$n(1)\\ge1$，若 $n(m)\\ge m$ 则 $n(m+1)>n(m)\\ge m\\Rightarrow n(m+1)\\ge m+1$），从而 $n(m)\\to\\infty$ 当 $m\\to\\infty$。",
+        "对给定的 $\\varepsilon>0$，取上述 $N_0$，令 $M_0=N_0$。当 $m\\ge M_0$ 时，$n(m)\\ge m\\ge M_0=N_0$，故 $d(x_{n(m)},y)<\\varepsilon$，说明子列 $\\{x_{n(m)}\\}$ 也收敛到 $y$。"
+      ]
+    },
+    {
+      "label": "(3)",
+      "steps": [
+        "假设原点列 $\\{x_n\\}$ 不收敛到 $y$。则存在 $\\varepsilon_0>0$，使得对任意自然数 $N_0$，都存在 $n\\ge N_0$ 使得 $d(x_n,y)\\ge\\varepsilon_0$（否命题：对每个$N_0$都存在这样的n，否则原数列就收敛）。",
+        "利用此性质，依次取 $N_0=1,2,3,\\dots$ 可以归纳构造出一个严格单调递增的自然数列 $n(1)<n(2)<n(3)<\\cdots$，使得对每个 $m$，$d(x_{n(m)},y)\\ge\\varepsilon_0$。这样得到原点列的一个子列 $\\{x_{n(m)}\\}_{m\\in\\mathbb{N}}$，其所有项都与 $y$ 的距离不小于 $\\varepsilon_0$。",
+        "根据题设条件，该子列 $\\{x_{n(m)}\\}$ 存在再子列 $\\{x_{n(m(\\ell))}\\}_{\\ell\\in\\mathbb{N}}$ 收敛到 $y$，即对充分大的 $\\ell$，$d(x_{n(m(\\ell))},y)<\\varepsilon_0$。",
+        "但由子列的构造，$\\{x_{n(m(\\ell))}\\}$ 中的每一项都是 $\\{x_{n(m)}\\}$ 中的项，故满足 $d(x_{n(m(\\ell))},y)\\ge\\varepsilon_0$ 对所有 $\\ell$ 成立，这与上一步得到的 $d(x_{n(m(\\ell))},y)<\\varepsilon_0$（对充分大 $\\ell$）相矛盾。",
+        "矛盾说明假设不成立，故原点列 $\\{x_n\\}_{n\\in\\mathbb{N}}$ 必定收敛到 $y$，证毕。"
+      ]
+    }
+  ],
+  "practice_questions": [
+    {
+      "text": "用 $\\varepsilon$-$N$ 语言写出数列 $\\{x_n\\}$ 在 $\\mathbb{R}$ 中不收敛到 $y$ 的定义（即收敛定义的否定）。",
+      "knowledge_points": [
+        "极限定义的否定",
+        "逻辑量词转换"
+      ],
+      "question_type": "定义否定",
+      "method": [
+        "对全称量词与存在量词取否定"
+      ],
+      "solution_steps": [
+        "写出收敛定义",
+        "对定义取逻辑否定",
+        "整理表达式"
+      ],
+      "math_structure": {
+        "type": "negation_of_convergence",
+        "template": "write negation of convergence definition for sequence in R",
+        "variable_count": 0
+      },
+      "difficulty": 1,
+      "estimated_minutes": 5,
+      "answer": [
+        {
+          "label": "定义",
+          "steps": [
+            "收敛定义：$\\forall\\varepsilon>0,\\exists N_0,\\forall n\\ge N_0: |x_n-y|<\\varepsilon$。",
+            "对该命题取否定，得：$\\exists\\varepsilon_0>0,\\forall N_0,\\exists n\\ge N_0: |x_n-y|\\ge\\varepsilon_0$。",
+            "即：存在 $\\varepsilon_0>0$，使得对任意 $N_0$，都存在 $n\\ge N_0$ 满足 $|x_n-y|\\ge\\varepsilon_0$，这就是数列不收敛到 $y$ 的定义。"
+          ]
+        }
+      ],
+      "id": "nagoya-2005-6554a6045f-q04-practice-01",
+      "school": "名古屋大学",
+      "year": "2005"
+    },
+    {
+      "text": "证明：若数列 $\\{x_n\\}\\subset\\mathbb{R}^N$ 收敛到 $y$，则数列 $\\{|x_n|\\}$（模长数列）收敛到 $|y|$。",
+      "knowledge_points": [
+        "收敛性传递",
+        "三角不等式"
+      ],
+      "question_type": "极限性质证明",
+      "method": [
+        "利用逆三角不等式估计"
+      ],
+      "solution_steps": [
+        "写出收敛假设",
+        "用||x_n|-|y||≤|x_n-y|估计",
+        "取极限得结论"
+      ],
+      "math_structure": {
+        "type": "norm_convergence",
+        "template": "prove x_n to y in R^N implies |x_n| to |y|",
+        "variable_count": 0
+      },
+      "difficulty": 2,
+      "estimated_minutes": 6,
+      "answer": [
+        {
+          "label": "证明",
+          "steps": [
+            "由逆三角不等式，$\\big||x_n|-|y|\\big|\\le|x_n-y|=d(x_n,y)$。",
+            "由 $x_n\\to y$，对任意 $\\varepsilon>0$，存在 $N_0$ 使得 $n\\ge N_0\\Rightarrow d(x_n,y)<\\varepsilon$。",
+            "结合上式，$n\\ge N_0\\Rightarrow \\big||x_n|-|y|\\big|<\\varepsilon$，即 $|x_n|\\to|y|$，证毕。"
+          ]
+        }
+      ],
+      "id": "nagoya-2005-6554a6045f-q04-practice-02",
+      "school": "名古屋大学",
+      "year": "2005"
+    },
+    {
+      "text": "举出一个 $\\mathbb{R}$ 中的数列 $\\{x_n\\}$，使其不收敛，但存在收敛的子列；并说明这与本题(3)的结论是否矛盾。",
+      "knowledge_points": [
+        "数列收敛与子列关系",
+        "反例构造"
+      ],
+      "question_type": "反例构造与理论辨析",
+      "method": [
+        "构造具体数列",
+        "分析子列收敛情形"
+      ],
+      "solution_steps": [
+        "构造振荡数列",
+        "说明存在收敛子列",
+        "解释为何不违反(3)"
+      ],
+      "math_structure": {
+        "type": "counterexample_subsequence",
+        "template": "construct a divergent sequence in R with a convergent subsequence, discuss relation to theorem in (3)",
+        "variable_count": 0
+      },
+      "difficulty": 2,
+      "estimated_minutes": 8,
+      "answer": [
+        {
+          "label": "反例及解释",
+          "steps": [
+            "取 $x_n=(-1)^n$，即 $x_1=-1,x_2=1,x_3=-1,\\dots$，该数列不收敛（振荡在-1和1之间）。",
+            "其子列 $x_{2m}=1$（对所有$m$）收敛到1，同样子列$x_{2m-1}=-1$收敛到-1，说明存在收敛子列（甚至有两个极限不同的收敛子列）。",
+            "这并不与(3)矛盾：(3)的假设要求'原数列的**每一个**子列都存在再子列收敛到**同一个**$y$'，而这里子列$\\{x_{2m}\\}$本身已经是常数列，其任何再子列都收敛到1，但子列$\\{x_{2m-1}\\}$的任何再子列都收敛到-1，两者极限不同，故不满足(3)中'都收敛到同一个y'的假设，因此原数列不收敛也不矛盾。"
+          ]
+        }
+      ],
+      "id": "nagoya-2005-6554a6045f-q04-practice-03",
+      "school": "名古屋大学",
+      "year": "2005"
+    },
+    {
+      "text": "证明：$\\mathbb{R}^N$ 中的点列 $\\{x_n\\}$ 收敛到 $y$ 当且仅当对 $\\{x_n\\}$ 的每一个坐标分量数列都收敛到 $y$ 对应的坐标分量（分量收敛判别法）。",
+      "knowledge_points": [
+        "欧几里得范数与坐标分量关系",
+        "多维收敛与一维收敛的等价性"
+      ],
+      "question_type": "多维收敛判别",
+      "method": [
+        "利用范数不等式双向估计"
+      ],
+      "solution_steps": [
+        "写出范数与坐标分量的不等式关系",
+        "证明充分性",
+        "证明必要性"
+      ],
+      "math_structure": {
+        "type": "componentwise_convergence",
+        "template": "prove x_n to y in R^N iff each coordinate sequence converges to corresponding coordinate of y",
+        "variable_count": 1
+      },
+      "difficulty": 2,
+      "estimated_minutes": 10,
+      "answer": [
+        {
+          "label": "证明",
+          "steps": [
+            "记 $x_n=(x_n^{(1)},\\dots,x_n^{(N)})$，$y=(y^{(1)},\\dots,y^{(N)})$。对每个坐标 $i$，有不等式 $|x_n^{(i)}-y^{(i)}|\\le|x_n-y|\\le\\sum_{i=1}^N|x_n^{(i)}-y^{(i)}|$（后者由三角不等式，前者由范数定义）。",
+            "（必要性）若 $x_n\\to y$，即 $|x_n-y|\\to0$，由左边不等式 $|x_n^{(i)}-y^{(i)}|\\le|x_n-y|\\to0$，故每个坐标分量数列 $x_n^{(i)}\\to y^{(i)}$。",
+            "（充分性）若每个坐标 $x_n^{(i)}\\to y^{(i)}$（$i=1,\\dots,N$），则由右边不等式 $|x_n-y|\\le\\sum_{i=1}^N|x_n^{(i)}-y^{(i)}|\\to0$（有限个趋于0的量之和趋于0），故 $x_n\\to y$。",
+            "两方向都证明，命题得证：$x_n\\to y$ 在 $\\mathbb{R}^N$ 中当且仅当所有坐标分量数列分别收敛到对应坐标。"
+          ]
+        }
+      ],
+      "id": "nagoya-2005-6554a6045f-q04-practice-04",
+      "school": "名古屋大学",
+      "year": "2005"
+    }
+  ],
+  "source_question": "問4",
+  "source_pdf": "名古屋大学/多元数理科学研究科/全专攻/名古屋大学_多元数理科学研究科_2005_数学过去问_下午.pdf",
+  "source_type": "官方过去问",
+  "subject_category": "微积分"
+}

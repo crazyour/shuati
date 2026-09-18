@@ -1,0 +1,201 @@
+{
+  "id": "kyoto-2024-a19745fad7-q04",
+  "school": "京都大学",
+  "year": "2024",
+  "subject": "情报学研究科_数理工学",
+  "text": "求函数 $f(x,y)=x^4+2x^2y^2+y^4+2xy$ 的所有极值。",
+  "knowledge_points": [
+    "多元函数极值",
+    "驻点求解",
+    "Hessian矩阵判别法",
+    "因式分解技巧"
+  ],
+  "question_type": "多元函数极值求解",
+  "method": [
+    "求偏导数并令其为零得驻点方程组",
+    "利用因式分解简化方程组求解",
+    "用Hessian矩阵二阶判别法判断极值类型"
+  ],
+  "solution_steps": [
+    "观察 $f(x,y)=(x^2+y^2)^2+2xy$，求偏导 $f_x,f_y$",
+    "解方程组 $f_x=0,f_y=0$，通过相减、相加因式分解求出所有驻点",
+    "计算Hessian矩阵在各驻点的值，判断极大/极小/鞍点",
+    "计算各极值点处的函数值"
+  ],
+  "math_structure": {
+    "type": "bivariate_extrema_quartic",
+    "template": "f(x,y)=x^4+2x^2y^2+y^4+2xy=(x^2+y^2)^2+2xy",
+    "variable_count": 2
+  },
+  "difficulty": 4,
+  "answer": [
+    {
+      "label": "所有极值",
+      "steps": [
+        "求偏导：$f_x=4x^3+4xy^2+2y$，$f_y=4y^3+4x^2y+2x$；令两者为0，即 $2x^3+2xy^2+y=0$ (A)，$2y^3+2x^2y+x=0$ (B)",
+        "(A)-(B)：$2(x^3-y^3)-2xy(x-y)+(y-x)=(x-y)[2(x^2+xy+y^2)-2xy-1]=(x-y)(2x^2+2y^2-1)=0$，故 $x=y$ 或 $x^2+y^2=1/2$",
+        "情形一 $x=y$：代入(A)得 $4x^3+x=0\\Rightarrow x(4x^2+1)=0\\Rightarrow x=0$（实数解），得驻点 $(0,0)$",
+        "情形二 $x^2+y^2=1/2$：(A)+(B)得 $2(x+y)(x^2+y^2)+(x+y)=(x+y)[2\\cdot\\tfrac12+1]=2(x+y)=0\\Rightarrow y=-x$；代入 $x^2+y^2=1/2$ 得 $2x^2=1/2\\Rightarrow x=\\pm\\tfrac12$，得驻点 $(\\tfrac12,-\\tfrac12)$ 和 $(-\\tfrac12,\\tfrac12)$",
+        "计算Hessian：$f_{xx}=12x^2+4y^2,\\ f_{yy}=4x^2+12y^2,\\ f_{xy}=8xy+2$。在$(0,0)$：$f_{xx}=f_{yy}=0,f_{xy}=2$，判别式$=0-4=-4<0$，为鞍点",
+        "在$(\\tfrac12,-\\tfrac12)$：$f_{xx}=12\\cdot\\tfrac14+4\\cdot\\tfrac14=4,\\ f_{yy}=4\\cdot\\tfrac14+12\\cdot\\tfrac14=4,\\ f_{xy}=8\\cdot(-\\tfrac14)+2=0$，判别式$=16-0=16>0$且$f_{xx}>0$，为极小点；同理$(-\\tfrac12,\\tfrac12)$也是极小点（对称性）",
+        "极小值：$f(\\tfrac12,-\\tfrac12)=(\\tfrac14+\\tfrac14)^2+2\\cdot(-\\tfrac14)=\\tfrac14-\\tfrac12=-\\tfrac14$，同理$f(-\\tfrac12,\\tfrac12)=-\\tfrac14$",
+        "结论：函数在 $(\\pm\\tfrac12,\\mp\\tfrac12)$ 处取极小值 $-\\tfrac14$；$(0,0)$ 为鞍点，不是极值点；无极大值"
+      ]
+    }
+  ],
+  "practice_questions": [
+    {
+      "text": "求函数 $g(x,y)=x^2+y^2-2xy$ 的所有临界点并判断类型。",
+      "knowledge_points": [
+        "偏导数求驻点",
+        "Hessian判别法"
+      ],
+      "question_type": "二元函数极值",
+      "method": [
+        "求偏导解方程组",
+        "Hessian判别"
+      ],
+      "solution_steps": [
+        "求偏导",
+        "解方程组",
+        "计算Hessian判别"
+      ],
+      "math_structure": {
+        "type": "bivariate_extrema_simple",
+        "template": "g(x,y)=x^2+y^2-2xy",
+        "variable_count": 2
+      },
+      "difficulty": 1,
+      "estimated_minutes": 6,
+      "answer": [
+        {
+          "label": "结果",
+          "steps": [
+            "$g_x=2x-2y=0,g_y=2y-2x=0$，得 $x=y$，为一条临界线 $\\{(t,t):t\\in\\mathbb{R}\\}$",
+            "Hessian：$g_{xx}=2,g_{yy}=2,g_{xy}=-2$，判别式$=4-4=0$，二阶判别法失效",
+            "注意到 $g(x,y)=(x-y)^2\\ge0$，在直线$x=y$上恒为最小值0，其余点函数值大于0，故这些点均为（非严格）极小值点"
+          ]
+        }
+      ],
+      "id": "kyoto-2024-a19745fad7-q04-practice-01",
+      "school": "京都大学",
+      "year": "2024"
+    },
+    {
+      "text": "求函数 $u(x,y)=x^4+y^4-4xy$ 的所有驻点并判断极值类型。",
+      "knowledge_points": [
+        "驻点方程组",
+        "对称性化简",
+        "Hessian判别"
+      ],
+      "question_type": "二元函数极值",
+      "method": [
+        "利用对称性$x=y$简化",
+        "Hessian判别法"
+      ],
+      "solution_steps": [
+        "求偏导得方程组",
+        "利用对称性求解",
+        "Hessian判定"
+      ],
+      "math_structure": {
+        "type": "bivariate_extrema_quartic_simple",
+        "template": "u(x,y)=x^4+y^4-4xy",
+        "variable_count": 2
+      },
+      "difficulty": 3,
+      "estimated_minutes": 12,
+      "answer": [
+        {
+          "label": "结果",
+          "steps": [
+            "$u_x=4x^3-4y=0\\Rightarrow y=x^3$；$u_y=4y^3-4x=0\\Rightarrow x=y^3$；代入得 $x=(x^3)^3=x^9\\Rightarrow x^9-x=0\\Rightarrow x(x^8-1)=0$",
+            "实数解：$x=0,1,-1$，对应驻点 $(0,0),(1,1),(-1,-1)$",
+            "Hessian：$u_{xx}=12x^2,u_{yy}=12y^2,u_{xy}=-4$。在$(0,0)$：判别式$=0-16=-16<0$，鞍点。在$(1,1)$：$u_{xx}=u_{yy}=12$，判别式$=144-16=128>0$，且$u_{xx}>0$，为极小点，值$=1+1-4=-2$。$(-1,-1)$同理也是极小点，值$=1+1-4=-2$"
+          ]
+        }
+      ],
+      "id": "kyoto-2024-a19745fad7-q04-practice-02",
+      "school": "京都大学",
+      "year": "2024"
+    },
+    {
+      "text": "求函数 $v(x,y)=x^4+2x^2y^2+y^4-2xy$（原题中把加号改为减号）的所有极值。",
+      "knowledge_points": [
+        "因式分解技巧",
+        "驻点方程组的对称分解",
+        "Hessian判别"
+      ],
+      "question_type": "二元函数极值",
+      "method": [
+        "类比原题方法：相加相减因式分解"
+      ],
+      "solution_steps": [
+        "求偏导方程组",
+        "相加减因式分解求驻点",
+        "Hessian判定极值"
+      ],
+      "math_structure": {
+        "type": "bivariate_extrema_quartic_variant",
+        "template": "v(x,y)=(x^2+y^2)^2-2xy",
+        "variable_count": 2
+      },
+      "difficulty": 4,
+      "estimated_minutes": 15,
+      "answer": [
+        {
+          "label": "结果",
+          "steps": [
+            "$v_x=4x^3+4xy^2-2y=0$即$2x^3+2xy^2-y=0$(A')；$v_y=4y^3+4x^2y-2x=0$即$2y^3+2x^2y-x=0$(B')",
+            "(A')-(B')：$2(x^3-y^3)+2xy(x-y)+(x-y)=(x-y)[2(x^2+xy+y^2)+2xy+1]$，注意此处系数与原题不同，需重新展开：$2x^3+2xy^2-y-2y^3-2x^2y+x=2(x^3-y^3)+2xy(y-x)+(x-y)$，整理为$(x-y)[2(x^2+xy+y^2)-2xy+1]=(x-y)(2x^2+2y^2+1)$。由于 $2x^2+2y^2+1>0$ 恒成立，必有 $x=y$",
+            "代入(A')：$2x^3+2x^3-x=0\\Rightarrow4x^3-x=0\\Rightarrow x(4x^2-1)=0\\Rightarrow x=0,\\pm\\tfrac12$，得驻点 $(0,0),(\\tfrac12,\\tfrac12),(-\\tfrac12,-\\tfrac12)$",
+            "Hessian：$v_{xx}=12x^2+4y^2,v_{yy}=4x^2+12y^2,v_{xy}=8xy-2$。在$(0,0)$：判别式$=0-4=-4<0$，鞍点。在$(\\tfrac12,\\tfrac12)$：$v_{xx}=v_{yy}=4,v_{xy}=8\\cdot\\tfrac14-2=0$，判别式$=16>0$，$v_{xx}>0$为极小点，值$=(\\tfrac14+\\tfrac14)^2-2\\cdot\\tfrac14=\\tfrac14-\\tfrac12=-\\tfrac14$；$(-\\tfrac12,-\\tfrac12)$同理也是极小点，值$-\\tfrac14$"
+          ]
+        }
+      ],
+      "id": "kyoto-2024-a19745fad7-q04-practice-03",
+      "school": "京都大学",
+      "year": "2024"
+    },
+    {
+      "text": "验证原题函数 $f(x,y)=x^4+2x^2y^2+y^4+2xy$ 在鞍点 $(0,0)$ 附近沿直线 $y=x$ 和 $y=-x$ 的一维函数表达式，说明为何该点不是极值点。",
+      "knowledge_points": [
+        "鞍点的直观理解",
+        "限制到直线上的一元函数分析"
+      ],
+      "question_type": "极值点性质验证",
+      "method": [
+        "代入直线参数化简为一元函数分析符号变化"
+      ],
+      "solution_steps": [
+        "代入$y=x$",
+        "代入$y=-x$",
+        "比较两个方向函数值符号，确认鞍点性质"
+      ],
+      "math_structure": {
+        "type": "saddle_point_directional_check",
+        "template": "f(x,y)=(x^2+y^2)^2+2xy,\\ \\text{沿}y=\\pm x\\text{方向分析}(0,0)",
+        "variable_count": 1
+      },
+      "difficulty": 2,
+      "estimated_minutes": 8,
+      "answer": [
+        {
+          "label": "验证",
+          "steps": [
+            "沿 $y=x$：$f(x,x)=(2x^2)^2+2x^2=4x^4+2x^2>0$（$x\\ne0$时），说明沿此方向 $(0,0)$ 附近函数值大于 $f(0,0)=0$",
+            "沿 $y=-x$：$f(x,-x)=(2x^2)^2-2x^2=4x^4-2x^2=2x^2(2x^2-1)$，当 $|x|$ 很小时 $2x^2-1<0$，故此值为负，即沿此方向函数值小于 $f(0,0)=0$",
+            "两个方向函数值一正一负，说明 $(0,0)$ 附近函数既有大于0又有小于0的取值，故 $(0,0)$ 不可能是极值点，是鞍点，与Hessian判别法结果一致"
+          ]
+        }
+      ],
+      "id": "kyoto-2024-a19745fad7-q04-practice-04",
+      "school": "京都大学",
+      "year": "2024"
+    }
+  ],
+  "source_question": "第1問(iv)",
+  "source_pdf": "京都大学/情报学研究科/数理工学/京都大学_情报学研究科_数理工学_2024_数学过去问.pdf",
+  "source_type": "官方过去问",
+  "subject_category": "微积分"
+}

@@ -1,0 +1,208 @@
+{
+  "id": "isct-2020-91ab071611-q02",
+  "school": "东京科学大学",
+  "year": "2020",
+  "subject": "理工学系_数学系",
+  "text": "设 $a,b$ 为满足 $2\\le a+b\\le4$ 的非负整数，定义 $\\mathbb{R}^2$ 上的实值函数 $f$ 为\n$$f(x,y)=\\begin{cases}\\dfrac{x^ay^b}{x^2+y^2}&((x,y)\\ne(0,0)),\\\\[2mm]0&((x,y)=(0,0)).\\end{cases}$$\n对以下各问回答并给出证明：\n(1) 求使 $f$ 在 $(0,0)$ 处不连续的一组 $(a,b)$。\n(2) 求使 $f$ 在 $(0,0)$ 处全微分可能（totally differentiable）的一组 $(a,b)$。\n(3) 求使 $f$ 在 $(0,0)$ 处连续但不全微分可能的一组 $(a,b)$。",
+  "knowledge_points": [
+    "多元函数连续性",
+    "全微分可能性",
+    "极坐标估计",
+    "极限的路径依赖性",
+    "齐次函数阶数分析"
+  ],
+  "question_type": "多元函数连续性与可微性判定",
+  "method": [
+    "极坐标变换 $x=r\\cos\\theta,y=r\\sin\\theta$",
+    "分析 $r^{a+b-2}$ 的阶数",
+    "沿特殊路径求极限反例",
+    "利用不等式估计证明可微"
+  ],
+  "solution_steps": [
+    "将 $f$ 化为极坐标形式 $f=r^{a+b-2}\\cos^a\\theta\\sin^b\\theta$",
+    "根据 $a+b-2$ 的正负判断极限是否存在（连续性）",
+    "根据是否有 $f(x,y)=o(r)$ 判断是否全微分可能",
+    "构造具体的 $(a,b)$ 验证三种情形"
+  ],
+  "math_structure": {
+    "type": "homogeneous_rational_continuity",
+    "template": "f(x,y)=x^a y^b/(x^2+y^2), classify continuity/differentiability by a+b",
+    "variable_count": 2
+  },
+  "difficulty": 4,
+  "answer": [
+    {
+      "label": "(1)",
+      "steps": [
+        "取 $(a,b)=(1,1)$，则 $f(x,y)=\\dfrac{xy}{x^2+y^2}$（当 $(x,y)\\ne(0,0)$），$f(0,0)=0$。",
+        "沿路径 $y=x$（$x\\ne0$）：$f(x,x)=\\dfrac{x^2}{2x^2}=\\dfrac12$，当 $x\\to0$ 时极限为 $\\dfrac12\\ne0=f(0,0)$。",
+        "而沿 $y=0$：$f(x,0)=0\\to0$。两条路径极限不同，故 $f$ 在 $(0,0)$ 处不连续。此时 $a+b=2$ 满足约束 $2\\le a+b\\le4$。"
+      ]
+    },
+    {
+      "label": "(2)",
+      "steps": [
+        "取 $(a,b)=(2,2)$，则 $f(x,y)=\\dfrac{x^2y^2}{x^2+y^2}$，满足 $a+b=4$。",
+        "在极坐标下 $f=r^{2}\\cos^2\\theta\\sin^2\\theta$，故 $|f(x,y)|\\le r^2=x^2+y^2$，从而 $\\dfrac{|f(x,y)-f(0,0)|}{\\sqrt{x^2+y^2}}\\le r\\to0$（$r\\to0$），说明 $f$ 在原点沿任意方向偏导数为 $0$，且满足全微分定义中的余项估计 $f(x,y)=o(\\sqrt{x^2+y^2})$。",
+        "验证偏导数存在且为零：$f_x(0,0)=\\lim_{h\\to0}f(h,0)/h=0$，$f_y(0,0)=\\lim_{k\\to0}f(0,k)/k=0$；且上面已证 $f(x,y)-[f_x(0,0)x+f_y(0,0)y]=f(x,y)=o(r)$，故 $f$ 在 $(0,0)$ 处全微分可能，微分为 $0$。"
+      ]
+    },
+    {
+      "label": "(3)",
+      "steps": [
+        "取 $(a,b)=(3,0)$，即 $f(x,y)=\\dfrac{x^3}{x^2+y^2}$，满足 $a+b=3$。",
+        "连续性：$|f(x,y)|=|x|\\cdot\\dfrac{x^2}{x^2+y^2}\\le|x|\\to0$（当 $(x,y)\\to(0,0)$），故 $f$ 在 $(0,0)$ 处连续。",
+        "偏导数：$f_x(0,0)=\\lim_{h\\to0}\\dfrac{h^3/h^2}{h}=\\lim_{h\\to0}1=1$；$f_y(0,0)=\\lim_{k\\to0}\\dfrac{0}{k}=0$。",
+        "考察余项 $f(x,y)-x=\\dfrac{x^3}{x^2+y^2}-x=\\dfrac{-xy^2}{x^2+y^2}$。用极坐标 $x=r\\cos\\theta,y=r\\sin\\theta$，得 $\\dfrac{-xy^2}{x^2+y^2}=-r\\cos\\theta\\sin^2\\theta$，故 $\\dfrac{f(x,y)-x}{r}=-\\cos\\theta\\sin^2\\theta$，此值依赖于 $\\theta$ 而不趋于 $0$（例如 $\\theta=\\pi/2$ 时为 $0$，但 $\\theta=\\pi/4$ 时为 $-\\frac{1}{2\\sqrt2}\\ne0$），故余项不是 $o(r)$，$f$ 在 $(0,0)$ 处不全微分可能。"
+      ]
+    }
+  ],
+  "practice_questions": [
+    {
+      "text": "判断函数 $g(x,y)=\\dfrac{y^2}{x^2+y^2}$（$(x,y)\\ne(0,0)$），$g(0,0)=0$ 在原点是否连续，并给出证明或反例。",
+      "knowledge_points": [
+        "多元函数极限",
+        "路径依赖反例"
+      ],
+      "question_type": "连续性判断",
+      "method": [
+        "沿特殊路径求极限"
+      ],
+      "solution_steps": [
+        "沿 $x=0$ 与 $y=0$ 分别求极限比较"
+      ],
+      "math_structure": {
+        "type": "homogeneous_degree_zero_discontinuity",
+        "template": "g(x,y)=y^2/(x^2+y^2), check continuity at origin",
+        "variable_count": 2
+      },
+      "difficulty": 1,
+      "estimated_minutes": 5,
+      "answer": [
+        {
+          "label": "判断",
+          "steps": [
+            "沿 $x=0$（$y\\ne0$）：$g(0,y)=\\dfrac{y^2}{y^2}=1\\to1$。",
+            "沿 $y=0$（$x\\ne0$）：$g(x,0)=0\\to0$。",
+            "两路径极限不同（$1\\ne0$），故 $g$ 在原点不连续。"
+          ]
+        }
+      ],
+      "id": "isct-2020-91ab071611-q02-practice-01",
+      "school": "东京科学大学",
+      "year": "2020"
+    },
+    {
+      "text": "判断函数 $h(x,y)=\\dfrac{x^4}{x^2+y^2}$（$(x,y)\\ne(0,0)$），$h(0,0)=0$ 在原点是否全微分可能。",
+      "knowledge_points": [
+        "全微分可能性",
+        "极坐标估计"
+      ],
+      "question_type": "可微性判断",
+      "method": [
+        "极坐标不等式估计"
+      ],
+      "solution_steps": [
+        "用极坐标表示 $h$",
+        "估计 $h/r$ 的阶数并判断极限"
+      ],
+      "math_structure": {
+        "type": "homogeneous_degree_two_differentiability",
+        "template": "h(x,y)=x^4/(x^2+y^2), check differentiability at origin",
+        "variable_count": 2
+      },
+      "difficulty": 2,
+      "estimated_minutes": 7,
+      "answer": [
+        {
+          "label": "判断",
+          "steps": [
+            "极坐标下 $h=r^2\\cos^4\\theta$，故 $|h(x,y)|\\le r^2$，从而 $h/r\\le r\\to0$，说明余项为 $o(r)$。",
+            "偏导数 $h_x(0,0)=\\lim h(h_0,0)/h_0=\\lim h_0^2=0$，$h_y(0,0)=0$，且余项估计已证 $o(r)$。",
+            "因此 $h$ 在 $(0,0)$ 处全微分可能，微分为 $0$。"
+          ]
+        }
+      ],
+      "id": "isct-2020-91ab071611-q02-practice-02",
+      "school": "东京科学大学",
+      "year": "2020"
+    },
+    {
+      "text": "判断函数 $k(x,y)=\\dfrac{y^3}{x^2+y^2}$（$(x,y)\\ne(0,0)$），$k(0,0)=0$ 在原点是否连续、是否全微分可能。",
+      "knowledge_points": [
+        "连续性与可微性对比",
+        "极坐标余项分析"
+      ],
+      "question_type": "连续性与可微性综合判断",
+      "method": [
+        "极坐标估计连续性",
+        "计算偏导数与余项判断可微性"
+      ],
+      "solution_steps": [
+        "用不等式估计证明连续",
+        "计算偏导数",
+        "分析余项判断是否全微分"
+      ],
+      "math_structure": {
+        "type": "homogeneous_degree_one_continuous_not_differentiable",
+        "template": "k(x,y)=y^3/(x^2+y^2), check continuity and differentiability at origin",
+        "variable_count": 2
+      },
+      "difficulty": 3,
+      "estimated_minutes": 10,
+      "answer": [
+        {
+          "label": "判断",
+          "steps": [
+            "连续性：$|k(x,y)|=|y|\\cdot\\dfrac{y^2}{x^2+y^2}\\le|y|\\to0$，故连续。",
+            "偏导数：$k_x(0,0)=0$，$k_y(0,0)=\\lim_{k\\to0}k^3/k^2/k=\\lim1=1$。",
+            "余项 $k(x,y)-y=\\dfrac{y^3}{x^2+y^2}-y=\\dfrac{-x^2y}{x^2+y^2}$，极坐标下 $=-r\\cos^2\\theta\\sin\\theta$，故 $\\dfrac{k(x,y)-y}{r}=-\\cos^2\\theta\\sin\\theta$ 不趋于 $0$（随 $\\theta$ 变化），故不是 $o(r)$。",
+            "因此 $k$ 在 $(0,0)$ 处连续但不全微分可能。"
+          ]
+        }
+      ],
+      "id": "isct-2020-91ab071611-q02-practice-03",
+      "school": "东京科学大学",
+      "year": "2020"
+    },
+    {
+      "text": "一般地证明：若非负整数 $p,q$ 满足 $p+q>2$，则函数 $f_{p,q}(x,y)=\\dfrac{x^py^q}{x^2+y^2}$（原点值 $0$）在 $(0,0)$ 处连续；若 $p+q=2$，则一般不连续（除非其中一个指数为 $0$ 且另一个大于 $2$——需具体讨论，此题只需证明 $p+q>2$ 时连续的一般性结论）。",
+      "knowledge_points": [
+        "齐次函数阶数与连续性一般关系",
+        "极坐标不等式"
+      ],
+      "question_type": "一般性证明",
+      "method": [
+        "极坐标估计并利用有界性放大到一致估计"
+      ],
+      "solution_steps": [
+        "写出极坐标表达式 $f_{p,q}=r^{p+q-2}\\cos^p\\theta\\sin^q\\theta$",
+        "利用 $|\\cos^p\\theta\\sin^q\\theta|\\le1$ 得到一致的上界估计并取极限"
+      ],
+      "math_structure": {
+        "type": "general_homogeneous_continuity_criterion",
+        "template": "f(x,y)=x^p y^q/(x^2+y^2), general condition p+q>2 for continuity",
+        "variable_count": 2
+      },
+      "difficulty": 4,
+      "estimated_minutes": 10,
+      "answer": [
+        {
+          "label": "证明",
+          "steps": [
+            "设 $p+q>2$。极坐标下 $f_{p,q}(x,y)=r^{p+q-2}\\cos^p\\theta\\sin^q\\theta$，且 $|\\cos^p\\theta\\sin^q\\theta|\\le1$ 对一切 $\\theta$ 成立。",
+            "故 $|f_{p,q}(x,y)|\\le r^{p+q-2}$，由 $p+q-2>0$，当 $r\\to0$ 时 $r^{p+q-2}\\to0$，与 $\\theta$ 无关。",
+            "因此 $\\lim_{(x,y)\\to(0,0)}f_{p,q}(x,y)=0=f_{p,q}(0,0)$，$f_{p,q}$ 在原点连续，与本原题(2)(3)中 $a+b\\ge3$ 的连续性情形一致。"
+          ]
+        }
+      ],
+      "id": "isct-2020-91ab071611-q02-practice-04",
+      "school": "东京科学大学",
+      "year": "2020"
+    }
+  ],
+  "source_question": "上午 [3]",
+  "source_pdf": "东京科学大学/理工学系/数学系/东京科学大学_理工学系_数学系_2020_数学过去问.pdf",
+  "source_type": "官方过去问",
+  "subject_category": "微积分"
+}

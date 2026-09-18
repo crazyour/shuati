@@ -1,0 +1,202 @@
+{
+  "id": "isct-2018-9607dddc5c-q02",
+  "school": "东京科学大学",
+  "year": "2018",
+  "subject": "理工学系_数学系",
+  "text": "设 $f:\\mathbb{R}^n\\to\\mathbb{R}^m$ 是 $\\mathbb{R}$ 上的线性映射，其秩为 $r$。令\n$$S=\\{W\\subset\\mathbb{R}^n \\mid W\\text{ 是 }r\\text{维子空间且 }f|_W\\text{ 是单射}\\}.$$\n(1) 证明 $S$ 非空。\n(2) 当 $r>0$ 时，证明对任意 $x\\in\\mathbb{R}^n$，存在 $W,W'\\in S$ 使得 $x\\in W+W'$。",
+  "knowledge_points": [
+    "线性映射的秩与核",
+    "商空间与商映射",
+    "子空间的补空间",
+    "基的扩张",
+    "线性代数中的存在性构造证明"
+  ],
+  "question_type": "线性代数存在性证明",
+  "method": [
+    "利用核与补空间的秩-零度定理",
+    "商空间 $\\mathbb{R}^n/\\ker f$ 与基扩张技巧"
+  ],
+  "solution_steps": [
+    "利用秩-零度定理得 $\\dim\\ker f=n-r$",
+    "取 $\\ker f$ 的任意补空间证明S非空",
+    "对给定 $x$，分 $x\\in\\ker f$ 与 $x\\notin\\ker f$ 讨论",
+    "利用商映射 $\\pi:\\mathbb{R}^n\\to\\mathbb{R}^n/\\ker f$ 将给定向量扩张为r维补空间"
+  ],
+  "math_structure": {
+    "type": "linear_map_kernel_complement_existence",
+    "template": "f:R^n\\to R^m linear, rank r; S={r-dim W: f|_W injective}",
+    "variable_count": 3
+  },
+  "difficulty": 4,
+  "answer": [
+    {
+      "label": "(1)",
+      "steps": [
+        "由秩-零度定理，$\\dim\\ker f = n-r$。设 $K=\\ker f$。",
+        "取 $K$ 的任一补空间 $W_0$（即 $\\mathbb{R}^n=K\\oplus W_0$），则 $\\dim W_0=n-(n-r)=r$，且 $W_0\\cap K=\\{0\\}$。",
+        "因为 $\\ker(f|_{W_0})=W_0\\cap K=\\{0\\}$，故 $f|_{W_0}$ 是单射，$W_0\\in S$，从而 $S\\neq\\varnothing$。"
+      ]
+    },
+    {
+      "label": "(2)",
+      "steps": [
+        "记 $K=\\ker f$，$\\pi:\\mathbb{R}^n\\to \\mathbb{R}^n/K$ 为商映射，$\\dim(\\mathbb{R}^n/K)=r$。",
+        "引理：若 $v\\notin K$，则存在 $W\\in S$ 使 $v\\in W$。证明：$\\pi(v)\\neq0$，将其扩充为 $\\mathbb{R}^n/K$ 的一组基 $\\{\\pi(v),e_2,\\dots,e_r\\}$，取各 $e_i$ 的原像 $u_i\\in\\mathbb{R}^n$，令 $W=\\mathrm{span}\\{v,u_2,\\dots,u_r\\}$；则 $\\pi|_W$ 把基映为基，故为单射，从而 $W\\cap K=\\ker(\\pi|_W)=\\{0\\}$，即 $f|_W$ 单射，且 $\\dim W=r$，故 $W\\in S$ 且 $v\\in W$。",
+        "对任意给定 $x\\in\\mathbb{R}^n$：若 $x\\notin K$，由引理直接取 $W=W'\\in S$ 含 $x$，则 $x\\in W+W'=W$，结论成立。",
+        "若 $x\\in K$：因 $r>0$，$K\\neq\\mathbb{R}^n$，故存在 $v\\notin K$（取任意 $S$ 中补空间 $W_0$ 的非零元）。令 $w_2=x-v$；由 $x\\in K, v\\notin K$，得 $w_2=x-v\\notin K$（否则 $v=x-w_2\\in K$，矛盾）。",
+        "对 $v$ 与 $w_2$ 分别应用引理，得存在 $W_1\\in S$ 含 $v$，$W_2\\in S$ 含 $w_2$。则 $x=v+w_2\\in W_1+W_2$，即取 $W=W_1,W'=W_2$ 满足题意。",
+        "综上，对任意 $x\\in\\mathbb{R}^n$（无论是否属于 $K$）都存在 $W,W'\\in S$ 使 $x\\in W+W'$，证毕。"
+      ]
+    }
+  ],
+  "practice_questions": [
+    {
+      "text": "设 $f:\\mathbb{R}^3\\to\\mathbb{R}^2$ 由矩阵 $\\begin{pmatrix}1&0&0\\\\0&1&0\\end{pmatrix}$ 给出。求 $\\ker f$ 及秩 $r$，并写出一个属于 $S$ 的子空间。",
+      "knowledge_points": [
+        "核与秩的计算",
+        "补空间构造"
+      ],
+      "question_type": "具体计算",
+      "method": [
+        "直接计算矩阵核",
+        "验证补空间"
+      ],
+      "solution_steps": [
+        "求核",
+        "求秩",
+        "取补空间验证单射"
+      ],
+      "math_structure": {
+        "type": "kernel_rank_computation",
+        "template": "f given by matrix, find ker f, rank, and an element of S",
+        "variable_count": 2
+      },
+      "difficulty": 1,
+      "estimated_minutes": 5,
+      "answer": [
+        {
+          "label": "计算",
+          "steps": [
+            "$\\ker f=\\{(0,0,z):z\\in\\mathbb{R}\\}$，即 $z$ 轴，维数1，故 $r=\\dim\\mathbb{R}^3-1=2$。",
+            "取 $W_0=\\mathrm{span}\\{(1,0,0),(0,1,0)\\}$，$\\dim W_0=2=r$，且 $W_0\\cap\\ker f=\\{0\\}$，$f|_{W_0}$ 为恒同映射，单射，故 $W_0\\in S$。"
+          ]
+        }
+      ],
+      "id": "isct-2018-9607dddc5c-q02-practice-01",
+      "school": "东京科学大学",
+      "year": "2018"
+    },
+    {
+      "text": "在上题条件下，取 $x=(0,0,5)\\in\\ker f$。构造具体的 $W,W'\\in S$ 使 $x\\in W+W'$。",
+      "knowledge_points": [
+        "核内向量的分解构造",
+        "补空间扩张"
+      ],
+      "question_type": "构造性证明",
+      "method": [
+        "把x分解为不在核中的两个向量之和,分别扩张为r维子空间"
+      ],
+      "solution_steps": [
+        "选取v不在核中",
+        "令w2=x-v",
+        "分别构造包含v和w2的2维子空间"
+      ],
+      "math_structure": {
+        "type": "explicit_decomposition_construction",
+        "template": "x=(0,0,5)\\in\\ker f; find W,W'\\in S with x\\in W+W'",
+        "variable_count": 3
+      },
+      "difficulty": 3,
+      "estimated_minutes": 10,
+      "answer": [
+        {
+          "label": "构造",
+          "steps": [
+            "取 $v=(1,0,0)\\notin\\ker f$。则 $w_2=x-v=(-1,0,5)$，验证 $w_2\\notin\\ker f$（因其第一坐标非零）。",
+            "构造 $W_1=\\mathrm{span}\\{v,(0,1,0)\\}=\\mathrm{span}\\{(1,0,0),(0,1,0)\\}$，维数2，且 $W_1\\cap\\ker f=\\{0\\}$，故 $W_1\\in S$，且 $v\\in W_1$。",
+            "构造 $W_2=\\mathrm{span}\\{w_2,(0,1,0)\\}=\\mathrm{span}\\{(-1,0,5),(0,1,0)\\}$，维数2；验证任一元素 $\\alpha(-1,0,5)+\\beta(0,1,0)=(-\\alpha,\\beta,5\\alpha)\\in\\ker f$ 需 $-\\alpha=0,\\beta=0$，得 $\\alpha=\\beta=0$，即 $W_2\\cap\\ker f=\\{0\\}$，故 $W_2\\in S$，且 $w_2\\in W_2$。",
+            "于是 $x=v+w_2\\in W_1+W_2$，满足题意。"
+          ]
+        }
+      ],
+      "id": "isct-2018-9607dddc5c-q02-practice-02",
+      "school": "东京科学大学",
+      "year": "2018"
+    },
+    {
+      "text": "证明：若 $r=0$（即 $f=0$），则本题(2)的结论一般不成立，说明条件 $r>0$ 的必要性。",
+      "knowledge_points": [
+        "反例构造",
+        "条件的必要性分析"
+      ],
+      "question_type": "反例说明",
+      "method": [
+        "分析r=0时S的结构"
+      ],
+      "solution_steps": [
+        "说明r=0时S只含零空间",
+        "取非零x说明结论失败"
+      ],
+      "math_structure": {
+        "type": "necessity_of_condition",
+        "template": "r=0 case: S={\\{0\\}}, show conclusion fails for x\\neq0",
+        "variable_count": 1
+      },
+      "difficulty": 2,
+      "estimated_minutes": 6,
+      "answer": [
+        {
+          "label": "说明",
+          "steps": [
+            "若 $r=0$，则唯一的0维子空间是 $\\{0\\}$，且 $f|_{\\{0\\}}$ 自动是单射，故 $S=\\{\\{0\\}\\}$。",
+            "此时对任意 $W,W'\\in S$，$W+W'=\\{0\\}$。",
+            "取任意 $x\\neq0$，显然 $x\\notin\\{0\\}=W+W'$，结论不成立，说明必须要求 $r>0$。"
+          ]
+        }
+      ],
+      "id": "isct-2018-9607dddc5c-q02-practice-03",
+      "school": "东京科学大学",
+      "year": "2018"
+    },
+    {
+      "text": "证明引理的一般形式：若 $K\\subset\\mathbb{R}^n$ 是子空间，$\\dim(\\mathbb{R}^n/K)=r>0$，$v\\notin K$，则存在含 $v$ 的 $r$ 维子空间 $W$ 满足 $W\\cap K=\\{0\\}$。",
+      "knowledge_points": [
+        "商空间基的扩张",
+        "补空间的构造"
+      ],
+      "question_type": "一般性证明",
+      "method": [
+        "利用商映射及基扩张定理"
+      ],
+      "solution_steps": [
+        "取商映射π,验证π(v)非零",
+        "扩张为商空间的基",
+        "取原像构造W"
+      ],
+      "math_structure": {
+        "type": "quotient_space_basis_extension_lemma",
+        "template": "K\\subset R^n, dim(R^n/K)=r, v\\notin K \\Rightarrow \\exists r-dim W\\ni v, W\\cap K=0",
+        "variable_count": 2
+      },
+      "difficulty": 3,
+      "estimated_minutes": 10,
+      "answer": [
+        {
+          "label": "证明",
+          "steps": [
+            "设 $\\pi:\\mathbb{R}^n\\to\\mathbb{R}^n/K$ 为商映射。由 $v\\notin K$，$\\pi(v)\\neq0$。",
+            "因 $\\dim(\\mathbb{R}^n/K)=r$，将 $\\pi(v)$ 扩充为一组基 $\\{\\pi(v),\\bar u_2,\\dots,\\bar u_r\\}$。取每个 $\\bar u_i$ 的一个原像 $u_i\\in\\mathbb{R}^n$（$i=2,\\dots,r$），令 $W=\\mathrm{span}\\{v,u_2,\\dots,u_r\\}$。",
+            "由于 $\\pi$ 把 $W$ 的基 $\\{v,u_2,\\dots,u_r\\}$ 映为 $\\mathbb{R}^n/K$ 的一组基，$\\pi|_W$ 是单射（且是同构到 $\\mathbb{R}^n/K$）。因此 $\\ker(\\pi|_W)=W\\cap K=\\{0\\}$，且 $\\dim W=r$。这正是所需的 $W$，且显然 $v\\in W$。"
+          ]
+        }
+      ],
+      "id": "isct-2018-9607dddc5c-q02-practice-04",
+      "school": "东京科学大学",
+      "year": "2018"
+    }
+  ],
+  "source_question": "午前[2]",
+  "source_pdf": "东京科学大学/理工学系/数学系/东京科学大学_理工学系_数学系_2018_数学过去问.pdf",
+  "source_type": "官方过去问",
+  "subject_category": "线性代数"
+}

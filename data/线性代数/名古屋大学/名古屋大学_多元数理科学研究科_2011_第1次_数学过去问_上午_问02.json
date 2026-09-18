@@ -1,0 +1,261 @@
+{
+  "id": "nagoya-2011-c88d968483-q02",
+  "school": "名古屋大学",
+  "year": "2011",
+  "subject": "多元数理科学研究科_全专攻",
+  "text": "设 $A=\\begin{pmatrix}3&1&1\\\\1&3&1\\\\1&1&5\\end{pmatrix}$，向量的大小用 $\\|v\\|$ 表示。回答以下问题：\n(1) 求 $A$ 的特征值和特征向量（特征向量取单位向量且第一分量非负）。\n(2) 证明：若 $x\\in\\mathbb{R}^3$，$x\\neq 0$，则 $Ax\\neq 0$。\n(3) 当 $x\\neq0$时，设 $F(x)=\\dfrac{Ax}{\\|Ax\\|}$。将(1)中求得的特征值记为 $\\lambda_1\\ge\\lambda_2\\ge\\lambda_3$，对应的单位特征向量为 $e_1,e_2,e_3$。对 $a_1,a_2,a_3\\in\\mathbb{R}\\setminus\\{0\\}$，令 $x_0=a_1e_1+a_2e_2+a_3e_3$，$x_{n+1}=F(x_n)\\ (n\\ge0)$ 归纳定义向量序列 $\\{x_n\\}_{n=0}^{\\infty}$。将 $x_n$ 表示为 $e_1,e_2,e_3$ 的线性组合，用 $a_1,a_2,a_3$ 表示系数。\n(4) 证明对(3)中给出的 $\\{x_n\\}$，极限 $\\lim_{n\\to\\infty}x_n$ 存在，且是 $A$ 的特征向量。",
+  "knowledge_points": [
+    "实对称矩阵特征值特征向量",
+    "矩阵可逆性判定",
+    "幂法迭代",
+    "极限收敛性证明",
+    "正交归一化"
+  ],
+  "question_type": "特征值特征向量与幂法收敛性证明题",
+  "method": [
+    "求特征多项式的根",
+    "解齐次方程组求特征向量",
+    "用特征基展开表示迭代序列",
+    "分析比值极限"
+  ],
+  "solution_steps": [
+    "求特征多项式det(A-λI)=0的根",
+    "对每个特征值解(A-λI)x=0",
+    "归一化得单位特征向量",
+    "用A的可逆性(det A≠0)证明Ax≠0",
+    "利用特征基展开表示A^n x_0，进而得到x_n的系数公式",
+    "分析n→∞时占优特征值对应系数趋于±1，其余趋于0"
+  ],
+  "math_structure": {
+    "type": "power_method_convergence",
+    "template": "3x3对称矩阵A，特征值λ1>λ2>λ3，幂迭代x_{n+1}=Ax_n/||Ax_n||的极限分析",
+    "variable_count": 0
+  },
+  "difficulty": 4,
+  "answer": [
+    {
+      "label": "(1)",
+      "steps": [
+        "特征多项式：$\\det(A-\\lambda I)=-\\lambda^3+11\\lambda^2-36\\lambda+36=0$，即 $\\lambda^3-11\\lambda^2+36\\lambda-36=0$。试根 $\\lambda=2$：$8-44+72-36=0$成立，因式分解为 $(\\lambda-2)(\\lambda^2-9\\lambda+18)=0$，解得 $\\lambda=6,3$。",
+        "特征值为 $\\lambda=6,3,2$。对 $\\lambda=6$：解$(A-6I)x=0$，即 $-3x+y+z=0,\\ x-3y+z=0,\\ x+y-z=0$，得 $x=y,\\ z=2x$，取 $(1,1,2)$，归一化得 $e_1=\\frac{1}{\\sqrt6}(1,1,2)$。",
+        "对 $\\lambda=3$：解 $(A-3I)x=0$ 得 $y+z=0,\\ x+z=0$，取 $(1,1,-1)$，归一化得 $e_2=\\frac{1}{\\sqrt3}(1,1,-1)$。",
+        "对 $\\lambda=2$：解 $(A-2I)x=0$ 得 $x+y+z=0$，$z=0,x=-y$，取 $(1,-1,0)$，归一化得 $e_3=\\frac{1}{\\sqrt2}(1,-1,0)$。三者第一分量均为正，满足要求。"
+      ]
+    },
+    {
+      "label": "(2)",
+      "steps": [
+        "$\\det A = \\lambda_1\\lambda_2\\lambda_3 = 6\\cdot3\\cdot2=36\\neq0$，所以 $A$ 可逆。",
+        "若存在 $x\\neq0$ 使 $Ax=0$，则 $x\\in\\ker A$，但 $A$ 可逆意味着 $\\ker A=\\{0\\}$，矛盾。",
+        "故对任意 $x\\neq0$，必有 $Ax\\neq0$。"
+      ]
+    },
+    {
+      "label": "(3)",
+      "steps": [
+        "由 $Ae_i=\\lambda_i e_i$，得 $Ax_0=a_1\\lambda_1e_1+a_2\\lambda_2e_2+a_3\\lambda_3e_3$，一般地 $A^n x_0=a_1\\lambda_1^n e_1+a_2\\lambda_2^n e_2+a_3\\lambda_3^n e_3$。",
+        "由归纳法验证 $x_n=\\dfrac{A^n x_0}{\\|A^n x_0\\|}$（因为每次F都是先乘A再归一化，累积效果等价于对A^n x_0归一化，且方向不受中间归一化影响）。",
+        "利用 $e_1,e_2,e_3$ 正交，$\\|A^n x_0\\|=\\sqrt{a_1^2\\lambda_1^{2n}+a_2^2\\lambda_2^{2n}+a_3^2\\lambda_3^{2n}}$，代入具体数值 $\\lambda_1=6,\\lambda_2=3,\\lambda_3=2$：",
+        "$x_n=\\dfrac{a_1 6^n e_1+a_2 3^n e_2+a_3 2^n e_3}{\\sqrt{a_1^2 6^{2n}+a_2^2 3^{2n}+a_3^2 2^{2n}}}$，即系数为 $\\alpha_i(n)=\\dfrac{a_i\\lambda_i^n}{\\sqrt{a_1^26^{2n}+a_2^23^{2n}+a_3^22^{2n}}}$（$i=1,2,3$）。"
+      ]
+    },
+    {
+      "label": "(4)",
+      "steps": [
+        "将分母提出 $6^n$：$\\alpha_1(n)=\\dfrac{a_1}{\\sqrt{a_1^2+a_2^2(1/2)^{2n}+a_3^2(1/3)^{2n}}}$，$\\alpha_2(n)=\\dfrac{a_2(1/2)^n}{\\sqrt{\\cdots}}$，$\\alpha_3(n)=\\dfrac{a_3(1/3)^n}{\\sqrt{\\cdots}}$。",
+        "当 $n\\to\\infty$，$(1/2)^n\\to0$，$(1/3)^n\\to0$，故根号内趋于 $a_1^2$，从而 $\\alpha_1(n)\\to\\mathrm{sign}(a_1)$，$\\alpha_2(n)\\to0$，$\\alpha_3(n)\\to0$。",
+        "因此 $\\lim_{n\\to\\infty}x_n=\\mathrm{sign}(a_1)\\,e_1$，这恰是 $A$ 关于特征值 $\\lambda_1=6$ 的单位特征向量（正负号由 $a_1$ 的符号决定），从而极限存在且是 $A$ 的特征向量。"
+      ]
+    }
+  ],
+  "practice_questions": [
+    {
+      "text": "求矩阵 $B=\\begin{pmatrix}2&1\\\\1&2\\end{pmatrix}$ 的特征值和单位特征向量。",
+      "knowledge_points": [
+        "特征值特征多项式",
+        "特征向量归一化"
+      ],
+      "question_type": "特征值特征向量基础题",
+      "method": [
+        "特征多项式求根",
+        "解齐次线性方程组"
+      ],
+      "solution_steps": [
+        "写出特征多项式",
+        "求根",
+        "解特征向量并归一化"
+      ],
+      "math_structure": {
+        "type": "eigenvalue_basic_2x2",
+        "template": "2x2对称矩阵B求特征值特征向量",
+        "variable_count": 0
+      },
+      "difficulty": 1,
+      "estimated_minutes": 5,
+      "answer": [
+        {
+          "label": "求特征值特征向量",
+          "steps": [
+            "特征多项式：$(2-\\lambda)^2-1=0\\Rightarrow\\lambda=1,3$。",
+            "对 $\\lambda=3$：$(B-3I)x=0\\Rightarrow -x+y=0\\Rightarrow x=y$，取 $(1,1)$归一化得 $\\frac{1}{\\sqrt2}(1,1)$。",
+            "对 $\\lambda=1$：$(B-I)x=0\\Rightarrow x+y=0\\Rightarrow x=-y$，取$(1,-1)$归一化得 $\\frac{1}{\\sqrt2}(1,-1)$。"
+          ]
+        }
+      ],
+      "id": "nagoya-2011-c88d968483-q02-practice-01",
+      "school": "名古屋大学",
+      "year": "2011"
+    },
+    {
+      "text": "证明：若对称矩阵 $C$ 的所有特征值均非零，则对任意 $x\\neq0$，$Cx\\neq0$。",
+      "knowledge_points": [
+        "矩阵可逆性",
+        "特征值与行列式"
+      ],
+      "question_type": "证明题",
+      "method": [
+        "利用det=特征值乘积"
+      ],
+      "solution_steps": [
+        "说明det C等于特征值乘积",
+        "由特征值非零推出det非零",
+        "推出C可逆从而核为零"
+      ],
+      "math_structure": {
+        "type": "invertibility_via_eigenvalues",
+        "template": "对称矩阵C特征值均非零，证明Cx=0仅当x=0",
+        "variable_count": 0
+      },
+      "difficulty": 2,
+      "estimated_minutes": 6,
+      "answer": [
+        {
+          "label": "证明",
+          "steps": [
+            "对称矩阵可对角化，$\\det C=\\prod\\lambda_i$，因每个 $\\lambda_i\\neq0$，故 $\\det C\\neq0$。",
+            "$\\det C\\neq0$ 意味着 $C$ 可逆，其核空间 $\\ker C=\\{0\\}$。",
+            "所以若 $x\\neq0$，必有 $Cx\\neq0$。"
+          ]
+        }
+      ],
+      "id": "nagoya-2011-c88d968483-q02-practice-02",
+      "school": "名古屋大学",
+      "year": "2011"
+    },
+    {
+      "text": "设 $D=\\begin{pmatrix}4&0\\\\0&1\\end{pmatrix}$，单位特征向量为 $e_1=(1,0)$（对应$\\lambda_1=4$），$e_2=(0,1)$（对应$\\lambda_2=1$）。设 $x_0=a_1e_1+a_2e_2$（$a_1,a_2\\neq0$），定义 $x_{n+1}=Dx_n/\\|Dx_n\\|$。求 $x_n$ 关于 $e_1,e_2$ 的系数表达式。",
+      "knowledge_points": [
+        "幂法迭代",
+        "特征基展开"
+      ],
+      "question_type": "幂迭代系数计算题",
+      "method": [
+        "利用对角矩阵直接迭代",
+        "归一化"
+      ],
+      "solution_steps": [
+        "计算D^n x_0",
+        "求模长",
+        "写出系数公式"
+      ],
+      "math_structure": {
+        "type": "power_iteration_diagonal",
+        "template": "2x2对角矩阵D特征值4,1的幂迭代系数公式",
+        "variable_count": 0
+      },
+      "difficulty": 2,
+      "estimated_minutes": 8,
+      "answer": [
+        {
+          "label": "求系数公式",
+          "steps": [
+            "$D^n x_0=a_1 4^n e_1+a_2 1^n e_2$，模长 $\\|D^nx_0\\|=\\sqrt{a_1^24^{2n}+a_2^2}$。",
+            "故 $x_n=\\dfrac{a_1 4^n e_1+a_2 e_2}{\\sqrt{a_1^24^{2n}+a_2^2}}$，即系数为 $\\alpha_1(n)=\\dfrac{a_14^n}{\\sqrt{a_1^24^{2n}+a_2^2}}$，$\\alpha_2(n)=\\dfrac{a_2}{\\sqrt{a_1^24^{2n}+a_2^2}}$。",
+            "验证 n=0 时：$\\alpha_1(0)=a_1/\\sqrt{a_1^2+a_2^2}$（归一化的$x_0$），与直接归一化 $x_0$ 一致。"
+          ]
+        }
+      ],
+      "id": "nagoya-2011-c88d968483-q02-practice-03",
+      "school": "名古屋大学",
+      "year": "2011"
+    },
+    {
+      "text": "对上题中的 $D$ 和 $x_n$，求 $\\lim_{n\\to\\infty}x_n$，并说明它是 $D$ 的特征向量。",
+      "knowledge_points": [
+        "幂法收敛性",
+        "极限计算"
+      ],
+      "question_type": "极限证明题",
+      "method": [
+        "分离占优特征值",
+        "取极限"
+      ],
+      "solution_steps": [
+        "将系数公式除以占优项",
+        "取n→∞极限",
+        "确认极限方向为占优特征向量"
+      ],
+      "math_structure": {
+        "type": "power_iteration_limit",
+        "template": "2x2对角矩阵幂迭代序列的极限",
+        "variable_count": 0
+      },
+      "difficulty": 3,
+      "estimated_minutes": 8,
+      "answer": [
+        {
+          "label": "求极限",
+          "steps": [
+            "把 $\\alpha_1(n)=\\dfrac{a_1}{\\sqrt{a_1^2+a_2^2(1/4)^{2n}}}$，$\\alpha_2(n)=\\dfrac{a_2(1/4)^n}{\\sqrt{a_1^2+a_2^2(1/4)^{2n}}}$（用$4^n$除以分子分母得到）。",
+            "当 $n\\to\\infty$，$(1/4)^n\\to0$，所以 $\\alpha_1(n)\\to a_1/|a_1|=\\mathrm{sign}(a_1)$，$\\alpha_2(n)\\to0$。",
+            "故 $\\lim_{n\\to\\infty}x_n=\\mathrm{sign}(a_1)e_1$，这正是 $D$ 关于最大特征值 $\\lambda_1=4$ 的单位特征向量。"
+          ]
+        }
+      ],
+      "id": "nagoya-2011-c88d968483-q02-practice-04",
+      "school": "名古屋大学",
+      "year": "2011"
+    },
+    {
+      "text": "将本题中 $A=\\begin{pmatrix}3&1&1\\\\1&3&1\\\\1&1&5\\end{pmatrix}$ 换成 $A'=A+I$（即每个特征值加1），重新写出特征值和 $x_n$ 系数公式（不需重新求特征向量，可直接利用A的结果）。",
+      "knowledge_points": [
+        "特征值平移性质",
+        "幂迭代系数公式的推广"
+      ],
+      "question_type": "综合应用题",
+      "method": [
+        "利用特征值平移不改变特征向量",
+        "套用系数公式"
+      ],
+      "solution_steps": [
+        "说明A+I与A有相同特征向量，特征值各加1",
+        "写出新的特征值",
+        "代入系数公式"
+      ],
+      "math_structure": {
+        "type": "eigenvalue_shift_application",
+        "template": "A'=A+I的特征值特征向量及幂迭代系数公式",
+        "variable_count": 0
+      },
+      "difficulty": 3,
+      "estimated_minutes": 10,
+      "answer": [
+        {
+          "label": "求新特征值和系数公式",
+          "steps": [
+            "若 $Ae_i=\\lambda_ie_i$，则 $A'e_i=(A+I)e_i=\\lambda_ie_i+e_i=(\\lambda_i+1)e_i$，特征向量不变，特征值分别变为 $7,4,3$。",
+            "由(3)的通用公式，$x_n=\\dfrac{a_1 7^ne_1+a_2 4^ne_2+a_3 3^ne_3}{\\sqrt{a_1^27^{2n}+a_2^24^{2n}+a_3^23^{2n}}}$。",
+            "同理，当$n\\to\\infty$，占优特征值$7$对应的系数趋于 $\\mathrm{sign}(a_1)$，其余趋于0，极限为 $\\mathrm{sign}(a_1)e_1$，与原问题结论一致（因为最大特征值对应的特征向量未变）。"
+          ]
+        }
+      ],
+      "id": "nagoya-2011-c88d968483-q02-practice-05",
+      "school": "名古屋大学",
+      "year": "2011"
+    }
+  ],
+  "source_question": "2",
+  "source_pdf": "名古屋大学/多元数理科学研究科/全专攻/名古屋大学_多元数理科学研究科_2011_第1次_数学过去问_上午.pdf",
+  "source_type": "官方过去问",
+  "subject_category": "线性代数"
+}

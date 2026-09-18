@@ -1,0 +1,188 @@
+{
+  "id": "isct-1998-ecc9f1f22d-q04",
+  "school": "东京科学大学",
+  "year": "1998",
+  "subject": "理工学系_数学系",
+  "text": "定义 $\\mathbb{R}$ 上的函数 $F(t)$ 为\n$$F(t)=\\int_0^{\\infty}\\frac{2+\\sin(tx^2)}{1+x^4}\\,dx.$$\n(1) 求 $F(0)$。\n(2) 证明 $F(t)$ 在 $\\mathbb{R}$ 上可微。",
+  "knowledge_points": [
+    "含参变量积分",
+    "Leibniz求导法则",
+    "积分的一致收敛/控制收敛",
+    "标准积分公式$\\int_0^\\infty \\frac{dx}{1+x^n}$"
+  ],
+  "question_type": "含参积分的求值与可微性证明",
+  "method": [
+    "代入 $t=0$ 直接计算标准积分",
+    "利用控制收敛定理证明可在积分号下求导"
+  ],
+  "solution_steps": [
+    "(1)代入 $t=0$，化简为标准积分 $\\int_0^\\infty\\frac{dx}{1+x^4}$ 并用公式求值",
+    "(2)对被积函数关于 $t$ 求偏导，验证导数被可积函数控制，从而应用Leibniz法则证明可微"
+  ],
+  "math_structure": {
+    "type": "parametric_integral_differentiability",
+    "template": "F(t)=\\int_0^\\infty\\frac{2+\\sin(tx^2)}{1+x^4}dx",
+    "variable_count": 1
+  },
+  "difficulty": 3,
+  "answer": [
+    {
+      "label": "(1)",
+      "steps": [
+        "当 $t=0$ 时，$\\sin(0\\cdot x^2)=0$，故 $F(0)=\\int_0^\\infty\\frac{2}{1+x^4}dx=2\\int_0^\\infty\\frac{dx}{1+x^4}$。",
+        "利用标准公式 $\\int_0^\\infty\\frac{dx}{1+x^n}=\\dfrac{\\pi/n}{\\sin(\\pi/n)}$，取 $n=4$：$\\int_0^\\infty\\frac{dx}{1+x^4}=\\dfrac{\\pi/4}{\\sin(\\pi/4)}=\\dfrac{\\pi/4}{\\sqrt2/2}=\\dfrac{\\pi}{2\\sqrt2}$。",
+        "所以 $F(0)=2\\cdot\\dfrac{\\pi}{2\\sqrt2}=\\dfrac{\\pi}{\\sqrt2}=\\dfrac{\\sqrt2\\,\\pi}{2}$。"
+      ]
+    },
+    {
+      "label": "(2)",
+      "steps": [
+        "对被积函数关于 $t$ 求偏导：$\\dfrac{\\partial}{\\partial t}\\left(\\dfrac{2+\\sin(tx^2)}{1+x^4}\\right)=\\dfrac{x^2\\cos(tx^2)}{1+x^4}$。",
+        "该偏导数满足 $\\left|\\dfrac{x^2\\cos(tx^2)}{1+x^4}\\right|\\le\\dfrac{x^2}{1+x^4}=:g(x)$，与 $t$ 无关，且 $g(x)$ 在 $[0,\\infty)$ 上可积（因 $g(x)\\sim1/x^2$ 当 $x\\to\\infty$，且在原点附近连续有界）。",
+        "由含参积分的Leibniz求导定理（在控制函数存在的条件下可在积分号下求导），$F(t)$ 在 $\\mathbb{R}$ 上处处可导，且 $F'(t)=\\int_0^\\infty\\dfrac{x^2\\cos(tx^2)}{1+x^4}dx$，该积分连续依赖于 $t$（由控制收敛定理保证连续性），故 $F$ 甚至是 $C^1$ 的。"
+      ]
+    }
+  ],
+  "practice_questions": [
+    {
+      "text": "计算 $\\int_0^\\infty\\dfrac{dx}{1+x^3}$。",
+      "knowledge_points": [
+        "标准积分公式"
+      ],
+      "question_type": "积分计算",
+      "method": [
+        "套用公式 $\\int_0^\\infty dx/(1+x^n)=\\frac{\\pi/n}{\\sin(\\pi/n)}$"
+      ],
+      "solution_steps": [
+        "代入 $n=3$ 计算"
+      ],
+      "math_structure": {
+        "type": "standard_beta_integral",
+        "template": "\\int_0^\\infty\\frac{dx}{1+x^3}",
+        "variable_count": 0
+      },
+      "difficulty": 1,
+      "estimated_minutes": 3,
+      "answer": [
+        {
+          "label": "计算",
+          "steps": [
+            "公式给出 $\\int_0^\\infty\\frac{dx}{1+x^3}=\\frac{\\pi/3}{\\sin(\\pi/3)}=\\frac{\\pi/3}{\\sqrt3/2}=\\frac{2\\pi}{3\\sqrt3}$",
+            "结论：$\\dfrac{2\\pi}{3\\sqrt3}=\\dfrac{2\\sqrt3\\pi}{9}$"
+          ]
+        }
+      ],
+      "id": "isct-1998-ecc9f1f22d-q04-practice-01",
+      "school": "东京科学大学",
+      "year": "1998"
+    },
+    {
+      "text": "设 $G(t)=\\int_0^\\infty\\dfrac{\\cos(tx)}{1+x^2}dx$。求 $G(0)$。",
+      "knowledge_points": [
+        "含参积分求值"
+      ],
+      "question_type": "特殊值计算",
+      "method": [
+        "代入t=0直接积分"
+      ],
+      "solution_steps": [
+        "代入化简为标准积分并求值"
+      ],
+      "math_structure": {
+        "type": "parametric_integral_special_value",
+        "template": "G(t)=\\int_0^\\infty\\frac{\\cos(tx)}{1+x^2}dx,\\ G(0)",
+        "variable_count": 0
+      },
+      "difficulty": 1,
+      "estimated_minutes": 3,
+      "answer": [
+        {
+          "label": "计算",
+          "steps": [
+            "$G(0)=\\int_0^\\infty\\frac{1}{1+x^2}dx=[\\arctan x]_0^\\infty=\\frac{\\pi}{2}$",
+            "结论：$G(0)=\\pi/2$"
+          ]
+        }
+      ],
+      "id": "isct-1998-ecc9f1f22d-q04-practice-02",
+      "school": "东京科学大学",
+      "year": "1998"
+    },
+    {
+      "text": "证明函数 $H(t)=\\int_0^\\infty\\dfrac{e^{-x}\\sin(tx)}{1+x^2}dx$ 在 $\\mathbb{R}$ 上可微，并写出 $H'(t)$ 的积分表达式。",
+      "knowledge_points": [
+        "Leibniz求导法则",
+        "控制收敛"
+      ],
+      "question_type": "可微性证明",
+      "method": [
+        "求偏导后估计控制函数证明可微"
+      ],
+      "solution_steps": [
+        "对t求偏导",
+        "估计控制函数并应用Leibniz定理"
+      ],
+      "math_structure": {
+        "type": "parametric_integral_differentiability",
+        "template": "H(t)=\\int_0^\\infty\\frac{e^{-x}\\sin(tx)}{1+x^2}dx",
+        "variable_count": 1
+      },
+      "difficulty": 2,
+      "estimated_minutes": 6,
+      "answer": [
+        {
+          "label": "证明",
+          "steps": [
+            "偏导 $\\frac{\\partial}{\\partial t}\\left(\\frac{e^{-x}\\sin(tx)}{1+x^2}\\right)=\\frac{xe^{-x}\\cos(tx)}{1+x^2}$，绝对值不超过 $\\frac{xe^{-x}}{1+x^2}=:g(x)$，与t无关且在$[0,\\infty)$上可积（指数衰减主导）",
+            "由Leibniz法则，$H$可导且 $H'(t)=\\int_0^\\infty\\frac{xe^{-x}\\cos(tx)}{1+x^2}dx$",
+            "该积分关于t连续，故H是$C^1$函数"
+          ]
+        }
+      ],
+      "id": "isct-1998-ecc9f1f22d-q04-practice-03",
+      "school": "东京科学大学",
+      "year": "1998"
+    },
+    {
+      "text": "考虑 $F_2(t)=\\int_0^\\infty\\dfrac{3+\\cos(t x^3)}{1+x^6}dx$。求 $F_2(0)$，并说明为何 $F_2$ 在 $\\mathbb{R}$ 上可微。",
+      "knowledge_points": [
+        "含参积分求值",
+        "标准积分公式",
+        "Leibniz求导法则"
+      ],
+      "question_type": "综合练习（结构类比原题）",
+      "method": [
+        "代入t=0求值",
+        "控制收敛证明可微"
+      ],
+      "solution_steps": [
+        "代入t=0化简为标准积分求值",
+        "对t求偏导并估计控制函数证明可微"
+      ],
+      "math_structure": {
+        "type": "parametric_integral_differentiability",
+        "template": "F_2(t)=\\int_0^\\infty\\frac{3+\\cos(tx^3)}{1+x^6}dx",
+        "variable_count": 1
+      },
+      "difficulty": 3,
+      "estimated_minutes": 10,
+      "answer": [
+        {
+          "label": "求F_2(0)及可微性",
+          "steps": [
+            "$F_2(0)=\\int_0^\\infty\\frac{3+1}{1+x^6}dx=4\\int_0^\\infty\\frac{dx}{1+x^6}$，利用公式 $\\int_0^\\infty\\frac{dx}{1+x^6}=\\frac{\\pi/6}{\\sin(\\pi/6)}=\\frac{\\pi/6}{1/2}=\\frac{\\pi}{3}$，故 $F_2(0)=4\\cdot\\frac{\\pi}{3}=\\frac{4\\pi}{3}$",
+            "偏导 $\\frac{\\partial}{\\partial t}\\left(\\frac{3+\\cos(tx^3)}{1+x^6}\\right)=\\frac{-x^3\\sin(tx^3)}{1+x^6}$，绝对值 $\\le\\frac{x^3}{1+x^6}$，该函数在$[0,\\infty)$上可积（$\\sim1/x^3$ 当 $x\\to\\infty$）",
+            "由Leibniz法则，$F_2$在$\\mathbb{R}$上处处可导，结论成立"
+          ]
+        }
+      ],
+      "id": "isct-1998-ecc9f1f22d-q04-practice-04",
+      "school": "东京科学大学",
+      "year": "1998"
+    }
+  ],
+  "source_question": "午前 問6",
+  "source_pdf": "东京科学大学/理工学系/数学系/东京科学大学_理工学系_数学系_1998_数学过去问.pdf",
+  "source_type": "官方过去问",
+  "subject_category": "微积分"
+}

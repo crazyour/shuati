@@ -1,0 +1,241 @@
+{
+  "id": "kobe-2025-07c5afeba8-q03",
+  "school": "神户大学",
+  "year": "2025",
+  "subject": "系统情报学研究科_全专攻",
+  "text": "考虑复变函数 $f(z) = \\frac{\\sin z}{z^4}$。设复素平面上以原点为中心、半径为 $\\frac{1}{2}$ 的圆为 $C$，其方向为逆时针。\n\n(1) 在区域 $|z| < 1$ 内，求复变函数 $\\frac{1}{1-z}$ 在 $z=0$ 处的Taylor展开式。\n\n(2) 求 $f(z)$ 在 $z=0$ 处的Laurent展开式。\n\n(3) 求复素积分 $\\oint_C f(z)dz$ 的值。\n\n(4) 求复素积分 $\\oint_C \\frac{f(z)}{1-z}dz$ 的值。",
+  "knowledge_points": [
+    "Taylor展开",
+    "Laurent展开",
+    "留数定理",
+    "奇点分类",
+    "三角函数的幂级数"
+  ],
+  "question_type": "复变函数的级数展开与留数计算",
+  "method": [
+    "幂级数展开",
+    "几何级数求和",
+    "留数定理",
+    "Cauchy积分公式"
+  ],
+  "solution_steps": [
+    "(1) 求 $\\frac{1}{1-z}$ 的几何级数展开",
+    "(2) 结合 $\\sin z$ 的Taylor展开式推导 $f(z)$ 的Laurent展开",
+    "(3) 利用Laurent展开中 $z^{-1}$ 的系数计算留数",
+    "(4) 利用Cauchy积分公式或留数定理计算两个奇点处的贡献"
+  ],
+  "math_structure": {
+    "type": "complex_function_residue_calculus",
+    "template": "$f(z) = \\frac{g(z)}{z^n}$ 型函数的Laurent展开与留数计算",
+    "variable_count": 2
+  },
+  "difficulty": 4,
+  "answer": [
+    {
+      "label": "(1) Taylor展开",
+      "steps": [
+        "在 $|z| < 1$ 内，利用几何级数公式：",
+        "$$\\frac{1}{1-z} = \\sum_{n=0}^{\\infty} z^n$$"
+      ]
+    },
+    {
+      "label": "(2) Laurent展开",
+      "steps": [
+        "利用 $\\sin z$ 的Taylor展开式：",
+        "$$\\sin z = \\sum_{n=0}^{\\infty} \\frac{(-1)^n z^{2n+1}}{(2n+1)!} = z - \\frac{z^3}{3!} + \\frac{z^5}{5!} - \\cdots$$",
+        "因此：",
+        "$$f(z) = \\frac{\\sin z}{z^4} = \\frac{1}{z^4}\\left(z - \\frac{z^3}{3!} + \\frac{z^5}{5!} - \\frac{z^7}{7!} + \\cdots\\right)$$",
+        "$$= z^{-3} - \\frac{z^{-1}}{3!} + \\frac{z}{5!} - \\frac{z^3}{7!} + \\cdots$$",
+        "$$= \\frac{1}{z^3} - \\frac{1}{6z} + \\frac{z}{120} - \\frac{z^3}{5040} + \\cdots$$"
+      ]
+    },
+    {
+      "label": "(3) 复素积分 $\\oint_C f(z)dz$",
+      "steps": [
+        "由留数定理，$\\oint_C f(z)dz = 2\\pi i \\cdot \\text{Res}(f, 0)$",
+        "从Laurent展开式可知，$z^{-1}$ 的系数为 $-\\frac{1}{6}$",
+        "因此 $\\text{Res}(f, 0) = -\\frac{1}{6}$",
+        "$$\\oint_C f(z)dz = 2\\pi i \\cdot \\left(-\\frac{1}{6}\\right) = -\\frac{\\pi i}{3}$$"
+      ]
+    },
+    {
+      "label": "(4) 复素积分 $\\oint_C \\frac{f(z)}{1-z}dz$",
+      "steps": [
+        "被积函数 $\\frac{f(z)}{1-z}$ 在 $|z| < \\frac{1}{2}$ 内只有一个奇点在 $z=0$",
+        "在圆 $C: |z| = \\frac{1}{2}$ 内的奇点为 $z = 0$（因为 $|1| = 1 > \\frac{1}{2}$，所以 $z=1$ 在 $C$ 外）",
+        "对 $z=0$ 处的留数，需要 $\\frac{f(z)}{1-z}$ 在 $z=0$ 处Laurent展开中 $z^{-1}$ 的系数",
+        "$$\\frac{f(z)}{1-z} = f(z) \\cdot \\frac{1}{1-z} = \\left(\\frac{1}{z^3} - \\frac{1}{6z} + \\frac{z}{120} - \\cdots\\right) \\cdot (1 + z + z^2 + z^3 + \\cdots)$$",
+        "$z^{-1}$ 项来自：$\\frac{1}{z^3} \\cdot z^2 + (-\\frac{1}{6z}) \\cdot 1 + \\frac{z}{120} \\cdot 0 + \\cdots$",
+        "$$= \\frac{1}{z^3} \\cdot (z^2 + z^3 + z^4 + \\cdots) - \\frac{1}{6z}(1 + z + z^2 + \\cdots) + \\frac{z}{120}(1 + z + \\cdots)$$",
+        "$\\frac{1}{z^3}$ 项中 $z^{-1}$ 来自 $\\frac{z^{-3}}{} \\cdot z^2 = z^{-1}$ 的系数为 $1$",
+        "$-\\frac{1}{6z}$ 项中 $z^{-1}$ 的系数为 $-\\frac{1}{6}$",
+        "$z^{-1}$ 的总系数：$1 - \\frac{1}{6} = \\frac{5}{6}$",
+        "$$\\oint_C \\frac{f(z)}{1-z}dz = 2\\pi i \\cdot \\frac{5}{6} = \\frac{5\\pi i}{3}$$"
+      ]
+    }
+  ],
+  "practice_questions": [
+    {
+      "text": "求复变函数 $g(z) = \\frac{e^z}{z^2}$ 在 $z=0$ 处的Laurent展开式，并求 $\\oint_{|z|=1} g(z)dz$ 的值。",
+      "knowledge_points": [
+        "Laurent展开",
+        "留数定理",
+        "指数函数的幂级数"
+      ],
+      "question_type": "Laurent展开与留数计算",
+      "method": [
+        "幂级数展开",
+        "留数定理"
+      ],
+      "solution_steps": [
+        "利用 $e^z$ 的Taylor展开",
+        "通过除以 $z^2$ 得到Laurent展开",
+        "提取 $z^{-1}$ 系数计算留数"
+      ],
+      "math_structure": {
+        "type": "laurent_expansion_exponential",
+        "template": "$\\frac{e^z}{z^n}$ 型函数的Laurent展开与留数",
+        "variable_count": 1
+      },
+      "difficulty": 3,
+      "estimated_minutes": 10,
+      "answer": [
+        {
+          "label": "完整解答",
+          "steps": [
+            "利用 $e^z = \\sum_{n=0}^{\\infty} \\frac{z^n}{n!}$：",
+            "$$g(z) = \\frac{e^z}{z^2} = \\frac{1}{z^2}\\left(1 + z + \\frac{z^2}{2!} + \\frac{z^3}{3!} + \\cdots\\right)$$",
+            "$$= z^{-2} + z^{-1} + \\frac{1}{2!} + \\frac{z}{3!} + \\frac{z^2}{4!} + \\cdots$$",
+            "$z^{-1}$ 的系数为 $1$，所以 $\\text{Res}(g, 0) = 1$",
+            "$$\\oint_{|z|=1} g(z)dz = 2\\pi i \\cdot 1 = 2\\pi i$$"
+          ]
+        }
+      ],
+      "id": "kobe-2025-07c5afeba8-q03-practice-01",
+      "school": "神户大学",
+      "year": "2025"
+    },
+    {
+      "text": "求复变函数 $h(z) = \\frac{\\cos z}{z^3}$ 在 $z=0$ 处的Laurent展开式。",
+      "knowledge_points": [
+        "Laurent展开",
+        "三角函数的幂级数"
+      ],
+      "question_type": "Laurent展开",
+      "method": [
+        "幂级数展开"
+      ],
+      "solution_steps": [
+        "利用 $\\cos z$ 的Taylor展开",
+        "除以 $z^3$ 得到Laurent展开"
+      ],
+      "math_structure": {
+        "type": "laurent_expansion_cosine",
+        "template": "$\\frac{\\cos z}{z^n}$ 型函数的Laurent展开",
+        "variable_count": 1
+      },
+      "difficulty": 2,
+      "estimated_minutes": 7,
+      "answer": [
+        {
+          "label": "完整解答",
+          "steps": [
+            "利用 $\\cos z = \\sum_{n=0}^{\\infty} \\frac{(-1)^n z^{2n}}{(2n)!} = 1 - \\frac{z^2}{2!} + \\frac{z^4}{4!} - \\frac{z^6}{6!} + \\cdots$：",
+            "$$h(z) = \\frac{\\cos z}{z^3} = \\frac{1}{z^3}\\left(1 - \\frac{z^2}{2!} + \\frac{z^4}{4!} - \\frac{z^6}{6!} + \\cdots\\right)$$",
+            "$$= z^{-3} - \\frac{z^{-1}}{2!} + \\frac{z}{4!} - \\frac{z^3}{6!} + \\cdots$$",
+            "$$= \\frac{1}{z^3} - \\frac{1}{2z} + \\frac{z}{24} - \\frac{z^3}{720} + \\cdots$$"
+          ]
+        }
+      ],
+      "id": "kobe-2025-07c5afeba8-q03-practice-02",
+      "school": "神户大学",
+      "year": "2025"
+    },
+    {
+      "text": "求 $\\oint_{|z|=2} \\frac{e^z}{z(z-1)}dz$ 的值。",
+      "knowledge_points": [
+        "留数定理",
+        "Cauchy积分公式",
+        "部分分式分解"
+      ],
+      "question_type": "留数定理应用",
+      "method": [
+        "留数定理",
+        "部分分式分解"
+      ],
+      "solution_steps": [
+        "识别奇点",
+        "在圆内计算各奇点处的留数",
+        "应用留数定理"
+      ],
+      "math_structure": {
+        "type": "residue_theorem_multiple_poles",
+        "template": "含多个简单极点的有理函数的留数计算",
+        "variable_count": 2
+      },
+      "difficulty": 3,
+      "estimated_minutes": 10,
+      "answer": [
+        {
+          "label": "完整解答",
+          "steps": [
+            "奇点为 $z = 0$ 和 $z = 1$，都在 $|z| = 2$ 内",
+            "计算 $z = 0$ 处的留数：",
+            "$$\\text{Res}\\left(\\frac{e^z}{z(z-1)}, 0\\right) = \\lim_{z \\to 0} z \\cdot \\frac{e^z}{z(z-1)} = \\lim_{z \\to 0} \\frac{e^z}{z-1} = \\frac{1}{-1} = -1$$",
+            "计算 $z = 1$ 处的留数：",
+            "$$\\text{Res}\\left(\\frac{e^z}{z(z-1)}, 1\\right) = \\lim_{z \\to 1} (z-1) \\cdot \\frac{e^z}{z(z-1)} = \\lim_{z \\to 1} \\frac{e^z}{z} = \\frac{e}{1} = e$$",
+            "由留数定理：",
+            "$$\\oint_{|z|=2} \\frac{e^z}{z(z-1)}dz = 2\\pi i(-1 + e) = 2\\pi i(e - 1)$$"
+          ]
+        }
+      ],
+      "id": "kobe-2025-07c5afeba8-q03-practice-03",
+      "school": "神户大学",
+      "year": "2025"
+    },
+    {
+      "text": "求复变函数 $f(z) = \\frac{\\sin z}{z}$ 在 $z=0$ 处的Taylor展开式，并求 $\\oint_{|z|=1} f(z)dz$ 的值。",
+      "knowledge_points": [
+        "Taylor展开",
+        "可去奇点",
+        "留数定理"
+      ],
+      "question_type": "Taylor展开与积分",
+      "method": [
+        "幂级数展开",
+        "留数定理"
+      ],
+      "solution_steps": [
+        "利用 $\\sin z$ 的Taylor展开",
+        "得到 $f(z)$ 的Taylor展开（可去奇点）",
+        "计算积分"
+      ],
+      "math_structure": {
+        "type": "removable_singularity_taylor",
+        "template": "$\\frac{\\sin z}{z}$ 型可去奇点函数",
+        "variable_count": 1
+      },
+      "difficulty": 2,
+      "estimated_minutes": 8,
+      "answer": [
+        {
+          "label": "完整解答",
+          "steps": [
+            "利用 $\\sin z = z - \\frac{z^3}{3!} + \\frac{z^5}{5!} - \\cdots$：",
+            "$$f(z) = \\frac{\\sin z}{z} = 1 - \\frac{z^2}{3!} + \\frac{z^4}{5!} - \\frac{z^6}{7!} + \\cdots$$",
+            "这是 $z = 0$ 处的Taylor展开式（$z = 0$ 是可去奇点）",
+            "Laurent展开中没有 $z^{-1}$ 项，所以 $\\text{Res}(f, 0) = 0$",
+            "$$\\oint_{|z|=1} f(z)dz = 2\\pi i \\cdot 0 = 0$$"
+          ]
+        }
+      ],
+      "id": "kobe-2025-07c5afeba8-q03-practice-04",
+      "school": "神户大学",
+      "year": "2025"
+    }
+  ],
+  "source_question": "問2(1)(2)(3)(4)",
+  "source_pdf": "神户大学/系统情报学研究科/全专攻/神户大学_系统情报学研究科_2025_二期_数学过去问.pdf",
+  "source_type": "官方过去问",
+  "subject_category": "复变函数"
+}

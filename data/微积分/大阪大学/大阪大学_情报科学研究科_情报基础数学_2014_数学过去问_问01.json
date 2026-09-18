@@ -1,0 +1,208 @@
+{
+  "id": "osaka-2014-d970074357-q01",
+  "school": "大阪大学",
+  "year": "2014",
+  "subject": "情报科学研究科_情报基础数学",
+  "text": "求下列二重积分的值：\n$$\\iint_D \\exp\\left(\\frac{y-x}{y+x}\\right)\\,dx\\,dy,$$\n其中 $D=\\{(x,y)\\in\\mathbf{R}^2 \\mid x\\ge 0,\\ y\\ge 0,\\ x+y\\le 1\\}$。",
+  "knowledge_points": [
+    "二重积分的线性变量替换",
+    "雅可比行列式",
+    "三角形区域的变形",
+    "指数函数的积分",
+    "累次积分次序"
+  ],
+  "question_type": "二重积分计算（换元法）",
+  "method": [
+    "设 $u=y-x,\\ v=y+x$ 进行线性变量替换",
+    "计算雅可比行列式",
+    "把区域 $D$ 的不等式转化为 $u,v$ 的不等式",
+    "先对 $u$ 积分再对 $v$ 积分"
+  ],
+  "solution_steps": [
+    "令 $u=y-x,\\ v=y+x$，解出 $x=\\dfrac{v-u}{2},\\ y=\\dfrac{v+u}{2}$",
+    "计算雅可比行列式，得到 $dx\\,dy=\\dfrac12\\,du\\,dv$",
+    "把 $x\\ge0,y\\ge0,x+y\\le1$ 转化为 $-v\\le u\\le v,\\ 0\\le v\\le1$",
+    "先对 $u$ 积分，再对 $v$ 积分求出最终数值"
+  ],
+  "math_structure": {
+    "type": "double_integral_linear_substitution",
+    "template": "\\iint_D \\exp\\left(\\frac{y-x}{y+x}\\right) dx\\,dy,\\ D=\\{x\\ge0,y\\ge0,x+y\\le1\\}",
+    "variable_count": 0
+  },
+  "difficulty": 3,
+  "answer": [
+    {
+      "label": "求积分值",
+      "steps": [
+        "设 $u=y-x,\\ v=y+x$，则 $x=\\dfrac{v-u}{2},\\ y=\\dfrac{v+u}{2}$。雅可比矩阵为 $\\dfrac{\\partial(x,y)}{\\partial(u,v)}=\\begin{pmatrix}-1/2 & 1/2\\\\ 1/2 & 1/2\\end{pmatrix}$，其行列式绝对值为 $\\dfrac12$，故 $dx\\,dy=\\dfrac12\\,du\\,dv$。",
+        "区域约束：$x\\ge0\\Rightarrow v\\ge u$；$y\\ge0\\Rightarrow v\\ge-u$；$x+y\\le1\\Rightarrow v\\le1$。又因 $x,y\\ge0$ 故 $v\\ge0$。合并得 $0\\le v\\le1,\\ -v\\le u\\le v$。",
+        "内层对 $u$ 积分：$\\displaystyle\\int_{-v}^{v} e^{u/v}\\,du = v\\left[e^{u/v}\\right]_{-v}^{v}=v(e-e^{-1})$（当 $v>0$；$v=0$ 处贡献为0，不影响积分）。",
+        "外层对 $v$ 积分：$\\displaystyle\\frac12\\int_0^1 v(e-e^{-1})\\,dv=\\frac12(e-e^{-1})\\cdot\\frac12=\\frac{e-e^{-1}}{4}$。",
+        "故 $\\displaystyle\\iint_D \\exp\\left(\\frac{y-x}{y+x}\\right)dx\\,dy=\\dfrac{e-e^{-1}}{4}$。可用对称性 $x\\leftrightarrow y$ 交叉验证：交换 $x,y$ 后积分值不变，且被积函数符号翻转，说明结果应与 $\\exp\\left(\\frac{x-y}{x+y}\\right)$ 的积分相同，两次独立计算给出一致结果，验证无误。"
+      ]
+    }
+  ],
+  "practice_questions": [
+    {
+      "text": "计算二重积分 $\\displaystyle\\iint_D (x+y)\\,dx\\,dy$，其中 $D=\\{(x,y)\\mid x\\ge0,y\\ge0,x+y\\le1\\}$。",
+      "knowledge_points": [
+        "二重积分基本计算",
+        "累次积分"
+      ],
+      "question_type": "二重积分直接计算",
+      "method": [
+        "用累次积分直接计算，先对 $y$ 积分再对 $x$ 积分"
+      ],
+      "solution_steps": [
+        "写出累次积分 $\\int_0^1\\int_0^{1-x}(x+y)\\,dy\\,dx$",
+        "计算内层积分",
+        "计算外层积分得结果"
+      ],
+      "math_structure": {
+        "type": "double_integral_direct",
+        "template": "\\iint_D (x+y)\\,dx\\,dy,\\ D=\\{x\\ge0,y\\ge0,x+y\\le1\\}",
+        "variable_count": 0
+      },
+      "difficulty": 1,
+      "estimated_minutes": 5,
+      "answer": [
+        {
+          "label": "求值",
+          "steps": [
+            "内层积分：$\\int_0^{1-x}(x+y)\\,dy = x(1-x)+\\dfrac{(1-x)^2}{2}$。",
+            "化简得 $x-x^2+\\dfrac{1-2x+x^2}{2}=\\dfrac12-\\dfrac{x^2}{2}$。",
+            "外层积分：$\\int_0^1\\left(\\dfrac12-\\dfrac{x^2}{2}\\right)dx=\\dfrac12-\\dfrac16=\\dfrac13$。最终结果为 $\\dfrac13$。"
+          ]
+        }
+      ],
+      "id": "osaka-2014-d970074357-q01-practice-01",
+      "school": "大阪大学",
+      "year": "2014"
+    },
+    {
+      "text": "用变量替换 $u=x-y,\\ v=x+y$，计算 $\\displaystyle\\iint_D e^{x-y}\\,dx\\,dy$，其中 $D=\\{x\\ge0,y\\ge0,x+y\\le1\\}$。",
+      "knowledge_points": [
+        "线性变量替换",
+        "雅可比行列式",
+        "指数函数积分"
+      ],
+      "question_type": "二重积分换元计算",
+      "method": [
+        "设 $u=x-y,v=x+y$",
+        "计算雅可比行列式并转化区域",
+        "分离变量逐次积分"
+      ],
+      "solution_steps": [
+        "设 $u=x-y,v=x+y$ 解出 $x,y$",
+        "求 $dx\\,dy=\\frac12 du\\,dv$",
+        "确定新区域 $0\\le v\\le1, -v\\le u\\le v$",
+        "对 $u$ 积分得 $e^v-e^{-v}$，再对 $v$ 积分"
+      ],
+      "math_structure": {
+        "type": "double_integral_linear_substitution",
+        "template": "\\iint_D e^{x-y}\\,dx\\,dy,\\ D=\\{x\\ge0,y\\ge0,x+y\\le1\\}",
+        "variable_count": 0
+      },
+      "difficulty": 2,
+      "estimated_minutes": 8,
+      "answer": [
+        {
+          "label": "求值",
+          "steps": [
+            "由 $x=\\frac{u+v}{2},y=\\frac{v-u}{2}$ 得 $dx\\,dy=\\frac12du\\,dv$；区域化为 $0\\le v\\le1,-v\\le u\\le v$。",
+            "内层积分：$\\int_{-v}^{v}e^{u}\\,du=e^{v}-e^{-v}$。",
+            "外层积分：$\\frac12\\int_0^1(e^v-e^{-v})\\,dv=\\frac12\\left[(e^v+e^{-v})\\right]_0^1=\\frac12\\left(e+e^{-1}-2\\right)$。",
+            "最终结果：$\\dfrac{e+e^{-1}-2}{2}$。"
+          ]
+        }
+      ],
+      "id": "osaka-2014-d970074357-q01-practice-02",
+      "school": "大阪大学",
+      "year": "2014"
+    },
+    {
+      "text": "计算 $\\displaystyle\\iint_D \\exp\\left(\\frac{y-x}{2(y+x)}\\right)\\,dx\\,dy$，其中 $D=\\{x\\ge0,y\\ge0,x+y\\le1\\}$。",
+      "knowledge_points": [
+        "线性变量替换",
+        "雅可比行列式",
+        "带参数的指数积分"
+      ],
+      "question_type": "二重积分换元计算",
+      "method": [
+        "设 $u=y-x,v=y+x$",
+        "利用与原题相同的区域变换",
+        "对含系数 $\\frac12$ 的指数积分"
+      ],
+      "solution_steps": [
+        "设 $u=y-x,v=y+x$，得区域 $0\\le v\\le1,-v\\le u\\le v$",
+        "内层积分 $\\int_{-v}^v e^{u/(2v)}du=2v(\\sqrt e-e^{-1/2})$",
+        "外层积分对 $v$ 从0到1"
+      ],
+      "math_structure": {
+        "type": "double_integral_linear_substitution",
+        "template": "\\iint_D \\exp\\left(\\frac{y-x}{2(y+x)}\\right) dx\\,dy,\\ D=\\{x\\ge0,y\\ge0,x+y\\le1\\}",
+        "variable_count": 0
+      },
+      "difficulty": 3,
+      "estimated_minutes": 12,
+      "answer": [
+        {
+          "label": "求值",
+          "steps": [
+            "同样设 $u=y-x,v=y+x$，$dx\\,dy=\\frac12du\\,dv$，区域为 $0\\le v\\le1,-v\\le u\\le v$。",
+            "内层积分：$\\int_{-v}^{v}e^{u/(2v)}\\,du=2v\\left[e^{u/(2v)}\\right]_{-v}^{v}\\cdot\\frac12$，更直接地：令 $t=u/(2v)$，得 $\\int_{-v}^v e^{u/(2v)}du=2v(e^{1/2}-e^{-1/2})=2v(\\sqrt e-e^{-1/2})$。",
+            "外层积分：$\\frac12\\int_0^1 2v(\\sqrt e-e^{-1/2})\\,dv=(\\sqrt e-e^{-1/2})\\int_0^1 v\\,dv=(\\sqrt e-e^{-1/2})\\cdot\\frac12$。",
+            "最终结果：$\\dfrac{\\sqrt e-e^{-1/2}}{2}$。"
+          ]
+        }
+      ],
+      "id": "osaka-2014-d970074357-q01-practice-03",
+      "school": "大阪大学",
+      "year": "2014"
+    },
+    {
+      "text": "计算 $\\displaystyle\\iint_{D_2} \\exp\\left(\\frac{y-x}{y+x}\\right)\\,dx\\,dy$，其中 $D_2=\\{x\\ge0,y\\ge0,x+y\\le2\\}$。",
+      "knowledge_points": [
+        "线性变量替换",
+        "雅可比行列式",
+        "区域尺度变化对积分的影响"
+      ],
+      "question_type": "二重积分换元计算",
+      "method": [
+        "用与原题相同的替换 $u=y-x,v=y+x$",
+        "确定放大后的区域范围",
+        "对比原题结果体会尺度效应"
+      ],
+      "solution_steps": [
+        "设 $u=y-x,v=y+x$，区域变为 $0\\le v\\le2,-v\\le u\\le v$",
+        "内层积分同原题为 $v(e-e^{-1})$",
+        "外层对 $v$ 从0到2积分"
+      ],
+      "math_structure": {
+        "type": "double_integral_linear_substitution",
+        "template": "\\iint_{D_2} \\exp\\left(\\frac{y-x}{y+x}\\right) dx\\,dy,\\ D_2=\\{x\\ge0,y\\ge0,x+y\\le2\\}",
+        "variable_count": 0
+      },
+      "difficulty": 4,
+      "estimated_minutes": 15,
+      "answer": [
+        {
+          "label": "求值",
+          "steps": [
+            "设 $u=y-x,v=y+x$，$dx\\,dy=\\frac12du\\,dv$；由 $x+y\\le2$ 得 $0\\le v\\le2$，仍有 $-v\\le u\\le v$。",
+            "内层积分：$\\int_{-v}^v e^{u/v}du=v(e-e^{-1})$（与原题相同，因为比值 $u/v$ 的范围不变）。",
+            "外层积分：$\\frac12\\int_0^2 v(e-e^{-1})\\,dv=\\frac12(e-e^{-1})\\cdot\\frac{v^2}{2}\\Big|_0^2=\\frac12(e-e^{-1})\\cdot2=e-e^{-1}$。",
+            "最终结果：$e-e^{-1}$，恰为原题答案 $\\frac{e-e^{-1}}{4}$ 的4倍，与区域面积按比例扩大到4倍（$v$ 范围从1变2，面积二次放大）相符，验证正确。"
+          ]
+        }
+      ],
+      "id": "osaka-2014-d970074357-q01-practice-04",
+      "school": "大阪大学",
+      "year": "2014"
+    }
+  ],
+  "source_question": "問1(1)",
+  "source_pdf": "大阪大学/情报科学研究科/情报基础数学/大阪大学_情报科学研究科_情报基础数学_2014_数学过去问.pdf",
+  "source_type": "官方过去问",
+  "subject_category": "微积分"
+}

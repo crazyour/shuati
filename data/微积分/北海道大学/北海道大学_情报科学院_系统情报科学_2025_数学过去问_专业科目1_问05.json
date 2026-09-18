@@ -1,0 +1,245 @@
+{
+  "id": "hokkaido-2025-c0ed463d3c-q05",
+  "school": "北海道大学",
+  "year": "2025",
+  "subject": "情报科学院_系统情报科学",
+  "text": "关于周期函数的傅里叶级数展开的问题。周期为 $2\\pi$ 的连续周期函数 $g(t)$ 的傅里叶级数展开式表示为：$$g(t)=\\frac{a_0}{2}+\\sum_{n=1}^{\\infty}[a_n\\cos(nt)+b_n\\sin(nt)]$$\n\n(a) 用 $a_0, a_n, b_n$ 表示周期函数 $g(t)$ 的平均值 $\\overline{g(t)}$，其中平均值定义为：$$\\overline{g(t)}=\\frac{1}{2\\pi}\\int_{-\\pi}^{\\pi}g(t)dt$$\n\n(b) 将傅里叶级数截断到 $n=N$，定义截断函数为 $g_N(t)$。用 $g(t), a_0, a_n, b_n$ $(n=1,\\ldots,N)$ 表示误差平方积分：$$I_N=\\int_{-\\pi}^{\\pi}[g(t)-g_N(t)]^2dt$$",
+  "knowledge_points": [
+    "傅里叶级数的定义",
+    "傅里叶系数",
+    "三角函数的正交性",
+    "Parseval恒等式",
+    "平方误差"
+  ],
+  "question_type": "傅里叶级数的性质与应用",
+  "method": [
+    "傅里叶级数公式",
+    "正交性",
+    "Parseval恒等式"
+  ],
+  "solution_steps": [
+    "应用傅里叶级数定义",
+    "利用三角函数的正交性",
+    "计算系数与平均值的关系",
+    "展开误差平方积分"
+  ],
+  "math_structure": {
+    "type": "fourier_series",
+    "template": "周期为 $2\\pi$ 的函数的傅里叶级数展开与收敛性分析",
+    "variable_count": 3
+  },
+  "difficulty": 2,
+  "answer": [
+    {
+      "label": "(a) 周期函数平均值的表示",
+      "steps": [
+        "根据题目定义，平均值为：",
+        "$$\\overline{g(t)}=\\frac{1}{2\\pi}\\int_{-\\pi}^{\\pi}g(t)dt$$",
+        "将傅里叶级数展开式代入：",
+        "$$\\overline{g(t)}=\\frac{1}{2\\pi}\\int_{-\\pi}^{\\pi}\\left[\\frac{a_0}{2}+\\sum_{n=1}^{\\infty}(a_n\\cos(nt)+b_n\\sin(nt))\\right]dt$$",
+        "对各项积分：",
+        "$$=\\frac{1}{2\\pi}\\left[\\int_{-\\pi}^{\\pi}\\frac{a_0}{2}dt+\\sum_{n=1}^{\\infty}a_n\\int_{-\\pi}^{\\pi}\\cos(nt)dt+\\sum_{n=1}^{\\infty}b_n\\int_{-\\pi}^{\\pi}\\sin(nt)dt\\right]$$",
+        "利用正交性：$\\int_{-\\pi}^{\\pi}\\cos(nt)dt=0$ 和 $\\int_{-\\pi}^{\\pi}\\sin(nt)dt=0$ (对 $n \\geq 1$)",
+        "$$=\\frac{1}{2\\pi}\\cdot\\frac{a_0}{2}\\cdot 2\\pi=\\frac{a_0}{2}$$",
+        "**结论**：$\\overline{g(t)}=\\frac{a_0}{2}$"
+      ]
+    },
+    {
+      "label": "(b) 误差平方积分的表示",
+      "steps": [
+        "设截断函数：",
+        "$$g_N(t)=\\frac{a_0}{2}+\\sum_{n=1}^{N}[a_n\\cos(nt)+b_n\\sin(nt)]$$",
+        "误差平方积分：",
+        "$$I_N=\\int_{-\\pi}^{\\pi}[g(t)-g_N(t)]^2dt$$",
+        "展开平方：",
+        "$$I_N=\\int_{-\\pi}^{\\pi}g(t)^2dt-2\\int_{-\\pi}^{\\pi}g(t)g_N(t)dt+\\int_{-\\pi}^{\\pi}g_N(t)^2dt$$",
+        "对第二项进行计算。将 $g(t)$ 的完整傅里叶级数代入：",
+        "$$\\int_{-\\pi}^{\\pi}g(t)g_N(t)dt=\\int_{-\\pi}^{\\pi}\\left[\\frac{a_0}{2}+\\sum_{n=1}^{\\infty}(a_n\\cos(nt)+b_n\\sin(nt))\\right]\\cdot$$",
+        "$$\\left[\\frac{a_0}{2}+\\sum_{m=1}^{N}(a_m\\cos(mt)+b_m\\sin(mt))\\right]dt$$",
+        "利用三角函数的正交性 $\\int_{-\\pi}^{\\pi}\\cos(nt)\\cos(mt)dt=\\pi\\delta_{nm}$ 等：",
+        "$$\\int_{-\\pi}^{\\pi}g(t)g_N(t)dt=\\pi\\left[\\frac{a_0^2}{2}+\\sum_{n=1}^{N}(a_n^2+b_n^2)\\right]$$",
+        "对第三项，由于 $g_N$ 只包含到 $n=N$ 的项：",
+        "$$\\int_{-\\pi}^{\\pi}g_N(t)^2dt=\\pi\\left[\\frac{a_0^2}{2}+\\sum_{n=1}^{N}(a_n^2+b_n^2)\\right]$$",
+        "对第一项利用Parseval恒等式：",
+        "$$\\int_{-\\pi}^{\\pi}g(t)^2dt=\\pi\\left[\\frac{a_0^2}{2}+\\sum_{n=1}^{\\infty}(a_n^2+b_n^2)\\right]$$",
+        "代入得：",
+        "$$I_N=\\pi\\left[\\frac{a_0^2}{2}+\\sum_{n=1}^{\\infty}(a_n^2+b_n^2)\\right]-2\\pi\\left[\\frac{a_0^2}{2}+\\sum_{n=1}^{N}(a_n^2+b_n^2)\\right]$$",
+        "$$+\\pi\\left[\\frac{a_0^2}{2}+\\sum_{n=1}^{N}(a_n^2+b_n^2)\\right]$$",
+        "化简：",
+        "$$I_N=\\pi\\left[\\sum_{n=N+1}^{\\infty}(a_n^2+b_n^2)\\right]$$",
+        "**结论**：$I_N=\\pi\\sum_{n=N+1}^{\\infty}(a_n^2+b_n^2)$"
+      ]
+    }
+  ],
+  "practice_questions": [
+    {
+      "text": "对于周期为 $2\\pi$ 的函数 $f(t)=|t|$（$-\\pi\\leq t\\leq\\pi$），求其傅里叶级数的 $a_0$ 系数。",
+      "knowledge_points": [
+        "傅里叶系数计算",
+        "偶函数性质"
+      ],
+      "question_type": "傅里叶系数计算",
+      "method": [
+        "傅里叶系数公式"
+      ],
+      "solution_steps": [
+        "利用偶函数对称性",
+        "计算积分"
+      ],
+      "math_structure": {
+        "type": "fourier_coefficient",
+        "template": "周期函数的傅里叶系数计算",
+        "variable_count": 1
+      },
+      "difficulty": 2,
+      "estimated_minutes": 8,
+      "answer": [
+        {
+          "label": "$a_0$ 系数计算",
+          "steps": [
+            "由傅里叶系数公式：$a_0=\\frac{1}{\\pi}\\int_{-\\pi}^{\\pi}f(t)dt$",
+            "因为 $f(t)=|t|$ 是偶函数：",
+            "$a_0=\\frac{1}{\\pi}\\int_{-\\pi}^{\\pi}|t|dt=\\frac{2}{\\pi}\\int_0^{\\pi}t dt$",
+            "$=\\frac{2}{\\pi}\\left[\\frac{t^2}{2}\\right]_0^{\\pi}=\\frac{2}{\\pi}\\cdot\\frac{\\pi^2}{2}=\\pi$"
+          ]
+        }
+      ],
+      "id": "hokkaido-2025-c0ed463d3c-q05-practice-01",
+      "school": "北海道大学",
+      "year": "2025"
+    },
+    {
+      "text": "对于周期为 $2\\pi$ 的函数 $f(t)=t$（$-\\pi<t<\\pi$），验证其傅里叶级数的 $a_n$ 系数为0。",
+      "knowledge_points": [
+        "傅里叶系数",
+        "奇函数性质"
+      ],
+      "question_type": "傅里叶系数性质",
+      "method": [
+        "奇函数性质"
+      ],
+      "solution_steps": [
+        "判断奇偶性",
+        "利用性质"
+      ],
+      "math_structure": {
+        "type": "odd_function_fourier",
+        "template": "奇函数的傅里叶级数",
+        "variable_count": 1
+      },
+      "difficulty": 1,
+      "estimated_minutes": 5,
+      "answer": [
+        {
+          "label": "$a_n$ 系数验证",
+          "steps": [
+            "$f(t)=t$ 是奇函数",
+            "由傅里叶系数公式：$a_n=\\frac{1}{\\pi}\\int_{-\\pi}^{\\pi}f(t)\\cos(nt)dt$",
+            "奇函数与偶函数（$\\cos(nt)$）的乘积为奇函数",
+            "奇函数在对称区间上的积分为0",
+            "因此 $a_n=0$ 对所有 $n\\geq 0$"
+          ]
+        }
+      ],
+      "id": "hokkaido-2025-c0ed463d3c-q05-practice-02",
+      "school": "北海道大学",
+      "year": "2025"
+    },
+    {
+      "text": "已知周期函数 $g(t)=\\pi-t$（$0\\leq t\\leq 2\\pi$）的傅里叶系数 $a_0=\\pi$。若将该级数截断到 $n=10$，估计误差平方积分 $I_{10}$。",
+      "knowledge_points": [
+        "Parseval恒等式",
+        "误差估计"
+      ],
+      "question_type": "傅里叶级数的收敛性分析",
+      "method": [
+        "Parseval恒等式",
+        "级数求和"
+      ],
+      "solution_steps": [
+        "计算原函数的平方积分",
+        "计算截断部分的平方",
+        "求误差"
+      ],
+      "math_structure": {
+        "type": "fourier_convergence",
+        "template": "傅里叶级数收敛性分析",
+        "variable_count": 1
+      },
+      "difficulty": 3,
+      "estimated_minutes": 12,
+      "answer": [
+        {
+          "label": "误差平方积分估计",
+          "steps": [
+            "$g(t)=\\pi-t$ ($0\\leq t\\leq 2\\pi$) 是线性函数",
+            "计算 $\\int_0^{2\\pi}g(t)^2dt=\\int_0^{2\\pi}(\\pi-t)^2dt$",
+            "令 $u=\\pi-t$，则：",
+            "$\\int_0^{2\\pi}(\\pi-t)^2dt=\\int_{-\\pi}^{\\pi}u^2(-du)=\\int_{-\\pi}^{\\pi}u^2du=\\frac{2\\pi^3}{3}$",
+            "该函数的傅里叶系数为：$b_n=\\frac{2}{n}$（$n\\geq 1$），$a_0=\\pi$",
+            "根据Parseval恒等式：",
+            "$\\int_0^{2\\pi}g(t)^2dt=\\pi\\left[\\frac{a_0^2}{2}+\\sum_{n=1}^{\\infty}b_n^2\\right]=\\pi\\left[\\frac{\\pi^2}{2}+\\sum_{n=1}^{\\infty}\\frac{4}{n^2}\\right]$",
+            "误差：",
+            "$I_{10}=\\pi\\sum_{n=11}^{\\infty}\\frac{4}{n^2}\\approx 4\\pi\\left[\\sum_{n=11}^{\\infty}\\frac{1}{n^2}\\right]\\approx 4\\pi\\cdot 0.0088 \\approx 0.11$"
+          ]
+        }
+      ],
+      "id": "hokkaido-2025-c0ed463d3c-q05-practice-03",
+      "school": "北海道大学",
+      "year": "2025"
+    },
+    {
+      "text": "对于周期为 $2\\pi$ 的函数 $f(t)=t^2$（$-\\pi\\leq t\\leq\\pi$），求其傅里叶级数中 $a_n$ 系数的通项公式。",
+      "knowledge_points": [
+        "傅里叶系数计算",
+        "分部积分",
+        "偶函数"
+      ],
+      "question_type": "傅里叶系数的通项求法",
+      "method": [
+        "傅里叶系数公式",
+        "分部积分",
+        "偶函数对称性"
+      ],
+      "solution_steps": [
+        "利用偶函数性质",
+        "使用傅里叶系数公式",
+        "分部积分计算"
+      ],
+      "math_structure": {
+        "type": "fourier_polynomial",
+        "template": "多项式函数的傅里叶级数展开",
+        "variable_count": 1
+      },
+      "difficulty": 3,
+      "estimated_minutes": 15,
+      "answer": [
+        {
+          "label": "$a_n$ 系数的通项公式",
+          "steps": [
+            "$f(t)=t^2$ 是偶函数，所以 $b_n=0$",
+            "由傅里叶系数公式（$n\\geq 1$）：",
+            "$a_n=\\frac{1}{\\pi}\\int_{-\\pi}^{\\pi}t^2\\cos(nt)dt=\\frac{2}{\\pi}\\int_0^{\\pi}t^2\\cos(nt)dt$",
+            "使用分部积分，令 $u=t^2, dv=\\cos(nt)dt$：",
+            "$\\int_0^{\\pi}t^2\\cos(nt)dt=\\left[\\frac{t^2\\sin(nt)}{n}\\right]_0^{\\pi}-\\int_0^{\\pi}\\frac{2t\\sin(nt)}{n}dt$",
+            "$=0-\\frac{2}{n}\\int_0^{\\pi}t\\sin(nt)dt$",
+            "再次分部积分，令 $u=t, dv=\\sin(nt)dt$：",
+            "$\\int_0^{\\pi}t\\sin(nt)dt=\\left[-\\frac{t\\cos(nt)}{n}\\right]_0^{\\pi}+\\int_0^{\\pi}\\frac{\\cos(nt)}{n}dt$",
+            "$=-\\frac{\\pi\\cos(n\\pi)}{n}+\\left[\\frac{\\sin(nt)}{n^2}\\right]_0^{\\pi}=-\\frac{\\pi(-1)^n}{n}+0=\\frac{\\pi(-1)^n}{n}$",
+            "代入得：",
+            "$\\int_0^{\\pi}t^2\\cos(nt)dt=-\\frac{2}{n}\\cdot\\frac{\\pi(-1)^n}{n}=-\\frac{2\\pi(-1)^n}{n^2}$",
+            "因此：",
+            "$a_n=\\frac{2}{\\pi}\\cdot\\left(-\\frac{2\\pi(-1)^n}{n^2}\\right)=-\\frac{4(-1)^n}{n^2}=\\frac{4(-1)^{n+1}}{n^2}$"
+          ]
+        }
+      ],
+      "id": "hokkaido-2025-c0ed463d3c-q05-practice-04",
+      "school": "北海道大学",
+      "year": "2025"
+    }
+  ],
+  "source_question": "問2-3",
+  "source_pdf": "北海道大学/情报科学院/系统情报科学/北海道大学_情报科学院_系统情报科学_2025_数学过去问_专业科目1.pdf",
+  "source_type": "官方过去问",
+  "subject_category": "微积分"
+}

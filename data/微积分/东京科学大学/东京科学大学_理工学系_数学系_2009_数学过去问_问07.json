@@ -1,0 +1,165 @@
+{
+  "id": "isct-2009-7844cd6d27-q07",
+  "school": "东京科学大学",
+  "year": "2009",
+  "subject": "理工学系_数学系",
+  "text": "设 $f$ 是定义在 $x\\ge0$ 上的非负连续函数，满足 $\\int_0^\\infty x f(x)\\,dx<\\infty$。令 $$\\phi(t)=\\int_0^\\infty f(x)\\sin^2(tx)\\,dx$$\n证明：\n(1) $\\phi$ 是 $C^1(\\mathbb{R})$ 类函数。\n(2) $\\displaystyle\\int_0^\\infty \\frac{\\phi(t)}{t^2}\\,dt<\\infty$。",
+  "knowledge_points": [
+    "参数积分的可微性",
+    "控制收敛/微分与积分交换",
+    "Fubini-Tonelli定理",
+    "标准积分∫(sin s/s)^2ds"
+  ],
+  "question_type": "证明含参积分的可微性与二次积分收敛性",
+  "method": [
+    "用中值定理估计Lipschitz连续性",
+    "用一致优函数xf(x)证明可微且导数连续",
+    "用Tonelli定理交换积分次序并换元求出精确值"
+  ],
+  "solution_steps": [
+    "(1)用sin²的差估计|φ(t)-φ(t0)|≤Lipschitz常数|t-t0|证明连续，再用优函数xf(x)证明可微及导数连续",
+    "(2)用Tonelli定理交换t,x积分次序，内层积分换元s=tx算出∫sin²(s)/s²ds=π/2"
+  ],
+  "math_structure": {
+    "type": "parameter_integral_differentiability_fubini",
+    "template": "$\\phi(t)=\\int_0^\\infty f(x)\\sin^2(tx)dx$，$\\int_0^\\infty xf(x)dx<\\infty$；证明 $\\phi\\in C^1$ 且 $\\int_0^\\infty\\phi(t)/t^2\\,dt<\\infty$",
+    "variable_count": 1
+  },
+  "difficulty": 4,
+  "answer": [
+    {
+      "label": "(1)",
+      "steps": [
+        "记 $C=\\int_0^\\infty xf(x)dx<\\infty$。用恒等式 $\\sin^2A-\\sin^2B=\\sin(A+B)\\sin(A-B)$，取 $A=tx,B=t_0x$：$|\\sin^2(tx)-\\sin^2(t_0x)|=|\\sin((t+t_0)x)\\sin((t-t_0)x)|\\le1\\cdot|(t-t_0)x|=|t-t_0|x$",
+        "故 $|\\phi(t)-\\phi(t_0)|\\le\\int_0^\\infty f(x)|\\sin^2(tx)-\\sin^2(t_0x)|dx\\le|t-t_0|\\int_0^\\infty xf(x)dx=C|t-t_0|$，即 $\\phi$ 是（全局）Lipschitz函数，从而连续",
+        "对固定x，$\\partial_t[f(x)\\sin^2(tx)]=2xf(x)\\sin(tx)\\cos(tx)=xf(x)\\sin(2tx)$，且对所有 $t$：$|xf(x)\\sin(2tx)|\\le xf(x)$，即被与 $t$ 无关的可积函数 $xf(x)$ 一致控制",
+        "由微分与积分交换定理（Leibniz积分法则的控制收敛版本），$\\phi$ 在 $\\mathbb{R}$ 上处处可微，且 $\\phi'(t)=\\int_0^\\infty xf(x)\\sin(2tx)\\,dx$",
+        "$\\phi'(t)$ 的连续性：被积函数 $xf(x)\\sin(2tx)$ 关于 $t$ 连续，且被 $xf(x)$（可积、与 $t$ 无关）控制，由控制收敛定理 $\\phi'$ 在 $\\mathbb{R}$ 上连续，故 $\\phi\\in C^1(\\mathbb{R})$"
+      ]
+    },
+    {
+      "label": "(2)",
+      "steps": [
+        "被积函数 $f(x)\\sin^2(tx)/t^2\\ge0$，由Tonelli定理可交换积分次序：$\\int_0^\\infty\\frac{\\phi(t)}{t^2}dt=\\int_0^\\infty\\int_0^\\infty\\frac{f(x)\\sin^2(tx)}{t^2}\\,dx\\,dt=\\int_0^\\infty f(x)\\left[\\int_0^\\infty\\frac{\\sin^2(tx)}{t^2}dt\\right]dx$",
+        "对内层积分作换元 $s=tx$（固定 $x>0$），$dt=ds/x,\\ t^2=s^2/x^2$：$\\int_0^\\infty\\frac{\\sin^2(tx)}{t^2}dt=\\int_0^\\infty\\frac{\\sin^2s}{s^2/x^2}\\cdot\\frac{ds}{x}=x\\int_0^\\infty\\left(\\frac{\\sin s}{s}\\right)^2ds$",
+        "利用经典结果 $\\displaystyle\\int_0^\\infty\\left(\\frac{\\sin s}{s}\\right)^2ds=\\frac{\\pi}{2}$，得内层积分 $=\\frac{\\pi}{2}x$（对 $x=0$ 情形单点不影响积分值，$f$连续故无实质影响）",
+        "代入得 $\\int_0^\\infty\\frac{\\phi(t)}{t^2}dt=\\int_0^\\infty f(x)\\cdot\\frac{\\pi}{2}x\\,dx=\\frac{\\pi}{2}\\int_0^\\infty xf(x)dx=\\frac{\\pi}{2}C<\\infty$（由题设 $C<\\infty$）",
+        "结论：$\\int_0^\\infty\\phi(t)/t^2\\,dt=\\frac{\\pi}{2}\\int_0^\\infty xf(x)dx<\\infty$，证毕"
+      ]
+    }
+  ],
+  "practice_questions": [
+    {
+      "text": "验证经典积分公式 $\\displaystyle\\int_0^\\infty\\left(\\frac{\\sin s}{s}\\right)^2 ds=\\frac{\\pi}{2}$ 中所用到的 $\\int_0^\\infty\\frac{\\sin s}{s}ds=\\frac\\pi2$ 的结论是否与之一致（简要说明两者关系，不要求重新证明这两个基本积分本身）。",
+      "knowledge_points": [
+        "Dirichlet积分",
+        "sinc函数平方积分"
+      ],
+      "question_type": "说明经典积分之间的关系",
+      "method": [
+        "用分部积分把∫(sin s/s)^2ds转化为∫sin s/s ds"
+      ],
+      "solution_steps": [
+        "写出分部积分公式",
+        "说明边界项消失",
+        "得到两积分相等"
+      ],
+      "math_structure": {
+        "type": "parameter_integral_differentiability_fubini",
+        "template": "关联sinc函数积分与其平方积分",
+        "variable_count": 0
+      },
+      "difficulty": 2,
+      "estimated_minutes": 6,
+      "answer": [
+        {
+          "label": "本题",
+          "steps": [
+            "分部积分：$\\int_0^\\infty\\frac{\\sin^2s}{s^2}ds=\\int_0^\\infty\\sin^2s\\cdot\\left(-\\frac1s\\right)'\\cdot(-1)ds$，更直接地取 $u=\\sin^2s,\\ dv=s^{-2}ds$，则 $v=-1/s$，$du=2\\sin s\\cos s\\,ds=\\sin(2s)ds$",
+            "$\\int_0^\\infty\\frac{\\sin^2s}{s^2}ds=\\left[-\\frac{\\sin^2s}{s}\\right]_0^\\infty+\\int_0^\\infty\\frac{\\sin(2s)}{s}ds$，边界项在 $s\\to0$ 时 $\\sin^2s/s\\to0$，在 $s\\to\\infty$ 时也 $\\to0$，故边界项为0",
+            "$\\int_0^\\infty\\frac{\\sin(2s)}{s}ds$，令 $u=2s$：$=\\int_0^\\infty\\frac{\\sin u}{u}du=\\frac\\pi2$（利用给定的Dirichlet积分结论）",
+            "故 $\\int_0^\\infty(\\sin s/s)^2ds=\\pi/2$，与已知结论一致，说明两个经典积分通过分部积分直接关联"
+          ]
+        }
+      ],
+      "id": "isct-2009-7844cd6d27-q07-practice-01",
+      "school": "东京科学大学",
+      "year": "2009"
+    },
+    {
+      "text": "设 $f(x)=e^{-x}$（$x\\ge0$）。验证 $\\int_0^\\infty xf(x)dx<\\infty$，并利用原题(2)的结论直接求 $\\int_0^\\infty \\phi(t)/t^2\\,dt$ 的值（无需重新计算$\\phi(t)$本身）。",
+      "knowledge_points": [
+        "公式应用",
+        "Gamma函数∫xe^{-x}dx=1"
+      ],
+      "question_type": "应用公式计算具体积分",
+      "method": [
+        "直接验证条件并代入(π/2)∫xf(x)dx公式"
+      ],
+      "solution_steps": [
+        "计算∫xe^{-x}dx=1",
+        "代入公式得π/2"
+      ],
+      "math_structure": {
+        "type": "parameter_integral_differentiability_fubini",
+        "template": "应用一般公式计算具体f(x)=e^{-x}情形的积分",
+        "variable_count": 0
+      },
+      "difficulty": 2,
+      "estimated_minutes": 5,
+      "answer": [
+        {
+          "label": "本题",
+          "steps": [
+            "$\\int_0^\\infty xe^{-x}dx=\\Gamma(2)=1!=1<\\infty$，满足条件",
+            "直接代入原题(2)的公式 $\\int_0^\\infty\\phi(t)/t^2dt=\\frac\\pi2\\int_0^\\infty xf(x)dx=\\frac\\pi2\\cdot1=\\frac\\pi2$",
+            "结论：所求积分值为 $\\pi/2$"
+          ]
+        }
+      ],
+      "id": "isct-2009-7844cd6d27-q07-practice-02",
+      "school": "东京科学大学",
+      "year": "2009"
+    },
+    {
+      "text": "说明为什么本题条件中要求 $\\int_0^\\infty xf(x)dx<\\infty$，而不是仅要求 $\\int_0^\\infty f(x)dx<\\infty$；举例说明满足后者但不满足前者的函数会使得(2)的结论不再成立。",
+      "knowledge_points": [
+        "条件的必要性分析",
+        "反例构造"
+      ],
+      "question_type": "分析条件必要性并构造反例",
+      "method": [
+        "构造f(x)使得∫f<∞但∫xf=∞",
+        "说明此时∫φ(t)/t²dt发散"
+      ],
+      "solution_steps": [
+        "构造具体f(x)如1/(1+x)^2 型使xf(x)不可积",
+        "说明按公式(π/2)∫xf(x)dx发散"
+      ],
+      "math_structure": {
+        "type": "parameter_integral_differentiability_fubini",
+        "template": "分析xf(x)可积条件的必要性并给出反例",
+        "variable_count": 0
+      },
+      "difficulty": 3,
+      "estimated_minutes": 8,
+      "answer": [
+        {
+          "label": "本题",
+          "steps": [
+            "取 $f(x)=\\dfrac{1}{(1+x)^2}$，则 $\\int_0^\\infty f(x)dx=\\left[-\\frac{1}{1+x}\\right]_0^\\infty=1<\\infty$，即 $f$ 本身可积",
+            "但 $xf(x)=\\dfrac{x}{(1+x)^2}\\sim\\dfrac1x$ 当 $x\\to\\infty$，故 $\\int_0^\\infty xf(x)dx=\\int_0^\\infty\\frac{x}{(1+x)^2}dx=\\infty$（与 $\\int1/x\\,dx$ 同阶发散），不满足本题条件",
+            "由(2)的推导过程，$\\int_0^\\infty\\phi(t)/t^2dt=\\frac\\pi2\\int_0^\\infty xf(x)dx$，此时右边为 $\\infty$，说明当 $\\int xf(x)dx$ 发散时结论(2)不再成立，这正体现了题设条件 $\\int xf(x)dx<\\infty$（而非仅 $\\int f(x)dx<\\infty$）是保证(2)成立的关键、不可弱化的假设"
+          ]
+        }
+      ],
+      "id": "isct-2009-7844cd6d27-q07-practice-03",
+      "school": "东京科学大学",
+      "year": "2009"
+    }
+  ],
+  "source_question": "問8（数学試験II）",
+  "source_pdf": "东京科学大学/理工学系/数学系/东京科学大学_理工学系_数学系_2009_数学过去问.pdf",
+  "source_type": "官方过去问",
+  "subject_category": "微积分"
+}

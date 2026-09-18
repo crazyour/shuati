@@ -1,0 +1,204 @@
+{
+  "id": "osaka-2025-8c31d1727d-q03",
+  "school": "大阪大学",
+  "year": "2025",
+  "subject": "情报科学研究科_情报数理学",
+  "text": "对函数 $f(t)$ 与 $g(t)$，定义合成积（卷积）\n$$(f*g)(t)=\\int_0^t f(\\tau)g(t-\\tau)\\,d\\tau$$\n(1) 说明合成积的拉普拉斯变换等于各函数拉普拉斯变换之积；\n(2) 在 $x(0)=0$ 的条件下，求满足方程\n$$\\dot x(t)-3x(t)+8\\int_0^t x(\\tau)\\sin(t-\\tau)\\,d\\tau=10\\cos t$$\n的函数 $x(t)$。",
+  "knowledge_points": [
+    "拉普拉斯变换的卷积定理",
+    "积分次序交换",
+    "拉普拉斯变换求解积分-微分方程",
+    "部分分式分解",
+    "配方法求含复数根的逆变换",
+    "三角函数与指数函数乘积的逆拉普拉斯变换"
+  ],
+  "question_type": "卷积定理证明与Volterra积分-微分方程求解",
+  "method": [
+    "交换二重积分次序并作变量替换证明卷积定理",
+    "对方程两边取拉普拉斯变换，把卷积项化为乘积",
+    "解出 $X(s)$ 并用部分分式分解、配方求逆变换"
+  ],
+  "solution_steps": [
+    "写出卷积的拉普拉斯变换定义并交换积分次序证明定理",
+    "对积分-微分方程取拉普拉斯变换，代入初始条件",
+    "解出 $X(s)$ 并因式分解分母",
+    "部分分式分解并逐项求逆变换得到 $x(t)$"
+  ],
+  "math_structure": {
+    "type": "volterra_integro_differential_equation_laplace",
+    "template": "x' - a x + b (x * sin)(t) = c cos t, x(0)=0; solve via Laplace transform",
+    "variable_count": 3
+  },
+  "difficulty": 5,
+  "answer": [
+    {
+      "label": "(1)",
+      "steps": [
+        "按定义 $\\mathcal L\\{(f*g)(t)\\}=\\displaystyle\\int_0^\\infty e^{-st}\\int_0^t f(\\tau)g(t-\\tau)\\,d\\tau\\,dt$，积分区域为 $0\\le\\tau\\le t<\\infty$。",
+        "交换积分次序：$=\\displaystyle\\int_0^\\infty f(\\tau)\\int_\\tau^\\infty e^{-st}g(t-\\tau)\\,dt\\,d\\tau$，作变量替换 $u=t-\\tau$（$t=u+\\tau$）：内层积分变为 $\\displaystyle\\int_0^\\infty e^{-s(u+\\tau)}g(u)\\,du=e^{-s\\tau}\\int_0^\\infty e^{-su}g(u)\\,du=e^{-s\\tau}G(s)$。",
+        "于是原式 $=\\displaystyle\\int_0^\\infty f(\\tau)e^{-s\\tau}G(s)\\,d\\tau=G(s)\\displaystyle\\int_0^\\infty f(\\tau)e^{-s\\tau}\\,d\\tau=F(s)G(s)$，证毕。"
+      ]
+    },
+    {
+      "label": "(2)",
+      "steps": [
+        "注意积分项恰为卷积 $(x*\\sin)(t)$。两边取拉普拉斯变换，用 $x(0)=0$：$\\mathcal L\\{\\dot x\\}=sX(s)$，$\\mathcal L\\{x*\\sin\\}=X(s)\\cdot\\dfrac{1}{s^2+1}$，$\\mathcal L\\{10\\cos t\\}=\\dfrac{10s}{s^2+1}$，得方程 $sX-3X+\\dfrac{8X}{s^2+1}=\\dfrac{10s}{s^2+1}$。",
+        "整理：$X(s)\\left[(s-3)(s^2+1)+8\\right]=10s$。展开 $(s-3)(s^2+1)=s^3-3s^2+s-3$，加 $8$ 得 $s^3-3s^2+s+5$。代入 $s=-1$ 验证：$-1-3-1+5=0$，故 $(s+1)$ 是因子，作除法得 $s^3-3s^2+s+5=(s+1)(s^2-4s+5)$。",
+        "故 $X(s)=\\dfrac{10s}{(s+1)(s^2-4s+5)}$。设 $X(s)=\\dfrac{A}{s+1}+\\dfrac{Bs+C}{s^2-4s+5}$，代入 $s=-1$：$10(-1)=A(1+4+5)=10A\\Rightarrow A=-1$；比较 $s^2$ 系数：$A+B=0\\Rightarrow B=1$；比较常数项：$5A+C=0\\Rightarrow C=5$（验证 $s^1$ 系数 $-4A+B+C=4+1+5=10$ 与左边一致）。",
+        "$s^2-4s+5=(s-2)^2+1$，把 $s+5=(s-2)+7$ 代入：$X(s)=-\\dfrac{1}{s+1}+\\dfrac{s-2}{(s-2)^2+1}+\\dfrac{7}{(s-2)^2+1}$，逐项求逆变换得 $x(t)=-e^{-t}+e^{2t}\\cos t+7e^{2t}\\sin t$，且 $x(0)=-1+1+0=0$ 满足初始条件。"
+      ]
+    }
+  ],
+  "practice_questions": [
+    {
+      "text": "设 $a\\neq b$ 为常数，$f(t)=e^{at}$，$g(t)=e^{bt}$（$t\\ge0$）。直接计算 $(f*g)(t)$，并通过拉普拉斯变换乘积验证卷积定理。",
+      "knowledge_points": [
+        "卷积的直接计算",
+        "拉普拉斯变换基本表",
+        "部分分式分解"
+      ],
+      "question_type": "卷积定理验证",
+      "method": [
+        "直接按定义积分计算卷积",
+        "用拉普拉斯变换乘积并部分分式逆变换比对"
+      ],
+      "solution_steps": [
+        "直接计算卷积积分",
+        "求两函数拉普拉斯变换之积并部分分式分解逆变换",
+        "比较两种结果"
+      ],
+      "math_structure": {
+        "type": "convolution_theorem_verification",
+        "template": "f(t)=e^{at}, g(t)=e^{bt}; verify (f*g)(t) via direct integration and via Laplace product",
+        "variable_count": 2
+      },
+      "difficulty": 1,
+      "estimated_minutes": 8,
+      "answer": [
+        {
+          "label": "验证",
+          "steps": [
+            "直接计算：$(f*g)(t)=\\displaystyle\\int_0^t e^{a\\tau}e^{b(t-\\tau)}\\,d\\tau=e^{bt}\\int_0^t e^{(a-b)\\tau}\\,d\\tau=e^{bt}\\cdot\\dfrac{e^{(a-b)t}-1}{a-b}=\\dfrac{e^{at}-e^{bt}}{a-b}$。",
+            "拉普拉斯变换：$F(s)=\\dfrac{1}{s-a}$，$G(s)=\\dfrac{1}{s-b}$，乘积 $F(s)G(s)=\\dfrac{1}{(s-a)(s-b)}=\\dfrac{1}{a-b}\\left(\\dfrac{1}{s-a}-\\dfrac{1}{s-b}\\right)$，逆变换得 $\\dfrac{e^{at}-e^{bt}}{a-b}$，与直接计算结果一致，验证了卷积定理。"
+          ]
+        }
+      ],
+      "id": "osaka-2025-8c31d1727d-q03-practice-01",
+      "school": "大阪大学",
+      "year": "2025"
+    },
+    {
+      "text": "在 $x(0)=0$ 条件下，用拉普拉斯变换求解 $\\dot x(t)-2x(t)=3e^{t}$。",
+      "knowledge_points": [
+        "拉普拉斯变换求解一阶线性ODE",
+        "部分分式分解"
+      ],
+      "question_type": "常微分方程的拉普拉斯变换解法",
+      "method": [
+        "取拉普拉斯变换代入初始条件，解出 $X(s)$ 并部分分式逆变换"
+      ],
+      "solution_steps": [
+        "取变换并代入初始条件",
+        "解出 $X(s)$",
+        "部分分式分解求逆变换"
+      ],
+      "math_structure": {
+        "type": "first_order_linear_ode_laplace",
+        "template": "x' - a x = c e^{kt}, x(0)=0; solve via Laplace transform",
+        "variable_count": 3
+      },
+      "difficulty": 2,
+      "estimated_minutes": 8,
+      "answer": [
+        {
+          "label": "解",
+          "steps": [
+            "取拉普拉斯变换：$sX-2X=\\dfrac{3}{s-1}$，即 $X(s)=\\dfrac{3}{(s-1)(s-2)}$。",
+            "部分分式：$\\dfrac{3}{(s-1)(s-2)}=\\dfrac{3}{s-2}-\\dfrac{3}{s-1}$，逆变换得 $x(t)=3e^{2t}-3e^{t}$。",
+            "验算：$x(0)=3-3=0$ 满足初始条件；$x'=6e^{2t}-3e^t$，$x'-2x=6e^{2t}-3e^t-2(3e^{2t}-3e^t)=3e^t$，与方程右边一致。"
+          ]
+        }
+      ],
+      "id": "osaka-2025-8c31d1727d-q03-practice-02",
+      "school": "大阪大学",
+      "year": "2025"
+    },
+    {
+      "text": "在 $x(0)=0$ 条件下，求解积分方程 $x(t)+2\\displaystyle\\int_0^t x(\\tau)\\cos(t-\\tau)\\,d\\tau=\\sin t$。",
+      "knowledge_points": [
+        "卷积定理",
+        "拉普拉斯变换求解Volterra积分方程"
+      ],
+      "question_type": "积分方程的拉普拉斯变换解法",
+      "method": [
+        "识别卷积项，取变换化为代数方程求 $X(s)$，再求逆变换"
+      ],
+      "solution_steps": [
+        "识别卷积并取拉普拉斯变换",
+        "解出 $X(s)$",
+        "求逆变换得 $x(t)$"
+      ],
+      "math_structure": {
+        "type": "volterra_integral_equation_laplace",
+        "template": "x(t) + b (x*cos)(t) = sin t; solve via Laplace transform",
+        "variable_count": 1
+      },
+      "difficulty": 3,
+      "estimated_minutes": 10,
+      "answer": [
+        {
+          "label": "解",
+          "steps": [
+            "取变换：$X(s)+2X(s)\\dfrac{s}{s^2+1}=\\dfrac{1}{s^2+1}$，即 $X(s)\\cdot\\dfrac{s^2+1+2s}{s^2+1}=\\dfrac{1}{s^2+1}$。",
+            "化简：$X(s)(s^2+2s+1)=1$，即 $X(s)=\\dfrac{1}{(s+1)^2}$。",
+            "逆变换（标准表 $\\mathcal L^{-1}\\{1/(s+1)^2\\}=te^{-t}$）得 $x(t)=te^{-t}$，满足 $x(0)=0$。"
+          ]
+        }
+      ],
+      "id": "osaka-2025-8c31d1727d-q03-practice-03",
+      "school": "大阪大学",
+      "year": "2025"
+    },
+    {
+      "text": "在 $x(0)=0$ 条件下，求解 $\\dot x(t)-x(t)+\\displaystyle\\int_0^t x(\\tau)\\sin(t-\\tau)\\,d\\tau=5\\cos t$。",
+      "knowledge_points": [
+        "卷积定理",
+        "拉普拉斯变换求解积分-微分方程",
+        "配方法求含复数根的逆变换"
+      ],
+      "question_type": "Volterra积分-微分方程求解",
+      "method": [
+        "取拉普拉斯变换化卷积为乘积，解出 $X(s)$ 并配方求逆变换"
+      ],
+      "solution_steps": [
+        "取拉普拉斯变换并整理方程",
+        "因式分解分母",
+        "配方并求逆变换"
+      ],
+      "math_structure": {
+        "type": "volterra_integro_differential_equation_laplace",
+        "template": "x' - a x + b (x * sin)(t) = c cos t, x(0)=0; solve via Laplace transform",
+        "variable_count": 3
+      },
+      "difficulty": 4,
+      "estimated_minutes": 15,
+      "answer": [
+        {
+          "label": "解",
+          "steps": [
+            "取变换：$sX-X+\\dfrac{X}{s^2+1}=\\dfrac{5s}{s^2+1}$，即 $X(s)\\left[(s-1)(s^2+1)+1\\right]=5s$。",
+            "展开 $(s-1)(s^2+1)=s^3-s^2+s-1$，加 $1$ 得 $s^3-s^2+s=s(s^2-s+1)$，故 $X(s)=\\dfrac{5s}{s(s^2-s+1)}=\\dfrac{5}{s^2-s+1}$（$s\\neq0$ 处相消）。",
+            "配方 $s^2-s+1=(s-\\tfrac12)^2+\\tfrac34=(s-\\tfrac12)^2+\\left(\\tfrac{\\sqrt3}{2}\\right)^2$，故 $X(s)=\\dfrac{5}{(\\sqrt3/2)}\\cdot\\dfrac{\\sqrt3/2}{(s-1/2)^2+(\\sqrt3/2)^2}=\\dfrac{10}{\\sqrt3}\\cdot\\dfrac{\\sqrt3/2}{(s-1/2)^2+(\\sqrt3/2)^2}$，逆变换得 $x(t)=\\dfrac{10\\sqrt3}{3}e^{t/2}\\sin\\!\\left(\\dfrac{\\sqrt3}{2}t\\right)$，满足 $x(0)=0$。"
+          ]
+        }
+      ],
+      "id": "osaka-2025-8c31d1727d-q03-practice-04",
+      "school": "大阪大学",
+      "year": "2025"
+    }
+  ],
+  "source_question": "数学解析 3",
+  "source_pdf": "大阪大学/情报科学研究科/情报数理学/大阪大学_情报科学研究科_情报数理学_2025_数学过去问.pdf",
+  "source_type": "官方过去问",
+  "subject_category": "微分方程"
+}

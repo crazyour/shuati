@@ -1,0 +1,200 @@
+{
+  "id": "isct-2006-cc04ba9918-q05",
+  "school": "东京科学大学",
+  "year": "2006",
+  "subject": "理工学系_数学系",
+  "text": "证明：在 $[0,1]\\times[0,1]$ 上满足积分方程\n$$f(x,y)=1+\\int_0^x\\int_0^y f(s,t)\\,ds\\,dt$$\n的连续函数 $f(x,y)$ 至多只有一个。",
+  "knowledge_points": [
+    "Volterra型二重积分方程",
+    "唯一性证明",
+    "逐次逼近/归纳估计",
+    "巴拿赫不动点思想"
+  ],
+  "question_type": "证明题",
+  "method": [
+    "设两解之差g，导出g满足自身的积分方程",
+    "用归纳法证明|g(x,y)|≤M(xy)^n/(n!)^2",
+    "令n→∞得g恒为0"
+  ],
+  "solution_steps": [
+    "设f1,f2为两个解，令g=f1-f2，导出g的齐次积分方程",
+    "设M为g在[0,1]^2上的最大绝对值，用归纳法证明|g(x,y)|≤M(xy)^n/(n!)^2对一切n成立",
+    "令n→∞，(xy)^n/(n!)^2→0，得g≡0，从而唯一性得证"
+  ],
+  "math_structure": {
+    "type": "volterra_double_integral_equation_uniqueness",
+    "template": "f(x,y)=1+\\int_0^x\\int_0^y f(s,t)\\,ds\\,dt\\ \\text{on}\\ [0,1]^2,\\ \\text{唯一性证明}",
+    "variable_count": 1
+  },
+  "difficulty": 3,
+  "answer": [
+    {
+      "label": "唯一性证明",
+      "steps": [
+        "设 $f_1,f_2$ 均为该方程在 $[0,1]\\times[0,1]$ 上的连续解，令 $g(x,y)=f_1(x,y)-f_2(x,y)$。两式相减得 $g(x,y)=\\int_0^x\\int_0^y g(s,t)\\,ds\\,dt$（常数项 $1$ 抵消）。",
+        "因 $g$ 连续于紧集 $[0,1]^2$，设 $M=\\max_{[0,1]^2}|g|<\\infty$。归纳证明：对一切 $n\\ge0$，$|g(x,y)|\\le\\dfrac{M(xy)^n}{(n!)^2}$ 对所有 $(x,y)\\in[0,1]^2$ 成立。基础情形 $n=0$：$|g(x,y)|\\le M$ 显然成立（由 $M$ 的定义）。",
+        "归纳步骤：设对某 $n$ 有 $|g(s,t)|\\le\\dfrac{M(st)^n}{(n!)^2}$ 对所有 $(s,t)$成立。则 $|g(x,y)|\\le\\int_0^x\\int_0^y|g(s,t)|ds\\,dt\\le\\dfrac{M}{(n!)^2}\\int_0^x s^n ds\\int_0^y t^n dt=\\dfrac{M}{(n!)^2}\\cdot\\dfrac{x^{n+1}}{n+1}\\cdot\\dfrac{y^{n+1}}{n+1}=\\dfrac{M(xy)^{n+1}}{((n+1)!)^2}$，完成归纳。",
+        "因此对一切 $n$，$|g(x,y)|\\le\\dfrac{M(xy)^n}{(n!)^2}$。固定 $(x,y)\\in[0,1]^2$，有 $0\\le xy\\le1$，故 $(xy)^n\\le1$，而 $(n!)^2\\to\\infty$（$n\\to\\infty$），从而右边 $\\to0$。所以 $g(x,y)=0$ 对所有 $(x,y)\\in[0,1]^2$，即 $f_1\\equiv f_2$，证明了解的唯一性。"
+      ]
+    }
+  ],
+  "practice_questions": [
+    {
+      "text": "验证函数 $f(x,y)=\\displaystyle\\sum_{n=0}^\\infty \\dfrac{(xy)^n}{(n!)^2}$（即修正贝塞尔函数 $I_0(2\\sqrt{xy})$）在 $[0,1]\\times[0,1]$ 上满足原题给出的积分方程。",
+      "knowledge_points": [
+        "幂级数逐项积分",
+        "贝塞尔函数",
+        "积分方程验证"
+      ],
+      "question_type": "验证题",
+      "method": [
+        "逐项积分幂级数",
+        "比较系数"
+      ],
+      "solution_steps": [
+        "逐项计算∫_0^x∫_0^y f(s,t)dsdt",
+        "与f(x,y)-1比较",
+        "得出恒等式"
+      ],
+      "math_structure": {
+        "type": "power_series_verification_integral_equation",
+        "template": "f(x,y)=\\sum_{n\\ge0}\\frac{(xy)^n}{(n!)^2},\\ \\text{验证}\\ f=1+\\int_0^x\\int_0^y f\\,ds\\,dt",
+        "variable_count": 1
+      },
+      "difficulty": 3,
+      "estimated_minutes": 12,
+      "answer": [
+        {
+          "label": "验证过程",
+          "steps": [
+            "逐项对 $f(s,t)=\\sum_{n=0}^\\infty\\dfrac{(st)^n}{(n!)^2}$ 积分（幂级数在紧集上一致收敛，可逐项积分）：$\\int_0^x\\int_0^y f(s,t)\\,ds\\,dt=\\sum_{n=0}^\\infty\\dfrac{1}{(n!)^2}\\int_0^x s^n ds\\int_0^y t^n dt=\\sum_{n=0}^\\infty\\dfrac{1}{(n!)^2}\\cdot\\dfrac{x^{n+1}}{n+1}\\cdot\\dfrac{y^{n+1}}{n+1}$。",
+            "化简：$=\\sum_{n=0}^\\infty\\dfrac{(xy)^{n+1}}{((n+1)!)^2}=\\sum_{m=1}^\\infty\\dfrac{(xy)^m}{(m!)^2}$（令 $m=n+1$）。",
+            "因此 $1+\\int_0^x\\int_0^y f(s,t)dsdt=1+\\sum_{m=1}^\\infty\\dfrac{(xy)^m}{(m!)^2}=\\sum_{m=0}^\\infty\\dfrac{(xy)^m}{(m!)^2}=f(x,y)$（补上$m=0$的项恰为$1$），验证成立。"
+          ]
+        }
+      ],
+      "id": "isct-2006-cc04ba9918-q05-practice-01",
+      "school": "东京科学大学",
+      "year": "2006"
+    },
+    {
+      "text": "考虑一维Volterra积分方程 $f(x)=1+\\int_0^x f(s)ds$，$x\\in[0,1]$，$f$ 连续。用与原题相同的归纳估计法证明该方程的解至多唯一，并指出唯一解的显式表达式。",
+      "knowledge_points": [
+        "一维Volterra积分方程",
+        "唯一性",
+        "归纳估计"
+      ],
+      "question_type": "证明与计算题",
+      "method": [
+        "设两解差g,归纳估计|g(x)|≤M x^n/n!",
+        "令n→∞得g≡0",
+        "猜测并验证显式解e^x"
+      ],
+      "solution_steps": [
+        "设g=f1-f2满足齐次方程",
+        "归纳证明|g(x)|≤Mx^n/n!",
+        "取极限得唯一性",
+        "验证f(x)=e^x是解"
+      ],
+      "math_structure": {
+        "type": "volterra_1d_integral_equation_uniqueness",
+        "template": "f(x)=1+\\int_0^x f(s)ds,\\ \\text{唯一性},\\ f(x)=e^x",
+        "variable_count": 1
+      },
+      "difficulty": 2,
+      "estimated_minutes": 10,
+      "answer": [
+        {
+          "label": "结果",
+          "steps": [
+            "设 $f_1,f_2$ 为两解，$g=f_1-f_2$满足 $g(x)=\\int_0^x g(s)ds$。设 $M=\\max_{[0,1]}|g|$，归纳证明 $|g(x)|\\le\\dfrac{Mx^n}{n!}$：基础 $n=0$ 时 $|g(x)|\\le M$成立；归纳步：若 $|g(s)|\\le\\dfrac{Ms^n}{n!}$，则 $|g(x)|\\le\\int_0^x\\dfrac{Ms^n}{n!}ds=\\dfrac{Mx^{n+1}}{(n+1)!}$。",
+            "对一切 $n$成立 $|g(x)|\\le\\dfrac{Mx^n}{n!}\\to0$（$n\\to\\infty$，因 $x\\in[0,1]$，$n!$ 增长快于 $x^n$），故 $g(x)=0$，即 $f_1\\equiv f_2$，证明唯一性。",
+            "直接验证 $f(x)=e^x$ 是解：$1+\\int_0^x e^s ds=1+(e^x-1)=e^x$，恰好满足方程，故唯一解为 $f(x)=e^x$。"
+          ]
+        }
+      ],
+      "id": "isct-2006-cc04ba9918-q05-practice-02",
+      "school": "东京科学大学",
+      "year": "2006"
+    },
+    {
+      "text": "设连续核函数 $K(s,t)$ 在 $[0,1]\\times[0,1]$ 上满足 $|K(s,t)|\\le K_0$（常数），$g_0(x,y)$ 连续给定。证明积分方程 $f(x,y)=g_0(x,y)+\\int_0^x\\int_0^y K(s,t)f(s,t)\\,ds\\,dt$ 在 $[0,1]^2$ 上的连续解至多唯一。",
+      "knowledge_points": [
+        "带核函数的Volterra方程",
+        "归纳估计的推广"
+      ],
+      "question_type": "证明题",
+      "method": [
+        "设两解差h,导出齐次方程",
+        "用核函数上界K0推广归纳估计",
+        "令n→∞得唯一性"
+      ],
+      "solution_steps": [
+        "设h=f1-f2满足齐次方程",
+        "归纳证明|h(x,y)|≤M(K0 xy)^n/(n!)^2",
+        "取极限得h≡0"
+      ],
+      "math_structure": {
+        "type": "volterra_kernel_equation_uniqueness",
+        "template": "f=g_0+\\int_0^x\\int_0^y K(s,t)f(s,t)dsdt,\\ |K|\\le K_0,\\ \\text{唯一性}",
+        "variable_count": 2
+      },
+      "difficulty": 3,
+      "estimated_minutes": 12,
+      "answer": [
+        {
+          "label": "证明",
+          "steps": [
+            "设 $f_1,f_2$ 为两解，$h=f_1-f_2$，则 $h(x,y)=\\int_0^x\\int_0^y K(s,t)h(s,t)\\,ds\\,dt$。设 $M=\\max_{[0,1]^2}|h|$。",
+            "归纳证明 $|h(x,y)|\\le\\dfrac{M(K_0xy)^n}{(n!)^2}$：基础 $n=0$：$|h|\\le M$；归纳步：若 $|h(s,t)|\\le\\dfrac{M(K_0st)^n}{(n!)^2}$，则 $|h(x,y)|\\le\\int_0^x\\int_0^y|K(s,t)|\\cdot\\dfrac{M(K_0st)^n}{(n!)^2}\\,ds\\,dt\\le K_0\\cdot\\dfrac{MK_0^n}{(n!)^2}\\int_0^x s^n ds\\int_0^y t^n dt=\\dfrac{M(K_0xy)^{n+1}}{((n+1)!)^2}$。",
+            "对一切 $n$成立此估计，且 $(K_0xy)^n/(n!)^2\\to0$（$x,y\\in[0,1]$，任何常数的 $n$ 次方被 $(n!)^2$ 压制），故 $h(x,y)=0$ 对一切 $(x,y)$，即 $f_1\\equiv f_2$，唯一性得证。"
+          ]
+        }
+      ],
+      "id": "isct-2006-cc04ba9918-q05-practice-03",
+      "school": "东京科学大学",
+      "year": "2006"
+    },
+    {
+      "text": "验证归纳假设：设 $|g(s,t)|\\le\\dfrac{M(st)^n}{(n!)^2}$ 对一切 $(s,t)\\in[0,1]^2$ 成立，直接计算 $\\int_0^x\\int_0^y \\dfrac{M(st)^n}{(n!)^2}\\,ds\\,dt$ 并化简为 $\\dfrac{M(xy)^{n+1}}{((n+1)!)^2}$ 的形式，写出每一步的积分细节。",
+      "knowledge_points": [
+        "二重积分计算",
+        "归纳步骤细节"
+      ],
+      "question_type": "计算题",
+      "method": [
+        "分离变量积分",
+        "化简阶乘表达式"
+      ],
+      "solution_steps": [
+        "把二重积分分解为两个单变量积分乘积",
+        "分别计算∫_0^x s^n ds 和∫_0^y t^n dt",
+        "合并结果并化简阶乘"
+      ],
+      "math_structure": {
+        "type": "double_integral_power_computation",
+        "template": "\\int_0^x\\int_0^y \\frac{M(st)^n}{(n!)^2}ds\\,dt=\\frac{M(xy)^{n+1}}{((n+1)!)^2}",
+        "variable_count": 1
+      },
+      "difficulty": 1,
+      "estimated_minutes": 6,
+      "answer": [
+        {
+          "label": "结果",
+          "steps": [
+            "由于被积函数 $\\dfrac{M(st)^n}{(n!)^2}=\\dfrac{M}{(n!)^2}s^n t^n$ 可分离变量，二重积分化为 $\\dfrac{M}{(n!)^2}\\left(\\int_0^x s^n ds\\right)\\left(\\int_0^y t^n dt\\right)$。",
+            "分别计算：$\\int_0^x s^n ds=\\dfrac{x^{n+1}}{n+1}$，$\\int_0^y t^n dt=\\dfrac{y^{n+1}}{n+1}$。",
+            "代入合并：$\\dfrac{M}{(n!)^2}\\cdot\\dfrac{x^{n+1}}{n+1}\\cdot\\dfrac{y^{n+1}}{n+1}=\\dfrac{M(xy)^{n+1}}{(n!)^2(n+1)^2}=\\dfrac{M(xy)^{n+1}}{((n+1)!)^2}$（因 $(n!)^2(n+1)^2=(n!(n+1))^2=((n+1)!)^2$），得证。"
+          ]
+        }
+      ],
+      "id": "isct-2006-cc04ba9918-q05-practice-04",
+      "school": "东京科学大学",
+      "year": "2006"
+    }
+  ],
+  "source_question": "下午 問9",
+  "source_pdf": "东京科学大学/理工学系/数学系/东京科学大学_理工学系_数学系_2006_数学过去问.pdf",
+  "source_type": "官方过去问",
+  "subject_category": "微分方程"
+}

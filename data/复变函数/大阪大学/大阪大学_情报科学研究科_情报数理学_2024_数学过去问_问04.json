@@ -1,0 +1,219 @@
+{
+  "id": "osaka-2024-144813ba62-q04",
+  "school": "大阪大学",
+  "year": "2024",
+  "subject": "情报科学研究科_情报数理学",
+  "text": "考虑复函数 $g(z)=\\dfrac{2e^{-2\\pi iuz}}{e^{\\pi z}+e^{-\\pi z}}$，其中 $u$ 为实常数。\n\n(1) 设 $C_R$（$R>0$）为由线段 $[-R,R],[R,R+2i],[R+2i,-R+2i],[-R+2i,-R]$ 组成的、按反时针方向围成的矩形积分路径。计算复积分 $I_{C_R}=\\displaystyle\\int_{C_R}g(z)\\,dz$。\n\n(2) 对前问中的 $g(z)$，设 $x$ 为实数，证明\n$$\\int_{-\\infty}^{\\infty}g(x)\\,dx=\\frac{2}{e^{\\pi u}+e^{-\\pi u}}$$\n\n(3) 设实函数 $h(x)=\\dfrac{2}{e^{\\sqrt{\\pi/2}\\,x}+e^{-\\sqrt{\\pi/2}\\,x}}$，其傅里叶变换定义为\n$$\\widehat{h}(w)=\\frac{1}{\\sqrt{2\\pi}}\\int_{-\\infty}^{\\infty}h(t)e^{-iwt}\\,dt,\\qquad -\\infty<w<\\infty$$\n证明 $\\widehat{h}(w)=h(w)$。",
+  "knowledge_points": [
+    "留数定理",
+    "矩形围道积分",
+    "双曲函数的零点(极点)",
+    "围道边上函数的周期平移关系",
+    "傅里叶变换的定义与卷积/尺度性质",
+    "自倒转(self-reciprocal)函数"
+  ],
+  "question_type": "留数计算、围道积分与傅里叶变换综合证明题",
+  "method": [
+    "求分母 $e^{\\pi z}+e^{-\\pi z}=0$ 在矩形内的极点并用 $\\mathrm{Res}=N(z_0)/D'(z_0)$ 计算留数",
+    "利用留数定理求矩形积分",
+    "令 $R\\to\\infty$ 证明侧边积分消失，并用顶边与底边的周期平移关系导出实积分公式",
+    "通过变量替换把 $h$ 的傅里叶变换归约为 (2) 中已证明的自倒转关系"
+  ],
+  "solution_steps": [
+    "求 $e^{\\pi z}+e^{-\\pi z}=2\\cosh(\\pi z)=0$ 在带状区域 $0<\\mathrm{Im}z<2$ 内的极点 $z=i/2,3i/2$",
+    "用 $D'(z)=2\\pi\\sinh(\\pi z)$ 计算两极点处的留数并求和，乘以 $2\\pi i$ 得到 $I_{C_R}$",
+    "证明当 $R\\to\\infty$ 时左右两条竖直边的积分趋于零",
+    "利用 $g(x+2i)=e^{4\\pi u}g(x)$ 将矩形积分与实积分 $\\int_{-\\infty}^{\\infty}g(x)dx$ 联系起来并解出该积分",
+    "对 $h(x)$ 做变量代换 $h(t)=\\varphi(t/\\sqrt{2\\pi})$（$\\varphi(x)=2/(e^{\\pi x}+e^{-\\pi x})$），代入傅里叶变换定义并用(2)的结论化简"
+  ],
+  "math_structure": {
+    "type": "residue_theorem_rectangular_contour",
+    "template": "g(z)=\\frac{2e^{-2\\pi iuz}}{e^{\\pi z}+e^{-\\pi z}},\\ I_{C_R}=\\int_{C_R}g(z)\\,dz",
+    "variable_count": 1
+  },
+  "difficulty": 5,
+  "answer": [
+    {
+      "label": "(1)",
+      "steps": [
+        "分母 $D(z)=e^{\\pi z}+e^{-\\pi z}=2\\cosh(\\pi z)=0\\iff\\cosh(\\pi z)=0\\iff z=\\dfrac{i(2k+1)}{2}\\ (k\\in\\mathbb{Z})$。矩形内部满足 $0<\\mathrm{Im}z<2$（$\\mathrm{Re}z$ 无限制，任意 $R>0$ 都包含极点，因极点均在虚轴上），得两个极点：$z_0=\\dfrac{i}{2}$（$k=0$），$z_1=\\dfrac{3i}{2}$（$k=1$）。",
+        "$D'(z)=\\pi e^{\\pi z}-\\pi e^{-\\pi z}=2\\pi\\sinh(\\pi z)$。在 $z_0=i/2$：$\\sinh(i\\pi/2)=i\\sin(\\pi/2)=i$，故 $D'(z_0)=2\\pi i$；分子 $N(z_0)=2e^{-2\\pi i u(i/2)}=2e^{\\pi u}$（因 $-2\\pi i u\\cdot i/2=\\pi u$），留数 $\\mathrm{Res}_{z_0}g=\\dfrac{2e^{\\pi u}}{2\\pi i}=\\dfrac{e^{\\pi u}}{\\pi i}$。",
+        "在 $z_1=3i/2$：$\\sinh(3i\\pi/2)=i\\sin(3\\pi/2)=-i$，故 $D'(z_1)=-2\\pi i$；$N(z_1)=2e^{-2\\pi iu(3i/2)}=2e^{3\\pi u}$，留数 $\\mathrm{Res}_{z_1}g=\\dfrac{2e^{3\\pi u}}{-2\\pi i}=-\\dfrac{e^{3\\pi u}}{\\pi i}$。",
+        "由留数定理，$I_{C_R}=2\\pi i\\left(\\dfrac{e^{\\pi u}}{\\pi i}-\\dfrac{e^{3\\pi u}}{\\pi i}\\right)=2(e^{\\pi u}-e^{3\\pi u})$，此值与 $R$ 无关（只要 $R>0$，两极点始终被围）。"
+      ]
+    },
+    {
+      "label": "(2)",
+      "steps": [
+        "在右侧边 $z=R+iy\\ (0\\le y\\le2)$ 上，$|D(z)|\\ge e^{\\pi R}-e^{-\\pi R}\\to\\infty$，而分子 $|2e^{-2\\pi iu(R+iy)}|=2e^{2\\pi uy}$ 对 $y\\in[0,2]$ 有界，故 $|g(z)|\\to0$，从而该边积分（长度为2，有界）当 $R\\to\\infty$ 时趋于0；左侧边同理趋于0。",
+        "于是 $R\\to\\infty$ 时，$I_{C_R}\\to\\int_{-\\infty}^{\\infty}g(x)dx-\\int_{-\\infty}^{\\infty}g(x+2i)dx$（顶边方向为 $x:R\\to-R$，产生负号）。",
+        "计算 $g(x+2i)=\\dfrac{2e^{-2\\pi iu(x+2i)}}{e^{\\pi(x+2i)}+e^{-\\pi(x+2i)}}=\\dfrac{2e^{-2\\pi iux}e^{4\\pi u}}{e^{\\pi x}e^{2\\pi i}+e^{-\\pi x}e^{-2\\pi i}}=e^{4\\pi u}g(x)$（因 $e^{\\pm2\\pi i}=1$）。代入得 $I=(1-e^{4\\pi u})\\int_{-\\infty}^{\\infty}g(x)dx$。",
+        "由(1)，$I_{C_R}=2(e^{\\pi u}-e^{3\\pi u})=2e^{\\pi u}(1-e^{2\\pi u})$ 与 $R$ 无关，故 $\\int_{-\\infty}^{\\infty}g(x)dx=\\dfrac{2e^{\\pi u}(1-e^{2\\pi u})}{1-e^{4\\pi u}}=\\dfrac{2e^{\\pi u}(1-e^{2\\pi u})}{(1-e^{2\\pi u})(1+e^{2\\pi u})}=\\dfrac{2e^{\\pi u}}{1+e^{2\\pi u}}=\\dfrac{2}{e^{-\\pi u}+e^{\\pi u}}$，即证得 $\\int_{-\\infty}^{\\infty}g(x)dx=\\dfrac{2}{e^{\\pi u}+e^{-\\pi u}}$。"
+      ]
+    },
+    {
+      "label": "(3)",
+      "steps": [
+        "记 $\\varphi(x)=\\dfrac{2}{e^{\\pi x}+e^{-\\pi x}}$（即 $g(x)$ 中取 $u$ 的位置换成积分变量后的形式）。由(2)（取 $u\\to$ 任意实数代入积分变量名），$\\int_{-\\infty}^{\\infty}\\varphi(x)e^{-2\\pi iux}dx=\\dfrac{2}{e^{\\pi u}+e^{-\\pi u}}=\\varphi(u)$，即 $\\varphi$ 在傅里叶核 $e^{-2\\pi iux}$ 意义下是自倒转的：$\\int\\varphi(x)e^{-2\\pi iux}dx=\\varphi(u)$ 对一切实 $u$ 成立。",
+        "注意 $h(t)=\\dfrac{2}{e^{\\sqrt{\\pi/2}t}+e^{-\\sqrt{\\pi/2}t}}=\\varphi(ct)$，其中 $c$ 满足 $c\\pi=\\sqrt{\\pi/2}$，即 $c=\\dfrac{1}{\\sqrt{2\\pi}}$，故 $h(t)=\\varphi\\!\\left(\\dfrac{t}{\\sqrt{2\\pi}}\\right)$。",
+        "代入傅里叶变换定义并作代换 $s=t/\\sqrt{2\\pi}$（$t=\\sqrt{2\\pi}s,\\ dt=\\sqrt{2\\pi}ds$）：$\\widehat h(w)=\\dfrac{1}{\\sqrt{2\\pi}}\\int_{-\\infty}^{\\infty}\\varphi\\!\\left(\\dfrac{t}{\\sqrt{2\\pi}}\\right)e^{-iwt}dt=\\dfrac{1}{\\sqrt{2\\pi}}\\int_{-\\infty}^{\\infty}\\varphi(s)e^{-iw\\sqrt{2\\pi}s}\\sqrt{2\\pi}\\,ds=\\int_{-\\infty}^{\\infty}\\varphi(s)e^{-2\\pi i(w/\\sqrt{2\\pi})s}ds$。",
+        "由第一步的自倒转关系（取 $u=w/\\sqrt{2\\pi}$），上式等于 $\\varphi\\!\\left(\\dfrac{w}{\\sqrt{2\\pi}}\\right)$；而按 $h$ 的定义 $h(w)=\\varphi\\!\\left(\\dfrac{w}{\\sqrt{2\\pi}}\\right)$，故 $\\widehat h(w)=\\varphi\\!\\left(\\dfrac{w}{\\sqrt{2\\pi}}\\right)=h(w)$，证毕。"
+      ]
+    }
+  ],
+  "practice_questions": [
+    {
+      "text": "求方程 $e^{2z}+e^{-2z}=0$ 在带状区域 $0<\\mathrm{Im}\\,z<\\pi$ 内的全部解，并写出该函数导数 $D'(z)=2e^{2z}-2e^{-2z}$ 在这些解处的值。",
+      "knowledge_points": [
+        "双曲函数零点",
+        "复方程求解",
+        "导数计算"
+      ],
+      "question_type": "基础计算题",
+      "method": [
+        "解 $e^{4z}=-1$ 求所有根，再筛选落在给定带状区域内的根"
+      ],
+      "solution_steps": [
+        "解出全部零点的一般形式",
+        "筛选满足虚部范围的根",
+        "代入导数表达式计算"
+      ],
+      "math_structure": {
+        "type": "hyperbolic_zero_locate",
+        "template": "e^{2z}+e^{-2z}=0,\\ 0<\\mathrm{Im}z<\\pi",
+        "variable_count": 1
+      },
+      "difficulty": 1,
+      "estimated_minutes": 6,
+      "answer": [
+        {
+          "label": "结果",
+          "steps": [
+            "由 $e^{2z}+e^{-2z}=0\\iff e^{4z}=-1\\iff 4z=i\\pi(2k+1)\\ (k\\in\\mathbb{Z})\\iff z=\\dfrac{i\\pi(2k+1)}{4}$。",
+            "要求 $0<\\mathrm{Im}z<\\pi$，即 $0<\\dfrac{\\pi(2k+1)}{4}<\\pi\\iff0<2k+1<4$，整数解为 $2k+1=1\\ (k=0)$ 和 $2k+1=3\\ (k=1)$，对应 $z=\\dfrac{i\\pi}{4}$ 与 $z=\\dfrac{3i\\pi}{4}$。",
+            "$D'(z)=4\\sinh(2z)$。在 $z=i\\pi/4$：$\\sinh(i\\pi/2)=i\\sin(\\pi/2)=i$，故 $D'=4i$。在 $z=3i\\pi/4$：$\\sinh(3i\\pi/2)=i\\sin(3\\pi/2)=-i$，故 $D'=-4i$。"
+          ]
+        }
+      ],
+      "id": "osaka-2024-144813ba62-q04-practice-01",
+      "school": "大阪大学",
+      "year": "2024"
+    },
+    {
+      "text": "设 $g(z)=\\dfrac{1}{e^{2z}+e^{-2z}}$，$C_R$ 为顶点 $-R,R,R+i\\pi,-R+i\\pi$ 按反时针方向围成的矩形。利用留数定理计算 $\\displaystyle\\int_{C_R}g(z)\\,dz$。",
+      "knowledge_points": [
+        "留数定理",
+        "简单极点留数公式"
+      ],
+      "question_type": "计算题",
+      "method": [
+        "求矩形内极点及留数，套用留数定理"
+      ],
+      "solution_steps": [
+        "确定矩形内的极点（利用上一题结果，此处高度为$\\pi$故极点为 $i\\pi/4,3i\\pi/4$）",
+        "计算各极点留数",
+        "求和并乘 $2\\pi i$"
+      ],
+      "math_structure": {
+        "type": "residue_theorem_simple",
+        "template": "g(z)=\\frac{1}{e^{2z}+e^{-2z}},\\ C_R:\\text{顶点}-R,R,R+i\\pi,-R+i\\pi",
+        "variable_count": 0
+      },
+      "difficulty": 2,
+      "estimated_minutes": 8,
+      "answer": [
+        {
+          "label": "结果",
+          "steps": [
+            "极点为 $z_0=i\\pi/4,\\ z_1=3i\\pi/4$（由上一题），留数为 $\\mathrm{Res}_{z_0}g=1/D'(z_0)=1/(4i)=-i/4$，$\\mathrm{Res}_{z_1}g=1/D'(z_1)=1/(-4i)=i/4$。",
+            "两留数之和为 $-i/4+i/4=0$。",
+            "由留数定理，$\\int_{C_R}g(z)dz=2\\pi i\\times0=0$，且此结果与 $R$ 无关。"
+          ]
+        }
+      ],
+      "id": "osaka-2024-144813ba62-q04-practice-02",
+      "school": "大阪大学",
+      "year": "2024"
+    },
+    {
+      "text": "利用矩形围道（顶点 $-R,R,R+i\\pi,-R+i\\pi$）及 $\\cosh(z+i\\pi)=-\\cosh z$ 的周期平移关系，计算 $\\displaystyle\\int_{-\\infty}^{\\infty}\\frac{1}{\\cosh x}\\,dx$。",
+      "knowledge_points": [
+        "留数定理",
+        "双曲余弦的平移恒等式",
+        "围道积分求实积分"
+      ],
+      "question_type": "证明题（围道积分技巧）",
+      "method": [
+        "矩形围道+留数定理求 $I_{C_R}$，再用顶边与底边关系解出实积分"
+      ],
+      "solution_steps": [
+        "求 $\\cosh z=0$ 在 $0<\\mathrm{Im}z<\\pi$ 内的唯一极点并计算留数",
+        "用留数定理求 $I_{C_R}=2\\pi i\\cdot\\mathrm{Res}$",
+        "利用 $\\cosh(x+i\\pi)=-\\cosh x$ 建立顶边与底边积分的关系并解出目标积分"
+      ],
+      "math_structure": {
+        "type": "sech_integral_contour",
+        "template": "\\int_{-\\infty}^{\\infty}\\mathrm{sech}(x)\\,dx",
+        "variable_count": 0
+      },
+      "difficulty": 4,
+      "estimated_minutes": 15,
+      "answer": [
+        {
+          "label": "证明与结果",
+          "steps": [
+            "$\\cosh z=0\\iff z=\\dfrac{i\\pi}{2}+ik\\pi$；在带状区域 $0<\\mathrm{Im}z<\\pi$ 内唯一极点为 $z_0=i\\pi/2$。$D(z)=\\cosh z,\\ D'(z)=\\sinh z$，$\\sinh(i\\pi/2)=i\\sin(\\pi/2)=i$，故留数 $\\mathrm{Res}_{z_0}\\dfrac{1}{\\cosh z}=\\dfrac{1}{i}=-i$。由留数定理，$I_{C_R}=2\\pi i\\times(-i)=2\\pi$，与 $R$ 无关。",
+            "右、左侧竖直边：$|\\cosh(R+iy)|\\ge \\frac12(e^R-e^{-R})\\to\\infty$ 而分子为1，故这两边积分当 $R\\to\\infty$ 时趋于0。",
+            "顶边 $z=x+i\\pi\\ (x:R\\to-R)$：利用 $\\cosh(x+i\\pi)=\\cosh x\\cos\\pi+i\\sinh x\\sin\\pi=-\\cosh x$，故 $g(x+i\\pi)=\\dfrac{1}{\\cosh(x+i\\pi)}=-\\dfrac{1}{\\cosh x}=-g(x)$；该边积分为 $\\int_{R}^{-R}g(x+i\\pi)dx=-\\int_{-R}^{R}(-g(x))dx=\\int_{-R}^{R}g(x)dx$。",
+            "故 $R\\to\\infty$ 时 $I_{C_R}\\to\\int_{-\\infty}^{\\infty}g(x)dx+\\int_{-\\infty}^{\\infty}g(x)dx=2\\int_{-\\infty}^{\\infty}\\mathrm{sech}(x)dx$；结合 $I_{C_R}=2\\pi$（与R无关）得 $2\\int\\mathrm{sech}(x)dx=2\\pi$，即 $\\int_{-\\infty}^{\\infty}\\mathrm{sech}(x)dx=\\pi$。"
+          ]
+        }
+      ],
+      "id": "osaka-2024-144813ba62-q04-practice-03",
+      "school": "大阪大学",
+      "year": "2024"
+    },
+    {
+      "text": "设 $\\varphi(x)$ 满足自倒转关系 $\\displaystyle\\int_{-\\infty}^{\\infty}\\varphi(x)e^{-2\\pi iux}dx=\\varphi(u)$ 对一切实数 $u$ 成立。对固定常数 $c>0$，令 $k(t)=\\varphi(t/c)$。求使得 $k$ 在傅里叶变换约定 $\\widehat k(w)=\\dfrac{1}{\\sqrt{2\\pi}}\\displaystyle\\int_{-\\infty}^{\\infty}k(t)e^{-iwt}dt$ 下满足 $\\widehat k(w)=k(w)$（对一切 $w$）的 $c$ 值，并验证。",
+      "knowledge_points": [
+        "傅里叶变换尺度性质",
+        "自倒转函数",
+        "变量替换技巧"
+      ],
+      "question_type": "证明题（一般化引理）",
+      "method": [
+        "代入定义做变量替换，利用给定的自倒转关系化简，比较参数得出 $c$ 的方程"
+      ],
+      "solution_steps": [
+        "代入 $k(t)=\\varphi(t/c)$ 到傅里叶变换定义中，作代换 $s=t/c$",
+        "利用自倒转关系化简积分",
+        "比较两边宗量与系数解出 $c$"
+      ],
+      "math_structure": {
+        "type": "self_reciprocal_scaling_lemma",
+        "template": "k(t)=\\varphi(t/c),\\ \\widehat k(w)=k(w)",
+        "variable_count": 1
+      },
+      "difficulty": 4,
+      "estimated_minutes": 12,
+      "answer": [
+        {
+          "label": "结果",
+          "steps": [
+            "代入定义并令 $s=t/c$（$t=cs,dt=c\\,ds$）：$\\widehat k(w)=\\dfrac{1}{\\sqrt{2\\pi}}\\int_{-\\infty}^{\\infty}\\varphi(t/c)e^{-iwt}dt=\\dfrac{c}{\\sqrt{2\\pi}}\\int_{-\\infty}^{\\infty}\\varphi(s)e^{-iwcs}ds=\\dfrac{c}{\\sqrt{2\\pi}}\\int_{-\\infty}^{\\infty}\\varphi(s)e^{-2\\pi i\\left(\\frac{wc}{2\\pi}\\right)s}ds$。",
+            "由给定自倒转关系（取 $u=wc/(2\\pi)$），上式积分等于 $\\varphi\\!\\left(\\dfrac{wc}{2\\pi}\\right)$，故 $\\widehat k(w)=\\dfrac{c}{\\sqrt{2\\pi}}\\varphi\\!\\left(\\dfrac{wc}{2\\pi}\\right)$。",
+            "要求此式对一切 $w$ 等于 $k(w)=\\varphi(w/c)$：首先宗量需相等，$\\dfrac{wc}{2\\pi}=\\dfrac{w}{c}$ 对一切 $w$ 成立 $\\Rightarrow\\dfrac{c}{2\\pi}=\\dfrac{1}{c}\\Rightarrow c^2=2\\pi\\Rightarrow c=\\sqrt{2\\pi}$（取正值）。",
+            "验证系数：当 $c=\\sqrt{2\\pi}$ 时，$\\dfrac{c}{\\sqrt{2\\pi}}=1$，故 $\\widehat k(w)=1\\cdot\\varphi(w/\\sqrt{2\\pi})=\\varphi(w/c)=k(w)$，结论 $c=\\sqrt{2\\pi}$ 是唯一满足条件的正数解。"
+          ]
+        }
+      ],
+      "id": "osaka-2024-144813ba62-q04-practice-04",
+      "school": "大阪大学",
+      "year": "2024"
+    }
+  ],
+  "source_question": "数学解析 問2",
+  "source_pdf": "大阪大学/情报科学研究科/情报数理学/大阪大学_情报科学研究科_情报数理学_2024_数学过去问.pdf",
+  "source_type": "官方过去问",
+  "subject_category": "复变函数"
+}
