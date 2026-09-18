@@ -1,0 +1,154 @@
+{
+  "id": "kyoto-2023-ec3461674d-q03",
+  "school": "京都大学",
+  "year": "2023",
+  "subject": "情报学研究科_系统科学",
+  "text": "求下列行列式 $\\det A$ 的最大值，其中 $s,t$ 为实数：\n$$A=\\begin{bmatrix}1&1+s&1\\\\1+s&1&1+t\\\\1&1+t&1\\end{bmatrix}$$",
+  "knowledge_points": [
+    "3阶行列式展开",
+    "配方法求最值",
+    "二次型的非正定性",
+    "变量代换简化表达式"
+  ],
+  "question_type": "含参行列式的最值问题",
+  "method": [
+    "行列式按定义展开",
+    "代换 $a=1+s,b=1+t$ 后配方"
+  ],
+  "solution_steps": [
+    "设 $a=1+s,\\ b=1+t$，展开行列式",
+    "化简得到关于 $a,b$ 的表达式",
+    "配方得到平方项的相反数，确定最大值及取等条件"
+  ],
+  "math_structure": {
+    "type": "determinant_max_via_completing_square",
+    "template": "$\\det\\begin{bmatrix}1&a&1\\\\a&1&b\\\\1&b&1\\end{bmatrix}$ 关于 $a,b\\in\\mathbb{R}$ 的最大值",
+    "variable_count": 2
+  },
+  "difficulty": 3,
+  "answer": [
+    {
+      "label": "det A 最大值",
+      "steps": [
+        "令 $a=1+s,\\ b=1+t$，按第一行展开：$\\det A=1\\cdot(1\\cdot1-b\\cdot b)-a\\cdot(a\\cdot1-b\\cdot1)+1\\cdot(a\\cdot b-1\\cdot1)$。",
+        "化简：$=(1-b^2)-a(a-b)+(ab-1)=1-b^2-a^2+ab+ab-1=-a^2-b^2+2ab=-(a-b)^2$。",
+        "因为 $(a-b)^2\\ge0$，所以 $\\det A=-(a-b)^2\\le 0$，最大值为 $0$，在 $a=b$ 即 $1+s=1+t$，也就是 $s=t$（任意实数）时取得。",
+        "验证：取 $s=t=0$（即 $a=b=1$），此时 $A$ 为全1矩阵，秩为1，故 $\\det A=0$，与结论一致。"
+      ]
+    }
+  ],
+  "practice_questions": [
+    {
+      "text": "展开并化简行列式 $\\begin{vmatrix}1&a&1\\\\a&1&a\\\\1&a&1\\end{vmatrix}$（即 $s=t$ 时的特殊情形），验证其值为0。",
+      "knowledge_points": [
+        "行列式展开",
+        "特殊情形验证"
+      ],
+      "question_type": "行列式计算",
+      "method": [
+        "按行展开"
+      ],
+      "solution_steps": [
+        "直接展开",
+        "化简验证为0"
+      ],
+      "math_structure": {
+        "type": "determinant_special_case",
+        "template": "$\\det\\begin{bmatrix}1&a&1\\\\a&1&a\\\\1&a&1\\end{bmatrix}$",
+        "variable_count": 1
+      },
+      "difficulty": 1,
+      "estimated_minutes": 4,
+      "answer": [
+        {
+          "label": "结果",
+          "steps": [
+            "按第一行展开：$1(1-a^2)-a(a-a)+1(a^2-1)=(1-a^2)-0+(a^2-1)$。",
+            "化简：$1-a^2+a^2-1=0$。",
+            "故对任意 $a$ 该行列式恒为0，与第一、三行成比例（相同）这一事实吻合。"
+          ]
+        }
+      ],
+      "id": "kyoto-2023-ec3461674d-q03-practice-01",
+      "school": "京都大学",
+      "year": "2023"
+    },
+    {
+      "text": "求 $f(a,b)=-(a-b)^2+4$ 的最大值及取得最大值时 $a,b$ 应满足的关系。",
+      "knowledge_points": [
+        "配方法",
+        "二元函数最值"
+      ],
+      "question_type": "配方求最值",
+      "method": [
+        "配方法"
+      ],
+      "solution_steps": [
+        "观察平方项恒非负",
+        "确定最大值及取等条件"
+      ],
+      "math_structure": {
+        "type": "completing_square_max",
+        "template": "$f(a,b)=-(a-b)^2+c$ 的最大值",
+        "variable_count": 2
+      },
+      "difficulty": 1,
+      "estimated_minutes": 3,
+      "answer": [
+        {
+          "label": "最大值",
+          "steps": [
+            "因为 $(a-b)^2\\ge0$，故 $-(a-b)^2\\le0$。",
+            "所以 $f(a,b)=-(a-b)^2+4\\le 4$。",
+            "当且仅当 $a=b$ 时取得最大值 $4$。"
+          ]
+        }
+      ],
+      "id": "kyoto-2023-ec3461674d-q03-practice-02",
+      "school": "京都大学",
+      "year": "2023"
+    },
+    {
+      "text": "求行列式 $\\begin{vmatrix}2&2+s&2\\\\2+s&2&2+t\\\\2&2+t&2\\end{vmatrix}$（$s,t\\in\\mathbb{R}$）的最大值。",
+      "knowledge_points": [
+        "行列式展开",
+        "配方法",
+        "比例缩放对行列式的影响"
+      ],
+      "question_type": "含参行列式最值",
+      "method": [
+        "行列式展开配方",
+        "或利用行列式的比例缩放性质由问2(i)结果推出"
+      ],
+      "solution_steps": [
+        "令 $a=2+s,b=2+t$ 展开化简",
+        "配方求最大值",
+        "（可选）用整体提取因子2的方法与问2(i)对照验证"
+      ],
+      "math_structure": {
+        "type": "determinant_max_via_completing_square",
+        "template": "$\\det\\begin{bmatrix}2&a&2\\\\a&2&b\\\\2&b&2\\end{bmatrix}$ 的最大值",
+        "variable_count": 2
+      },
+      "difficulty": 3,
+      "estimated_minutes": 8,
+      "answer": [
+        {
+          "label": "最大值",
+          "steps": [
+            "令 $a=2+s,b=2+t$，按第一行展开：$2(4-b^2)-a(2a-2b)+2(ab-4)=8-2b^2-2a^2+2ab+2ab-8=-2a^2-2b^2+4ab=-2(a-b)^2$。",
+            "因为 $(a-b)^2\\ge0$，故该行列式 $\\le 0$，最大值为 $0$，在 $a=b$，即 $s=t$ 时取得。",
+            "验证：与原题问2(i)相比，本矩阵为原矩阵每行提取公因子2之后再各行独立缩放的情形，行列式的结构（含参数部分为二次型）保持“负的完全平方”形式，最大值仍为0，与直接展开结果一致。"
+          ]
+        }
+      ],
+      "id": "kyoto-2023-ec3461674d-q03-practice-03",
+      "school": "京都大学",
+      "year": "2023"
+    }
+  ],
+  "source_question": "問2(i)",
+  "source_pdf": "京都大学/情报学研究科/系统科学/京都大学_情报学研究科_系统科学_2023_数学过去问.pdf",
+  "source_type": "官方过去问",
+  "subject_category": "线性代数"
+}

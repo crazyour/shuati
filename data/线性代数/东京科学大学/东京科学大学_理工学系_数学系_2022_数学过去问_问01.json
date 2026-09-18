@@ -1,0 +1,219 @@
+{
+  "id": "isct-2022-97180ef183-q01",
+  "school": "东京科学大学",
+  "year": "2022",
+  "subject": "理工学系_数学系",
+  "text": "设 $V$ 是域 $K$ 上的向量空间，$\\varphi: V \\to V$ 是 $K$ 上的线性映射。设 $S$ 为满足如下条件的 $V$ 的子空间 $W$ 全体构成的集合：$\\varphi$ 限制在 $W$ 上给出 $W$ 到 $W$ 自身的线性同构。设 $$W_0 = \\bigcap_{n \\ge 1} \\varphi^n(V),$$ 其中 $\\varphi^n = \\varphi \\circ \\cdots \\circ \\varphi$（$\\varphi$ 的 $n$ 次合成）。回答以下问题：\n(1) 证明任意 $W \\in S$ 都包含于 $W_0$。\n(2) 证明若 $V$ 是有限维的，则 $W_0 \\in S$。\n(3) 举出使得 $W_0 \\notin S$ 的 $K, V, \\varphi$ 的例子。",
+  "knowledge_points": [
+    "线性变换的像与核",
+    "子空间的稳定化",
+    "Fitting引理",
+    "有限维向量空间的降维链",
+    "线性同构的判定",
+    "反例构造"
+  ],
+  "question_type": "证明与反例构造题（线性代数结构性质）",
+  "method": [
+    "利用 $\\varphi(W)=W$ 推导 $W\\subseteq \\varphi^n(V)$",
+    "有限维下像的降链必稳定（Fitting引理）",
+    "维数计数证明限制映射既是满又是单",
+    "构造可数维空间上的移位算子作反例"
+  ],
+  "solution_steps": [
+    "第(1)问：由 $W\\in S$ 知 $\\varphi|_W$ 是双射，从而 $\\varphi(W)=W$，归纳得 $\\varphi^n(W)=W$ 对一切 $n$ 成立；又 $W\\subseteq V$ 故 $\\varphi^n(W)\\subseteq\\varphi^n(V)$，于是 $W=\\varphi^n(W)\\subseteq\\varphi^n(V)$ 对每个 $n$ 成立，取交即得 $W\\subseteq W_0$。",
+    "第(2)问：注意 $\\varphi^{n+1}(V)=\\varphi(\\varphi^n(V))\\subseteq\\varphi^n(V)$，故 $\\{\\varphi^n(V)\\}$ 是子空间的降链；有限维时维数是非负整数降链必稳定于某个 $N$，即 $\\varphi^N(V)=\\varphi^{N+1}(V)=\\cdots=W_0$。再证 $\\varphi|_{W_0}$ 是同构：$\\varphi(W_0)=\\varphi(\\varphi^N(V))=\\varphi^{N+1}(V)=W_0$，说明 $\\varphi|_{W_0}$ 满；由有限维空间上满自映射维数相等即得单，故为线性同构，$W_0\\in S$。",
+    "第(3)问：取 $K$ 为任意域，$V=K^{(\\mathbb N)}=\\bigoplus_{n\\ge 1}Ke_n$（有限支撑的可数维序列空间），定义 $\\varphi(e_1)=0$，$\\varphi(e_n)=e_{n-1}\\ (n\\ge2)$。验证 $\\varphi(V)=V$（因为每个 $e_m=\\varphi(e_{m+1})$），从而 $\\varphi^n(V)=V$ 对一切 $n$，故 $W_0=V$；但 $\\varphi(e_1)=0$ 说明 $\\varphi$ 不单，$\\varphi|_{W_0}=\\varphi|_V$ 不是同构，故 $W_0\\notin S$。"
+  ],
+  "math_structure": {
+    "type": "fitting_lemma_stable_image",
+    "template": "设 $\\varphi:V\\to V$ 为域 $K$ 上向量空间 $V$ 的线性自映射，$S=\\{W\\subseteq V:\\varphi|_W \\text{ 是 } W\\to W \\text{ 的线性同构}\\}$，$W_0=\\bigcap_{n\\ge1}\\varphi^n(V)$，研究 $W_0$ 与 $S$ 的包含关系。",
+    "variable_count": 3
+  },
+  "difficulty": 4,
+  "answer": [
+    {
+      "label": "(1)",
+      "steps": [
+        "设 $W\\in S$，则由定义 $\\varphi|_W$ 是 $W$ 到 $W$ 的线性同构，特别是满射，即 $\\varphi(W)=W$。",
+        "由 $\\varphi(W)=W$ 归纳可得 $\\varphi^n(W)=\\varphi^{n-1}(\\varphi(W))=\\varphi^{n-1}(W)=\\cdots=W$，对一切 $n\\ge1$ 成立。",
+        "由于 $W\\subseteq V$，故 $\\varphi^n(W)\\subseteq \\varphi^n(V)$；结合上一步 $W=\\varphi^n(W)\\subseteq\\varphi^n(V)$ 对一切 $n\\ge1$ 成立。",
+        "对所有 $n\\ge1$ 取交，得 $W\\subseteq\\bigcap_{n\\ge1}\\varphi^n(V)=W_0$，证毕。"
+      ]
+    },
+    {
+      "label": "(2)",
+      "steps": [
+        "由 $\\varphi^{n+1}(V)=\\varphi(\\varphi^n(V))\\subseteq\\varphi^n(V)$ 知 $\\{\\varphi^n(V)\\}_{n\\ge1}$ 是 $V$ 的子空间构成的降链，其维数 $\\dim\\varphi^n(V)$ 是非负整数且单调不增。",
+        "由于 $V$ 有限维，维数序列只能有限次严格下降，故存在 $N$ 使得对一切 $n\\ge N$，$\\varphi^n(V)=\\varphi^N(V)$；从而 $W_0=\\bigcap_{n\\ge1}\\varphi^n(V)=\\varphi^N(V)$。",
+        "计算 $\\varphi(W_0)=\\varphi(\\varphi^N(V))=\\varphi^{N+1}(V)=\\varphi^N(V)=W_0$，即 $\\varphi|_{W_0}$ 是 $W_0\\to W_0$ 的满射。",
+        "$W_0$ 是有限维空间，满自映射的维数相等，从而 $\\varphi|_{W_0}$ 也是单射，因此是线性同构，即 $W_0\\in S$。"
+      ]
+    },
+    {
+      "label": "(3)",
+      "steps": [
+        "取 $K$ 为任意域，$V=\\bigoplus_{n\\ge1}Ke_n$（基为 $e_1,e_2,\\dots$，元素为有限支撑的线性组合），定义 $\\varphi(e_1)=0$，$\\varphi(e_n)=e_{n-1}$ 对 $n\\ge2$。",
+        "验证 $\\varphi(V)=V$：对任意 $m\\ge1$，$e_m=\\varphi(e_{m+1})\\in\\varphi(V)$，故基向量都在像中，从而 $\\varphi(V)=V$。归纳得 $\\varphi^n(V)=V$ 对一切 $n\\ge1$，故 $W_0=\\bigcap_n\\varphi^n(V)=V$。",
+        "但 $\\varphi(e_1)=0$ 而 $e_1\\ne0$，说明 $\\varphi$ 不是单射，从而 $\\varphi|_{W_0}=\\varphi|_V=\\varphi$ 不是线性同构。",
+        "故 $W_0=V\\notin S$，此例即为所求（该 $V$ 为无限维，说明有限维假设在(2)中是必要的）。"
+      ]
+    }
+  ],
+  "practice_questions": [
+    {
+      "text": "设 $\\varphi:V\\to V$ 为线性映射，$V$ 为域 $K$ 上向量空间。证明：$\\{\\varphi^n(V)\\}_{n\\ge1}$ 是 $V$ 的子空间构成的降链，即 $\\varphi^{n+1}(V)\\subseteq\\varphi^n(V)$ 对一切 $n\\ge1$ 成立。",
+      "knowledge_points": [
+        "线性映射的像",
+        "子空间",
+        "降链"
+      ],
+      "question_type": "基础证明题",
+      "method": [
+        "直接验证包含关系"
+      ],
+      "solution_steps": [
+        "由 $\\varphi^{n+1}(V)=\\varphi(\\varphi^n(V))$，任取 $y\\in\\varphi^{n+1}(V)$ 写成 $y=\\varphi(x)$，$x\\in\\varphi^n(V)\\subseteq V$，从而 $y\\in\\varphi(V)$ 需要更细：直接说明 $\\varphi^n(V)$ 定义即 $\\varphi$ 作用 $n$ 次于 $V$ 的像，故 $\\varphi^{n+1}(V)=\\varphi(\\varphi^n(V))\\subseteq\\varphi(V)$ 未必；正确论证：因为 $\\varphi^n(V)\\subseteq V$，两边作用 $\\varphi$ 得 $\\varphi^{n+1}(V)=\\varphi(\\varphi^n(V))\\subseteq\\varphi(V)$，再归纳假设 $\\varphi^n(V)\\subseteq\\varphi^{n-1}(V)$，两边作用 $\\varphi$ 得 $\\varphi^{n+1}(V)\\subseteq\\varphi^n(V)$，用归纳法完成。"
+      ],
+      "math_structure": {
+        "type": "image_chain_monotonicity",
+        "template": "证明 $\\varphi^{n+1}(V)\\subseteq\\varphi^n(V)$",
+        "variable_count": 1
+      },
+      "difficulty": 2,
+      "estimated_minutes": 8,
+      "answer": [
+        {
+          "label": "证明",
+          "steps": [
+            "基础情形 $n=1$：由 $\\varphi(V)\\subseteq V$（$\\varphi$ 是 $V$ 到 $V$ 的映射），两边作用 $\\varphi$ 得 $\\varphi^2(V)=\\varphi(\\varphi(V))\\subseteq\\varphi(V)$，成立。",
+            "归纳假设 $\\varphi^n(V)\\subseteq\\varphi^{n-1}(V)$ 成立，两边作用线性映射 $\\varphi$（保持包含关系，因为 $\\varphi$ 是映射，$A\\subseteq B\\Rightarrow\\varphi(A)\\subseteq\\varphi(B)$）得 $\\varphi^{n+1}(V)\\subseteq\\varphi^n(V)$。",
+            "由数学归纳法，对一切 $n\\ge1$ 结论成立，即像空间构成降链。"
+          ]
+        }
+      ],
+      "id": "isct-2022-97180ef183-q01-practice-01",
+      "school": "东京科学大学",
+      "year": "2022"
+    },
+    {
+      "text": "设 $V=K^3$，$\\varphi$ 由矩阵 $\\begin{pmatrix}0&1&0\\\\0&0&1\\\\0&0&0\\end{pmatrix}$（幂零部分）给出。求 $W_0=\\bigcap_{n\\ge1}\\varphi^n(V)$，并验证 $W_0\\in S$（是否为使 $\\varphi$ 限制成同构的子空间）。",
+      "knowledge_points": [
+        "幂零矩阵",
+        "像空间的稳定化",
+        "线性同构判定"
+      ],
+      "question_type": "计算验证题",
+      "method": [
+        "逐次计算 $\\varphi^n(V)$",
+        "验证限制映射"
+      ],
+      "solution_steps": [
+        "计算 $\\varphi(V),\\varphi^2(V),\\varphi^3(V)$",
+        "求交集 $W_0$",
+        "验证 $\\varphi|_{W_0}$ 是否为同构"
+      ],
+      "math_structure": {
+        "type": "nilpotent_stable_image",
+        "template": "求幂零矩阵定义的线性映射的稳定像 $W_0$",
+        "variable_count": 1
+      },
+      "difficulty": 2,
+      "estimated_minutes": 10,
+      "answer": [
+        {
+          "label": "求 $W_0$",
+          "steps": [
+            "设 $e_1,e_2,e_3$ 为标准基，$\\varphi(e_1)=0,\\varphi(e_2)=e_1,\\varphi(e_3)=e_2$（对应矩阵作用）。",
+            "计算 $\\varphi(V)=\\mathrm{span}\\{e_1,e_2\\}$（因为 $\\varphi(e_2)=e_1,\\varphi(e_3)=e_2$，$\\varphi(e_1)=0$），$\\varphi^2(V)=\\varphi(\\varphi(V))=\\varphi(\\mathrm{span}\\{e_1,e_2\\})=\\mathrm{span}\\{0,e_1\\}=\\mathrm{span}\\{e_1\\}$，$\\varphi^3(V)=\\varphi(\\mathrm{span}\\{e_1\\})=\\{0\\}$，且对 $n\\ge3$ 都是 $\\{0\\}$（$\\varphi$ 幂零，$\\varphi^3=0$）。",
+            "因此 $W_0=\\bigcap_n\\varphi^n(V)=\\{0\\}$。",
+            "验证：$\\varphi|_{\\{0\\}}$ 显然是零空间到自身的（唯一）线性同构，故 $W_0=\\{0\\}\\in S$，与本题(2)结论一致（$V$ 有限维）。"
+          ]
+        }
+      ],
+      "id": "isct-2022-97180ef183-q01-practice-02",
+      "school": "东京科学大学",
+      "year": "2022"
+    },
+    {
+      "text": "设 $\\varphi:V\\to V$ 为线性映射且 $\\dim V=\\infty$。举出一个例子，使得 $\\varphi(V)=V$（即 $\\varphi$ 满）但 $\\varphi$ 不单，并说明此例与本题(3)所给例子的关系。",
+      "knowledge_points": [
+        "无限维向量空间",
+        "满射不蕴含单射",
+        "移位算子"
+      ],
+      "question_type": "构造题",
+      "method": [
+        "构造移位算子",
+        "验证满射与非单射"
+      ],
+      "solution_steps": [
+        "取序列空间上的降移位算子",
+        "验证满射性",
+        "验证核非零"
+      ],
+      "math_structure": {
+        "type": "surjective_non_injective_infinite_dim",
+        "template": "在无限维空间上构造满而不单的线性自映射",
+        "variable_count": 1
+      },
+      "difficulty": 2,
+      "estimated_minutes": 8,
+      "answer": [
+        {
+          "label": "构造与验证",
+          "steps": [
+            "取 $V=K^{(\\mathbb N)}=\\bigoplus_{n\\ge1}Ke_n$，定义 $\\varphi(e_1)=0,\\ \\varphi(e_n)=e_{n-1}\\,(n\\ge2)$。",
+            "对任意 $m\\ge1$，$e_m=\\varphi(e_{m+1})$，故每个基向量都在 $\\varphi(V)$ 中，从而 $\\varphi(V)=V$，即 $\\varphi$ 是满射。",
+            "但 $\\varphi(e_1)=0=\\varphi(0)$ 而 $e_1\\ne0$，说明 $\\ker\\varphi\\ne\\{0\\}$，故 $\\varphi$ 不是单射。",
+            "此例正是本题第(3)问所用的例子，说明在无限维情形，$\\varphi(V)=V$ 不能保证 $\\varphi|_V$ 为同构，从而 $W_0=V\\notin S$。"
+          ]
+        }
+      ],
+      "id": "isct-2022-97180ef183-q01-practice-03",
+      "school": "东京科学大学",
+      "year": "2022"
+    },
+    {
+      "text": "在原题设定下，证明：若 $\\varphi$ 本身是 $V\\to V$ 的线性同构（即 $\\varphi\\in \\mathrm{GL}(V)$），则 $W_0=V$ 且 $W_0\\in S$（无论 $V$ 是否有限维）。",
+      "knowledge_points": [
+        "可逆线性映射",
+        "稳定像",
+        "同构的传递性"
+      ],
+      "question_type": "证明题",
+      "method": [
+        "利用可逆性直接计算像"
+      ],
+      "solution_steps": [
+        "证明 $\\varphi^n(V)=V$ 对一切 $n$",
+        "得出 $W_0=V$",
+        "验证 $\\varphi|_V=\\varphi\\in S$"
+      ],
+      "math_structure": {
+        "type": "automorphism_stable_image",
+        "template": "设 $\\varphi\\in GL(V)$，证明 $\\bigcap_n\\varphi^n(V)=V$",
+        "variable_count": 1
+      },
+      "difficulty": 1,
+      "estimated_minutes": 5,
+      "answer": [
+        {
+          "label": "证明",
+          "steps": [
+            "若 $\\varphi$ 是 $V$ 上的线性同构，则 $\\varphi$ 是满射，故 $\\varphi(V)=V$。",
+            "归纳地，$\\varphi^n(V)=\\varphi(\\varphi^{n-1}(V))=\\varphi(V)=V$ 对一切 $n\\ge1$ 成立（因为每步 $\\varphi$ 都作用在整个 $V$ 上且满）。",
+            "于是 $W_0=\\bigcap_{n\\ge1}\\varphi^n(V)=\\bigcap_{n\\ge1}V=V$。",
+            "又 $\\varphi|_{W_0}=\\varphi|_V=\\varphi$ 本身就是 $V\\to V$ 的线性同构，故 $W_0=V\\in S$，结论成立，且不依赖 $V$ 是否有限维。"
+          ]
+        }
+      ],
+      "id": "isct-2022-97180ef183-q01-practice-04",
+      "school": "东京科学大学",
+      "year": "2022"
+    }
+  ],
+  "source_question": "問1（午前）",
+  "source_pdf": "东京科学大学/理工学系/数学系/东京科学大学_理工学系_数学系_2022_数学过去问.pdf",
+  "source_type": "官方过去问",
+  "subject_category": "线性代数"
+}

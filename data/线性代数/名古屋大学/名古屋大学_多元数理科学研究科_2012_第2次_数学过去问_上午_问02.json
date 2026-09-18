@@ -1,0 +1,208 @@
+{
+  "id": "nagoya-2012-4aee7a88e7-q02",
+  "school": "名古屋大学",
+  "year": "2012",
+  "subject": "多元数理科学研究科_全专攻",
+  "text": "判断以下命题的真伪，若为真则给出证明，若为假则举出反例并说明理由：\n(1) 欧几里得空间 $\\mathbb{R}^3$ 中，若可逆线性变换 $f$ 将平面 $P$ 映为平面 $Q$，则平面 $P$ 的法向量在 $f$ 作用下的像是平面 $Q$ 的法向量。\n(2) 若二阶实方阵 $A$ 的所有特征值的绝对值均不超过1，则对任意向量 $x\\in\\mathbb{R}^2$，集合 $\\{A^n x\\mid n=1,2,\\dots\\}$ 是 $\\mathbb{R}^2$ 的有界子集。\n(3) 在全体二阶复方阵构成的复向量空间中，若 $\\left\\{\\begin{pmatrix}a_{11}&a_{12}\\\\a_{21}&a_{22}\\end{pmatrix},\\begin{pmatrix}b_{11}&b_{12}\\\\b_{21}&b_{22}\\end{pmatrix}\\right\\}$ 线性无关，则在 $\\mathbb{C}^2$ 中 $\\left\\{\\begin{pmatrix}a_{11}\\\\a_{21}\\end{pmatrix},\\begin{pmatrix}b_{11}\\\\b_{21}\\end{pmatrix}\\right\\}$ 线性无关。",
+  "knowledge_points": [
+    "线性变换与法向量",
+    "对偶变换/逆转置",
+    "特征值与幂有界性",
+    "Jordan块",
+    "线性无关性判断",
+    "矩阵空间与向量空间的关系"
+  ],
+  "question_type": "真伪判断与反例构造",
+  "method": [
+    "构造具体反例矩阵验证",
+    "利用Jordan标准型分析幂增长",
+    "利用矩阵分量独立性构造反例"
+  ],
+  "solution_steps": [
+    "对(1)，构造非正交的可逆变换，计算平面法向量像与真实法向量比较",
+    "对(2)，考虑存在绝对值为1但矩阵不可对角化（Jordan块）的情形，计算幂矩阵增长",
+    "对(3)，构造第一列相同但第二列不同的两个矩阵作为反例"
+  ],
+  "math_structure": {
+    "type": "true_false_with_counterexample",
+    "template": "given three abstract algebraic statements about linear maps, eigenvalues, and linear independence, determine truth value and justify",
+    "variable_count": 3
+  },
+  "difficulty": 3,
+  "answer": [
+    {
+      "label": "(1)",
+      "steps": [
+        "命题为假。反例：取 $f(x,y,z)=(2x,y,z)$，这是可逆线性变换（矩阵为 $\\mathrm{diag}(2,1,1)$，行列式为2非零）。",
+        "取平面 $P:\\ x+y+z=0$，法向量 $n=(1,1,1)$。则 $f(P)=\\{(2x,y,z):x+y+z=0\\}$，令 $X=2x,Y=y,Z=z$，即 $x=X/2$，代入得 $X/2+Y+Z=0$，即 $X+2Y+2Z=0$，所以像平面 $Q$ 的法向量为 $m=(1,2,2)$。",
+        "计算 $f(n)=f(1,1,1)=(2,1,1)$。检验 $(2,1,1)$ 是否与 $(1,2,2)$ 平行：若平行则存在 $\\lambda$ 使 $2=\\lambda,1=2\\lambda,1=2\\lambda$，由第一式 $\\lambda=2$，代入第二式得 $1=4$，矛盾，故不平行。因此 $f(n)$ 不是 $Q$ 的法向量，命题为假。"
+      ]
+    },
+    {
+      "label": "(2)",
+      "steps": [
+        "命题为假。反例：取 $A=\\begin{pmatrix}1&1\\\\0&1\\end{pmatrix}$，其特征值为 $\\lambda=1,1$（二重），绝对值均为1，满足条件“所有特征值绝对值不超过1”。",
+        "由 Jordan 幂公式，$A^n=\\begin{pmatrix}1&n\\\\0&1\\end{pmatrix}$（可用数学归纳法验证：$A^{n+1}=A^n A=\\begin{pmatrix}1&n\\\\0&1\\end{pmatrix}\\begin{pmatrix}1&1\\\\0&1\\end{pmatrix}=\\begin{pmatrix}1&n+1\\\\0&1\\end{pmatrix}$）。",
+        "取 $x=(0,1)^T$，则 $A^n x=(n,1)^T$，当 $n\\to\\infty$ 时第一分量 $n\\to\\infty$，故集合 $\\{A^nx\\}$ 无界，命题为假。"
+      ]
+    },
+    {
+      "label": "(3)",
+      "steps": [
+        "命题为假。反例：取 $A=\\begin{pmatrix}1&0\\\\0&0\\end{pmatrix}$，$B=\\begin{pmatrix}1&1\\\\0&0\\end{pmatrix}$。",
+        "验证 $\\{A,B\\}$ 在二阶复矩阵空间中线性无关：若 $\\alpha A+\\beta B=0$，即 $\\begin{pmatrix}\\alpha+\\beta&\\beta\\\\0&0\\end{pmatrix}=0$，得 $\\beta=0$ 且 $\\alpha+\\beta=0\\Rightarrow\\alpha=0$，故仅平凡解，线性无关。",
+        "但取第一列向量：$A$ 的第一列为 $(1,0)^T$，$B$ 的第一列也为 $(1,0)^T$，二者相等，显然线性相关（存在非平凡关系 $1\\cdot(1,0)^T-1\\cdot(1,0)^T=0$）。故命题为假。"
+      ]
+    }
+  ],
+  "practice_questions": [
+    {
+      "text": "验证矩阵 $A=\\begin{pmatrix}0&1\\\\0&0\\end{pmatrix}$ 的所有特征值绝对值是否不超过1，并求 $A^n$ 的通项公式，讨论 $\\{A^nx\\}$ 对一般 $x$ 是否有界。",
+      "knowledge_points": [
+        "幂零矩阵",
+        "特征值",
+        "矩阵幂的计算"
+      ],
+      "question_type": "计算与讨论题",
+      "method": [
+        "直接计算矩阵幂"
+      ],
+      "solution_steps": [
+        "求特征值",
+        "计算 $A^2$",
+        "讨论有界性"
+      ],
+      "math_structure": {
+        "type": "nilpotent_matrix_power",
+        "template": "given nilpotent 2x2 matrix, compute powers and discuss boundedness of orbit",
+        "variable_count": 1
+      },
+      "difficulty": 1,
+      "estimated_minutes": 5,
+      "answer": [
+        {
+          "label": "结果",
+          "steps": [
+            "特征方程 $\\lambda^2=0$，特征值均为0，绝对值为0不超过1。",
+            "计算 $A^2=\\begin{pmatrix}0&1\\\\0&0\\end{pmatrix}\\begin{pmatrix}0&1\\\\0&0\\end{pmatrix}=\\begin{pmatrix}0&0\\\\0&0\\end{pmatrix}=0$，故 $A^n=0\\,(n\\ge2)$。",
+            "此时 $\\{A^nx\\}=\\{Ax,0,0,\\dots\\}$ 是有限集，显然有界（此为幂零情形，与本大题反例的 Jordan 块 $\\lambda=1$ 情形不同）。"
+          ]
+        }
+      ],
+      "id": "nagoya-2012-4aee7a88e7-q02-practice-01",
+      "school": "名古屋大学",
+      "year": "2012"
+    },
+    {
+      "text": "设 $B=\\begin{pmatrix}1&2\\\\0&1\\end{pmatrix}$，求 $B^n$ 的通项公式，并说明对 $x=(1,0)^T$，$\\{B^nx\\}$ 是否有界。",
+      "knowledge_points": [
+        "Jordan块幂运算",
+        "有界性判断"
+      ],
+      "question_type": "计算题",
+      "method": [
+        "数学归纳法求矩阵幂"
+      ],
+      "solution_steps": [
+        "猜测通项",
+        "归纳验证",
+        "代入具体向量判断有界性"
+      ],
+      "math_structure": {
+        "type": "jordan_block_power",
+        "template": "given Jordan block with eigenvalue 1 and off-diagonal entry c, compute B^n and test boundedness",
+        "variable_count": 1
+      },
+      "difficulty": 2,
+      "estimated_minutes": 6,
+      "answer": [
+        {
+          "label": "结果",
+          "steps": [
+            "猜测 $B^n=\\begin{pmatrix}1&2n\\\\0&1\\end{pmatrix}$，用归纳法验证：$B^{n+1}=B^nB=\\begin{pmatrix}1&2n\\\\0&1\\end{pmatrix}\\begin{pmatrix}1&2\\\\0&1\\end{pmatrix}=\\begin{pmatrix}1&2n+2\\\\0&1\\end{pmatrix}$，与假设一致。",
+            "取 $x=(1,0)^T$，$B^nx=(1,0)^T$，此时有界；但取 $x=(0,1)^T$，$B^nx=(2n,1)^T$，当 $n\\to\\infty$ 无界，说明有界性依赖于 $x$ 的选取。"
+          ]
+        }
+      ],
+      "id": "nagoya-2012-4aee7a88e7-q02-practice-02",
+      "school": "名古屋大学",
+      "year": "2012"
+    },
+    {
+      "text": "设可逆线性变换 $f(x,y)=(x,2y)$，平面（此处退化为直线）$P: y=x$ 在 $\\mathbb{R}^2$ 中的法向量为 $n=(1,-1)$。求 $f(P)$ 的方程及其法向量 $m$，并比较 $f(n)$ 与 $m$ 是否平行。",
+      "knowledge_points": [
+        "线性变换下曲线的像",
+        "法向量变换规律"
+      ],
+      "question_type": "构造验证题",
+      "method": [
+        "直接代入变换求像方程",
+        "比较向量方向"
+      ],
+      "solution_steps": [
+        "求出 $f(P)$ 的方程",
+        "求出法向量 $m$",
+        "计算 $f(n)$ 并比较"
+      ],
+      "math_structure": {
+        "type": "normal_vector_transform_2d",
+        "template": "given invertible linear map in R^2 and a line with known normal, compute image line's normal and compare with transformed normal",
+        "variable_count": 1
+      },
+      "difficulty": 2,
+      "estimated_minutes": 6,
+      "answer": [
+        {
+          "label": "结果",
+          "steps": [
+            "$f(P)$：令 $X=x,Y=2y$，则 $y=Y/2$，代入 $y=x$ 得 $Y/2=X$，即 $2X-Y=0$，法向量 $m=(2,-1)$。",
+            "计算 $f(n)=f(1,-1)=(1,-2)$。",
+            "比较 $(1,-2)$ 与 $(2,-1)$：若平行则 $1/2=-2/-1=2$，即 $0.5\\ne2$，不平行，说明二维情形下同样一般不成立，与原题结论一致。"
+          ]
+        }
+      ],
+      "id": "nagoya-2012-4aee7a88e7-q02-practice-03",
+      "school": "名古屋大学",
+      "year": "2012"
+    },
+    {
+      "text": "在二阶复方阵空间中，取 $A=\\begin{pmatrix}1&0\\\\0&1\\end{pmatrix},\\ B=\\begin{pmatrix}0&1\\\\1&0\\end{pmatrix}$，验证 $\\{A,B\\}$ 线性无关，并判断其第一列向量组 $\\{(1,0)^T,(0,1)^T\\}$ 是否线性无关。",
+      "knowledge_points": [
+        "矩阵空间线性无关性",
+        "向量线性无关性"
+      ],
+      "question_type": "对照验证题",
+      "method": [
+        "定义法验证线性无关"
+      ],
+      "solution_steps": [
+        "设线性组合为零矩阵求系数",
+        "取第一列判断"
+      ],
+      "math_structure": {
+        "type": "linear_independence_matrix_vs_column",
+        "template": "given two explicit 2x2 matrices, check independence of matrices and independence of their first columns",
+        "variable_count": 1
+      },
+      "difficulty": 1,
+      "estimated_minutes": 5,
+      "answer": [
+        {
+          "label": "结果",
+          "steps": [
+            "设 $\\alpha A+\\beta B=0$，即 $\\begin{pmatrix}\\alpha&\\beta\\\\\\beta&\\alpha\\end{pmatrix}=0$，得 $\\alpha=\\beta=0$，故 $\\{A,B\\}$ 线性无关。",
+            "第一列分别为 $(1,0)^T$ 与 $(0,1)^T$，设 $c_1(1,0)^T+c_2(0,1)^T=0$，得 $c_1=c_2=0$，故也线性无关。",
+            "本例中两者结论一致，说明命题(3)并非恒假，只是在一般情形下不成立，需要具体反例才能否定普遍性。"
+          ]
+        }
+      ],
+      "id": "nagoya-2012-4aee7a88e7-q02-practice-04",
+      "school": "名古屋大学",
+      "year": "2012"
+    }
+  ],
+  "source_question": "2",
+  "source_pdf": "名古屋大学/多元数理科学研究科/全专攻/名古屋大学_多元数理科学研究科_2012_第2次_数学过去问_上午.pdf",
+  "source_type": "官方过去问",
+  "subject_category": "线性代数"
+}

@@ -1,0 +1,153 @@
+{
+  "id": "kyoto-2023-ec3461674d-q04",
+  "school": "京都大学",
+  "year": "2023",
+  "subject": "情报学研究科_系统科学",
+  "text": "判断是否存在实正方矩阵 $B$ 满足下式，并说明理由：\n$$B^2=\\begin{bmatrix}0&1\\\\0&0\\end{bmatrix}$$",
+  "knowledge_points": [
+    "凯莱-哈密顿定理",
+    "幂零矩阵性质",
+    "矩阵的迹与行列式",
+    "反证法"
+  ],
+  "question_type": "矩阵方程的存在性证明",
+  "method": [
+    "凯莱-哈密顿定理法",
+    "幂零矩阵结构分析法（若 $B^2=N,N^2=0$ 则 $B^4=0$）"
+  ],
+  "solution_steps": [
+    "设 $N=\\begin{bmatrix}0&1\\\\0&0\\end{bmatrix}$，计算 $N$ 的迹与行列式",
+    "利用凯莱-哈密顿定理 $B^2=\\mathrm{tr}(B)B-\\det(B)I$ 对比系数",
+    "结合 $\\det(B^2)=\\det(N)$ 和 $\\mathrm{tr}(N)=0$ 推出 $\\mathrm{tr}(B)=\\det(B)=0$",
+    "代回凯莱-哈密顿式得出矛盾，得出结论：不存在这样的 $B$"
+  ],
+  "math_structure": {
+    "type": "nilpotent_square_root_nonexistence",
+    "template": "是否存在实 $2\\times2$ 矩阵 $B$ 使得 $B^2=N$，其中 $N$ 为幂零但非零（$N^2=0,N\\neq0$）",
+    "variable_count": 0
+  },
+  "difficulty": 3,
+  "answer": [
+    {
+      "label": "结论及证明",
+      "steps": [
+        "记 $N=\\begin{bmatrix}0&1\\\\0&0\\end{bmatrix}$，则 $\\mathrm{tr}(N)=0$，$\\det(N)=0\\cdot0-1\\cdot0=0$，且 $N\\neq 0$（幂零指标为2，即 $N^2=0$）。",
+        "设存在实 $2\\times2$ 矩阵 $B$ 使 $B^2=N$。由凯莱-哈密顿定理，$B^2=\\mathrm{tr}(B)\\,B-\\det(B)\\,I$。两边取行列式：$\\det(B^2)=\\det(B)^2$；又 $\\det(B^2)=\\det(N)=0$，故 $\\det(B)=0$。",
+        "两边取迹：$\\mathrm{tr}(B^2)=\\mathrm{tr}(N)=0$。由凯莱-哈密顿式取迹：$\\mathrm{tr}(B^2)=\\mathrm{tr}(B)^2-2\\det(B)=\\mathrm{tr}(B)^2$（因 $\\det(B)=0$）。故 $\\mathrm{tr}(B)^2=0\\Rightarrow\\mathrm{tr}(B)=0$。",
+        "将 $\\mathrm{tr}(B)=0,\\det(B)=0$ 代入凯莱-哈密顿式：$B^2=0\\cdot B-0\\cdot I=0$。但假设 $B^2=N\\neq0$，矛盾。故不存在满足 $B^2=N$ 的实方阵 $B$。"
+      ]
+    }
+  ],
+  "practice_questions": [
+    {
+      "text": "计算矩阵 $M=\\begin{bmatrix}0&2\\\\0&0\\end{bmatrix}$ 的迹和行列式，并判断 $M$ 是否幂零（即是否存在正整数 $k$ 使 $M^k=0$）。",
+      "knowledge_points": [
+        "迹与行列式的计算",
+        "幂零矩阵定义"
+      ],
+      "question_type": "矩阵基本性质计算",
+      "method": [
+        "直接计算"
+      ],
+      "solution_steps": [
+        "计算迹和行列式",
+        "计算 $M^2$ 判断幂零性"
+      ],
+      "math_structure": {
+        "type": "trace_det_nilpotent_check",
+        "template": "计算 $\\begin{bmatrix}0&c\\\\0&0\\end{bmatrix}$ 的迹、行列式并判断幂零性",
+        "variable_count": 1
+      },
+      "difficulty": 1,
+      "estimated_minutes": 3,
+      "answer": [
+        {
+          "label": "结果",
+          "steps": [
+            "$\\mathrm{tr}(M)=0+0=0$，$\\det(M)=0\\cdot0-2\\cdot0=0$。",
+            "计算 $M^2=\\begin{bmatrix}0&2\\\\0&0\\end{bmatrix}\\begin{bmatrix}0&2\\\\0&0\\end{bmatrix}=\\begin{bmatrix}0&0\\\\0&0\\end{bmatrix}$。",
+            "故 $M^2=0$，$M$ 是幂零矩阵，幂零指数为2。"
+          ]
+        }
+      ],
+      "id": "kyoto-2023-ec3461674d-q04-practice-01",
+      "school": "京都大学",
+      "year": "2023"
+    },
+    {
+      "text": "设实 $2\\times2$ 矩阵 $B$ 满足 $\\mathrm{tr}(B)=0,\\det(B)=0$，利用凯莱-哈密顿定理求 $B^2$。",
+      "knowledge_points": [
+        "凯莱-哈密顿定理",
+        "特殊情形下的矩阵幂"
+      ],
+      "question_type": "应用凯莱-哈密顿定理",
+      "method": [
+        "凯莱-哈密顿定理"
+      ],
+      "solution_steps": [
+        "写出凯莱-哈密顿等式",
+        "代入已知的迹与行列式",
+        "得出 $B^2$"
+      ],
+      "math_structure": {
+        "type": "cayley_hamilton_application",
+        "template": "由 $\\mathrm{tr}(B)=p,\\det(B)=q$ 求 $B^2=pB-qI$ 的具体形式",
+        "variable_count": 2
+      },
+      "difficulty": 2,
+      "estimated_minutes": 4,
+      "answer": [
+        {
+          "label": "B^2",
+          "steps": [
+            "凯莱-哈密顿定理：任意 $2\\times2$ 矩阵 $B$ 满足 $B^2-\\mathrm{tr}(B)B+\\det(B)I=0$，即 $B^2=\\mathrm{tr}(B)B-\\det(B)I$。",
+            "代入 $\\mathrm{tr}(B)=0,\\det(B)=0$：$B^2=0\\cdot B-0\\cdot I=0$。",
+            "故在此条件下 $B^2$ 必为零矩阵，这说明任何迹和行列式都为0的实 $2\\times2$ 矩阵都是幂零指数不超过2的矩阵。"
+          ]
+        }
+      ],
+      "id": "kyoto-2023-ec3461674d-q04-practice-02",
+      "school": "京都大学",
+      "year": "2023"
+    },
+    {
+      "text": "判断是否存在实 $2\\times2$ 矩阵 $C$ 使得 $C^2=\\begin{bmatrix}1&0\\\\0&1\\end{bmatrix}$，并给出一个例子或证明不存在。",
+      "knowledge_points": [
+        "矩阵平方根的存在性",
+        "单位矩阵的性质"
+      ],
+      "question_type": "矩阵方程存在性",
+      "method": [
+        "构造法"
+      ],
+      "solution_steps": [
+        "尝试寻找满足条件的矩阵",
+        "验证该矩阵确实满足方程"
+      ],
+      "math_structure": {
+        "type": "matrix_square_root_existence",
+        "template": "是否存在实方阵 $C$ 使 $C^2=I$",
+        "variable_count": 0
+      },
+      "difficulty": 1,
+      "estimated_minutes": 3,
+      "answer": [
+        {
+          "label": "存在性及例子",
+          "steps": [
+            "取 $C=I=\\begin{bmatrix}1&0\\\\0&1\\end{bmatrix}$，则 $C^2=I\\cdot I=I$，满足条件，故存在。",
+            "另外也可取 $C=\\begin{bmatrix}-1&0\\\\0&1\\end{bmatrix}$，验证 $C^2=\\begin{bmatrix}1&0\\\\0&1\\end{bmatrix}=I$，同样满足。",
+            "这与问2(ii)中 $B^2=N$（$N$ 幂零非零）不存在解形成对比：单位矩阵的“平方根”存在且不唯一，而幂零非零矩阵的平方根不存在，区别在于 $I$ 的迹、行列式不同时为0。"
+          ]
+        }
+      ],
+      "id": "kyoto-2023-ec3461674d-q04-practice-03",
+      "school": "京都大学",
+      "year": "2023"
+    }
+  ],
+  "source_question": "問2(ii)",
+  "source_pdf": "京都大学/情报学研究科/系统科学/京都大学_情报学研究科_系统科学_2023_数学过去问.pdf",
+  "source_type": "官方过去问",
+  "subject_category": "线性代数"
+}

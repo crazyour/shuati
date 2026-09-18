@@ -1,0 +1,154 @@
+{
+  "id": "kyoto-2023-ec3461674d-q02",
+  "school": "京都大学",
+  "year": "2023",
+  "subject": "情报学研究科_系统科学",
+  "text": "下列矩阵（含重复计数）共有4个特征值，已知这4个特征值之和为23。求满足此条件的实数组 $(x,y)$，并在以横轴为 $x$、纵轴为 $y$ 的坐标平面上作图表示。\n$$\\begin{bmatrix}1&-1&1&2.5\\\\-1&4&-7&0.5\\\\1&-7&4&y\\\\2.5&0.5&y&x\\end{bmatrix}$$",
+  "knowledge_points": [
+    "实对称矩阵的迹",
+    "特征值之和等于迹",
+    "实对称矩阵特征值必为实数",
+    "轨迹方程与图形表示"
+  ],
+  "question_type": "利用矩阵迹求参数轨迹",
+  "method": [
+    "迹与特征值之和的关系",
+    "实对称矩阵谱定理"
+  ],
+  "solution_steps": [
+    "确认矩阵关于主对角线对称",
+    "利用“特征值之和=矩阵的迹”这一性质列出关于 $x$ 的方程",
+    "求解 $x$，说明 $y$ 不受此条件约束",
+    "在坐标平面上画出满足条件的点集"
+  ],
+  "math_structure": {
+    "type": "trace_eigenvalue_sum_locus",
+    "template": "对称矩阵 $M(x,y)$，其对角元含未知量 $x$，非对角元含 $y$，由 $\\mathrm{tr}(M)=c$ 求 $(x,y)$ 的轨迹",
+    "variable_count": 2
+  },
+  "difficulty": 2,
+  "answer": [
+    {
+      "label": "(ii)",
+      "steps": [
+        "该矩阵关于主对角线对称（$(3,4)$ 元与 $(4,3)$ 元均为 $y$，其余对称位置也一致），故为实对称矩阵，其特征值必为4个实数（含重根按重数计）。",
+        "对任意实方阵，特征值之和恒等于矩阵的迹（对角元之和），与非对角元（即 $y$）无关。此处迹 $=1+4+4+x=9+x$。",
+        "由已知 4 个特征值之和为 23，得 $9+x=23$，解得 $x=14$。",
+        "由于该关系与 $y$ 无关，且矩阵对任意实数 $y$ 均保持对称从而特征值恒为实数，故满足条件的 $(x,y)$ 为竖直直线 $x=14$（$y$ 取遍全体实数），在坐标平面上表示为过点 $(14,0)$ 且平行于 $y$ 轴的整条直线。"
+      ]
+    }
+  ],
+  "practice_questions": [
+    {
+      "text": "求矩阵 $\\begin{bmatrix}2&5\\\\5&x\\end{bmatrix}$ 的迹关于 $x$ 的表达式，并求当两特征值之和为10时 $x$ 的值。",
+      "knowledge_points": [
+        "2×2矩阵的迹",
+        "特征值之和"
+      ],
+      "question_type": "迹与特征值关系",
+      "method": [
+        "迹的定义"
+      ],
+      "solution_steps": [
+        "写出迹表达式",
+        "令迹等于10求解"
+      ],
+      "math_structure": {
+        "type": "trace_eigenvalue_sum",
+        "template": "$\\mathrm{tr}\\begin{bmatrix}a&b\\\\b&x\\end{bmatrix}=a+x$，由和为常数求 $x$",
+        "variable_count": 1
+      },
+      "difficulty": 1,
+      "estimated_minutes": 3,
+      "answer": [
+        {
+          "label": "x",
+          "steps": [
+            "迹 $=2+x$。",
+            "由特征值之和（即迹）等于10：$2+x=10$。",
+            "解得 $x=8$。"
+          ]
+        }
+      ],
+      "id": "kyoto-2023-ec3461674d-q02-practice-01",
+      "school": "京都大学",
+      "year": "2023"
+    },
+    {
+      "text": "判断非对称矩阵 $\\begin{bmatrix}0&1\\\\0&0\\end{bmatrix}$ 的两个特征值之和是否等于其迹，并直接验证。",
+      "knowledge_points": [
+        "特征值与迹的关系对任意方阵成立",
+        "特征多项式"
+      ],
+      "question_type": "概念辨析",
+      "method": [
+        "特征多项式法"
+      ],
+      "solution_steps": [
+        "写出特征方程",
+        "求特征值",
+        "比较其和与迹"
+      ],
+      "math_structure": {
+        "type": "trace_eigenvalue_sum_general",
+        "template": "任意方阵 $A$，$\\sum\\lambda_i=\\mathrm{tr}(A)$（含复特征值/重根）",
+        "variable_count": 0
+      },
+      "difficulty": 1,
+      "estimated_minutes": 4,
+      "answer": [
+        {
+          "label": "验证",
+          "steps": [
+            "特征方程：$\\det(A-\\lambda I)=\\lambda^2=0$，故特征值为 $\\lambda_1=\\lambda_2=0$（二重）。",
+            "特征值之和 $=0+0=0$。",
+            "矩阵的迹 $=0+0=0$，两者相等，验证了“特征值之和恒等于迹”对非对称矩阵也成立。"
+          ]
+        }
+      ],
+      "id": "kyoto-2023-ec3461674d-q02-practice-02",
+      "school": "京都大学",
+      "year": "2023"
+    },
+    {
+      "text": "给定对称矩阵 $\\begin{bmatrix}2&y&1\\\\y&3&y\\\\1&y&x\\end{bmatrix}$，已知其3个特征值之和为12，求 $x$，并说明 $y$ 能否由此条件唯一确定。",
+      "knowledge_points": [
+        "3×3对称矩阵的迹",
+        "特征值之和与非对角元无关"
+      ],
+      "question_type": "利用迹求参数并讨论自由度",
+      "method": [
+        "迹与特征值之和的关系"
+      ],
+      "solution_steps": [
+        "写出迹表达式",
+        "令迹等于12求 $x$",
+        "讨论 $y$ 是否受约束"
+      ],
+      "math_structure": {
+        "type": "trace_eigenvalue_sum_locus",
+        "template": "对称矩阵对角元含 $x$，非对角元含 $y$，由 $\\mathrm{tr}=c$ 求 $x$ 并讨论 $y$ 的自由度",
+        "variable_count": 2
+      },
+      "difficulty": 2,
+      "estimated_minutes": 5,
+      "answer": [
+        {
+          "label": "x与y讨论",
+          "steps": [
+            "迹 $=2+3+x=5+x$。",
+            "由条件 $5+x=12$，解得 $x=7$。",
+            "由于迹只涉及对角元，与 $y$ 无关，故此条件不能确定 $y$，$y$ 可取任意实数（矩阵始终对称，特征值恒为实数）。"
+          ]
+        }
+      ],
+      "id": "kyoto-2023-ec3461674d-q02-practice-03",
+      "school": "京都大学",
+      "year": "2023"
+    }
+  ],
+  "source_question": "問1(ii)",
+  "source_pdf": "京都大学/情报学研究科/系统科学/京都大学_情报学研究科_系统科学_2023_数学过去问.pdf",
+  "source_type": "官方过去问",
+  "subject_category": "线性代数"
+}

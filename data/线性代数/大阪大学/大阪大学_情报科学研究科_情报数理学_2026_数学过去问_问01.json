@@ -1,0 +1,246 @@
+{
+  "id": "osaka-2026-3b13bb8c2d-q01",
+  "school": "大阪大学",
+  "year": "2026",
+  "subject": "情报科学研究科_情报数理学",
+  "text": "设 $n$ 为正整数，$Q \\in \\mathbb{R}^{n\\times n}$ 为对称矩阵，且是正定的。考虑关于决定变量 $x \\in \\mathbb{R}^n$ 的最优化问题：\n\n$$\\text{最小化 } x^T Q x \\qquad \\text{条件 } x^T Q^{-1} x = 1$$\n\n其中 $\\bullet^T$ 表示转置。回答以下问题。\n\n(1) 写出该问题的 Karush–Kuhn–Tucker（KKT）条件。\n\n(2) 用 $Q$ 的特征值表示该问题的最优值。",
+  "knowledge_points": [
+    "拉格朗日乘子法",
+    "KKT条件",
+    "对称矩阵的谱分解",
+    "正定矩阵",
+    "特征值与特征向量",
+    "二次型",
+    "约束优化"
+  ],
+  "question_type": "约束优化的证明与计算题",
+  "method": [
+    "拉格朗日乘子法建立驻点条件",
+    "利用Q的正交特征基做谱分解",
+    "把目标函数与约束在特征坐标下对角化后逐项比较"
+  ],
+  "solution_steps": [
+    "构造拉格朗日函数 L(x,λ)=x^TQx-λ(x^TQ^{-1}x-1)",
+    "对x求梯度并令其为零，得到驻点条件 Qx=λQ^{-1}x，等价于 Q^2x=λx",
+    "写出KKT条件：驻点条件+约束可行性 x^TQ^{-1}x=1",
+    "取Q的正交单位特征向量基，把x按此基展开，将目标函数与约束都化为对角形式",
+    "比较各特征方向对应的目标值，确定最优值为Q最小特征值的平方"
+  ],
+  "math_structure": {
+    "type": "constrained_quadratic_form_optimization",
+    "template": "minimize x^T Q x subject to x^T Q^{-1} x = 1, Q symmetric positive definite in R^{n x n}",
+    "variable_count": 1
+  },
+  "difficulty": 4,
+  "answer": [
+    {
+      "label": "(1)",
+      "steps": [
+        "构造拉格朗日函数：$L(x,\\lambda) = x^T Q x - \\lambda\\left(x^T Q^{-1} x - 1\\right)$。",
+        "对 $x$ 求梯度并令其为零：$\\nabla_x L = 2Qx - 2\\lambda Q^{-1}x = 0$，即 $Qx = \\lambda Q^{-1}x$。两边左乘 $Q$ 得到等价形式 $Q^2 x = \\lambda x$，说明 $x$ 是 $Q^2$（等价地是 $Q$）的特征向量。",
+        "因为约束是等式约束，KKT条件由驻点条件和可行性条件组成，无需符号限制：\n$$Qx=\\lambda Q^{-1}x \\ \\left(\\text{等价 } Q^2x=\\lambda x\\right), \\qquad x^T Q^{-1}x = 1, \\qquad \\lambda \\in \\mathbb{R}.$$"
+      ]
+    },
+    {
+      "label": "(2)",
+      "steps": [
+        "设 $Q$ 的特征值为 $\\mu_1,\\dots,\\mu_n>0$（因 $Q$ 正定），对应正交单位特征向量 $v_1,\\dots,v_n$。将 $x=\\sum_i c_i v_i$ 代入，则 $x^TQx=\\sum_i \\mu_i c_i^2$，$x^TQ^{-1}x=\\sum_i c_i^2/\\mu_i$。",
+        "由(1)的驻点条件 $Q^2x=\\lambda x$，最优解 $x$ 必落在 $Q$ 的某个特征方向上（若特征值不重复，只能有一个 $c_i\\neq 0$）。设该方向对应特征值 $\\mu_i$，代入约束 $c_i^2/\\mu_i=1$ 得 $c_i^2=\\mu_i$，代入目标函数得该方向的目标值为 $\\mu_i \\cdot \\mu_i = \\mu_i^2$。",
+        "对所有 $i=1,\\dots,n$ 比较 $\\mu_i^2$，最小值在最小特征值 $\\mu_{\\min}=\\lambda_{\\min}(Q)$ 处取得，因此最优值为\n$$x^TQx\\Big|_{\\min} = \\lambda_{\\min}(Q)^2.$$",
+        "验算：取 $n=1$，$Q=[a]$（$a>0$）。问题化为最小化 $ax^2$ 约束 $x^2/a=1$，即 $x^2=a$，代入目标函数得 $a\\cdot a=a^2=\\lambda_{\\min}(Q)^2$，与公式一致。"
+      ]
+    }
+  ],
+  "practice_questions": [
+    {
+      "text": "设 $Q=\\begin{pmatrix}1&0\\\\0&4\\end{pmatrix}$。考虑最小化 $x^TQx$，约束 $x^Tx=1$（即 $\\|x\\|=1$，标准 Rayleigh 商问题）。求最优值及取得最优值的方向。",
+      "knowledge_points": [
+        "Rayleigh商",
+        "特征值",
+        "拉格朗日乘子法"
+      ],
+      "question_type": "Rayleigh商最优化基础题",
+      "method": [
+        "拉格朗日乘子法",
+        "特征方程 Qx=λx"
+      ],
+      "solution_steps": [
+        "写拉格朗日函数并求驻点条件",
+        "得到特征方程Qx=λx",
+        "在各特征向量处比较目标函数值"
+      ],
+      "math_structure": {
+        "type": "rayleigh_quotient_optimization",
+        "template": "minimize x^T Q x subject to x^T x = 1",
+        "variable_count": 1
+      },
+      "difficulty": 1,
+      "estimated_minutes": 6,
+      "answer": [
+        {
+          "label": "最优值与方向",
+          "steps": [
+            "拉格朗日函数 $L=x^TQx-\\lambda(x^Tx-1)$，梯度条件 $2Qx-2\\lambda x=0$，即 $Qx=\\lambda x$，说明驻点必是Q的特征向量。",
+            "Q的特征值为1（特征向量$(1,0)^T$）和4（特征向量$(0,1)^T$）。在$(1,0)^T$处目标值为$1\\cdot1^2=1$；在$(0,1)^T$处目标值为$4\\cdot1^2=4$。",
+            "比较得最小值为1，在$x=(\\pm1,0)$处取得。验算：$x^TQx=1\\cdot1=1$，$x^Tx=1$，满足约束。"
+          ]
+        }
+      ],
+      "id": "osaka-2026-3b13bb8c2d-q01-practice-01",
+      "school": "大阪大学",
+      "year": "2026"
+    },
+    {
+      "text": "设 $A\\in\\mathbb{R}^{n\\times n}$ 为对称矩阵。写出优化问题 “最小化 $f(x)=x^TAx$，约束 $g(x)=x^Tx-1=0$” 的KKT条件，并说明该条件等价于A的特征值问题。",
+      "knowledge_points": [
+        "KKT条件",
+        "对称矩阵特征值问题",
+        "拉格朗日乘子法"
+      ],
+      "question_type": "KKT条件推导题",
+      "method": [
+        "拉格朗日乘子法"
+      ],
+      "solution_steps": [
+        "构造拉格朗日函数",
+        "求梯度驻点条件",
+        "对比标准特征方程形式"
+      ],
+      "math_structure": {
+        "type": "kkt_derivation_eigenvalue",
+        "template": "minimize x^T A x subject to x^T x = 1, A symmetric",
+        "variable_count": 1
+      },
+      "difficulty": 2,
+      "estimated_minutes": 8,
+      "answer": [
+        {
+          "label": "KKT条件",
+          "steps": [
+            "拉格朗日函数：$L(x,\\lambda)=x^TAx-\\lambda(x^Tx-1)$。",
+            "对x求梯度并令其为零：$\\nabla_xL=2Ax-2\\lambda x=0$，即 $Ax=\\lambda x$——这正是A的特征值方程，$\\lambda$是特征值。",
+            "KKT条件为：驻点条件 $Ax=\\lambda x$（即x是A的特征向量），加上可行性条件 $x^Tx=1$（x是单位特征向量），$\\lambda$无符号限制（等式约束）。因此该问题的KKT点恰好对应A的（单位化的）特征向量，目标值在驻点处等于对应特征值 $\\lambda$。"
+          ]
+        }
+      ],
+      "id": "osaka-2026-3b13bb8c2d-q01-practice-02",
+      "school": "大阪大学",
+      "year": "2026"
+    },
+    {
+      "text": "设 $Q$ 对称正定，特征值为 $\\mu_1,\\dots,\\mu_n$，对应正交单位特征向量为 $v_1,\\dots,v_n$。证明：对任意 $i$ 与任意非零标量 $c$，取 $x=cv_i$ 时比值 $\\dfrac{x^TQx}{x^TQ^{-1}x}=\\mu_i^2$，且此比值与c无关。",
+      "knowledge_points": [
+        "特征值",
+        "正定矩阵",
+        "二次型比值"
+      ],
+      "question_type": "代数恒等式证明题",
+      "method": [
+        "直接代入特征向量并计算"
+      ],
+      "solution_steps": [
+        "计算Qv_i与Q^{-1}v_i",
+        "代入x=cv_i计算两个二次型",
+        "求比值并化简"
+      ],
+      "math_structure": {
+        "type": "eigen_ratio_invariance",
+        "template": "compute (x^T Q x)/(x^T Q^{-1} x) for x = c v_i, v_i eigenvector of Q with eigenvalue mu_i",
+        "variable_count": 1
+      },
+      "difficulty": 2,
+      "estimated_minutes": 8,
+      "answer": [
+        {
+          "label": "证明",
+          "steps": [
+            "由特征向量定义：$Qv_i=\\mu_iv_i$，且 $Q^{-1}v_i=\\dfrac{1}{\\mu_i}v_i$（因为对Q特征值分解后逆矩阵的特征值为倒数）。",
+            "令 $x=cv_i$，则 $x^TQx=c^2 v_i^TQv_i=c^2\\mu_i(v_i^Tv_i)=c^2\\mu_i$（用 $v_i^Tv_i=1$）。同理 $x^TQ^{-1}x=c^2/\\mu_i$。",
+            "比值：$\\dfrac{x^TQx}{x^TQ^{-1}x}=\\dfrac{c^2\\mu_i}{c^2/\\mu_i}=\\mu_i^2$，与c无关。验算：取$\\mu_i=2,c=3$，则$x^TQx=9\\cdot2=18$，$x^TQ^{-1}x=9/2=4.5$，比值$18/4.5=4=2^2$，吻合。"
+          ]
+        }
+      ],
+      "id": "osaka-2026-3b13bb8c2d-q01-practice-03",
+      "school": "大阪大学",
+      "year": "2026"
+    },
+    {
+      "text": "设 $Q=\\mathrm{diag}(2,3,5)$。考虑与例题相同类型的问题：最小化 $x^TQx$，约束 $x^TQ^{-1}x=1$。求该问题的最优值。",
+      "knowledge_points": [
+        "特征值",
+        "对角矩阵二次型优化"
+      ],
+      "question_type": "具体数值最优化计算题",
+      "method": [
+        "套用最优值公式 λ_min(Q)^2"
+      ],
+      "solution_steps": [
+        "找出Q的最小特征值",
+        "套用公式求最优值",
+        "代入具体x验证"
+      ],
+      "math_structure": {
+        "type": "constrained_quadratic_form_optimization",
+        "template": "minimize x^T Q x subject to x^T Q^{-1} x = 1, Q = diag(2,3,5)",
+        "variable_count": 1
+      },
+      "difficulty": 3,
+      "estimated_minutes": 8,
+      "answer": [
+        {
+          "label": "最优值",
+          "steps": [
+            "Q的特征值为2,3,5（对角矩阵特征值即对角元），最小特征值 $\\mu_{\\min}=2$。",
+            "由例题结论，最优值 $=\\mu_{\\min}^2=2^2=4$。",
+            "验算：取$x=(c,0,0)$，约束$c^2/2=1\\Rightarrow c^2=2$，目标函数$2c^2=2\\cdot2=4$，与公式吻合；比较取$x=(0,c,0)$得目标值$3^2=9>4$，$x=(0,0,c)$得$5^2=25>4$，确认2方向确实给出最小值。"
+          ]
+        }
+      ],
+      "id": "osaka-2026-3b13bb8c2d-q01-practice-04",
+      "school": "大阪大学",
+      "year": "2026"
+    },
+    {
+      "text": "设 $Q=\\mathrm{diag}(3,5,7)$。求同类型问题（最小化$x^TQx$，约束$x^TQ^{-1}x=1$）的最优值，并写出取得最优值的具体 $x$（可以有正负号的不确定性）。",
+      "knowledge_points": [
+        "特征值",
+        "最优解的显式构造",
+        "对角矩阵二次型优化"
+      ],
+      "question_type": "具体数值最优化及最优解求取题",
+      "method": [
+        "套用最优值公式并回代求解向量"
+      ],
+      "solution_steps": [
+        "确定最小特征值方向",
+        "在该方向上用约束确定系数大小",
+        "写出最优值与最优解"
+      ],
+      "math_structure": {
+        "type": "constrained_quadratic_form_optimization",
+        "template": "minimize x^T Q x subject to x^T Q^{-1} x = 1, Q = diag(3,5,7)",
+        "variable_count": 1
+      },
+      "difficulty": 4,
+      "estimated_minutes": 10,
+      "answer": [
+        {
+          "label": "最优值与最优解",
+          "steps": [
+            "Q的特征值为3,5,7，最小特征值$\\mu_{\\min}=3$，对应标准基向量$e_1=(1,0,0)^T$。",
+            "最优值 $=\\mu_{\\min}^2=3^2=9$。",
+            "在方向$e_1$上设$x=(c,0,0)^T$，约束$c^2/3=1\\Rightarrow c^2=3\\Rightarrow c=\\pm\\sqrt3$。所以最优解为 $x=(\\pm\\sqrt3,0,0)^T$。",
+            "验算：目标函数$x^TQx=3c^2=3\\cdot3=9$，与公式吻合；且比较方向$e_2$（值$5^2=25$）与$e_3$（值$7^2=49$）均大于9，确认$e_1$方向为全局最小。"
+          ]
+        }
+      ],
+      "id": "osaka-2026-3b13bb8c2d-q01-practice-05",
+      "school": "大阪大学",
+      "year": "2026"
+    }
+  ],
+  "source_question": "数理基础 問2",
+  "source_pdf": "大阪大学/情报科学研究科/情报数理学/大阪大学_情报科学研究科_情报数理学_2026_数学过去问.pdf",
+  "source_type": "官方过去问",
+  "subject_category": "线性代数"
+}

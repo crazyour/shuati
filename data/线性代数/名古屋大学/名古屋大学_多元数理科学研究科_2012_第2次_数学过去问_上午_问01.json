@@ -1,0 +1,208 @@
+{
+  "id": "nagoya-2012-4aee7a88e7-q01",
+  "school": "名古屋大学",
+  "year": "2012",
+  "subject": "多元数理科学研究科_全专攻",
+  "text": "设矩阵 $$A=\\begin{pmatrix}0&1&-2\\\\1&-1&0\\\\-2&0&4\\end{pmatrix}$$，考虑其确定的线性映射 $f_A:\\mathbb{R}^3\\to\\mathbb{R}^3,\\ f_A(x)=Ax$。回答以下问题：\n(1) 求 $f_A$ 的核 $\\mathrm{Ker}f_A$ 与像 $\\mathrm{Im}f_A$ 的一组基；\n(2) 求三阶方阵 $P$，使得对任意 $x\\in\\mathrm{Ker}f_A$ 有 $Px=0$，且对任意 $x\\in\\mathrm{Im}f_A$ 有 $Px=x$。",
+  "knowledge_points": [
+    "矩阵的核与像",
+    "秩-零度定理",
+    "线性子空间的直和分解",
+    "投影矩阵的构造",
+    "正交补空间"
+  ],
+  "question_type": "线性代数计算与构造证明题",
+  "method": [
+    "行化简求核",
+    "列向量张成像空间",
+    "验证核与像正交互补",
+    "利用 $P=I-\\frac{kk^T}{k\\cdot k}$ 构造正交投影"
+  ],
+  "solution_steps": [
+    "对 $A$ 做行化简，求出秩为2，从而核为1维、像为2维",
+    "解 $Ax=0$ 得核的基向量",
+    "取 $A$ 的两个线性无关列向量作为像的基",
+    "验证核向量与像的基向量正交，从而 $\\mathbb{R}^3=\\mathrm{Ker}f_A\\oplus\\mathrm{Im}f_A$ 且为正交直和",
+    "利用正交投影公式 $P=I-\\frac{kk^T}{\\|k\\|^2}$ 求出 $P$，并验证满足条件"
+  ],
+  "math_structure": {
+    "type": "kernel_image_projection",
+    "template": "given 3x3 matrix A of rank r, find basis of Ker(A) and Im(A), then construct projection P with P|_{Ker}=0, P|_{Im}=id",
+    "variable_count": 1
+  },
+  "difficulty": 3,
+  "answer": [
+    {
+      "label": "(1)",
+      "steps": [
+        "对 $A$ 做行变换：交换第1、2行得 $\\begin{pmatrix}1&-1&0\\\\0&1&-2\\\\-2&0&4\\end{pmatrix}$，将第3行加2倍第1行得 $\\begin{pmatrix}1&-1&0\\\\0&1&-2\\\\0&-2&4\\end{pmatrix}$，再将第3行加2倍第2行得 $\\begin{pmatrix}1&-1&0\\\\0&1&-2\\\\0&0&0\\end{pmatrix}$，故 $\\mathrm{rank}(A)=2$，$\\dim\\mathrm{Ker}f_A=1$。",
+        "解 $Ax=0$：由化简后方程 $x-y=0,\\ y-2z=0$ 得 $x=y=2z$，取 $z=1$ 得核的基向量 $v_1=(2,2,1)^T$。验证：$A v_1=(0\\cdot2+1\\cdot2-2\\cdot1,\\ 1\\cdot2-1\\cdot2+0,\\ -2\\cdot2+0+4\\cdot1)^T=(0,0,0)^T$，成立。",
+        "由于 $\\mathrm{rank}(A)=2$，取 $A$ 的第1、2列 $c_1=(0,1,-2)^T,\\ c_2=(1,-1,0)^T$ 作为 $\\mathrm{Im}f_A$ 的基（第3列 $c_3=-2c_1-2c_2$，可验证 $-2c_1-2c_2=(-2,0,4)^T=c_3$，故列2线性相关，$c_1,c_2$ 线性无关且张成像空间）。"
+      ]
+    },
+    {
+      "label": "(2)",
+      "steps": [
+        "验证 $\\mathrm{Ker}f_A\\perp\\mathrm{Im}f_A$：$v_1\\cdot c_1=0\\cdot2+1\\cdot2+(-2)\\cdot1=0$；$v_1\\cdot c_2=1\\cdot2+(-1)\\cdot2+0\\cdot1=0$。故核与像正交，从而 $\\mathbb{R}^3=\\mathrm{Ker}f_A\\oplus\\mathrm{Im}f_A$（正交直和），所要求的 $P$ 即为到 $\\mathrm{Im}f_A$ 的正交投影。",
+        "正交投影到 $\\mathrm{Ker}f_A$ 的公式为 $Q=\\dfrac{v_1v_1^T}{\\|v_1\\|^2}$，其中 $\\|v_1\\|^2=4+4+1=9$，$v_1v_1^T=\\begin{pmatrix}4&4&2\\\\4&4&2\\\\2&2&1\\end{pmatrix}$，故 $Q=\\dfrac19\\begin{pmatrix}4&4&2\\\\4&4&2\\\\2&2&1\\end{pmatrix}$。",
+        "所求 $P=I-Q=\\dfrac19\\begin{pmatrix}5&-4&-2\\\\-4&5&-2\\\\-2&-2&8\\end{pmatrix}$。验证：$Pv_1=0$（直接代入验证各行乘 $(2,2,1)^T$ 均得0）；$Pc_1=(0,1,-2)^T=c_1$，$Pc_2=(1,-1,0)^T=c_2$（逐分量代入核实），满足题目条件。"
+      ]
+    }
+  ],
+  "practice_questions": [
+    {
+      "text": "求矩阵 $B=\\begin{pmatrix}1&2\\\\2&4\\end{pmatrix}$ 所定义的线性映射 $f_B:\\mathbb{R}^2\\to\\mathbb{R}^2$ 的核 $\\mathrm{Ker}f_B$ 与像 $\\mathrm{Im}f_B$ 的基。",
+      "knowledge_points": [
+        "矩阵的核",
+        "矩阵的像",
+        "秩的计算"
+      ],
+      "question_type": "基础计算题",
+      "method": [
+        "解齐次方程组",
+        "取列向量为像的基"
+      ],
+      "solution_steps": [
+        "求解 $Bx=0$",
+        "取非零列向量为像的基"
+      ],
+      "math_structure": {
+        "type": "kernel_image_basic",
+        "template": "given rank-1 2x2 matrix, find Ker and Im basis",
+        "variable_count": 1
+      },
+      "difficulty": 1,
+      "estimated_minutes": 5,
+      "answer": [
+        {
+          "label": "结果",
+          "steps": [
+            "由 $x+2y=0$ 得核为 $\\{(x,y):x=-2y\\}$，基向量取 $(-2,1)^T$。",
+            "第一列 $(1,2)^T$ 非零，第二列 $(2,4)^T=2\\times(1,2)^T$，故像为1维，基向量为 $(1,2)^T$。",
+            "验证：$B(-2,1)^T=(-2+2,-4+4)^T=(0,0)^T$，成立；$B(1,0)^T=(1,2)^T\\in\\mathrm{Im}$。"
+          ]
+        }
+      ],
+      "id": "nagoya-2012-4aee7a88e7-q01-practice-01",
+      "school": "名古屋大学",
+      "year": "2012"
+    },
+    {
+      "text": "对上题矩阵 $B$，判断 $\\mathrm{Ker}f_B$ 与 $\\mathrm{Im}f_B$ 是否正交，并说明 $\\mathbb{R}^2$ 能否分解为二者的（正交）直和。",
+      "knowledge_points": [
+        "子空间正交性",
+        "直和分解"
+      ],
+      "question_type": "概念判断题",
+      "method": [
+        "计算内积判断正交",
+        "维数相加判断直和"
+      ],
+      "solution_steps": [
+        "计算核基与像基的内积",
+        "结合维数判断是否构成直和"
+      ],
+      "math_structure": {
+        "type": "orthogonal_complement_check",
+        "template": "check orthogonality between Ker and Im of a given matrix",
+        "variable_count": 1
+      },
+      "difficulty": 2,
+      "estimated_minutes": 6,
+      "answer": [
+        {
+          "label": "结果",
+          "steps": [
+            "核基 $(-2,1)^T$，像基 $(1,2)^T$，内积为 $-2\\times1+1\\times2=0$，故正交。",
+            "维数：$\\dim\\mathrm{Ker}=1,\\dim\\mathrm{Im}=1$，和为2，等于 $\\dim\\mathbb{R}^2$，且正交，故 $\\mathbb{R}^2=\\mathrm{Ker}f_B\\oplus\\mathrm{Im}f_B$（正交直和）。"
+          ]
+        }
+      ],
+      "id": "nagoya-2012-4aee7a88e7-q01-practice-02",
+      "school": "名古屋大学",
+      "year": "2012"
+    },
+    {
+      "text": "设 $k=(1,1,1)^T\\in\\mathbb{R}^3$，求到直线 $\\mathrm{span}\\{k\\}$ 的正交投影矩阵 $Q$，并求到其正交补平面的投影矩阵 $P=I-Q$。",
+      "knowledge_points": [
+        "正交投影公式",
+        "正交补空间"
+      ],
+      "question_type": "构造计算题",
+      "method": [
+        "利用 $Q=\\frac{kk^T}{\\|k\\|^2}$ 公式"
+      ],
+      "solution_steps": [
+        "计算 $\\|k\\|^2$",
+        "计算 $kk^T$",
+        "求出 $Q$ 与 $P=I-Q$"
+      ],
+      "math_structure": {
+        "type": "orthogonal_projection_formula",
+        "template": "given vector $k\\in\\mathbb{R}^3$, compute $Q=kk^T/\\|k\\|^2$ and $P=I-Q$",
+        "variable_count": 1
+      },
+      "difficulty": 2,
+      "estimated_minutes": 6,
+      "answer": [
+        {
+          "label": "结果",
+          "steps": [
+            "$\\|k\\|^2=1+1+1=3$。",
+            "$kk^T=\\begin{pmatrix}1&1&1\\\\1&1&1\\\\1&1&1\\end{pmatrix}$，故 $Q=\\dfrac13\\begin{pmatrix}1&1&1\\\\1&1&1\\\\1&1&1\\end{pmatrix}$。",
+            "$P=I-Q=\\dfrac13\\begin{pmatrix}2&-1&-1\\\\-1&2&-1\\\\-1&-1&2\\end{pmatrix}$，验证 $Pk=0$（各行元素和为0），且 $P$ 对正交于 $k$ 的向量作用为恒等（可取 $(1,-1,0)^T$ 验证 $P(1,-1,0)^T=(1,-1,0)^T$）。"
+          ]
+        }
+      ],
+      "id": "nagoya-2012-4aee7a88e7-q01-practice-03",
+      "school": "名古屋大学",
+      "year": "2012"
+    },
+    {
+      "text": "设三阶矩阵 $C=\\begin{pmatrix}1&1&0\\\\1&1&0\\\\0&0&2\\end{pmatrix}$，求 $\\mathrm{Ker}f_C$ 与 $\\mathrm{Im}f_C$ 的基，并判断二者是否正交互补，若是则构造满足 $Px=0\\,(x\\in\\mathrm{Ker})$，$Px=x\\,(x\\in\\mathrm{Im})$ 的矩阵 $P$。",
+      "knowledge_points": [
+        "核像计算",
+        "正交互补判断",
+        "投影矩阵构造"
+      ],
+      "question_type": "综合计算题（原题同型简化版）",
+      "method": [
+        "行化简求核",
+        "列向量法求像",
+        "正交性验证",
+        "投影公式"
+      ],
+      "solution_steps": [
+        "求核基",
+        "求像基",
+        "验证正交性",
+        "构造投影矩阵并验证"
+      ],
+      "math_structure": {
+        "type": "kernel_image_projection",
+        "template": "given 3x3 matrix with rank 2, repeat the full procedure of the original problem with smaller numbers",
+        "variable_count": 1
+      },
+      "difficulty": 3,
+      "estimated_minutes": 12,
+      "answer": [
+        {
+          "label": "结果",
+          "steps": [
+            "解 $Cx=0$：由 $x+y=0,2z=0$ 得核基 $(1,-1,0)^T$。",
+            "秩为2，取列 $(1,1,0)^T,(0,0,2)^T$（或化简为 $(0,0,1)^T$）为像的基，即 $\\mathrm{Im}f_C=\\mathrm{span}\\{(1,1,0)^T,(0,0,1)^T\\}$。",
+            "验证核基与像基正交：$(1,-1,0)\\cdot(1,1,0)=0$，$(1,-1,0)\\cdot(0,0,1)=0$，正交。",
+            "用 $Q=\\dfrac{kk^T}{\\|k\\|^2}$，$k=(1,-1,0)^T,\\|k\\|^2=2$，$Q=\\dfrac12\\begin{pmatrix}1&-1&0\\\\-1&1&0\\\\0&0&0\\end{pmatrix}$，故 $P=I-Q=\\dfrac12\\begin{pmatrix}1&1&0\\\\1&1&0\\\\0&0&2\\end{pmatrix}$，验证 $Pk=0$，$P(1,1,0)^T=(1,1,0)^T$，$P(0,0,1)^T=(0,0,1)^T$，满足要求。"
+          ]
+        }
+      ],
+      "id": "nagoya-2012-4aee7a88e7-q01-practice-04",
+      "school": "名古屋大学",
+      "year": "2012"
+    }
+  ],
+  "source_question": "1",
+  "source_pdf": "名古屋大学/多元数理科学研究科/全专攻/名古屋大学_多元数理科学研究科_2012_第2次_数学过去问_上午.pdf",
+  "source_type": "官方过去问",
+  "subject_category": "线性代数"
+}

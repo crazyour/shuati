@@ -1,0 +1,218 @@
+{
+  "id": "isct-2022-97180ef183-q02",
+  "school": "东京科学大学",
+  "year": "2022",
+  "subject": "理工学系_数学系",
+  "text": "设 $n$ 为正整数，$a,b$ 为正实数，$x$ 为不定元。定义 $n$ 次多项式 $D_n(x;a,b)$ 如下：$$D_1(x;a,b)=x,$$ 当 $n\\ge2$ 时，$$D_n(x;a,b)=\\det\\begin{pmatrix}x&a&0&0&\\cdots&0\\\\b&x&a&0&\\cdots&0\\\\0&b&x&a&\\cdots&0\\\\ \\vdots& &\\ddots&\\ddots&\\ddots&\\vdots\\\\0&\\cdots&0&b&x&a\\\\0&\\cdots&0&0&b&x\\end{pmatrix},$$ 即：对 $1\\le i\\le n$，$(i,i)$ 元为 $x$；对 $1\\le i<n$，$(i,i+1)$ 元为 $a$；对 $1\\le i<n$，$(i+1,i)$ 元为 $b$；其余元素均为 $0$ 的 $n$ 阶方阵的行列式。\n(1) 求 $D_n(-2;1,1)$。\n(2) 证明 $D_n(x;a,b)=D_n(x;ab,1)$。\n(3) 证明 $D_n(x;a,b)$ 可分解为如下一次式之积：$$D_n(x;a,b)=\\prod_{k=1}^n\\left(x-2\\sqrt{ab}\\cos\\frac{\\pi k}{n+1}\\right),$$ 其中 $\\sqrt{ab}$ 表示 $ab$ 的正平方根。",
+  "knowledge_points": [
+    "三对角矩阵行列式",
+    "三项递推关系",
+    "特征方程重根",
+    "切比雪夫多项式（第二类）",
+    "多项式的根与因式分解"
+  ],
+  "question_type": "行列式计算与多项式因式分解证明题",
+  "method": [
+    "沿最后一行/列展开得三项递推式",
+    "求解常系数线性递推的特征方程",
+    "三角替换 $x=2\\sqrt{c}\\cos\\theta$ 与第二类切比雪夫多项式恒等式",
+    "利用多项式次数与首项系数确定根的完全性"
+  ],
+  "solution_steps": [
+    "按最后一行展开行列式，得递推关系 $D_n(x;a,b)=x D_{n-1}(x;a,b)-ab\\,D_{n-2}(x;a,b)$，初值 $D_0=1,D_1=x$。",
+    "第(1)问代入 $a=b=1,x=-2$：递推变为 $D_n=-2D_{n-1}-D_{n-2}$，特征方程 $t^2+2t+1=0$ 有重根 $t=-1$，通解 $D_n=(A+Bn)(-1)^n$，代入初值求出 $A,B$。",
+    "第(2)问：注意递推关系仅通过乘积 $ab$ 出现，且初值 $D_0,D_1$ 与 $a,b$ 无关，故由归纳法 $D_n(x;a,b)$ 只依赖于乘积 $ab$，从而等于 $D_n(x;ab,1)$。",
+    "第(3)问：先证明对 $c>0$，令 $x=2\\sqrt c\\cos\\theta$，则 $D_n(x;c,1)=c^{n/2}\\dfrac{\\sin((n+1)\\theta)}{\\sin\\theta}$ 满足同一递推与初值，从而恒等；再由 $\\sin((n+1)\\theta)=0$ 且 $\\theta\\in(0,\\pi)$ 得到 $n$ 个不同的根 $\\theta_k=k\\pi/(n+1)$，$k=1,\\dots,n$，对应 $x_k=2\\sqrt c\\cos(k\\pi/(n+1))$，结合首项系数为 $1$ 得到完全因式分解；最后利用(2)将 $c$ 换为 $ab$ 得到结论。"
+  ],
+  "math_structure": {
+    "type": "tridiagonal_determinant_chebyshev_factorization",
+    "template": "定义 $D_n(x;a,b)$ 为三对角矩阵（对角线 $x$，上次对角线 $a$，下次对角线 $b$）的行列式，求特定数值及一般因式分解 $D_n(x;a,b)=\\prod_{k=1}^n(x-2\\sqrt{ab}\\cos(k\\pi/(n+1)))$。",
+    "variable_count": 4
+  },
+  "difficulty": 4,
+  "answer": [
+    {
+      "label": "(1)",
+      "steps": [
+        "先建立递推关系：按最后一行展开 $n$ 阶行列式 $D_n(x;a,b)$，得 $D_n=x\\,D_{n-1}-ab\\,D_{n-2}$（$D_0:=1$，$D_1=x$），此递推对一切 $a,b>0$ 成立。",
+        "代入 $a=b=1,x=-2$：递推为 $D_n=-2D_{n-1}-D_{n-2}$，特征方程 $t^2+2t+1=(t+1)^2=0$，有二重根 $t=-1$，故通解形式为 $D_n=(A+Bn)(-1)^n$。",
+        "由初值 $D_0=1$：$A=1$；由 $D_1=-2$：$(A+B)(-1)=-2\\Rightarrow A+B=2\\Rightarrow B=1$，故 $D_n(-2;1,1)=(n+1)(-1)^n$。",
+        "验算：$D_2=-2D_1-D_0=-2(-2)-1=3$，公式给出 $(2+1)(-1)^2=3$，一致，结论正确。"
+      ]
+    },
+    {
+      "label": "(2)",
+      "steps": [
+        "由(1)中建立的递推关系 $D_n(x;a,b)=x D_{n-1}(x;a,b)-ab\\,D_{n-2}(x;a,b)$ 可见，递推系数只依赖于乘积 $ab$，而与 $a,b$ 单独的取值无关。",
+        "初值 $D_0(x;a,b)=1,\\ D_1(x;a,b)=x$ 均不含 $a,b$，故与 $D_0(x;ab,1)=1,\\ D_1(x;ab,1)=x$ 相同。",
+        "对 $D_n(x;ab,1)$ 同样有递推 $D_n(x;ab,1)=x D_{n-1}(x;ab,1)-(ab\\cdot1)D_{n-2}(x;ab,1)=xD_{n-1}(x;ab,1)-ab\\,D_{n-2}(x;ab,1)$，与 $D_n(x;a,b)$ 满足完全相同的递推式和初值。",
+        "由数学归纳法，两数列逐项相等，即 $D_n(x;a,b)=D_n(x;ab,1)$ 对一切 $n\\ge0$ 成立。"
+      ]
+    },
+    {
+      "label": "(3)",
+      "steps": [
+        "由(2)，只需证明 $D_n(x;c,1)=\\prod_{k=1}^n(x-2\\sqrt c\\cos(k\\pi/(n+1)))$，其中 $c=ab>0$，再代入即得原结论。",
+        "对 $x=2\\sqrt c\\cos\\theta$（$\\theta\\in(0,\\pi)$），令 $E_n(\\theta)=c^{n/2}\\dfrac{\\sin((n+1)\\theta)}{\\sin\\theta}$，验证其满足递推 $E_n=xE_{n-1}-cE_{n-2}$：利用三角恒等式 $2\\cos\\theta\\sin(n\\theta)=\\sin((n+1)\\theta)+\\sin((n-1)\\theta)$，计算 $xE_{n-1}-cE_{n-2}=c^{n/2}\\dfrac{2\\cos\\theta\\sin(n\\theta)-\\sin((n-1)\\theta)}{\\sin\\theta}=c^{n/2}\\dfrac{\\sin((n+1)\\theta)}{\\sin\\theta}=E_n$，且初值 $E_0=1,E_1=2\\sqrt c\\cos\\theta=x$ 与 $D_0,D_1$ 一致，故 $D_n(x;c,1)=E_n(\\theta)$（作为关于 $x$ 的多项式恒等式）。",
+        "求根：$D_n(x;c,1)=0\\iff\\sin((n+1)\\theta)=0\\iff\\theta=\\dfrac{k\\pi}{n+1}$，取 $k=1,\\dots,n$（$k=0,n+1$ 使 $\\sin\\theta=0$，需排除，此时极限值仍等于 $D_n$ 但对应 $x=\\pm2\\sqrt c$ 边界，经检验 $k=1,\\dots,n$ 恰给出 $n$ 个互不相同的 $\\theta$ 值，从而 $n$ 个互不相同的 $x_k=2\\sqrt c\\cos(k\\pi/(n+1))$）。",
+        "由递推关系及归纳可知 $D_n(x;c,1)$ 是关于 $x$ 的首项系数为 $1$ 的 $n$ 次多项式（由 $D_n=xD_{n-1}-cD_{n-2}$，最高次项来自 $x\\cdot x^{n-1}=x^n$），恰有 $n$ 个根 $x_1,\\dots,x_n$（重数计入），已找到 $n$ 个互异根，故 $D_n(x;c,1)=\\prod_{k=1}^n(x-x_k)=\\prod_{k=1}^n\\left(x-2\\sqrt c\\cos\\frac{k\\pi}{n+1}\\right)$。",
+        "代入 $c=ab$ 并结合(2)，得 $D_n(x;a,b)=D_n(x;ab,1)=\\prod_{k=1}^n\\left(x-2\\sqrt{ab}\\cos\\dfrac{k\\pi}{n+1}\\right)$，证毕。"
+      ]
+    }
+  ],
+  "practice_questions": [
+    {
+      "text": "设 $E_n$ 满足递推 $E_n=xE_{n-1}-E_{n-2}$，$E_0=1,E_1=x$（即 $a=b=1$ 的情形）。求 $E_n(2)$ 的值，即求 $D_n(2;1,1)$。",
+      "knowledge_points": [
+        "三项递推",
+        "特征方程",
+        "重根情形"
+      ],
+      "question_type": "递推数列求值",
+      "method": [
+        "特征方程求通解"
+      ],
+      "solution_steps": [
+        "写出递推的特征方程",
+        "求通解形式",
+        "代入初值确定系数"
+      ],
+      "math_structure": {
+        "type": "linear_recurrence_double_root",
+        "template": "求满足 $E_n=xE_{n-1}-E_{n-2}$，$x=2$ 时的通项",
+        "variable_count": 1
+      },
+      "difficulty": 2,
+      "estimated_minutes": 8,
+      "answer": [
+        {
+          "label": "求值",
+          "steps": [
+            "递推为 $E_n=2E_{n-1}-E_{n-2}$，特征方程 $t^2-2t+1=(t-1)^2=0$，重根 $t=1$，通解 $E_n=A+Bn$。",
+            "由 $E_0=1$ 得 $A=1$；由 $E_1=2$ 得 $A+B=2\\Rightarrow B=1$，故 $E_n=1+n=n+1$。",
+            "验算 $E_2=2E_1-E_0=2\\cdot2-1=3$，公式给出 $2+1=3$，一致，故 $D_n(2;1,1)=n+1$。"
+          ]
+        }
+      ],
+      "id": "isct-2022-97180ef183-q02-practice-01",
+      "school": "东京科学大学",
+      "year": "2022"
+    },
+    {
+      "text": "利用递推关系 $D_n(x;a,b)=xD_{n-1}(x;a,b)-ab\\,D_{n-2}(x;a,b)$（$D_0=1,D_1=x$），直接证明 $D_n(x;a,b)$ 只依赖于乘积 $ab$，而不直接依赖于 $a,b$ 各自的值（不使用行列式定义，只用递推与初值）。",
+      "knowledge_points": [
+        "递推关系",
+        "数学归纳法",
+        "多项式的确定性"
+      ],
+      "question_type": "归纳证明题",
+      "method": [
+        "数学归纳法"
+      ],
+      "solution_steps": [
+        "设 $ab=a'b'=c$，证明对应数列相等"
+      ],
+      "math_structure": {
+        "type": "recurrence_depends_on_product",
+        "template": "证明满足相同递推系数（仅依赖乘积 $ab$）与相同初值的数列相等",
+        "variable_count": 2
+      },
+      "difficulty": 2,
+      "estimated_minutes": 8,
+      "answer": [
+        {
+          "label": "证明",
+          "steps": [
+            "设 $a,b,a',b'>0$ 满足 $ab=a'b'=c$。两数列 $D_n(x;a,b)$ 与 $D_n(x;a',b')$ 均满足递推 $D_n=xD_{n-1}-cD_{n-2}$，且初值均为 $D_0=1,D_1=x$。",
+            "用数学归纳法：假设 $D_{n-1}(x;a,b)=D_{n-1}(x;a',b')$ 及 $D_{n-2}(x;a,b)=D_{n-2}(x;a',b')$，则 $D_n(x;a,b)=xD_{n-1}(x;a,b)-cD_{n-2}(x;a,b)=xD_{n-1}(x;a',b')-cD_{n-2}(x;a',b')=D_n(x;a',b')$。",
+            "结合基础情形 $n=0,1$ 已相等，归纳完成，故 $D_n(x;a,b)$ 仅依赖于乘积 $ab$。"
+          ]
+        }
+      ],
+      "id": "isct-2022-97180ef183-q02-practice-02",
+      "school": "东京科学大学",
+      "year": "2022"
+    },
+    {
+      "text": "利用三角替换 $x=2\\sqrt c\\cos\\theta$（$c>0$），验证 $E_n(\\theta)=c^{n/2}\\sin((n+1)\\theta)/\\sin\\theta$ 满足递推 $E_n=xE_{n-1}-cE_{n-2}$，并求 $E_0,E_1$。",
+      "knowledge_points": [
+        "切比雪夫多项式（第二类）",
+        "三角恒等式",
+        "递推验证"
+      ],
+      "question_type": "恒等式验证题",
+      "method": [
+        "三角恒等式 $2\\cos\\theta\\sin(n\\theta)=\\sin((n+1)\\theta)+\\sin((n-1)\\theta)$"
+      ],
+      "solution_steps": [
+        "代入递推左右两边",
+        "使用积化和差公式化简",
+        "对比初值"
+      ],
+      "math_structure": {
+        "type": "chebyshev_second_kind_recurrence",
+        "template": "验证 $E_n(\\theta)=c^{n/2}\\sin((n+1)\\theta)/\\sin\\theta$ 满足三项递推 $E_n=2\\sqrt c\\cos\\theta\\,E_{n-1}-cE_{n-2}$",
+        "variable_count": 1
+      },
+      "difficulty": 3,
+      "estimated_minutes": 12,
+      "answer": [
+        {
+          "label": "验证",
+          "steps": [
+            "计算 $xE_{n-1}-cE_{n-2}=2\\sqrt c\\cos\\theta\\cdot c^{(n-1)/2}\\dfrac{\\sin(n\\theta)}{\\sin\\theta}-c\\cdot c^{(n-2)/2}\\dfrac{\\sin((n-1)\\theta)}{\\sin\\theta}=c^{n/2}\\dfrac{2\\cos\\theta\\sin(n\\theta)-\\sin((n-1)\\theta)}{\\sin\\theta}$。",
+            "利用恒等式 $2\\cos\\theta\\sin(n\\theta)=\\sin((n+1)\\theta)+\\sin((n-1)\\theta)$，分子化简为 $\\sin((n+1)\\theta)+\\sin((n-1)\\theta)-\\sin((n-1)\\theta)=\\sin((n+1)\\theta)$。",
+            "故 $xE_{n-1}-cE_{n-2}=c^{n/2}\\sin((n+1)\\theta)/\\sin\\theta=E_n$，递推成立。",
+            "初值：$E_0=c^0\\sin\\theta/\\sin\\theta=1$；$E_1=c^{1/2}\\sin(2\\theta)/\\sin\\theta=c^{1/2}\\cdot2\\cos\\theta=2\\sqrt c\\cos\\theta=x$，与 $D_0=1,D_1=x$ 一致。"
+          ]
+        }
+      ],
+      "id": "isct-2022-97180ef183-q02-practice-03",
+      "school": "东京科学大学",
+      "year": "2022"
+    },
+    {
+      "text": "求 $D_3(x;a,b)$ 的显式多项式表达（用 $x,a,b$ 表示），并验证其根为 $2\\sqrt{ab}\\cos(k\\pi/4)$，$k=1,2,3$。",
+      "knowledge_points": [
+        "三阶行列式展开",
+        "递推计算",
+        "根的验证"
+      ],
+      "question_type": "具体计算验证题",
+      "method": [
+        "递推直接计算",
+        "代入验证根"
+      ],
+      "solution_steps": [
+        "用递推求 $D_2,D_3$",
+        "展开为 $x$ 的多项式",
+        "代入 $k=1,2,3$ 验证是根"
+      ],
+      "math_structure": {
+        "type": "explicit_low_order_tridiagonal_determinant",
+        "template": "用递推求 $D_3(x;a,b)$ 并验证因式分解公式对 $n=3$ 的情形",
+        "variable_count": 2
+      },
+      "difficulty": 3,
+      "estimated_minutes": 12,
+      "answer": [
+        {
+          "label": "计算与验证",
+          "steps": [
+            "由递推：$D_2=xD_1-abD_0=x^2-ab$；$D_3=xD_2-abD_1=x(x^2-ab)-abx=x^3-2abx$。",
+            "分解：$D_3=x(x^2-2ab)=x(x-\\sqrt{2ab})(x+\\sqrt{2ab})$，即根为 $0,\\pm\\sqrt{2ab}$。",
+            "公式给出的根为 $2\\sqrt{ab}\\cos(k\\pi/4)$，$k=1,2,3$：$k=1$时 $2\\sqrt{ab}\\cos(\\pi/4)=2\\sqrt{ab}\\cdot\\frac{\\sqrt2}{2}=\\sqrt{2ab}$；$k=2$时 $2\\sqrt{ab}\\cos(\\pi/2)=0$；$k=3$时 $2\\sqrt{ab}\\cos(3\\pi/4)=-\\sqrt{2ab}$。",
+            "三个值恰为 $\\sqrt{2ab},0,-\\sqrt{2ab}$，与直接展开所得根 $0,\\pm\\sqrt{2ab}$ 完全一致，验证公式在 $n=3$ 时成立。"
+          ]
+        }
+      ],
+      "id": "isct-2022-97180ef183-q02-practice-04",
+      "school": "东京科学大学",
+      "year": "2022"
+    }
+  ],
+  "source_question": "問2（午前）",
+  "source_pdf": "东京科学大学/理工学系/数学系/东京科学大学_理工学系_数学系_2022_数学过去问.pdf",
+  "source_type": "官方过去问",
+  "subject_category": "线性代数"
+}

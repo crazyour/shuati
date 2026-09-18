@@ -1,0 +1,208 @@
+{
+  "id": "nagoya-2012-666b0fa46a-q01",
+  "school": "名古屋大学",
+  "year": "2012",
+  "subject": "多元数理科学研究科_全专攻",
+  "text": "设自然数 $n \\ge 2$，用 $M_n(\\mathbb{C})$ 表示全体 $n$ 次复方阵构成的集合。\n\n(1) 设 $D \\in M_n(\\mathbb{C})$ 是对角成分两两不同的对角矩阵。证明：满足 $DX=XD$ 的矩阵 $X \\in M_n(\\mathbb{C})$ 必为对角矩阵。\n\n(2) 设 $A \\in M_n(\\mathbb{C})$ 具有 $n$ 个两两不同的特征值。求方程 $X^m=A$（$m$ 为不小于 2 的自然数，$X \\in M_n(\\mathbb{C})$）的解的个数。",
+  "knowledge_points": [
+    "对角矩阵",
+    "矩阵可交换性",
+    "矩阵对角化",
+    "特征值",
+    "矩阵方程的根",
+    "复数的 m 次方根"
+  ],
+  "question_type": "证明与计数（矩阵方程解的个数）",
+  "method": [
+    "利用对角矩阵元素比较法证明交换矩阵为对角矩阵",
+    "利用相似变换把矩阵方程化为对角情形",
+    "利用复数 m 次方根个数计数"
+  ],
+  "solution_steps": [
+    "设 $D=\\mathrm{diag}(d_1,\\dots,d_n)$，$d_i$ 两两不同，比较 $DX=XD$ 的 $(i,j)$ 元得 $(d_i-d_j)X_{ij}=0$，从而当 $i\\ne j$ 时 $X_{ij}=0$，即 $X$ 对角",
+    "由 $A$ 有 $n$ 个不同特征值，$A$ 可对角化：$A=PDP^{-1}$，$D$ 对角且对角元两两不同",
+    "令 $Y=P^{-1}XP$，则 $X^m=A \\iff Y^m=D$，且 $Y$ 与 $D$ 一一对应到 $X$",
+    "因为 $Y$ 与 $Y^m=D$ 显然可交换，即 $YD=DY$，由 (1) 得 $Y$ 必为对角矩阵",
+    "设 $Y=\\mathrm{diag}(y_1,\\dots,y_n)$，则需 $y_i^m=\\lambda_i$（$\\lambda_i$ 为 $D$ 的对角元，即 $A$ 的特征值）",
+    "对每个 $i$：若 $\\lambda_i\\ne 0$，方程 $y_i^m=\\lambda_i$ 有恰好 $m$ 个复数解；若 $\\lambda_i=0$，则唯一解 $y_i=0$（因 $m\\ge2$）",
+    "由于 $A$ 的 $n$ 个特征值两两不同，至多有一个为零，故统计所有 $Y$ 的个数并利用 $X=PYP^{-1}$ 是一一对应得出总解数"
+  ],
+  "math_structure": {
+    "type": "matrix_root_equation",
+    "template": "given $A \\in M_n(\\mathbb{C})$ with $n$ distinct eigenvalues, count solutions $X$ of $X^m = A$",
+    "variable_count": 2
+  },
+  "difficulty": 4,
+  "answer": [
+    {
+      "label": "(1)",
+      "steps": [
+        "设 $D=\\mathrm{diag}(d_1,\\dots,d_n)$，其中 $d_1,\\dots,d_n$ 两两不同。设 $X=(X_{ij})$ 为满足 $DX=XD$ 的矩阵",
+        "直接计算：$(DX)_{ij}=d_iX_{ij}$，$(XD)_{ij}=X_{ij}d_j$，故 $DX=XD$ 等价于对所有 $i,j$ 有 $(d_i-d_j)X_{ij}=0$",
+        "当 $i\\ne j$ 时，由 $d_i\\ne d_j$ 得 $d_i-d_j\\ne0$，故必有 $X_{ij}=0$",
+        "因此 $X$ 的所有非对角元均为零，即 $X$ 是对角矩阵，证毕"
+      ]
+    },
+    {
+      "label": "(2)",
+      "steps": [
+        "因为 $A$ 有 $n$ 个两两不同的特征值，故 $A$ 可对角化，存在可逆矩阵 $P$ 使 $A=PDP^{-1}$，其中 $D=\\mathrm{diag}(\\lambda_1,\\dots,\\lambda_n)$，$\\lambda_i$ 两两不同",
+        "对任意 $X\\in M_n(\\mathbb{C})$，令 $Y=P^{-1}XP$，则 $X=PYP^{-1}$，且 $X^m=A \\iff (PYP^{-1})^m=PDP^{-1} \\iff PY^mP^{-1}=PDP^{-1} \\iff Y^m=D$。这是 $X\\leftrightarrow Y$ 的一一对应，故只需数 $Y$ 的个数",
+        "因为 $Y\\cdot Y^m=Y^m\\cdot Y$ 恒成立，且 $Y^m=D$，所以 $YD=DY$。由 (1)，$D$ 对角元两两不同，故 $Y$ 必为对角矩阵",
+        "设 $Y=\\mathrm{diag}(y_1,\\dots,y_n)$，则 $Y^m=D$ 等价于对每个 $i$，$y_i^m=\\lambda_i$",
+        "若 $\\lambda_i\\ne0$，方程 $y_i^m=\\lambda_i$（在 $\\mathbb{C}$ 中）恰有 $m$ 个不同解（$m$ 次方根）；若 $\\lambda_i=0$，则唯一解 $y_i=0$（因 $m\\ge2$，$y^m=0\\Rightarrow y=0$）",
+        "由于 $\\lambda_1,\\dots,\\lambda_n$ 两两不同，故其中至多一个等于 $0$。设 $A$ 可逆（即 $0$ 不是特征值），则所有 $n$ 个方程各有 $m$ 个解，总解数为 $m^n$；若 $A$ 不可逆（恰有一个特征值为 $0$），则该分量唯一，其余 $n-1$ 个各有 $m$ 个解，总解数为 $m^{n-1}$",
+        "结论：$X^m=A$ 的解的个数为 $m^n$（当 $A$ 可逆时）或 $m^{n-1}$（当 $A$ 不可逆，即 $0$ 恰为 $A$ 的一个特征值时）"
+      ]
+    }
+  ],
+  "practice_questions": [
+    {
+      "text": "设 $D=\\mathrm{diag}(1,2,3) \\in M_3(\\mathbb{C})$。证明满足 $DX=XD$ 的矩阵 $X$ 必为对角矩阵，并直接验证若 $X=\\mathrm{diag}(x_1,x_2,x_3)$ 则 $DX=XD$ 自动成立。",
+      "knowledge_points": [
+        "对角矩阵",
+        "矩阵可交换性"
+      ],
+      "question_type": "证明题",
+      "method": [
+        "逐项比较矩阵元素"
+      ],
+      "solution_steps": [
+        "比较 $(DX)_{ij}$ 与 $(XD)_{ij}$",
+        "利用对角元两两不同得非对角元为零"
+      ],
+      "math_structure": {
+        "type": "commuting_diagonal_matrix",
+        "template": "given diagonal $D$ with distinct entries, show $DX=XD \\Rightarrow X$ diagonal",
+        "variable_count": 1
+      },
+      "difficulty": 2,
+      "estimated_minutes": 8,
+      "answer": [
+        {
+          "label": "证明",
+          "steps": [
+            "设 $X=(X_{ij})_{1\\le i,j\\le3}$，直接计算 $(DX)_{ij}=d_iX_{ij}$，$(XD)_{ij}=X_{ij}d_j$，其中 $d_1=1,d_2=2,d_3=3$",
+            "由 $DX=XD$ 得 $(d_i-d_j)X_{ij}=0$，当 $i\\ne j$ 时 $d_i\\ne d_j$，故 $X_{ij}=0$",
+            "因此 $X$ 只有对角元非零，即 $X$ 为对角矩阵；反之若 $X=\\mathrm{diag}(x_1,x_2,x_3)$，则 $DX=\\mathrm{diag}(d_1x_1,d_2x_2,d_3x_3)=XD$，验证成立"
+          ]
+        }
+      ],
+      "id": "nagoya-2012-666b0fa46a-q01-practice-01",
+      "school": "名古屋大学",
+      "year": "2012"
+    },
+    {
+      "text": "设 $A\\in M_n(\\mathbb{C})$ 有 $n$ 个两两不同的特征值，$X\\in M_n(\\mathbb{C})$ 满足 $AX=XA$。证明存在可逆矩阵 $P$ 使 $A=PDP^{-1}$（$D$ 对角），且在该基下 $X$ 也表示为对角矩阵 $P^{-1}XP$。",
+      "knowledge_points": [
+        "矩阵对角化",
+        "矩阵可交换性",
+        "特征值"
+      ],
+      "method": [
+        "对角化",
+        "利用第(1)小题结论"
+      ],
+      "solution_steps": [
+        "对角化 $A$",
+        "换基后应用交换矩阵为对角的结论"
+      ],
+      "math_structure": {
+        "type": "simultaneous_diagonalization",
+        "template": "given $A$ diagonalizable with distinct eigenvalues and $AX=XA$, show $X$ diagonal in eigenbasis of $A$",
+        "variable_count": 1
+      },
+      "difficulty": 3,
+      "estimated_minutes": 10,
+      "answer": [
+        {
+          "label": "证明",
+          "steps": [
+            "因 $A$ 有 $n$ 个不同特征值，$A$ 可对角化：$A=PDP^{-1}$，$D$ 对角元两两不同",
+            "由 $AX=XA$ 得 $PDP^{-1}X=XPDP^{-1}$，两边左乘 $P^{-1}$，右乘 $P$，得 $D(P^{-1}XP)=(P^{-1}XP)D$",
+            "令 $Y=P^{-1}XP$，则 $DY=YD$，由前一小题结论（$D$ 对角元两两不同）知 $Y$ 必为对角矩阵，即 $P^{-1}XP$ 为对角矩阵"
+          ]
+        }
+      ],
+      "id": "nagoya-2012-666b0fa46a-q01-practice-02",
+      "school": "名古屋大学",
+      "year": "2012"
+    },
+    {
+      "text": "设 $A=\\mathrm{diag}(4,9)\\in M_2(\\mathbb{C})$（特征值不同）。求方程 $X^2=A$（$X\\in M_2(\\mathbb{C})$）的解的个数，并写出所有解。",
+      "knowledge_points": [
+        "矩阵平方根",
+        "对角矩阵",
+        "复数平方根"
+      ],
+      "method": [
+        "利用对角化和平方根计数"
+      ],
+      "solution_steps": [
+        "说明 $X$ 必为对角矩阵",
+        "对每个对角元求平方根",
+        "列出所有解"
+      ],
+      "math_structure": {
+        "type": "matrix_square_root_diagonal",
+        "template": "solve $X^2 = \\mathrm{diag}(\\lambda_1,\\lambda_2)$ with $\\lambda_1\\ne\\lambda_2$ nonzero",
+        "variable_count": 2
+      },
+      "difficulty": 2,
+      "estimated_minutes": 8,
+      "answer": [
+        {
+          "label": "求解",
+          "steps": [
+            "由于 $A$ 已是对角矩阵且对角元 $4,9$ 不同，若 $X^2=A$，则 $X$ 与 $X^2=A$ 交换，从而 $X$ 与 $A$ 交换，由结论知 $X$ 必为对角矩阵",
+            "设 $X=\\mathrm{diag}(x_1,x_2)$，则需 $x_1^2=4,\\ x_2^2=9$，分别有解 $x_1=\\pm2,\\ x_2=\\pm3$",
+            "共有 $2\\times2=4$ 个解：$\\mathrm{diag}(2,3),\\mathrm{diag}(2,-3),\\mathrm{diag}(-2,3),\\mathrm{diag}(-2,-3)$"
+          ]
+        }
+      ],
+      "id": "nagoya-2012-666b0fa46a-q01-practice-03",
+      "school": "名古屋大学",
+      "year": "2012"
+    },
+    {
+      "text": "设 $A\\in M_3(\\mathbb{C})$ 有三个两两不同的特征值 $0,\\lambda_2,\\lambda_3$（$\\lambda_2,\\lambda_3\\ne0$）。求方程 $X^3=A$ 的解的个数。",
+      "knowledge_points": [
+        "矩阵方程",
+        "特征值为零的情形",
+        "复数 m 次方根"
+      ],
+      "method": [
+        "套用原题结论中含零特征值的情形"
+      ],
+      "solution_steps": [
+        "对角化 $A$",
+        "对零特征值和非零特征值分别求方根个数",
+        "相乘得总数"
+      ],
+      "math_structure": {
+        "type": "matrix_root_equation_with_zero_eigenvalue",
+        "template": "count solutions of $X^3=A$ when one eigenvalue of $A$ is $0$",
+        "variable_count": 2
+      },
+      "difficulty": 3,
+      "estimated_minutes": 8,
+      "answer": [
+        {
+          "label": "求解",
+          "steps": [
+            "对角化 $A=PDP^{-1}$，$D=\\mathrm{diag}(0,\\lambda_2,\\lambda_3)$，由原题论证知 $Y=P^{-1}XP$ 必为对角矩阵 $\\mathrm{diag}(y_1,y_2,y_3)$，满足 $y_i^3=D$ 的对应分量",
+            "对 $y_1^3=0$，唯一解 $y_1=0$；对 $y_2^3=\\lambda_2$ 与 $y_3^3=\\lambda_3$（均非零），各有 $3$ 个复数解",
+            "总解数为 $1\\times3\\times3=9=3^{3-1}=m^{n-1}$（此处 $m=3,n=3$），与原题公式一致"
+          ]
+        }
+      ],
+      "id": "nagoya-2012-666b0fa46a-q01-practice-04",
+      "school": "名古屋大学",
+      "year": "2012"
+    }
+  ],
+  "source_question": "1",
+  "source_pdf": "名古屋大学/多元数理科学研究科/全专攻/名古屋大学_多元数理科学研究科_2012_第2次_数学过去问_下午.pdf",
+  "source_type": "官方过去问",
+  "subject_category": "线性代数"
+}

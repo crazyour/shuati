@@ -1,0 +1,158 @@
+{
+  "id": "kyoto-2023-ec3461674d-q01",
+  "school": "京都大学",
+  "year": "2023",
+  "subject": "情报学研究科_系统科学",
+  "text": "设实数组 $(x_1,x_2,x_3,x_4)$ 满足下式：\n$$x_1\\begin{bmatrix}11\\\\11\\\\-11\\\\-11\\end{bmatrix}+x_2\\begin{bmatrix}12\\\\-12\\\\12\\\\-12\\end{bmatrix}+x_3\\begin{bmatrix}31\\\\31\\\\31\\\\31\\end{bmatrix}+x_4\\begin{bmatrix}41\\\\-41\\\\-41\\\\41\\end{bmatrix}=\\begin{bmatrix}23\\\\-11\\\\-51\\\\37\\end{bmatrix}$$\n若满足该等式的实数组 $(x_1,x_2,x_3,x_4)$ 唯一存在，求 $x_3$ 的值；若不唯一，回答“不唯一”；若不存在，回答“不存在”。",
+  "knowledge_points": [
+    "线性方程组的建立",
+    "高斯消元法",
+    "方程组解的唯一性判定",
+    "矩阵可逆性",
+    "代入验算"
+  ],
+  "question_type": "线性方程组求解与解的存在唯一性判断",
+  "method": [
+    "加减消元法（对称结构分组相加/相减）",
+    "矩阵求逆/克拉默法则"
+  ],
+  "solution_steps": [
+    "将向量方程写成4个标量方程",
+    "利用系数的正负对称性，把方程两两相加/相减以解耦变量",
+    "解出 $x_1,x_2,x_3,x_4$",
+    "将全部结果代回四个原方程验证"
+  ],
+  "math_structure": {
+    "type": "linear_system_unique_solution",
+    "template": "$x_1v_1+x_2v_2+x_3v_3+x_4v_4=b$，其中 $v_i\\in\\mathbb{R}^4$ 分量取 $\\pm k$ 型对称结构，求某一分量 $x_j$",
+    "variable_count": 4
+  },
+  "difficulty": 2,
+  "answer": [
+    {
+      "label": "(i)",
+      "steps": [
+        "记四个方程为(1)(2)(3)(4)：$11x_1+12x_2+31x_3+41x_4=23$；$11x_1-12x_2+31x_3-41x_4=-11$；$-11x_1+12x_2+31x_3-41x_4=-51$；$-11x_1-12x_2+31x_3+41x_4=37$。",
+        "(1)+(2) 得 $22x_1+62x_3=12$，即 $11x_1+31x_3=6$（记为A）；(3)+(4) 得 $-22x_1+62x_3=-14$，即 $-11x_1+31x_3=-7$（记为C）。A+C 得 $62x_3=-1$，故 $x_3=-\\dfrac{1}{62}$；A-C 得 $22x_1=13$，故 $x_1=\\dfrac{13}{22}$。",
+        "(1)-(2) 得 $24x_2+82x_4=34$（记B）；(3)-(4) 得 $24x_2-82x_4=-88$（记D）。B+D 得 $24x_2=-27$，$x_2=-\\dfrac{9}{8}$；B-D 得 $82x_4=61$，$x_4=\\dfrac{61}{82}$。",
+        "代入验证：$11\\cdot\\frac{13}{22}+12\\cdot(-\\frac{9}{8})+31\\cdot(-\\frac{1}{62})+41\\cdot\\frac{61}{82}=6.5-13.5-0.5+30.5=23$，与方程(1)一致；同理可验证(2)(3)(4)均成立，故解唯一存在，$x_3=-\\dfrac{1}{62}$。"
+      ]
+    }
+  ],
+  "practice_questions": [
+    {
+      "text": "解方程组 $x_1+x_2=5,\\ x_1-x_2=1$，求 $x_1,x_2$。",
+      "knowledge_points": [
+        "二元一次方程组",
+        "加减消元法"
+      ],
+      "question_type": "线性方程组求解",
+      "method": [
+        "加减消元法"
+      ],
+      "solution_steps": [
+        "两式相加消去 $x_2$",
+        "两式相减消去 $x_1$",
+        "求出并验证"
+      ],
+      "math_structure": {
+        "type": "linear_system_2var",
+        "template": "$x_1+x_2=a,\\ x_1-x_2=b$",
+        "variable_count": 2
+      },
+      "difficulty": 1,
+      "estimated_minutes": 3,
+      "answer": [
+        {
+          "label": "x1,x2",
+          "steps": [
+            "两式相加：$2x_1=6\\Rightarrow x_1=3$。",
+            "两式相减：$2x_2=4\\Rightarrow x_2=2$。",
+            "验证：$3+2=5$，$3-2=1$，均成立，故 $x_1=3,x_2=2$。"
+          ]
+        }
+      ],
+      "id": "kyoto-2023-ec3461674d-q01-practice-01",
+      "school": "京都大学",
+      "year": "2023"
+    },
+    {
+      "text": "求解方程组：$x_1+x_2+x_3=6,\\ x_1-x_2+x_3=2,\\ -x_1+x_2+x_3=4$，求 $x_1,x_2,x_3$。",
+      "knowledge_points": [
+        "三元一次方程组",
+        "消元法",
+        "符号对称结构利用"
+      ],
+      "question_type": "线性方程组求解",
+      "method": [
+        "加减消元法"
+      ],
+      "solution_steps": [
+        "将第1、2式相加/相减求出 $x_1+x_3$ 与 $x_2$",
+        "将第1、3式相加求出 $x_2+x_3$",
+        "联立求出全部未知量并验证"
+      ],
+      "math_structure": {
+        "type": "linear_system_3var",
+        "template": "$x_1+x_2+x_3=a,\\ x_1-x_2+x_3=b,\\ -x_1+x_2+x_3=c$",
+        "variable_count": 3
+      },
+      "difficulty": 2,
+      "estimated_minutes": 5,
+      "answer": [
+        {
+          "label": "x1,x2,x3",
+          "steps": [
+            "式1+式2：$2x_1+2x_3=8\\Rightarrow x_1+x_3=4$；式1-式2：$2x_2=4\\Rightarrow x_2=2$。",
+            "式1+式3：$2x_2+2x_3=10\\Rightarrow x_2+x_3=5\\Rightarrow x_3=5-2=3$。",
+            "由 $x_1+x_3=4$ 得 $x_1=1$。验证式3：$-1+2+3=4$成立，故 $(x_1,x_2,x_3)=(1,2,3)$。"
+          ]
+        }
+      ],
+      "id": "kyoto-2023-ec3461674d-q01-practice-02",
+      "school": "京都大学",
+      "year": "2023"
+    },
+    {
+      "text": "设 $x_1\\begin{bmatrix}1\\\\1\\\\-1\\\\-1\\end{bmatrix}+x_2\\begin{bmatrix}1\\\\-1\\\\1\\\\-1\\end{bmatrix}+x_3\\begin{bmatrix}3\\\\3\\\\3\\\\3\\end{bmatrix}+x_4\\begin{bmatrix}2\\\\-2\\\\-2\\\\2\\end{bmatrix}=\\begin{bmatrix}7\\\\-1\\\\-5\\\\5\\end{bmatrix}$，求 $x_2$ 的值。",
+      "knowledge_points": [
+        "四元线性方程组",
+        "分组消元",
+        "解的验证"
+      ],
+      "question_type": "线性方程组求解",
+      "method": [
+        "加减消元法（仿照原题结构分组）"
+      ],
+      "solution_steps": [
+        "写出四个标量方程",
+        "(1)+(2)与(3)+(4)联立解出 $x_1,x_3$",
+        "(1)-(2)与(3)-(4)联立解出 $x_2,x_4$并验证"
+      ],
+      "math_structure": {
+        "type": "linear_system_unique_solution",
+        "template": "$x_1v_1+x_2v_2+x_3v_3+x_4v_4=b$，符号对称结构，求 $x_2$",
+        "variable_count": 4
+      },
+      "difficulty": 2,
+      "estimated_minutes": 8,
+      "answer": [
+        {
+          "label": "x2",
+          "steps": [
+            "四个方程：(1) $x_1+x_2+3x_3+2x_4=7$；(2) $x_1-x_2+3x_3-2x_4=-1$；(3) $-x_1+x_2+3x_3-2x_4=-5$；(4) $-x_1-x_2+3x_3+2x_4=5$。",
+            "(1)+(2)：$2x_1+6x_3=6\\Rightarrow x_1+3x_3=3$；(3)+(4)：$-2x_1+6x_3=0\\Rightarrow x_1=3x_3$，联立得 $x_3=0.5,\\ x_1=1.5$。",
+            "(1)-(2)：$2x_2+4x_4=8\\Rightarrow x_2+2x_4=4$；(3)-(4)：$2x_2-4x_4=-10\\Rightarrow x_2-2x_4=-5$。两式相加：$2x_2=-1\\Rightarrow x_2=-\\dfrac12$，相减得 $x_4=2.25$，代入(1)验证：$1.5-0.5+1.5+4.5=7$成立。"
+          ]
+        }
+      ],
+      "id": "kyoto-2023-ec3461674d-q01-practice-03",
+      "school": "京都大学",
+      "year": "2023"
+    }
+  ],
+  "source_question": "問1(i)",
+  "source_pdf": "京都大学/情报学研究科/系统科学/京都大学_情报学研究科_系统科学_2023_数学过去问.pdf",
+  "source_type": "官方过去问",
+  "subject_category": "线性代数"
+}
