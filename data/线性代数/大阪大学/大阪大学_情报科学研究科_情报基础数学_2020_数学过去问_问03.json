@@ -1,0 +1,225 @@
+{
+  "id": "osaka-2020-c0d447f766-q03",
+  "school": "大阪大学",
+  "year": "2020",
+  "subject": "情报科学研究科_情报基础数学",
+  "text": "将实3次方阵集合 $M_3(\\mathbb{R})$ 通过对应\n$$(x_{ij})_{1\\le i,j\\le3}\\mapsto(x_{11},x_{12},x_{13},x_{21},x_{22},x_{23},x_{31},x_{32},x_{33})$$\n与 $\\mathbb{R}^9$ 等同。对 $X=(x_{ij})_{1\\le i,j\\le3}\\in M_3(\\mathbb{R})$，定义 $X$ 的范数\n$$\\|X\\|=\\sqrt{\\sum_{1\\le i,j\\le3}x_{ij}^2}$$\n回答以下问题。\n\n(1) 若 $A\\in M_3(\\mathbb{R})$ 的行列式不为0，证明存在 $\\epsilon>0$，使得对满足 $\\|X-A\\|<\\epsilon$ 的所有 $X\\in M_3(\\mathbb{R})$，$X$ 的行列式也不为0。\n\n(2) 设 $A$ 为3次方阵\n$$A=\\begin{pmatrix}1&0&0\\\\1&\\frac32&1\\\\-1&-\\frac12&0\\end{pmatrix}$$\n求 $M_3(\\mathbb{R})$ 内点列 $\\{A^n\\}_{n=1}^{\\infty}$ 的极限 $\\displaystyle\\lim_{n\\to\\infty}A^n$。",
+  "knowledge_points": [
+    "行列式作为多项式函数的连续性",
+    "ε-δ连续性定义",
+    "特征多项式与特征值",
+    "特征空间与几何重数",
+    "矩阵相似对角化",
+    "谱投影矩阵",
+    "矩阵幂序列的极限"
+  ],
+  "question_type": "行列式连续性证明与矩阵幂极限计算",
+  "method": [
+    "将行列式表示为矩阵元的多项式说明连续性并用ε-δ定义构造邻域",
+    "求特征多项式得特征值",
+    "求各特征值对应特征空间基底进行相似对角化",
+    "对角矩阵幂次逐项取极限再变换回原坐标"
+  ],
+  "solution_steps": [
+    "(1) 说明 $\\det$ 是9个变量的多项式函数，故连续；用连续性定义在 $\\det A\\neq0$ 处取合适的 $\\epsilon$",
+    "(2) 求特征多项式并因式分解得特征值 $1$（二重）与 $\\frac12$",
+    "求特征值1的特征空间（2维）及特征值$\\frac12$的特征向量，构造相似矩阵 $S$",
+    "利用 $A=SDS^{-1}$，$D=\\mathrm{diag}(1,1,\\frac12)$，求 $\\lim D^n=\\mathrm{diag}(1,1,0)$，从而得 $\\lim A^n=S\\,\\mathrm{diag}(1,1,0)\\,S^{-1}$",
+    "具体计算得到极限矩阵并用 $AP=P,P^2=P$ 验证"
+  ],
+  "math_structure": {
+    "type": "matrix_power_limit_via_diagonalization",
+    "template": "A^n\\to P=S\\,\\mathrm{diag}(1,1,0)\\,S^{-1}",
+    "variable_count": 9
+  },
+  "difficulty": 4,
+  "answer": [
+    {
+      "label": "(1)",
+      "steps": [
+        "行列式 $\\det(X)$ 按照展开式为 $\\det(X)=\\sum_{\\sigma\\in S_3}\\mathrm{sgn}(\\sigma)\\,x_{1\\sigma(1)}x_{2\\sigma(2)}x_{3\\sigma(3)}$，是关于9个变量 $x_{ij}$ 的多项式（有限项乘积之和），而多项式函数在 $\\mathbb{R}^9$ 上处处连续，故 $\\det:M_3(\\mathbb R)\\cong\\mathbb R^9\\to\\mathbb R$ 是连续函数。",
+        "由函数在点 $A$ 处连续的定义：对任意 $\\delta>0$ 存在 $\\epsilon>0$，使得 $\\|X-A\\|<\\epsilon\\Rightarrow|\\det X-\\det A|<\\delta$。取 $\\delta=|\\det A|>0$（因为 $\\det A\\neq0$），得到相应的 $\\epsilon>0$。",
+        "对满足 $\\|X-A\\|<\\epsilon$ 的 $X$，由三角不等式 $|\\det X|\\ge|\\det A|-|\\det X-\\det A|>|\\det A|-|\\det A|=0$，因此 $\\det X\\neq0$。这就证明了所需 $\\epsilon$ 的存在性。"
+      ]
+    },
+    {
+      "label": "(2)",
+      "steps": [
+        "求特征多项式：$\\det(A-\\lambda I)=(1-\\lambda)\\left[\\left(\\frac32-\\lambda\\right)(-\\lambda)-1\\cdot\\left(-\\frac12\\right)\\right]=(1-\\lambda)\\left(\\lambda^2-\\frac32\\lambda+\\frac12\\right)=(1-\\lambda)(\\lambda-1)\\left(\\lambda-\\frac12\\right)=-(\\lambda-1)^2\\left(\\lambda-\\frac12\\right)$。故特征值为 $\\lambda=1$（二重）与 $\\lambda=\\frac12$。",
+        "对 $\\lambda=1$：$A-I=\\begin{pmatrix}0&0&0\\\\1&\\frac12&1\\\\-1&-\\frac12&-1\\end{pmatrix}$，方程组化为一个独立方程 $v_1+\\frac12v_2+v_3=0$，解空间维数为2，取基 $u_1=(1,0,-1)^T$，$u_2=(0,2,-1)^T$。几何重数=代数重数=2，故 $A$ 对该特征值可对角化。",
+        "对 $\\lambda=\\frac12$：$A-\\frac12I$ 给出 $v_1=0$，$v_2+v_3=0$，取特征向量 $w=(0,-1,1)^T$。",
+        "令 $S=(u_1,u_2,w)=\\begin{pmatrix}1&0&0\\\\0&2&-1\\\\-1&-1&1\\end{pmatrix}$，则 $A=SDS^{-1}$，$D=\\mathrm{diag}\\left(1,1,\\frac12\\right)$，可验证 $S^{-1}=\\begin{pmatrix}1&0&0\\\\1&1&1\\\\2&1&2\\end{pmatrix}$（直接计算 $SS^{-1}=I$ 成立）。",
+        "因 $D^n=\\mathrm{diag}\\left(1,1,\\left(\\frac12\\right)^n\\right)\\to\\mathrm{diag}(1,1,0)$（$n\\to\\infty$），而 $S,S^{-1}$ 与 $n$ 无关，故 $A^n=SD^nS^{-1}\\to S\\,\\mathrm{diag}(1,1,0)\\,S^{-1}=:P$。先算 $S\\,\\mathrm{diag}(1,1,0)=\\begin{pmatrix}1&0&0\\\\0&2&0\\\\-1&-1&0\\end{pmatrix}$，再乘 $S^{-1}$ 得 $$P=\\begin{pmatrix}1&0&0\\\\2&2&2\\\\-2&-1&-1\\end{pmatrix}$$",
+        "验证：直接计算可得 $P^2=P$（幂等）且 $AP=P$（$P$ 是到特征值1的特征空间上的投影），故 $$\\lim_{n\\to\\infty}A^n=\\begin{pmatrix}1&0&0\\\\2&2&2\\\\-2&-1&-1\\end{pmatrix}$$"
+      ]
+    }
+  ],
+  "practice_questions": [
+    {
+      "text": "证明函数 $g(x,y)=\\det\\begin{pmatrix}x&y\\\\1&2\\end{pmatrix}=2x-y$ 在 $\\mathbb{R}^2$ 上连续，并说明对矩阵 $A=\\begin{pmatrix}1&0\\\\1&2\\end{pmatrix}$（$\\det A=2\\neq0$），存在 $\\epsilon>0$，使邻域内所有矩阵的行列式都非零。",
+      "knowledge_points": [
+        "行列式的多项式表达",
+        "函数连续性",
+        "ε-δ论证"
+      ],
+      "question_type": "行列式连续性基础证明（2×2情形）",
+      "method": [
+        "把行列式写成变量的多项式说明连续",
+        "用连续性定义构造邻域"
+      ],
+      "solution_steps": [
+        "写出2×2行列式的多项式表达式",
+        "说明其连续性",
+        "用ε-δ定义构造满足条件的邻域"
+      ],
+      "math_structure": {
+        "type": "determinant_continuity_epsilon",
+        "template": "\\det X \\text{ continuous near } A,\\ \\det A\\neq0",
+        "variable_count": 4
+      },
+      "difficulty": 1,
+      "estimated_minutes": 6,
+      "answer": [
+        {
+          "label": "证明",
+          "steps": [
+            "对 $2\\times2$ 矩阵 $X=\\begin{pmatrix}x_{11}&x_{12}\\\\x_{21}&x_{22}\\end{pmatrix}$，$\\det X=x_{11}x_{22}-x_{12}x_{21}$ 是关于4个变量的多项式，因而在 $\\mathbb R^4$ 上处处连续。",
+            "对 $A=\\begin{pmatrix}1&0\\\\1&2\\end{pmatrix}$，$\\det A=1\\cdot2-0\\cdot1=2\\neq0$。取 $\\delta=|\\det A|=2$，由连续性存在 $\\epsilon>0$，使 $\\|X-A\\|<\\epsilon\\Rightarrow|\\det X-\\det A|<2$。",
+            "此时 $|\\det X|\\ge|\\det A|-|\\det X-\\det A|>2-2=0$，故 $\\det X\\neq0$，命题得证。"
+          ]
+        }
+      ],
+      "id": "osaka-2020-c0d447f766-q03-practice-01",
+      "school": "大阪大学",
+      "year": "2020"
+    },
+    {
+      "text": "求矩阵 $B=\\begin{pmatrix}1&1\\\\0&\\frac12\\end{pmatrix}$ 的特征值与特征向量，并求 $\\lim_{n\\to\\infty}B^n$。",
+      "knowledge_points": [
+        "特征值与特征向量",
+        "上三角矩阵特征值",
+        "相似对角化",
+        "矩阵幂极限"
+      ],
+      "question_type": "2×2矩阵幂极限",
+      "method": [
+        "由上三角结构直接读出特征值",
+        "求特征向量构造对角化",
+        "对角矩阵幂取极限再还原"
+      ],
+      "solution_steps": [
+        "读出特征值",
+        "求特征向量",
+        "构造 $S$ 和 $S^{-1}$",
+        "求 $\\lim B^n=S\\,\\mathrm{diag}(1,0)\\,S^{-1}$"
+      ],
+      "math_structure": {
+        "type": "matrix_power_limit_via_diagonalization",
+        "template": "B^n\\to P=S\\,\\mathrm{diag}(1,0)\\,S^{-1}",
+        "variable_count": 4
+      },
+      "difficulty": 2,
+      "estimated_minutes": 10,
+      "answer": [
+        {
+          "label": "结果",
+          "steps": [
+            "$B$为上三角矩阵，特征值为对角元 $\\lambda=1,\\frac12$。对 $\\lambda=1$：$(B-I)v=0\\Rightarrow\\begin{pmatrix}0&1\\\\0&-\\frac12\\end{pmatrix}v=0\\Rightarrow v_2=0$，取特征向量 $(1,0)^T$。对 $\\lambda=\\frac12$：$(B-\\frac12I)v=0\\Rightarrow\\begin{pmatrix}\\frac12&1\\\\0&0\\end{pmatrix}v=0\\Rightarrow v_1=-2v_2$，取特征向量 $(-2,1)^T$。",
+            "令 $S=\\begin{pmatrix}1&-2\\\\0&1\\end{pmatrix}$，计算 $\\det S=1$，$S^{-1}=\\begin{pmatrix}1&2\\\\0&1\\end{pmatrix}$（可直接验证 $SS^{-1}=I$）。$B=S\\,\\mathrm{diag}(1,\\frac12)\\,S^{-1}$。",
+            "因 $\\left(\\frac12\\right)^n\\to0$，故 $\\lim_{n\\to\\infty}B^n=S\\,\\mathrm{diag}(1,0)\\,S^{-1}$。先算 $S\\,\\mathrm{diag}(1,0)=\\begin{pmatrix}1&0\\\\0&0\\end{pmatrix}$，再乘 $S^{-1}$ 得 $\\lim B^n=\\begin{pmatrix}1&2\\\\0&0\\end{pmatrix}$；验证 $B\\cdot\\begin{pmatrix}1&2\\\\0&0\\end{pmatrix}=\\begin{pmatrix}1&2\\\\0&0\\end{pmatrix}$成立。"
+          ]
+        }
+      ],
+      "id": "osaka-2020-c0d447f766-q03-practice-02",
+      "school": "大阪大学",
+      "year": "2020"
+    },
+    {
+      "text": "考察矩阵 $C=\\begin{pmatrix}1&1&0\\\\0&1&0\\\\0&0&\\frac13\\end{pmatrix}$，判断特征值1对应的特征空间是否使 $C$ 可对角化，并讨论 $\\lim_{n\\to\\infty}C^n$ 是否存在。",
+      "knowledge_points": [
+        "特征值重数与几何重数",
+        "Jordan块",
+        "不可对角化矩阵的幂次行为"
+      ],
+      "question_type": "不可对角化情形下矩阵幂极限的存在性讨论",
+      "method": [
+        "求特征值及其代数重数",
+        "求特征空间判断几何重数",
+        "分析含Jordan块子矩阵幂次的增长行为"
+      ],
+      "solution_steps": [
+        "求特征多项式和特征值",
+        "计算 $C-I$ 的秩判断几何重数",
+        "分析2×2 Jordan块 $\\begin{pmatrix}1&1\\\\0&1\\end{pmatrix}^n$ 的行为",
+        "得出结论"
+      ],
+      "math_structure": {
+        "type": "matrix_power_limit_via_diagonalization",
+        "template": "C^n \\text{ divergence due to Jordan block at }\\lambda=1",
+        "variable_count": 9
+      },
+      "difficulty": 3,
+      "estimated_minutes": 10,
+      "answer": [
+        {
+          "label": "结论",
+          "steps": [
+            "$C$ 为上三角矩阵，特征值为对角元：$\\lambda=1$（代数重数2，来自左上$2\\times2$块）与 $\\lambda=\\frac13$。",
+            "$C-I=\\begin{pmatrix}0&1&0\\\\0&0&0\\\\0&0&-\\frac23\\end{pmatrix}$，其秩为2（第1、3行线性无关），故解空间（核）维数为 $3-2=1<2$，即几何重数1小于代数重数2，$C$ 在特征值1处不可对角化，存在一个 $2\\times2$ 的Jordan块。",
+            "左上角子矩阵 $\\begin{pmatrix}1&1\\\\0&1\\end{pmatrix}$ 满足 $\\begin{pmatrix}1&1\\\\0&1\\end{pmatrix}^n=\\begin{pmatrix}1&n\\\\0&1\\end{pmatrix}$，其 $(1,2)$ 元随 $n\\to\\infty$ 无界增长。",
+            "因此 $C^n$ 的对应元素也随 $n$ 无界增长，$\\lim_{n\\to\\infty}C^n$ 不存在。这与原题中 $A$ 的特征值1恰好是可对角化（几何重数=代数重数）从而极限存在的情形形成对比，说明可对角化是矩阵幂收敛的关键条件。"
+          ]
+        }
+      ],
+      "id": "osaka-2020-c0d447f766-q03-practice-03",
+      "school": "大阪大学",
+      "year": "2020"
+    },
+    {
+      "text": "设 $G=A^T$ 为原题矩阵 $A=\\begin{pmatrix}1&0&0\\\\1&\\frac32&1\\\\-1&-\\frac12&0\\end{pmatrix}$ 的转置，即 $G=\\begin{pmatrix}1&1&-1\\\\0&\\frac32&-\\frac12\\\\0&1&0\\end{pmatrix}$。求 $\\lim_{n\\to\\infty}G^n$。",
+      "knowledge_points": [
+        "转置矩阵与原矩阵特征值关系",
+        "特征空间重新计算",
+        "相似对角化",
+        "矩阵幂极限"
+      ],
+      "question_type": "转置矩阵的幂极限（与原题呼应）",
+      "method": [
+        "利用转置矩阵与原矩阵特征值相同的性质",
+        "重新求转置矩阵的特征向量",
+        "构造对角化并求极限"
+      ],
+      "solution_steps": [
+        "说明 $G,A$特征值相同：1(二重),1/2",
+        "求 $G$ 在各特征值处的特征向量",
+        "构造 $S,S^{-1}$ 并求 $\\lim G^n=S\\,\\mathrm{diag}(1,1,0)\\,S^{-1}$"
+      ],
+      "math_structure": {
+        "type": "matrix_power_limit_via_diagonalization",
+        "template": "G^n\\to P=S\\,\\mathrm{diag}(1,1,0)\\,S^{-1},\\ G=A^T",
+        "variable_count": 9
+      },
+      "difficulty": 4,
+      "estimated_minutes": 15,
+      "answer": [
+        {
+          "label": "结果",
+          "steps": [
+            "因转置不改变特征多项式（$\\det(G-\\lambda I)=\\det((A-\\lambda I)^T)=\\det(A-\\lambda I)$），$G$的特征值与$A$相同：$\\lambda=1$（二重），$\\lambda=\\frac12$。",
+            "对 $\\lambda=1$：$G-I=\\begin{pmatrix}0&1&-1\\\\0&\\frac12&-\\frac12\\\\0&1&-1\\end{pmatrix}$，秩为1，解空间维数2，取基 $u_1=(1,0,0)^T,u_2=(0,1,1)^T$（满足 $v_2=v_3$）。",
+            "对 $\\lambda=\\frac12$：$G-\\frac12I=\\begin{pmatrix}\\frac12&1&-1\\\\0&1&-\\frac12\\\\0&1&-\\frac12\\end{pmatrix}$，解得 $v_2=\\frac12v_3$，$v_1=v_3$，取 $w=(2,1,2)^T$。",
+            "令 $S=(u_1,u_2,w)=\\begin{pmatrix}1&0&2\\\\0&1&1\\\\0&1&2\\end{pmatrix}$，计算得 $\\det S=1$，逆矩阵 $S^{-1}=\\begin{pmatrix}1&2&-2\\\\0&2&-1\\\\0&-1&1\\end{pmatrix}$（可验证 $SS^{-1}=I$）。",
+            "因 $\\left(\\frac12\\right)^n\\to0$，$\\lim G^n=S\\,\\mathrm{diag}(1,1,0)\\,S^{-1}$。计算 $S\\,\\mathrm{diag}(1,1,0)=\\begin{pmatrix}1&0&0\\\\0&1&0\\\\0&1&0\\end{pmatrix}$，再乘 $S^{-1}$ 得 $$\\lim_{n\\to\\infty}G^n=\\begin{pmatrix}1&2&-2\\\\0&2&-1\\\\0&2&-1\\end{pmatrix}$$ 可直接验证该矩阵满足幂等性 $P^2=P$。"
+          ]
+        }
+      ],
+      "id": "osaka-2020-c0d447f766-q03-practice-04",
+      "school": "大阪大学",
+      "year": "2020"
+    }
+  ],
+  "source_question": "3",
+  "source_pdf": "大阪大学/情报科学研究科/情报基础数学/大阪大学_情报科学研究科_情报基础数学_2020_数学过去问.pdf",
+  "source_type": "官方过去问",
+  "subject_category": "线性代数"
+}

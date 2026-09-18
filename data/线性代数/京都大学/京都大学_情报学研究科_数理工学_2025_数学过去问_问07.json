@@ -1,0 +1,152 @@
+{
+  "id": "kyoto-2025-0964b49f99-q07",
+  "school": "京都大学",
+  "year": "2025",
+  "subject": "情报学研究科_数理工学",
+  "text": "设向量 $a_1=(1,2,0,1)^T,\\ a_2=(0,1,1,-1)^T,\\ a_3=(1,1,1,0)^T$ 张成 $\\mathbb{R}^4$ 的子空间 $V$，求 $V$ 关于标准内积的一组正规正交基。",
+  "knowledge_points": [
+    "Gram-Schmidt正交化",
+    "内积空间",
+    "正规正交基"
+  ],
+  "question_type": "正交化问题",
+  "method": [
+    "Gram-Schmidt正交化过程"
+  ],
+  "solution_steps": [
+    "取 $u_1=a_1$",
+    "计算 $u_2=a_2-\\text{proj}_{u_1}a_2$",
+    "计算 $u_3=a_3-\\text{proj}_{u_1}a_3-\\text{proj}_{u_2}a_3$",
+    "归一化得到 $e_1,e_2,e_3$"
+  ],
+  "math_structure": {
+    "type": "gram_schmidt_orthonormalization",
+    "template": "\\text{正交化 } a_1,a_2,a_3\\in\\mathbb{R}^4",
+    "variable_count": 12
+  },
+  "difficulty": 4,
+  "answer": [
+    {
+      "label": "正规正交基",
+      "steps": [
+        "$u_1=a_1=(1,2,0,1)$，$\\|u_1\\|^2=1+4+0+1=6$",
+        "$a_2\\cdot u_1=0+2+0-1=1$，$u_2=a_2-\\dfrac16 u_1=(-1/6,2/3,1,-7/6)$，用比例向量 $v_2=(-1,4,6,-7)$（即 $6u_2$），$\\|v_2\\|^2=1+16+36+49=102$",
+        "$a_3\\cdot u_1=1+2+0+0=3$，投影系数 $=3/6=1/2$；$a_3\\cdot u_2=3/2$，$u_2\\cdot u_2=17/6$，投影系数 $=\\dfrac{3/2}{17/6}=9/17$",
+        "$u_3=a_3-\\dfrac12 u_1-\\dfrac{9}{17}u_2$，计算得 $u_3\\propto(5,-3,4,1)$，$\\|(5,-3,4,1)\\|^2=25+9+16+1=51$",
+        "验证正交性：$(1,2,0,1)\\cdot(5,-3,4,1)=5-6+0+1=0$；$(-1,4,6,-7)\\cdot(5,-3,4,1)=-5-12+24-7=0$，验证成立",
+        "结论：正规正交基为 $e_1=\\dfrac{(1,2,0,1)}{\\sqrt6},\\ e_2=\\dfrac{(-1,4,6,-7)}{\\sqrt{102}},\\ e_3=\\dfrac{(5,-3,4,1)}{\\sqrt{51}}$"
+      ]
+    }
+  ],
+  "practice_questions": [
+    {
+      "text": "对向量 $b_1=(1,1,0)^T, b_2=(0,1,1)^T$ 在 $\\mathbb{R}^3$ 中做Gram-Schmidt正交化，求正规正交基。",
+      "knowledge_points": [
+        "Gram-Schmidt正交化基础"
+      ],
+      "question_type": "正交化问题",
+      "method": [
+        "Gram-Schmidt法"
+      ],
+      "solution_steps": [
+        "取 $u_1=b_1$",
+        "计算 $u_2$",
+        "归一化"
+      ],
+      "math_structure": {
+        "type": "gram_schmidt_orthonormalization",
+        "template": "\\text{正交化 } b_1,b_2\\in\\mathbb{R}^3",
+        "variable_count": 6
+      },
+      "difficulty": 2,
+      "estimated_minutes": 6,
+      "answer": [
+        {
+          "label": "结果",
+          "steps": [
+            "$u_1=(1,1,0)$，$\\|u_1\\|^2=2$",
+            "$b_2\\cdot u_1=1$，$u_2=b_2-\\frac12 u_1=(-1/2,1/2,1)$，即比例 $(-1,1,2)$，$\\|(-1,1,2)\\|^2=6$",
+            "正规正交基：$e_1=(1,1,0)/\\sqrt2, e_2=(-1,1,2)/\\sqrt6$"
+          ]
+        }
+      ],
+      "id": "kyoto-2025-0964b49f99-q07-practice-01",
+      "school": "京都大学",
+      "year": "2025"
+    },
+    {
+      "text": "对 $c_1=(1,0,0,1)^T, c_2=(0,1,0,1)^T$ 在 $\\mathbb{R}^4$ 中做正交化，求正规正交基。",
+      "knowledge_points": [
+        "Gram-Schmidt正交化"
+      ],
+      "question_type": "正交化问题",
+      "method": [
+        "Gram-Schmidt法"
+      ],
+      "solution_steps": [
+        "计算 $u_1,u_2$",
+        "归一化"
+      ],
+      "math_structure": {
+        "type": "gram_schmidt_orthonormalization",
+        "template": "\\text{正交化 } c_1,c_2\\in\\mathbb{R}^4",
+        "variable_count": 8
+      },
+      "difficulty": 2,
+      "estimated_minutes": 6,
+      "answer": [
+        {
+          "label": "结果",
+          "steps": [
+            "$u_1=(1,0,0,1)$，$\\|u_1\\|^2=2$",
+            "$c_2\\cdot u_1=1$，$u_2=c_2-\\frac12u_1=(-1/2,1,0,1/2)$，比例 $(-1,2,0,1)$，$\\|\\cdot\\|^2=6$",
+            "正规正交基：$e_1=(1,0,0,1)/\\sqrt2,\\ e_2=(-1,2,0,1)/\\sqrt6$"
+          ]
+        }
+      ],
+      "id": "kyoto-2025-0964b49f99-q07-practice-02",
+      "school": "京都大学",
+      "year": "2025"
+    },
+    {
+      "text": "先求 $a_1=(1,2,0,1)^T$ 与 $a_2=(0,1,1,-1)^T$（原题前两个向量）正交化后的前两个正规正交向量 $e_1,e_2$，作为原题的中间步骤验证。",
+      "knowledge_points": [
+        "Gram-Schmidt正交化",
+        "投影计算"
+      ],
+      "question_type": "正交化问题（部分）",
+      "method": [
+        "Gram-Schmidt法前两步"
+      ],
+      "solution_steps": [
+        "取 $u_1=a_1$",
+        "计算投影并求 $u_2$",
+        "归一化"
+      ],
+      "math_structure": {
+        "type": "gram_schmidt_partial",
+        "template": "\\text{正交化前两步 } a_1,a_2",
+        "variable_count": 8
+      },
+      "difficulty": 3,
+      "estimated_minutes": 8,
+      "answer": [
+        {
+          "label": "结果",
+          "steps": [
+            "$u_1=(1,2,0,1)$，$\\|u_1\\|^2=6$",
+            "$a_2\\cdot u_1=0+2+0-1=1$，投影系数 $1/6$，$u_2=a_2-\\frac16u_1=(-1/6,2/3,1,-7/6)$，比例形式 $(-1,4,6,-7)$，$\\|\\cdot\\|^2=102$",
+            "$e_1=(1,2,0,1)/\\sqrt6,\\ e_2=(-1,4,6,-7)/\\sqrt{102}$，与原题结果的前两项一致，验证通过"
+          ]
+        }
+      ],
+      "id": "kyoto-2025-0964b49f99-q07-practice-03",
+      "school": "京都大学",
+      "year": "2025"
+    }
+  ],
+  "source_question": "問2(iii)",
+  "source_pdf": "京都大学/情报学研究科/数理工学/京都大学_情报学研究科_数理工学_2025_数学过去问.pdf",
+  "source_type": "官方过去问",
+  "subject_category": "线性代数"
+}

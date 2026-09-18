@@ -1,0 +1,161 @@
+{
+  "id": "kyushu-2019-ist-linear-algebra",
+  "school": "九州大学",
+  "year": "2019",
+  "subject": "システム情報科学府_情報理工学専攻",
+  "text": "设 $A=\\begin{pmatrix}-2&-3&-3\\\\6&7&6\\\\-6&-6&-5\\end{pmatrix}$。(1) 求满足 $Ax=-2x$ 的非零向量；(2) 求另一个特征值和特征向量；(3) 求可逆矩阵 $P$ 与对角矩阵 $D$ 使 $AP=PD$；(4) 求 $P^{-1}$；(5) 求 $A^{10}$。",
+  "knowledge_points": [
+    "特征值",
+    "对角化",
+    "矩阵幂"
+  ],
+  "question_type": "矩阵对角化计算题",
+  "method": [
+    "特征空间",
+    "谱分解",
+    "最小多项式"
+  ],
+  "solution_steps": [
+    "求负二对应特征空间",
+    "求另一特征空间并选取一组基",
+    "构造特征向量矩阵并计算高次幂"
+  ],
+  "math_structure": {
+    "type": "diagonalization_power",
+    "template": "$A=PDP^{-1}$",
+    "variable_count": 3
+  },
+  "difficulty": 4,
+  "answer": [
+    {
+      "label": "(1)(2)",
+      "steps": [
+        "思路：采用特征空间、谱分解、最小多项式，先求负二对应特征空间。",
+        "$\\lambda=-2$ 时可取 $x=(1,-2,2)^{\\mathsf T}$。",
+        "另一特征值为 $1$，其特征空间为 $x_1+x_2+x_3=0$，可取 $(1,-1,0)^{\\mathsf T}$ 与 $(1,0,-1)^{\\mathsf T}$。"
+      ]
+    },
+    {
+      "label": "(3)(4)",
+      "steps": [
+        "思路：采用特征空间、谱分解、最小多项式，先求另一特征空间并选取一组基。",
+        "可取 $$P=\\begin{pmatrix}1&1&1\\\\-2&-1&0\\\\2&0&-1\\end{pmatrix},\\quad D=\\operatorname{diag}(-2,1,1),\\quad P^{-1}=\\begin{pmatrix}1&1&1\\\\-2&-3&-2\\\\2&2&1\\end{pmatrix}.$$。",
+        "把所得向量代回特征方程，可核对矩阵乘积确为相应特征值乘该向量。"
+      ]
+    },
+    {
+      "label": "(5)",
+      "steps": [
+        "思路：采用特征空间、谱分解、最小多项式，先构造特征向量矩阵并计算高次幂。",
+        "由最小多项式 $(t+2)(t-1)$，在谱上 $t^{10}=-341t+342$，故 $$A^{10}=-341A+342I=\\begin{pmatrix}1024&1023&1023\\\\-2046&-2045&-2046\\\\2046&2046&2047\\end{pmatrix}.$$。",
+        "把所得向量代回特征方程，可核对矩阵乘积确为相应特征值乘该向量。"
+      ]
+    }
+  ],
+  "practice_questions": [
+    {
+      "id": "kyushu-2019-ist-la-p1",
+      "school": "九州大学",
+      "year": "2019",
+      "text": "求矩阵 $\\begin{pmatrix}2&0\\\\0&-1\\end{pmatrix}^{10}$。",
+      "knowledge_points": [
+        "对角矩阵",
+        "矩阵幂"
+      ],
+      "question_type": "计算对角矩阵幂",
+      "method": [
+        "逐元素乘方"
+      ],
+      "solution_steps": [
+        "对角元分别取十次幂"
+      ],
+      "math_structure": {
+        "type": "diagonal_power",
+        "template": "$D^n=\\operatorname{diag}(d_i^n)$",
+        "variable_count": 1
+      },
+      "difficulty": 1,
+      "estimated_minutes": 2,
+      "answer": [
+        {
+          "label": "答案",
+          "steps": [
+            "先围绕对角矩阵、矩阵幂采用逐元素乘方：对角元分别取十次幂。",
+            "结果为 $\\operatorname{diag}(1024,1)$。",
+            "最后按题设的符号、范围和方向检查，得到所列结论。"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "kyushu-2019-ist-la-p2",
+      "school": "九州大学",
+      "year": "2019",
+      "text": "若 $A=PDP^{-1}$，证明 $A^n=PD^nP^{-1}$。",
+      "knowledge_points": [
+        "相似对角化",
+        "矩阵幂"
+      ],
+      "question_type": "证明对角化幂公式",
+      "method": [
+        "相邻因子消去"
+      ],
+      "solution_steps": [
+        "展开若干因子",
+        "使用 P 的逆乘 P 等于 I"
+      ],
+      "math_structure": {
+        "type": "diagonalization_power_identity",
+        "template": "$(PDP^{-1})^n=PD^nP^{-1}$",
+        "variable_count": 1
+      },
+      "difficulty": 1,
+      "estimated_minutes": 3,
+      "answer": [
+        {
+          "label": "答案",
+          "steps": [
+            "先围绕相似对角化、矩阵幂采用相邻因子消去：展开若干因子。",
+            "连续相乘时每两个 $D$ 之间出现 $P^{-1}P=I$，归纳即得 $A^n=PD^nP^{-1}$。",
+            "上述推导只使用题设条件与对应定义，因此所要求的结论成立。"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "kyushu-2019-ist-la-p3",
+      "school": "九州大学",
+      "year": "2019",
+      "text": "已知矩阵的特征值仅为 $-2,1$ 且可对角化，求常数 $a,b$ 使 $A^{10}=aA+bI$。",
+      "knowledge_points": [
+        "矩阵多项式",
+        "插值"
+      ],
+      "question_type": "在特征值上插值",
+      "method": [
+        "两点线性插值"
+      ],
+      "solution_steps": [
+        "令多项式在两个特征值处等于十次幂",
+        "解二元方程"
+      ],
+      "math_structure": {
+        "type": "spectral_interpolation",
+        "template": "$a\\lambda+b=\\lambda^{10}$",
+        "variable_count": 2
+      },
+      "difficulty": 2,
+      "estimated_minutes": 5,
+      "answer": [
+        {
+          "label": "答案",
+          "steps": [
+            "先围绕矩阵多项式、插值采用两点线性插值：令多项式在两个特征值处等于十次幂。",
+            "由 $-2a+b=1024$、$a+b=1$，解得 $a=-341,b=342$。",
+            "把所得根代回特征多项式，可核对其值均为 $0$。"
+          ]
+        }
+      ]
+    }
+  ]
+}

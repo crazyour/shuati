@@ -1,0 +1,251 @@
+{
+  "id": "tohoku-2025-4edab22cfc-q04",
+  "school": "东北大学",
+  "year": "2025",
+  "subject": "情报科学研究科_数学教室",
+  "text": "设 $A=\\begin{pmatrix}2&0&0&0\\\\0&0&1&1\\\\0&1&0&1\\\\0&1&1&0\\end{pmatrix}$。对 $\\mathbb{R}^4$ 中的列向量 $u,v$，用 $(u,v)$ 表示标准内积。\n(1) 求 $A$ 的特征值与特征向量。\n(2) 当 $u$ 取遍 $\\mathbb{R}^4$ 中所有非零列向量时，求 $\\dfrac{(u,Au)}{(u,u)}$ 的最大值。\n(3) 设 $\\mathbb{R}^4$ 中的两个列向量 $w=\\begin{pmatrix}w_1\\\\w_2\\\\w_3\\\\w_4\\end{pmatrix}$，$w'=\\begin{pmatrix}w_1'\\\\w_2'\\\\w_3'\\\\w_4'\\end{pmatrix}$ 满足\n$$(w,w)=(w',w')=1,\\quad (w,w')=0.$$\n设 $4\\times2$ 矩阵 $S=\\begin{pmatrix}w&w'\\end{pmatrix}$，令 $B={}^tS\\,A\\,S$，其中 ${}^tS$ 表示 $S$ 的转置。证明 $B$ 的特征值的最大值不超过 $A$ 的特征值的最大值。",
+  "knowledge_points": [
+    "实对称矩阵的特征值与特征向量",
+    "瑞利商（Rayleigh quotient）",
+    "正交（标准正交）向量组",
+    "二次型",
+    "min-max定理/特征值极值性质"
+  ],
+  "question_type": "对称矩阵特征值与瑞利商综合题",
+  "method": [
+    "把A分块为对角块与全1减单位矩阵块，求各块特征值",
+    "用谱定理证明瑞利商的最大值等于最大特征值",
+    "利用正交矩阵S的列向量将B的二次型转化为A在子空间上的瑞利商"
+  ],
+  "solution_steps": [
+    "将A分解为1×1块diag(2)与3×3块J-I（J为全1矩阵），分别求特征值特征向量",
+    "利用实对称矩阵的谱分解，说明瑞利商(u,Au)/(u,u)的最大值等于A的最大特征值",
+    "验证S的列正交归一，说明S^TS=I，从而对任意单位向量v，u=Sv也是单位向量",
+    "把v^TBv写成(Sv)^TA(Sv)=(u,Au)，用(2)的结论得到v^TBv≤λ_max(A)",
+    "说明B也是实对称矩阵，其最大特征值等于max_{||v||=1}v^TBv，从而得到所需不等式"
+  ],
+  "math_structure": {
+    "type": "symmetric_matrix_eigenvalue_rayleigh_quotient",
+    "template": "A=\\mathrm{diag}(2)\\oplus(J_3-I_3),\\ B={}^tSAS,\\ S^TS=I_2,\\ \\text{show}\\ \\lambda_{\\max}(B)\\le\\lambda_{\\max}(A)",
+    "variable_count": 0
+  },
+  "difficulty": 4,
+  "answer": [
+    {
+      "label": "(1)",
+      "steps": [
+        "把A看成分块：第一块是 $1\\times1$ 矩阵 $(2)$，对应第一分量；第二块是 $3\\times3$ 矩阵 $M=\\begin{pmatrix}0&1&1\\\\1&0&1\\\\1&1&0\\end{pmatrix}$，对应第2、3、4分量。注意 $M=J-I$，其中 $J$ 为 $3\\times3$ 全1矩阵。",
+        "$J$ 的特征值为 $3$（特征向量 $(1,1,1)$）与 $0$（二重，特征向量为与 $(1,1,1)$ 正交的向量），故 $M=J-I$ 的特征值为 $3-1=2$（特征向量 $(1,1,1)$）与 $0-1=-1$（二重，特征向量如 $(1,-1,0),(1,0,-1)$）。",
+        "第一块贡献特征值 $2$，特征向量 $(1,0,0,0)^T$；将 $M$ 的特征向量嵌入 $\\mathbb R^4$（第一分量补0）：特征值 $2$ 对应 $(0,1,1,1)^T$；特征值 $-1$（二重）对应 $(0,1,-1,0)^T$ 与 $(0,1,0,-1)^T$。",
+        "验证：$A(0,1,1,1)^T=(0,2,2,2)^T=2(0,1,1,1)^T$成立；$A(0,1,-1,0)^T=(0,-1,1,0)^T=-1\\cdot(0,1,-1,0)^T$成立；同理 $(0,1,0,-1)^T$ 亦成立。",
+        "故 $A$ 的特征值为 $2$（几何重数2，特征子空间 $\\mathrm{span}\\{(1,0,0,0),(0,1,1,1)\\}$）与 $-1$（几何重数2，特征子空间 $\\mathrm{span}\\{(0,1,-1,0),(0,1,0,-1)\\}$），共4维，与A的阶数一致。"
+      ]
+    },
+    {
+      "label": "(2)",
+      "steps": [
+        "$A$ 是实对称矩阵，由谱定理存在标准正交特征基 $\\{e_1,e_2,e_3,e_4\\}$，对应特征值 $\\lambda_1\\ge\\lambda_2\\ge\\lambda_3\\ge\\lambda_4$，此处为 $2,2,-1,-1$。",
+        "任意非零 $u=\\sum c_ie_i$，则 $(u,Au)=\\sum\\lambda_ic_i^2$，$(u,u)=\\sum c_i^2$，故 $\\dfrac{(u,Au)}{(u,u)}=\\dfrac{\\sum\\lambda_ic_i^2}{\\sum c_i^2}\\le\\lambda_1\\dfrac{\\sum c_i^2}{\\sum c_i^2}=\\lambda_1$，等号当 $u$ 落在最大特征值对应特征子空间时取得。",
+        "本题最大特征值 $\\lambda_1=2$（如 $(1)$ 所求），取 $u=(1,0,0,0)^T$ 验证：$(u,Au)=2,(u,u)=1$，比值恰为2。",
+        "故所求最大值为 $2$。"
+      ]
+    },
+    {
+      "label": "(3)",
+      "steps": [
+        "首先注意 $S^TS=\\begin{pmatrix}(w,w)&(w,w')\\\\(w',w)&(w',w')\\end{pmatrix}=\\begin{pmatrix}1&0\\\\0&1\\end{pmatrix}=I_2$，即 $S$ 的两列标准正交。",
+        "$B$ 是实对称矩阵：$B^T=(S^TAS)^T=S^TA^TS=S^TAS=B$（因 $A$ 对称）。由谱定理，$B$ 的最大特征值等于 $\\max_{\\|v\\|=1}v^TBv$（$v\\in\\mathbb R^2$）。",
+        "对任意单位向量 $v\\in\\mathbb R^2$，设 $u=Sv\\in\\mathbb R^4$，则 $(u,u)=u^Tu=v^TS^TSv=v^TI_2v=v^Tv=1$，即 $u$ 也是单位向量。",
+        "计算 $v^TBv=v^T(S^TAS)v=(Sv)^TA(Sv)=u^TAu=(u,Au)$。由第(2)问，对任意单位向量 $u$，$(u,Au)\\le\\lambda_{\\max}(A)$，故 $v^TBv\\le\\lambda_{\\max}(A)$ 对所有单位 $v$ 成立。",
+        "因此 $\\lambda_{\\max}(B)=\\max_{\\|v\\|=1}v^TBv\\le\\lambda_{\\max}(A)$，即 $B$ 的最大特征值不超过 $A$ 的最大特征值，证毕。"
+      ]
+    }
+  ],
+  "practice_questions": [
+    {
+      "text": "求矩阵 $\\begin{pmatrix}0&1\\\\1&0\\end{pmatrix}$ 的特征值与特征向量。",
+      "knowledge_points": [
+        "实对称矩阵特征值",
+        "特征向量求解"
+      ],
+      "question_type": "基础特征值计算",
+      "method": [
+        "特征方程求解"
+      ],
+      "solution_steps": [
+        "写出特征方程",
+        "求特征值与对应特征向量"
+      ],
+      "math_structure": {
+        "type": "symmetric_matrix_eigen_basic",
+        "template": "\\begin{pmatrix}0&1\\\\1&0\\end{pmatrix}",
+        "variable_count": 0
+      },
+      "difficulty": 1,
+      "estimated_minutes": 4,
+      "answer": [
+        {
+          "label": "结果",
+          "steps": [
+            "特征方程：$\\det(\\lambda I-M)=\\lambda^2-1=0\\Rightarrow\\lambda=\\pm1$。",
+            "$\\lambda=1$：解 $(M-I)v=0$ 得 $v=(1,1)^T$方向；$\\lambda=-1$：解 $(M+I)v=0$ 得 $v=(1,-1)^T$方向。",
+            "验证：$M(1,1)^T=(1,1)^T$，$M(1,-1)^T=(-1,1)^T=-1\\cdot(1,-1)^T$，均正确。"
+          ]
+        }
+      ],
+      "id": "tohoku-2025-4edab22cfc-q04-practice-01",
+      "school": "东北大学",
+      "year": "2025"
+    },
+    {
+      "text": "求 $3\\times3$ 矩阵 $M=\\begin{pmatrix}0&1&1\\\\1&0&1\\\\1&1&0\\end{pmatrix}$ 的特征值与特征向量（即原题中出现的子块）。",
+      "knowledge_points": [
+        "全1矩阵与单位矩阵组合",
+        "特征值的代数与几何重数"
+      ],
+      "question_type": "特殊结构矩阵特征值",
+      "method": [
+        "利用 M=J-I 的关系求特征值"
+      ],
+      "solution_steps": [
+        "求J的特征值",
+        "利用M=J-I得M的特征值",
+        "求相应特征向量"
+      ],
+      "math_structure": {
+        "type": "all_ones_minus_identity_eigen",
+        "template": "M=J_3-I_3",
+        "variable_count": 0
+      },
+      "difficulty": 2,
+      "estimated_minutes": 8,
+      "answer": [
+        {
+          "label": "结果",
+          "steps": [
+            "全1矩阵 $J_3$ 的特征值为 $3$（特征向量 $(1,1,1)$）与 $0$（二重，特征子空间为与$(1,1,1)$正交的平面）。",
+            "$M=J_3-I_3$，故特征值为 $3-1=2$ 与 $0-1=-1$（二重）。",
+            "特征向量：$\\lambda=2$对应 $(1,1,1)^T$；$\\lambda=-1$对应任意与 $(1,1,1)$ 正交的向量，如 $(1,-1,0)^T,(1,0,-1)^T$。验证 $M(1,1,1)^T=(2,2,2)^T$ 与 $M(1,-1,0)^T=(-1,1,0)^T=-1(1,-1,0)^T$ 均正确。"
+          ]
+        }
+      ],
+      "id": "tohoku-2025-4edab22cfc-q04-practice-02",
+      "school": "东北大学",
+      "year": "2025"
+    },
+    {
+      "text": "设 $C=\\begin{pmatrix}-3&0&0&0\\\\0&0&1&1\\\\0&1&0&1\\\\0&1&1&0\\end{pmatrix}$。求 $C$ 的所有特征值，并求 $\\dfrac{(u,Cu)}{(u,u)}$ 在 $u\\ne0$ 上的最大值。",
+      "knowledge_points": [
+        "分块对称矩阵特征值",
+        "瑞利商最大值"
+      ],
+      "question_type": "瑞利商最大值判断",
+      "method": [
+        "分块求特征值",
+        "比较各特征值找最大者"
+      ],
+      "solution_steps": [
+        "求第一块与M的特征值",
+        "合并得到C的全部特征值",
+        "取最大值作为瑞利商上界"
+      ],
+      "math_structure": {
+        "type": "block_symmetric_matrix_rayleigh_quotient",
+        "template": "C=\\mathrm{diag}(-3)\\oplus(J_3-I_3)",
+        "variable_count": 0
+      },
+      "difficulty": 2,
+      "estimated_minutes": 8,
+      "answer": [
+        {
+          "label": "结果",
+          "steps": [
+            "第一块特征值为 $-3$；第二块（即上题的M）特征值为 $2,-1,-1$。",
+            "故 $C$ 的全部特征值为 $\\{-3,2,-1,-1\\}$，其中最大值为 $2$（并非来自第一块）。",
+            "由瑞利商性质，$\\max_{u\\ne0}\\dfrac{(u,Cu)}{(u,u)}=\\lambda_{\\max}(C)=2$，在特征向量 $(0,1,1,1)^T$ 处取得（验证：$(u,Cu)=2,(u,u)=3$，比值确为2/3... "
+          ]
+        }
+      ],
+      "id": "tohoku-2025-4edab22cfc-q04-practice-03",
+      "school": "东北大学",
+      "year": "2025"
+    },
+    {
+      "text": "证明：对任意实对称矩阵 $A$（$n\\times n$），$\\displaystyle\\max_{u\\ne0}\\dfrac{(u,Au)}{(u,u)}$ 等于 $A$ 的最大特征值。",
+      "knowledge_points": [
+        "谱定理",
+        "瑞利商的极值性质"
+      ],
+      "question_type": "一般性定理证明",
+      "method": [
+        "用谱分解将u按特征基展开"
+      ],
+      "solution_steps": [
+        "由谱定理写出正交特征基分解",
+        "把瑞利商表示为特征值的加权平均",
+        "证明该加权平均不超过最大特征值，且可取等"
+      ],
+      "math_structure": {
+        "type": "rayleigh_quotient_general_proof",
+        "template": "\\max_{u\\ne0}\\frac{(u,Au)}{(u,u)}=\\lambda_{\\max}(A)",
+        "variable_count": 0
+      },
+      "difficulty": 3,
+      "estimated_minutes": 12,
+      "answer": [
+        {
+          "label": "结果",
+          "steps": [
+            "由谱定理，存在标准正交基 $e_1,\\dots,e_n$ 使 $Ae_i=\\lambda_ie_i$，设 $\\lambda_1\\ge\\cdots\\ge\\lambda_n$。",
+            "任意 $u=\\sum c_ie_i\\ne0$，则 $(u,Au)=\\sum\\lambda_ic_i^2$，$(u,u)=\\sum c_i^2$，故瑞利商 $=\\dfrac{\\sum\\lambda_ic_i^2}{\\sum c_i^2}$ 是特征值的加权平均（权重非负且和为1）。",
+            "加权平均不超过最大值 $\\lambda_1$：$\\sum\\lambda_ic_i^2\\le\\lambda_1\\sum c_i^2$；当 $u=e_1$ 时取等号，故最大值恰为 $\\lambda_1=\\lambda_{\\max}(A)$。"
+          ]
+        }
+      ],
+      "id": "tohoku-2025-4edab22cfc-q04-practice-04",
+      "school": "东北大学",
+      "year": "2025"
+    },
+    {
+      "text": "沿用练习3中的矩阵 $C=\\begin{pmatrix}-3&0&0&0\\\\0&0&1&1\\\\0&1&0&1\\\\0&1&1&0\\end{pmatrix}$（最大特征值为2）。设 $w,w'$ 为 $\\mathbb R^4$ 中满足 $(w,w)=(w',w')=1,(w,w')=0$ 的向量，$S=(w\\ w')$，$B={}^tSCS$。证明 $B$ 的最大特征值不超过 $2$。",
+      "knowledge_points": [
+        "瑞利商",
+        "正交列向量矩阵",
+        "特征值上界证明"
+      ],
+      "question_type": "瑞利商压缩不等式证明",
+      "method": [
+        "利用S^TS=I将B的二次型转化为C的瑞利商"
+      ],
+      "solution_steps": [
+        "验证S^TS=I2",
+        "把v^TBv写成(Sv)^TC(Sv)",
+        "利用C的最大特征值上界得到B的最大特征值上界"
+      ],
+      "math_structure": {
+        "type": "symmetric_matrix_eigenvalue_rayleigh_quotient",
+        "template": "B={}^tSCS,\\ S^TS=I_2,\\ \\text{show}\\ \\lambda_{\\max}(B)\\le\\lambda_{\\max}(C)=2",
+        "variable_count": 0
+      },
+      "difficulty": 4,
+      "estimated_minutes": 15,
+      "answer": [
+        {
+          "label": "结果",
+          "steps": [
+            "$S^TS=\\begin{pmatrix}(w,w)&(w,w')\\\\(w',w)&(w',w')\\end{pmatrix}=I_2$，故对任意单位向量 $v\\in\\mathbb R^2$，$u=Sv$ 满足 $(u,u)=v^TS^TSv=v^Tv=1$，即 $u$ 也是单位向量。",
+            "$B$ 对称（$B^T=S^TC^TS=S^TCS=B$），故 $\\lambda_{\\max}(B)=\\max_{\\|v\\|=1}v^TBv$。而 $v^TBv=(Sv)^TC(Sv)=u^TCu=(u,Cu)\\le\\lambda_{\\max}(C)=2$（由练习4的结论，因 $u$ 是单位向量）。",
+            "故对所有单位 $v$，$v^TBv\\le2$，从而 $\\lambda_{\\max}(B)\\le2=\\lambda_{\\max}(C)$，证毕。"
+          ]
+        }
+      ],
+      "id": "tohoku-2025-4edab22cfc-q04-practice-05",
+      "school": "东北大学",
+      "year": "2025"
+    }
+  ],
+  "source_question": "4",
+  "source_pdf": "东北大学/情报科学研究科/数学教室/东北大学_情报科学研究科_数学_2025_数学过去问.pdf",
+  "source_type": "官方过去问",
+  "subject_category": "线性代数"
+}

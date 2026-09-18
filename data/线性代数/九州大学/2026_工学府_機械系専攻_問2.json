@@ -40,7 +40,7 @@
     {
       "label": "(2) 证明变换公式",
       "steps": [
-        "由 $A=U\\sumV^{\\mathsf T}$ 转置得 $A^{\\mathsf T}=V\\sumU^{\\mathsf T}$。左乘 $u_i$：$A^{\\mathsf T}u_i=V\\sumU^{\\mathsf T}u_i=V\\sume_i=\\sigma _i v_i$。",
+        "由 $A=U\\Sigma V^{\\mathsf T}$ 转置得 $A^{\\mathsf T}=V\\Sigma U^{\\mathsf T}$。左乘 $u_i$：$A^{\\mathsf T}u_i=V\\Sigma U^{\\mathsf T}u_i=V\\Sigma e_i=\\sigma_i v_i$。",
         "因为 $\\sigma _i>0$，所以 $v_i=(1/\\sigma _i)A^{\\mathsf T}u_i$。这里 $V$ 的两列是正交单位向量，满足 $V^{\\mathsf T}V=I_{2}$。"
       ]
     },
@@ -48,7 +48,7 @@
       "label": "(3) 求 $U$、$V$ 与奇异值",
       "steps": [
         "$\\sigma _{1}=\\sqrt{3}$、$\\sigma _{2}=1$，$U=(1/\\sqrt{2})\\begin{pmatrix}1 & 1 \\\\ -1 & 1\\end{pmatrix}$。",
-        "由公式得 $v_{1}=(2,-1,-1)^{\\mathsf T}/\\sqrt{6}$、$v_{2}=(0,-1,1)^{\\mathsf T}/\\sqrt{2}$。因此 $V=\\begin{pmatrix}2/\\sqrt{6} & 0 \\\\ -1/\\sqrt{6} & -1/\\sqrt{2} \\\\ -1/\\sqrt{6} & 1/\\sqrt{2}\\end{pmatrix}$，$\\sum=\\operatorname{diag}(\\sqrt{3},1)$。"
+        "由公式得 $v_{1}=(2,-1,-1)^{\\mathsf T}/\\sqrt{6}$、$v_{2}=(0,-1,1)^{\\mathsf T}/\\sqrt{2}$。因此 $V=\\begin{pmatrix}2/\\sqrt{6} & 0 \\\\ -1/\\sqrt{6} & -1/\\sqrt{2} \\\\ -1/\\sqrt{6} & 1/\\sqrt{2}\\end{pmatrix}$，$\\Sigma=\\operatorname{diag}(\\sqrt{3},1)$。"
       ]
     }
   ]

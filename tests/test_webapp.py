@@ -30,7 +30,7 @@ def test_home_page_renders(client):
     assert "相似度匹配" not in body                         # 独立匹配页已移除
     assert 'id="browse-subject"' in body                   # 题目库左侧的科目下拉
     assert 'id="browse-school"' in body                    # 题目库左侧的学校下拉
-    assert 'id="browse-senkou"' in body                    # 题目库左侧的专攻下拉
+    assert 'id="browse-major"' in body                     # 题目库左侧的专攻下拉
     assert 'id="similar-drawer"' in body                   # 相似题结果使用共享抽屉
 
 
@@ -59,7 +59,49 @@ def test_similar_accepts_question_id(subject_app):
     )
     assert res.status_code == 200
     assert res.is_json
-    assert all({"id", "score", "text"} <= set(item) for item in res.get_json()["matches"])
+    assert all({"id", "score", "text", "scope"} <= set(item) for item in res.get_json()["matches"])
+    assert all(item["scope"].startswith("线性代数/") for item in res.get_json()["matches"])
+
+
+def test_practice_questions_are_browse_only(tmp_path):
+    practice = {
+        "id": "practice-only-1",
+        "school": "九州大学",
+        "year": 2026,
+        "text": "设向量 $u,v$ 正交，求参数。",
+        "knowledge_points": ["向量正交性"],
+        "question_type": "由正交条件求参数",
+        "method": ["内积等于零"],
+        "solution_steps": ["列内积方程"],
+        "math_structure": {"type": "orthogonality", "template": "u^Tv=0", "variable_count": 1},
+        "difficulty": 1,
+        "answer": [{"label": "求参数", "steps": ["由内积等于零求解。"]}],
+    }
+    source = {
+        **KYUSHU_1,
+        "id": "source-with-practice",
+        "year": 2026,
+        "answer": [{"label": "(1)", "steps": ["答案"]}],
+        "practice_questions": [practice],
+    }
+    filename = "2026_システム情報科学府_情報理工学専攻.json"
+    _write_subject(tmp_path, "线性代数", "九州大学", filename, source)
+    app = create_app(data_root=tmp_path)
+    app.config.update(TESTING=True)
+    test_client = app.test_client()
+
+    scope = f"线性代数/九州大学/システム情報科学府/情報理工学専攻/{filename[:-5]}"
+    body = test_client.get("/api/browse/questions", query_string={"subject": scope}).get_json()
+    assert body["total"] == 1
+    assert body["questions"][0]["practice_questions"] == [practice]
+
+    matched = test_client.post(
+        "/api/match",
+        json={"query": practice, "subject": "线性代数", "min_score": 0},
+    ).get_json()
+    assert matched["db_size"] == 1
+    assert [item["id"] for item in matched["matches"]] == ["source-with-practice"]
+    assert "practice-only-1" not in [item["id"] for item in matched["matches"]]
 
 
 def test_topk_is_clamped(client):

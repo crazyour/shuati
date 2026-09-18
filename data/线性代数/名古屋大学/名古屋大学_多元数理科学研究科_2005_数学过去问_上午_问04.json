@@ -1,0 +1,182 @@
+{
+  "id": "nagoya-2005-89104587cd-q04",
+  "school": "名古屋大学",
+  "year": "2005",
+  "subject": "多元数理科学研究科_全专攻",
+  "text": "讨论向量组 $v_1=\\begin{pmatrix}1\\\\2\\\\1\\end{pmatrix},\\ v_2=\\begin{pmatrix}2\\\\t\\\\t\\end{pmatrix},\\ v_3=\\begin{pmatrix}3\\\\1\\\\1\\end{pmatrix}$（$t$为实数）是否构成 $\\mathbb{R}^3$ 的基。",
+  "knowledge_points": [
+    "行列式判定线性无关",
+    "基的定义",
+    "参数依赖的可逆性讨论"
+  ],
+  "question_type": "基的判定",
+  "method": [
+    "计算三阶行列式作为t的函数",
+    "求使行列式为零的临界值"
+  ],
+  "solution_steps": [
+    "以 $v_1,v_2,v_3$ 为列构造矩阵 $M$，计算 $\\det M$ 关于 $t$ 的表达式",
+    "求解 $\\det M=0$ 的 $t$ 值，确定退化情形",
+    "结论：当 $\\det M\\ne0$ 时三向量构成基"
+  ],
+  "math_structure": {
+    "type": "basis_determinant_criterion",
+    "template": "\\det[v_1|v_2|v_3]=f(t)",
+    "variable_count": 1
+  },
+  "difficulty": 2,
+  "answer": [
+    {
+      "label": "结论",
+      "steps": [
+        "构造矩阵 $M=\\begin{pmatrix}1&2&3\\\\2&t&1\\\\1&t&1\\end{pmatrix}$，按第一行展开：$\\det M=1\\cdot(t\\cdot1-1\\cdot t)-2\\cdot(2\\cdot1-1\\cdot1)+3\\cdot(2t-t\\cdot1)$",
+        "化简各项：第一项 $=t-t=0$；第二项 $=-2\\cdot1=-2$；第三项 $=3t$，故 $\\det M=0-2+3t=3t-2$",
+        "令 $3t-2=0$ 得临界值 $t=2/3$；当 $t\\ne 2/3$ 时 $\\det M\\ne0$，三向量线性无关，构成 $\\mathbb{R}^3$ 的基；当 $t=2/3$ 时 $\\det M=0$，三向量线性相关，不构成基",
+        "验证：取 $t=0$ 代入原式得 $\\det M=3(0)-2=-2\\ne0$，直接计算矩阵$\\begin{pmatrix}1&2&3\\\\2&0&1\\\\1&0&1\\end{pmatrix}$的行列式：$1(0-0)-2(2-1)+3(0-0)=-2$，一致，验证正确"
+      ]
+    }
+  ],
+  "practice_questions": [
+    {
+      "text": "判断向量 $u_1=(1,0,1)^T, u_2=(0,1,1)^T, u_3=(1,1,s)^T$ 是否构成 $\\mathbb{R}^3$ 的基，其中 $s$ 为实数。",
+      "knowledge_points": [
+        "行列式判定基",
+        "参数讨论"
+      ],
+      "question_type": "基的判定",
+      "method": [
+        "计算行列式"
+      ],
+      "solution_steps": [
+        "构造矩阵求行列式",
+        "求临界s值"
+      ],
+      "math_structure": {
+        "type": "basis_determinant_criterion",
+        "template": "\\det[u_1|u_2|u_3]=g(s)",
+        "variable_count": 1
+      },
+      "difficulty": 1,
+      "estimated_minutes": 4,
+      "answer": [
+        {
+          "label": "结果",
+          "steps": [
+            "$\\det\\begin{pmatrix}1&0&1\\\\0&1&1\\\\1&1&s\\end{pmatrix}=1(s-1)-0+1(0-1)=s-1-1=s-2$",
+            "当$s\\ne2$时构成基，当$s=2$时不构成"
+          ]
+        }
+      ],
+      "id": "nagoya-2005-89104587cd-q04-practice-01",
+      "school": "名古屋大学",
+      "year": "2005"
+    },
+    {
+      "text": "求参数 $t$ 使得向量 $(1,t,0)^T,(0,1,t)^T,(t,0,1)^T$ 线性相关。",
+      "knowledge_points": [
+        "行列式",
+        "线性相关判定"
+      ],
+      "question_type": "参数求解",
+      "method": [
+        "行列式为零求解"
+      ],
+      "solution_steps": [
+        "构造行列式方程",
+        "解方程得t"
+      ],
+      "math_structure": {
+        "type": "linear_dependence_parameter_solving",
+        "template": "\\det[w_1|w_2|w_3]=0",
+        "variable_count": 1
+      },
+      "difficulty": 2,
+      "estimated_minutes": 6,
+      "answer": [
+        {
+          "label": "结果",
+          "steps": [
+            "$\\det\\begin{pmatrix}1&0&t\\\\t&1&0\\\\0&t&1\\end{pmatrix}=1(1-0)-0+t(t^2-0)=1+t^3$",
+            "令 $1+t^3=0\\Rightarrow t=-1$（实数解）",
+            "当 $t=-1$时三向量线性相关"
+          ]
+        }
+      ],
+      "id": "nagoya-2005-89104587cd-q04-practice-02",
+      "school": "名古屋大学",
+      "year": "2005"
+    },
+    {
+      "text": "已知 $\\det\\begin{pmatrix}1&2&3\\\\4&5&6\\\\7&8&9\\end{pmatrix}=0$，说明这三行（列）向量是否线性无关，并从几何角度解释。",
+      "knowledge_points": [
+        "行列式与线性相关性",
+        "几何直观"
+      ],
+      "question_type": "概念辨析",
+      "method": [
+        "行列式为零的意义"
+      ],
+      "solution_steps": [
+        "计算或引用已知行列式值",
+        "解释几何意义"
+      ],
+      "math_structure": {
+        "type": "determinant_zero_interpretation",
+        "template": "\\det A=0 \\Rightarrow \\text{线性相关}",
+        "variable_count": 0
+      },
+      "difficulty": 1,
+      "estimated_minutes": 3,
+      "answer": [
+        {
+          "label": "结果",
+          "steps": [
+            "行列式为0，说明三个行（列）向量线性相关，不能构成 $\\mathbb{R}^3$ 的基",
+            "几何上，三向量共面（张成空间维数≤2）"
+          ]
+        }
+      ],
+      "id": "nagoya-2005-89104587cd-q04-practice-03",
+      "school": "名古屋大学",
+      "year": "2005"
+    },
+    {
+      "text": "设向量 $p_1=(1,1,1)^T,p_2=(1,2,4)^T,p_3=(1,3,t)^T$，求所有使 $\\{p_1,p_2,p_3\\}$ 不构成基的 $t$ 值。",
+      "knowledge_points": [
+        "行列式判定基",
+        "范德蒙德型行列式"
+      ],
+      "question_type": "基的判定",
+      "method": [
+        "计算行列式并因式分解"
+      ],
+      "solution_steps": [
+        "写出矩阵求行列式",
+        "解方程得临界t"
+      ],
+      "math_structure": {
+        "type": "basis_determinant_criterion",
+        "template": "\\det[p_1|p_2|p_3]=h(t)",
+        "variable_count": 1
+      },
+      "difficulty": 2,
+      "estimated_minutes": 6,
+      "answer": [
+        {
+          "label": "结果",
+          "steps": [
+            "$\\det\\begin{pmatrix}1&1&1\\\\1&2&3\\\\1&4&t\\end{pmatrix}=1(2t-12)-1(t-3)+1(4-2)=2t-12-t+3+2=t-7$",
+            "令 $t-7=0\\Rightarrow t=7$，此时不构成基；$t\\ne7$时构成基"
+          ]
+        }
+      ],
+      "id": "nagoya-2005-89104587cd-q04-practice-04",
+      "school": "名古屋大学",
+      "year": "2005"
+    }
+  ],
+  "source_question": "2(3)",
+  "source_pdf": "名古屋大学/多元数理科学研究科/全专攻/名古屋大学_多元数理科学研究科_2005_数学过去问_上午.pdf",
+  "source_type": "官方过去问",
+  "subject_category": "线性代数"
+}

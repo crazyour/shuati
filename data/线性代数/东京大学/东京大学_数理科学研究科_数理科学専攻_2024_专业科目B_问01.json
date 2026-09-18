@@ -1,0 +1,237 @@
+{
+  "id": "utokyo-2024-3f500c52e4-q01",
+  "school": "东京大学",
+  "year": "2024",
+  "subject": "数理科学研究科_数理科学専攻",
+  "text": "设 $n \\ge 2$ 为整数，$M_n(\\mathbb{R})$ 为全体 $n$ 次实方阵组成的集合，令\n$$N_n = \\{X \\in M_n(\\mathbb{R}) \\mid X \\text{ 是幂零矩阵}\\}.$$\n设 $G$ 是 $GL_n(\\mathbb{R})$ 的子群。对 $X, Y \\in N_n$，若存在 $g \\in G$ 使得 $gXg^{-1} = Y$，则记 $X \\sim_G Y$。$\\sim_G$ 是 $N_n$ 上的等价关系，其等价类集合 $N_n/\\sim_G$ 的基数记为 $c_n(G)$。\n\n(1) 求 $n=4$ 时 $c_n(GL_n(\\mathbb{R}))$。\n\n(2) 证明：当 $n$ 为奇数时，$c_n(GL_n(\\mathbb{R})) = c_n(SL_n(\\mathbb{R}))$。\n\n(3) 求 $n=4$ 时 $c_n(SL_n(\\mathbb{R}))$。",
+  "knowledge_points": [
+    "幂零矩阵的Jordan标准形",
+    "整数分拆与Jordan块型",
+    "矩阵共轭作用与轨道-稳定子定理",
+    "$GL_n$与$SL_n$的商群结构 $\\det: GL_n(\\mathbb{R}) \\to \\mathbb{R}^\\times$",
+    "矩阵中心化子的计算",
+    "行列式在标量矩阵与分块矩阵下的性质"
+  ],
+  "question_type": "证明与计数（矩阵共轭轨道分类）",
+  "method": [
+    "利用幂零矩阵的实Jordan标准形与整数分拆一一对应",
+    "轨道-稳定子定理：GL-轨道分裂为SL-轨道的个数由中心化子的行列式像决定",
+    "构造中心化子的显式基底表示计算行列式",
+    "利用标量矩阵 $cI$ 的行列式 $c^n$ 在 $n$ 为奇数时可取遍全体非零实数来调整行列式"
+  ],
+  "solution_steps": [
+    "说明幂零实矩阵在$GL_n(\\mathbb{R})$共轭下的完全不变量就是其Jordan块尺寸构成的分拆（因为特征值全为0，实Jordan形式总存在）",
+    "对$n=4$列出所有分拆，得到轨道个数",
+    "对(2)，利用标量矩阵$cI$与任意矩阵交换，且$n$为奇数时$c\\mapsto c^n$是$\\mathbb{R}$上的双射，从而可将GL共轭元素的行列式调整为1而不改变共轭结果",
+    "对(3)，对每个分拆类型显式计算中心化子（稳定子）在$GL_4(\\mathbb{R})$中的行列式像是否含负数，从而判断该GL-轨道在$SL_4(\\mathbb{R})$下是否分裂为2个轨道",
+    "对5个分拆逐一验证：$[4]$与$[2,2]$中心化子行列式恒正（发生分裂，各贡献2），$[3,1]$、$[2,1,1]$、$[1,1,1,1]$的中心化子可取负行列式（不分裂，各贡献1），求和得到答案"
+  ],
+  "math_structure": {
+    "type": "nilpotent_orbit_classification",
+    "template": "classify $N_n$ under conjugation by $G \\le GL_n(\\mathbb{R})$; compute $c_n(G) = |N_n/\\sim_G|$ for $G = GL_n(\\mathbb{R})$ and $G=SL_n(\\mathbb{R})$",
+    "variable_count": 1
+  },
+  "difficulty": 4,
+  "answer": [
+    {
+      "label": "(1)",
+      "steps": [
+        "幂零实矩阵的实Jordan标准形存在（因特征值均为0，属于$\\mathbb{R}$），且两个幂零矩阵$GL_n(\\mathbb{R})$-共轭当且仅当它们有相同的Jordan块尺寸多重集，即对应同一个$n$的整数分拆。",
+        "于是 $c_n(GL_n(\\mathbb{R}))$ 等于$n$的分拆数 $p(n)$。",
+        "对$n=4$，分拆为：$4$；$3+1$；$2+2$；$2+1+1$；$1+1+1+1$，共5个。",
+        "故 $c_4(GL_4(\\mathbb{R})) = 5$。"
+      ]
+    },
+    {
+      "label": "(2)",
+      "steps": [
+        "显然每个$SL_n(\\mathbb{R})$-轨道包含于某个$GL_n(\\mathbb{R})$-轨道中，只需证明反向：任给$X,Y$在同一GL-轨道中，即存在$g\\in GL_n(\\mathbb{R})$使$gXg^{-1}=Y$，则存在$h\\in SL_n(\\mathbb{R})$也满足$hXh^{-1}=Y$。",
+        "取标量矩阵$cI$（$c\\in\\mathbb{R}^\\times$），它与任意矩阵交换，故$h=cI\\cdot g$满足$hXh^{-1}=gXg^{-1}=Y$（$cI$消去），且$\\det h = c^n \\det g$。",
+        "由于$n$为奇数，映射$c\\mapsto c^n$是$\\mathbb{R}\\to\\mathbb{R}$的双射（严格递增的奇函数），故可取 $c=(\\det g)^{-1/n}$（实$n$次方根，$n$奇时唯一存在），使得$\\det h = c^n\\det g=1$，即$h\\in SL_n(\\mathbb{R})$。",
+        "因此每个GL-轨道等于对应的SL-轨道，故 $c_n(GL_n(\\mathbb{R})) = c_n(SL_n(\\mathbb{R}))$，$n$为奇数时成立。"
+      ]
+    },
+    {
+      "label": "(3)",
+      "steps": [
+        "一般地，GL-轨道中的元素$X$在$SL_n(\\mathbb{R})$下的轨道个数等于$[GL_n(\\mathbb{R}): SL_n(\\mathbb{R})\\cdot \\operatorname{Stab}_{GL}(X)]$，而$GL_n(\\mathbb{R})/SL_n(\\mathbb{R})\\cong \\mathbb{R}^\\times$（经由$\\det$），故此轨道分裂为2个SL-轨道当且仅当中心化子$\\operatorname{Stab}_{GL_n(\\mathbb{R})}(X)$的行列式像全为正数；否则（含负数）该GL-轨道本身就是唯一SL-轨道。",
+        "分拆$[1,1,1,1]$（$X=0$）：稳定子为整个$GL_4(\\mathbb{R})$，含负行列式元素，不分裂，贡献1。",
+        "分拆$[4]$（正则幂零$J_4$）：中心化子为$\\{p_0 I+p_1N+p_2N^2+p_3N^3: p_0\\neq0\\}$（$N$为$J_4$的幂零部分），是上三角Toeplitz矩阵，行列式$=p_0^4>0$恒正，分裂为2，贡献2。",
+        "分拆$[3,1]$（$J_3\\oplus[0]$）：中心化子行列式为$p_0^3 q_0$（$p_0\\ne0$对应$J_3$块中心化子的对角标量，$q_0\\neq0$对应1维零块的标量），$p_0^3$与$p_0$同号，故整体可取负值（如$p_0>0,q_0<0$），不分裂，贡献1。",
+        "分拆$[2,2]$（$J_2\\oplus J_2$）：将中心化子写成分块上三角矩阵$\\begin{pmatrix}A_0 & A_1\\\\ 0 & A_0\\end{pmatrix}$（$A_0,A_1\\in M_2(\\mathbb{R})$，$A_0$可逆），计算得行列式$=\\det(A_0)^2>0$恒正，分裂为2，贡献2。",
+        "分拆$[2,1,1]$（$J_2\\oplus[0]\\oplus[0]$）：中心化子行列式$=p_0^2\\cdot\\det(B)$，其中$p_0\\ne0$来自$J_2$块中心化子（$p_0^2$恒正），$B\\in GL_2(\\mathbb{R})$来自2维零块（行列式任意非零实数），故整体可取负值，不分裂，贡献1。",
+        "汇总：$c_4(SL_4(\\mathbb{R})) = 2(\\text{来自}[4]) + 1(\\text{来自}[3,1]) + 2(\\text{来自}[2,2]) + 1(\\text{来自}[2,1,1]) + 1(\\text{来自}[1^4]) = 7$。"
+      ]
+    }
+  ],
+  "practice_questions": [
+    {
+      "text": "求 $n=3$ 时 $c_n(GL_n(\\mathbb{R}))$，即3次幂零实矩阵在$GL_3(\\mathbb{R})$共轭下的等价类个数。",
+      "knowledge_points": [
+        "幂零矩阵Jordan标准形",
+        "整数分拆"
+      ],
+      "question_type": "计数",
+      "method": [
+        "列出$n=3$的所有整数分拆"
+      ],
+      "solution_steps": [
+        "写出3的所有分拆",
+        "对应到Jordan块型",
+        "计数"
+      ],
+      "math_structure": {
+        "type": "partition_count",
+        "template": "compute $p(n)$ for $n=3$",
+        "variable_count": 1
+      },
+      "difficulty": 1,
+      "estimated_minutes": 5,
+      "answer": [
+        {
+          "label": "结果",
+          "steps": [
+            "幂零矩阵$GL_3(\\mathbb{R})$共轭类与3的整数分拆一一对应。",
+            "3的分拆为：$3$；$2+1$；$1+1+1$，共3个。",
+            "故 $c_3(GL_3(\\mathbb{R})) = 3$。"
+          ]
+        }
+      ],
+      "id": "utokyo-2024-3f500c52e4-q01-practice-01",
+      "school": "东京大学",
+      "year": "2024"
+    },
+    {
+      "text": "对正则幂零矩阵 $J_3$（单个3阶Jordan块），求其在 $GL_3(\\mathbb{R})$ 下的中心化子中所有元素的行列式集合，并判断 $J_3$ 所在的GL-轨道在$SL_3(\\mathbb{R})$下是否分裂。",
+      "knowledge_points": [
+        "中心化子计算",
+        "Toeplitz矩阵行列式",
+        "GL/SL轨道分裂判据"
+      ],
+      "question_type": "证明与判断",
+      "method": [
+        "写出与$J_3$交换的矩阵的一般形式",
+        "计算行列式"
+      ],
+      "solution_steps": [
+        "写出中心化子元素 $p_0I+p_1N+p_2N^2$",
+        "计算行列式为 $p_0^3$",
+        "分析$p_0^3$的取值范围",
+        "判断分裂性"
+      ],
+      "math_structure": {
+        "type": "centralizer_determinant",
+        "template": "compute $\\det$ image of centralizer of single Jordan block $J_k$",
+        "variable_count": 1
+      },
+      "difficulty": 2,
+      "estimated_minutes": 10,
+      "answer": [
+        {
+          "label": "结果",
+          "steps": [
+            "与$J_3$交换的可逆矩阵形如 $T=p_0 I + p_1 N + p_2 N^2$，其中$N$为$J_3$的幂零部分，$p_0\\neq 0$（其余任意）。",
+            "$T$是上三角Toeplitz矩阵，对角元均为$p_0$，故 $\\det T = p_0^3$。",
+            "由于$p_0$取遍所有非零实数，$p_0^3$也取遍所有非零实数（奇次幂为双射），即行列式像为$\\mathbb{R}\\setminus\\{0\\}$，包含负数。",
+            "故 $J_3$ 的GL-轨道等于其SL-轨道，不分裂。"
+          ]
+        }
+      ],
+      "id": "utokyo-2024-3f500c52e4-q01-practice-02",
+      "school": "东京大学",
+      "year": "2024"
+    },
+    {
+      "text": "考虑 $n=6$ 上的分拆 $[3,3]$（两个3阶Jordan块 $J_3\\oplus J_3$）。仿照单个Jordan块重数为2的情形，写出其中心化子中元素的行列式的一般表达式，并判断该GL-轨道在$SL_6(\\mathbb{R})$下是否分裂。",
+      "knowledge_points": [
+        "重数为$m$的Jordan块中心化子",
+        "分块上三角矩阵行列式",
+        "$R[t]/t^k$上$GL_m$结构"
+      ],
+      "question_type": "计算与判断",
+      "method": [
+        "把中心化子表示为$M_2(\\mathbb{R}[N]/N^3)$中的可逆元",
+        "转化为分块矩阵计算行列式"
+      ],
+      "solution_steps": [
+        "写出中心化子的一般元素 $A_0+A_1N+A_2N^2$，$A_0,A_1,A_2\\in M_2(\\mathbb{R})$",
+        "验证对应的6x6矩阵是分块上三角，对角块均为$A_0$",
+        "计算总行列式为$\\det(A_0)^3$",
+        "分析$\\det(A_0)^3$可否取负值"
+      ],
+      "math_structure": {
+        "type": "centralizer_determinant_multiplicity",
+        "template": "compute $\\det$ image of centralizer of $J_k^{\\oplus m}$ for $k=3,m=2$",
+        "variable_count": 2
+      },
+      "difficulty": 3,
+      "estimated_minutes": 15,
+      "answer": [
+        {
+          "label": "结果",
+          "steps": [
+            "把$J_3\\oplus J_3$看作$\\mathbb{R}^2\\otimes \\mathbb{R}^3$上$I_2\\otimes N$（$N$为3阶幂零Jordan块）的作用，则中心化子同构于$M_2(\\mathbb{R}[N]/N^3)$中的可逆元素集合。",
+            "一般元素写成$A_0+A_1N+A_2N^2$（$A_0,A_1,A_2\\in M_2(\\mathbb{R})$，$A_0$可逆），在适当基（按幂零阶数分组）下对应的6x6矩阵是分块上三角，对角块均为$A_0$（重复3次）。",
+            "故总行列式$=\\det(A_0)^3$。",
+            "由于$A_0\\in GL_2(\\mathbb{R})$，$\\det A_0$可取任意非零实数，故$\\det(A_0)^3$（三次幂为双射）也取遍所有非零实数，含负数。",
+            "因此 $[3,3]$ 型（$n=6$）的GL-轨道不分裂，为单一SL-轨道。"
+          ]
+        }
+      ],
+      "id": "utokyo-2024-3f500c52e4-q01-practice-03",
+      "school": "东京大学",
+      "year": "2024"
+    },
+    {
+      "text": "对 $n=6$，参照原题方法，求 $c_6(GL_6(\\mathbb{R}))$，并对分拆 $[2,2,2]$（三个2阶Jordan块）判断其GL-轨道在$SL_6(\\mathbb{R})$下是否分裂（不要求计算完整的$c_6(SL_6(\\mathbb{R}))$）。",
+      "knowledge_points": [
+        "整数分拆计数",
+        "重数为$m$的2阶Jordan块中心化子",
+        "$GL_m(\\mathbb{R})$行列式的平方结构"
+      ],
+      "question_type": "计数与判断",
+      "method": [
+        "列出6的所有分拆",
+        "把中心化子表示为$M_3(\\mathbb{R}[N]/N^2)$中可逆元并计算行列式"
+      ],
+      "solution_steps": [
+        "列出6的整数分拆并计数得$c_6(GL_6(\\mathbb{R}))$",
+        "对$[2,2,2]$，写出中心化子为$M_3(\\mathbb{R}[N]/N^2)$的可逆元",
+        "计算对应行列式为$\\det(A_0)^2$（$A_0\\in GL_3(\\mathbb{R})$）",
+        "判断恒正故分裂为2"
+      ],
+      "math_structure": {
+        "type": "combined_partition_and_centralizer",
+        "template": "compute $p(6)$ and determine splitting for partition $[2,2,2]$ of $6$",
+        "variable_count": 1
+      },
+      "difficulty": 4,
+      "estimated_minutes": 15,
+      "answer": [
+        {
+          "label": "c_6(GL_6(R))",
+          "steps": [
+            "6的整数分拆为：$6$；$5+1$；$4+2$；$4+1+1$；$3+3$；$3+2+1$；$3+1+1+1$；$2+2+2$；$2+2+1+1$；$2+1+1+1+1$；$1+1+1+1+1+1$，共11个。",
+            "故 $c_6(GL_6(\\mathbb{R})) = 11$。"
+          ]
+        },
+        {
+          "label": "[2,2,2]的分裂判断",
+          "steps": [
+            "把$J_2^{\\oplus 3}$看作$\\mathbb{R}^3\\otimes\\mathbb{R}^2$上$I_3\\otimes N$（$N$为2阶幂零块）的作用，中心化子同构于$M_3(\\mathbb{R}[N]/N^2)$的可逆元，一般元素为$A_0+A_1N$（$A_0\\in GL_3(\\mathbb{R})$）。",
+            "对应的6x6矩阵在适当基下是分块上三角，两个对角块均为$A_0$，故总行列式$=\\det(A_0)^2$。",
+            "由于是平方，$\\det(A_0)^2>0$恒成立，中心化子的行列式像不含负数。",
+            "因此 $[2,2,2]$ 型的GL-轨道在$SL_6(\\mathbb{R})$下分裂为2个轨道。"
+          ]
+        }
+      ],
+      "id": "utokyo-2024-3f500c52e4-q01-practice-04",
+      "school": "东京大学",
+      "year": "2024"
+    }
+  ],
+  "source_question": "B第1問",
+  "source_pdf": "东京大学/数理科学研究科/数理科学専攻/东京大学_数理科学研究科_数理科学専攻_2024_专业科目B.pdf",
+  "source_type": "官方过去问",
+  "subject_category": "线性代数"
+}

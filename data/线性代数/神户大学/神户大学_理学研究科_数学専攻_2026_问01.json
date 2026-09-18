@@ -1,0 +1,243 @@
+{
+  "id": "kobe-2026-8dfec7e654-q01",
+  "school": "神户大学",
+  "year": "2026",
+  "subject": "理学研究科_数学専攻",
+  "text": "对 $a \\ge 0$，定义矩阵\n$$A = \\begin{pmatrix} 3 & -2 & 1 \\\\ 2 & -1 & 1 \\\\ -6 & a+4 & -2 \\end{pmatrix}.$$\n回答下列问题：\n\n(1) 证明 $A$ 以 $1$ 为特征值。\n\n(2) 求出 $A$ 的全部特征值。\n\n(3) 证明对任意 $a$，$A$ 都可对角化。\n\n(4) 求出使得对任意正整数 $n$ 都成立 $A^{n+2}=A^n$ 的 $a$ 的值。",
+  "knowledge_points": [
+    "特征值与特征多项式",
+    "矩阵可对角化条件",
+    "特征空间维数",
+    "矩阵幂的对角化计算",
+    "参数化矩阵分析",
+    "行列式展开"
+  ],
+  "question_type": "含参数矩阵的特征值与对角化综合题",
+  "method": [
+    "利用 $\\det(A-\\lambda I)=0$ 判定特征值",
+    "对 $A-I$ 做行变换验证秩",
+    "因式分解特征多项式",
+    "比较代数重数与几何重数判断可对角化",
+    "利用对角化后 $A^n=PD^nP^{-1}$ 分析矩阵幂的性质"
+  ],
+  "solution_steps": [
+    "计算 $A-I$，观察其秩以证明 $1$ 是特征值",
+    "展开 $\\det(A-\\lambda I)$ 得到特征多项式，并因式分解出 $(\\lambda-1)$",
+    "解剩余二次因子得到全部特征值（含参数 $a$ 的表达式）",
+    "讨论特征值何时重合（即 $a=2$ 时），并验证该情形下几何重数等于代数重数",
+    "利用可对角化条件，将 $A^{n+2}=A^n$ 转化为每个特征值 $\\lambda$ 满足 $\\lambda^n(\\lambda^2-1)=0$ 对所有正整数 $n$ 成立",
+    "确定满足条件的特征值集合 $\\{-1,0,1\\}$，结合特征值表达式解出 $a$"
+  ],
+  "math_structure": {
+    "type": "parametric_matrix_eigenvalue_diagonalization",
+    "template": "given $3\\times3$ matrix $A(a) = \\begin{pmatrix}3&-2&1\\\\2&-1&1\\\\-6&a+4&-2\\end{pmatrix}$ with parameter $a\\ge0$; find eigenvalues, prove diagonalizability, solve $A^{n+2}=A^n$",
+    "variable_count": 1
+  },
+  "difficulty": 3,
+  "answer": [
+    {
+      "label": "(1)",
+      "steps": [
+        "计算 $A-I=\\begin{pmatrix}2&-2&1\\\\2&-2&1\\\\-6&a+4&-3\\end{pmatrix}$。",
+        "注意到第一行与第二行完全相同，均为 $(2,-2,1)$，因此 $A-I$ 的秩至多为 $2$，故 $\\det(A-I)=0$。",
+        "由 $\\det(A-I)=0$ 知方程 $(A-I)v=0$ 有非零解 $v$，即存在非零向量 $v$ 使 $Av=v$，故 $1$ 是 $A$ 的特征值。"
+      ]
+    },
+    {
+      "label": "(2)",
+      "steps": [
+        "按第一行展开 $\\det(A-\\lambda I)$：设 $M_{11}=\\det\\begin{pmatrix}-1-\\lambda&1\\\\a+4&-2-\\lambda\\end{pmatrix}=\\lambda^2+3\\lambda-a-2$，$M_{12}=\\det\\begin{pmatrix}2&1\\\\-6&-2-\\lambda\\end{pmatrix}=2-2\\lambda$，$M_{13}=\\det\\begin{pmatrix}2&-1-\\lambda\\\\-6&a+4\\end{pmatrix}=2a+2-6\\lambda$。",
+        "则 $\\det(A-\\lambda I)=(3-\\lambda)(\\lambda^2+3\\lambda-a-2)+2(2-2\\lambda)+(2a+2-6\\lambda)$，展开化简得 $\\det(A-\\lambda I)=-\\lambda^3+(a+1)\\lambda-a$。",
+        "令 $p(\\lambda)=\\lambda^3-(a+1)\\lambda+a=0$（即 $-\\det(A-\\lambda I)=0$），代入 $\\lambda=1$ 验证：$1-(a+1)+a=0$ 成立，与(1)一致。",
+        "因式分解 $p(\\lambda)=(\\lambda-1)(\\lambda^2+\\lambda-a)$（展开验证：$(\\lambda-1)(\\lambda^2+\\lambda-a)=\\lambda^3-(a+1)\\lambda+a$，吻合）。",
+        "解 $\\lambda^2+\\lambda-a=0$ 得 $\\lambda=\\dfrac{-1\\pm\\sqrt{1+4a}}{2}$。由于 $a\\ge0$，判别式 $1+4a\\ge1>0$，两根均为实数。",
+        "故 $A$ 的全部特征值为 $\\lambda_1=1,\\ \\lambda_2=\\dfrac{-1+\\sqrt{1+4a}}{2},\\ \\lambda_3=\\dfrac{-1-\\sqrt{1+4a}}{2}$。"
+      ]
+    },
+    {
+      "label": "(3)",
+      "steps": [
+        "考察三个特征值何时重合：$\\lambda_2=1$ 当且仅当 $1+1-a=0$，即 $a=2$；此时另一根由根与系数关系 $\\lambda_2+\\lambda_3=-1$ 得 $\\lambda_3=-2$。二次因子的两根相等（$\\lambda_2=\\lambda_3$）需判别式 $1+4a=0$，即 $a=-1/4$，不在 $a\\ge0$ 范围内，故不会出现。",
+        "对 $a\\ne 2$：三个特征值 $1,\\lambda_2,\\lambda_3$ 两两不同（$\\lambda_2\\ne\\lambda_3$ 因 $a\\ge0$，且均不等于 $1$），$3\\times3$ 矩阵有三个不同特征值，自动可对角化。",
+        "对 $a=2$：特征值为 $1,1,-2$，需验证特征值 $1$ 的几何重数等于代数重数 $2$。计算 $A-I=\\begin{pmatrix}2&-2&1\\\\2&-2&1\\\\-6&6&-3\\end{pmatrix}$，第二行等于第一行，第三行 $=-3\\times$第一行，故 $\\mathrm{rank}(A-I)=1$，从而 $\\dim\\ker(A-I)=3-1=2$，几何重数为 $2$，与代数重数相等。",
+        "综上，无论 $a\\ge0$ 取何值，$A$ 均可对角化。"
+      ]
+    },
+    {
+      "label": "(4)",
+      "steps": [
+        "由(3)知 $A$ 可对角化，设 $A=PDP^{-1}$，则 $A^{n}=PD^nP^{-1}$，条件 $A^{n+2}=A^n$（对所有正整数 $n$）等价于对每个特征值 $\\lambda$，都有 $\\lambda^{n+2}=\\lambda^n$，即 $\\lambda^n(\\lambda^2-1)=0$ 对所有 $n\\ge1$ 成立。",
+        "若 $\\lambda\\ne0$，则需 $\\lambda^2=1$，即 $\\lambda\\in\\{1,-1\\}$；若 $\\lambda=0$，则 $\\lambda^n=0$ 自动满足条件。故每个特征值必须属于集合 $\\{-1,0,1\\}$。",
+        "特征值为 $1,\\lambda_2,\\lambda_3$，其中 $\\lambda_2+\\lambda_3=-1$，$\\lambda_2\\lambda_3=-a$。需 $\\lambda_2,\\lambda_3\\in\\{-1,0,1\\}$ 且两者之和为 $-1$：检验所有可能的对 $(-1,-1),(-1,0),(-1,1),(0,0),(0,1),(1,1)$ 中和为 $-1$ 的仅有 $(-1,0)$（及其顺序）。",
+        "取 $\\lambda_2=0,\\lambda_3=-1$（或反之），则乘积 $\\lambda_2\\lambda_3=0=-a$，得 $a=0$，且满足 $a\\ge0$。",
+        "验证 $a=0$：特征值为 $1,0,-1$，对任意 $n\\ge1$：$1^{n+2}=1=1^n$，$0^{n+2}=0=0^n$，$(-1)^{n+2}=(-1)^n$，均成立，故 $A^{n+2}=A^n$ 对所有正整数 $n$ 成立。",
+        "因此唯一满足条件的参数为 $a=0$。"
+      ]
+    }
+  ],
+  "practice_questions": [
+    {
+      "text": "设 $B=\\begin{pmatrix}2&1\\\\0&2\\end{pmatrix}$。求 $B$ 的特征值，并判断 $B$ 是否可对角化。",
+      "knowledge_points": [
+        "特征值计算",
+        "可对角化判定",
+        "重特征值的几何重数"
+      ],
+      "question_type": "基础特征值与可对角化判定",
+      "method": [
+        "求特征多项式",
+        "比较代数重数与几何重数"
+      ],
+      "solution_steps": [
+        "计算特征多项式 $\\det(B-\\lambda I)$",
+        "求出特征值及重数",
+        "计算特征空间维数判断是否可对角化"
+      ],
+      "math_structure": {
+        "type": "eigenvalue_diagonalizability_basic",
+        "template": "given upper triangular $2\\times2$ matrix with repeated eigenvalue, determine diagonalizability",
+        "variable_count": 0
+      },
+      "difficulty": 1,
+      "estimated_minutes": 6,
+      "answer": [
+        {
+          "label": "求特征值与可对角化性",
+          "steps": [
+            "特征多项式：$\\det(B-\\lambda I)=(2-\\lambda)^2=0$，得特征值 $\\lambda=2$（代数重数 $2$）。",
+            "求解 $(B-2I)v=0$：$B-2I=\\begin{pmatrix}0&1\\\\0&0\\end{pmatrix}$，秩为 $1$，故 $\\dim\\ker(B-2I)=2-1=1$，几何重数为 $1$。",
+            "几何重数 $1$ 小于代数重数 $2$，故 $B$ **不可对角化**。"
+          ]
+        }
+      ],
+      "id": "kobe-2026-8dfec7e654-q01-practice-01",
+      "school": "神户大学",
+      "year": "2026"
+    },
+    {
+      "text": "设参数 $t\\in\\mathbb{R}$，矩阵 $C(t)=\\begin{pmatrix}1&0&0\\\\0&t&1\\\\0&0&t\\end{pmatrix}$。求 $C(t)$ 的特征值，并求使 $C(t)$ 可对角化的所有 $t$ 的值。",
+      "knowledge_points": [
+        "含参数矩阵的特征值",
+        "分块矩阵特征值",
+        "可对角化的充要条件"
+      ],
+      "question_type": "含参数矩阵可对角化判定",
+      "method": [
+        "利用分块三角矩阵求特征值",
+        "分析重特征值时的秩条件"
+      ],
+      "solution_steps": [
+        "利用分块结构直接读出特征值",
+        "讨论特征值重合的情况",
+        "计算对应特征子空间的秩以判断可对角化"
+      ],
+      "math_structure": {
+        "type": "parametric_block_matrix_diagonalizability",
+        "template": "given block upper-triangular matrix with parameter $t$ producing repeated eigenvalue, find diagonalizable $t$",
+        "variable_count": 1
+      },
+      "difficulty": 2,
+      "estimated_minutes": 8,
+      "answer": [
+        {
+          "label": "求特征值及可对角化条件",
+          "steps": [
+            "矩阵为分块上三角矩阵，第一块给出特征值 $\\lambda=1$；第二块 $\\begin{pmatrix}t&1\\\\0&t\\end{pmatrix}$ 给出特征值 $\\lambda=t$（重数 $2$）。",
+            "若 $t\\ne1$，三个特征值中 $1$ 与 $t,t$ 不同，只需检验 $t$ 的重数 $2$ 是否可对角化：计算 $C(t)-tI=\\begin{pmatrix}1-t&0&0\\\\0&0&1\\\\0&0&0\\end{pmatrix}$，其秩为 $2$（当 $t\\ne1$），故几何重数 $=3-2=1<2$，**不可对角化**。",
+            "若 $t=1$，则 $C(1)=\\begin{pmatrix}1&0&0\\\\0&1&1\\\\0&0&1\\end{pmatrix}$，特征值 $1$ 重数 $3$；计算 $C(1)-I=\\begin{pmatrix}0&0&0\\\\0&0&1\\\\0&0&0\\end{pmatrix}$，秩为 $1$，几何重数 $=3-1=2<3$，仍**不可对角化**。",
+            "结论：对任意 $t\\in\\mathbb{R}$，$C(t)$ 都不可对角化（因 Jordan 块结构导致几何重数总小于代数重数）。"
+          ]
+        }
+      ],
+      "id": "kobe-2026-8dfec7e654-q01-practice-02",
+      "school": "神户大学",
+      "year": "2026"
+    },
+    {
+      "text": "设 $D=\\begin{pmatrix}0&1\\\\-1&0\\end{pmatrix}$。求最小的正整数 $k$，使得 $D^k=D^0=I$ 成立，并说明该现象与特征值的关系。",
+      "knowledge_points": [
+        "矩阵幂的周期性",
+        "特征值与单位根",
+        "对角化计算矩阵幂"
+      ],
+      "question_type": "矩阵幂周期性问题",
+      "method": [
+        "求特征值（复数）",
+        "利用对角化计算矩阵幂",
+        "利用单位根周期性求最小周期"
+      ],
+      "solution_steps": [
+        "求 $D$ 的特征值",
+        "分析特征值的幂何时等于 $1$",
+        "确定最小正整数 $k$"
+      ],
+      "math_structure": {
+        "type": "matrix_power_periodicity",
+        "template": "given rotation matrix $D=\\begin{pmatrix}0&1\\\\-1&0\\end{pmatrix}$, find minimal $k$ with $D^k=I$",
+        "variable_count": 0
+      },
+      "difficulty": 2,
+      "estimated_minutes": 7,
+      "answer": [
+        {
+          "label": "求最小周期 $k$",
+          "steps": [
+            "特征多项式：$\\det(D-\\lambda I)=\\lambda^2+1=0$，得特征值 $\\lambda=\\pm i$。",
+            "由于 $D$ 有两个不同特征值 $i,-i$，$D$ 可对角化，$D^k$ 的特征值为 $(\\pm i)^k$，需 $(\\pm i)^k=1$。",
+            "$i^k=1$ 的最小正整数解为 $k=4$（因为 $i$ 的乘法阶为 $4$），同时 $(-i)^4=1$ 也成立。",
+            "故最小正整数 $k=4$，即 $D^4=I$，这对应几何上 $D$ 是旋转 $90^\\circ$ 的矩阵，旋转 $4$ 次回到原位。"
+          ]
+        }
+      ],
+      "id": "kobe-2026-8dfec7e654-q01-practice-03",
+      "school": "神户大学",
+      "year": "2026"
+    },
+    {
+      "text": "设 $a$ 为实参数，矩阵 $E(a)=\\begin{pmatrix}0&1\\\\a&0\\end{pmatrix}$。求使得对所有正整数 $n$ 都有 $E(a)^{n+2}=E(a)^n$ 成立的 $a$ 的所有取值。",
+      "knowledge_points": [
+        "特征值满足幂等条件",
+        "对角化后矩阵幂分析",
+        "参数方程求解"
+      ],
+      "question_type": "含参数矩阵幂等式求解",
+      "method": [
+        "求特征值表达式（含参数）",
+        "利用对角化转化为特征值满足 $\\lambda^n(\\lambda^2-1)=0$",
+        "解参数方程"
+      ],
+      "solution_steps": [
+        "求出 $E(a)$ 的特征值",
+        "写出对角化后 $E(a)^{n+2}=E(a)^n$ 的等价条件",
+        "解出满足该条件的 $a$"
+      ],
+      "math_structure": {
+        "type": "parametric_matrix_power_equation",
+        "template": "given $2\\times2$ matrix $E(a)=\\begin{pmatrix}0&1\\\\a&0\\end{pmatrix}$, solve for $a$ such that $E(a)^{n+2}=E(a)^n$ for all $n\\ge1$",
+        "variable_count": 1
+      },
+      "difficulty": 3,
+      "estimated_minutes": 10,
+      "answer": [
+        {
+          "label": "求满足条件的 $a$",
+          "steps": [
+            "特征多项式：$\\det(E(a)-\\lambda I)=\\lambda^2-a=0$，得特征值 $\\lambda=\\pm\\sqrt{a}$（若 $a\\ge0$，为实数；若 $a<0$，为纯虚数 $\\pm i\\sqrt{-a}$）。",
+            "若 $a\\ne0$，两特征值不同，$E(a)$ 可对角化；条件 $E(a)^{n+2}=E(a)^n$（对所有 $n\\ge1$）等价于每个特征值 $\\lambda$ 满足 $\\lambda^n(\\lambda^2-1)=0$，即 $\\lambda\\in\\{-1,0,1\\}$（对实特征值）或需 $\\lambda^2=1$（对非零特征值）。",
+            "情形 $a>0$：$\\lambda=\\pm\\sqrt{a}\\in\\{-1,1\\}$ 要求 $\\sqrt{a}=1$，即 $a=1$。",
+            "情形 $a=0$：特征值为 $0,0$（此时 $E(0)$ 为幂零矩阵），验证 $E(0)^2=\\begin{pmatrix}0&0\\\\0&0\\end{pmatrix}$，故对所有 $n\\ge1$，$E(0)^n=0$（因为 $E(0)^2=0$），从而 $E(0)^{n+2}=0=E(0)^n$ 成立，$a=0$ 也满足条件。",
+            "情形 $a<0$：特征值为纯虚数 $\\pm i\\sqrt{-a}$，非零，需 $\\lambda^2=1$，但 $\\lambda^2=a<0\\ne1$，矛盾，故不满足。",
+            "综上，满足条件的 $a$ 为 $a=0$ 或 $a=1$。"
+          ]
+        }
+      ],
+      "id": "kobe-2026-8dfec7e654-q01-practice-04",
+      "school": "神户大学",
+      "year": "2026"
+    }
+  ],
+  "source_question": "問題1",
+  "source_pdf": "神户大学/理学研究科/数学専攻/神户大学_理学研究科_数学専攻_2026.pdf",
+  "source_type": "官方过去问",
+  "subject_category": "线性代数"
+}

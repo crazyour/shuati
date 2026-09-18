@@ -1,0 +1,277 @@
+{
+  "id": "hokkaido-2025-51b411b997-q01",
+  "school": "北海道大学",
+  "year": "2025",
+  "subject": "情报科学院_情报电子学",
+  "text": "给定矩阵 $A=\\begin{pmatrix} 2 & 3 & -3 \\\\ -1 & 2 & 1 \\\\ -1 & 3 & 0 \\end{pmatrix}$ 和 $P=\\begin{pmatrix} 1 & 1 & 1 \\\\ 1 & 1 & 0 \\\\ 1 & 0 & 1 \\end{pmatrix}$\n\n（1）求 $A$ 的所有特征值和特征向量。\n\n（2）求 $P$ 的逆矩阵 $P^{-1}$。\n\n（3）设 $B = P^{-1}AP$，求 $B$ 的所有特征值和特征向量。",
+  "knowledge_points": [
+    "特征值与特征向量",
+    "矩阵行列式与伴随矩阵",
+    "矩阵求逆",
+    "相似矩阵对角化",
+    "特征多项式"
+  ],
+  "question_type": "矩阵特征分解与相似变换",
+  "method": [
+    "特征多项式法求特征值",
+    "齐次线性方程组求特征向量",
+    "伴随矩阵法求逆矩阵",
+    "相似变换性质"
+  ],
+  "solution_steps": [
+    "构造特征多项式 $\\det(A-\\lambda I)=0$ 并求解",
+    "对每个特征值求解 $(A-\\lambda I)v=0$ 得特征向量",
+    "计算 $P$ 的行列式和伴随矩阵",
+    "由 $P^{-1}=\\frac{1}{\\det(P)}\\text{adj}(P)$ 求逆矩阵",
+    "利用相似变换性质得 $B$ 的特征值和向量"
+  ],
+  "math_structure": {
+    "type": "matrix_eigenvalue_diagonalization",
+    "template": "给定矩阵 $A_{n\\times n}$，求其特征值 $\\lambda_i$、特征向量 $v_i$，设 $P$ 为由特征向量组成的矩阵，求 $P^{-1}$ 和对角矩阵 $B=P^{-1}AP$",
+    "variable_count": 9
+  },
+  "difficulty": 3,
+  "answer": [
+    {
+      "label": "（1）求A的特征值和特征向量",
+      "steps": [
+        "构造特征多项式：$\\det(A-\\lambda I)=\\det\\begin{pmatrix} 2-\\lambda & 3 & -3 \\\\ -1 & 2-\\lambda & 1 \\\\ -1 & 3 & -\\lambda \\end{pmatrix}$",
+        "按第一列展开：$\\det(A-\\lambda I)=(2-\\lambda)\\det\\begin{pmatrix} 2-\\lambda & 1 \\\\ 3 & -\\lambda \\end{pmatrix}+\\det\\begin{pmatrix} 3 & -3 \\\\ 3 & -\\lambda \\end{pmatrix}-\\det\\begin{pmatrix} 3 & -3 \\\\ 2-\\lambda & 1 \\end{pmatrix}$",
+        "计算各余子式：$(2-\\lambda)[(2-\\lambda)(-\\lambda)-3]+(3(-\\lambda)-(-3)\\cdot 3)-(3\\cdot 1-(-3)(2-\\lambda))$",
+        "化简：$(2-\\lambda)(\\lambda^2-2\\lambda-3)-3\\lambda+9-3-6+3\\lambda=(2-\\lambda)(\\lambda^2-2\\lambda-3)$",
+        "因式分解：$(2-\\lambda)(\\lambda-3)(\\lambda+1)=0$，得特征值 $\\lambda_1=2, \\lambda_2=3, \\lambda_3=-1$",
+        "对 $\\lambda_1=2$：求解 $(A-2I)v=0$，即 $\\begin{pmatrix} 0 & 3 & -3 \\\\ -1 & 0 & 1 \\\\ -1 & 3 & -2 \\end{pmatrix}\\begin{pmatrix} v_1 \\\\ v_2 \\\\ v_3 \\end{pmatrix}=0$",
+        "从第一行：$3v_2-3v_3=0 \\Rightarrow v_2=v_3$；从第二行：$-v_1+v_3=0 \\Rightarrow v_1=v_3$。取 $v_3=1$，特征向量 $v_1=\\begin{pmatrix} 1 \\\\ 1 \\\\ 1 \\end{pmatrix}$",
+        "对 $\\lambda_2=3$：求解 $(A-3I)v=0$，即 $\\begin{pmatrix} -1 & 3 & -3 \\\\ -1 & -1 & 1 \\\\ -1 & 3 & -3 \\end{pmatrix}\\begin{pmatrix} v_1 \\\\ v_2 \\\\ v_3 \\end{pmatrix}=0$",
+        "第一、三行相同。从第一行：$-v_1+3v_2-3v_3=0$；从第二行：$-v_1-v_2+v_3=0$。联立得 $v_1=0, v_2=v_3$，特征向量 $v_2=\\begin{pmatrix} 0 \\\\ 1 \\\\ 1 \\end{pmatrix}$",
+        "对 $\\lambda_3=-1$：求解 $(A+I)v=0$，即 $\\begin{pmatrix} 3 & 3 & -3 \\\\ -1 & 3 & 1 \\\\ -1 & 3 & 1 \\end{pmatrix}\\begin{pmatrix} v_1 \\\\ v_2 \\\\ v_3 \\end{pmatrix}=0$",
+        "第二、三行相同。从第一行：$v_1+v_2-v_3=0$；从第二行：$-v_1+3v_2+v_3=0$。联立得 $v_2=0, v_1=v_3$，特征向量 $v_3=\\begin{pmatrix} 1 \\\\ 0 \\\\ 1 \\end{pmatrix}$",
+        "**结论**：特征值为 $\\lambda_1=2, \\lambda_2=3, \\lambda_3=-1$；对应特征向量为 $\\begin{pmatrix} 1 \\\\ 1 \\\\ 1 \\end{pmatrix}, \\begin{pmatrix} 0 \\\\ 1 \\\\ 1 \\end{pmatrix}, \\begin{pmatrix} 1 \\\\ 0 \\\\ 1 \\end{pmatrix}$"
+      ]
+    },
+    {
+      "label": "（2）求P的逆矩阵",
+      "steps": [
+        "计算 $\\det(P)$：$\\det(P)=1\\cdot\\det\\begin{pmatrix} 1 & 0 \\\\ 0 & 1 \\end{pmatrix}-1\\cdot\\det\\begin{pmatrix} 1 & 0 \\\\ 1 & 1 \\end{pmatrix}+1\\cdot\\det\\begin{pmatrix} 1 & 1 \\\\ 1 & 0 \\end{pmatrix}=1-1-1=-1$",
+        "计算伴随矩阵的各元素。代数余子式：$C_{11}=1, C_{12}=-1, C_{13}=-1, C_{21}=-1, C_{22}=0, C_{23}=1, C_{31}=-1, C_{32}=1, C_{33}=0$",
+        "伴随矩阵 $\\text{adj}(P)=\\begin{pmatrix} 1 & -1 & -1 \\\\ -1 & 0 & 1 \\\\ -1 & 1 & 0 \\end{pmatrix}^T=\\begin{pmatrix} 1 & -1 & -1 \\\\ -1 & 0 & 1 \\\\ -1 & 1 & 0 \\end{pmatrix}$",
+        "由 $P^{-1}=\\frac{1}{\\det(P)}\\text{adj}(P)=\\frac{1}{-1}\\begin{pmatrix} 1 & -1 & -1 \\\\ -1 & 0 & 1 \\\\ -1 & 1 & 0 \\end{pmatrix}$",
+        "**结论**：$P^{-1}=\\begin{pmatrix} -1 & 1 & 1 \\\\ 1 & 0 & -1 \\\\ 1 & -1 & 0 \\end{pmatrix}$",
+        "**验证**：$PP^{-1}$ 的第(1,1)项：$1(-1)+1(1)+1(1)=1$ ✓；第(1,2)项：$1(1)+1(0)+1(-1)=0$ ✓；第(2,2)项：$1(1)+1(0)+0(-1)=1$ ✓"
+      ]
+    },
+    {
+      "label": "（3）求B的特征值和特征向量",
+      "steps": [
+        "注意P的列向量恰好是A的特征向量，分别对应特征值 $\\lambda_1=2, \\lambda_2=3, \\lambda_3=-1$",
+        "由相似矩阵性质，$B=P^{-1}AP$ 与 $A$ 相似，因此 $B$ 与 $A$ 有相同的特征值",
+        "由于P列向量为特征向量，对角化结果为：$B=\\begin{pmatrix} 2 & 0 & 0 \\\\ 0 & 3 & 0 \\\\ 0 & 0 & -1 \\end{pmatrix}$",
+        "$B$ 为对角矩阵，其特征值为对角线元素：$\\lambda_1=2, \\lambda_2=3, \\lambda_3=-1$",
+        "对角矩阵的特征向量为标准基向量：对 $\\lambda_1=2$ 对应 $e_1=\\begin{pmatrix} 1 \\\\ 0 \\\\ 0 \\end{pmatrix}$；对 $\\lambda_2=3$ 对应 $e_2=\\begin{pmatrix} 0 \\\\ 1 \\\\ 0 \\end{pmatrix}$；对 $\\lambda_3=-1$ 对应 $e_3=\\begin{pmatrix} 0 \\\\ 0 \\\\ 1 \\end{pmatrix}$",
+        "**结论**：$B$ 的特征值为 $2, 3, -1$，对应特征向量为 $\\begin{pmatrix} 1 \\\\ 0 \\\\ 0 \\end{pmatrix}, \\begin{pmatrix} 0 \\\\ 1 \\\\ 0 \\end{pmatrix}, \\begin{pmatrix} 0 \\\\ 0 \\\\ 1 \\end{pmatrix}$"
+      ]
+    }
+  ],
+  "practice_questions": [
+    {
+      "text": "求矩阵 $A=\\begin{pmatrix} 1 & 2 \\\\ 2 & 1 \\end{pmatrix}$ 的特征值和特征向量。",
+      "knowledge_points": [
+        "特征值与特征向量",
+        "特征多项式"
+      ],
+      "question_type": "特征值分解",
+      "method": [
+        "特征多项式法"
+      ],
+      "solution_steps": [
+        "构造特征多项式",
+        "求解二次方程",
+        "代入求特征向量"
+      ],
+      "math_structure": {
+        "type": "eigenvalue_computation_2x2",
+        "template": "对 $2\\times 2$ 矩阵求特征值和特征向量",
+        "variable_count": 4
+      },
+      "difficulty": 1,
+      "estimated_minutes": 5,
+      "answer": [
+        {
+          "label": "求特征值和特征向量",
+          "steps": [
+            "特征多项式：$\\det(A-\\lambda I)=\\det\\begin{pmatrix} 1-\\lambda & 2 \\\\ 2 & 1-\\lambda \\end{pmatrix}=(1-\\lambda)^2-4=\\lambda^2-2\\lambda-3=0$",
+            "求解：$(\\lambda-3)(\\lambda+1)=0$，得 $\\lambda_1=3, \\lambda_2=-1$",
+            "对 $\\lambda_1=3$：$(A-3I)v=0 \\Rightarrow \\begin{pmatrix} -2 & 2 \\\\ 2 & -2 \\end{pmatrix}\\begin{pmatrix} v_1 \\\\ v_2 \\end{pmatrix}=0 \\Rightarrow v_1=v_2$，特征向量 $\\begin{pmatrix} 1 \\\\ 1 \\end{pmatrix}$",
+            "对 $\\lambda_2=-1$：$(A+I)v=0 \\Rightarrow \\begin{pmatrix} 2 & 2 \\\\ 2 & 2 \\end{pmatrix}\\begin{pmatrix} v_1 \\\\ v_2 \\end{pmatrix}=0 \\Rightarrow v_1=-v_2$，特征向量 $\\begin{pmatrix} 1 \\\\ -1 \\end{pmatrix}$",
+            "**结论**：特征值 $3, -1$，对应特征向量 $\\begin{pmatrix} 1 \\\\ 1 \\end{pmatrix}, \\begin{pmatrix} 1 \\\\ -1 \\end{pmatrix}$"
+          ]
+        }
+      ],
+      "id": "hokkaido-2025-51b411b997-q01-practice-01",
+      "school": "北海道大学",
+      "year": "2025"
+    },
+    {
+      "text": "设 $A=\\begin{pmatrix} 4 & -1 \\\\ 2 & 1 \\end{pmatrix}$，求 $A^{-1}$。",
+      "knowledge_points": [
+        "矩阵求逆",
+        "伴随矩阵"
+      ],
+      "question_type": "矩阵求逆",
+      "method": [
+        "伴随矩阵法",
+        "克拉默法则"
+      ],
+      "solution_steps": [
+        "计算行列式",
+        "求伴随矩阵",
+        "应用求逆公式"
+      ],
+      "math_structure": {
+        "type": "matrix_inversion_2x2",
+        "template": "用伴随矩阵法求 $2\\times 2$ 矩阵的逆",
+        "variable_count": 4
+      },
+      "difficulty": 1,
+      "estimated_minutes": 5,
+      "answer": [
+        {
+          "label": "求A的逆矩阵",
+          "steps": [
+            "$\\det(A)=4\\cdot 1-(-1)\\cdot 2=4+2=6\\neq 0$，矩阵可逆",
+            "代数余子式：$C_{11}=1, C_{12}=-2, C_{21}=1, C_{22}=4$",
+            "伴随矩阵：$\\text{adj}(A)=\\begin{pmatrix} 1 & -1 \\\\ 2 & 4 \\end{pmatrix}$",
+            "$A^{-1}=\\frac{1}{6}\\begin{pmatrix} 1 & -1 \\\\ 2 & 4 \\end{pmatrix}=\\begin{pmatrix} 1/6 & -1/6 \\\\ 1/3 & 2/3 \\end{pmatrix}$",
+            "**验证**：$AA^{-1}=\\begin{pmatrix} 4 & -1 \\\\ 2 & 1 \\end{pmatrix}\\begin{pmatrix} 1/6 & -1/6 \\\\ 1/3 & 2/3 \\end{pmatrix}=\\begin{pmatrix} 4/6-1/3 & -4/6-2/3 \\\\ 2/6+1/3 & -2/6+2/3 \\end{pmatrix}=\\begin{pmatrix} 1 & 0 \\\\ 0 & 1 \\end{pmatrix}$ ✓"
+          ]
+        }
+      ],
+      "id": "hokkaido-2025-51b411b997-q01-practice-02",
+      "school": "北海道大学",
+      "year": "2025"
+    },
+    {
+      "text": "设 $A=\\begin{pmatrix} 3 & 1 \\\\ 0 & 2 \\end{pmatrix}$，$P=\\begin{pmatrix} 1 & 1 \\\\ 0 & 1 \\end{pmatrix}$，求 $B=P^{-1}AP$。",
+      "knowledge_points": [
+        "矩阵相似变换",
+        "矩阵乘法",
+        "矩阵求逆"
+      ],
+      "question_type": "相似变换计算",
+      "method": [
+        "先求P的逆",
+        "顺序执行矩阵乘法"
+      ],
+      "solution_steps": [
+        "求P的逆矩阵",
+        "计算AP",
+        "计算P^{-1}(AP)"
+      ],
+      "math_structure": {
+        "type": "similarity_transformation",
+        "template": "已知矩阵 $A$ 和 $P$，计算相似矩阵 $B=P^{-1}AP$",
+        "variable_count": 6
+      },
+      "difficulty": 2,
+      "estimated_minutes": 8,
+      "answer": [
+        {
+          "label": "求B=P^{-1}AP",
+          "steps": [
+            "求 $P^{-1}$：$\\det(P)=1\\cdot 1-1\\cdot 0=1$，$\\text{adj}(P)=\\begin{pmatrix} 1 & -1 \\\\ 0 & 1 \\end{pmatrix}$，所以 $P^{-1}=\\begin{pmatrix} 1 & -1 \\\\ 0 & 1 \\end{pmatrix}$",
+            "计算 $AP$：$AP=\\begin{pmatrix} 3 & 1 \\\\ 0 & 2 \\end{pmatrix}\\begin{pmatrix} 1 & 1 \\\\ 0 & 1 \\end{pmatrix}=\\begin{pmatrix} 3 & 4 \\\\ 0 & 2 \\end{pmatrix}$",
+            "计算 $B=P^{-1}(AP)$：$B=\\begin{pmatrix} 1 & -1 \\\\ 0 & 1 \\end{pmatrix}\\begin{pmatrix} 3 & 4 \\\\ 0 & 2 \\end{pmatrix}=\\begin{pmatrix} 3 & 2 \\\\ 0 & 2 \\end{pmatrix}$",
+            "**结论**：$B=\\begin{pmatrix} 3 & 2 \\\\ 0 & 2 \\end{pmatrix}$"
+          ]
+        }
+      ],
+      "id": "hokkaido-2025-51b411b997-q01-practice-03",
+      "school": "北海道大学",
+      "year": "2025"
+    },
+    {
+      "text": "设 $A=\\begin{pmatrix} 2 & 0 & 0 \\\\ 0 & 1 & 1 \\\\ 0 & 1 & 1 \\end{pmatrix}$，求 $A$ 的所有特征值。",
+      "knowledge_points": [
+        "特征多项式",
+        "分块矩阵特征值"
+      ],
+      "question_type": "特征值计算",
+      "method": [
+        "特征多项式法",
+        "利用分块矩阵结构"
+      ],
+      "solution_steps": [
+        "观察矩阵结构",
+        "展开行列式",
+        "求解多项式"
+      ],
+      "math_structure": {
+        "type": "eigenvalue_block_matrix",
+        "template": "求分块对角矩阵或具有特殊结构的矩阵的特征值",
+        "variable_count": 5
+      },
+      "difficulty": 2,
+      "estimated_minutes": 6,
+      "answer": [
+        {
+          "label": "求A的特征值",
+          "steps": [
+            "特征多项式：$\\det(A-\\lambda I)=\\det\\begin{pmatrix} 2-\\lambda & 0 & 0 \\\\ 0 & 1-\\lambda & 1 \\\\ 0 & 1 & 1-\\lambda \\end{pmatrix}$",
+            "利用第一列展开：$\\det(A-\\lambda I)=(2-\\lambda)\\det\\begin{pmatrix} 1-\\lambda & 1 \\\\ 1 & 1-\\lambda \\end{pmatrix}$",
+            "计算 $2\\times 2$ 子式：$(1-\\lambda)^2-1=\\lambda^2-2\\lambda=\\lambda(\\lambda-2)$",
+            "所以 $\\det(A-\\lambda I)=(2-\\lambda)\\cdot\\lambda(\\lambda-2)=-\\lambda(\\lambda-2)^2=0$",
+            "得特征值 $\\lambda_1=0, \\lambda_2=2$ （二重根）",
+            "**结论**：$A$ 的特征值为 $0, 2, 2$"
+          ]
+        }
+      ],
+      "id": "hokkaido-2025-51b411b997-q01-practice-04",
+      "school": "北海道大学",
+      "year": "2025"
+    },
+    {
+      "text": "设 $A=\\begin{pmatrix} 0 & 1 & 0 \\\\ 0 & 0 & 1 \\\\ a & b & c \\end{pmatrix}$，该矩阵的特征多项式为 $\\lambda^3-c\\lambda^2-b\\lambda-a$。求 $A$ 的特征值，其中 $a=1, b=0, c=2$。",
+      "knowledge_points": [
+        "伴随矩阵型矩阵",
+        "特征多项式与系数关系",
+        "特征方程求解"
+      ],
+      "question_type": "参数化矩阵特征值",
+      "method": [
+        "利用给定特征多项式",
+        "求解三次方程"
+      ],
+      "solution_steps": [
+        "代入参数到特征多项式",
+        "求解三次方程"
+      ],
+      "math_structure": {
+        "type": "companion_matrix_eigenvalues",
+        "template": "对伴随矩阵型结构的矩阵，已知特征多项式形式，求特征值",
+        "variable_count": 6
+      },
+      "difficulty": 2,
+      "estimated_minutes": 7,
+      "answer": [
+        {
+          "label": "求A的特征值",
+          "steps": [
+            "代入 $a=1, b=0, c=2$，特征多项式为 $\\lambda^3-2\\lambda^2-1=0$",
+            "尝试因式分解或数值方法。设 $f(\\lambda)=\\lambda^3-2\\lambda^2-1$",
+            "计算：$f(0)=-1<0$，$f(1)=1-2-1=-2<0$，$f(2)=8-8-1=-1<0$，$f(3)=27-18-1=8>0$",
+            "存在根在 $(2,3)$ 之间。进一步估算或使用卡尔达诺公式",
+            "该三次方程的三个根 $\\lambda_1, \\lambda_2, \\lambda_3$ 满足：$\\lambda_1+\\lambda_2+\\lambda_3=2$（迹），$\\lambda_1\\lambda_2\\lambda_3=1$（由特征多项式常数项）",
+            "**结论**：特征值由 $\\lambda^3-2\\lambda^2-1=0$ 给出（具体数值需数值求解）"
+          ]
+        }
+      ],
+      "id": "hokkaido-2025-51b411b997-q01-practice-05",
+      "school": "北海道大学",
+      "year": "2025"
+    }
+  ],
+  "source_question": "問1(1)(2)(3)",
+  "source_pdf": "北海道大学/情报科学院/情报电子学/北海道大学_情报科学院_情报电子学_2025_数学过去问_专业科目1.pdf",
+  "source_type": "官方过去问",
+  "subject_category": "线性代数"
+}

@@ -1,0 +1,217 @@
+{
+  "id": "kyoto-2023-bcc0e5300d-q01",
+  "school": "京都大学",
+  "year": "2023",
+  "subject": "理学研究科_数学専攻",
+  "text": "设 $a$ 为实数，定义实 $2\\times 4$ 矩阵\n$$A=\\begin{pmatrix}1&0&a&a+1\\\\0&1&1&1\\end{pmatrix},\\quad B=\\begin{pmatrix}0&0&1&1\\\\-1&3&3-a&0\\end{pmatrix}.$$\n利用它们定义线性映射 $f:\\mathbb{R}^4\\to\\mathbb{R}^2$，$g:\\mathbb{R}^4\\to\\mathbb{R}^2$，分别为 $f(x)=Ax$，$g(x)=Bx$（$x\\in\\mathbb{R}^4$）。求\n$$\\dim(\\mathrm{Ker}(f)\\cap\\mathrm{Ker}(g)),\\quad \\dim(\\mathrm{Ker}(f)+\\mathrm{Ker}(g)).$$",
+  "knowledge_points": [
+    "线性映射的核",
+    "矩阵的秩",
+    "维数公式（和空间与交空间）",
+    "参数化矩阵的秩讨论",
+    "线性方程组的解空间"
+  ],
+  "question_type": "含参数矩阵核空间维数计算",
+  "method": [
+    "将两个映射的核之交视为堆叠矩阵 $M=\\binom{A}{B}$ 的核，利用秩-零度定理",
+    "对 $M$ 做行初等变换求秩关于参数 $a$ 的分类",
+    "分别求 $\\mathrm{rank}(A)$、$\\mathrm{rank}(B)$ 得到 $\\dim\\mathrm{Ker}f$、$\\dim\\mathrm{Ker}g$",
+    "用维数公式 $\\dim(\\mathrm{Ker}f+\\mathrm{Ker}g)=\\dim\\mathrm{Ker}f+\\dim\\mathrm{Ker}g-\\dim(\\mathrm{Ker}f\\cap\\mathrm{Ker}g)$ 求和空间维数"
+  ],
+  "solution_steps": [
+    "证明 $\\mathrm{rank}(A)=2$，$\\mathrm{rank}(B)=2$ 对所有 $a$ 成立，从而 $\\dim\\mathrm{Ker}f=\\dim\\mathrm{Ker}g=2$",
+    "构造 $4\\times4$ 矩阵 $M=\\binom{A}{B}$，注意到 $\\mathrm{Ker}f\\cap\\mathrm{Ker}g=\\mathrm{Ker}M$",
+    "对 $M$ 做行变换化为上三角形式，得到主对角元为 $1,1,1,(a-2)$，从而 $\\mathrm{rank}(M)=4$（$a\\ne2$）或 $3$（$a=2$）",
+    "利用 $\\dim\\mathrm{Ker}M=4-\\mathrm{rank}(M)$ 得交空间维数，再代入维数公式求和空间维数"
+  ],
+  "math_structure": {
+    "type": "kernel_intersection_sum_parametric_matrix",
+    "template": "given A,B as m x n matrices depending on parameter a, find dim(Ker f cap Ker g) and dim(Ker f + Ker g)",
+    "variable_count": 1
+  },
+  "difficulty": 3,
+  "answer": [
+    {
+      "label": "求 $\\mathrm{rank}(A)$ 与 $\\mathrm{rank}(B)$",
+      "steps": [
+        "$A=\\begin{pmatrix}1&0&a&a+1\\\\0&1&1&1\\end{pmatrix}$ 的前两列构成单位矩阵 $\\begin{pmatrix}1&0\\\\0&1\\end{pmatrix}$，故两行线性无关，$\\mathrm{rank}(A)=2$ 对任意 $a$ 成立。",
+        "$B=\\begin{pmatrix}0&0&1&1\\\\-1&3&3-a&0\\end{pmatrix}$，第一行前两个分量为 $0$，第二行前两个分量为 $(-1,3)\\ne(0,0)$，故两行不可能成比例（除非第一行为零向量，但第一行显然非零），因此两行线性无关，$\\mathrm{rank}(B)=2$ 对任意 $a$ 成立。",
+        "由秩-零度定理，$\\dim\\mathrm{Ker}f=4-\\mathrm{rank}(A)=2$，$\\dim\\mathrm{Ker}g=4-\\mathrm{rank}(B)=2$，对所有 $a$ 都成立。"
+      ]
+    },
+    {
+      "label": "求 $\\dim(\\mathrm{Ker}f\\cap\\mathrm{Ker}g)$",
+      "steps": [
+        "注意到 $x\\in\\mathrm{Ker}f\\cap\\mathrm{Ker}g\\iff Ax=0$ 且 $Bx=0\\iff Mx=0$，其中 $M=\\begin{pmatrix}A\\\\B\\end{pmatrix}=\\begin{pmatrix}1&0&a&a+1\\\\0&1&1&1\\\\0&0&1&1\\\\-1&3&3-a&0\\end{pmatrix}$，故 $\\dim(\\mathrm{Ker}f\\cap\\mathrm{Ker}g)=4-\\mathrm{rank}(M)$。",
+        "对 $M$ 做行变换：第4行加第1行得 $R_4'=(0,3,3,a+1)$；再 $R_4'-3R_2=(0,0,0,a+1-3)=(0,0,0,a-2)$。于是 $M$ 化为上三角形式，主对角元依次为 $1,1,1,(a-2)$。",
+        "当 $a\\ne2$ 时，四个主元均非零，$\\mathrm{rank}(M)=4$，从而 $\\dim(\\mathrm{Ker}f\\cap\\mathrm{Ker}g)=4-4=0$。",
+        "当 $a=2$ 时，最后一个主元为 $0$，$\\mathrm{rank}(M)=3$，从而 $\\dim(\\mathrm{Ker}f\\cap\\mathrm{Ker}g)=4-3=1$。验证：取 $a=2$，解方程组得 $x_1=x_3=t,\\,x_2=0,\\,x_4=-t$，即 $(1,0,1,-1)$ 张成一维空间，符合计算。"
+      ]
+    },
+    {
+      "label": "求 $\\dim(\\mathrm{Ker}f+\\mathrm{Ker}g)$",
+      "steps": [
+        "由维数公式 $\\dim(\\mathrm{Ker}f+\\mathrm{Ker}g)=\\dim\\mathrm{Ker}f+\\dim\\mathrm{Ker}g-\\dim(\\mathrm{Ker}f\\cap\\mathrm{Ker}g)=2+2-\\dim(\\mathrm{Ker}f\\cap\\mathrm{Ker}g)$。",
+        "当 $a\\ne2$：$\\dim(\\mathrm{Ker}f+\\mathrm{Ker}g)=2+2-0=4$，即 $\\mathrm{Ker}f+\\mathrm{Ker}g=\\mathbb{R}^4$。",
+        "当 $a=2$：$\\dim(\\mathrm{Ker}f+\\mathrm{Ker}g)=2+2-1=3$。",
+        "综上：\n- 若 $a\\ne2$：$\\dim(\\mathrm{Ker}f\\cap\\mathrm{Ker}g)=0,\\ \\dim(\\mathrm{Ker}f+\\mathrm{Ker}g)=4$；\n- 若 $a=2$：$\\dim(\\mathrm{Ker}f\\cap\\mathrm{Ker}g)=1,\\ \\dim(\\mathrm{Ker}f+\\mathrm{Ker}g)=3$。"
+      ]
+    }
+  ],
+  "practice_questions": [
+    {
+      "text": "求矩阵 $A=\\begin{pmatrix}1&2&0&1\\\\0&1&1&2\\end{pmatrix}$ 的秩，并求线性映射 $f(x)=Ax$（$x\\in\\mathbb{R}^4$）的核 $\\mathrm{Ker}(f)$ 的维数与一组基。",
+      "knowledge_points": [
+        "矩阵的秩",
+        "线性映射的核",
+        "齐次线性方程组求解"
+      ],
+      "question_type": "核空间基础计算",
+      "method": [
+        "行简化求秩",
+        "秩-零度定理",
+        "回代求自由变量表示的基向量"
+      ],
+      "solution_steps": [
+        "行变换求秩",
+        "利用秩-零度定理求核维数",
+        "解齐次方程组给出核的基"
+      ],
+      "math_structure": {
+        "type": "kernel_basis_basic",
+        "template": "given m x n matrix A, find rank(A) and basis of Ker(f)",
+        "variable_count": 0
+      },
+      "difficulty": 1,
+      "estimated_minutes": 6,
+      "answer": [
+        {
+          "label": "求秩与核",
+          "steps": [
+            "矩阵 $A$ 的两行 $(1,2,0,1)$ 和 $(0,1,1,2)$ 显然线性无关（第二行第一分量为0，第一行不为0，且不成比例），故 $\\mathrm{rank}(A)=2$。",
+            "由秩-零度定理，$\\dim\\mathrm{Ker}(f)=4-2=2$。",
+            "解方程 $x_1+2x_2+x_4=0,\\ x_2+x_3+2x_4=0$：设 $x_3=s,x_4=t$ 为自由变量，则 $x_2=-s-2t$，$x_1=-2x_2-x_4=2s+4t-t=2s+3t$。得到解向量 $(2,-1,1,0)s+(3,-2,0,1)t$，故基为 $\\{(2,-1,1,0),(3,-2,0,1)\\}$。"
+          ]
+        }
+      ],
+      "id": "kyoto-2023-bcc0e5300d-q01-practice-01",
+      "school": "京都大学",
+      "year": "2023"
+    },
+    {
+      "text": "设 $C=\\begin{pmatrix}1&1&0\\\\0&1&1\\end{pmatrix}$，$D=\\begin{pmatrix}1&0&1\\\\1&2&1\\end{pmatrix}$ 为两个 $2\\times3$ 矩阵，定义 $h_1(x)=Cx$，$h_2(x)=Dx$（$x\\in\\mathbb{R}^3$）。求 $\\dim(\\mathrm{Ker}(h_1)\\cap\\mathrm{Ker}(h_2))$。",
+      "knowledge_points": [
+        "核空间的交集",
+        "堆叠矩阵求秩",
+        "齐次线性方程组"
+      ],
+      "question_type": "两核交集维数计算（无参数）",
+      "method": [
+        "堆叠成 $4\\times3$ 矩阵 $M=\\binom{C}{D}$，求 $\\mathrm{rank}(M)$",
+        "用秩-零度定理得交集维数"
+      ],
+      "solution_steps": [
+        "构造堆叠矩阵",
+        "行化简求秩",
+        "计算核维数"
+      ],
+      "math_structure": {
+        "type": "kernel_intersection_fixed",
+        "template": "given fixed matrices C, D, find dim(Ker h1 cap Ker h2)",
+        "variable_count": 0
+      },
+      "difficulty": 2,
+      "estimated_minutes": 8,
+      "answer": [
+        {
+          "label": "求交集维数",
+          "steps": [
+            "构造 $M=\\begin{pmatrix}1&1&0\\\\0&1&1\\\\1&0&1\\\\1&2&1\\end{pmatrix}$，则 $\\mathrm{Ker}(h_1)\\cap\\mathrm{Ker}(h_2)=\\mathrm{Ker}(M)$。",
+            "行变换：$R_3-R_1=(0,-1,1)$；$R_4-R_1=(0,1,1)$。现有行 $(1,1,0),(0,1,1),(0,-1,1),(0,1,1)$。$R_3+R_2=(0,0,2)$，$R_4-R_2=(0,0,0)$。于是独立行为 $(1,1,0),(0,1,1),(0,0,2)$，秩为 $3$。",
+            "由 $\\dim\\mathrm{Ker}(M)=3-\\mathrm{rank}(M)=3-3=0$，故 $\\dim(\\mathrm{Ker}(h_1)\\cap\\mathrm{Ker}(h_2))=0$。"
+          ]
+        }
+      ],
+      "id": "kyoto-2023-bcc0e5300d-q01-practice-02",
+      "school": "京都大学",
+      "year": "2023"
+    },
+    {
+      "text": "设 $E=\\begin{pmatrix}1&0&1&0\\\\0&1&0&1\\end{pmatrix}$，$F=\\begin{pmatrix}1&1&1&1\\\\0&0&b-1&0\\end{pmatrix}$，$b\\in\\mathbb{R}$ 为参数。定义 $p(x)=Ex$，$q(x)=Fx$（$x\\in\\mathbb{R}^4$）。讨论 $\\mathrm{rank}\\binom{E}{F}$ 关于参数 $b$ 的取值情况，并求 $\\dim(\\mathrm{Ker}(p)\\cap\\mathrm{Ker}(q))$。",
+      "knowledge_points": [
+        "含参数矩阵秩的讨论",
+        "堆叠矩阵",
+        "秩-零度定理"
+      ],
+      "method": [
+        "行变换化简堆叠矩阵，观察主元何时为零",
+        "分类讨论参数取值"
+      ],
+      "solution_steps": [
+        "构造堆叠矩阵",
+        "行化简找到依赖参数的主元",
+        "按参数分类给出秩与核维数"
+      ],
+      "math_structure": {
+        "type": "kernel_intersection_parametric_practice",
+        "template": "given matrices E, F depending on parameter b, discuss rank and dim(Ker p cap Ker q)",
+        "variable_count": 1
+      },
+      "difficulty": 3,
+      "estimated_minutes": 10,
+      "answer": [
+        {
+          "label": "求秩与核维数的分类讨论",
+          "steps": [
+            "构造 $M=\\begin{pmatrix}1&0&1&0\\\\0&1&0&1\\\\1&1&1&1\\\\0&0&b-1&0\\end{pmatrix}$。",
+            "行变换：$R_3-R_1-R_2=(1,1,1,1)-(1,0,1,0)-(0,1,0,1)=(0,0,0,0)$，故 $R_3$ 是 $R_1,R_2$ 的线性组合，可消去。剩余行 $(1,0,1,0),(0,1,0,1),(0,0,b-1,0)$。",
+            "当 $b\\ne1$ 时，第三行 $(0,0,b-1,0)$ 非零且与前两行独立，$\\mathrm{rank}(M)=3$，$\\dim\\mathrm{Ker}(M)=4-3=1$。",
+            "当 $b=1$ 时，第三行变为零行，$\\mathrm{rank}(M)=2$，$\\dim\\mathrm{Ker}(M)=4-2=2$。",
+            "综上：$b\\ne1$ 时 $\\dim(\\mathrm{Ker}(p)\\cap\\mathrm{Ker}(q))=1$；$b=1$ 时该维数为 $2$。"
+          ]
+        }
+      ],
+      "id": "kyoto-2023-bcc0e5300d-q01-practice-03",
+      "school": "京都大学",
+      "year": "2023"
+    },
+    {
+      "text": "已知 $V=\\mathbb{R}^4$ 中两个子空间 $W_1=\\mathrm{Ker}(f)$，$W_2=\\mathrm{Ker}(g)$，其中 $\\dim W_1=2$，$\\dim W_2=2$。若已知 $\\dim(W_1\\cap W_2)=1$，求 $\\dim(W_1+W_2)$，并说明此时 $W_1+W_2$ 是否等于 $\\mathbb{R}^4$。",
+      "knowledge_points": [
+        "子空间维数公式",
+        "和空间与交空间关系"
+      ],
+      "question_type": "维数公式直接应用",
+      "method": [
+        "直接套用 $\\dim(W_1+W_2)=\\dim W_1+\\dim W_2-\\dim(W_1\\cap W_2)$"
+      ],
+      "solution_steps": [
+        "代入已知维数计算和空间维数",
+        "比较与全空间维数判断是否相等"
+      ],
+      "math_structure": {
+        "type": "dimension_formula_application",
+        "template": "given dim W1, dim W2, dim(W1 cap W2), find dim(W1+W2)",
+        "variable_count": 0
+      },
+      "difficulty": 1,
+      "estimated_minutes": 4,
+      "answer": [
+        {
+          "label": "计算和空间维数",
+          "steps": [
+            "由维数公式 $\\dim(W_1+W_2)=\\dim W_1+\\dim W_2-\\dim(W_1\\cap W_2)=2+2-1=3$。",
+            "由于 $\\dim(W_1+W_2)=3<4=\\dim\\mathbb{R}^4$，所以 $W_1+W_2\\ne\\mathbb{R}^4$，它是 $\\mathbb{R}^4$ 中的一个三维真子空间。"
+          ]
+        }
+      ],
+      "id": "kyoto-2023-bcc0e5300d-q01-practice-04",
+      "school": "京都大学",
+      "year": "2023"
+    }
+  ],
+  "source_question": "問2 / Problem 2",
+  "source_pdf": "京都大学/理学研究科/数学専攻/京都大学_理学研究科_数学専攻_2023_基础科目.pdf",
+  "source_type": "官方过去问",
+  "subject_category": "线性代数"
+}

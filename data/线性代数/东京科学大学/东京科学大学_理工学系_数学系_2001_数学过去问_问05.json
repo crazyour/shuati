@@ -1,0 +1,176 @@
+{
+  "id": "isct-2001-21d177050b-q05",
+  "school": "东京科学大学",
+  "year": "2001",
+  "subject": "理工学系_数学系",
+  "text": "对 $n\\times n$ 实矩阵 $A$，定义\n$$\\|A\\|=\\sup_{\\substack{x\\in\\mathbb R^n\\\\x\\ne0}}\\frac{\\|Ax\\|_n}{\\|x\\|_n},$$\n其中 $\\|x\\|_n=(x_1^2+\\cdots+x_n^2)^{1/2}$。证明以下各条：\n\n(i) 存在 $x_0\\in\\mathbb R^n$，$\\|x_0\\|_n=1$，使得 $\\|A\\|=\\|Ax_0\\|_n$。\n\n(ii) $\\|\\cdot\\|$ 是 $n\\times n$ 实矩阵全体 $M(n)$ 上的一个范数，且赋范空间 $(M(n),\\|\\cdot\\|)$ 是完备的。\n\n(iii) 对充分小的实数 $|t|$，级数 $\\sum_{k=0}^\\infty t^kA^k$ 在此范数意义下收敛。",
+  "knowledge_points": [
+    "算子范数",
+    "紧集上连续函数取得最值",
+    "矩阵空间的完备性",
+    "有限维空间等价范数",
+    "幂级数（Neumann级数）收敛"
+  ],
+  "question_type": "算子范数性质证明",
+  "method": [
+    "紧致性论证",
+    "范数公理逐条验证",
+    "柯西列分量收敛",
+    "几何级数控制收敛"
+  ],
+  "solution_steps": [
+    "(i) 利用单位球面紧致、函数 $x\\mapsto\\|Ax\\|_n$ 连续，得最大值存在",
+    "(ii) 逐条验证正定性、齐次性、三角不等式；用矩阵元素与算子范数的相互控制证明完备性",
+    "(iii) 用 $\\|t^kA^k\\|\\le|t|^k\\|A\\|^k$ 及几何级数、赋范空间完备性得绝对收敛蕴含收敛"
+  ],
+  "math_structure": {
+    "type": "operator_norm_completeness_neumann_series",
+    "template": "operator norm $\\|A\\|=\\sup\\|Ax\\|/\\|x\\|$; show attained, is a norm, space complete, Neumann series converges for small $|t|$",
+    "variable_count": 1
+  },
+  "difficulty": 4,
+  "answer": [
+    {
+      "label": "(i)",
+      "steps": [
+        "考虑单位球面 $S^{n-1}=\\{x\\in\\mathbb R^n:\\|x\\|_n=1\\}$，它是 $\\mathbb R^n$ 中的有界闭集，由 Heine–Borel 定理是紧集",
+        "函数 $\\varphi(x)=\\|Ax\\|_n$ 是 $x$ 的连续函数（因为 $A$ 的每个分量是线性函数，$\\|\\cdot\\|_n$ 连续，复合仍连续）",
+        "由 $\\displaystyle\\frac{\\|Ax\\|_n}{\\|x\\|_n}=\\left\\|A\\frac{x}{\\|x\\|_n}\\right\\|_n=\\varphi(x/\\|x\\|_n)$，故 $\\|A\\|=\\sup_{x\\ne0}\\frac{\\|Ax\\|_n}{\\|x\\|_n}=\\sup_{y\\in S^{n-1}}\\varphi(y)$",
+        "连续函数在紧集上取得最大值，故存在 $x_0\\in S^{n-1}$使 $\\varphi(x_0)=\\sup_{S^{n-1}}\\varphi$，即 $\\|A\\|=\\|Ax_0\\|_n$且 $\\|x_0\\|_n=1$"
+      ]
+    },
+    {
+      "label": "(ii)",
+      "steps": [
+        "正定性：$\\|A\\|\\ge0$显然；若 $\\|A\\|=0$则对一切 $x$，$\\|Ax\\|_n=0$即$Ax=0$，取$x=e_i$（标准基）得$A$每列为0，即$A=0$；反之$A=0$显然$\\|A\\|=0$",
+        "齐次性：$\\|cA\\|=\\sup_x\\|cAx\\|_n/\\|x\\|_n=|c|\\sup_x\\|Ax\\|_n/\\|x\\|_n=|c|\\|A\\|$",
+        "三角不等式：$\\|(A+B)x\\|_n\\le\\|Ax\\|_n+\\|Bx\\|_n\\le(\\|A\\|+\\|B\\|)\\|x\\|_n$，两边除以$\\|x\\|_n$取上确界得$\\|A+B\\|\\le\\|A\\|+\\|B\\|$，故$\\|\\cdot\\|$是范数",
+        "完备性：设 $\\{A_m\\}$ 为柯西列。对每个标准基向量 $e_j$，$\\|A_me_j-A_le_j\\|_n\\le\\|A_m-A_l\\|\\to0$（$m,l\\to\\infty$），故第 $j$ 列 $A_me_j$ 是 $\\mathbb R^n$中的柯西列，收敛到某向量，记为 $A$ 的第 $j$ 列；这样得到极限矩阵 $A$",
+        "再证 $A_m\\to A$ 依算子范数：因为 $M(n)$ 是有限维空间，所有范数等价（如 Frobenius 范数与算子范数相互控制），而分量收敛已证，故 Frobenius 范数意义下 $A_m\\to A$，从而算子范数意义下也 $A_m\\to A$，完备性得证"
+      ]
+    },
+    {
+      "label": "(iii)",
+      "steps": [
+        "由算子范数的次乘性 $\\|A^k\\|\\le\\|A\\|^k$（可归纳证明：$\\|A^{k+1}x\\|=\\|A(A^kx)\\|\\le\\|A\\|\\|A^kx\\|\\le\\|A\\|\\cdot\\|A\\|^k\\|x\\|$）",
+        "故 $\\|t^kA^k\\|=|t|^k\\|A^k\\|\\le|t|^k\\|A\\|^k=(|t|\\|A\\|)^k$",
+        "当 $|t|<1/\\|A\\|$（$\\|A\\|\\ne0$情形；若$\\|A\\|=0$则$A=0$，级数显然对一切$t$收敛）时，几何级数 $\\sum_k(|t|\\|A\\|)^k$ 收敛，故 $\\sum_k\\|t^kA^k\\|$ 收敛，即级数 $\\sum_k t^kA^k$ 绝对收敛",
+        "由(ii)证明的 $(M(n),\\|\\cdot\\|)$ 是完备赋范空间（Banach空间），绝对收敛级数必收敛，故 $\\sum_{k=0}^\\infty t^kA^k$ 在此范数下收敛"
+      ]
+    }
+  ],
+  "practice_questions": [
+    {
+      "text": "对角矩阵 $A=\\mathrm{diag}(2,-3)$，直接计算 $\\|A\\|$ 并验证其等于$\\max$特征值绝对值。",
+      "knowledge_points": [
+        "对角矩阵的算子范数",
+        "特征值与范数关系"
+      ],
+      "question_type": "具体计算",
+      "method": [
+        "直接计算$\\|Ax\\|/\\|x\\|$"
+      ],
+      "solution_steps": [
+        "写出$\\|Ax\\|^2$表达式",
+        "求关于$x$的最大比值"
+      ],
+      "math_structure": {
+        "type": "diagonal_matrix_operator_norm",
+        "template": "$A=\\mathrm{diag}(2,-3)$, compute $\\|A\\|$",
+        "variable_count": 0
+      },
+      "difficulty": 1,
+      "estimated_minutes": 5,
+      "answer": [
+        {
+          "label": "结果",
+          "steps": [
+            "$\\|Ax\\|^2=4x_1^2+9x_2^2\\le9(x_1^2+x_2^2)=9\\|x\\|^2$，等号当$x_1=0$时取得",
+            "故 $\\|A\\|=3=\\max(|2|,|-3|)$，取 $x_0=(0,1)$",
+            "验证：对角矩阵算子范数等于对角元绝对值最大者"
+          ]
+        }
+      ],
+      "id": "isct-2001-21d177050b-q05-practice-01",
+      "school": "东京科学大学",
+      "year": "2001"
+    },
+    {
+      "text": "证明算子范数满足次乘性：$\\|AB\\|\\le\\|A\\|\\|B\\|$，并用此证明 $\\|A^k\\|\\le\\|A\\|^k$。",
+      "knowledge_points": [
+        "算子范数次乘性",
+        "归纳法"
+      ],
+      "question_type": "性质证明",
+      "method": [
+        "直接估计",
+        "数学归纳法"
+      ],
+      "solution_steps": [
+        "用定义估计$\\|ABx\\|$",
+        "归纳证明幂次不等式"
+      ],
+      "math_structure": {
+        "type": "submultiplicativity_operator_norm",
+        "template": "show $\\|AB\\|\\le\\|A\\|\\|B\\|$ and $\\|A^k\\|\\le\\|A\\|^k$",
+        "variable_count": 1
+      },
+      "difficulty": 2,
+      "estimated_minutes": 8,
+      "answer": [
+        {
+          "label": "证明",
+          "steps": [
+            "对任意 $x\\ne0$，$\\|ABx\\|_n\\le\\|A\\|\\|Bx\\|_n\\le\\|A\\|\\|B\\|\\|x\\|_n$（两次应用算子范数定义），故 $\\|ABx\\|_n/\\|x\\|_n\\le\\|A\\|\\|B\\|$，取上确界得 $\\|AB\\|\\le\\|A\\|\\|B\\|$",
+            "对 $k=1$，$\\|A^1\\|=\\|A\\|=\\|A\\|^1$成立",
+            "假设 $\\|A^k\\|\\le\\|A\\|^k$，则由次乘性 $\\|A^{k+1}\\|=\\|A\\cdot A^k\\|\\le\\|A\\|\\|A^k\\|\\le\\|A\\|\\cdot\\|A\\|^k=\\|A\\|^{k+1}$，归纳完成"
+          ]
+        }
+      ],
+      "id": "isct-2001-21d177050b-q05-practice-02",
+      "school": "东京科学大学",
+      "year": "2001"
+    },
+    {
+      "text": "设 $\\|A\\|<1$。证明 $I-A$ 可逆，且 $(I-A)^{-1}=\\sum_{k=0}^\\infty A^k$（Neumann级数），并给出$\\|(I-A)^{-1}\\|$的上界估计。",
+      "knowledge_points": [
+        "Neumann级数",
+        "矩阵可逆性判定"
+      ],
+      "question_type": "Neumann级数应用",
+      "method": [
+        "级数求和验证",
+        "范数估计"
+      ],
+      "solution_steps": [
+        "验证级数收敛",
+        "验证其为$(I-A)^{-1}$",
+        "给出范数上界"
+      ],
+      "math_structure": {
+        "type": "neumann_series_invertibility",
+        "template": "$\\|A\\|<1$, show $I-A$ invertible with inverse $\\sum A^k$",
+        "variable_count": 1
+      },
+      "difficulty": 3,
+      "estimated_minutes": 10,
+      "answer": [
+        {
+          "label": "证明",
+          "steps": [
+            "由(iii)的方法（取$t=1$），$\\|A\\|<1$保证 $\\sum_{k=0}^\\infty A^k$ 在算子范数下绝对收敛，记其和为 $S$",
+            "验证 $(I-A)S_N=(I-A)\\sum_{k=0}^N A^k=I-A^{N+1}$，其中 $S_N$是部分和；由$\\|A^{N+1}\\|\\le\\|A\\|^{N+1}\\to0$，令$N\\to\\infty$得$(I-A)S=I$，同理$S(I-A)=I$，故 $S=(I-A)^{-1}$",
+            "范数估计：$\\|S\\|\\le\\sum_{k=0}^\\infty\\|A\\|^k=\\frac{1}{1-\\|A\\|}$，即 $\\|(I-A)^{-1}\\|\\le\\frac{1}{1-\\|A\\|}$"
+          ]
+        }
+      ],
+      "id": "isct-2001-21d177050b-q05-practice-03",
+      "school": "东京科学大学",
+      "year": "2001"
+    }
+  ],
+  "source_question": "解析系問題8",
+  "source_pdf": "东京科学大学/理工学系/数学系/东京科学大学_理工学系_数学系_2001_数学过去问.pdf",
+  "source_type": "官方过去问",
+  "subject_category": "线性代数"
+}

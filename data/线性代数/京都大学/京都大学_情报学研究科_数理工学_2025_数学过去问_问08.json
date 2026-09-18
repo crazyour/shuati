@@ -1,0 +1,152 @@
+{
+  "id": "kyoto-2025-0964b49f99-q08",
+  "school": "京都大学",
+  "year": "2025",
+  "subject": "情报学研究科_数理工学",
+  "text": "设 $n$ 为正整数，$t$ 为实数，$n\\times n$ 矩阵 $D_n=(d_{ij})_{1\\le i,j\\le n}$ 定义为 $d_{ij}=1+t^2$（当 $i=j$），$d_{ij}=t$（当 $|i-j|=1$），$d_{ij}=0$（其他情形）。求关于 $t$ 的多项式，表示 $D_n$ 的行列式。",
+  "knowledge_points": [
+    "三对角矩阵行列式",
+    "线性递推关系",
+    "特征方程求解"
+  ],
+  "question_type": "行列式递推求解",
+  "method": [
+    "建立三对角矩阵行列式的递推公式",
+    "求解线性常系数递推的特征方程",
+    "利用初始条件确定通解系数"
+  ],
+  "solution_steps": [
+    "按最后一行/列展开建立递推关系 $\\Delta_n=(1+t^2)\\Delta_{n-1}-t^2\\Delta_{n-2}$",
+    "求特征方程根",
+    "写出通解形式并代入初始条件 $\\Delta_0=1,\\Delta_1=1+t^2$ 求系数",
+    "得到最终关于 $t$ 的表达式并用小 $n$ 情形验证"
+  ],
+  "math_structure": {
+    "type": "tridiagonal_determinant_recurrence",
+    "template": "D_n: d_{ii}=1+t^2, d_{i,i\\pm1}=t, \\text{求} \\det D_n",
+    "variable_count": 2
+  },
+  "difficulty": 4,
+  "answer": [
+    {
+      "label": "行列式表达式",
+      "steps": [
+        "按最后一行展开得递推关系：$\\Delta_n=(1+t^2)\\Delta_{n-1}-t^2\\Delta_{n-2}$，初始值 $\\Delta_0=1$（约定），$\\Delta_1=1+t^2$",
+        "特征方程：$x^2-(1+t^2)x+t^2=0$，因式分解为 $(x-1)(x-t^2)=0$，根为 $x=1,x=t^2$",
+        "当 $t^2\\ne1$：通解 $\\Delta_n=A+Bt^{2n}$，代入 $\\Delta_0=1: A+B=1$；$\\Delta_1=1+t^2: A+Bt^2=1+t^2$，解得 $A=\\dfrac{1}{1-t^2}, B=\\dfrac{-t^2}{1-t^2}$",
+        "故 $\\Delta_n=\\dfrac{1-t^{2n+2}}{1-t^2}=1+t^2+t^4+\\cdots+t^{2n}=\\sum_{k=0}^{n}t^{2k}$",
+        "当 $t^2=1$ 时（$t=\\pm1$），特征根重复为1，通解 $\\Delta_n=A+Bn$，代入初值得 $\\Delta_n=n+1$，与 $\\sum_{k=0}^n t^{2k}\\Big|_{t=\\pm1}=n+1$ 一致，验证通过（$n=2$ 时直接展开二阶矩阵得 $1+t^2+t^4$，与公式一致，$n=3$ 时三阶矩阵展开得 $1+t^2+t^4+t^6$，同样一致）"
+      ]
+    }
+  ],
+  "practice_questions": [
+    {
+      "text": "求二阶矩阵 $\\begin{pmatrix}1+t^2&t\\\\t&1+t^2\\end{pmatrix}$ 的行列式。",
+      "knowledge_points": [
+        "行列式展开"
+      ],
+      "question_type": "行列式计算",
+      "method": [
+        "直接展开二阶行列式"
+      ],
+      "solution_steps": [
+        "按公式 $ad-bc$ 计算"
+      ],
+      "math_structure": {
+        "type": "determinant_2x2",
+        "template": "\\det\\begin{pmatrix}1+t^2&t\\\\t&1+t^2\\end{pmatrix}",
+        "variable_count": 1
+      },
+      "difficulty": 1,
+      "estimated_minutes": 3,
+      "answer": [
+        {
+          "label": "结果",
+          "steps": [
+            "$(1+t^2)^2-t^2=1+2t^2+t^4-t^2=1+t^2+t^4$"
+          ]
+        }
+      ],
+      "id": "kyoto-2025-0964b49f99-q08-practice-01",
+      "school": "京都大学",
+      "year": "2025"
+    },
+    {
+      "text": "求满足递推关系 $x_n=3x_{n-1}-2x_{n-2}$，初值 $x_0=1,x_1=3$ 的通项公式 $x_n$。",
+      "knowledge_points": [
+        "线性递推方程",
+        "特征方程"
+      ],
+      "question_type": "递推数列求通项",
+      "method": [
+        "特征方程法"
+      ],
+      "solution_steps": [
+        "求特征方程根",
+        "写出通解并代入初值求系数"
+      ],
+      "math_structure": {
+        "type": "linear_recurrence_characteristic",
+        "template": "x_n=3x_{n-1}-2x_{n-2}, x_0=1,x_1=3",
+        "variable_count": 2
+      },
+      "difficulty": 2,
+      "estimated_minutes": 6,
+      "answer": [
+        {
+          "label": "结果",
+          "steps": [
+            "特征方程 $r^2-3r+2=0\\Rightarrow(r-1)(r-2)=0$，根 $r=1,2$",
+            "通解 $x_n=A+B\\cdot2^n$，代入 $x_0=1:A+B=1$；$x_1=3:A+2B=3$，解得 $B=2,A=-1$",
+            "结论：$x_n=2^{n+1}-1$"
+          ]
+        }
+      ],
+      "id": "kyoto-2025-0964b49f99-q08-practice-02",
+      "school": "京都大学",
+      "year": "2025"
+    },
+    {
+      "text": "验证三阶矩阵（$n=3$）情形下，$D_3$ 直接展开的行列式等于 $1+t^2+t^4+t^6$，从而验证原题通式。",
+      "knowledge_points": [
+        "行列式直接展开",
+        "三对角矩阵",
+        "递推公式验证"
+      ],
+      "question_type": "行列式计算验证",
+      "method": [
+        "按第一行余子式展开三阶行列式"
+      ],
+      "solution_steps": [
+        "写出3阶矩阵",
+        "按第一行展开",
+        "化简"
+      ],
+      "math_structure": {
+        "type": "tridiagonal_determinant_direct",
+        "template": "\\det D_3, n=3",
+        "variable_count": 1
+      },
+      "difficulty": 3,
+      "estimated_minutes": 8,
+      "answer": [
+        {
+          "label": "结果",
+          "steps": [
+            "$D_3=\\begin{pmatrix}1+t^2&t&0\\\\t&1+t^2&t\\\\0&t&1+t^2\\end{pmatrix}$",
+            "按第一行展开：$(1+t^2)\\det\\begin{pmatrix}1+t^2&t\\\\t&1+t^2\\end{pmatrix}-t\\det\\begin{pmatrix}t&t\\\\0&1+t^2\\end{pmatrix}$",
+            "$=(1+t^2)(1+t^2+t^4)-t\\cdot t(1+t^2)=(1+t^2)[(1+t^2+t^4)-t^2]=(1+t^2)(1+t^4)$",
+            "展开：$(1+t^2)(1+t^4)=1+t^2+t^4+t^6$，与公式 $\\sum_{k=0}^3t^{2k}$ 一致，验证成功"
+          ]
+        }
+      ],
+      "id": "kyoto-2025-0964b49f99-q08-practice-03",
+      "school": "京都大学",
+      "year": "2025"
+    }
+  ],
+  "source_question": "問2(iv)",
+  "source_pdf": "京都大学/情报学研究科/数理工学/京都大学_情报学研究科_数理工学_2025_数学过去问.pdf",
+  "source_type": "官方过去问",
+  "subject_category": "线性代数"
+}

@@ -1,0 +1,200 @@
+{
+  "id": "osaka-2005-114027773d-q05",
+  "school": "大阪大学",
+  "year": "2005",
+  "subject": "情报科学研究科_情报基础数学",
+  "text": "设 $A$ 为元素为实数的 $m\\times n$ 矩阵。$A$ 的行秩定义为 $A$ 的 $m$ 个行向量所张成的 $\\mathbb{R}^n$ 子空间的维数；$A$ 的列秩定义为 $A$ 的 $n$ 个列向量所张成的 $\\mathbb{R}^m$ 子空间的维数。\n(i) 设对 $A$ 施行行基本变形得到矩阵 $B$，证明：$A$ 的行秩 $=B$ 的行秩，且 $A$ 的列秩 $=B$ 的列秩。\n(ii) 证明：$A$ 的行秩 $=A$ 的列秩。\n（注：行基本变形指以下三种操作：(a) 某行乘以非零实数 $c$；(b) 交换两行；(c) 某行加上另一行的实数倍。）",
+  "knowledge_points": [
+    "行基本变形",
+    "行秩与列秩",
+    "向量空间维数",
+    "线性方程组解空间",
+    "秩不变性定理"
+  ],
+  "question_type": "证明题",
+  "method": [
+    "直接验证行基本变形保持行空间和列空间的维数",
+    "行阶梯形归纳论证行秩等于列秩"
+  ],
+  "solution_steps": [
+    "(i) 证明行基本变形不改变行空间（作为向量空间）本身，从而行秩不变",
+    "(i) 证明行基本变形不改变列向量间的线性关系（齐次方程组解空间不变），从而列秩不变",
+    "(ii) 将 $A$ 化为行简化阶梯形 $B$，直接观察 $B$ 的行秩与列秩都等于非零行（主元）个数，从而两者相等；再用(i)得出 $A$ 的行秩=列秩"
+  ],
+  "math_structure": {
+    "type": "row_rank_equals_column_rank",
+    "template": "\\text{rank}_{row}(A)=\\text{rank}_{col}(A)\\text{ via row reduction invariance}",
+    "variable_count": 2
+  },
+  "difficulty": 4,
+  "answer": [
+    {
+      "label": "(i)",
+      "steps": [
+        "行秩不变的证明：设 $r_1,\\dots,r_m$ 为 $A$ 的行向量。操作(a)(用 $c\\neq0$ 乘某行)、(b)(交换两行)、(c)(某行加另一行的倍数)都只是把行向量组 $\\{r_1,\\dots,r_m\\}$ 变换为另一组向量 $\\{r_1',\\dots,r_m'\\}$，且这种变换是可逆的线性组合（例如操作(c)：$r_i'=r_i+cr_j$，其余不变，是可逆变换，逆操作为 $r_i'-cr_j$）。因此新旧两组行向量互相是彼此的线性组合，从而它们张成的子空间相同：$\\mathrm{span}\\{r_1,\\dots,r_m\\}=\\mathrm{span}\\{r_1',\\dots,r_m'\\}$。故该子空间的维数（即行秩）不变。",
+        "列秩不变的证明：记 $A$ 的列向量为 $c_1,\\dots,c_n\\in\\mathbb{R}^m$。行基本变形可用左乘一个可逆矩阵 $P$ 实现：$B=PA$，其中 $P$ 是对应初等矩阵的乘积（(a)对应乘对角为1除第i个为c的对角矩阵；(b)对应置换矩阵；(c)对应初等加法矩阵），三者都可逆。",
+        "对于列向量之间的任意线性关系 $\\sum_k x_k c_k=0$（即 $Ax=0$），由 $B=PA$ 且 $P$ 可逆，有 $Ax=0\\iff PAx=0\\iff Bx=0$。故 $A$ 与 $B$ 的列向量组满足完全相同的线性依赖关系（零空间相同：$\\ker A=\\ker B$）。",
+        "由线性代数基本事实：一组向量的线性无关的最大子集个数（即秩）仅由其线性依赖关系确定，与向量所在的具体空间无关。既然 $A$ 的列向量组与 $B$ 的列向量组有完全相同的线性依赖关系（由 $\\ker A=\\ker B$ 决定），二者的秩（即极大线性无关组的向量个数）相等，故 $A$ 的列秩 $=B$ 的列秩。"
+      ]
+    },
+    {
+      "label": "(ii)",
+      "steps": [
+        "对 $A$ 反复施行行基本变形，把 $A$ 化为行简化阶梯形（reduced row echelon form）$B$。设 $B$ 中非零行（含主元的行）共有 $r$ 个。",
+        "计算 $B$ 的行秩：$B$ 的非零行向量在阶梯形结构下线性无关（因为每个非零行的主元列位置互不相同，且该主元列在其余非零行中的对应元素为0），且零行不贡献维数，所以行空间的维数恰为 $r$，即 $B$ 的行秩 $=r$。",
+        "计算 $B$ 的列秩：在阶梯形 $B$ 中，恰有 $r$ 个主元列，这些主元列恰为标准基向量 $e_1,\\dots,e_r\\in\\mathbb{R}^m$（在简化阶梯形下），它们显然线性无关；而其余的非主元列都可以表示为这 $r$ 个主元列的线性组合（阶梯形结构保证了这一点，因为对应齐次方程组的自由变量可用主元变量表示）。因此 $B$ 的列空间的维数恰为 $r$，即 $B$ 的列秩 $=r$。",
+        "故 $B$ 的行秩 $=B$ 的列秩 $=r$。再由(i)的结论：$A$ 的行秩 $=B$ 的行秩 $=r$，$A$ 的列秩 $=B$ 的列秩 $=r$。因此 $A$ 的行秩 $=A$ 的列秩，证毕。"
+      ]
+    }
+  ],
+  "practice_questions": [
+    {
+      "text": "证明：每一种行基本变形操作都可以用左乘一个可逆矩阵实现，即存在可逆矩阵 $P$，使 $B=PA$。",
+      "knowledge_points": [
+        "初等矩阵",
+        "矩阵可逆性"
+      ],
+      "question_type": "证明题",
+      "method": [
+        "构造初等矩阵"
+      ],
+      "solution_steps": [
+        "对操作(a)构造对角初等矩阵",
+        "对操作(b)构造置换矩阵",
+        "对操作(c)构造加法初等矩阵，并验证均可逆"
+      ],
+      "math_structure": {
+        "type": "elementary_matrix_representation",
+        "template": "B=PA,\\ P\\text{ invertible}",
+        "variable_count": 1
+      },
+      "difficulty": 2,
+      "estimated_minutes": 10,
+      "answer": [
+        {
+          "label": "证明",
+          "steps": [
+            "(a) 若第$i$行乘以 $c\\neq0$，取 $P=\\mathrm{diag}(1,\\dots,c,\\dots,1)$（第$i$个对角元为$c$），则 $PA$ 恰好把 $A$ 的第$i$行乘以$c$，其余不变；$P^{-1}=\\mathrm{diag}(1,\\dots,1/c,\\dots,1)$，故$P$可逆。",
+            "(b) 若交换第$i,j$行，取 $P$ 为单位矩阵中交换第$i,j$行得到的置换矩阵，则 $PA$ 恰好交换 $A$ 的第$i,j$行；$P^{-1}=P$（置换矩阵自逆），故可逆。",
+            "(c) 若第$i$行加上第$j$行的$c$倍，取 $P=I+cE_{ij}$（$E_{ij}$ 为第$(i,j)$位置为1其余为0的矩阵），则 $PA$ 恰好实现该操作；$P^{-1}=I-cE_{ij}$，可逆。"
+          ]
+        }
+      ],
+      "id": "osaka-2005-114027773d-q05-practice-01",
+      "school": "大阪大学",
+      "year": "2005"
+    },
+    {
+      "text": "证明：若 $P$ 可逆且 $B=PA$，则 $\\ker A=\\ker B$（即 $Ax=0\\iff Bx=0$）。",
+      "knowledge_points": [
+        "零空间",
+        "可逆矩阵性质"
+      ],
+      "question_type": "证明题",
+      "method": [
+        "利用$P$可逆的双向推导"
+      ],
+      "solution_steps": [
+        "证明$Ax=0\\Rightarrow Bx=0$",
+        "证明$Bx=0\\Rightarrow Ax=0$（用$P^{-1}$）"
+      ],
+      "math_structure": {
+        "type": "kernel_invariance_under_invertible_left_mult",
+        "template": "B=PA,\\ P\\text{ invertible}\\Rightarrow \\ker A=\\ker B",
+        "variable_count": 1
+      },
+      "difficulty": 2,
+      "estimated_minutes": 6,
+      "answer": [
+        {
+          "label": "证明",
+          "steps": [
+            "若 $Ax=0$，则 $Bx=PAx=P\\cdot0=0$，故 $\\ker A\\subseteq\\ker B$。",
+            "若 $Bx=0$，即 $PAx=0$，由 $P$ 可逆，左乘 $P^{-1}$ 得 $Ax=P^{-1}\\cdot0=0$，故 $\\ker B\\subseteq\\ker A$。",
+            "两方向包含关系成立，故 $\\ker A=\\ker B$，证毕。"
+          ]
+        }
+      ],
+      "id": "osaka-2005-114027773d-q05-practice-02",
+      "school": "大阪大学",
+      "year": "2005"
+    },
+    {
+      "text": "把矩阵 $A=\\begin{pmatrix}1&2&3\\\\2&4&7\\end{pmatrix}$ 化为行简化阶梯形，并求其行秩与列秩，验证二者相等。",
+      "knowledge_points": [
+        "行简化阶梯形",
+        "秩计算"
+      ],
+      "question_type": "计算题",
+      "method": [
+        "高斯消元法"
+      ],
+      "solution_steps": [
+        "用行变换消去第二行第一列元素",
+        "继续化简得阶梯形",
+        "读出秩"
+      ],
+      "math_structure": {
+        "type": "concrete_row_reduction_rank",
+        "template": "A=\\begin{pmatrix}1&2&3\\\\2&4&7\\end{pmatrix}",
+        "variable_count": 0
+      },
+      "difficulty": 2,
+      "estimated_minutes": 8,
+      "answer": [
+        {
+          "label": "结果",
+          "steps": [
+            "第二行减去第一行的2倍：$R_2\\to R_2-2R_1$：$\\begin{pmatrix}1&2&3\\\\0&0&1\\end{pmatrix}$。",
+            "该矩阵已是阶梯形，非零行数为2，故行秩为2。",
+            "列秩：列向量为 $(1,0)^T,(2,0)^T,(3,1)^T$。第1、3列线性无关（因为 $(1,0)$和$(3,1)$不成比例），第2列$=2\\times$第1列，故列空间维数为2，列秩为2。",
+            "行秩=列秩=2，验证了(ii)的结论。"
+          ]
+        }
+      ],
+      "id": "osaka-2005-114027773d-q05-practice-03",
+      "school": "大阪大学",
+      "year": "2005"
+    },
+    {
+      "text": "解释为何在行简化阶梯形中，非主元列总能表示为主元列的线性组合，并据此说明列秩恰为主元个数。",
+      "knowledge_points": [
+        "行简化阶梯形结构",
+        "线性组合",
+        "自由变量与主元变量"
+      ],
+      "question_type": "证明题",
+      "method": [
+        "利用齐次方程组自由变量的表示"
+      ],
+      "solution_steps": [
+        "设阶梯形对应齐次方程组，分离主元变量与自由变量",
+        "证明非主元列可用主元列表出"
+      ],
+      "math_structure": {
+        "type": "pivot_column_span_argument",
+        "template": "\\text{non-pivot columns are linear combinations of pivot columns in RREF}",
+        "variable_count": 1
+      },
+      "difficulty": 3,
+      "estimated_minutes": 10,
+      "answer": [
+        {
+          "label": "证明",
+          "steps": [
+            "在行简化阶梯形 $B$ 中，设主元列为第 $j_1<j_2<\\dots<j_r$ 列，其余为非主元列。考虑齐次方程组 $Bx=0$：把非主元变量设为自由变量（可任意取值），主元变量由自由变量唯一确定（阶梯形的结构保证每个方程只含一个主元变量和若干自由变量）。",
+            "特别地，取自由变量中某一个为1、其余为0，解出对应的主元变量值，得到 $Bx=0$ 的一个解 $x$。此解表明：该非主元列（对应取1的自由变量位置）等于其余主元列以某系数（解出的主元变量值的负数）的线性组合，即非主元列可表示为主元列的线性组合。",
+            "由于所有非主元列都能表示为 $r$ 个主元列（它们是标准基向量 $e_1,\\dots,e_r$，线性无关）的线性组合，故 $B$ 的列空间恰由这 $r$ 个线性无关的主元列生成，从而列秩 $=r$，与主元（非零行）个数一致。"
+          ]
+        }
+      ],
+      "id": "osaka-2005-114027773d-q05-practice-04",
+      "school": "大阪大学",
+      "year": "2005"
+    }
+  ],
+  "source_question": "問5",
+  "source_pdf": "大阪大学/情报科学研究科/情报基础数学/大阪大学_情报科学研究科_情报基础数学_2005_数学过去问.pdf",
+  "source_type": "官方过去问",
+  "subject_category": "线性代数"
+}

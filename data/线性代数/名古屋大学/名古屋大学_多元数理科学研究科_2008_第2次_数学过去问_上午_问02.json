@@ -1,0 +1,250 @@
+{
+  "id": "nagoya-2008-b8c47866c6-q02",
+  "school": "名古屋大学",
+  "year": "2008",
+  "subject": "多元数理科学研究科_全专攻",
+  "text": "在带有标准欧几里得内积 $\\langle\\ ,\\ \\rangle$ 的实线性空间 $\\mathbb{R}^4$ 中，设向量 $$v_1=\\begin{pmatrix}1\\\\1\\\\-2\\\\0\\end{pmatrix},\\ v_2=\\begin{pmatrix}1\\\\-1\\\\0\\\\-2\\end{pmatrix},\\ v_3=\\begin{pmatrix}-2\\\\1\\\\1\\\\3\\end{pmatrix},\\ v_4=\\begin{pmatrix}-1\\\\2\\\\-1\\\\3\\end{pmatrix}$$ 张成的子空间为 $W$。对实数为元素的 $m\\times n$ 矩阵 $X$，记 $F_X:\\mathbb{R}^n\\to\\mathbb{R}^m$ 为 $X$ 确定的线性映射（即 $F_X(v)=Xv$）。回答下列问题：\n(1) 求 $W$ 及其正交补 $W^\\perp$ 各自的一组基。\n(2)、(3) 中设 $m=\\dim W^\\perp$。\n(2) 求一个 $m\\times4$ 矩阵 $A$，使 $\\mathrm{Ker}\\,F_A=W$。\n(3) 求一个 $4\\times m$ 矩阵 $B$，使 $\\mathrm{Im}\\,F_B=W^\\perp$。\n(4) 求一个 $4$ 次方阵 $C$，同时满足 $\\mathrm{Ker}\\,F_C=W$ 和 $\\mathrm{Im}\\,F_C=W^\\perp$。",
+  "knowledge_points": [
+    "线性相关性判定",
+    "子空间的基",
+    "正交补空间",
+    "线性映射的核与像",
+    "正交投影矩阵",
+    "秩-零度定理"
+  ],
+  "question_type": "子空间基与线性映射构造",
+  "question_type_note": "",
+  "method": [
+    "高斯消元判断向量组的线性相关性",
+    "求正交补空间的基（解齐次线性方程组）",
+    "利用正交补空间基作为矩阵的行/列构造核/像",
+    "正交投影矩阵构造同时满足核与像条件的矩阵"
+  ],
+  "solution_steps": [
+    "验证 $v_1,v_2,v_3,v_4$ 之间的线性相关关系, 确定 $\\dim W$",
+    "求出 $W$ 的极大无关组作为基",
+    "解正交方程组求 $W^\\perp$ 的基, 并验证正交性",
+    "以 $W^\\perp$ 基为行向量构造 $A$ 使 $\\mathrm{Ker}F_A=W$",
+    "以 $W^\\perp$ 基为列向量构造 $B$ 使 $\\mathrm{Im}F_B=W^\\perp$",
+    "利用 $W\\oplus W^\\perp=\\mathbb{R}^4$ 构造投影型矩阵 $C$ 同时满足核与像条件"
+  ],
+  "math_structure": {
+    "type": "subspace_orthogonal_complement_linear_map",
+    "template": "给定 $\\mathbb{R}^4$ 中 4 个向量张成子空间 $W$, 求 $W,W^\\perp$ 基及满足核/像条件的矩阵",
+    "variable_count": 16
+  },
+  "difficulty": 4,
+  "answer": [
+    {
+      "label": "(1)",
+      "steps": [
+        "解 $x v_1+yv_2+zv_3=0$ 得非零解 $x=1,y=3,z=2$（验证：$v_1+3v_2+2v_3=(1+3-4,1-3+2,-2+0+2,0-6+6)=(0,0,0,0)$），故 $v_1,v_2,v_3$ 线性相关。",
+        "进一步验证 $v_4=a v_1+bv_2+cv_3$ 有解（例如取 $a=1,b=0,c=0$ 之外还有一族解），说明 $v_4\\in\\mathrm{span}\\{v_1,v_2\\}$；而 $v_1,v_2$ 不成比例，线性无关。",
+        "故 $\\dim W=2$，基取 $\\{v_1,v_2\\}=\\{(1,1,-2,0),(1,-1,0,-2)\\}$。",
+        "解正交方程组 $\\langle w,v_1\\rangle=0,\\langle w,v_2\\rangle=0$：$x+y-2z=0,\\ x-y-2w=0$，得通解 $x=z+w,y=z-w$；取 $u_1=(1,1,1,0),u_2=(1,-1,0,1)$ 为 $W^\\perp$ 的基（验证 $u_1\\cdot v_1=0,u_1\\cdot v_2=0,u_2\\cdot v_1=0,u_2\\cdot v_2=0$ 均成立，且 $u_1\\cdot u_2=0$ 正交）。"
+      ]
+    },
+    {
+      "label": "(2)",
+      "steps": [
+        "由于 $m=\\dim W^\\perp=2$，取 $A$ 的两行分别为 $W^\\perp$ 的基向量 $u_1,u_2$：$$A=\\begin{pmatrix}1&1&1&0\\\\1&-1&0&1\\end{pmatrix}$$",
+        "验证 $Av_1=0$：第一行 $1+1-2+0=0$；第二行 $1-1+0+0=0$。同理验证 $Av_2=0$。",
+        "由于 $\\mathrm{rank}(A)=2$（两行线性无关），由秩-零度定理 $\\dim\\mathrm{Ker}F_A=4-2=2=\\dim W$，结合 $W\\subseteq\\mathrm{Ker}F_A$ 得 $\\mathrm{Ker}F_A=W$。"
+      ]
+    },
+    {
+      "label": "(3)",
+      "steps": [
+        "取 $B$ 的两列分别为 $u_1,u_2$：$$B=\\begin{pmatrix}1&1\\\\1&-1\\\\1&0\\\\0&1\\end{pmatrix}$$",
+        "由定义 $\\mathrm{Im}F_B=\\mathrm{span}\\{$列向量$\\}=\\mathrm{span}\\{u_1,u_2\\}=W^\\perp$。",
+        "验证 $u_1,u_2$ 线性无关（不成比例），故 $\\mathrm{rank}(B)=2$，$\\mathrm{Im}F_B$ 恰为二维空间 $W^\\perp$。"
+      ]
+    },
+    {
+      "label": "(4)",
+      "steps": [
+        "由于 $u_1,u_2$ 正交（$u_1\\cdot u_2=0$）且 $|u_1|^2=|u_2|^2=3$，正交投影到 $W^\\perp$ 的矩阵为 $P=\\dfrac{1}{3}(u_1u_1^T+u_2u_2^T)$；取其3倍（不改变核与像）$$C=u_1u_1^T+u_2u_2^T=\\begin{pmatrix}2&0&1&1\\\\0&2&1&-1\\\\1&1&1&0\\\\1&-1&0&1\\end{pmatrix}$$",
+        "验证 $Cv_1=0$：逐行计算 $2\\cdot1+0\\cdot1+1\\cdot(-2)+1\\cdot0=0$；$0+2\\cdot1+1\\cdot(-2)-1\\cdot0=0$；$1+1-2+0=0$；$1-1+0+0=0$。同理验证 $Cv_2=0$，故 $W\\subseteq\\mathrm{Ker}F_C$。",
+        "由于 $C=3P$（$P$为到 $W^\\perp$ 的正交投影），$\\mathrm{rank}(C)=\\mathrm{rank}(P)=\\dim W^\\perp=2$，结合 $\\dim\\mathrm{Ker}F_C=4-2=2=\\dim W$ 得 $\\mathrm{Ker}F_C=W$，且 $\\mathrm{Im}F_C=\\mathrm{Im}(P)=W^\\perp$。"
+      ]
+    }
+  ],
+  "practice_questions": [
+    {
+      "text": "判断向量组 $w_1=(1,0,1),w_2=(0,1,1),w_3=(1,1,2)$ 是否线性相关，并求它们张成子空间的维数。",
+      "knowledge_points": [
+        "线性相关性判定"
+      ],
+      "question_type": "基础线性相关性判断",
+      "method": [
+        "求解齐次线性方程组"
+      ],
+      "solution_steps": [
+        "设 $aw_1+bw_2+cw_3=0$",
+        "解出关系",
+        "确定维数"
+      ],
+      "math_structure": {
+        "type": "linear_dependence_check",
+        "template": "判断 $\\mathbb{R}^n$ 中若干向量的线性相关性",
+        "variable_count": 3
+      },
+      "difficulty": 1,
+      "estimated_minutes": 5,
+      "answer": [
+        {
+          "label": "结果",
+          "steps": [
+            "设 $a(1,0,1)+b(0,1,1)+c(1,1,2)=0$ 得 $a+c=0,b+c=0,a+b+2c=0$",
+            "由前两式 $a=-c,b=-c$，代入第三式 $-c-c+2c=0$恒成立，故存在非零解 (如 $c=1,a=-1,b=-1$)，即 $w_3=w_1+w_2$",
+            "三向量线性相关，子空间维数为2，基为 $\\{w_1,w_2\\}$"
+          ]
+        }
+      ],
+      "id": "nagoya-2008-b8c47866c6-q02-practice-01",
+      "school": "名古屋大学",
+      "year": "2008"
+    },
+    {
+      "text": "在 $\\mathbb{R}^3$ 中，设 $U=\\mathrm{span}\\{(1,2,0),(0,1,1)\\}$，求 $U^\\perp$ 的一组基。",
+      "knowledge_points": [
+        "正交补空间"
+      ],
+      "question_type": "正交补基求解",
+      "method": [
+        "解正交方程组"
+      ],
+      "solution_steps": [
+        "设正交条件方程",
+        "解齐次方程组",
+        "得基向量"
+      ],
+      "math_structure": {
+        "type": "orthogonal_complement_basic",
+        "template": "求 $\\mathbb{R}^3$ 中二维子空间的正交补(一维)",
+        "variable_count": 2
+      },
+      "difficulty": 2,
+      "estimated_minutes": 5,
+      "answer": [
+        {
+          "label": "结果",
+          "steps": [
+            "设 $(x,y,z)$ 满足 $x+2y=0$ 和 $y+z=0$",
+            "由 $x=-2y,z=-y$，取 $y=1$ 得 $(-2,1,-1)$",
+            "验证：$(-2,1,-1)\\cdot(1,2,0)=-2+2=0$，$(-2,1,-1)\\cdot(0,1,1)=1-1=0$，正确"
+          ]
+        }
+      ],
+      "id": "nagoya-2008-b8c47866c6-q02-practice-02",
+      "school": "名古屋大学",
+      "year": "2008"
+    },
+    {
+      "text": "在 $\\mathbb{R}^3$ 中设 $U^\\perp=\\mathrm{span}\\{(1,0,-1)\\}$。求一个 $1\\times3$ 矩阵 $A$ 使 $\\mathrm{Ker}F_A=U$（$U$ 为 $U^\\perp$ 的正交补，二维）。",
+      "knowledge_points": [
+        "核空间构造",
+        "正交补关系"
+      ],
+      "question_type": "核空间矩阵构造",
+      "method": [
+        "以正交补基作为矩阵行"
+      ],
+      "solution_steps": [
+        "取矩阵行为 $U^\\perp$的基",
+        "验证核维数与 $U$ 匹配"
+      ],
+      "math_structure": {
+        "type": "kernel_matrix_construction",
+        "template": "已知 $U^\\perp$ 的基, 构造矩阵 $A$ 使 $\\mathrm{Ker}F_A=U$",
+        "variable_count": 3
+      },
+      "difficulty": 2,
+      "estimated_minutes": 6,
+      "answer": [
+        {
+          "label": "结果",
+          "steps": [
+            "取 $A=(1,0,-1)$（$U^\\perp$的基向量作为唯一行）",
+            "$\\mathrm{Ker}F_A=\\{(x,y,z):x-z=0\\}$，是二维子空间",
+            "由于 $U^\\perp=\\mathrm{span}\\{(1,0,-1)\\}$为一维，其正交补 $U$ 恰为 $x=z$确定的二维平面，故 $\\mathrm{Ker}F_A=U$"
+          ]
+        }
+      ],
+      "id": "nagoya-2008-b8c47866c6-q02-practice-03",
+      "school": "名古屋大学",
+      "year": "2008"
+    },
+    {
+      "text": "延续上题，设 $U^\\perp=\\mathrm{span}\\{(1,0,-1)\\}$，求一个 $3\\times1$ 矩阵 $B$ 使 $\\mathrm{Im}F_B=U^\\perp$。",
+      "knowledge_points": [
+        "像空间构造"
+      ],
+      "question_type": "像空间矩阵构造",
+      "method": [
+        "以基向量作为矩阵列"
+      ],
+      "solution_steps": [
+        "取列向量为基",
+        "验证像空间"
+      ],
+      "math_structure": {
+        "type": "image_matrix_construction",
+        "template": "已知一维子空间的基, 构造矩阵 $B$ 使 $\\mathrm{Im}F_B$ 等于该子空间",
+        "variable_count": 3
+      },
+      "difficulty": 1,
+      "estimated_minutes": 3,
+      "answer": [
+        {
+          "label": "结果",
+          "steps": [
+            "取 $B=\\begin{pmatrix}1\\\\0\\\\-1\\end{pmatrix}$",
+            "$\\mathrm{Im}F_B=\\mathrm{span}\\{(1,0,-1)\\}=U^\\perp$，符合要求"
+          ]
+        }
+      ],
+      "id": "nagoya-2008-b8c47866c6-q02-practice-04",
+      "school": "名古屋大学",
+      "year": "2008"
+    },
+    {
+      "text": "在 $\\mathbb{R}^3$ 中设 $U=\\{(x,y,z):x=z\\}$（二维），$U^\\perp=\\mathrm{span}\\{(1,0,-1)\\}$（一维）。构造一个 $3$ 次方阵 $C$，同时满足 $\\mathrm{Ker}F_C=U$ 与 $\\mathrm{Im}F_C=U^\\perp$。",
+      "knowledge_points": [
+        "正交投影矩阵",
+        "同时满足核与像条件的矩阵构造"
+      ],
+      "method": [
+        "构造到 $U^\\perp$的投影矩阵（或其倍数）"
+      ],
+      "solution_steps": [
+        "利用 $u=(1,0,-1)$ 构造 $uu^T$ 型矩阵",
+        "验证核为 $U$，像为 $U^\\perp$"
+      ],
+      "math_structure": {
+        "type": "kernel_image_projection_matrix",
+        "template": "已知一维 $U^\\perp$ 的基, 构造方阵 $C$ 同时满足给定核与像",
+        "variable_count": 3
+      },
+      "difficulty": 3,
+      "estimated_minutes": 8,
+      "answer": [
+        {
+          "label": "结果",
+          "steps": [
+            "取 $u=(1,0,-1)^T$，$|u|^2=2$，令 $C=uu^T=\\begin{pmatrix}1&0&-1\\\\0&0&0\\\\-1&0&1\\end{pmatrix}$（不必归一化, 只需保持核像不变）",
+            "验证：对 $v=(1,1,1)\\in U$（满足 $x=z$），$Cv=(1-1,0,-1+1)=(0,0,0)$，核包含 $U$",
+            "$\\mathrm{rank}(C)=1$，故 $\\dim\\mathrm{Ker}F_C=3-1=2=\\dim U$，从而 $\\mathrm{Ker}F_C=U$；同时 $\\mathrm{Im}F_C=\\mathrm{span}\\{u\\}=U^\\perp$"
+          ]
+        }
+      ],
+      "id": "nagoya-2008-b8c47866c6-q02-practice-05",
+      "school": "名古屋大学",
+      "year": "2008"
+    }
+  ],
+  "source_question": "問2",
+  "source_pdf": "名古屋大学/多元数理科学研究科/全专攻/名古屋大学_多元数理科学研究科_2008_第2次_数学过去问_上午.pdf",
+  "source_type": "官方过去问",
+  "subject_category": "线性代数"
+}

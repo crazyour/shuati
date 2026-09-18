@@ -1,0 +1,219 @@
+{
+  "id": "osaka-2023-09db4de9ee-q04",
+  "school": "大阪大学",
+  "year": "2023",
+  "subject": "情报科学研究科_情报基础数学",
+  "text": "用 $\\mathbb{R}^{3\\times3}$ 表示实三阶方阵的集合,对 $A=(a_{ij})_{1\\le i,j\\le3}\\in\\mathbb{R}^{3\\times3}$ 定义其范数为 $\\|A\\|=\\sqrt{\\sum_{1\\le i,j\\le3}a_{ij}^2}$。回答以下问题:\n(1) 用正交矩阵将下列 $S\\in\\mathbb{R}^{3\\times3}$ 对角化:\n$$S=\\begin{pmatrix}1&1&1\\\\1&1&-1\\\\1&-1&-1\\end{pmatrix}.$$\n(2) 对任意 $A\\in\\mathbb{R}^{3\\times3}$ 与任意两个正交矩阵 $U,V\\in\\mathbb{R}^{3\\times3}$,证明 $\\|UAV\\|=\\|A\\|$ 成立。\n(3) 对(1)中的 $S$,求一个秩为2的 $X\\in\\mathbb{R}^{3\\times3}$,使得 $\\|S-X\\|=1$。",
+  "knowledge_points": [
+    "实对称矩阵的正交对角化",
+    "特征值与特征向量计算",
+    "Frobenius范数与迹的关系",
+    "迹的循环不变性",
+    "正交矩阵的性质",
+    "谱分解与最佳低秩逼近"
+  ],
+  "question_type": "对称矩阵对角化、范数不变性与低秩逼近综合题",
+  "method": [
+    "求特征多项式得特征值,解齐次线性方程组求特征向量,归一化构成正交矩阵",
+    "用 $\\|A\\|^2=\\mathrm{tr}(A^\\top A)$ 及迹的循环性质证明范数不变性",
+    "利用谱分解 $S=\\sum\\lambda_i\\hat v_i\\hat v_i^\\top$ 去掉绝对值最小的特征分量构造指定秩的逼近矩阵"
+  ],
+  "solution_steps": [
+    "求特征多项式,得特征值 $1,2,-2$",
+    "分别求各特征值对应的特征向量并归一化,验证两两正交",
+    "证明 $\\|UAV\\|=\\|A\\|$:展开为迹的表达式,用正交性 $U^\\top U=I,VV^\\top=I$ 及迹的循环不变性化简",
+    "利用谱分解去掉特征值 $1$ 对应的分量构造秩2矩阵 $X$,并验算 $\\|S-X\\|=1$"
+  ],
+  "math_structure": {
+    "type": "symmetric_matrix_orthogonal_diagonalization",
+    "template": "S=\\begin{pmatrix}s_{11}&s_{12}&s_{13}\\\\s_{12}&s_{22}&s_{23}\\\\s_{13}&s_{23}&s_{33}\\end{pmatrix},\\ \\|A\\|=\\sqrt{\\mathrm{tr}(A^\\top A)}",
+    "variable_count": 6
+  },
+  "difficulty": 4,
+  "answer": [
+    {
+      "label": "(1)",
+      "steps": [
+        "特征多项式:展开 $\\det(S-\\lambda I)$ 得 $-\\lambda^3+\\lambda^2+4\\lambda-4=-(\\lambda-1)(\\lambda-2)(\\lambda+2)$,故特征值为 $\\lambda=1,2,-2$(验算:迹 $1+1-1=1=1+2-2$;行列式 $=1\\cdot2\\cdot(-2)=-4$,与直接展开 $\\det S=-4$ 一致)。",
+        "$\\lambda=1$:解 $(S-I)v=0$ 得方程 $y+z=0,\\ x-z=0$,取 $v_1=(1,-1,1)$。",
+        "$\\lambda=2$:解 $(S-2I)v=0$ 得 $x=y+z$ 及 $z=0$,取 $v_2=(1,1,0)$。",
+        "$\\lambda=-2$:解 $(S+2I)v=0$ 得 $z=y-x,\\ y=-x$,取 $v_3=(1,-1,-2)$;验证 $v_1\\cdot v_2=1-1+0=0,\\ v_1\\cdot v_3=1+1-2=0,\\ v_2\\cdot v_3=1-1+0=0$,三向量两两正交(符合对称矩阵不同特征值特征向量自动正交的性质)。",
+        "归一化:$\\hat v_1=\\dfrac{1}{\\sqrt3}(1,-1,1),\\ \\hat v_2=\\dfrac{1}{\\sqrt2}(1,1,0),\\ \\hat v_3=\\dfrac{1}{\\sqrt6}(1,-1,-2)$。令 $P=(\\hat v_1\\ \\hat v_2\\ \\hat v_3)$,则 $P$ 为正交矩阵且 $P^\\top SP=\\mathrm{diag}(1,2,-2)$。"
+      ]
+    },
+    {
+      "label": "(2)",
+      "steps": [
+        "由范数定义,$\\|A\\|^2=\\sum_{i,j}a_{ij}^2=\\mathrm{tr}(A^\\top A)$。",
+        "$\\|UAV\\|^2=\\mathrm{tr}\\big((UAV)^\\top(UAV)\\big)=\\mathrm{tr}(V^\\top A^\\top U^\\top UAV)$;因 $U$ 正交,$U^\\top U=I$,故化为 $\\mathrm{tr}(V^\\top A^\\top AV)$。",
+        "由迹的循环不变性 $\\mathrm{tr}(V^\\top A^\\top AV)=\\mathrm{tr}(A^\\top AVV^\\top)$;因 $V$ 正交,$VV^\\top=I$,故 $=\\mathrm{tr}(A^\\top A)=\\|A\\|^2$。",
+        "两边取平方根(均非负)得 $\\|UAV\\|=\\|A\\|$,证毕。"
+      ]
+    },
+    {
+      "label": "(3)",
+      "steps": [
+        "由(1)的谱分解,$S=1\\cdot\\hat v_1\\hat v_1^\\top+2\\hat v_2\\hat v_2^\\top-2\\hat v_3\\hat v_3^\\top$。",
+        "取 $X=S-\\hat v_1\\hat v_1^\\top=2\\hat v_2\\hat v_2^\\top-2\\hat v_3\\hat v_3^\\top$,其在 $P$ 基底下的特征值为 $\\{0,2,-2\\}$,恰有一个零特征值,故 $\\mathrm{rank}(X)=2$。",
+        "计算 $\\hat v_1\\hat v_1^\\top=\\dfrac13\\begin{pmatrix}1&-1&1\\\\-1&1&-1\\\\1&-1&1\\end{pmatrix}$,于是\n$$X=S-\\dfrac13\\begin{pmatrix}1&-1&1\\\\-1&1&-1\\\\1&-1&1\\end{pmatrix}=\\begin{pmatrix}2/3&4/3&2/3\\\\4/3&2/3&-2/3\\\\2/3&-2/3&-4/3\\end{pmatrix}.$$",
+        "验算:$S-X=\\dfrac13\\begin{pmatrix}1&-1&1\\\\-1&1&-1\\\\1&-1&1\\end{pmatrix}$,其9个元素的平方和为 $\\dfrac19\\times9=1$,故 $\\|S-X\\|=1$;又直接计算 $Xv_1=X(1,-1,1)^\\top$ 三个分量均为0,说明 $v_1$ 在 $X$ 的零空间中,进一步确认 $\\mathrm{rank}(X)\\le2$,结合 $X\\ne0$ 有非零特征值 $2,-2$,得 $\\mathrm{rank}(X)=2$,满足全部要求。"
+      ]
+    }
+  ],
+  "practice_questions": [
+    {
+      "text": "用正交矩阵将对称矩阵 $A=\\begin{pmatrix}2&1\\\\1&2\\end{pmatrix}$ 对角化。",
+      "knowledge_points": [
+        "实对称矩阵正交对角化",
+        "特征值特征向量计算"
+      ],
+      "question_type": "基础对角化题",
+      "method": [
+        "特征多项式求特征值,解方程求特征向量并归一化"
+      ],
+      "solution_steps": [
+        "求特征多项式",
+        "求特征向量",
+        "归一化构成正交矩阵"
+      ],
+      "math_structure": {
+        "type": "symmetric_matrix_orthogonal_diagonalization",
+        "template": "A=\\begin{pmatrix}a&b\\\\b&a\\end{pmatrix}",
+        "variable_count": 2
+      },
+      "difficulty": 1,
+      "estimated_minutes": 6,
+      "answer": [
+        {
+          "label": "对角化",
+          "steps": [
+            "特征多项式:迹为4,行列式为 $4-1=3$,方程 $\\lambda^2-4\\lambda+3=0$,解得 $\\lambda=1,3$。",
+            "$\\lambda=3$:$(A-3I)v=0$ 即 $-x+y=0$,取 $v_1=(1,1)$;$\\lambda=1$:$(A-I)v=0$ 即 $x+y=0$,取 $v_2=(1,-1)$;两者正交($v_1\\cdot v_2=0$)。",
+            "归一化 $\\hat v_1=\\tfrac{1}{\\sqrt2}(1,1),\\hat v_2=\\tfrac1{\\sqrt2}(1,-1)$,令 $P=\\tfrac1{\\sqrt2}\\begin{pmatrix}1&1\\\\1&-1\\end{pmatrix}$,则 $P^\\top AP=\\mathrm{diag}(3,1)$(验算:迹 $3+1=4$,行列式 $3\\times1=3$,均与原矩阵一致)。"
+          ]
+        }
+      ],
+      "id": "osaka-2023-09db4de9ee-q04-practice-01",
+      "school": "大阪大学",
+      "year": "2023"
+    },
+    {
+      "text": "证明:对任意 $A\\in\\mathbb{R}^{3\\times3}$ 及任意正交矩阵 $U\\in\\mathbb{R}^{3\\times3}$,单侧乘积满足 $\\|UA\\|=\\|A\\|$。",
+      "knowledge_points": [
+        "Frobenius范数与迹",
+        "正交矩阵性质"
+      ],
+      "question_type": "范数不变性基础证明题",
+      "method": [
+        "用 $\\|A\\|^2=\\mathrm{tr}(A^\\top A)$ 展开并利用 $U^\\top U=I$"
+      ],
+      "solution_steps": [
+        "展开 $\\|UA\\|^2$ 为迹的表达式",
+        "利用正交性化简",
+        "得出结论"
+      ],
+      "math_structure": {
+        "type": "frobenius_norm_orthogonal_invariance",
+        "template": "\\|UA\\|=\\|A\\|,\\ U^\\top U=I",
+        "variable_count": 0
+      },
+      "difficulty": 2,
+      "estimated_minutes": 6,
+      "answer": [
+        {
+          "label": "证明",
+          "steps": [
+            "$\\|UA\\|^2=\\mathrm{tr}\\big((UA)^\\top(UA)\\big)=\\mathrm{tr}(A^\\top U^\\top UA)$。",
+            "因 $U$ 正交,$U^\\top U=I$,故化为 $\\mathrm{tr}(A^\\top A)=\\|A\\|^2$。",
+            "两边开方(均非负)得 $\\|UA\\|=\\|A\\|$,这是原题(2)双侧情形的简化版,证明思路完全类似,只是不需要用到迹的循环性质。"
+          ]
+        }
+      ],
+      "id": "osaka-2023-09db4de9ee-q04-practice-02",
+      "school": "大阪大学",
+      "year": "2023"
+    },
+    {
+      "text": "求矩阵 $B=\\begin{pmatrix}0&1&1\\\\1&0&1\\\\1&1&0\\end{pmatrix}$ 的特征值与特征向量,并给出一组正交对角化(注意 $B$ 有重复特征值,需在对应特征子空间内选取正交基)。",
+      "knowledge_points": [
+        "重特征值下的特征子空间",
+        "Gram-Schmidt正交化",
+        "对称矩阵对角化"
+      ],
+      "question_type": "含重特征值的对角化题",
+      "method": [
+        "特征多项式求特征值(含重根)",
+        "在高维特征子空间中选取正交基"
+      ],
+      "solution_steps": [
+        "求特征值(含二重根)",
+        "求一维特征子空间的特征向量",
+        "在二维特征子空间中选取两个正交向量"
+      ],
+      "math_structure": {
+        "type": "symmetric_matrix_orthogonal_diagonalization",
+        "template": "B=J-I,\\ J\\text{ 为全1矩阵}",
+        "variable_count": 0
+      },
+      "difficulty": 3,
+      "estimated_minutes": 12,
+      "answer": [
+        {
+          "label": "对角化",
+          "steps": [
+            "$B=J-I$,其中 $J$ 为全1的 $3\\times3$ 矩阵。$J$ 的特征值为 $3$(特征向量 $(1,1,1)$)与 $0$(二重,特征子空间为 $\\{v:v_1+v_2+v_3=0\\}$),故 $B=J-I$ 的特征值为 $3-1=2$ 与 $0-1=-1$(二重)。",
+            "$\\lambda=2$ 对应特征向量 $v_1=(1,1,1)$,归一化 $\\hat v_1=\\tfrac1{\\sqrt3}(1,1,1)$。",
+            "$\\lambda=-1$ 对应的二维特征子空间为 $\\{(a,b,c):a+b+c=0\\}$,在其中选取正交基,例如 $v_2=(1,-1,0)$ 与 $v_3=(1,1,-2)$(验证 $v_2\\cdot v_3=1-1+0=0$,且两者都满足 $a+b+c=0$),归一化得 $\\hat v_2=\\tfrac1{\\sqrt2}(1,-1,0),\\ \\hat v_3=\\tfrac1{\\sqrt6}(1,1,-2)$。",
+            "验算:迹 $=2+(-1)+(-1)=0$,与原矩阵迹(对角元全为0,迹为0)一致;$P=(\\hat v_1\\ \\hat v_2\\ \\hat v_3)$ 为正交矩阵且 $P^\\top BP=\\mathrm{diag}(2,-1,-1)$。"
+          ]
+        }
+      ],
+      "id": "osaka-2023-09db4de9ee-q04-practice-03",
+      "school": "大阪大学",
+      "year": "2023"
+    },
+    {
+      "text": "设 $C=\\begin{pmatrix}1&2\\\\2&1\\end{pmatrix}$。求秩为1的矩阵 $Y$,使得 $\\|C-Y\\|$ 最小,并求出该最小值(提示:去掉谱分解中绝对值最小的特征分量)。",
+      "knowledge_points": [
+        "谱分解",
+        "Frobenius范数下的最佳低秩逼近",
+        "投影矩阵范数计算"
+      ],
+      "question_type": "最佳低秩逼近题",
+      "method": [
+        "求特征值特征向量得到谱分解",
+        "比较特征值绝对值,去掉最小的分量构造 $Y$"
+      ],
+      "solution_steps": [
+        "求 $C$ 的特征值特征向量",
+        "写出谱分解",
+        "去掉绝对值最小特征值对应分量构造 $Y$ 并计算 $\\|C-Y\\|$"
+      ],
+      "math_structure": {
+        "type": "best_rank1_approximation_frobenius",
+        "template": "C=\\lambda_1\\hat u\\hat u^\\top+\\lambda_2\\hat w\\hat w^\\top,\\ |\\lambda_1|>|\\lambda_2|",
+        "variable_count": 2
+      },
+      "difficulty": 4,
+      "estimated_minutes": 12,
+      "answer": [
+        {
+          "label": "最优 Y 与最小值",
+          "steps": [
+            "特征值:迹为2,行列式为 $1-4=-3$,方程 $\\lambda^2-2\\lambda-3=0$,解得 $\\lambda=3,-1$。",
+            "$\\lambda=3$:$(C-3I)v=0$ 即 $-2x+2y=0$,取 $\\hat u=\\tfrac1{\\sqrt2}(1,1)$;$\\lambda=-1$:$(C+I)v=0$ 即 $2x+2y=0$,取 $\\hat w=\\tfrac1{\\sqrt2}(1,-1)$。谱分解:$C=3\\hat u\\hat u^\\top-\\hat w\\hat w^\\top$。",
+            "因 $|3|>|-1|$,去掉绝对值较小的分量 $-\\hat w\\hat w^\\top$,取 $Y=3\\hat u\\hat u^\\top=\\begin{pmatrix}1.5&1.5\\\\1.5&1.5\\end{pmatrix}$(秩为1)。",
+            "验算:$C-Y=\\begin{pmatrix}-0.5&0.5\\\\0.5&-0.5\\end{pmatrix}=-\\hat w\\hat w^\\top$,其元素平方和为 $0.25\\times4=1$,故 $\\|C-Y\\|=1=|-1|$,恰等于被舍弃特征值的绝对值,这与谱分解意义下'去掉绝对值最小的特征分量得到最优低秩逼近'的一般原理一致,也是原题(3)中构造秩2矩阵 $X$ 所用方法的简化版。"
+          ]
+        }
+      ],
+      "id": "osaka-2023-09db4de9ee-q04-practice-04",
+      "school": "大阪大学",
+      "year": "2023"
+    }
+  ],
+  "source_question": "4",
+  "source_pdf": "大阪大学/情报科学研究科/情报基础数学/大阪大学_情报科学研究科_情报基础数学_2023_数学过去问.pdf",
+  "source_type": "官方过去问",
+  "subject_category": "线性代数"
+}

@@ -1,0 +1,239 @@
+{
+  "id": "isct-2023-b0410e4e07-q02",
+  "school": "东京科学大学",
+  "year": "2023",
+  "subject": "理工学系_情报工学系",
+  "text": "设 $h(x) = \\frac{1}{2}x^T Qx + c^T x + 3$，其中 $x = \\begin{pmatrix} x_1 \\\\ x_2 \\end{pmatrix} \\in \\mathbb{R}^2$，Q 是 $2 \\times 2$ 实对称矩阵，$c \\in \\mathbb{R}^2$。\n\n**a)** 设 $Q = \\begin{pmatrix} 2 & -1 \\\\ -1 & 4 \\end{pmatrix}$，$c = \\begin{pmatrix} 2 \\\\ 1 \\end{pmatrix}$，求偏导数 $\\dfrac{\\partial h}{\\partial x_1}$ 和 $\\dfrac{\\partial h}{\\partial x_2}$。\n\n**b)** 在 a) 的条件下，求满足 $\\dfrac{\\partial h}{\\partial x_1} - \\dfrac{\\partial h}{\\partial x_2} = 0$ 的所有点 $(x_1, x_2)$ 的坐标。\n\n**c)** 一般地，什么样的 Q 使得方程组 $\\dfrac{\\partial h}{\\partial x_1} = 0$，$\\dfrac{\\partial h}{\\partial x_2} = 0$ 有唯一解？写出 Q 必须满足的必要充分条件。\n\n**d)** 什么样的 Q 使得上述唯一解同时是 $h$ 的最小值点？写出 Q 必须满足的必要充分条件。",
+  "knowledge_points": [
+    "二次型函数",
+    "偏导数与梯度",
+    "矩阵的正定性",
+    "临界点与极值",
+    "线性方程组"
+  ],
+  "question_type": "多部分计算与理论题",
+  "method": [
+    "偏导数计算",
+    "线性方程组求解",
+    "矩阵特征值判定",
+    "Hessian矩阵分析"
+  ],
+  "solution_steps": [
+    "展开二次型并对各变量求偏导",
+    "代入具体参数并化简梯度向量",
+    "求解梯度为零的条件",
+    "判定Hessian矩阵的正定性"
+  ],
+  "math_structure": {
+    "type": "quadratic_form_optimization",
+    "template": "$h(x) = \\frac{1}{2}x^T Qx + c^T x + const$，Q为对称矩阵",
+    "variable_count": 2
+  },
+  "difficulty": 3,
+  "answer": [
+    {
+      "label": "a) 计算偏导数",
+      "steps": [
+        "展开 $h(x) = \\frac{1}{2}(2x_1^2 - 2x_1 x_2 + 4x_2^2) + 2x_1 + x_2 + 3$",
+        "$ = x_1^2 - x_1 x_2 + 2x_2^2 + 2x_1 + x_2 + 3$",
+        "$\\dfrac{\\partial h}{\\partial x_1} = 2x_1 - x_2 + 2$",
+        "$\\dfrac{\\partial h}{\\partial x_2} = -x_1 + 4x_2 + 1$"
+      ]
+    },
+    {
+      "label": "b) 求满足条件的点",
+      "steps": [
+        "$\\dfrac{\\partial h}{\\partial x_1} - \\dfrac{\\partial h}{\\partial x_2} = (2x_1 - x_2 + 2) - (-x_1 + 4x_2 + 1) = 0$",
+        "$3x_1 - 5x_2 + 1 = 0$",
+        "解得 $x_1 = \\dfrac{5x_2 - 1}{3}$",
+        "所有点构成直线 $3x_1 - 5x_2 + 1 = 0$（有无穷多个解）"
+      ]
+    },
+    {
+      "label": "c) 唯一解的充要条件",
+      "steps": [
+        "梯度为零：$Qx + c = 0$，即 $x = -Q^{-1}c$",
+        "唯一解存在且唯一  $\\Leftrightarrow$ Q 可逆 $\\Leftrightarrow$ $\\det Q \\neq 0$",
+        "因此，必要充分条件是：**Q 为可逆矩阵**"
+      ]
+    },
+    {
+      "label": "d) 最小值点的充要条件",
+      "steps": [
+        "Hessian矩阵 $H = Q$",
+        "唯一临界点是最小值点 $\\Leftrightarrow$ H 正定 $\\Leftrightarrow$ Q 正定",
+        "Q 正定的充要条件：Q的所有特征值都为正，或等价地，",
+        "**Q 对称且 $\\det Q > 0$，$\\text{trace}(Q) > 0$**（对$2 \\times 2$矩阵）"
+      ]
+    }
+  ],
+  "practice_questions": [
+    {
+      "text": "设 $f(x_1, x_2) = 2x_1^2 + x_2^2 + 2x_1 x_2 - 4x_1$，求偏导数 $\\dfrac{\\partial f}{\\partial x_1}$ 和 $\\dfrac{\\partial f}{\\partial x_2}$。",
+      "knowledge_points": [
+        "多元函数偏导数"
+      ],
+      "question_type": "偏导数计算",
+      "method": [
+        "直接求偏导"
+      ],
+      "solution_steps": [
+        "对 $x_1$ 求偏导",
+        "对 $x_2$ 求偏导"
+      ],
+      "math_structure": {
+        "type": "partial_derivative",
+        "template": "$f: \\mathbb{R}^2 \\to \\mathbb{R}$",
+        "variable_count": 2
+      },
+      "difficulty": 1,
+      "estimated_minutes": 5,
+      "answer": [
+        {
+          "label": "偏导数",
+          "steps": [
+            "$\\dfrac{\\partial f}{\\partial x_1} = 4x_1 + 2x_2 - 4$",
+            "$\\dfrac{\\partial f}{\\partial x_2} = 2x_2 + 2x_1$"
+          ]
+        }
+      ],
+      "id": "isct-2023-b0410e4e07-q02-practice-01",
+      "school": "东京科学大学",
+      "year": "2023"
+    },
+    {
+      "text": "设 $Q = \\begin{pmatrix} 1 & 0 \\\\ 0 & 2 \\end{pmatrix}$，$c = \\begin{pmatrix} 3 \\\\ 1 \\end{pmatrix}$，求函数 $h(x) = \\frac{1}{2}x^T Qx + c^T x$ 的梯度为零的点。",
+      "knowledge_points": [
+        "梯度向量",
+        "线性方程组求解"
+      ],
+      "question_type": "临界点求解",
+      "method": [
+        "列出梯度方程组",
+        "求解线性系统"
+      ],
+      "solution_steps": [
+        "写出梯度：$\\nabla h = Qx + c$",
+        "令梯度为零：$Qx + c = 0$",
+        "求解"
+      ],
+      "math_structure": {
+        "type": "critical_point",
+        "template": "$\\nabla h = Qx + c = 0$",
+        "variable_count": 2
+      },
+      "difficulty": 1,
+      "estimated_minutes": 5,
+      "answer": [
+        {
+          "label": "求临界点",
+          "steps": [
+            "$\\begin{pmatrix} 1 & 0 \\\\ 0 & 2 \\end{pmatrix} \\begin{pmatrix} x_1 \\\\ x_2 \\end{pmatrix} + \\begin{pmatrix} 3 \\\\ 1 \\end{pmatrix} = \\begin{pmatrix} 0 \\\\ 0 \\end{pmatrix}$",
+            "$x_1 + 3 = 0 \\Rightarrow x_1 = -3$",
+            "$2x_2 + 1 = 0 \\Rightarrow x_2 = -\\frac{1}{2}$",
+            "临界点：$\\begin{pmatrix} -3 \\\\ -\\frac{1}{2} \\end{pmatrix}$"
+          ]
+        }
+      ],
+      "id": "isct-2023-b0410e4e07-q02-practice-02",
+      "school": "东京科学大学",
+      "year": "2023"
+    },
+    {
+      "text": "判定矩阵 $Q = \\begin{pmatrix} 3 & 1 \\\\ 1 & 2 \\end{pmatrix}$ 是否为正定矩阵。",
+      "knowledge_points": [
+        "矩阵正定性判定",
+        "特征值方法"
+      ],
+      "question_type": "正定性判定",
+      "method": [
+        "计算行列式与迹",
+        "特征值判定"
+      ],
+      "solution_steps": [
+        "计算 $\\det Q$",
+        "检验条件"
+      ],
+      "math_structure": {
+        "type": "positive_definite",
+        "template": "判定对称矩阵Q是否正定",
+        "variable_count": 0
+      },
+      "difficulty": 2,
+      "estimated_minutes": 8,
+      "answer": [
+        {
+          "label": "判定正定性",
+          "steps": [
+            "$\\det Q = 3 \\cdot 2 - 1 \\cdot 1 = 6 - 1 = 5 > 0$",
+            "主对角元 $3 > 0$，$2 > 0$",
+            "$\\det Q > 0$ 且对角元都为正，Q为正定矩阵"
+          ]
+        }
+      ],
+      "id": "isct-2023-b0410e4e07-q02-practice-03",
+      "school": "东京科学大学",
+      "year": "2023"
+    },
+    {
+      "text": "设 $h(x_1, x_2) = x_1^2 + 2x_1 x_2 + 3x_2^2 - 6x_1 - 2x_2 + 5$。求满足 $\\nabla h = 0$ 的点，并判定该点是否为极小值点。",
+      "knowledge_points": [
+        "梯度与Hessian矩阵",
+        "极值判定"
+      ],
+      "question_type": "极值判定",
+      "method": [
+        "求梯度并令其为零",
+        "计算Hessian矩阵"
+      ],
+      "solution_steps": [
+        "求偏导数",
+        "令梯度为零求临界点",
+        "计算Hessian矩阵",
+        "判定正定性"
+      ],
+      "math_structure": {
+        "type": "extremum_test",
+        "template": "判定二元函数的极值点",
+        "variable_count": 2
+      },
+      "difficulty": 3,
+      "estimated_minutes": 12,
+      "answer": [
+        {
+          "label": "求梯度",
+          "steps": [
+            "$\\dfrac{\\partial h}{\\partial x_1} = 2x_1 + 2x_2 - 6$",
+            "$\\dfrac{\\partial h}{\\partial x_2} = 2x_1 + 6x_2 - 2$"
+          ]
+        },
+        {
+          "label": "求临界点",
+          "steps": [
+            "$2x_1 + 2x_2 = 6$",
+            "$2x_1 + 6x_2 = 2$",
+            "两式相减：$-4x_2 = 4 \\Rightarrow x_2 = -1$",
+            "代入：$2x_1 - 2 = 6 \\Rightarrow x_1 = 4$",
+            "临界点 $(4, -1)$"
+          ]
+        },
+        {
+          "label": "Hessian矩阵与极值判定",
+          "steps": [
+            "Hessian矩阵 $H = \\begin{pmatrix} 2 & 2 \\\\ 2 & 6 \\end{pmatrix}$",
+            "$\\det H = 2 \\cdot 6 - 2 \\cdot 2 = 12 - 4 = 8 > 0$",
+            "$H$ 的左上角元素 $2 > 0$",
+            "H 正定，故 $(4, -1)$ 为极小值点"
+          ]
+        }
+      ],
+      "id": "isct-2023-b0410e4e07-q02-practice-04",
+      "school": "东京科学大学",
+      "year": "2023"
+    }
+  ],
+  "source_question": "問1 2)",
+  "source_pdf": "东京科学大学/理工学系/情报工学系/东京科学大学_理工学系_情报工学系_2023_数学过去问.pdf",
+  "source_type": "官方过去问",
+  "subject_category": "线性代数"
+}

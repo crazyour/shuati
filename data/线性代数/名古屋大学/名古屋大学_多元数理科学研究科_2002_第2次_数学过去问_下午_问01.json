@@ -1,0 +1,215 @@
+{
+  "id": "nagoya-2002-0dcbdbb1cf-q01",
+  "school": "名古屋大学",
+  "year": "2002",
+  "subject": "多元数理科学研究科_全专攻",
+  "text": "设 $M_3(\\mathbb{C})$ 为复数域上全体 3 次方阵构成的线性空间，$A \\in M_3(\\mathbb{C})$ 满足 $A^2=A$，$\\mathrm{rank}\\,A=2$。定义线性变换 $F:M_3(\\mathbb{C}) \\to M_3(\\mathbb{C})$ 为 $F(X)=AXA,\\ X\\in M_3(\\mathbb{C})$。\n(1) 求 $A$ 的若尔当标准形。\n(2) 求 $\\mathrm{Im}\\,F$ 的维数 $\\dim(\\mathrm{Im}\\,F)$。\n(3) 注意到 $F\\circ F=F$，求 $F$ 的若尔当标准形。",
+  "knowledge_points": [
+    "幂等矩阵",
+    "若尔当标准形",
+    "秩与维数",
+    "诱导线性变换",
+    "特征值与可对角化",
+    "线性空间的维数计数"
+  ],
+  "question_type": "矩阵与诱导变换的结构分析",
+  "method": [
+    "利用幂等矩阵可对角化性质",
+    "选取使 A 化为标准形的基底",
+    "直接计算 AXA 的像空间",
+    "利用 F∘F=F 得出 F 可对角化"
+  ],
+  "solution_steps": [
+    "利用 A^2=A 说明 A 的最小多项式整除 x^2-x=x(x-1)，故 A 可对角化，结合 rank A=2 得特征值 1(重数2)，0(重数1)",
+    "在使 A=diag(1,1,0) 的基下计算 AXA 的具体形式，确定其像空间的维数",
+    "利用 F∘F=F 说明 F 也是幂等线性变换，从而可对角化，其若尔当标准形由 dim ImF 决定"
+  ],
+  "math_structure": {
+    "type": "idempotent_matrix_induced_map",
+    "template": "A^2=A, rank(A)=r, F(X)=AXA on M_n(C)",
+    "variable_count": 2
+  },
+  "difficulty": 3,
+  "answer": [
+    {
+      "label": "(1)",
+      "steps": [
+        "由 $A^2=A$ 知 $A$ 满足多项式 $x^2-x=x(x-1)=0$，该多项式无重根，故 $A$ 的最小多项式无重因子，从而 $A$ 可对角化。",
+        "$A$ 的特征值只能是 $0$ 或 $1$（由 $A^2=A$ 推出特征值 $\\lambda$ 满足 $\\lambda^2=\\lambda$）。",
+        "由 $\\mathrm{rank}\\,A=2$，知特征值 $1$ 的重数为 $2$，特征值 $0$ 的重数为 $1$（因为可对角化，非零特征值个数=秩）。",
+        "故若尔当标准形为 $J=\\mathrm{diag}(1,1,0)$。"
+      ]
+    },
+    {
+      "label": "(2)",
+      "steps": [
+        "取基使得 $A=\\mathrm{diag}(1,1,0)$，记指标集 $\\{1,2\\}$ 为“1-方向”，$\\{3\\}$ 为“0-方向”。",
+        "对任意 $X=(x_{ij})$，$(AXA)_{ij}=a_{ii}a_{jj}x_{ij}$（因 A 对角），故当 $i,j\\in\\{1,2\\}$ 时 $(AXA)_{ij}=x_{ij}$，否则为 $0$。",
+        "于是 $F(X)$ 恰好是把 $X$ 的左上 $2\\times2$ 子块保留、其余位置置零，$\\mathrm{Im}\\,F=\\{X: x_{ij}=0 \\text{ 除非 } i,j\\le2\\}$，这是一个 $2\\times2=4$ 维的空间。",
+        "故 $\\dim(\\mathrm{Im}\\,F)=4$。"
+      ]
+    },
+    {
+      "label": "(3)",
+      "steps": [
+        "验证 $F\\circ F(X)=A(AXA)A=A^2XA^2=AXA=F(X)$，故 $F$ 是幂等线性变换（$F^2=F$）。",
+        "幂等线性变换在复数域上必可对角化，且特征值只能是 $0,1$，特征值 $1$ 的重数等于 $\\dim(\\mathrm{Im}\\,F)=4$。",
+        "$M_3(\\mathbb{C})$ 总维数为 $9$，故特征值 $0$ 的重数为 $9-4=5$。",
+        "因此 $F$ 的若尔当标准形为 $\\mathrm{diag}(\\underbrace{1,\\dots,1}_{4},\\underbrace{0,\\dots,0}_{5})$，全部为 $1\\times1$ 若尔当块。"
+      ]
+    }
+  ],
+  "practice_questions": [
+    {
+      "text": "设 $B=\\begin{pmatrix}1&0\\\\0&0\\end{pmatrix}$，验证 $B^2=B$ 并求其若尔当标准形。",
+      "knowledge_points": [
+        "幂等矩阵",
+        "若尔当标准形"
+      ],
+      "question_type": "基础验证",
+      "method": [
+        "直接计算矩阵乘法"
+      ],
+      "solution_steps": [
+        "计算 B^2",
+        "判断特征值",
+        "写出若尔当形"
+      ],
+      "math_structure": {
+        "type": "idempotent_matrix_basic",
+        "template": "B^2=B, 2x2 diagonal",
+        "variable_count": 1
+      },
+      "difficulty": 1,
+      "estimated_minutes": 5,
+      "answer": [
+        {
+          "label": "结果",
+          "steps": [
+            "计算 $B^2=\\begin{pmatrix}1&0\\\\0&0\\end{pmatrix}=B$，验证成立。",
+            "特征值为 $1,0$，各重数1，B已是对角矩阵。",
+            "若尔当标准形即 $B$ 本身：$\\mathrm{diag}(1,0)$。"
+          ]
+        }
+      ],
+      "id": "nagoya-2002-0dcbdbb1cf-q01-practice-01",
+      "school": "名古屋大学",
+      "year": "2002"
+    },
+    {
+      "text": "设 $A$ 是 $n$ 阶幂等矩阵（$A^2=A$），$\\mathrm{rank}\\,A=r$。证明存在可逆矩阵 $P$ 使 $P^{-1}AP=\\mathrm{diag}(\\underbrace{1,\\dots,1}_r,\\underbrace{0,\\dots,0}_{n-r})$。",
+      "knowledge_points": [
+        "幂等矩阵",
+        "可对角化条件",
+        "最小多项式"
+      ],
+      "question_type": "一般性证明",
+      "method": [
+        "最小多项式无重根判别可对角化"
+      ],
+      "solution_steps": [
+        "证明最小多项式整除 x(x-1)",
+        "得出可对角化",
+        "确定特征值重数等于秩"
+      ],
+      "math_structure": {
+        "type": "idempotent_matrix_general",
+        "template": "A^2=A, rank(A)=r, n x n",
+        "variable_count": 2
+      },
+      "difficulty": 2,
+      "estimated_minutes": 8,
+      "answer": [
+        {
+          "label": "证明",
+          "steps": [
+            "由 $A^2-A=0$ 知最小多项式 $m(x)\\mid x(x-1)$，且 $x,x-1$ 无重根，故 $m(x)$ 无重因子。",
+            "最小多项式无重因子当且仅当矩阵可对角化，故 $A$ 相似于对角矩阵。",
+            "特征值只能是 $0$ 或 $1$，可对角化情形下秩等于非零特征值的个数，故特征值 $1$ 重数为 $r$，$0$ 重数为 $n-r$，从而结论成立。"
+          ]
+        }
+      ],
+      "id": "nagoya-2002-0dcbdbb1cf-q01-practice-02",
+      "school": "名古屋大学",
+      "year": "2002"
+    },
+    {
+      "text": "在 $M_2(\\mathbb{C})$ 上，设 $A=\\begin{pmatrix}1&0\\\\0&0\\end{pmatrix}$，定义 $G(X)=AXA$。求 $\\dim(\\mathrm{Im}\\,G)$。",
+      "knowledge_points": [
+        "诱导线性变换",
+        "秩与像空间维数"
+      ],
+      "question_type": "低维具体计算",
+      "method": [
+        "直接展开矩阵乘法确定像空间形式"
+      ],
+      "solution_steps": [
+        "设 X 为一般 2x2 矩阵",
+        "计算 AXA",
+        "确定像空间维数"
+      ],
+      "math_structure": {
+        "type": "idempotent_matrix_induced_map_small",
+        "template": "A=diag(1,0) 2x2, G(X)=AXA",
+        "variable_count": 1
+      },
+      "difficulty": 2,
+      "estimated_minutes": 6,
+      "answer": [
+        {
+          "label": "结果",
+          "steps": [
+            "设 $X=\\begin{pmatrix}a&b\\\\c&d\\end{pmatrix}$，计算 $AXA=\\begin{pmatrix}a&0\\\\0&0\\end{pmatrix}$。",
+            "像空间是所有 $(1,1)$ 位置非零、其余为零的矩阵集合，维数为1。",
+            "故 $\\dim(\\mathrm{Im}\\,G)=1$，等于 $(\\mathrm{rank}A)^2=1^2$。"
+          ]
+        }
+      ],
+      "id": "nagoya-2002-0dcbdbb1cf-q01-practice-03",
+      "school": "名古屋大学",
+      "year": "2002"
+    },
+    {
+      "text": "设 $F(X)=AXA$ 对一般幂等矩阵 $A$（$\\mathrm{rank}\\,A=r$，$n$ 阶）定义在 $M_n(\\mathbb{C})$ 上，证明 $\\dim(\\mathrm{Im}\\,F)=r^2$，并说明 $F$ 的若尔当标准形。",
+      "knowledge_points": [
+        "诱导线性变换",
+        "秩的平方公式",
+        "幂等算子的可对角化"
+      ],
+      "question_type": "一般化证明",
+      "method": [
+        "选取对角化A的基底后直接计算"
+      ],
+      "solution_steps": [
+        "选基使A对角化",
+        "计算AXA的支撑范围",
+        "得出像空间维数公式",
+        "利用F幂等得出若尔当形"
+      ],
+      "math_structure": {
+        "type": "idempotent_matrix_induced_map_general",
+        "template": "A^2=A, rank(A)=r, n x n, F(X)=AXA on M_n(C)",
+        "variable_count": 2
+      },
+      "difficulty": 3,
+      "estimated_minutes": 10,
+      "answer": [
+        {
+          "label": "证明与结论",
+          "steps": [
+            "取基使 $A=\\mathrm{diag}(1,\\dots,1,0,\\dots,0)$（前r个为1），则 $(AXA)_{ij}=X_{ij}$ 当且仅当 $i,j\\le r$，否则为0。",
+            "故 $\\mathrm{Im}\\,F$ 恰为左上 $r\\times r$ 子块空间，维数为 $r^2$。",
+            "验证 $F^2=F$，故 $F$ 可对角化，特征值1的重数为 $r^2$，特征值0重数为 $n^2-r^2$，若尔当标准形为对应对角阵（全为1x1块）。"
+          ]
+        }
+      ],
+      "id": "nagoya-2002-0dcbdbb1cf-q01-practice-04",
+      "school": "名古屋大学",
+      "year": "2002"
+    }
+  ],
+  "source_question": "問1",
+  "source_pdf": "名古屋大学/多元数理科学研究科/全专攻/名古屋大学_多元数理科学研究科_2002_第2次_数学过去问_下午.pdf",
+  "source_type": "官方过去问",
+  "subject_category": "线性代数"
+}

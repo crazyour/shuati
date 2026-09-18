@@ -1,0 +1,214 @@
+{
+  "id": "osaka-2023-fdfe123d60-q01",
+  "school": "大阪大学",
+  "year": "2023",
+  "subject": "基礎工学研究科_知能システム学コース",
+  "text": "设4维向量 $a_1=\\begin{pmatrix}1\\\\1\\\\1\\\\-2\\end{pmatrix}$，$a_2=\\begin{pmatrix}2\\\\-2\\\\2\\\\-1\\end{pmatrix}$，$b=\\begin{pmatrix}1\\\\2\\\\3\\\\2\\end{pmatrix}$。回答以下小问 a)～c)。\n\na) 求 $b$ 在由 $a_1,a_2$ 张成的线性子空间上的4维正交投影向量 $p$。\n\nb) 设 $4\\times2$ 矩阵 $A=(a_1\\ a_2)$，二维向量 $x=\\begin{pmatrix}x_1\\\\x_2\\end{pmatrix}$，对 $J=\\|Ax-b\\|^2$（$\\|\\cdot\\|$ 表示欧几里得范数），使 $J$ 最小的 $x$ 记为 $\\hat{x}$，求 $\\hat{x}$。\n\nc) 写出 $\\hat{x}, A, p$ 之间成立的关系式。",
+  "knowledge_points": [
+    "正交投影",
+    "最小二乘法",
+    "法方程(normal equation)",
+    "内积与Gram矩阵",
+    "线性子空间",
+    "投影与最小二乘解的关系"
+  ],
+  "question_type": "计算题（正交投影与最小二乘）",
+  "method": [
+    "Gram矩阵法求正交投影系数",
+    "法方程求最小二乘解",
+    "几何关系推导"
+  ],
+  "solution_steps": [
+    "计算所需的内积 $a_1\\cdot a_1, a_2\\cdot a_2, a_1\\cdot a_2, a_1\\cdot b, a_2\\cdot b$",
+    "设 $p=c_1 a_1+c_2 a_2$，由 $(b-p)\\perp a_1,a_2$ 建立并求解法方程得到投影系数",
+    "写出投影向量 $p$ 并验证正交性",
+    "写出法方程 $A^TAx=A^Tb$ 并求解得到 $\\hat{x}$",
+    "说明 $p = A\\hat{x}$ 的几何关系"
+  ],
+  "math_structure": {
+    "type": "least_squares_projection",
+    "template": "given vectors $a_1,\\ldots,a_k$ in $\\mathbb{R}^n$ and target vector $b$, find the orthogonal projection of $b$ onto $\\operatorname{span}\\{a_i\\}$ via normal equations, and relate it to the least squares solution of $Ax=b$",
+    "variable_count": 3
+  },
+  "difficulty": 2,
+  "answer": [
+    {
+      "label": "a)",
+      "steps": [
+        "计算内积：$a_1\\cdot a_1=1+1+1+4=7$，$a_2\\cdot a_2=4+4+4+1=13$，$a_1\\cdot a_2=2-2+2+2=4$，$a_1\\cdot b=1+2+3-4=2$，$a_2\\cdot b=2-4+6-2=2$。",
+        "设 $p=c_1a_1+c_2a_2$，由 $(b-p)\\perp a_1,a_2$ 得法方程 $\\begin{pmatrix}7&4\\\\4&13\\end{pmatrix}\\begin{pmatrix}c_1\\\\c_2\\end{pmatrix}=\\begin{pmatrix}2\\\\2\\end{pmatrix}$，其行列式为 $7\\times13-4\\times4=91-16=75$。",
+        "解得 $c_1=\\dfrac{2\\times13-4\\times2}{75}=\\dfrac{18}{75}=\\dfrac{6}{25}$，$c_2=\\dfrac{7\\times2-4\\times2}{75}=\\dfrac{6}{75}=\\dfrac{2}{25}$，故 $p=\\dfrac{6}{25}a_1+\\dfrac{2}{25}a_2=\\dfrac{1}{25}\\begin{pmatrix}10\\\\2\\\\10\\\\-14\\end{pmatrix}$。",
+        "验算：$b-p=\\dfrac{1}{25}\\begin{pmatrix}15\\\\48\\\\65\\\\64\\end{pmatrix}$，与 $a_1$ 的内积为 $15+48+65-128=0$，与 $a_2$ 的内积为 $30-96+130-64=0$，均为 $0$，说明结果正确。"
+      ]
+    },
+    {
+      "label": "b)",
+      "steps": [
+        "$J=\\|Ax-b\\|^2$ 取最小值的必要条件是法方程 $A^TAx=A^Tb$。",
+        "计算 $A^TA=\\begin{pmatrix}a_1\\cdot a_1&a_1\\cdot a_2\\\\a_2\\cdot a_1&a_2\\cdot a_2\\end{pmatrix}=\\begin{pmatrix}7&4\\\\4&13\\end{pmatrix}$，$A^Tb=\\begin{pmatrix}a_1\\cdot b\\\\a_2\\cdot b\\end{pmatrix}=\\begin{pmatrix}2\\\\2\\end{pmatrix}$，与a)中的方程组完全一致。",
+        "求解得 $\\hat{x}=\\begin{pmatrix}6/25\\\\2/25\\end{pmatrix}$。"
+      ]
+    },
+    {
+      "label": "c)",
+      "steps": [
+        "最小二乘解 $\\hat{x}$ 使得 $A\\hat{x}$ 恰为 $b$ 在列空间 $\\operatorname{span}\\{a_1,a_2\\}$ 上的正交投影。",
+        "因此关系式为 $p=A\\hat{x}$。",
+        "验证：$A\\hat{x}=\\dfrac{6}{25}a_1+\\dfrac{2}{25}a_2$，与a)中求得的 $p$ 完全一致，关系式成立。"
+      ]
+    }
+  ],
+  "practice_questions": [
+    {
+      "text": "求向量 $b=(1,2,2)^T$ 在由 $a=(1,0,0)^T$ 张成的直线上的正交投影 $p$。",
+      "knowledge_points": [
+        "正交投影",
+        "内积"
+      ],
+      "question_type": "基础计算题",
+      "method": [
+        "投影公式 $p=(a\\cdot b/a\\cdot a)a$"
+      ],
+      "solution_steps": [
+        "计算 $a\\cdot b$ 和 $a\\cdot a$",
+        "代入投影公式求 $p$"
+      ],
+      "math_structure": {
+        "type": "vector_projection_onto_line",
+        "template": "project vector $b$ onto the line spanned by vector $a$",
+        "variable_count": 2
+      },
+      "difficulty": 1,
+      "estimated_minutes": 4,
+      "answer": [
+        {
+          "label": "求p",
+          "steps": [
+            "$a\\cdot b=1\\times1+0\\times2+0\\times2=1$，$a\\cdot a=1$",
+            "$p=(1/1)a=(1,0,0)^T$",
+            "验算：$b-p=(0,2,2)$与 $a=(1,0,0)$ 的内积为 $0$，正交成立"
+          ]
+        }
+      ],
+      "id": "osaka-2023-fdfe123d60-q01-practice-01",
+      "school": "大阪大学",
+      "year": "2023"
+    },
+    {
+      "text": "设 $a_1=(1,0,0)^T,\\ a_2=(0,1,0)^T$（两者正交），$b=(1,2,3)^T$，求 $b$ 在 $\\operatorname{span}\\{a_1,a_2\\}$ 上的正交投影 $p$。",
+      "knowledge_points": [
+        "正交向量组投影",
+        "内积"
+      ],
+      "question_type": "基础计算题",
+      "method": [
+        "正交基下逐项投影系数"
+      ],
+      "solution_steps": [
+        "因 $a_1,a_2$ 正交，直接用 $c_i=a_i\\cdot b/a_i\\cdot a_i$",
+        "求出 $p$"
+      ],
+      "math_structure": {
+        "type": "orthogonal_basis_projection",
+        "template": "project $b$ onto span of two orthogonal vectors using independent coefficients",
+        "variable_count": 3
+      },
+      "difficulty": 1,
+      "estimated_minutes": 5,
+      "answer": [
+        {
+          "label": "求p",
+          "steps": [
+            "$c_1=a_1\\cdot b/a_1\\cdot a_1=1/1=1$，$c_2=a_2\\cdot b/a_2\\cdot a_2=2/1=2$",
+            "$p=1\\times(1,0,0)+2\\times(0,1,0)=(1,2,0)^T$",
+            "验算：$b-p=(0,0,3)$，与 $a_1,a_2$ 内积均为 $0$，正交成立"
+          ]
+        }
+      ],
+      "id": "osaka-2023-fdfe123d60-q01-practice-02",
+      "school": "大阪大学",
+      "year": "2023"
+    },
+    {
+      "text": "设 $a_1=(1,1,0)^T,\\ a_2=(1,-1,0)^T$（两者正交），$b=(3,1,2)^T$，求 $b$ 在 $\\operatorname{span}\\{a_1,a_2\\}$ 上的正交投影 $p$，并验证 $(b-p)$ 与 $a_1,a_2$ 均正交。",
+      "knowledge_points": [
+        "正交向量组投影",
+        "内积",
+        "正交验证"
+      ],
+      "question_type": "计算题",
+      "method": [
+        "正交基下逐项投影系数"
+      ],
+      "solution_steps": [
+        "验证 $a_1,a_2$ 正交",
+        "计算各内积并求投影系数",
+        "写出 $p$ 并验证正交性"
+      ],
+      "math_structure": {
+        "type": "orthogonal_basis_projection",
+        "template": "project $b$ onto span of two orthogonal vectors in $\\mathbb{R}^3$, subspace strictly smaller than $\\mathbb{R}^3$",
+        "variable_count": 3
+      },
+      "difficulty": 2,
+      "estimated_minutes": 6,
+      "answer": [
+        {
+          "label": "求p",
+          "steps": [
+            "$a_1\\cdot a_2=1-1+0=0$，正交",
+            "$a_1\\cdot a_1=2,a_2\\cdot a_2=2,a_1\\cdot b=3+1=4,a_2\\cdot b=3-1=2$",
+            "$c_1=4/2=2,c_2=2/2=1$，$p=2(1,1,0)+1(1,-1,0)=(3,1,0)^T$",
+            "验算：$b-p=(0,0,2)$，与 $a_1,a_2$ 内积均为 $0$，正交成立"
+          ]
+        }
+      ],
+      "id": "osaka-2023-fdfe123d60-q01-practice-03",
+      "school": "大阪大学",
+      "year": "2023"
+    },
+    {
+      "text": "设 $a_1=(1,0,1)^T,\\ a_2=(0,1,1)^T$，$A=(a_1\\ a_2)$，$b=(1,2,2)^T$。求使 $J=\\|Ax-b\\|^2$ 最小的 $\\hat{x}$，并验证 $A\\hat{x}$ 等于 $b$ 在 $\\operatorname{span}\\{a_1,a_2\\}$ 上的正交投影。",
+      "knowledge_points": [
+        "法方程",
+        "最小二乘解",
+        "正交投影与最小二乘的关系"
+      ],
+      "question_type": "综合计算题",
+      "method": [
+        "法方程 $A^TAx=A^Tb$",
+        "投影与最小二乘解关系验证"
+      ],
+      "solution_steps": [
+        "计算 $A^TA$ 与 $A^Tb$",
+        "求解法方程得 $\\hat{x}$",
+        "计算 $p=A\\hat{x}$ 并验证 $(b-p)$ 与 $a_1,a_2$ 正交"
+      ],
+      "math_structure": {
+        "type": "least_squares_projection",
+        "template": "3x2 design matrix least squares solution and verification against orthogonal projection",
+        "variable_count": 3
+      },
+      "difficulty": 3,
+      "estimated_minutes": 8,
+      "answer": [
+        {
+          "label": "求x̂并验证",
+          "steps": [
+            "$a_1\\cdot a_1=2,a_2\\cdot a_2=2,a_1\\cdot a_2=1,a_1\\cdot b=1+2=3,a_2\\cdot b=2+2=4$，法方程为 $\\begin{pmatrix}2&1\\\\1&2\\end{pmatrix}\\begin{pmatrix}c_1\\\\c_2\\end{pmatrix}=\\begin{pmatrix}3\\\\4\\end{pmatrix}$，行列式$=4-1=3$",
+            "解得 $c_1=(3\\times2-1\\times4)/3=2/3$，$c_2=(2\\times4-1\\times3)/3=5/3$，即 $\\hat{x}=(2/3,5/3)^T$",
+            "$p=A\\hat{x}=\\dfrac{2}{3}(1,0,1)+\\dfrac{5}{3}(0,1,1)=(2/3,5/3,7/3)^T$",
+            "验算：$b-p=(1/3,1/3,-1/3)$，与 $a_1$ 的内积$=1/3-1/3=0$，与 $a_2$ 的内积$=1/3-1/3=0$，正交成立，验证 $p=A\\hat{x}$ 关系正确"
+          ]
+        }
+      ],
+      "id": "osaka-2023-fdfe123d60-q01-practice-04",
+      "school": "大阪大学",
+      "year": "2023"
+    }
+  ],
+  "source_question": "問2 1)",
+  "source_pdf": "大阪大学/基礎工学研究科/知能システム学コース/大阪大学_基礎工学研究科_知能システム学コース_2023.pdf",
+  "source_type": "官方过去问",
+  "subject_category": "线性代数"
+}

@@ -1,0 +1,169 @@
+{
+  "id": "isct-2001-21d177050b-q02",
+  "school": "东京科学大学",
+  "year": "2001",
+  "subject": "理工学系_数学系",
+  "text": "(1) 设 $A=(a_1,\\dots,a_n)$ 是 $n$ 阶酉矩阵。证明对一切 $x\\in\\mathbb C^n$，有\n$$x=\\sum_{i=1}^n (x,a_i)a_i,$$\n其中内积定义为 $(x,y)=\\sum_i x_i\\overline{y_i}$。\n\n(2) 设 $A=(a_1,\\dots,a_n)$，$B=(b_1,\\dots,b_n)$ 是 $n$ 阶方阵。求使得对一切 $x\\in\\mathbb C^n$ 都成立\n$$x=\\sum_{i=1}^n (x,a_i)b_i$$\n的关于 $A,B$ 的充要条件。",
+  "knowledge_points": [
+    "酉矩阵性质",
+    "标准正交基展开",
+    "内积空间",
+    "共轭转置",
+    "矩阵乘法与外积和"
+  ],
+  "question_type": "矩阵与内积证明+条件求解",
+  "method": [
+    "利用酉矩阵列向量为标准正交基",
+    "把求和写成矩阵乘积形式",
+    "利用可逆矩阵的单侧逆即双侧逆"
+  ],
+  "solution_steps": [
+    "证明 $a_1,\\dots,a_n$ 构成 $\\mathbb C^n$ 的标准正交基",
+    "将任意 $x$ 按此基展开，求系数",
+    "把 $\\sum_i(x,a_i)b_i$ 写成矩阵形式 $BA^*x$",
+    "令其对一切 $x$ 等于 $x$，得到 $BA^*=I$ 的条件并化简"
+  ],
+  "math_structure": {
+    "type": "unitary_orthonormal_expansion_condition",
+    "template": "unitary matrix $A$, orthonormal expansion; find condition on $A,B$ for $x=BA^*x$",
+    "variable_count": 2
+  },
+  "difficulty": 3,
+  "answer": [
+    {
+      "label": "(1)",
+      "steps": [
+        "因为 $A$ 是酉矩阵，$A^*A=I$，写成列向量形式即 $(a_i,a_j)=\\overline{a_j}^Ta_i=\\delta_{ij}$（用给定内积 $(x,y)=\\sum x_k\\bar y_k$，此即 $a_i^*a_j=\\delta_{ij}$的共轭形式，等价地 $(a_i,a_j)=\\delta_{ij}$），故 $\\{a_1,\\dots,a_n\\}$ 是 $\\mathbb C^n$ 的标准正交基",
+        "由 $A$ 可逆（酉矩阵行列式模为1，非奇异），任意 $x\\in\\mathbb C^n$ 可唯一写成 $x=\\sum_i c_i a_i$",
+        "对两边与 $a_j$ 作内积：$(x,a_j)=\\sum_i c_i (a_i,a_j)=c_j$（利用正交性 $(a_i,a_j)=\\delta_{ij}$）",
+        "代回展开式即得 $x=\\sum_{i=1}^n (x,a_i)a_i$"
+      ]
+    },
+    {
+      "label": "(2)",
+      "steps": [
+        "用内积定义 $(x,a_i)=\\sum_k x_k\\overline{(a_i)_k}=a_i^{*T}x$的共轭表示，即 $(x,a_i)=a_i^*x$（把 $a_i^*$ 理解为 $a_i$ 的共轭转置行向量）",
+        "于是 $\\sum_{i=1}^n (x,a_i)b_i=\\sum_{i=1}^n b_i(a_i^*x)=\\left(\\sum_{i=1}^n b_ia_i^*\\right)x=BA^*x$，这里 $A^*$ 是以 $a_i^*$ 为行的共轭转置矩阵，$B=(b_1,\\dots,b_n)$，且 $\\sum_i b_ia_i^*$ 恰为矩阵乘积 $BA^*$",
+        "要求对一切 $x\\in\\mathbb C^n$ 成立 $x=BA^*x$，即 $BA^*=I_n$",
+        "由于 $A,B$ 均为 $n\\times n$ 方阵，单侧逆即为双侧逆，故 $BA^*=I_n \\iff A^*B=I_n$，等价地 $A$ 可逆且 $B=(A^*)^{-1}=(A^{-1})^*$",
+        "当 $A$ 为酉矩阵、$B=A$ 时，$A^*=A^{-1}$，恰好退化为(1)的情形，验证一致"
+      ]
+    }
+  ],
+  "practice_questions": [
+    {
+      "text": "验证 $A=\\begin{pmatrix}\\cos\\theta & -\\sin\\theta\\\\ \\sin\\theta&\\cos\\theta\\end{pmatrix}$ 是酉（正交）矩阵，并写出对应的标准正交基展开式。",
+      "knowledge_points": [
+        "正交矩阵",
+        "标准正交基"
+      ],
+      "question_type": "具体验证",
+      "method": [
+        "直接验证$A^TA=I$"
+      ],
+      "solution_steps": [
+        "计算$A^TA$",
+        "确认列向量正交且单位长度",
+        "写出展开式"
+      ],
+      "math_structure": {
+        "type": "orthogonal_matrix_verification",
+        "template": "verify rotation matrix is orthogonal",
+        "variable_count": 1
+      },
+      "difficulty": 1,
+      "estimated_minutes": 5,
+      "answer": [
+        {
+          "label": "结果",
+          "steps": [
+            "$A^TA=\\begin{pmatrix}\\cos^2\\theta+\\sin^2\\theta & 0\\\\0&\\sin^2\\theta+\\cos^2\\theta\\end{pmatrix}=I$，故 $A$ 正交",
+            "列向量 $a_1=(\\cos\\theta,\\sin\\theta)^T,a_2=(-\\sin\\theta,\\cos\\theta)^T$ 相互正交且模长为1",
+            "对任意 $x$，$x=(x,a_1)a_1+(x,a_2)a_2$"
+          ]
+        }
+      ],
+      "id": "isct-2001-21d177050b-q02-practice-01",
+      "school": "东京科学大学",
+      "year": "2001"
+    },
+    {
+      "text": "设 $A$ 为 $n$ 阶可逆矩阵（不必酉），$B=(A^{-1})^*$。验证对所有 $x$ 均有 $x=\\sum_i(x,a_i)b_i$，其中 $a_i,b_i$ 分别为 $A,B$ 的列。",
+      "knowledge_points": [
+        "逆矩阵",
+        "共轭转置",
+        "矩阵恒等式验证"
+      ],
+      "question_type": "条件验证",
+      "method": [
+        "直接矩阵计算"
+      ],
+      "solution_steps": [
+        "写出$BA^*$表达式",
+        "代入$B=(A^{-1})^*$化简",
+        "验证等于$I$"
+      ],
+      "math_structure": {
+        "type": "general_invertible_dual_basis",
+        "template": "$B=(A^{-1})^*$, verify $BA^*=I$",
+        "variable_count": 1
+      },
+      "difficulty": 2,
+      "estimated_minutes": 8,
+      "answer": [
+        {
+          "label": "结果",
+          "steps": [
+            "$BA^*=(A^{-1})^*A^*=(AA^{-1})^*=I^*=I$",
+            "因此对一切 $x$，$BA^*x=x$，即 $x=\\sum_i(x,a_i)b_i$",
+            "此说明结论不要求 $A$ 为酉矩阵，只需 $A$ 可逆且 $B=(A^{-1})^*$"
+          ]
+        }
+      ],
+      "id": "isct-2001-21d177050b-q02-practice-02",
+      "school": "东京科学大学",
+      "year": "2001"
+    },
+    {
+      "text": "设 $A=(a_1,\\dots,a_n)$ 满足 $\\{a_i\\}$ 只是线性无关（不一定正交），求 $B$ 使得 $x=\\sum_i(x,a_i)b_i$ 对一切 $x$ 成立，并解释 $b_i$ 与 $a_i$ 的关系（对偶基概念）。",
+      "knowledge_points": [
+        "对偶基",
+        "格拉姆矩阵",
+        "非正交基展开"
+      ],
+      "question_type": "推广讨论",
+      "method": [
+        "利用矩阵求逆构造对偶基"
+      ],
+      "solution_steps": [
+        "写出条件$BA^*=I$",
+        "解出$B=(A^*)^{-1}$",
+        "解释对偶基含义"
+      ],
+      "math_structure": {
+        "type": "dual_basis_construction",
+        "template": "general linearly independent $\\{a_i\\}$, construct dual basis $b_i$",
+        "variable_count": 1
+      },
+      "difficulty": 3,
+      "estimated_minutes": 10,
+      "answer": [
+        {
+          "label": "结果",
+          "steps": [
+            "条件仍为 $BA^*=I_n$，因 $A$ 列线性无关故可逆，$A^*$ 也可逆",
+            "解得唯一 $B=(A^*)^{-1}$，即 $B$ 的列 $b_i$ 是 $\\{a_i\\}$ 关于给定内积的对偶基",
+            "当 $\\{a_i\\}$ 恰为标准正交基时 $A^*=A^{-1}$，对偶基与原基重合，即为情形(1)"
+          ]
+        }
+      ],
+      "id": "isct-2001-21d177050b-q02-practice-03",
+      "school": "东京科学大学",
+      "year": "2001"
+    }
+  ],
+  "source_question": "共通問題2",
+  "source_pdf": "东京科学大学/理工学系/数学系/东京科学大学_理工学系_数学系_2001_数学过去问.pdf",
+  "source_type": "官方过去问",
+  "subject_category": "线性代数"
+}

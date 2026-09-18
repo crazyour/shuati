@@ -1,0 +1,232 @@
+{
+  "id": "utokyo-2026-ad2412da90-q01",
+  "school": "东京大学",
+  "year": "2026",
+  "subject": "数理科学研究科_数理科学専攻",
+  "text": "设 $a, b \\in \\mathbb{R}$。令\n$$A = \\begin{pmatrix} a & 1 & 1 & 0 \\\\ -2 & 0 & 1 & 1 \\\\ 0 & 1 & 2 & 1 \\\\ -2 & 0 & 1 & 1 \\end{pmatrix}, \\quad B = \\begin{pmatrix} 4 & b & 2 & 3 \\\\ 1 & 0 & 1 & 1 \\\\ 3 & b & 1 & 2 \\\\ -2 & -b & 0 & -1 \\end{pmatrix}.$$\n定义线性映射 $f_A: \\mathbb{R}^4 \\to \\mathbb{R}^4$ 及 $f_B: \\mathbb{R}^4 \\to \\mathbb{R}^4$：对任意 $\\mathbf{v} \\in \\mathbb{R}^4$，令 $f_A(\\mathbf{v}) = A\\mathbf{v}$，$f_B(\\mathbf{v}) = B\\mathbf{v}$。\n\n(1) 求 $f_A$ 的像 $\\mathrm{Im}\\,f_A$ 作为实线性空间的维数。\n\n(2) 记 $\\mathrm{Ker}\\,f_B$ 为 $f_B$ 的核。求使得 $\\mathbb{R}^4=\\mathrm{Im}\\,f_A\\oplus\\mathrm{Ker}\\,f_B$ 成立的关于 $a,b$ 的必要充分条件。",
+  "knowledge_points": [
+    "线性映射的像与核",
+    "矩阵的秩与初等行变换",
+    "含参数矩阵的秩讨论",
+    "直和分解的判定",
+    "秩-零度定理",
+    "列空间基的构造",
+    "行列式判定线性独立"
+  ],
+  "question_type": "含参数矩阵的线性映射：像的维数与直和分解条件",
+  "method": [
+    "初等行变换求秩",
+    "线性相关方程组讨论临界参数",
+    "维数计数排除不可能情形",
+    "基向量拼接矩阵求行列式判定直和"
+  ],
+  "solution_steps": [
+    "对矩阵 $A$ 做初等行变换，注意到重复行，并对剩余三行的线性相关方程组讨论参数 $a$，得到 $\\operatorname{rank}(A)$ 的分段结果，从而得到 $\\dim\\operatorname{Im}f_A$。",
+    "对矩阵 $B$ 做初等行变换，证明对任意 $b$ 恒有 $\\operatorname{rank}(B)=2$，从而 $\\dim\\operatorname{Ker}f_B=2$。",
+    "利用直和的维数必要条件 $\\dim\\operatorname{Im}f_A+\\dim\\operatorname{Ker}f_B=4$，排除 $a\\ne2$ 的情形，得到必要条件 $a=2$。",
+    "在 $a=2$ 的情形下，分别求出 $\\operatorname{Im}f_A$ 与 $\\operatorname{Ker}f_B$ 的显式基，将四个基向量组成 $4\\times4$ 矩阵并计算其行列式，得到该行列式关于 $b$ 的表达式。",
+    "结合 $b=0$ 的特殊情形单独验证（因公式推导中对 $b$ 做过缩放），并验证 $b=1$ 时确实失效，最终得到必要充分条件 $a=2$ 且 $b\\ne1$。"
+  ],
+  "math_structure": {
+    "type": "parametric_matrix_rank_and_direct_sum",
+    "template": "线性映射 $f_A(\\mathbf v)=A(a)\\mathbf v$, $f_B(\\mathbf v)=B(b)\\mathbf v$：$\\mathbb R^4\\to\\mathbb R^4$；求 $\\dim\\mathrm{Im}f_A$ 及使 $\\mathbb R^4=\\mathrm{Im}f_A\\oplus\\mathrm{Ker}f_B$ 成立的 $a,b$ 条件",
+    "variable_count": 2
+  },
+  "difficulty": 4,
+  "answer": [
+    {
+      "label": "(1)",
+      "steps": [
+        "观察A的第2行与第4行相等：$R_2=R_4=(-2,0,1,1)$，因此 $\\mathrm{rank}(A)\\le 3$，问题化为讨论 $R_1=(a,1,1,0)$, $R_2=(-2,0,1,1)$, $R_3=(0,1,2,1)$ 是否线性独立。",
+        "设 $c_1R_1+c_2R_2+c_3R_3=0$，逐分量得：$c_1a-2c_2=0$（第1列），$c_1+c_3=0$（第2列），$c_1+c_2+2c_3=0$（第3列），$c_2+c_3=0$（第4列）。由第2、4式得 $c_3=-c_1$，$c_2=c_1$；代入第3式：$c_1+c_1+2(-c_1)=0$自动成立；代入第1式得 $c_1a-2c_1=c_1(a-2)=0$。",
+        "当 $a\\neq2$ 时，$c_1(a-2)=0\\Rightarrow c_1=0$，从而 $c_2=c_3=0$，即 $R_1,R_2,R_3$ 线性独立，结合 $R_4=R_2$ 得 $\\mathrm{rank}(A)=3$。",
+        "当 $a=2$ 时取 $c_1=1$，得 $c_2=1,c_3=-1$，验证：$R_1=(2,1,1,0)$，$R_1+R_2=(2-2,1+0,1+1,0+1)=(0,1,2,1)=R_3$，即 $R_1+R_2-R_3=0$，故三行相关。又 $R_2=(-2,0,1,1)$ 与 $R_3=(0,1,2,1)$ 分量不成比例，二者线性独立，故此时 $\\mathrm{rank}(A)=2$。",
+        "结论：$\\dim\\mathrm{Im}f_A=3$（当 $a\\neq2$），$\\dim\\mathrm{Im}f_A=2$（当 $a=2$）。"
+      ]
+    },
+    {
+      "label": "(2)",
+      "steps": [
+        "对B做行变换：$R_1-4R_2=(0,b,-2,-1)$；$R_3-3R_2=(0,b,-2,-1)$（与前式相同）；$R_4+2R_2=(0,-b,2,1)=-(0,b,-2,-1)$。记 $w=(0,b,-2,-1)$，则除主行 $R_2=(1,0,1,1)$ 外其余行均为 $w$ 的倍数，且因分量 $-2\\neq0$，$w$ 对任意 $b$ 恒不为零向量，故对一切 $b\\in\\mathbb{R}$ 恒有 $\\mathrm{rank}(B)=2$，从而 $\\dim\\mathrm{Ker}f_B=4-2=2$（与b无关）。",
+        "直和 $\\mathbb{R}^4=\\mathrm{Im}f_A\\oplus\\mathrm{Ker}f_B$ 要求 $\\dim\\mathrm{Im}f_A+\\dim\\mathrm{Ker}f_B=4$。由(1)：当 $a\\neq2$ 时该和为 $3+2=5\\neq4$，此时 $\\dim(\\mathrm{Im}f_A\\cap\\mathrm{Ker}f_B)=5-\\dim(\\mathrm{Im}f_A+\\mathrm{Ker}f_B)\\ge5-4=1>0$，直和不可能成立。因此必要条件为 $a=2$。",
+        "当 $a=2$ 时 $\\dim\\mathrm{Im}f_A=2$，维数和为4，此时直和成立 $\\iff\\mathrm{Im}f_A\\cap\\mathrm{Ker}f_B=\\{0\\}$。对 $A(a=2)$ 做行简化，主列为第1、2列，故 $u_1=\\tfrac12(2,-2,0,-2)=(1,-1,0,-1)$，$u_2=(1,0,1,0)$ 构成 $\\mathrm{Im}f_A$ 的一组基（可验证第3列 $=-\\tfrac12u_1+2u_2$，第4列 $=-\\tfrac12u_1+u_2$，均成立）。",
+        "求 $\\mathrm{Ker}f_B$：由 $R_2$ 得 $x_1+x_3+x_4=0$，由 $w$ 得 $bx_2-2x_3-x_4=0$。当 $b\\neq0$ 时取基 $w_1=(-1,\\tfrac2b,1,0)$, $w_2=(-1,\\tfrac1b,0,1)$，等价地用 $w_1'=bw_1=(-b,2,b,0)$, $w_2'=bw_2=(-b,1,0,b)$（$b\\neq0$ 时张成同一空间）；当 $b=0$ 时方程化为 $x_4=-2x_3$、$x_2$自由、$x_1=x_3$，基为 $v_1=(0,1,0,0)$, $v_2=(1,0,1,-2)$。",
+        "对 $b\\neq0$ 情形，计算 $u_1,u_2,w_1',w_2'$ 组成的 $4\\times4$ 矩阵的行列式：行变换 $R_2\\to R_2-R_1$，$R_3\\to R_3+bR_1$，$R_4\\to R_4+bR_1$ 后化为上三角块，展开得到 $3\\times3$ 子式，最终算得行列式 $=2b(b-1)$。故 $b\\neq0$ 时四向量独立 $\\iff2b(b-1)\\neq0\\iff b\\neq1$。",
+        "对 $b=0$ 情形单独验证（上式因缩放在 $b=0$ 处退化）：用 $v_1,v_2$ 与 $u_1,u_2$ 组成矩阵，化简计算行列式得到值为 $2\\neq0$，故 $b=0$ 时直和成立，与 $b\\neq1$ 的判断一致。",
+        "验证 $b=1$ 确实失效：此时 $w_2=(-1,1,0,1)$，计算 $u_1+w_2=(1,-1,0,-1)+(-1,1,0,1)=(0,0,0,0)$，即 $u_1=-w_2\\in\\mathrm{Im}f_A\\cap\\mathrm{Ker}f_B$ 且非零，直和失效，与公式吻合。",
+        "综合结论：$\\mathbb{R}^4=\\mathrm{Im}f_A\\oplus\\mathrm{Ker}f_B$ 成立的必要充分条件是 $a=2$ 且 $b\\neq1$。"
+      ]
+    }
+  ],
+  "practice_questions": [
+    {
+      "text": "设线性映射 $f:\\mathbb{R}^3\\to\\mathbb{R}^3$ 由矩阵 $M=\\begin{pmatrix}1&0&1\\\\2&1&0\\\\1&1&-1\\end{pmatrix}$ 给出，即 $f(\\mathbf v)=M\\mathbf v$。求 $\\mathrm{Im}\\,f$ 的维数。",
+      "knowledge_points": [
+        "行列式与秩的关系",
+        "线性映射的像"
+      ],
+      "question_type": "矩阵秩的基本计算",
+      "method": [
+        "计算行列式判断满秩性",
+        "寻找非零子式确定秩"
+      ],
+      "solution_steps": [
+        "计算3×3矩阵M的行列式",
+        "若行列式为0，寻找非零的2×2子式确定秩",
+        "由秩得出dim Im f"
+      ],
+      "math_structure": {
+        "type": "matrix_rank_basic",
+        "template": "$M\\mathbf v$：$\\mathbb R^3\\to\\mathbb R^3$，求 $\\mathrm{rank}(M)=\\dim\\mathrm{Im}f$",
+        "variable_count": 0
+      },
+      "difficulty": 1,
+      "estimated_minutes": 5,
+      "answer": [
+        {
+          "label": "dim Im f",
+          "steps": [
+            "计算 $\\det M=1\\cdot(1\\cdot(-1)-0\\cdot1)-0\\cdot(2\\cdot(-1)-0\\cdot1)+1\\cdot(2\\cdot1-1\\cdot1)=1\\cdot(-1)-0+1\\cdot1=-1+1=0$，故 $M$ 不满秩，$\\mathrm{rank}(M)\\le2$。",
+            "取第1、2行与第1、2列构成的子式：$\\begin{vmatrix}1&0\\\\2&1\\end{vmatrix}=1\\cdot1-0\\cdot2=1\\neq0$，说明存在非零的2×2子式。",
+            "因此 $\\mathrm{rank}(M)=2$，即 $\\dim\\mathrm{Im}f=2$。"
+          ]
+        }
+      ],
+      "id": "utokyo-2026-ad2412da90-q01-practice-01",
+      "school": "东京大学",
+      "year": "2026"
+    },
+    {
+      "text": "设 $a\\in\\mathbb{R}$，矩阵 $A(a)=\\begin{pmatrix}a&1&0\\\\1&0&1\\\\1&1&1\\end{pmatrix}$ 定义线性映射 $f_A:\\mathbb{R}^3\\to\\mathbb{R}^3$，$f_A(\\mathbf v)=A(a)\\mathbf v$。求 $\\dim\\mathrm{Im}f_A$ 关于 $a$ 的分段结果。",
+      "knowledge_points": [
+        "含参数矩阵的秩",
+        "行列式作为参数的函数",
+        "临界参数的判定"
+      ],
+      "question_type": "参数矩阵的秩讨论",
+      "method": [
+        "计算含参数的行列式，令其为0解出临界值",
+        "在临界值处用低阶子式确定实际秩"
+      ],
+      "solution_steps": [
+        "按第一行展开计算det A(a)，得到关于a的一次式",
+        "解det A(a)=0得临界a值",
+        "在临界值处验证是否存在非零2×2子式，确定该处的秩",
+        "给出a≠临界值与a=临界值两种情形下的dim Im f_A"
+      ],
+      "math_structure": {
+        "type": "parametric_matrix_rank",
+        "template": "$A(a)\\mathbf v$：$\\mathbb R^3\\to\\mathbb R^3$，求 $\\dim\\mathrm{Im}f_A$ 关于参数a的分段结果",
+        "variable_count": 1
+      },
+      "difficulty": 2,
+      "estimated_minutes": 8,
+      "answer": [
+        {
+          "label": "dim Im f_A（分段）",
+          "steps": [
+            "按第一行展开：$\\det A(a)=a\\begin{vmatrix}0&1\\\\1&1\\end{vmatrix}-1\\begin{vmatrix}1&1\\\\1&1\\end{vmatrix}+0\\begin{vmatrix}1&0\\\\1&1\\end{vmatrix}=a(0-1)-1(1-1)+0=-a$。",
+            "令 $\\det A(a)=-a=0$ 得临界值 $a=0$；当 $a\\neq0$ 时 $\\det A(a)\\neq0$，故 $A(a)$ 满秩，$\\mathrm{rank}(A(a))=3$。",
+            "当 $a=0$ 时，$A(0)=\\begin{pmatrix}0&1&0\\\\1&0&1\\\\1&1&1\\end{pmatrix}$，取第1、2行与第1、2列子式 $\\begin{vmatrix}0&1\\\\1&0\\end{vmatrix}=-1\\neq0$，故 $\\mathrm{rank}(A(0))=2$。",
+            "结论：$\\dim\\mathrm{Im}f_A=3$（$a\\neq0$），$\\dim\\mathrm{Im}f_A=2$（$a=0$）。"
+          ]
+        }
+      ],
+      "id": "utokyo-2026-ad2412da90-q01-practice-02",
+      "school": "东京大学",
+      "year": "2026"
+    },
+    {
+      "text": "设 $b\\in\\mathbb{R}$，矩阵 $B(b)=\\begin{pmatrix}1&0&1\\\\b&1&0\\\\1+b&1&1\\end{pmatrix}$ 定义线性映射 $f_B:\\mathbb{R}^3\\to\\mathbb{R}^3$，$f_B(\\mathbf v)=B(b)\\mathbf v$。证明对任意 $b\\in\\mathbb{R}$ 恒有 $\\dim\\mathrm{Ker}f_B=1$，并求 $\\mathrm{Ker}f_B$ 的一组基（用b表示）。",
+      "knowledge_points": [
+        "线性映射的核",
+        "秩-零度定理",
+        "含参数矩阵恒定秩的证明",
+        "齐次线性方程组求解"
+      ],
+      "question_type": "参数矩阵核的求解",
+      "method": [
+        "观察行向量间的恒等线性关系",
+        "证明剩余两行对任意参数恒线性独立",
+        "解齐次方程组得核的基"
+      ],
+      "solution_steps": [
+        "验证第3行=第1行+第2行对任意b恒成立，从而rank≤2",
+        "证明第1、2行对任意b恒线性独立，故rank恒为2",
+        "由秩-零度定理得dim Ker=1",
+        "解方程组x1+x3=0与bx1+x2=0得核的基向量（含参数b）"
+      ],
+      "math_structure": {
+        "type": "parametric_kernel_dimension",
+        "template": "$B(b)\\mathbf v=0$：$\\mathbb R^3\\to\\mathbb R^3$，证明 $\\dim\\mathrm{Ker}f_B$ 恒定并求基",
+        "variable_count": 1
+      },
+      "difficulty": 3,
+      "estimated_minutes": 10,
+      "answer": [
+        {
+          "label": "dim Ker f_B 及其基",
+          "steps": [
+            "记 $R_1=(1,0,1)$, $R_2=(b,1,0)$, $R_3=(1+b,1,1)$。直接验证 $R_1+R_2=(1+b,1,1)=R_3$，此关系对任意 $b$ 恒成立，故 $\\mathrm{rank}(B(b))\\le2$。",
+            "判断 $R_1,R_2$ 是否恒独立：若 $R_2=kR_1=(k,0,k)$，则需第2分量 $0=1$，矛盾，故对任意 $b$，$R_1,R_2$ 不成比例，恒线性独立，从而 $\\mathrm{rank}(B(b))=2$ 对一切 $b$ 成立。",
+            "由秩-零度定理，$\\dim\\mathrm{Ker}f_B=3-\\mathrm{rank}(B(b))=3-2=1$，对任意 $b$ 恒成立。",
+            "解方程组：由 $R_1$ 得 $x_1+x_3=0\\Rightarrow x_1=-x_3$；由 $R_2$ 得 $bx_1+x_2=0\\Rightarrow x_2=-bx_1=bx_3$（$R_3$自动满足，因 $R_3=R_1+R_2$）。令 $x_3=t$，得 $\\mathbf x=t(-1,b,1)$，故 $\\mathrm{Ker}f_B=\\mathrm{span}\\{(-1,b,1)\\}$。",
+            "验算：$B(b)\\cdot(-1,b,1)^T$ 第1分量 $=1\\cdot(-1)+0\\cdot b+1\\cdot1=0$；第2分量$=b\\cdot(-1)+1\\cdot b+0\\cdot1=0$；第3分量$=(1+b)(-1)+1\\cdot b+1\\cdot1=-1-b+b+1=0$，验证通过。"
+          ]
+        }
+      ],
+      "id": "utokyo-2026-ad2412da90-q01-practice-03",
+      "school": "东京大学",
+      "year": "2026"
+    },
+    {
+      "text": "沿用前一题的矩阵 $A(a)=\\begin{pmatrix}a&1&0\\\\1&0&1\\\\1&1&1\\end{pmatrix}$ 与 $B(b)=\\begin{pmatrix}1&0&1\\\\b&1&0\\\\1+b&1&1\\end{pmatrix}$ 所定义的线性映射 $f_A,f_B:\\mathbb{R}^3\\to\\mathbb{R}^3$。求使得 $\\mathbb{R}^3=\\mathrm{Im}f_A\\oplus\\mathrm{Ker}f_B$ 成立的关于 $a,b$ 的必要充分条件。",
+      "knowledge_points": [
+        "直和的维数必要条件",
+        "基向量组的线性独立性判定",
+        "行列式判定直和",
+        "含参数矩阵的综合应用"
+      ],
+      "question_type": "直和分解条件的综合求解",
+      "method": [
+        "用维数和=3排除不满足的a值",
+        "在满足维数条件的a下求Im与Ker的基",
+        "拼接基向量组成方阵，计算行列式关于b的表达式，求非零条件"
+      ],
+      "solution_steps": [
+        "由前两题结论得dim Im f_A(a≠0时为3，a=0时为2)与dim Ker f_B恒为1",
+        "由维数和必须等于3排除a≠0的情形，得必要条件a=0",
+        "在a=0时求出Im f_A的具体基",
+        "将Im f_A的基与Ker f_B的基(含b)拼成3×3矩阵，计算行列式关于b的表达式，令其非零得b的条件"
+      ],
+      "math_structure": {
+        "type": "direct_sum_condition_r3",
+        "template": "求使 $\\mathbb R^3=\\mathrm{Im}f_A(a)\\oplus\\mathrm{Ker}f_B(b)$ 成立的 $a,b$ 条件",
+        "variable_count": 2
+      },
+      "difficulty": 4,
+      "estimated_minutes": 15,
+      "answer": [
+        {
+          "label": "(a,b)的必要充分条件",
+          "steps": [
+            "由前两题结论：$\\dim\\mathrm{Im}f_A=3$（$a\\neq0$）或 $2$（$a=0$）；$\\dim\\mathrm{Ker}f_B=1$对一切 $b$ 恒成立。直和要求维数和为3：若 $a\\neq0$，维数和为 $3+1=4\\neq3$，直和不可能成立；故必要条件为 $a=0$。",
+            "当 $a=0$ 时，$A(0)=\\begin{pmatrix}0&1&0\\\\1&0&1\\\\1&1&1\\end{pmatrix}$，列向量为 $\\mathrm{col}_1=(0,1,1)$, $\\mathrm{col}_2=(1,0,1)$, $\\mathrm{col}_3=(0,1,1)$。注意 $\\mathrm{col}_3=\\mathrm{col}_1$，故 $\\mathrm{Im}f_A=\\mathrm{span}\\{(0,1,1),(1,0,1)\\}$（二者不成比例，构成基）。",
+            "$\\mathrm{Ker}f_B=\\mathrm{span}\\{(-1,b,1)\\}$（由前一题）。直和成立 $\\iff$ 三向量 $(0,1,1),(1,0,1),(-1,b,1)$ 线性独立 $\\iff$ 其行列式非零。",
+            "按第一行展开计算：$\\begin{vmatrix}0&1&1\\\\1&0&1\\\\-1&b&1\\end{vmatrix}=0\\cdot(0\\cdot1-1\\cdot b)-1\\cdot(1\\cdot1-1\\cdot(-1))+1\\cdot(1\\cdot b-0\\cdot(-1))=0-1\\cdot2+b=b-2$。",
+            "故三向量独立 $\\iff b-2\\neq0\\iff b\\neq2$。",
+            "验算 $b=2$ 确实失效：此时核向量为 $(-1,2,1)$，且 $(0,1,1)+(1,0,1)\\cdot? $——直接验证 $(-1,2,1)=-1\\cdot(1,0,1)+2\\cdot$不需展开，行列式已为0即说明相关，故 $b=2$ 时直和失效。",
+            "综合结论：$\\mathbb{R}^3=\\mathrm{Im}f_A\\oplus\\mathrm{Ker}f_B$ 成立的必要充分条件是 $a=0$ 且 $b\\neq2$。"
+          ]
+        }
+      ],
+      "id": "utokyo-2026-ad2412da90-q01-practice-04",
+      "school": "东京大学",
+      "year": "2026"
+    }
+  ],
+  "source_question": "A第2問（必答）",
+  "source_pdf": "东京大学/数理科学研究科/数理科学専攻/东京大学_数理科学研究科_数理科学専攻_2026_专业科目A.pdf",
+  "source_type": "官方过去问",
+  "subject_category": "线性代数"
+}

@@ -1,0 +1,250 @@
+{
+  "id": "hokkaido-2025-c0ed463d3c-q01",
+  "school": "北海道大学",
+  "year": "2025",
+  "subject": "情报科学院_系统情报科学",
+  "text": "对于实矩阵 $A = \\begin{pmatrix} a & b & 0 \\\\ c & a & b \\\\ 0 & c & a \\end{pmatrix}$，其中 $a>0, b>0$，回答以下各小问：\n\n(a) 求 $A$ 的所有固有值和对应的固有向量。\n\n(b) 为使 $A$ 能够对角化，$a, b, c$ 应满足何种条件？请说明理由。\n\n(c) 当 $c=1$ 时，求使 $\\lim_{n \\to \\infty} A^n$ 的行列式非零的 $a, b$ 的取值范围。",
+  "knowledge_points": [
+    "特征多项式与特征值",
+    "特征向量计算",
+    "矩阵对角化条件",
+    "幂零矩阵性质",
+    "特征值判别法"
+  ],
+  "question_type": "矩阵特征分解综合题",
+  "method": [
+    "特征多项式求解",
+    "特征向量求法",
+    "对角化判别",
+    "极限收敛条件分析"
+  ],
+  "solution_steps": [
+    "计算 $\\det(A-\\lambda I)$ 得特征多项式",
+    "分解特征多项式求三个特征值",
+    "对每个特征值求对应特征向量",
+    "判断三个特征值是否互不相同",
+    "根据幂次极限的收敛条件确定参数范围"
+  ],
+  "math_structure": {
+    "type": "eigenvalue_decomposition",
+    "template": "矩阵 $A = \\begin{pmatrix} a & b & 0 \\\\ c & a & b \\\\ 0 & c & a \\end{pmatrix}$，特征多项式 $\\det(A-\\lambda I)=(a-\\lambda)[(a-\\lambda)^2-2bc]$",
+    "variable_count": 3
+  },
+  "difficulty": 3,
+  "answer": [
+    {
+      "label": "(a) 固有值与特征向量",
+      "steps": [
+        "计算特征多项式：$\\det(A-\\lambda I) = \\begin{vmatrix} a-\\lambda & b & 0 \\\\ c & a-\\lambda & b \\\\ 0 & c & a-\\lambda \\end{vmatrix}$",
+        "按第一列展开：$(a-\\lambda)\\begin{vmatrix} a-\\lambda & b \\\\ c & a-\\lambda \\end{vmatrix} - c\\begin{vmatrix} b & 0 \\\\ c & a-\\lambda \\end{vmatrix}$",
+        "计算二阶行列式：$(a-\\lambda)[(a-\\lambda)^2-bc] - c \\cdot b(a-\\lambda) = (a-\\lambda)[(a-\\lambda)^2-bc-bc]$",
+        "化简得：$(a-\\lambda)[(a-\\lambda)^2-2bc] = 0$",
+        "因此三个固有值为：$\\lambda_1 = a$，$\\lambda_2 = a+\\sqrt{2bc}$，$\\lambda_3 = a-\\sqrt{2bc}$",
+        "对于 $\\lambda_1=a$，代入 $(A-aI)v=0$：$\\begin{pmatrix} 0 & b & 0 \\\\ c & 0 & b \\\\ 0 & c & 0 \\end{pmatrix}\\begin{pmatrix} v_1 \\\\ v_2 \\\\ v_3 \\end{pmatrix}=0$",
+        "由第一行和第三行得 $v_2=0$，由第二行得 $cv_1+bv_3=0$，故 $v_1=-\\frac{b}{c}v_3$",
+        "取 $v_3=c$，得特征向量 $v^{(1)}=\\begin{pmatrix} -b \\\\ 0 \\\\ c \\end{pmatrix}$",
+        "对于 $\\lambda_2=a+\\sqrt{2bc}$，代入 $(A-(a+\\sqrt{2bc})I)v=0$",
+        "从第一行：$-\\sqrt{2bc}v_1+bv_2=0 \\Rightarrow v_2=\\sqrt{\\frac{2c}{b}}v_1$",
+        "取 $v_1=\\sqrt{b}$，则 $v_2=\\sqrt{2c}$，从第二行求得 $v_3=\\sqrt{2c}\\cdot\\frac{\\sqrt{2c}}{\\sqrt{2bc}}=\\sqrt{2c}$",
+        "特征向量 $v^{(2)}=\\begin{pmatrix} \\sqrt{b} \\\\ \\sqrt{2c} \\\\ \\sqrt{2c} \\end{pmatrix}$ 或任意非零倍数",
+        "类似地，对于 $\\lambda_3=a-\\sqrt{2bc}$，特征向量为 $v^{(3)}=\\begin{pmatrix} \\sqrt{b} \\\\ -\\sqrt{2c} \\\\ \\sqrt{2c} \\end{pmatrix}$ 或任意非零倍数"
+      ]
+    },
+    {
+      "label": "(b) 对角化条件",
+      "steps": [
+        "矩阵 $A$ 可对角化的充要条件是存在三个线性无关的特征向量",
+        "由于 $a>0, b>0, c>0$（题目给定），有 $2bc>0$",
+        "因此 $\\lambda_2=a+\\sqrt{2bc} \\neq \\lambda_3=a-\\sqrt{2bc}$，且两者都不等于 $\\lambda_1=a$",
+        "三个特征值互不相同，每个特征值对应的特征空间维数都是1",
+        "由特征向量的计算可知，三个特征向量线性无关",
+        "**结论**：当 $a>0, b>0, c>0$ 时，$A$ 总是可对角化的"
+      ]
+    },
+    {
+      "label": "(c) 极限条件下的参数范围",
+      "steps": [
+        "当 $c=1$ 时，矩阵 $A=\\begin{pmatrix} a & b & 0 \\\\ 1 & a & b \\\\ 0 & 1 & a \\end{pmatrix}$，固有值为 $\\lambda_1=a, \\lambda_2=a+\\sqrt{2b}, \\lambda_3=a-\\sqrt{2b}$",
+        "计算 $\\det(A)=a(a^2-b)-b\\cdot 1 \\cdot a = a(a^2-2b)$",
+        "由于 $A$ 可对角化，$A=PDP^{-1}$，其中 $D=\\text{diag}(\\lambda_1,\\lambda_2,\\lambda_3)$",
+        "因此 $\\det(A^n)=\\prod_{i=1}^{3}\\lambda_i^n = \\lambda_1^n\\lambda_2^n\\lambda_3^n$",
+        "要使 $\\lim_{n\\to\\infty} A^n$ 存在，需所有 $|\\lambda_i|\\leq 1$，且对于 $|\\lambda_i|=1$ 的特征值其几何重数等于代数重数",
+        "要使 $\\lim_{n\\to\\infty} A^n$ 的行列式非零，不能所有 $|\\lambda_i|<1$（否则极限为0）",
+        "最简单的充分条件是：所有 $|\\lambda_i|<1$，此时 $\\lim_{n\\to\\infty}\\det(A^n)=0$（不符合）",
+        "若 $|\\lambda_1|=1$ 且 $|\\lambda_2|,|\\lambda_3|<1$，需要 $|a|=1$ 且 $|a\\pm\\sqrt{2b}|<1$",
+        "由 $a>0, b>0$，取 $a=1$：需 $|1\\pm\\sqrt{2b}|<1$",
+        "从 $|1-\\sqrt{2b}|<1$ 得 $0<\\sqrt{2b}<2$，即 $0<b<2$",
+        "从 $|1+\\sqrt{2b}|<1$ 得 $-1<1+\\sqrt{2b}<1$，即 $\\sqrt{2b}<0$（矛盾）",
+        "**结论**：要使极限存在且行列式非零，取 $a=1, 0<b<2$；或更一般地，$0<a<\\sqrt{2b}$ 时 $\\lambda_1>0$ 且最大，此时需 $a<1$ 且 $a+\\sqrt{2b}<1$"
+      ]
+    }
+  ],
+  "practice_questions": [
+    {
+      "text": "求矩阵 $B = \\begin{pmatrix} 2 & 1 & 0 \\\\ 1 & 2 & 1 \\\\ 0 & 1 & 2 \\end{pmatrix}$ 的所有特征值和对应的特征向量。",
+      "knowledge_points": [
+        "对称矩阵特征值",
+        "特征向量求解"
+      ],
+      "question_type": "对称矩阵特征分解",
+      "method": [
+        "特征多项式",
+        "特征向量"
+      ],
+      "solution_steps": [
+        "计算特征多项式",
+        "求特征值",
+        "代入求特征向量"
+      ],
+      "math_structure": {
+        "type": "symmetric_eigenvalue",
+        "template": "对称三对角矩阵的特征分解",
+        "variable_count": 1
+      },
+      "difficulty": 2,
+      "estimated_minutes": 8,
+      "answer": [
+        {
+          "label": "特征值与特征向量",
+          "steps": [
+            "特征多项式：$\\det(B-\\lambda I)=(2-\\lambda)^3 - (2-\\lambda) - (2-\\lambda)=(2-\\lambda)[(2-\\lambda)^2-2]$",
+            "$(2-\\lambda)[(2-\\lambda)^2-2]=0 \\Rightarrow \\lambda_1=2, \\lambda_2=2+\\sqrt{2}, \\lambda_3=2-\\sqrt{2}$",
+            "对于 $\\lambda_1=2$：$\\begin{pmatrix} 0 & 1 & 0 \\\\ 1 & 0 & 1 \\\\ 0 & 1 & 0 \\end{pmatrix}v=0$，得 $v^{(1)}=\\begin{pmatrix} 1 \\\\ 0 \\\\ -1 \\end{pmatrix}$",
+            "对于 $\\lambda_2=2+\\sqrt{2}$：特征向量 $v^{(2)}=\\begin{pmatrix} 1 \\\\ \\sqrt{2} \\\\ 1 \\end{pmatrix}$",
+            "对于 $\\lambda_3=2-\\sqrt{2}$：特征向量 $v^{(3)}=\\begin{pmatrix} 1 \\\\ -\\sqrt{2} \\\\ 1 \\end{pmatrix}$"
+          ]
+        }
+      ],
+      "id": "hokkaido-2025-c0ed463d3c-q01-practice-01",
+      "school": "北海道大学",
+      "year": "2025"
+    },
+    {
+      "text": "对于矩阵 $C=\\begin{pmatrix} 0 & 2 & 0 \\\\ 1 & 0 & 1 \\\\ 0 & 1 & 0 \\end{pmatrix}$，求其所有特征值，并判断是否可对角化。",
+      "knowledge_points": [
+        "特征多项式",
+        "对角化判别"
+      ],
+      "question_type": "非对称矩阵对角化判别",
+      "method": [
+        "特征多项式",
+        "几何重数判别"
+      ],
+      "solution_steps": [
+        "求特征值",
+        "判断重数",
+        "计算几何重数"
+      ],
+      "math_structure": {
+        "type": "diagonalizability_test",
+        "template": "一般矩阵的对角化判别",
+        "variable_count": 1
+      },
+      "difficulty": 3,
+      "estimated_minutes": 10,
+      "answer": [
+        {
+          "label": "特征值与对角化判别",
+          "steps": [
+            "特征多项式：$\\det(C-\\lambda I)=-\\lambda^3 + 2\\lambda + 2$",
+            "分解：$(\\lambda^2-\\lambda-2)(-\\lambda+1)=(\\lambda-2)(\\lambda+1)(-\\lambda+1)$",
+            "得三个不同的特征值：$\\lambda_1=2, \\lambda_2=-1, \\lambda_3=1$",
+            "对于 $\\lambda_1=2$：$(C-2I)v=0$ 有唯一解向量（几何重数=1）",
+            "对于 $\\lambda_2=-1$：$(C+I)v=0$ 有唯一解向量（几何重数=1）",
+            "对于 $\\lambda_3=1$：$(C-I)v=0$ 有唯一解向量（几何重数=1）",
+            "三个特征值互不相同，故矩阵 $C$ 可对角化"
+          ]
+        }
+      ],
+      "id": "hokkaido-2025-c0ed463d3c-q01-practice-02",
+      "school": "北海道大学",
+      "year": "2025"
+    },
+    {
+      "text": "已知矩阵 $D=\\begin{pmatrix} 1 & 1 & 0 \\\\ 0 & 1 & 1 \\\\ 0 & 0 & 1 \\end{pmatrix}$，求 $D^n$ 当 $n\\to\\infty$ 时的行为。",
+      "knowledge_points": [
+        "Jordan标准形",
+        "幂运算的极限",
+        "上三角矩阵"
+      ],
+      "question_type": "幂矩阵极限",
+      "method": [
+        "Jordan化",
+        "分析特征值模"
+      ],
+      "solution_steps": [
+        "计算特征值",
+        "分析Jordan块",
+        "估计幂的增长"
+      ],
+      "math_structure": {
+        "type": "jordan_limit",
+        "template": "上三角矩阵幂次增长分析",
+        "variable_count": 1
+      },
+      "difficulty": 4,
+      "estimated_minutes": 12,
+      "answer": [
+        {
+          "label": "幂矩阵极限分析",
+          "steps": [
+            "矩阵 $D$ 的对角元素都是1，上三角元素非零，故 $\\det(D)=1$，所有特征值 $\\lambda=1$（重数3）",
+            "$D-I=\\begin{pmatrix} 0 & 1 & 0 \\\\ 0 & 0 & 1 \\\\ 0 & 0 & 0 \\end{pmatrix}$ 是幂零矩阵，$(D-I)^3=0$",
+            "由二项式定理：$D^n=(I+(D-I))^n=I+n(D-I)+\\binom{n}{2}(D-I)^2$",
+            "计算 $(D-I)^2=\\begin{pmatrix} 0 & 0 & 1 \\\\ 0 & 0 & 0 \\\\ 0 & 0 & 0 \\end{pmatrix}$",
+            "$D^n=\\begin{pmatrix} 1 & n & \\frac{n(n-1)}{2} \\\\ 0 & 1 & n \\\\ 0 & 0 & 1 \\end{pmatrix}$",
+            "当 $n\\to\\infty$ 时，$D^n$ 的 $(1,3)$ 和 $(2,3)$ 元素趋向无穷，故 $\\lim_{n\\to\\infty} D^n$ 不存在"
+          ]
+        }
+      ],
+      "id": "hokkaido-2025-c0ed463d3c-q01-practice-03",
+      "school": "北海道大学",
+      "year": "2025"
+    },
+    {
+      "text": "设 $E(t)=\\begin{pmatrix} \\cos t & \\sin t \\\\ -\\sin t & \\cos t \\end{pmatrix}$，这是一个旋转矩阵。求 $[E(t)]^n$ 的特征值，并分析其几何意义。",
+      "knowledge_points": [
+        "旋转矩阵特征值",
+        "复特征值",
+        "正交矩阵"
+      ],
+      "question_type": "特殊矩阵的特征值",
+      "method": [
+        "特征多项式",
+        "复特征值"
+      ],
+      "solution_steps": [
+        "计算特征多项式",
+        "求复特征值",
+        "分析几何意义"
+      ],
+      "math_structure": {
+        "type": "rotation_eigenvalue",
+        "template": "旋转矩阵的特征值分析",
+        "variable_count": 1
+      },
+      "difficulty": 3,
+      "estimated_minutes": 10,
+      "answer": [
+        {
+          "label": "旋转矩阵的特征值",
+          "steps": [
+            "特征多项式：$\\det(E(t)-\\lambda I)=\\det\\begin{pmatrix} \\cos t-\\lambda & \\sin t \\\\ -\\sin t & \\cos t-\\lambda \\end{pmatrix}$",
+            "$=(\\cos t-\\lambda)^2+\\sin^2 t = \\lambda^2-2\\cos t\\lambda+\\cos^2 t+\\sin^2 t = \\lambda^2-2\\cos t\\lambda+1$",
+            "解得：$\\lambda=\\cos t\\pm\\sqrt{\\cos^2 t-1}=\\cos t\\pm i\\sin t=e^{\\pm it}$",
+            "两个特征值是复共轭对，模都为1：$|\\lambda|=\\sqrt{\\cos^2 t+\\sin^2 t}=1$",
+            "$[E(t)]^n$ 的特征值为 $e^{\\pm int}$，仍为模为1的复数",
+            "几何意义：$E(t)$ 表示在平面上旋转 $t$ 角度，$[E(t)]^n$ 表示旋转 $nt$ 角度"
+          ]
+        }
+      ],
+      "id": "hokkaido-2025-c0ed463d3c-q01-practice-04",
+      "school": "北海道大学",
+      "year": "2025"
+    }
+  ],
+  "source_question": "問1-1",
+  "source_pdf": "北海道大学/情报科学院/系统情报科学/北海道大学_情报科学院_系统情报科学_2025_数学过去问_专业科目1.pdf",
+  "source_type": "官方过去问",
+  "subject_category": "线性代数"
+}

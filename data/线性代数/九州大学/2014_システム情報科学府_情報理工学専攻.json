@@ -1,0 +1,163 @@
+{
+  "id": "kyushu-2014-ist-linear-algebra",
+  "school": "九州大学",
+  "year": "2014",
+  "subject": "システム情報科学府_情報理工学専攻",
+  "text": "对实方阵的迹 $\\operatorname{Tr}$ 回答：(1) 证明 $\\operatorname{Tr}(AB)=\\operatorname{Tr}(BA)$；(2) 证明相似矩阵迹相同；(3) 若实对称半正定矩阵 $A$ 的特征值为 $\\lambda_i$，证明 $\\sum_i\\lambda_i^2\\le(\\sum_i\\lambda_i)^2$；(4) 对实对称矩阵 $A,B$，证明 $\\operatorname{Tr}(AB)^2\\le\\operatorname{Tr}(A^2)\\operatorname{Tr}(B^2)$。",
+  "knowledge_points": [
+    "矩阵的迹",
+    "相似矩阵",
+    "半正定矩阵",
+    "Frobenius 内积"
+  ],
+  "question_type": "迹与矩阵不等式证明题",
+  "method": [
+    "指标换序",
+    "正交对角化",
+    "Cauchy-Schwarz 不等式"
+  ],
+  "solution_steps": [
+    "从定义展开迹",
+    "利用迹的循环性质",
+    "把迹识别为 Frobenius 内积"
+  ],
+  "math_structure": {
+    "type": "trace_inequalities",
+    "template": "$\\langle A,B\\rangle_F=\\operatorname{Tr}(A^{\\mathsf T}B)$",
+    "variable_count": 2
+  },
+  "difficulty": 4,
+  "answer": [
+    {
+      "label": "(1)(2)",
+      "steps": [
+        "思路：采用指标换序、正交对角化、Cauchy-Schwarz 不等式，先从定义展开迹。",
+        "$\\operatorname{Tr}(AB)=\\sum_{i,j}a_{ij}b_{ji}=\\sum_{j,i}b_{ji}a_{ij}=\\operatorname{Tr}(BA)$。",
+        "若 $B=P^{-1}AP$，则 $\\operatorname{Tr}(B)=\\operatorname{Tr}(P^{-1}AP)=\\operatorname{Tr}(APP^{-1})=\\operatorname{Tr}(A)$。"
+      ]
+    },
+    {
+      "label": "(3)",
+      "steps": [
+        "思路：采用指标换序、正交对角化、Cauchy-Schwarz 不等式，先利用迹的循环性质。",
+        "半正定性给出 $\\lambda_i\\ge0$。",
+        "所以 $(\\sum_i\\lambda_i)^2=\\sum_i\\lambda_i^2+2\\sum_{i<j}\\lambda_i\\lambda_j\\ge\\sum_i\\lambda_i^2$。"
+      ]
+    },
+    {
+      "label": "(4)",
+      "steps": [
+        "思路：采用指标换序、正交对角化、Cauchy-Schwarz 不等式，先把迹识别为 Frobenius 内积。",
+        "对称性使 $\\operatorname{Tr}(AB)=\\langle A,B\\rangle_F$，且 $\\|A\\|_F^2=\\operatorname{Tr}(A^2)$、$\\|B\\|_F^2=\\operatorname{Tr}(B^2)$。",
+        "由 Cauchy-Schwarz 不等式即得结论。"
+      ]
+    }
+  ],
+  "practice_questions": [
+    {
+      "id": "kyushu-2014-ist-la-p1",
+      "school": "九州大学",
+      "year": "2014",
+      "text": "计算 $A=\\begin{pmatrix}1&2\\\\3&4\\end{pmatrix}$ 的迹，并说明它等于特征值之和。",
+      "knowledge_points": [
+        "矩阵的迹",
+        "特征值"
+      ],
+      "question_type": "计算并核对迹",
+      "method": [
+        "特征多项式"
+      ],
+      "solution_steps": [
+        "求对角元之和",
+        "比较特征多项式一次项"
+      ],
+      "math_structure": {
+        "type": "trace_eigenvalue_sum",
+        "template": "$\\operatorname{Tr}(A)=\\sum\\lambda_i$",
+        "variable_count": 1
+      },
+      "difficulty": 1,
+      "estimated_minutes": 4,
+      "answer": [
+        {
+          "label": "答案",
+          "steps": [
+            "先围绕矩阵的迹、特征值采用特征多项式：求对角元之和。",
+            "$\\operatorname{Tr}(A)=1+4=5$。",
+            "特征多项式为 $\\lambda^2-5\\lambda-2$，故两特征值之和也是 $5$。"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "kyushu-2014-ist-la-p2",
+      "school": "九州大学",
+      "year": "2014",
+      "text": "证明 $\\operatorname{Tr}(P^{-1}AP)=\\operatorname{Tr}(A)$。",
+      "knowledge_points": [
+        "相似矩阵",
+        "迹"
+      ],
+      "question_type": "证明相似不变量",
+      "method": [
+        "迹的循环性质"
+      ],
+      "solution_steps": [
+        "循环移动乘积因子",
+        "使用逆矩阵关系"
+      ],
+      "math_structure": {
+        "type": "trace_similarity",
+        "template": "$\\operatorname{Tr}(XYZ)=\\operatorname{Tr}(ZXY)$",
+        "variable_count": 1
+      },
+      "difficulty": 1,
+      "estimated_minutes": 3,
+      "answer": [
+        {
+          "label": "答案",
+          "steps": [
+            "先围绕相似矩阵、迹采用迹的循环性质：循环移动乘积因子。",
+            "$\\operatorname{Tr}(P^{-1}AP)=\\operatorname{Tr}(APP^{-1})=\\operatorname{Tr}(A)$。",
+            "上述推导只使用题设条件与对应定义，因此所要求的结论成立。"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "kyushu-2014-ist-la-p3",
+      "school": "九州大学",
+      "year": "2014",
+      "text": "对实矩阵定义 $\\langle A,B\\rangle_F=\\sum_{i,j}a_{ij}b_{ij}$。证明 $|\\langle A,B\\rangle_F|\\le\\|A\\|_F\\|B\\|_F$。",
+      "knowledge_points": [
+        "Frobenius 内积",
+        "Cauchy-Schwarz 不等式"
+      ],
+      "question_type": "矩阵空间中的 Cauchy-Schwarz",
+      "method": [
+        "向量化"
+      ],
+      "solution_steps": [
+        "把矩阵所有元素排成向量",
+        "应用普通 Cauchy-Schwarz"
+      ],
+      "math_structure": {
+        "type": "frobenius_cauchy",
+        "template": "$|\\sum a_{ij}b_{ij}|^2\\le\\sum a_{ij}^2\\sum b_{ij}^2$",
+        "variable_count": 2
+      },
+      "difficulty": 2,
+      "estimated_minutes": 5,
+      "answer": [
+        {
+          "label": "答案",
+          "steps": [
+            "先围绕Frobenius 内积、Cauchy-Schwarz 不等式采用向量化：把矩阵所有元素排成向量。",
+            "将 $A,B$ 的所有元素按相同顺序排成向量 $a,b$，则左边为 $|a\\cdot b|$。",
+            "由向量的 Cauchy-Schwarz 不等式，$|a\\cdot b|\\le\\|a\\|_2\\|b\\|_2=\\|A\\|_F\\|B\\|_F$。"
+          ]
+        }
+      ]
+    }
+  ]
+}

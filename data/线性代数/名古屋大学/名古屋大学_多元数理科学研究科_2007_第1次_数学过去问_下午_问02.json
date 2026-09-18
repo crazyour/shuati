@@ -1,0 +1,209 @@
+{
+  "id": "nagoya-2007-752ab4b612-q02",
+  "school": "名古屋大学",
+  "year": "2007",
+  "subject": "多元数理科学研究科_全专攻",
+  "text": "设 $V$ 为有限维实向量空间，$f$ 是 $V$ 上的线性变换。\n\n(1) 证明 $\\mathrm{Ker}\\,f\\cap\\mathrm{Im}\\,f=\\{0\\}$ 与 $\\mathrm{Ker}\\,f+\\mathrm{Im}\\,f=V$ 等价。\n\n(2) 证明 $\\mathrm{Ker}\\,f\\subset\\mathrm{Ker}\\,f^2\\subset\\mathrm{Ker}\\,f^3\\subset\\cdots$ 以及 $\\mathrm{Im}\\,f\\supset\\mathrm{Im}\\,f^2\\supset\\mathrm{Im}\\,f^3\\supset\\cdots$。\n\n(3) 证明存在 $n>0$ 使得 $\\mathrm{Ker}\\,f^n+\\mathrm{Im}\\,f^n=V$。",
+  "knowledge_points": [
+    "核与像空间",
+    "秩-零度定理",
+    "子空间维数公式",
+    "递增/递减子空间链的稳定性",
+    "Fitting分解"
+  ],
+  "question_type": "线性变换结构性质证明",
+  "question_type2": null,
+  "method": [
+    "维数公式 $\\dim(U+W)=\\dim U+\\dim W-\\dim(U\\cap W)$",
+    "秩-零度定理",
+    "有限维空间中单调子空间链必稳定",
+    "反证法"
+  ],
+  "solution_steps": [
+    "利用秩-零度定理 $\\dim\\mathrm{Ker}f+\\dim\\mathrm{Im}f=\\dim V$ 结合维数公式证明(1)的等价性",
+    "利用核与像的定义直接验证包含关系证明(2)",
+    "利用有限维空间中子空间链必稳定，结合秩-零度定理证明(3)"
+  ],
+  "math_structure": {
+    "type": "linear_operator_kernel_image_structure",
+    "template": "有限维向量空间 $V$ 上线性变换 $f$：证明 $\\mathrm{Ker}f\\cap\\mathrm{Im}f=\\{0\\}\\iff\\mathrm{Ker}f+\\mathrm{Im}f=V$，链的单调性，及 Fitting 分解存在性",
+    "variable_count": 1
+  },
+  "difficulty": 3,
+  "answer": [
+    {
+      "label": "(1)",
+      "steps": [
+        "由维数公式，$\\dim(\\mathrm{Ker}f+\\mathrm{Im}f)=\\dim\\mathrm{Ker}f+\\dim\\mathrm{Im}f-\\dim(\\mathrm{Ker}f\\cap\\mathrm{Im}f)$。",
+        "由秩-零度定理，$\\dim\\mathrm{Ker}f+\\dim\\mathrm{Im}f=\\dim V$（对任意有限维空间上的线性变换成立），代入得 $\\dim(\\mathrm{Ker}f+\\mathrm{Im}f)=\\dim V-\\dim(\\mathrm{Ker}f\\cap\\mathrm{Im}f)$。",
+        "因此 $\\mathrm{Ker}f+\\mathrm{Im}f=V$（即左边维数等于 $\\dim V$，结合子空间恒有 $\\mathrm{Ker}f+\\mathrm{Im}f\\subset V$，故相等）$\\iff \\dim(\\mathrm{Ker}f\\cap\\mathrm{Im}f)=0\\iff \\mathrm{Ker}f\\cap\\mathrm{Im}f=\\{0\\}$。两个方向的等价关系由上述等式直接给出，证毕。"
+      ]
+    },
+    {
+      "label": "(2)",
+      "steps": [
+        "设 $x\\in\\mathrm{Ker}f^n$，即 $f^n(x)=0$。则 $f^{n+1}(x)=f(f^n(x))=f(0)=0$，故 $x\\in\\mathrm{Ker}f^{n+1}$。因此 $\\mathrm{Ker}f^n\\subset\\mathrm{Ker}f^{n+1}$ 对所有 $n\\ge1$ 成立，得到递增链 $\\mathrm{Ker}f\\subset\\mathrm{Ker}f^2\\subset\\cdots$。",
+        "对像空间：$\\mathrm{Im}f^{n+1}=f^{n+1}(V)=f^n(f(V))\\subset f^n(V)=\\mathrm{Im}f^n$，因为 $f(V)\\subset V$，用 $f^n$ 作用于子集保持包含关系。因此 $\\mathrm{Im}f^n\\supset\\mathrm{Im}f^{n+1}$ 对所有 $n\\ge1$ 成立，得到递减链 $\\mathrm{Im}f\\supset\\mathrm{Im}f^2\\supset\\cdots$。"
+      ]
+    },
+    {
+      "label": "(3)",
+      "steps": [
+        "由(2)，$\\{\\mathrm{Ker}f^n\\}_{n\\ge1}$ 是 $V$ 中的递增子空间链。由于 $V$ 有限维，维数严格递增最多进行 $\\dim V$ 次，故存在 $N$ 使得对所有 $n\\ge N$，$\\mathrm{Ker}f^n=\\mathrm{Ker}f^{n+1}=\\cdots$（链稳定）。",
+        "取 $n=N$。证明 $\\mathrm{Ker}f^n\\cap\\mathrm{Im}f^n=\\{0\\}$：设 $y\\in\\mathrm{Ker}f^n\\cap\\mathrm{Im}f^n$，则存在 $x\\in V$ 使 $y=f^n(x)$，且 $f^n(y)=0$，即 $f^{2n}(x)=0$，故 $x\\in\\mathrm{Ker}f^{2n}$。因 $2n\\ge n=N$，由链稳定性 $\\mathrm{Ker}f^{2n}=\\mathrm{Ker}f^n$，故 $x\\in\\mathrm{Ker}f^n$，即 $f^n(x)=0$，也即 $y=f^n(x)=0$。",
+        "因此 $\\mathrm{Ker}f^n\\cap\\mathrm{Im}f^n=\\{0\\}$。将(1)的结论应用于线性变换 $f^n$（$f^n$ 也是 $V$ 上的线性变换），立得 $\\mathrm{Ker}f^n+\\mathrm{Im}f^n=V$，证毕。"
+      ]
+    }
+  ],
+  "practice_questions": [
+    {
+      "text": "设 $V$ 为有限维向量空间，$f:V\\to V$ 线性变换。证明 $\\mathrm{Ker}f$ 与 $\\mathrm{Im}f$ 都是 $V$ 的子空间，并写出秩-零度定理的表述。",
+      "knowledge_points": [
+        "子空间判定",
+        "秩-零度定理"
+      ],
+      "question_type": "基础证明",
+      "method": [
+        "子空间三条件验证"
+      ],
+      "solution_steps": [
+        "验证 $0$ 属于两者",
+        "验证加法与标量乘法封闭性",
+        "叙述秩-零度定理"
+      ],
+      "math_structure": {
+        "type": "kernel_image_subspace",
+        "template": "验证 $\\mathrm{Ker}f,\\mathrm{Im}f$ 为子空间",
+        "variable_count": 0
+      },
+      "difficulty": 1,
+      "estimated_minutes": 6,
+      "answer": [
+        {
+          "label": "证明",
+          "steps": [
+            "$\\mathrm{Ker}f=\\{x\\in V: f(x)=0\\}$。因 $f(0)=0$，故 $0\\in\\mathrm{Ker}f$。若 $x,y\\in\\mathrm{Ker}f$，$c$为标量，则 $f(x+cy)=f(x)+cf(y)=0+c\\cdot0=0$，故 $x+cy\\in\\mathrm{Ker}f$，即 $\\mathrm{Ker}f$ 是子空间。",
+            "$\\mathrm{Im}f=\\{f(x):x\\in V\\}$。$0=f(0)\\in\\mathrm{Im}f$。若 $f(x),f(y)\\in\\mathrm{Im}f$，则 $f(x)+cf(y)=f(x+cy)\\in\\mathrm{Im}f$，故 $\\mathrm{Im}f$ 是子空间。",
+            "秩-零度定理：对有限维 $V$ 上任意线性变换 $f$，恒有 $\\dim\\mathrm{Ker}f+\\dim\\mathrm{Im}f=\\dim V$。"
+          ]
+        }
+      ],
+      "id": "nagoya-2007-752ab4b612-q02-practice-01",
+      "school": "名古屋大学",
+      "year": "2007"
+    },
+    {
+      "text": "设 $f:\\mathbb{R}^2\\to\\mathbb{R}^2$ 由矩阵 $\\begin{pmatrix}0&1\\\\0&0\\end{pmatrix}$ 给出。求 $\\mathrm{Ker}f$、$\\mathrm{Im}f$，验证 $\\mathrm{Ker}f\\cap\\mathrm{Im}f$ 是否为 $\\{0\\}$，以及 $\\mathrm{Ker}f+\\mathrm{Im}f$ 是否等于 $\\mathbb{R}^2$，从而验证本题(1)的等价性在此例中是否吻合（此时应不满足等价条件的两边）。",
+      "knowledge_points": [
+        "核像计算",
+        "等价性验证",
+        "幂零矩阵"
+      ],
+      "question_type": "具体计算验证",
+      "method": [
+        "矩阵核像的直接计算"
+      ],
+      "solution_steps": [
+        "求 $\\mathrm{Ker}f$",
+        "求 $\\mathrm{Im}f$",
+        "比较两者交与和"
+      ],
+      "math_structure": {
+        "type": "matrix_kernel_image_example",
+        "template": "$f=\\begin{pmatrix}0&1\\\\0&0\\end{pmatrix}$，求 $\\mathrm{Ker}f,\\mathrm{Im}f$",
+        "variable_count": 0
+      },
+      "difficulty": 2,
+      "estimated_minutes": 8,
+      "answer": [
+        {
+          "label": "计算与验证",
+          "steps": [
+            "$f\\begin{pmatrix}x\\\\y\\end{pmatrix}=\\begin{pmatrix}y\\\\0\\end{pmatrix}$。令其为0，得 $y=0$，故 $\\mathrm{Ker}f=\\{(x,0):x\\in\\mathbb{R}\\}$，即 $x$ 轴。",
+            "$\\mathrm{Im}f=\\{(y,0):y\\in\\mathbb{R}\\}$，也是 $x$ 轴。",
+            "因此 $\\mathrm{Ker}f=\\mathrm{Im}f=x$轴，故 $\\mathrm{Ker}f\\cap\\mathrm{Im}f=x$轴 $\\ne\\{0\\}$，且 $\\mathrm{Ker}f+\\mathrm{Im}f=x$轴 $\\ne\\mathbb{R}^2$。两个条件同时不成立，与(1)的等价性完全吻合：两者同为假。"
+          ]
+        }
+      ],
+      "id": "nagoya-2007-752ab4b612-q02-practice-02",
+      "school": "名古屋大学",
+      "year": "2007"
+    },
+    {
+      "text": "设 $f:\\mathbb{R}^3\\to\\mathbb{R}^3$ 满足 $f^3=0$ 但 $f^2\\ne0$（幂零指数为3）。写出 $\\mathrm{Ker}f\\subset\\mathrm{Ker}f^2\\subset\\mathrm{Ker}f^3$ 的具体维数变化，并说明链何时稳定。",
+      "knowledge_points": [
+        "幂零算子",
+        "核链的稳定性"
+      ],
+      "question_type": "结构分析",
+      "method": [
+        "利用Jordan块结构分析维数"
+      ],
+      "solution_steps": [
+        "取标准幂零 Jordan 块",
+        "逐步计算 $\\mathrm{Ker}f^k$ 的维数",
+        "说明链在 $k=3$ 时稳定"
+      ],
+      "math_structure": {
+        "type": "nilpotent_kernel_chain",
+        "template": "$f$ 为 $3\\times3$ Jordan幂零块，$f^3=0,f^2\\neq0$",
+        "variable_count": 0
+      },
+      "difficulty": 3,
+      "estimated_minutes": 10,
+      "answer": [
+        {
+          "label": "分析",
+          "steps": [
+            "取 $f$ 为标准幂零 Jordan 块 $f(e_1)=0, f(e_2)=e_1, f(e_3)=e_2$（即 $f=\\begin{pmatrix}0&1&0\\\\0&0&1\\\\0&0&0\\end{pmatrix}$）。",
+            "计算：$\\mathrm{Ker}f=\\mathrm{span}\\{e_1\\}$，维数1；$f^2(e_3)=f(e_2)=e_1$，$f^2(e_2)=f(e_1)=0$，故 $\\mathrm{Ker}f^2=\\mathrm{span}\\{e_1,e_2\\}$，维数2；$f^3=0$ 恒为0，故 $\\mathrm{Ker}f^3=\\mathbb{R}^3$，维数3。",
+            "验证严格递增：$1<2<3=\\dim V$，链在 $n=3$ 达到 $\\mathrm{Ker}f^3=V$ 后必然稳定（因为不能再增大），即对所有 $n\\ge3$，$\\mathrm{Ker}f^n=\\mathbb{R}^3$，此时 $\\mathrm{Im}f^n=\\{0\\}$（因 $f^n=0$），显然满足 $\\mathrm{Ker}f^n+\\mathrm{Im}f^n=V$。"
+          ]
+        }
+      ],
+      "id": "nagoya-2007-752ab4b612-q02-practice-03",
+      "school": "名古屋大学",
+      "year": "2007"
+    },
+    {
+      "text": "设 $f:\\mathbb{R}^2\\to\\mathbb{R}^2$ 由 $f(x,y)=(x,0)$ 给出（即到 $x$ 轴的投影）。验证 $\\mathrm{Ker}f\\cap\\mathrm{Im}f=\\{0\\}$ 且求最小的 $n$ 使得 $\\mathrm{Ker}f^n+\\mathrm{Im}f^n=V$ 成立。",
+      "knowledge_points": [
+        "投影算子",
+        "Fitting分解的具体验证"
+      ],
+      "question_type": "验证与求最小n",
+      "method": [
+        "直接计算投影的核与像"
+      ],
+      "solution_steps": [
+        "求 $\\mathrm{Ker}f,\\mathrm{Im}f$",
+        "验证交为$\\{0\\}$",
+        "确定 $f^n=f$ 对所有 $n\\ge1$，得最小 $n=1$"
+      ],
+      "math_structure": {
+        "type": "projection_fitting_decomposition",
+        "template": "$f(x,y)=(x,0)$，求满足Fitting分解的最小 $n$",
+        "variable_count": 0
+      },
+      "difficulty": 2,
+      "estimated_minutes": 7,
+      "answer": [
+        {
+          "label": "求解",
+          "steps": [
+            "$f(x,y)=(x,0)$。$\\mathrm{Ker}f=\\{(0,y):y\\in\\mathbb{R}\\}$（$y$轴），$\\mathrm{Im}f=\\{(x,0):x\\in\\mathbb{R}\\}$（$x$轴）。",
+            "$\\mathrm{Ker}f\\cap\\mathrm{Im}f=\\{(0,0)\\}=\\{0\\}$，交为零向量，条件满足。",
+            "注意 $f^2(x,y)=f(x,0)=(x,0)=f(x,y)$，故 $f^2=f$，从而对所有 $n\\ge1$，$f^n=f$，即 $\\mathrm{Ker}f^n=\\mathrm{Ker}f$，$\\mathrm{Im}f^n=\\mathrm{Im}f$。由(1)，$n=1$ 即满足 $\\mathrm{Ker}f+\\mathrm{Im}f=\\mathbb{R}^2$（因为 $x$轴与$y$轴张成整个平面），所以最小的 $n=1$。"
+          ]
+        }
+      ],
+      "id": "nagoya-2007-752ab4b612-q02-practice-04",
+      "school": "名古屋大学",
+      "year": "2007"
+    }
+  ],
+  "source_question": "問2",
+  "source_pdf": "名古屋大学/多元数理科学研究科/全专攻/名古屋大学_多元数理科学研究科_2007_第1次_数学过去问_下午.pdf",
+  "source_type": "官方过去问",
+  "subject_category": "线性代数"
+}

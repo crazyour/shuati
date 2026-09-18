@@ -1,0 +1,228 @@
+{
+  "id": "isct-2022-6eaea5aab5-q01",
+  "school": "东京科学大学",
+  "year": "2022",
+  "subject": "理工学系_情报工学系",
+  "text": "设实数列 $a_0, a_1, \\ldots$ 满足：$a_{k+2}$ 是 $a_{k+1}$ 与 $a_k$ 的算术平均值（$k \\ge 0$）。现设 $a_0 = 0$，$a_1 = 1$。回答以下问题。\n\na) 求满足以下关系式的矩阵 $B$ 的特征值，并对每个特征值各给出一个特征向量：\n$$\\begin{pmatrix} a_{k+2} \\\\ a_{k+1} \\end{pmatrix} = B \\begin{pmatrix} a_{k+1} \\\\ a_k \\end{pmatrix}$$\n\nb) 利用 a) 的结果，求当 $n \\to \\infty$ 时 $B^n$ 的极限值。\n\nc) 利用 b) 的结果，求当 $k \\to \\infty$ 时 $a_k$ 的极限值。",
+  "knowledge_points": [
+    "特征值与特征向量",
+    "矩阵对角化",
+    "矩阵幂的极限",
+    "线性递推数列",
+    "特征多项式求解"
+  ],
+  "question_type": "矩阵特征值与递推数列极限",
+  "method": [
+    "构造递推关系对应的矩阵",
+    "求特征值和特征向量",
+    "对角化矩阵求B^n极限",
+    "利用初始向量求数列极限"
+  ],
+  "solution_steps": [
+    "由递推关系写出矩阵B",
+    "求解特征方程得到特征值",
+    "对每个特征值求特征向量",
+    "将B对角化为B=PDP^{-1}",
+    "利用|λ|<1的特征值趋于0求B^n的极限",
+    "用初始向量与极限矩阵得到a_k的极限"
+  ],
+  "math_structure": {
+    "type": "linear_recurrence_matrix_diagonalization",
+    "template": "$a_{k+2}=\\dfrac{a_{k+1}+a_k}{2}$, $\\begin{pmatrix}a_{k+2}\\\\a_{k+1}\\end{pmatrix}=B\\begin{pmatrix}a_{k+1}\\\\a_k\\end{pmatrix}$, 求 $B$ 的特征分解及 $\\lim_{k\\to\\infty}a_k$",
+    "variable_count": 2
+  },
+  "difficulty": 3,
+  "answer": [
+    {
+      "label": "a)",
+      "steps": [
+        "由递推关系 $a_{k+2}=\\dfrac{a_{k+1}+a_k}{2}$，可写成矩阵形式 $\\begin{pmatrix}a_{k+2}\\\\a_{k+1}\\end{pmatrix}=\\begin{pmatrix}\\frac12&\\frac12\\\\1&0\\end{pmatrix}\\begin{pmatrix}a_{k+1}\\\\a_k\\end{pmatrix}$，故 $B=\\begin{pmatrix}\\frac12&\\frac12\\\\1&0\\end{pmatrix}$。",
+        "特征方程：$\\det(B-\\lambda I)=\\left(\\frac12-\\lambda\\right)(-\\lambda)-\\frac12=\\lambda^2-\\frac12\\lambda-\\frac12=0$，解得 $\\lambda=1$ 或 $\\lambda=-\\frac12$。",
+        "对 $\\lambda=1$：$(B-I)v=0\\Rightarrow -\\frac12v_1+\\frac12v_2=0\\Rightarrow v_1=v_2$，取特征向量 $v_1=\\begin{pmatrix}1\\\\1\\end{pmatrix}$。",
+        "对 $\\lambda=-\\frac12$：$\\left(B+\\frac12I\\right)v=0\\Rightarrow v_1+\\frac12v_2=0\\Rightarrow v_1=-\\frac12v_2$，取 $v_2=-2,v_1=1$，得特征向量 $\\begin{pmatrix}1\\\\-2\\end{pmatrix}$。",
+        "验证：$Bv_1=\\begin{pmatrix}1\\\\1\\end{pmatrix}=1\\cdot v_1$，$Bv_2=\\begin{pmatrix}-\\frac12\\\\1\\end{pmatrix}=-\\frac12\\begin{pmatrix}1\\\\-2\\end{pmatrix}$，均成立。"
+      ]
+    },
+    {
+      "label": "b)",
+      "steps": [
+        "令 $P=\\begin{pmatrix}1&1\\\\1&-2\\end{pmatrix}$（列为特征向量），则 $B=PDP^{-1}$，其中 $D=\\begin{pmatrix}1&0\\\\0&-\\frac12\\end{pmatrix}$。",
+        "计算 $P^{-1}$：$\\det P=1\\cdot(-2)-1\\cdot1=-3$，$P^{-1}=\\frac{1}{-3}\\begin{pmatrix}-2&-1\\\\-1&1\\end{pmatrix}=\\begin{pmatrix}\\frac23&\\frac13\\\\\\frac13&-\\frac13\\end{pmatrix}$。",
+        "$B^n=PD^nP^{-1}$，且 $D^n=\\begin{pmatrix}1&0\\\\0&(-\\frac12)^n\\end{pmatrix}$。由于 $\\left|-\\frac12\\right|<1$，当 $n\\to\\infty$ 时 $(-\\frac12)^n\\to0$，故 $D^n\\to\\begin{pmatrix}1&0\\\\0&0\\end{pmatrix}$。",
+        "因此 $\\lim_{n\\to\\infty}B^n=P\\begin{pmatrix}1&0\\\\0&0\\end{pmatrix}P^{-1}=\\begin{pmatrix}1\\\\1\\end{pmatrix}\\begin{pmatrix}\\frac23&\\frac13\\end{pmatrix}=\\begin{pmatrix}\\frac23&\\frac13\\\\\\frac23&\\frac13\\end{pmatrix}$。",
+        "验证：该极限矩阵 $L$ 满足 $L^2=L$（幂等）且 $BL=L$，符合投影矩阵性质，结果自洽。"
+      ]
+    },
+    {
+      "label": "c)",
+      "steps": [
+        "记 $v_k=\\begin{pmatrix}a_{k+1}\\\\a_k\\end{pmatrix}$，则 $v_k=B^kv_0$，其中 $v_0=\\begin{pmatrix}a_1\\\\a_0\\end{pmatrix}=\\begin{pmatrix}1\\\\0\\end{pmatrix}$。",
+        "当 $k\\to\\infty$ 时，$B^k\\to L=\\begin{pmatrix}\\frac23&\\frac13\\\\\\frac23&\\frac13\\end{pmatrix}$，故 $v_k\\to Lv_0=\\begin{pmatrix}\\frac23\\\\\\frac23\\end{pmatrix}$。",
+        "$v_k$ 的第二分量即为 $a_k$，故 $\\lim_{k\\to\\infty}a_k=\\frac23$。",
+        "验证：该类递推的极限公式为初始值加权平均 $\\frac{a_0+2a_1}{3}=\\frac{0+2}{3}=\\frac23$，与计算结果一致。"
+      ]
+    }
+  ],
+  "practice_questions": [
+    {
+      "text": "求矩阵 $M=\\begin{pmatrix}0&1\\\\1&0\\end{pmatrix}$ 的特征值，并对每个特征值各给出一个特征向量。",
+      "knowledge_points": [
+        "特征值",
+        "特征向量",
+        "特征方程"
+      ],
+      "question_type": "矩阵特征值计算",
+      "method": [
+        "求特征多项式",
+        "解特征方程",
+        "代回求特征向量"
+      ],
+      "solution_steps": [
+        "写出特征方程",
+        "求解得特征值",
+        "分别求特征向量并验证"
+      ],
+      "math_structure": {
+        "type": "matrix_eigen_basic",
+        "template": "$\\det(M-\\lambda I)=0$",
+        "variable_count": 1
+      },
+      "difficulty": 1,
+      "estimated_minutes": 5,
+      "answer": [
+        {
+          "label": "特征值与特征向量",
+          "steps": [
+            "特征方程：$\\det(M-\\lambda I)=\\lambda^2-1=0$，解得 $\\lambda=1$ 或 $\\lambda=-1$。",
+            "对 $\\lambda=1$：$(M-I)v=0\\Rightarrow -v_1+v_2=0\\Rightarrow v_1=v_2$，取 $v=\\begin{pmatrix}1\\\\1\\end{pmatrix}$。",
+            "对 $\\lambda=-1$：$(M+I)v=0\\Rightarrow v_1+v_2=0\\Rightarrow v_1=-v_2$，取 $v=\\begin{pmatrix}1\\\\-1\\end{pmatrix}$。",
+            "验证：$Mv_1=\\begin{pmatrix}1\\\\1\\end{pmatrix}=v_1$，$Mv_2=\\begin{pmatrix}-1\\\\1\\end{pmatrix}=-v_2$，均成立。"
+          ]
+        }
+      ],
+      "id": "isct-2022-6eaea5aab5-q01-practice-01",
+      "school": "东京科学大学",
+      "year": "2022"
+    },
+    {
+      "text": "设数列满足 $a_{k+2}=\\dfrac{2a_{k+1}+a_k}{3}$（$k\\ge0$），$a_0=1,a_1=4$。写出对应的矩阵 $C$，使得 $\\begin{pmatrix}a_{k+2}\\\\a_{k+1}\\end{pmatrix}=C\\begin{pmatrix}a_{k+1}\\\\a_k\\end{pmatrix}$，并求 $C$ 的特征值。",
+      "knowledge_points": [
+        "递推数列矩阵化",
+        "特征方程求解"
+      ],
+      "question_type": "构造递推矩阵并求特征值",
+      "method": [
+        "写出矩阵形式",
+        "求解特征方程"
+      ],
+      "solution_steps": [
+        "构造矩阵C",
+        "解特征方程得特征值"
+      ],
+      "math_structure": {
+        "type": "weighted_recurrence_matrix",
+        "template": "$a_{k+2}=\\frac{2}{3}a_{k+1}+\\frac13a_k$",
+        "variable_count": 2
+      },
+      "difficulty": 2,
+      "estimated_minutes": 8,
+      "answer": [
+        {
+          "label": "矩阵与特征值",
+          "steps": [
+            "由递推式得 $C=\\begin{pmatrix}\\frac23&\\frac13\\\\1&0\\end{pmatrix}$。",
+            "特征方程：$\\det(C-\\lambda I)=\\left(\\frac23-\\lambda\\right)(-\\lambda)-\\frac13=\\lambda^2-\\frac23\\lambda-\\frac13=0$，两边乘3得 $3\\lambda^2-2\\lambda-1=0$。",
+            "求根：$\\lambda=\\dfrac{2\\pm\\sqrt{4+12}}{6}=\\dfrac{2\\pm4}{6}$，得 $\\lambda=1$ 或 $\\lambda=-\\frac13$。",
+            "验证：$1+(-\\frac13)=\\frac23$ 等于矩阵迹，$1\\times(-\\frac13)=-\\frac13$ 等于行列式 $\\det C=0-\\frac13=-\\frac13$，结果一致。"
+          ]
+        }
+      ],
+      "id": "isct-2022-6eaea5aab5-q01-practice-02",
+      "school": "东京科学大学",
+      "year": "2022"
+    },
+    {
+      "text": "沿用上一题中的矩阵 $C=\\begin{pmatrix}\\frac23&\\frac13\\\\1&0\\end{pmatrix}$（特征值 $1,-\\frac13$），利用对角化求 $\\lim_{n\\to\\infty}C^n$。",
+      "knowledge_points": [
+        "矩阵对角化",
+        "矩阵幂的极限"
+      ],
+      "question_type": "求矩阵幂的极限",
+      "method": [
+        "求特征向量",
+        "对角化",
+        "取极限"
+      ],
+      "solution_steps": [
+        "求特征向量构造P",
+        "求P的逆",
+        "计算D^n的极限",
+        "还原得C^n的极限"
+      ],
+      "math_structure": {
+        "type": "matrix_power_limit",
+        "template": "$\\lim_{n\\to\\infty}C^n=P\\lim_{n\\to\\infty}D^nP^{-1}$",
+        "variable_count": 2
+      },
+      "difficulty": 3,
+      "estimated_minutes": 10,
+      "answer": [
+        {
+          "label": "C^n的极限",
+          "steps": [
+            "对 $\\lambda=1$：$(C-I)v=0\\Rightarrow -\\frac13v_1+\\frac13v_2=0\\Rightarrow v_1=v_2$，取 $v_1=\\begin{pmatrix}1\\\\1\\end{pmatrix}$。",
+            "对 $\\lambda=-\\frac13$：$\\left(C+\\frac13I\\right)v=0\\Rightarrow v_1+\\frac13v_2=0\\Rightarrow v_1=-\\frac13v_2$，取 $v_2=-3,v_1=1$，得 $v_2=\\begin{pmatrix}1\\\\-3\\end{pmatrix}$。",
+            "令 $P=\\begin{pmatrix}1&1\\\\1&-3\\end{pmatrix}$，$\\det P=-3-1=-4$，$P^{-1}=\\frac{1}{-4}\\begin{pmatrix}-3&-1\\\\-1&1\\end{pmatrix}=\\begin{pmatrix}\\frac34&\\frac14\\\\\\frac14&-\\frac14\\end{pmatrix}$。",
+            "由于 $\\left|-\\frac13\\right|<1$，$D^n\\to\\begin{pmatrix}1&0\\\\0&0\\end{pmatrix}$，故 $\\lim_{n\\to\\infty}C^n=\\begin{pmatrix}1\\\\1\\end{pmatrix}\\begin{pmatrix}\\frac34&\\frac14\\end{pmatrix}=\\begin{pmatrix}\\frac34&\\frac14\\\\\\frac34&\\frac14\\end{pmatrix}$。",
+            "验证：该矩阵满足幂等性 $L^2=L$，与B^n极限的性质一致。"
+          ]
+        }
+      ],
+      "id": "isct-2022-6eaea5aab5-q01-practice-03",
+      "school": "东京科学大学",
+      "year": "2022"
+    },
+    {
+      "text": "利用上一题所得的 $\\lim_{n\\to\\infty}C^n=\\begin{pmatrix}\\frac34&\\frac14\\\\\\frac34&\\frac14\\end{pmatrix}$，求数列 $a_{k+2}=\\dfrac{2a_{k+1}+a_k}{3}$（$a_0=1,a_1=4$）当 $k\\to\\infty$ 时的极限，并用直接迭代验证。",
+      "knowledge_points": [
+        "递推数列极限",
+        "初始向量与极限矩阵的应用"
+      ],
+      "question_type": "求递推数列极限",
+      "method": [
+        "用极限矩阵作用于初始向量",
+        "数值迭代验证"
+      ],
+      "solution_steps": [
+        "构造初始向量",
+        "用极限矩阵计算极限",
+        "数值迭代核对"
+      ],
+      "math_structure": {
+        "type": "recurrence_limit_via_matrix_power",
+        "template": "$\\lim_{k\\to\\infty}a_k = (Lv_0)_2$",
+        "variable_count": 2
+      },
+      "difficulty": 3,
+      "estimated_minutes": 10,
+      "answer": [
+        {
+          "label": "极限值",
+          "steps": [
+            "初始向量 $v_0=\\begin{pmatrix}a_1\\\\a_0\\end{pmatrix}=\\begin{pmatrix}4\\\\1\\end{pmatrix}$。",
+            "$Lv_0=\\begin{pmatrix}\\frac34&\\frac14\\\\\\frac34&\\frac14\\end{pmatrix}\\begin{pmatrix}4\\\\1\\end{pmatrix}=\\begin{pmatrix}3+\\frac14\\\\3+\\frac14\\end{pmatrix}=\\begin{pmatrix}\\frac{13}{4}\\\\\\frac{13}{4}\\end{pmatrix}$，故 $\\lim_{k\\to\\infty}a_k=\\frac{13}{4}=3.25$。",
+            "数值迭代验证：$a_2=\\frac{2\\cdot4+1}{3}=3$，$a_3=\\frac{2\\cdot3+4}{3}\\approx3.333$，$a_4\\approx3.222$，$a_5\\approx3.259$，$a_6\\approx3.247$，数列在 $3.25$ 附近振荡收敛。",
+            "结论与理论极限 $\\frac{13}{4}$ 吻合，验证了利用矩阵幂极限求递推数列极限的方法正确。"
+          ]
+        }
+      ],
+      "id": "isct-2022-6eaea5aab5-q01-practice-04",
+      "school": "东京科学大学",
+      "year": "2022"
+    }
+  ],
+  "source_question": "問1 (1)",
+  "source_pdf": "东京科学大学/理工学系/情报工学系/东京科学大学_理工学系_情报工学系_2022_数学过去问.pdf",
+  "source_type": "官方过去问",
+  "subject_category": "线性代数"
+}

@@ -1,0 +1,141 @@
+{
+  "id": "osaka-2007-7f6c301d96-q03",
+  "school": "大阪大学",
+  "year": "2007",
+  "subject": "情报科学研究科_情报基础数学",
+  "text": "设 $x_1, x_2, x_3, x_4$ 为实数。证明下列等式（左边为行列式）：$$\\begin{vmatrix} 1+x_1^2 & x_1 x_2 & x_1 x_3 & x_1 x_4 \\\\ x_1 x_2 & 1+x_2^2 & x_2 x_3 & x_2 x_4 \\\\ x_1 x_3 & x_2 x_3 & 1+x_3^2 & x_3 x_4 \\\\ x_1 x_4 & x_2 x_4 & x_3 x_4 & 1+x_4^2 \\end{vmatrix} = 1 + x_1^2 + x_2^2 + x_3^2 + x_4^2$$",
+  "knowledge_points": [
+    "行列式计算",
+    "矩阵分解",
+    "秩一修正",
+    "矩阵行列式引理"
+  ],
+  "question_type": "证明题",
+  "method": [
+    "矩阵分解法",
+    "Weinstein-Aronszajn恒等式"
+  ],
+  "solution_steps": [
+    "识别矩阵为 $I+\\mathbf{x}\\mathbf{x}^T$ 的形式",
+    "应用秩一修正公式",
+    "得出结论"
+  ],
+  "math_structure": {
+    "type": "rank_one_determinant",
+    "template": "$$\\det(I + \\mathbf{x}\\mathbf{x}^T) = 1 + \\mathbf{x}^T\\mathbf{x}$$",
+    "variable_count": 4
+  },
+  "difficulty": 3,
+  "answer": [
+    {
+      "label": "行列式等式证明",
+      "steps": [
+        "矩阵可写成 $A = I + \\mathbf{x}\\mathbf{x}^T$，其中 $\\mathbf{x}=(x_1,x_2,x_3,x_4)^T$",
+        "验证：$(I)_{ij}=\\delta_{ij}, (\\mathbf{x}\\mathbf{x}^T)_{ij}=x_ix_j$，故 $A_{ij}=\\delta_{ij}+x_ix_j$ ✓",
+        "由矩阵行列式引理：$\\det(I+\\mathbf{u}\\mathbf{v}^T)=1+\\mathbf{v}^T\\mathbf{u}$",
+        "当 $\\mathbf{u}=\\mathbf{v}=\\mathbf{x}$ 时：$\\det(A)=1+\\mathbf{x}^T\\mathbf{x}=1+x_1^2+x_2^2+x_3^2+x_4^2$"
+      ]
+    }
+  ],
+  "practice_questions": [
+    {
+      "text": "证明 $\\begin{vmatrix}1+x^2 & xy \\\\ xy & 1+y^2\\end{vmatrix} = 1+x^2+y^2$",
+      "knowledge_points": [
+        "2阶行列式",
+        "矩阵分解"
+      ],
+      "question_type": "证明题",
+      "method": [
+        "直接计算法"
+      ],
+      "solution_steps": [
+        "$(1+x^2)(1+y^2)-(xy)^2=1+x^2+y^2+x^2y^2-x^2y^2$"
+      ],
+      "math_structure": {
+        "type": "2x2_rank_one",
+        "template": "$$\\det(I_2+\\mathbf{x}\\mathbf{x}^T)$$",
+        "variable_count": 2
+      },
+      "difficulty": 1,
+      "estimated_minutes": 2,
+      "answer": [
+        {
+          "label": "证明",
+          "steps": [
+            "展开即得"
+          ]
+        }
+      ],
+      "id": "osaka-2007-7f6c301d96-q03-practice-01",
+      "school": "大阪大学",
+      "year": "2007"
+    },
+    {
+      "text": "证明 $\\begin{vmatrix}1+x^2 & xy & xz \\\\ xy & 1+y^2 & yz \\\\ xz & yz & 1+z^2\\end{vmatrix} = 1+x^2+y^2+z^2$",
+      "knowledge_points": [
+        "3阶行列式",
+        "秩一修正"
+      ],
+      "question_type": "证明题",
+      "method": [
+        "矩阵分解法"
+      ],
+      "solution_steps": [
+        "矩阵为 $I_3+\\mathbf{x}\\mathbf{x}^T$"
+      ],
+      "math_structure": {
+        "type": "3x3_rank_one",
+        "template": "$$\\det(I_3+\\mathbf{x}\\mathbf{x}^T)=1+\\|\\mathbf{x}\\|^2$$",
+        "variable_count": 3
+      },
+      "difficulty": 2,
+      "estimated_minutes": 3,
+      "answer": [
+        {
+          "label": "证明",
+          "steps": [
+            "由秩一修正公式"
+          ]
+        }
+      ],
+      "id": "osaka-2007-7f6c301d96-q03-practice-02",
+      "school": "大阪大学",
+      "year": "2007"
+    },
+    {
+      "text": "已知 $\\det(I+\\mathbf{u}\\mathbf{v}^T)=1+\\mathbf{v}^T\\mathbf{u}$。若 $\\mathbf{u}=(1,2,3)^T, \\mathbf{v}=(2,1,1)^T$，求 $\\det(I_3+\\mathbf{u}\\mathbf{v}^T)$",
+      "knowledge_points": [
+        "秩一修正公式应用"
+      ],
+      "question_type": "计算题",
+      "method": [
+        "公式法"
+      ],
+      "solution_steps": [
+        "$\\mathbf{v}^T\\mathbf{u}=2+2+3=7$"
+      ],
+      "math_structure": {
+        "type": "rank_one_formula_apply",
+        "template": "$$\\det(I+\\mathbf{u}\\mathbf{v}^T)=1+\\mathbf{v}^T\\mathbf{u}$$",
+        "variable_count": 2
+      },
+      "difficulty": 1,
+      "estimated_minutes": 2,
+      "answer": [
+        {
+          "label": "行列式",
+          "steps": [
+            "$8$"
+          ]
+        }
+      ],
+      "id": "osaka-2007-7f6c301d96-q03-practice-03",
+      "school": "大阪大学",
+      "year": "2007"
+    }
+  ],
+  "source_question": "問4",
+  "source_pdf": "大阪大学/情报科学研究科/情报基础数学/大阪大学_情报科学研究科_情报基础数学_2007_数学过去问.pdf",
+  "source_type": "官方过去问",
+  "subject_category": "线性代数"
+}

@@ -1,0 +1,237 @@
+{
+  "id": "isct-2023-b0410e4e07-q01",
+  "school": "东京科学大学",
+  "year": "2023",
+  "subject": "理工学系_情报工学系",
+  "text": "计算以下矩阵乘积的行列式。设\n$$A = \\begin{pmatrix} 2 & 0 & 0 \\\\ 13 & 5 & a \\\\ 25 & 8 & b \\end{pmatrix}, \\quad B = \\begin{pmatrix} c & 3 & 4 \\\\ 0 & 9 & 27 \\\\ 0 & 24 & 3d \\end{pmatrix}$$\n其中 $c \\neq 0$ 且 $c \\neq 24$。计算 $P = AB^{-1}$ 的行列式 $|P|$。",
+  "knowledge_points": [
+    "行列式的计算方法",
+    "矩阵乘积的行列式",
+    "矩阵逆的行列式"
+  ],
+  "question_type": "行列式计算",
+  "method": [
+    "行列式展开定理",
+    "利用 $|AB^{-1}| = \\frac{|A|}{|B|}$"
+  ],
+  "solution_steps": [
+    "按第一行对矩阵A进行行列式展开",
+    "按第一列对矩阵B进行行列式展开",
+    "应用矩阵乘积的行列式公式"
+  ],
+  "math_structure": {
+    "type": "matrix_determinant_ratio",
+    "template": "$|P| = \\frac{|A|}{|B|}$，其中 $A,B$ 为 $3 \\times 3$ 矩阵，B可逆",
+    "variable_count": 4
+  },
+  "difficulty": 2,
+  "answer": [
+    {
+      "label": "计算|A|",
+      "steps": [
+        "按第1行展开：$|A| = 2 \\begin{vmatrix} 5 & a \\\\ 8 & b \\end{vmatrix} - 0 + 0$",
+        "$= 2(5b - 8a) = 10b - 16a$"
+      ]
+    },
+    {
+      "label": "计算|B|",
+      "steps": [
+        "按第1列展开：$|B| = c \\begin{vmatrix} 9 & 27 \\\\ 24 & 3d \\end{vmatrix}$",
+        "$= c(9 \\cdot 3d - 27 \\cdot 24) = c(27d - 648)$",
+        "$= 27c(d - 24)$"
+      ]
+    },
+    {
+      "label": "计算|P|",
+      "steps": [
+        "由 $|P| = |AB^{-1}| = \\frac{|A|}{|B|}$",
+        "$|P| = \\dfrac{10b - 16a}{27c(d-24)} = \\dfrac{2(5b - 8a)}{27c(d-24)}$"
+      ]
+    }
+  ],
+  "practice_questions": [
+    {
+      "text": "计算矩阵 $C = \\begin{pmatrix} 1 & 0 \\\\ 2 & 3 \\end{pmatrix}$，$D = \\begin{pmatrix} 2 & 1 \\\\ 0 & 4 \\end{pmatrix}$ 的乘积 $CD^{-1}$ 的行列式。",
+      "knowledge_points": [
+        "$2 \\times 2$ 矩阵行列式",
+        "行列式的乘法性质"
+      ],
+      "question_type": "行列式计算",
+      "method": [
+        "直接计算 $|C|$ 和 $|D|$",
+        "应用公式"
+      ],
+      "solution_steps": [
+        "计算 $|C| = 1 \\cdot 3 - 0 \\cdot 2 = 3$",
+        "计算 $|D| = 2 \\cdot 4 - 1 \\cdot 0 = 8$",
+        "得 $|CD^{-1}| = \\frac{3}{8}$"
+      ],
+      "math_structure": {
+        "type": "determinant_ratio_2x2",
+        "template": "$|CD^{-1}| = \\frac{|C|}{|D|}$",
+        "variable_count": 0
+      },
+      "difficulty": 1,
+      "estimated_minutes": 5,
+      "answer": [
+        {
+          "label": "行列式计算",
+          "steps": [
+            "$|C| = 3$，$|D| = 8$",
+            "$|CD^{-1}| = \\frac{3}{8}$"
+          ]
+        }
+      ],
+      "id": "isct-2023-b0410e4e07-q01-practice-01",
+      "school": "东京科学大学",
+      "year": "2023"
+    },
+    {
+      "text": "设 $A = \\begin{pmatrix} 2 & 0 & 0 \\\\ 1 & 3 & 2 \\\\ 4 & 1 & 5 \\end{pmatrix}$，$B = \\begin{pmatrix} 1 & 2 & 1 \\\\ 0 & 3 & 4 \\\\ 0 & 1 & 2 \\end{pmatrix}$。计算 $|AB^{-1}|$。",
+      "knowledge_points": [
+        "$3 \\times 3$ 矩阵行列式展开",
+        "含参行列式"
+      ],
+      "question_type": "行列式计算",
+      "method": [
+        "按第一行或第一列展开"
+      ],
+      "solution_steps": [
+        "计算 $|A|$，按第一行展开",
+        "计算 $|B|$，按第一列展开",
+        "求比值"
+      ],
+      "math_structure": {
+        "type": "determinant_ratio_3x3",
+        "template": "$|AB^{-1}| = \\frac{|A|}{|B|}$",
+        "variable_count": 0
+      },
+      "difficulty": 2,
+      "estimated_minutes": 8,
+      "answer": [
+        {
+          "label": "计算|A|",
+          "steps": [
+            "$|A| = 2 \\begin{vmatrix} 3 & 2 \\\\ 1 & 5 \\end{vmatrix} = 2(15-2) = 26$"
+          ]
+        },
+        {
+          "label": "计算|B|",
+          "steps": [
+            "$|B| = 1 \\cdot \\begin{vmatrix} 3 & 4 \\\\ 1 & 2 \\end{vmatrix} = 1(6-4) = 2$"
+          ]
+        },
+        {
+          "label": "结果",
+          "steps": [
+            "$|AB^{-1}| = \\frac{26}{2} = 13$"
+          ]
+        }
+      ],
+      "id": "isct-2023-b0410e4e07-q01-practice-02",
+      "school": "东京科学大学",
+      "year": "2023"
+    },
+    {
+      "text": "设 $A = \\begin{pmatrix} 3 & 0 & 0 \\\\ 0 & 2 & 1 \\\\ 0 & 4 & 3 \\end{pmatrix}$，$B = \\begin{pmatrix} p & 1 & 2 \\\\ 0 & 2 & 3 \\\\ 0 & 5 & 1 \\end{pmatrix}$。若 $|AB^{-1}| = \\frac{3}{2}$，求参数 $p$。",
+      "knowledge_points": [
+        "含参行列式的计算",
+        "行列式应用"
+      ],
+      "question_type": "含参行列式",
+      "method": [
+        "列式求解",
+        "行列式展开"
+      ],
+      "solution_steps": [
+        "计算 $|A|$",
+        "用参数 $p$ 表示 $|B|$",
+        "由等式 $\\frac{|A|}{|B|} = \\frac{3}{2}$ 求 $p$"
+      ],
+      "math_structure": {
+        "type": "parametric_determinant",
+        "template": "$\\frac{|A|}{|B|} = k$，求参数",
+        "variable_count": 1
+      },
+      "difficulty": 3,
+      "estimated_minutes": 10,
+      "answer": [
+        {
+          "label": "计算|A|",
+          "steps": [
+            "$|A| = 3 \\begin{vmatrix} 2 & 1 \\\\ 4 & 3 \\end{vmatrix} = 3(6-4) = 6$"
+          ]
+        },
+        {
+          "label": "计算|B|",
+          "steps": [
+            "$|B| = p \\begin{vmatrix} 2 & 3 \\\\ 5 & 1 \\end{vmatrix} = p(2-15) = -13p$"
+          ]
+        },
+        {
+          "label": "求参数p",
+          "steps": [
+            "$\\frac{6}{-13p} = \\frac{3}{2}$",
+            "$-13p = 4$",
+            "$p = -\\frac{4}{13}$"
+          ]
+        }
+      ],
+      "id": "isct-2023-b0410e4e07-q01-practice-03",
+      "school": "东京科学大学",
+      "year": "2023"
+    },
+    {
+      "text": "设含参矩阵 $A = \\begin{pmatrix} 1 & 0 & 0 \\\\ 0 & m & 1 \\\\ 0 & 2 & m+1 \\end{pmatrix}$，$B = \\begin{pmatrix} n & 0 & 1 \\\\ 0 & 2 & 2 \\\\ 0 & 3 & 1 \\end{pmatrix}$。当 $m \\neq 0$、$n \\neq 0$ 时，用 $m, n$ 表示 $|AB^{-1}|$。",
+      "knowledge_points": [
+        "含多参行列式",
+        "展开定理"
+      ],
+      "question_type": "多参行列式",
+      "method": [
+        "按含零列展开"
+      ],
+      "solution_steps": [
+        "按第1列展开以化简 $|A|$",
+        "按第1列展开以化简 $|B|$",
+        "求比值"
+      ],
+      "math_structure": {
+        "type": "multiparameter_determinant",
+        "template": "$|AB^{-1}| = \\frac{|A|}{|B|}$，含多个参数",
+        "variable_count": 2
+      },
+      "difficulty": 3,
+      "estimated_minutes": 12,
+      "answer": [
+        {
+          "label": "计算|A|",
+          "steps": [
+            "按第1列展开：$|A| = 1 \\cdot \\begin{vmatrix} m & 1 \\\\ 2 & m+1 \\end{vmatrix}$",
+            "$= m(m+1) - 2 = m^2 + m - 2$"
+          ]
+        },
+        {
+          "label": "计算|B|",
+          "steps": [
+            "按第1列展开：$|B| = n \\begin{vmatrix} 2 & 2 \\\\ 3 & 1 \\end{vmatrix}$",
+            "$= n(2 - 6) = -4n$"
+          ]
+        },
+        {
+          "label": "结果",
+          "steps": [
+            "$|AB^{-1}| = \\frac{m^2 + m - 2}{-4n} = \\frac{(m+2)(m-1)}{-4n} = -\\frac{(m+2)(m-1)}{4n}$"
+          ]
+        }
+      ],
+      "id": "isct-2023-b0410e4e07-q01-practice-04",
+      "school": "东京科学大学",
+      "year": "2023"
+    }
+  ],
+  "source_question": "問1 1)",
+  "source_pdf": "东京科学大学/理工学系/情报工学系/东京科学大学_理工学系_情报工学系_2023_数学过去问.pdf",
+  "source_type": "官方过去问",
+  "subject_category": "线性代数"
+}

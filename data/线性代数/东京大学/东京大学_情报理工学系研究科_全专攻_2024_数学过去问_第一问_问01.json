@@ -1,0 +1,294 @@
+{
+  "id": "utokyo-2024-88bf102bc2-q01",
+  "school": "东京大学",
+  "year": "2024",
+  "subject": "情报理工学系研究科_全专攻",
+  "text": "设 $\\mathbb{R}^3$ 为三维实列向量全体构成的集合，$\\mathbb{R}^{3\\times3}$ 为 $3\\times3$ 实矩阵全体构成的集合。设 $n_1, n_2, n_3 \\in \\mathbb{R}^3$ 是线性无关的单位长度向量，$n_4 \\in \\mathbb{R}^3$ 是与 $n_1, n_2, n_3$ 都不平行的单位长度向量。又设方阵 $\\mathbf{A}, \\mathbf{B}$ 为\n\n$$\\mathbf{A} = \\begin{pmatrix} n_1^{\\mathrm T} - n_2^{\\mathrm T} \\\\ n_2^{\\mathrm T} - n_3^{\\mathrm T} \\\\ n_3^{\\mathrm T} - n_4^{\\mathrm T} \\end{pmatrix}, \\quad \\mathbf{B} = \\sum_{i=1}^{4} n_i n_i^{\\mathrm T}$$\n\n这里，$\\mathbf{X}^{\\mathrm T}$、$x^{\\mathrm T}$ 分别表示矩阵 $\\mathbf{X}$ 的转置矩阵和向量 $x$ 的转置向量。回答以下问题。\n\n(1) 求使 $\\mathbf{A}$ 的秩为 $3$ 的关于 $n_4$ 的条件。\n\n(2) 在三维欧几里得空间 $\\mathbb{R}^3$ 中，考虑满足以下三个条件的 $4$ 个平面 $\\Pi_i = \\{x \\in \\mathbb{R}^3 \\mid n_i^{\\mathrm T} x - d_i = 0\\}$（$d_i$ 为实数，$i=1,2,3,4$）：(i) $\\mathbf{A}$ 的秩为 $3$；(ii) $\\Omega = \\{x \\in \\mathbb{R}^3 \\mid n_i^{\\mathrm T} x - d_i \\ge 0,\\ i=1,2,3,4\\}$ 非空；(iii) 存在与 $\\Pi_i\\,(i=1,2,3,4)$ 都相切、且包含于 $\\Omega$ 的球 $C$。此时 $C$ 的中心的位置向量用向量 $u \\in \\mathbb{R}^3$ 表示为 $\\mathbf{A}^{-1} u$ 的形式。用 $d_i\\,(i=1,2,3,4)$ 表示 $u$。\n\n(3) 证明 $\\mathbf{B}$ 是正定对称矩阵。\n\n(4) 考虑使到 $4$ 个平面 $\\{x \\in \\mathbb{R}^3 \\mid n_i^{\\mathrm T} x - d_i = 0\\}$（$d_i$ 为实数，$i=1,2,3,4$）的距离的平方和最小的点 $\\mathrm P$。$\\mathrm P$ 的位置向量用向量 $v \\in \\mathbb{R}^3$ 表示为 $\\mathbf{B}^{-1} v$ 的形式。用 $n_i, d_i\\,(i=1,2,3,4)$ 表示 $v$。\n\n(5) 在 $\\mathbb{R}^3$ 中，设 $l_i$ 是过点 $\\mathrm Q_i$（位置向量为 $x_i \\in \\mathbb{R}^3$）且与 $n_i$ 平行的直线（$i=1,2,3$）。设任意点 $\\mathrm R$（位置向量为 $y \\in \\mathbb{R}^3$）在 $l_i$ 上的正交投影点为 $\\mathrm R_i$。$\\mathrm R_i$ 的位置向量用矩阵 $\\mathbf{W}_i \\in \\mathbb{R}^{3\\times3}$ 表示为 $y - \\mathbf{W}_i(y-x_i)$。设 $\\mathbf{I}\\in\\mathbb{R}^{3\\times3}$ 为单位矩阵。\n\n(a) 用 $n_i$ 和 $\\mathbf{I}$ 表示 $\\mathbf{W}_i$。\n\n(b) 证明 $\\mathbf{W}_i^{\\mathrm T}\\mathbf{W}_i = \\mathbf{W}_i$。\n\n(c) 考虑平面 $\\Sigma = \\{x \\in \\mathbb{R}^3 \\mid a^{\\mathrm T} x = b\\}$（$a\\in\\mathbb{R}^3$ 为非零向量，$b$ 为实数）。设点 $\\mathrm S \\in \\Sigma$ 是使到 $l_1, l_2, l_3$ 的距离的平方和最小的点。当 $n_1, n_2, n_3$ 两两正交时，$\\mathrm S$ 的位置向量用向量 $w\\in\\mathbb{R}^3$ 表示为\n\n$$\\left(\\mathbf{I} - \\frac{aa^{\\mathrm T}}{a^{\\mathrm T}a}\\right) w + \\frac{ab}{a^{\\mathrm T}a}$$\n\n的形式，其中 $w$ 与 $a, b$ 无关。用 $\\mathbf{W}_i, x_i\\,(i=1,2,3)$ 表示 $w$。",
+  "knowledge_points": [
+    "矩阵的秩与线性无关",
+    "基与坐标分解",
+    "正定对称矩阵的判定",
+    "最小二乘/距离平方和最小化",
+    "梯度法求二次函数极值",
+    "正交投影矩阵(幂等对称)",
+    "拉格朗日乘数法与仿射约束下的二次优化",
+    "内切球的几何条件"
+  ],
+  "question_type": "矩阵秩、正定性与几何最优化综合题",
+  "method": [
+    "用基表示未知向量以判定线性(无)相关性",
+    "对二次函数求梯度并令其为零",
+    "利用幂等对称矩阵的代数性质",
+    "各向同性二次型在仿射约束下的极小点=向约束平面的正交投影"
+  ],
+  "solution_steps": [
+    "将 n4 用基 n1,n2,n3 分解，代入 A 的行向量线性组合方程，得到 rank(A)=3 的系数条件",
+    "利用球与四个平面相切、球心在 Ω 内，得到 n_i^T c - d_i = r 对所有 i 成立，相邻式相减得 Ac=u",
+    "验证 B 的对称性，并用 n1,n2,n3 的线性无关性说明二次型 x^T B x 恒正",
+    "对距离平方和 S(x) 求梯度、令其为零，解出 Bx=v 中的 v",
+    "由直线上正交投影的标准公式得到 W_i=I-n_in_i^T，并用单位向量性质验证其幂等性",
+    "利用 W_i 的幂等对称性把距离平方和写成二次型，求无约束极小点，再用仿射约束下二次型极小点即为向约束平面投影的事实得到 w"
+  ],
+  "math_structure": {
+    "type": "matrix_rank_positive_definiteness_projection_optimization",
+    "template": "A的行向量为n_i^T-n_{i+1}^T的组合，B=\\sum_i n_in_i^T，平面Π_i: n_i^Tx=d_i，投影矩阵W_i=I-n_in_i^T，在约束a^Tx=b下最小化\\sum(x-x_i)^TW_i(x-x_i)",
+    "variable_count": 16
+  },
+  "difficulty": 5,
+  "answer": [
+    {
+      "label": "(1)",
+      "steps": [
+        "因 n1,n2,n3 线性无关，构成 R^3 的一组基，故 n4 可唯一分解为 n4 = α n1 + β n2 + γ n3。",
+        "设 A 的三行(视为列向量) r1=n1-n2, r2=n2-n3, r3=n3-n4 满足 a r1+b r2+c r3=0。代入 n4 的分解式并按 n1,n2,n3 系数归零，得方程组：a=cα，b-a=cβ，c-b=cγ，整理得 c(1-α-β-γ)=0。",
+        "若 c=0，则由前两式立得 a=0,b=0，只有零解；因此存在非零解（即 A 的行向量线性相关，rank(A)<3）的充要条件是可取 c≠0，此时须 α+β+γ=1。",
+        "故 rank(A)=3 的条件是 α+β+γ ≠ 1，即 n4 不能表示为 n1,n2,n3 的仿射组合(系数和为1)；几何上即 n4 的终点不落在过 n1,n2,n3 终点的平面上。"
+      ]
+    },
+    {
+      "label": "(2)",
+      "steps": [
+        "设球 C 半径为 r，中心位置向量为 c∈Ω⊂R^3。因 n_i 为单位向量且 c∈Ω 满足 n_i^Tc-d_i≥0，点 c 到平面 Π_i 的距离恰为 n_i^Tc-d_i；C 与四个平面都相切意味着这四个距离都等于半径 r：n_i^Tc-d_i=r，即 n_i^Tc=d_i+r（i=1,2,3,4）。",
+        "把相邻两式相减以消去 r：(n1-n2)^Tc=d1-d2，(n2-n3)^Tc=d2-d3，(n3-n4)^Tc=d3-d4。这三式恰好是 Ac 的三个分量。",
+        "因此 Ac = (d1-d2,\\ d2-d3,\\ d3-d4)^T =: u，由 rank(A)=3 知 A 可逆，故 c=A^{-1}u。",
+        "所以 u = (d1-d2,\\ d2-d3,\\ d3-d4)^T。"
+      ]
+    },
+    {
+      "label": "(3)",
+      "steps": [
+        "对称性：B^T = \\left(\\sum_{i=1}^4 n_in_i^T\\right)^T = \\sum_{i=1}^4 (n_in_i^T)^T = \\sum_{i=1}^4 n_in_i^T = B，故 B 对称。",
+        "非负性：对任意 x∈R^3，x^TBx = \\sum_{i=1}^4 x^Tn_in_i^Tx = \\sum_{i=1}^4 (n_i^Tx)^2 \\ge 0。",
+        "严格正定性：设 x≠0。因 n1,n2,n3 线性无关，是 R^3 的一组基；若 n1^Tx=n2^Tx=n3^Tx=0 同时成立，则 x 与一组基的每个向量都正交，从而 x=0，与 x≠0 矛盾。故 n1^Tx,n2^Tx,n3^Tx 不全为零，即 \\sum_{i=1}^3(n_i^Tx)^2>0。",
+        "于是 x^TBx \\ge \\sum_{i=1}^3(n_i^Tx)^2 >0（第 4 项 (n_4^Tx)^2\\ge0 只会增大总和）。所以对任意 x≠0 都有 x^TBx>0，结合对称性，B 是正定对称矩阵。"
+      ]
+    },
+    {
+      "label": "(4)",
+      "steps": [
+        "因 n_i 为单位向量，点 x 到平面 {n_i^Tx-d_i=0} 的距离即为 |n_i^Tx-d_i|，故距离平方和为 S(x)=\\sum_{i=1}^4 (n_i^Tx-d_i)^2。",
+        "对 S 求梯度：\\nabla S(x) = 2\\sum_{i=1}^4 n_i(n_i^Tx-d_i) = 2\\left[\\left(\\sum_{i=1}^4 n_in_i^T\\right)x - \\sum_{i=1}^4 d_in_i\\right] = 2(Bx-\\sum_i d_in_i)。",
+        "令梯度为零：Bx=\\sum_{i=1}^4 d_in_i =: v。由(3)知 B 正定从而可逆，S 是严格凸函数，故该临界点 x=B^{-1}v 是唯一的全局极小点。",
+        "所以 v = d_1n_1+d_2n_2+d_3n_3+d_4n_4。"
+      ]
+    },
+    {
+      "label": "(5a)",
+      "steps": [
+        "直线 l_i 上一般点可写为 x_i+tn_i；R 在 l_i 上的正交投影点 R_i 满足 R_i∈l_i 且 (y-R_i)\\perp n_i，其标准公式为 R_i = x_i + n_in_i^T(y-x_i)（因 n_i 为单位向量）。",
+        "改写：R_i = y-(y-x_i)+n_in_i^T(y-x_i) = y-\\left[(I-n_in_i^T)(y-x_i)\\right]。",
+        "与题目给出形式 y-W_i(y-x_i) 比较，得 W_i = I - n_in_i^T。"
+      ]
+    },
+    {
+      "label": "(5b)",
+      "steps": [
+        "W_i = I-n_in_i^T 是对称矩阵，因为 (n_in_i^T)^T=n_in_i^T，故 W_i^T=W_i，从而 W_i^TW_i=W_i^2。",
+        "直接展开：W_i^2=(I-n_in_i^T)^2=I-2n_in_i^T+n_i(n_i^Tn_i)n_i^T。",
+        "因 n_i 为单位长度向量，n_i^Tn_i=1，故 n_i(n_i^Tn_i)n_i^T=n_in_i^T，于是 W_i^2=I-2n_in_i^T+n_in_i^T=I-n_in_i^T=W_i。",
+        "所以 W_i^TW_i=W_i^2=W_i，得证。"
+      ]
+    },
+    {
+      "label": "(5c)",
+      "steps": [
+        "点 z 到直线 l_i 的距离平方为 |W_i(z-x_i)|^2=(z-x_i)^TW_i^TW_i(z-x_i)=(z-x_i)^TW_i(z-x_i)（用(5b)的幂等对称性）。",
+        "先求无约束极小点：令 f(z)=\\sum_{i=1}^3(z-x_i)^TW_i(z-x_i)，其梯度为 2\\sum_{i=1}^3 W_i(z-x_i)（利用 W_i 对称），令其为零得 \\left(\\sum_{i=1}^3W_i\\right)z=\\sum_{i=1}^3W_ix_i。",
+        "因 n1,n2,n3 两两正交且均为单位向量，构成 R^3 的一组正交基，故 \\sum_{i=1}^3 n_in_i^T=I，从而 \\sum_{i=1}^3W_i=\\sum_{i=1}^3(I-n_in_i^T)=3I-I=2I。",
+        "代入得 2I\\,z=\\sum_{i=1}^3W_ix_i，故无约束极小点为 z_0=\\frac12(W_1x_1+W_2x_2+W_3x_3)。由于 Hessian 为各向同性的 2I，f(z) 可写成 2|z-z_0|^2+常数，因此在仿射约束 a^Tz=b 下的极小点恰为把 z_0 正交投影到平面 Σ 上得到的点，其表达式正是题目给出的形式，其中与 a,b 无关的向量即为该无约束极小点 z_0。",
+        "所以 w = \\frac12(W_1x_1+W_2x_2+W_3x_3)。"
+      ]
+    }
+  ],
+  "practice_questions": [
+    {
+      "text": "设 $n_1=(1,0,0)^{\\mathrm T}$, $n_2=(0,1,0)^{\\mathrm T}$, $n_3=(0,0,1)^{\\mathrm T}$（线性无关的单位向量），$n_4=(x,y,z)^{\\mathrm T}$ 为单位向量。设 $\\mathbf{A}' = \\begin{pmatrix} n_1^{\\mathrm T}-n_2^{\\mathrm T}\\\\ n_2^{\\mathrm T}-n_3^{\\mathrm T}\\\\ n_3^{\\mathrm T}-n_4^{\\mathrm T}\\end{pmatrix}$。求使 $\\mathrm{rank}(\\mathbf{A}')=3$ 的关于 $x,y,z$ 的条件。",
+      "knowledge_points": [
+        "矩阵的秩",
+        "基与坐标分解"
+      ],
+      "question_type": "线性代数计算题",
+      "method": [
+        "坐标分解法"
+      ],
+      "solution_steps": [
+        "因n1,n2,n3是标准基，n4的坐标即为(x,y,z)本身",
+        "套用原题结论：rank=3的条件是坐标之和不等于1",
+        "写出具体条件x+y+z≠1"
+      ],
+      "math_structure": {
+        "type": "matrix_rank_affine_condition",
+        "template": "标准基下判断rank([n1-n2;n2-n3;n3-n4])=3的坐标条件",
+        "variable_count": 3
+      },
+      "difficulty": 2,
+      "estimated_minutes": 6,
+      "answer": [
+        {
+          "label": "求条件",
+          "steps": [
+            "由原题(1)的结论，一般地设n4=αn1+βn2+γn3，则rank(A)=3当且仅当α+β+γ≠1。",
+            "此处n1,n2,n3是标准基，故n4=(x,y,z)^T的坐标就是(α,β,γ)=(x,y,z)。",
+            "所以条件为 x+y+z ≠ 1。可直接验证：若x+y+z=1，取a=1,b=1,c=1可使a(n1-n2)+b(n2-n3)+c(n3-n4)=n1-n4-(x n1+y n2+z n3)+... 代入验证恒为零向量，说明行向量线性相关，从而rank<3，与条件一致。"
+          ]
+        }
+      ],
+      "id": "utokyo-2024-88bf102bc2-q01-practice-01",
+      "school": "东京大学",
+      "year": "2024"
+    },
+    {
+      "text": "设 $m_1=(1,0,0)^{\\mathrm T}$, $m_2=(0,1,0)^{\\mathrm T}$（两个正交单位向量），令 $\\mathbf{M}=m_1m_1^{\\mathrm T}+m_2m_2^{\\mathrm T} \\in \\mathbb{R}^{3\\times3}$。证明 $\\mathbf{M}$ 是对称的正半定矩阵，但不是正定矩阵，并求出使 $x^{\\mathrm T}\\mathbf{M}x=0$ 的非零向量 $x$。",
+      "knowledge_points": [
+        "正定/正半定矩阵",
+        "二次型"
+      ],
+      "question_type": "矩阵性质证明题",
+      "method": [
+        "直接计算二次型"
+      ],
+      "solution_steps": [
+        "写出M的具体矩阵形式",
+        "验证对称性和非负性",
+        "找到使二次型为零的非零向量，说明不是正定"
+      ],
+      "math_structure": {
+        "type": "positive_semidefinite_counterexample",
+        "template": "两个正交单位向量的外积和M=m1m1^T+m2m2^T的正定性讨论",
+        "variable_count": 2
+      },
+      "difficulty": 3,
+      "estimated_minutes": 8,
+      "answer": [
+        {
+          "label": "证明与反例",
+          "steps": [
+            "直接计算：m1m1^T=\\begin{pmatrix}1&0&0\\\\0&0&0\\\\0&0&0\\end{pmatrix}，m2m2^T=\\begin{pmatrix}0&0&0\\\\0&1&0\\\\0&0&0\\end{pmatrix}，故 M=\\begin{pmatrix}1&0&0\\\\0&1&0\\\\0&0&0\\end{pmatrix}，显然对称。",
+            "对任意x=(x1,x2,x3)^T，x^TMx=(m1^Tx)^2+(m2^Tx)^2=x_1^2+x_2^2\\ge0，故M正半定。",
+            "取x=(0,0,1)^T≠0，则x^TMx=0^2+0^2=0，说明存在非零向量使二次型为零，因此M不是正定矩阵（与原题(3)中因n1,n2,n3三个线性无关向量而得到严格正定形成对比：这里只有2个正交向量，无法覆盖R^3的第三个方向）。"
+          ]
+        }
+      ],
+      "id": "utokyo-2024-88bf102bc2-q01-practice-02",
+      "school": "东京大学",
+      "year": "2024"
+    },
+    {
+      "text": "在与原题(2)相同的设定下（$\\mathbf{A}$ 可逆，$u=\\mathbf{A}^{-1}u$ 给出球心），若某组切平面参数为 $d_1=4, d_2=1, d_3=-2, d_4=3$，求满足 $c=\\mathbf{A}^{-1}u$ 的向量 $u$。",
+      "knowledge_points": [
+        "内切球条件",
+        "线性方程组"
+      ],
+      "question_type": "代入计算题",
+      "method": [
+        "套用差分公式"
+      ],
+      "solution_steps": [
+        "套用原题得到的公式u=(d1-d2,d2-d3,d3-d4)",
+        "代入数值计算"
+      ],
+      "math_structure": {
+        "type": "insphere_center_formula_instance",
+        "template": "u=(d1-d2, d2-d3, d3-d4)^T 的数值代入",
+        "variable_count": 4
+      },
+      "difficulty": 3,
+      "estimated_minutes": 5,
+      "answer": [
+        {
+          "label": "求u",
+          "steps": [
+            "由原题(2)推导，u=(d1-d2,\\ d2-d3,\\ d3-d4)^T，其来源是相邻两个'n_i^Tc=d_i+r'方程相减消去公共的球半径r。",
+            "代入 d1=4,d2=1,d3=-2,d4=3：d1-d2=4-1=3，d2-d3=1-(-2)=3，d3-d4=-2-3=-5。",
+            "所以 u=(3,\\ 3,\\ -5)^T。验算：若把u的三个分量分别加回去还原成n_i^Tc的差值关系，恰好与给定的d_i差值一致，说明计算无误。"
+          ]
+        }
+      ],
+      "id": "utokyo-2024-88bf102bc2-q01-practice-03",
+      "school": "东京大学",
+      "year": "2024"
+    },
+    {
+      "text": "设 $n_1=(1,0,0)^{\\mathrm T}, n_2=(0,1,0)^{\\mathrm T}, n_3=(0,0,1)^{\\mathrm T}$（两两正交的单位向量），$d_1=2, d_2=-1, d_3=3$。令 $\\mathbf{B}'=n_1n_1^{\\mathrm T}+n_2n_2^{\\mathrm T}+n_3n_3^{\\mathrm T}$。求使到三个平面 $\\{x:n_i^{\\mathrm T}x-d_i=0\\}\\,(i=1,2,3)$ 的距离平方和最小的点 $\\mathrm P$ 的位置向量。",
+      "knowledge_points": [
+        "最小二乘法",
+        "梯度法",
+        "正交基"
+      ],
+      "question_type": "最优化计算题",
+      "method": [
+        "梯度置零求极小点"
+      ],
+      "solution_steps": [
+        "写出距离平方和函数",
+        "求梯度并令其为零，得到B'x=v'",
+        "利用B'=I简化求解"
+      ],
+      "math_structure": {
+        "type": "least_squares_distance_to_planes",
+        "template": "\\min_x \\sum_i (n_i^Tx-d_i)^2，其中n_i两两正交",
+        "variable_count": 3
+      },
+      "difficulty": 3,
+      "estimated_minutes": 8,
+      "answer": [
+        {
+          "label": "求P",
+          "steps": [
+            "设S(x)=\\sum_{i=1}^3(n_i^Tx-d_i)^2，求梯度得\\nabla S(x)=2(\\mathbf{B}'x-\\sum_i d_in_i)，令其为零得\\mathbf{B}'x=v'，其中v'=d_1n_1+d_2n_2+d_3n_3=(2,-1,3)^T。",
+            "由于n1,n2,n3是标准正交基，\\mathbf{B}'=n_1n_1^T+n_2n_2^T+n_3n_3^T=\\begin{pmatrix}1&0&0\\\\0&1&0\\\\0&0&1\\end{pmatrix}=\\mathbf{I}，是可逆（且正定）的。",
+            "所以 x=\\mathbf{B}'^{-1}v'=v'=(2,-1,3)^T。",
+            "验算：此时点(2,-1,3)恰好同时落在三个平面x=2,y=-1,z=3上，距离平方和为0，显然是最小值，与直接几何直觉一致，说明公式正确。"
+          ]
+        }
+      ],
+      "id": "utokyo-2024-88bf102bc2-q01-practice-04",
+      "school": "东京大学",
+      "year": "2024"
+    },
+    {
+      "text": "设单位向量 $n=(3/5,4/5,0)^{\\mathrm T}$，令 $\\mathbf{W}=\\mathbf{I}-nn^{\\mathrm T}$（$\\mathbf{I}$ 为 $3\\times3$ 单位矩阵）。设直线 $l$ 过原点，方向为 $n$，点 $\\mathrm R$ 的位置向量为 $y=(1,1,1)^{\\mathrm T}$。求 $\\mathrm R$ 在 $l$ 上的正交投影点 $\\mathrm R_1$ 的位置向量 $y-\\mathbf{W}y$，并验证其确实落在直线 $l$ 上。",
+      "knowledge_points": [
+        "正交投影矩阵",
+        "幂等对称矩阵",
+        "直线上的投影"
+      ],
+      "question_type": "矩阵计算与几何验证题",
+      "method": [
+        "直接矩阵计算",
+        "代入验证"
+      ],
+      "solution_steps": [
+        "写出W的具体矩阵",
+        "计算Wy",
+        "计算y-Wy得到投影点",
+        "验证投影点在直线上"
+      ],
+      "math_structure": {
+        "type": "orthogonal_projection_matrix_computation",
+        "template": "W=I-nn^T的具体计算，及R_1=y-W(y-x_0)在x_0=0时的应用",
+        "variable_count": 3
+      },
+      "difficulty": 4,
+      "estimated_minutes": 10,
+      "answer": [
+        {
+          "label": "求R1并验证",
+          "steps": [
+            "计算nn^T：n=(3/5,4/5,0)^T，nn^T=\\begin{pmatrix}9/25&12/25&0\\\\12/25&16/25&0\\\\0&0&0\\end{pmatrix}，故W=I-nn^T=\\begin{pmatrix}16/25&-12/25&0\\\\-12/25&9/25&0\\\\0&0&1\\end{pmatrix}（对应原题(5a)的公式W_i=I-n_in_i^T）。",
+            "计算Wy，其中y=(1,1,1)^T：第一分量16/25-12/25+0=4/25；第二分量-12/25+9/25+0=-3/25；第三分量0+0+1=1。故Wy=(4/25,-3/25,1)^T。",
+            "投影点位置向量为y-Wy=(1-4/25,\\ 1+3/25,\\ 1-1)=(21/25,\\ 28/25,\\ 0)。",
+            "验证在直线l上：设该点=tn=(3t/5,4t/5,0)，由第一分量3t/5=21/25解得t=7/5；代入第二分量4t/5=4\\cdot(7/5)/5=28/25，恰好与计算结果一致，故投影点确实在l上，计算无误。"
+          ]
+        }
+      ],
+      "id": "utokyo-2024-88bf102bc2-q01-practice-05",
+      "school": "东京大学",
+      "year": "2024"
+    }
+  ],
+  "source_question": "第1問",
+  "source_pdf": "东京大学/情报理工学系研究科/全专攻/东京大学_情报理工学系研究科_全专攻_2024_数学过去问_第一问.pdf",
+  "source_type": "官方过去问",
+  "subject_category": "线性代数"
+}

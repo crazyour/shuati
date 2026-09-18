@@ -1,0 +1,302 @@
+{
+  "id": "osaka-2025-c7dbe7a96d-q01",
+  "school": "大阪大学",
+  "year": "2025",
+  "subject": "基礎工学研究科_知能システム学コース",
+  "text": "设 $n$ 次实方阵全体 $\\mathbb{R}^{n\\times n}$ 为实内积空间，其中 $M,N\\in\\mathbb{R}^{n\\times n}$ 的内积定义为 $(M,N)=\\mathrm{tr}(M^{T}N)$，$M$ 的范数定义为 $\\|M\\|=\\sqrt{(M,M)}$。$\\mathrm{tr}(M)$、$M^{T}$ 分别表示 $M$ 的迹与转置。记 $O^{n}$ 为 $n$ 次实正交矩阵全体，$S^{n}$ 为 $n$ 次实对称矩阵全体。回答以下问题 1)～7)。\n\n1) 对 $M=\\begin{pmatrix}a&b\\\\c&d\\end{pmatrix}\\in\\mathbb{R}^{2\\times2}$，$R(\\theta)=\\begin{pmatrix}\\cos\\theta&-\\sin\\theta\\\\\\sin\\theta&\\cos\\theta\\end{pmatrix}$（$a,b,c,d,\\theta$ 为实数），求内积 $(M,R(\\theta))$。\n\n2) 对 $M\\in\\mathbb{R}^{n\\times n}$，考虑变量 $P\\in O^{n}$ 的函数 $f(P)=(M,P)$ 与 $g(P)=\\|M-P\\|$。设 $f(P)$ 在 $P=\\bar{P}$ 处取最大值，证明 $g(P)$ 也在 $P=\\bar{P}$ 处取最小值。\n\n3) 对问 1) 中的 $M,R(\\theta)$，考虑变量 $\\theta\\ (-\\pi\\le\\theta<\\pi)$ 的函数 $h(\\theta)=\\|M-R(\\theta)\\|$。设 $a+d>0$，$c-b>0$，求使 $h(\\theta)$ 取最小值的 $\\theta$。\n\n4) $O^{n}$ 与 $S^{n}$ 是否分别为 $\\mathbb{R}^{n\\times n}$ 的子空间？请说明理由并作答。\n\n5) 任意 $M\\in\\mathbb{R}^{n\\times n}$ 都可以表示为实对称矩阵与实交代（反对称）矩阵之和：$M=\\dfrac12(M+M^{T})+\\dfrac12(M-M^{T})$。将 $M=\\begin{pmatrix}p&q\\\\r&s\\end{pmatrix}\\in\\mathbb{R}^{2\\times2}$（$p,q,r,s$ 为实数）表示为实对称矩阵与实交代矩阵之和。\n\n6) 证明实对称矩阵全体 $S^{n}$ 与实交代矩阵全体在 $\\mathbb{R}^{n\\times n}$ 中是正交的。\n\n7) 对 $M\\in\\mathbb{R}^{n\\times n}$，考虑变量 $S\\in S^{n}$ 的函数 $U(S)=\\|M-S\\|$，求 $U(S)$ 的最小值。",
+  "knowledge_points": [
+    "矩阵内积与Frobenius范数",
+    "正交矩阵的性质",
+    "对称与反对称矩阵分解",
+    "子空间的判定",
+    "迹的循环性质",
+    "极值与投影原理",
+    "正交补与最小距离"
+  ],
+  "question_type": "矩阵空间内积、子空间判定与最小距离综合题",
+  "method": [
+    "利用 $\\mathrm{tr}(M^TN)$ 展开内积",
+    "利用范数平方展开并结合正交矩阵性质 $P^TP=I$",
+    "三角函数合一（辅助角公式）求极值",
+    "子空间三条件（含零元、加法、数乘封闭）验证",
+    "对称-反对称分解公式",
+    "利用迹的循环不变性 $\\mathrm{tr}(AB)=\\mathrm{tr}(BA)$ 证明正交性",
+    "正交投影原理求最小范数"
+  ],
+  "solution_steps": [
+    "1) 直接计算 $M^TR(\\theta)$ 并取迹",
+    "2) 展开 $\\|M-P\\|^2=\\|M\\|^2+n-2(M,P)$，利用 $\\|P\\|^2=n$（$P\\in O^n$）为常数",
+    "3) 结合2)的结论，将求$h(\\theta)$最小值转化为求$(M,R(\\theta))$最大值，再用辅助角公式",
+    "4) 分别验证 $O^n$、$S^n$ 是否满足子空间的加法与数乘封闭性及含零元",
+    "5) 直接套用对称-反对称分解公式",
+    "6) 利用 $\\mathrm{tr}(AB)=\\mathrm{tr}(BA)$ 证明对称阵与反对称阵内积为零",
+    "7) 利用5)、6)的正交分解，将 $M$ 投影到 $S^n$，最小值即为反对称部分的范数"
+  ],
+  "math_structure": {
+    "type": "matrix_inner_product_space",
+    "template": "$(M,N)=\\mathrm{tr}(M^TN)$ on $\\mathbb{R}^{n\\times n}$, $O^n$, $S^n$, projection & extremum problems",
+    "variable_count": 6
+  },
+  "difficulty": 4,
+  "answer": [
+    {
+      "label": "1)",
+      "steps": [
+        "$M^{T}=\\begin{pmatrix}a&c\\\\b&d\\end{pmatrix}$，计算 $M^{T}R(\\theta)=\\begin{pmatrix}a\\cos\\theta+c\\sin\\theta & -a\\sin\\theta+c\\cos\\theta\\\\ b\\cos\\theta+d\\sin\\theta & -b\\sin\\theta+d\\cos\\theta\\end{pmatrix}$",
+        "取迹：$\\mathrm{tr}(M^TR(\\theta))=(a\\cos\\theta+c\\sin\\theta)+(-b\\sin\\theta+d\\cos\\theta)=(a+d)\\cos\\theta+(c-b)\\sin\\theta$",
+        "所以 $(M,R(\\theta))=(a+d)\\cos\\theta+(c-b)\\sin\\theta$"
+      ]
+    },
+    {
+      "label": "2)",
+      "steps": [
+        "展开 $g(P)^2=\\|M-P\\|^2=(M-P,M-P)=(M,M)-2(M,P)+(P,P)=\\|M\\|^2-2f(P)+\\|P\\|^2$",
+        "因为 $P\\in O^n$，$P^TP=I_n$，故 $\\|P\\|^2=\\mathrm{tr}(P^TP)=\\mathrm{tr}(I_n)=n$，为与 $P$ 无关的常数",
+        "所以 $g(P)^2=\\|M\\|^2+n-2f(P)$，是 $f(P)$ 的严格递减函数（系数 $-2<0$）",
+        "因此当 $f(P)$ 在 $P=\\bar P$ 取最大值时，$g(P)^2$（从而 $g(P)\\ge0$）在同一点取最小值，证毕"
+      ]
+    },
+    {
+      "label": "3)",
+      "steps": [
+        "由2)的结论，$h(\\theta)$ 取最小值等价于 $f(\\theta)=(M,R(\\theta))=(a+d)\\cos\\theta+(c-b)\\sin\\theta$ 取最大值",
+        "记 $R=\\sqrt{(a+d)^2+(c-b)^2}>0$，则 $f(\\theta)=R\\cos(\\theta-\\varphi)$，其中 $\\cos\\varphi=\\dfrac{a+d}{R},\\ \\sin\\varphi=\\dfrac{c-b}{R}$",
+        "因为 $a+d>0,\\ c-b>0$，故 $\\varphi\\in(0,\\pi/2)$，即 $\\varphi=\\arctan\\dfrac{c-b}{a+d}$",
+        "$f(\\theta)$ 在 $\\theta=\\varphi$（$\\cos(\\theta-\\varphi)=1$）时取最大值，故 $h(\\theta)$ 在 $\\theta=\\arctan\\dfrac{c-b}{a+d}$ 时取最小值"
+      ]
+    },
+    {
+      "label": "4)",
+      "steps": [
+        "$O^n$：零矩阵 $0$ 满足 $0^T0=0\\ne I_n$，故 $0\\notin O^n$，不含零元，因此 $O^n$ 不是子空间",
+        "另外也可举反例说明加法不封闭：取 $n=2$，$I,-I\\in O^2$，但 $I+(-I)=0\\notin O^2$",
+        "$S^n$：若 $A,B\\in S^n$，即 $A^T=A,B^T=B$，则 $(A+B)^T=A^T+B^T=A+B$，$(\\lambda A)^T=\\lambda A^T=\\lambda A$，且零矩阵满足 $0^T=0\\in S^n$，因此 $S^n$ 对加法与数乘封闭且含零元，是 $\\mathbb{R}^{n\\times n}$ 的子空间"
+      ]
+    },
+    {
+      "label": "5)",
+      "steps": [
+        "对一般 $M=\\begin{pmatrix}p&q\\\\r&s\\end{pmatrix}$，计算 $M^T=\\begin{pmatrix}p&r\\\\q&s\\end{pmatrix}$",
+        "对称部分：$\\dfrac12(M+M^T)=\\dfrac12\\begin{pmatrix}2p&q+r\\\\q+r&2s\\end{pmatrix}=\\begin{pmatrix}p&\\frac{q+r}{2}\\\\ \\frac{q+r}{2}&s\\end{pmatrix}$",
+        "反对称部分：$\\dfrac12(M-M^T)=\\dfrac12\\begin{pmatrix}0&q-r\\\\r-q&0\\end{pmatrix}=\\begin{pmatrix}0&\\frac{q-r}{2}\\\\ -\\frac{q-r}{2}&0\\end{pmatrix}$",
+        "两者相加即得 $M=\\begin{pmatrix}p&\\frac{q+r}{2}\\\\ \\frac{q+r}{2}&s\\end{pmatrix}+\\begin{pmatrix}0&\\frac{q-r}{2}\\\\ -\\frac{q-r}{2}&0\\end{pmatrix}$，验证：两矩阵之和的 $(1,2)$ 元为 $\\frac{q+r}{2}+\\frac{q-r}{2}=q$，$(2,1)$ 元为 $\\frac{q+r}{2}-\\frac{q-r}{2}=r$，符合 $M$"
+      ]
+    },
+    {
+      "label": "6)",
+      "steps": [
+        "设 $S\\in S^n$（$S^T=S$），$A$ 为反对称矩阵（$A^T=-A$），要证 $(S,A)=\\mathrm{tr}(S^TA)=0$",
+        "因为 $S^T=S$，故 $(S,A)=\\mathrm{tr}(SA)$",
+        "另一方面 $\\mathrm{tr}(SA)=\\mathrm{tr}((SA)^T)=\\mathrm{tr}(A^TS^T)=\\mathrm{tr}(-AS)=-\\mathrm{tr}(AS)$",
+        "由迹的循环不变性 $\\mathrm{tr}(AS)=\\mathrm{tr}(SA)$，代入得 $\\mathrm{tr}(SA)=-\\mathrm{tr}(SA)$，所以 $2\\mathrm{tr}(SA)=0$，即 $(S,A)=0$，证毕"
+      ]
+    },
+    {
+      "label": "7)",
+      "steps": [
+        "由5)将 $M$ 分解为 $M=M_s+M_a$，其中 $M_s=\\dfrac12(M+M^T)\\in S^n$，$M_a=\\dfrac12(M-M^T)$ 为反对称矩阵",
+        "对任意 $S\\in S^n$，$M-S=(M_s-S)+M_a$，其中 $M_s-S\\in S^n$，由6)知 $M_s-S$ 与 $M_a$ 正交",
+        "由勾股定理（正交分解）：$\\|M-S\\|^2=\\|M_s-S\\|^2+\\|M_a\\|^2\\ge \\|M_a\\|^2$，等号当且仅当 $S=M_s$",
+        "因此 $U(S)$ 的最小值为 $\\|M_a\\|=\\left\\|\\dfrac12(M-M^T)\\right\\|=\\dfrac12\\|M-M^T\\|$，也可写作 $\\sqrt{\\dfrac{\\|M\\|^2-\\mathrm{tr}(M^2)}{2}}$，在 $S=\\dfrac12(M+M^T)$ 处取得"
+      ]
+    }
+  ],
+  "practice_questions": [
+    {
+      "text": "设 $M=\\begin{pmatrix}1&2\\\\3&4\\end{pmatrix}$，$N=\\begin{pmatrix}0&1\\\\1&0\\end{pmatrix}$，按定义 $(M,N)=\\mathrm{tr}(M^TN)$ 计算内积 $(M,N)$。",
+      "knowledge_points": [
+        "矩阵内积定义",
+        "转置与矩阵乘法",
+        "迹的计算"
+      ],
+      "question_type": "基础计算题",
+      "method": [
+        "先求转置再相乘取迹"
+      ],
+      "solution_steps": [
+        "求 $M^T$",
+        "计算 $M^TN$",
+        "对结果取迹"
+      ],
+      "math_structure": {
+        "type": "matrix_inner_product_basic",
+        "template": "$(M,N)=\\mathrm{tr}(M^TN)$ for numeric $2\\times2$ matrices",
+        "variable_count": 2
+      },
+      "difficulty": 1,
+      "estimated_minutes": 4,
+      "answer": [
+        {
+          "label": "结果",
+          "steps": [
+            "$M^{T}=\\begin{pmatrix}1&3\\\\2&4\\end{pmatrix}$",
+            "$M^{T}N=\\begin{pmatrix}1&3\\\\2&4\\end{pmatrix}\\begin{pmatrix}0&1\\\\1&0\\end{pmatrix}=\\begin{pmatrix}3&1\\\\4&2\\end{pmatrix}$",
+            "$\\mathrm{tr}(M^TN)=3+2=5$，故 $(M,N)=5$"
+          ]
+        }
+      ],
+      "id": "osaka-2025-c7dbe7a96d-q01-practice-01",
+      "school": "大阪大学",
+      "year": "2025"
+    },
+    {
+      "text": "证明 $2$ 次实正交矩阵全体 $O^2$ 不是 $\\mathbb{R}^{2\\times2}$ 的子空间（提示：考虑零矩阵是否属于 $O^2$）。",
+      "knowledge_points": [
+        "子空间的定义",
+        "正交矩阵性质",
+        "反例构造"
+      ],
+      "question_type": "证明题",
+      "method": [
+        "验证含零元条件"
+      ],
+      "solution_steps": [
+        "写出子空间需满足的三个条件",
+        "检验零矩阵是否满足正交条件",
+        "得出结论"
+      ],
+      "math_structure": {
+        "type": "subspace_counterexample",
+        "template": "check whether $O^n\\subset\\mathbb{R}^{n\\times n}$ is a subspace using the zero-element criterion",
+        "variable_count": 1
+      },
+      "difficulty": 2,
+      "estimated_minutes": 5,
+      "answer": [
+        {
+          "label": "证明",
+          "steps": [
+            "子空间必须含有加法零元，即零矩阵 $0$",
+            "但 $0^T0=0\\ne I_2$，所以零矩阵不满足正交条件 $P^TP=I_2$，即 $0\\notin O^2$",
+            "因此 $O^2$ 不含零元，不满足子空间的必要条件，故 $O^2$ 不是 $\\mathbb{R}^{2\\times2}$ 的子空间"
+          ]
+        }
+      ],
+      "id": "osaka-2025-c7dbe7a96d-q01-practice-02",
+      "school": "大阪大学",
+      "year": "2025"
+    },
+    {
+      "text": "将矩阵 $M=\\begin{pmatrix}2&3\\\\1&4\\end{pmatrix}$ 分解为实对称矩阵与实交代（反对称）矩阵之和，并验证分解结果。",
+      "knowledge_points": [
+        "对称矩阵",
+        "反对称矩阵",
+        "矩阵分解公式"
+      ],
+      "question_type": "计算题",
+      "method": [
+        "套用 $M=\\frac12(M+M^T)+\\frac12(M-M^T)$"
+      ],
+      "solution_steps": [
+        "求 $M^T$",
+        "计算对称部分",
+        "计算反对称部分",
+        "相加验证等于 $M$"
+      ],
+      "math_structure": {
+        "type": "symmetric_antisymmetric_decomposition",
+        "template": "decompose numeric $2\\times2$ matrix into symmetric + antisymmetric parts",
+        "variable_count": 1
+      },
+      "difficulty": 2,
+      "estimated_minutes": 6,
+      "answer": [
+        {
+          "label": "结果",
+          "steps": [
+            "$M^{T}=\\begin{pmatrix}2&1\\\\3&4\\end{pmatrix}$",
+            "对称部分：$\\dfrac12(M+M^T)=\\dfrac12\\begin{pmatrix}4&4\\\\4&8\\end{pmatrix}=\\begin{pmatrix}2&2\\\\2&4\\end{pmatrix}$",
+            "反对称部分：$\\dfrac12(M-M^T)=\\dfrac12\\begin{pmatrix}0&2\\\\-2&0\\end{pmatrix}=\\begin{pmatrix}0&1\\\\-1&0\\end{pmatrix}$",
+            "验证：$\\begin{pmatrix}2&2\\\\2&4\\end{pmatrix}+\\begin{pmatrix}0&1\\\\-1&0\\end{pmatrix}=\\begin{pmatrix}2&3\\\\1&4\\end{pmatrix}=M$，分解正确"
+          ]
+        }
+      ],
+      "id": "osaka-2025-c7dbe7a96d-q01-practice-03",
+      "school": "大阪大学",
+      "year": "2025"
+    },
+    {
+      "text": "利用迹的循环不变性 $\\mathrm{tr}(AB)=\\mathrm{tr}(BA)$（对任意方阵 $A,B\\in\\mathbb{R}^{n\\times n}$ 成立），证明：若 $S$ 为对称矩阵，$A$ 为反对称矩阵，则 $(S,A)=\\mathrm{tr}(S^TA)=0$。",
+      "knowledge_points": [
+        "迹的循环性质",
+        "对称与反对称矩阵",
+        "内积正交性证明"
+      ],
+      "question_type": "证明题",
+      "method": [
+        "利用迹的循环不变性与转置性质"
+      ],
+      "solution_steps": [
+        "用 $S^T=S$ 化简内积表达式",
+        "利用迹的循环性质变形",
+        "利用 $A^T=-A$ 得出等式",
+        "解出结论 $\\mathrm{tr}(SA)=0$"
+      ],
+      "math_structure": {
+        "type": "trace_orthogonality_proof",
+        "template": "prove $(S,A)=0$ for $S\\in S^n$, $A^T=-A$ using $\\mathrm{tr}(AB)=\\mathrm{tr}(BA)$",
+        "variable_count": 2
+      },
+      "difficulty": 3,
+      "estimated_minutes": 8,
+      "answer": [
+        {
+          "label": "证明",
+          "steps": [
+            "$(S,A)=\\mathrm{tr}(S^TA)=\\mathrm{tr}(SA)$，因为 $S^T=S$",
+            "由迹循环性质，$\\mathrm{tr}(SA)=\\mathrm{tr}(AS)$",
+            "又 $\\mathrm{tr}(AS)=\\mathrm{tr}((AS)^T)=\\mathrm{tr}(S^TA^T)=\\mathrm{tr}(S(-A))=-\\mathrm{tr}(SA)$",
+            "综合得 $\\mathrm{tr}(SA)=-\\mathrm{tr}(SA)$，即 $2\\mathrm{tr}(SA)=0$，故 $(S,A)=0$"
+          ]
+        }
+      ],
+      "id": "osaka-2025-c7dbe7a96d-q01-practice-04",
+      "school": "大阪大学",
+      "year": "2025"
+    },
+    {
+      "text": "设 $M=\\begin{pmatrix}3&1\\\\0&2\\end{pmatrix}$，求 $\\displaystyle\\min_{S\\in S^2}\\|M-S\\|$ 的值，并给出取得最小值时的 $S$。",
+      "knowledge_points": [
+        "正交投影",
+        "对称反对称分解",
+        "范数计算",
+        "最小距离问题"
+      ],
+      "question_type": "计算题",
+      "method": [
+        "将 $M$ 投影到对称矩阵空间 $S^2$"
+      ],
+      "solution_steps": [
+        "求 $M^T$",
+        "计算对称部分 $M_s$ 与反对称部分 $M_a$",
+        "最小值即为 $\\|M_a\\|$",
+        "计算范数得最终数值"
+      ],
+      "math_structure": {
+        "type": "minimum_distance_to_symmetric_subspace",
+        "template": "compute $\\min_{S\\in S^n}\\|M-S\\|$ for numeric matrix $M$",
+        "variable_count": 1
+      },
+      "difficulty": 3,
+      "estimated_minutes": 8,
+      "answer": [
+        {
+          "label": "结果",
+          "steps": [
+            "$M^T=\\begin{pmatrix}3&0\\\\1&2\\end{pmatrix}$",
+            "对称部分 $M_s=\\dfrac12(M+M^T)=\\dfrac12\\begin{pmatrix}6&1\\\\1&4\\end{pmatrix}=\\begin{pmatrix}3&0.5\\\\0.5&2\\end{pmatrix}$；反对称部分 $M_a=\\dfrac12(M-M^T)=\\dfrac12\\begin{pmatrix}0&1\\\\-1&0\\end{pmatrix}=\\begin{pmatrix}0&0.5\\\\-0.5&0\\end{pmatrix}$",
+            "最小值在 $S=M_s=\\begin{pmatrix}3&0.5\\\\0.5&2\\end{pmatrix}$ 处取得，此时 $\\min\\|M-S\\|=\\|M_a\\|$",
+            "计算 $\\|M_a\\|=\\sqrt{0^2+0.5^2+(-0.5)^2+0^2}=\\sqrt{0.5}=\\dfrac{1}{\\sqrt2}$，即最小值为 $\\dfrac{\\sqrt2}{2}$"
+          ]
+        }
+      ],
+      "id": "osaka-2025-c7dbe7a96d-q01-practice-05",
+      "school": "大阪大学",
+      "year": "2025"
+    }
+  ],
+  "source_question": "問題2",
+  "source_pdf": "大阪大学/基礎工学研究科/知能システム学コース/大阪大学_基礎工学研究科_知能システム学コース_2025.pdf",
+  "source_type": "官方过去问",
+  "subject_category": "线性代数"
+}

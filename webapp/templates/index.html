@@ -81,6 +81,6 @@
   <script id="example-json" type="application/json">{{ example | safe }}</script>
   <script id="scope-tree" type="application/json">{{ scope_tree | tojson }}</script>
   <script id="default-subject" type="application/json">{{ default_subject | tojson }}</script>
-  <script src="{{ url_for('static', filename='app.js') }}?v={{ asset_version }}"></script>
+  <script defer src="{{ url_for('static', filename='app.js') }}?v={{ asset_version }}"></script>
 </body>
 </html>

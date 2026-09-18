@@ -1,0 +1,210 @@
+{
+  "id": "osaka-2011-c181961945-q04",
+  "school": "大阪大学",
+  "year": "2011",
+  "subject": "情报科学研究科_情报基础数学",
+  "text": "设$A$是$n$次实系数正方矩阵。现假设：对满足$A\\mathbf{x}\\ge\\mathbf{0}$的任意$\\mathbf{x}\\in\\mathbb{R}^n$，都有$\\mathbf{x}\\ge\\mathbf{0}$成立。这里，对$\\mathbf{v}\\in\\mathbb{R}^n$，当其所有分量均非负时记为$\\mathbf{v}\\ge\\mathbf{0}$。\n(1) 证明$A$是正则矩阵（可逆矩阵）。\n(2) 证明$A^{-1}$的所有元素均非负。",
+  "knowledge_points": [
+    "矩阵可逆性的判定（核空间为零）",
+    "反证法",
+    "标准基向量与逆矩阵列的关系",
+    "偏序≥0的传递性",
+    "M-矩阵/非负逆矩阵的基本性质"
+  ],
+  "question_type": "矩阵可逆性与逆矩阵非负性证明",
+  "method": [
+    "反证法：假设A不可逆则存在非零核向量，结合±x同时满足Ax≥0导出矛盾",
+    "利用A^{-1}的第i列等于A^{-1}e_i，验证A(A^{-1}e_i)=e_i≥0从而由假设得A^{-1}e_i≥0"
+  ],
+  "solution_steps": [
+    "假设A奇异，取核空间中非零向量x0，由Ax0=0≥0以及A(-x0)=0≥0推出x0≥0且-x0≥0，从而x0=0，矛盾，故A可逆",
+    "设e_i为标准基向量（其分量非负），记y_i=A^{-1}e_i，则Ay_i=e_i≥0，由假设条件得y_i≥0",
+    "y_i恰为A^{-1}的第i列，对所有i=1,…,n重复上述论证，得A^{-1}每一列都非负，即A^{-1}所有元素非负"
+  ],
+  "math_structure": {
+    "type": "matrix_invertibility_and_nonnegative_inverse",
+    "template": "若∀x: Ax≥0⟹x≥0，则A可逆且A^{-1}的所有元素≥0",
+    "variable_count": 1
+  },
+  "difficulty": 4,
+  "answer": [
+    {
+      "label": "(1)",
+      "steps": [
+        "用反证法：假设A不是正则矩阵，即A不可逆，则齐次方程组Ax=0有非零解x0∈R^n（x0≠0）",
+        "此时Ax0=0，而0的所有分量都非负（0≥0），即满足条件『Ax≥0』，由题设假设应有x0≥0",
+        "同时考虑-x0：A(-x0)=-Ax0=0≥0，同样满足条件，故由假设应有-x0≥0，即x0的所有分量都≤0",
+        "结合x0≥0与x0≤0，得x0的每个分量都等于0，即x0=0，这与x0≠0矛盾",
+        "故假设不成立，A必为正则矩阵（可逆）"
+      ]
+    },
+    {
+      "label": "(2)",
+      "steps": [
+        "由(1)知A可逆，A^{-1}存在。设e_1,…,e_n为R^n的标准基向量，每个e_i只有第i个分量为1，其余为0，故e_i≥0",
+        "对每个i，令$y_i=A^{-1}e_i\\in\\mathbb{R}^n$，则$Ay_i=A(A^{-1}e_i)=e_i\\ge0$",
+        "依题设条件，$Ay_i\\ge0$蕴含$y_i\\ge0$，即y_i的所有分量非负",
+        "注意到A^{-1}的第i列正是$A^{-1}e_i=y_i$（因为矩阵乘以第i个标准基向量取出的正是该矩阵的第i列）",
+        "对i=1,2,…,n分别应用上述论证，得A^{-1}的每一列都是非负向量，从而A^{-1}的所有元素都非负"
+      ]
+    }
+  ],
+  "practice_questions": [
+    {
+      "text": "设$A$为$n$次实方阵，证明：若齐次方程组$A\\mathbf{x}=\\mathbf{0}$只有零解，则$A$可逆。",
+      "knowledge_points": [
+        "矩阵可逆性的基本判定"
+      ],
+      "question_type": "基础可逆性证明",
+      "method": [
+        "直接利用核空间为零维等价于满秩"
+      ],
+      "solution_steps": [
+        "说明Ax=0只有零解等价于ker(A)={0}",
+        "由秩-零度定理得rank(A)=n，即A满秩可逆"
+      ],
+      "math_structure": {
+        "type": "matrix_invertibility_basic",
+        "template": "ker(A)={0} ⟺ A可逆",
+        "variable_count": 1
+      },
+      "difficulty": 1,
+      "estimated_minutes": 4,
+      "answer": [
+        {
+          "label": "结果",
+          "steps": [
+            "Ax=0只有零解意味着ker(A)={0}，即dim ker(A)=0",
+            "由秩-零度定理，rank(A)+dim ker(A)=n，故rank(A)=n，即A的列（或行）线性无关",
+            "n阶方阵满秩即可逆，结论得证"
+          ]
+        }
+      ],
+      "id": "osaka-2011-c181961945-q04-practice-01",
+      "school": "大阪大学",
+      "year": "2011"
+    },
+    {
+      "text": "设$A=\\begin{pmatrix}2&-1\\\\-1&2\\end{pmatrix}$。(a) 求$A^{-1}$；(b) 用$A^{-1}$的性质说明：若$A\\mathbf{x}\\ge\\mathbf{0}$，则$\\mathbf{x}\\ge\\mathbf{0}$。",
+      "knowledge_points": [
+        "2阶矩阵求逆",
+        "利用非负逆矩阵反推不等式蕴含关系"
+      ],
+      "question_type": "具体矩阵的逆与非负性应用",
+      "method": [
+        "直接计算逆矩阵，用x=A^{-1}(Ax)结合A^{-1}非负说明结论"
+      ],
+      "solution_steps": [
+        "计算det A与伴随矩阵求A^{-1}",
+        "验证A^{-1}所有元素非负",
+        "用x=A^{-1}(Ax)说明Ax≥0⟹x≥0"
+      ],
+      "math_structure": {
+        "type": "explicit_inverse_nonnegativity",
+        "template": "由A^{-1}≥0与x=A^{-1}(Ax)推出Ax≥0⟹x≥0",
+        "variable_count": 1
+      },
+      "difficulty": 2,
+      "estimated_minutes": 7,
+      "answer": [
+        {
+          "label": "(a)",
+          "steps": [
+            "det A=2×2-(-1)×(-1)=4-1=3",
+            "伴随矩阵为$\\begin{pmatrix}2&1\\\\1&2\\end{pmatrix}$，故$A^{-1}=\\dfrac{1}{3}\\begin{pmatrix}2&1\\\\1&2\\end{pmatrix}$",
+            "验证：$A\\cdot A^{-1}=\\dfrac13\\begin{pmatrix}2&-1\\\\-1&2\\end{pmatrix}\\begin{pmatrix}2&1\\\\1&2\\end{pmatrix}=\\dfrac13\\begin{pmatrix}3&0\\\\0&3\\end{pmatrix}=I$，正确"
+          ]
+        },
+        {
+          "label": "(b)",
+          "steps": [
+            "A^{-1}的所有元素（2/3,1/3,1/3,2/3）均非负",
+            "设Ax≥0，则x=A^{-1}(Ax)，由于A^{-1}的每个元素非负，Ax的每个分量也非负，故x的每个分量是若干非负数的非负线性组合，从而x≥0",
+            "结论：该A确实满足『Ax≥0⟹x≥0』的性质"
+          ]
+        }
+      ],
+      "id": "osaka-2011-c181961945-q04-practice-02",
+      "school": "大阪大学",
+      "year": "2011"
+    },
+    {
+      "text": "证明：若n阶方阵$A$可逆且$A^{-1}$的所有元素非负，则对任意$\\mathbf{x}\\in\\mathbb{R}^n$，$A\\mathbf{x}\\ge\\mathbf{0}$蕴含$\\mathbf{x}\\ge\\mathbf{0}$（即原题性质的逆命题）。",
+      "knowledge_points": [
+        "逆矩阵与不等式的关系",
+        "矩阵-向量乘法保号性"
+      ],
+      "question_type": "逆命题证明",
+      "method": [
+        "利用x=A^{-1}(Ax)，逐分量展开为非负数之和"
+      ],
+      "solution_steps": [
+        "写出x=A^{-1}(Ax)",
+        "逐个分量展开为(A^{-1})的元素与(Ax)分量乘积之和，说明每项非负"
+      ],
+      "math_structure": {
+        "type": "nonnegative_inverse_converse",
+        "template": "A^{-1}≥0（逐元素）⟹（Ax≥0⟹x≥0）",
+        "variable_count": 1
+      },
+      "difficulty": 3,
+      "estimated_minutes": 8,
+      "answer": [
+        {
+          "label": "结果",
+          "steps": [
+            "设Ax≥0，记y=Ax，则y的每个分量y_j≥0",
+            "由A可逆，x=A^{-1}y，第i个分量为$x_i=\\sum_{j=1}^n (A^{-1})_{ij}y_j$",
+            "因为(A^{-1})_{ij}≥0（已知条件）且y_j≥0，故每一项(A^{-1})_{ij}y_j≥0，其和x_i也≥0",
+            "对所有i=1,…,n成立，故x≥0，逆命题得证。（这与原题(问4)的正命题构成充要关系）"
+          ]
+        }
+      ],
+      "id": "osaka-2011-c181961945-q04-practice-03",
+      "school": "大阪大学",
+      "year": "2011"
+    },
+    {
+      "text": "设$A=\\begin{pmatrix}3&-1&-1\\\\-1&3&-1\\\\-1&-1&3\\end{pmatrix}$。证明：若$A\\mathbf{x}\\ge\\mathbf{0}$，则$\\mathbf{x}\\ge\\mathbf{0}$（从而由原题结论，$A$可逆且$A^{-1}$的所有元素非负）。",
+      "knowledge_points": [
+        "对角占优矩阵(M-矩阵)的性质",
+        "反证法与最小分量讨论"
+      ],
+      "question_type": "具体对角占优矩阵的性质证明",
+      "method": [
+        "反证法：设最小分量为负，代入对应行不等式推出矛盾"
+      ],
+      "solution_steps": [
+        "假设Ax≥0但x存在负分量，设x_k为最小分量",
+        "代入第k行不等式，结合其余分量≥x_k推出矛盾",
+        "得出x_k≥0，从而所有分量非负"
+      ],
+      "math_structure": {
+        "type": "diagonally_dominant_positivity",
+        "template": "对角占优、非对角元非正的矩阵满足Ax≥0⟹x≥0",
+        "variable_count": 1
+      },
+      "difficulty": 4,
+      "estimated_minutes": 10,
+      "answer": [
+        {
+          "label": "结果",
+          "steps": [
+            "设Ax≥0，即对每个k=1,2,3有：$3x_k-\\sum_{j\\ne k}x_j\\ge0$",
+            "用反证法：设x的最小分量为$x_k=\\min_i x_i$，若$x_k<0$，代入第k行不等式：$3x_k\\ge x_i+x_j$（i,j为另外两个下标）",
+            "由于x_k是最小分量，$x_i\\ge x_k,\\ x_j\\ge x_k$，所以$x_i+x_j\\ge 2x_k$，结合上式得$3x_k\\ge x_i+x_j\\ge2x_k$，即$3x_k\\ge2x_k$，也就是$x_k\\ge0$",
+            "这与假设$x_k<0$矛盾，故必有$x_k\\ge0$，从而所有分量都$\\ge x_k\\ge0$，即x≥0",
+            "由问4已证明的一般结论，该性质蕴含A可逆且$A^{-1}$的所有元素非负（此处A为典型的对角占优M-矩阵）"
+          ]
+        }
+      ],
+      "id": "osaka-2011-c181961945-q04-practice-04",
+      "school": "大阪大学",
+      "year": "2011"
+    }
+  ],
+  "source_question": "問4",
+  "source_pdf": "大阪大学/情报科学研究科/情报基础数学/大阪大学_情报科学研究科_情报基础数学_2011_数学过去问.pdf",
+  "source_type": "官方过去问",
+  "subject_category": "线性代数"
+}

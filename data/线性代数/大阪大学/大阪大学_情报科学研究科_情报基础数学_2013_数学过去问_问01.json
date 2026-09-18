@@ -1,0 +1,214 @@
+{
+  "id": "osaka-2013-6ff4bc84d8-q01",
+  "school": "大阪大学",
+  "year": "2013",
+  "subject": "情报科学研究科_情报基础数学",
+  "text": "设次数不超过2的实系数多项式全体所成的集合为 $P_2$。考虑 $P_2$ 上如下变换：\n$$T: f(x) \\mapsto \\frac{1}{x}\\int_0^x f(t)\\,dt + \\frac{df(x)}{dx}$$\n(1) 对 $f(x)=ax^2+bx+c$，计算 $Tf(x)$。\n(2) 当 $f(x)=10x+3$ 时，求 $T^{100}f(x)$。",
+  "knowledge_points": [
+    "多项式空间上的线性变换",
+    "线性算子的显式计算",
+    "定积分与导数运算",
+    "线性递推数列求通项",
+    "等比数列求和",
+    "算子的幂运算"
+  ],
+  "question_type": "线性算子的计算与幂运算",
+  "method": [
+    "直接积分与求导计算算子作用",
+    "把算子限制在子空间上转化为系数的线性递推",
+    "求解线性递推数列通项",
+    "代入终值求算子的高次幂"
+  ],
+  "solution_steps": [
+    "对一般 $f(x)=ax^2+bx+c$ 直接计算 $\\frac{1}{x}\\int_0^x f(t)dt$ 与 $f'(x)$ 并相加",
+    "注意到当 $a=0$（即 $f$ 为一次多项式 $bx+c$）时，$T$ 把 $(b,c)$ 映为新的 $(b',c')=(b/2,\\,b+c)$",
+    "把该映射写成关于 $n$ 的递推关系 $b_{n+1}=b_n/2,\\ c_{n+1}=c_n+b_n$",
+    "求解递推得到 $b_n,c_n$ 的通项公式",
+    "代入 $n=100$, $b_0=10,c_0=3$ 得到最终表达式"
+  ],
+  "math_structure": {
+    "type": "linear_operator_on_polynomial_space",
+    "template": "T: f(x) -> (1/x)*int_0^x f(t)dt + f'(x) on P_2; compute T^n f(x)",
+    "variable_count": 3
+  },
+  "difficulty": 3,
+  "answer": [
+    {
+      "label": "(1)",
+      "steps": [
+        "计算 $\\int_0^x f(t)dt=\\int_0^x (at^2+bt+c)dt=\\frac{a}{3}x^3+\\frac{b}{2}x^2+cx$",
+        "两边除以 $x$：$\\frac{1}{x}\\int_0^x f(t)dt=\\frac{a}{3}x^2+\\frac{b}{2}x+c$",
+        "计算 $f'(x)=2ax+b$",
+        "两者相加：$Tf(x)=\\frac{a}{3}x^2+\\left(\\frac{b}{2}+2a\\right)x+(b+c)$"
+      ]
+    },
+    {
+      "label": "(2)",
+      "steps": [
+        "$f(x)=10x+3$ 对应 (1) 中 $a=0,b=10,c=3$；由 (1)，当 $a=0$ 时 $Tf(x)=\\frac{b}{2}x+(b+c)$，即 $T$ 把线性多项式的系数对 $(b,c)$ 映为 $(b/2,\\,b+c)$，结果仍是一次多项式（$a$ 恒为0）",
+        "设 $T^nf(x)=b_nx+c_n$，则 $b_{n+1}=\\dfrac{b_n}{2},\\ c_{n+1}=c_n+b_n$，初值 $b_0=10,\\ c_0=3$",
+        "解第一式得 $b_n=\\dfrac{10}{2^n}$；代入第二式求和：$c_n=c_0+\\sum_{k=0}^{n-1}b_k=3+10\\sum_{k=0}^{n-1}\\left(\\frac12\\right)^k=3+20\\left(1-\\frac{1}{2^n}\\right)=23-\\frac{20}{2^n}$",
+        "代入 $n=100$：$b_{100}=\\dfrac{10}{2^{100}}=\\dfrac{5}{2^{99}}$，$c_{100}=23-\\dfrac{20}{2^{100}}=23-\\dfrac{5}{2^{98}}$",
+        "故 $T^{100}f(x)=\\dfrac{5}{2^{99}}x+23-\\dfrac{5}{2^{98}}$"
+      ]
+    }
+  ],
+  "practice_questions": [
+    {
+      "text": "设 $T: f(x)\\mapsto \\dfrac{1}{x}\\int_0^x f(t)\\,dt+\\dfrac{df(x)}{dx}$。对 $f(x)=x^2$，直接按定义计算 $Tf(x)$，并与原题 (1) 中公式（取 $a=1,b=0,c=0$）核对是否一致。",
+      "knowledge_points": [
+        "线性算子定义的直接应用",
+        "定积分与导数计算"
+      ],
+      "question_type": "算子的基础计算",
+      "method": [
+        "按定义直接积分与求导"
+      ],
+      "solution_steps": [
+        "计算 $\\int_0^x t^2dt$",
+        "除以 $x$",
+        "计算 $f'(x)$",
+        "相加得结果并与公式核对"
+      ],
+      "math_structure": {
+        "type": "linear_operator_direct_application",
+        "template": "T f(x) for f(x)=x^2",
+        "variable_count": 1
+      },
+      "difficulty": 1,
+      "estimated_minutes": 4,
+      "answer": [
+        {
+          "label": "求 $Tf(x)$",
+          "steps": [
+            "$\\int_0^x t^2\\,dt=\\dfrac{x^3}{3}$，故 $\\dfrac{1}{x}\\int_0^x t^2dt=\\dfrac{x^2}{3}$",
+            "$f'(x)=2x$",
+            "$Tf(x)=\\dfrac{x^2}{3}+2x$",
+            "核对：原题公式取 $a=1,b=0,c=0$ 给出 $Tf(x)=\\frac{1}{3}x^2+(0+2)x+0=\\frac{x^2}{3}+2x$，一致"
+          ]
+        }
+      ],
+      "id": "osaka-2013-6ff4bc84d8-q01-practice-01",
+      "school": "大阪大学",
+      "year": "2013"
+    },
+    {
+      "text": "对一次多项式 $f(x)=6x+4$，用原题 (1) 中公式（$a=0$ 情形）计算 $Tf(x)$。",
+      "knowledge_points": [
+        "线性算子公式的代入应用",
+        "一次多项式的变换"
+      ],
+      "question_type": "算子公式代入计算",
+      "method": [
+        "代入 (1) 中推导出的一般公式"
+      ],
+      "solution_steps": [
+        "识别 $a=0,b=6,c=4$",
+        "代入公式 $Tf(x)=\\frac{b}{2}x+(b+c)$"
+      ],
+      "math_structure": {
+        "type": "linear_operator_direct_application",
+        "template": "T f(x) for f(x)=bx+c",
+        "variable_count": 2
+      },
+      "difficulty": 1,
+      "estimated_minutes": 3,
+      "answer": [
+        {
+          "label": "求 $Tf(x)$",
+          "steps": [
+            "$a=0,b=6,c=4$",
+            "由公式 $Tf(x)=\\frac{b}{2}x+(b+c)$",
+            "代入得 $Tf(x)=3x+10$"
+          ]
+        }
+      ],
+      "id": "osaka-2013-6ff4bc84d8-q01-practice-02",
+      "school": "大阪大学",
+      "year": "2013"
+    },
+    {
+      "text": "证明：对任意一次多项式 $f(x)=bx+c$ 和正整数 $n$，都有 $T^nf(x)=\\dfrac{b}{2^n}x+(c+2b)-\\dfrac{2b}{2^n}$。",
+      "knowledge_points": [
+        "线性递推数列的通项公式",
+        "数学归纳法",
+        "等比数列求和"
+      ],
+      "question_type": "递推公式的一般化证明",
+      "method": [
+        "建立递推关系",
+        "求解递推得通项",
+        "用归纳法或求和验证"
+      ],
+      "solution_steps": [
+        "写出递推 $b_{n+1}=b_n/2,\\ c_{n+1}=c_n+b_n$",
+        "解出 $b_n$",
+        "对 $c_n$ 求和得通项",
+        "整理成待证形式"
+      ],
+      "math_structure": {
+        "type": "linear_recurrence_closed_form",
+        "template": "b_{n+1}=b_n/2, c_{n+1}=c_n+b_n; find b_n, c_n",
+        "variable_count": 2
+      },
+      "difficulty": 2,
+      "estimated_minutes": 8,
+      "answer": [
+        {
+          "label": "证明",
+          "steps": [
+            "由 (1) 的 $a=0$ 情形，$T$ 把 $(b_n,c_n)$ 映为 $(b_{n+1},c_{n+1})=(b_n/2,\\,c_n+b_n)$，初值 $(b_0,c_0)=(b,c)$",
+            "由 $b_{n+1}=b_n/2$ 立得 $b_n=b/2^n$",
+            "对 $c_n$：$c_n=c+\\sum_{k=0}^{n-1}b_k=c+b\\sum_{k=0}^{n-1}(1/2)^k=c+b\\cdot 2\\left(1-\\frac{1}{2^n}\\right)=c+2b-\\frac{2b}{2^n}$",
+            "故 $T^nf(x)=b_nx+c_n=\\dfrac{b}{2^n}x+(c+2b)-\\dfrac{2b}{2^n}$，命题得证"
+          ]
+        }
+      ],
+      "id": "osaka-2013-6ff4bc84d8-q01-practice-03",
+      "school": "大阪大学",
+      "year": "2013"
+    },
+    {
+      "text": "利用上一问得到的通项公式，对 $f(x)=8x+2$，求 $T^5f(x)$。",
+      "knowledge_points": [
+        "通项公式的代入计算",
+        "算子的幂运算"
+      ],
+      "question_type": "通项公式应用",
+      "method": [
+        "直接代入已证明的通项公式",
+        "用逐步递推交叉验证"
+      ],
+      "solution_steps": [
+        "代入 $b=8,c=2,n=5$ 到通项公式",
+        "化简得到结果",
+        "用逐步递推核对"
+      ],
+      "math_structure": {
+        "type": "linear_operator_on_polynomial_space",
+        "template": "T^n f(x) for f(x)=8x+2, n=5",
+        "variable_count": 2
+      },
+      "difficulty": 2,
+      "estimated_minutes": 6,
+      "answer": [
+        {
+          "label": "求 $T^5f(x)$",
+          "steps": [
+            "由通项公式 $T^nf(x)=\\frac{b}{2^n}x+(c+2b)-\\frac{2b}{2^n}$，代入 $b=8,c=2,n=5$",
+            "$b_5=8/2^5=1/4$；$c+2b=2+16=18$；$2b/2^5=16/32=1/2$",
+            "$T^5f(x)=\\frac14 x+18-\\frac12=\\frac{x}{4}+\\frac{35}{2}$",
+            "验证：逐步递推 $b_0=8,c_0=2\\to b_1=4,c_1=10\\to b_2=2,c_2=14\\to b_3=1,c_3=16\\to b_4=0.5,c_4=17\\to b_5=0.25,c_5=17.5$，与公式结果一致"
+          ]
+        }
+      ],
+      "id": "osaka-2013-6ff4bc84d8-q01-practice-04",
+      "school": "大阪大学",
+      "year": "2013"
+    }
+  ],
+  "source_question": "問1",
+  "source_pdf": "大阪大学/情报科学研究科/情报基础数学/大阪大学_情报科学研究科_情报基础数学_2013_数学过去问.pdf",
+  "source_type": "官方过去问",
+  "subject_category": "线性代数"
+}

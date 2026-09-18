@@ -1,0 +1,229 @@
+{
+  "id": "osaka-2012-30579dc571-q05",
+  "school": "大阪大学",
+  "year": "2012",
+  "subject": "情报科学研究科_情报基础数学",
+  "text": "复数为元的2次正方矩阵 $A=\\begin{pmatrix}a&b\\\\c&d\\end{pmatrix}$ 的迹定义为 $\\mathrm{tr}A=a+d$。设 $I$ 为2次单位矩阵，$O$ 为零矩阵。\n(1) 若复数为元的2次正方矩阵 $A$ 满足 $\\mathrm{tr}A=0$，证明存在 $\\lambda\\in\\mathbb C$ 使得 $A^2=\\lambda I$。\n(2) 若复数为元的2次正方矩阵 $A,B$ 有公共特征向量，证明 $(AB-BA)^2=O$。\n(3) 若复数为元的2次正方矩阵 $A,B$ 没有公共特征向量，证明存在非零的 $\\lambda\\in\\mathbb C$ 使得 $(AB-BA)^2=\\lambda I$，分以下两种情形证明：\n(a) $A$ 可对角化的情形；\n(b) $A$ 不可对角化的情形。",
+  "knowledge_points": [
+    "凯莱-哈密顿定理",
+    "矩阵的迹与行列式",
+    "特征向量与特征值",
+    "矩阵对角化",
+    "若尔当标准型",
+    "矩阵对易子(commutator)",
+    "迹的循环性质 $\\mathrm{tr}(AB)=\\mathrm{tr}(BA)$"
+  ],
+  "question_type": "复数矩阵性质证明",
+  "method": [
+    "用Cayley-Hamilton定理处理迹为0的矩阵",
+    "用公共特征向量把对易子作用于该向量得到零向量",
+    "按A可否对角化取特殊基（对角形/若尔当形）具体计算对易子"
+  ],
+  "solution_steps": [
+    "(1) 写出Cayley-Hamilton公式 $A^2-(\\mathrm{tr}A)A+(\\det A)I=O$，利用 $\\mathrm{tr}A=0$ 得到 $A^2=-\\det(A)I$",
+    "(2) 说明 $\\mathrm{tr}(AB-BA)=0$ 恒成立，结合(1)得 $(AB-BA)^2=\\lambda I$；再用公共特征向量证明该向量被 $AB-BA$ 消灭，从而 $\\lambda=0$",
+    "(3a) 在A的特征基下把B写成一般矩阵，直接计算 $AB-BA$ 及其平方，利用没有公共特征向量说明相关元素非零，从而 $\\lambda\\ne0$",
+    "(3b) 在A的若尔当基下同理计算，得到 $\\lambda$ 关于B左下角元素的表达式，并说明其非零"
+  ],
+  "math_structure": {
+    "type": "matrix_trace_commutator_structure",
+    "template": "A,B\\in M_2(\\mathbb C),\\ \\mathrm{tr}A=0\\Rightarrow A^2=\\lambda I;\\quad (AB-BA)^2=\\lambda I",
+    "variable_count": 1
+  },
+  "difficulty": 5,
+  "answer": [
+    {
+      "label": "(1)",
+      "steps": [
+        "由Cayley-Hamilton定理，任意2次方阵满足其特征多项式：$A^2-(\\mathrm{tr}A)A+(\\det A)I=O$。",
+        "代入 $\\mathrm{tr}A=0$：$A^2+(\\det A)I=O$，即 $A^2=-(\\det A)I$。",
+        "取 $\\lambda=-\\det A\\in\\mathbb C$，则 $A^2=\\lambda I$，命题得证。"
+      ]
+    },
+    {
+      "label": "(2)",
+      "steps": [
+        "设 $v\\ne0$ 是 $A,B$ 的公共特征向量：$Av=\\mu v,\\ Bv=\\nu v$（$\\mu,\\nu\\in\\mathbb C$）。",
+        "则 $(AB-BA)v=A(Bv)-B(Av)=\\nu Av-\\mu Bv=\\nu\\mu v-\\mu\\nu v=0$，即 $v$ 属于 $C:=AB-BA$ 的核。",
+        "另一方面，由迹的性质 $\\mathrm{tr}(AB)=\\mathrm{tr}(BA)$（恒成立），得 $\\mathrm{tr}C=\\mathrm{tr}(AB)-\\mathrm{tr}(BA)=0$。由(1)，存在 $\\lambda$ 使 $C^2=\\lambda I$。",
+        "但 $C^2v=\\lambda v$，而 $Cv=0\\Rightarrow C^2v=C(Cv)=0$，且 $v\\ne0$，故 $\\lambda=0$。",
+        "结论：$(AB-BA)^2=C^2=O$。"
+      ]
+    },
+    {
+      "label": "(3a) A可对角化",
+      "steps": [
+        "因A,B无公共特征向量，A必有两个不同特征值 $\\mu_1\\ne\\mu_2$（若相等则A为数量矩阵，任意向量都是A的特征向量，与B的任一特征向量自动成为公共特征向量矛盾）。取由这两个特征向量组成的基，在此基下 $A=\\mathrm{diag}(\\mu_1,\\mu_2)$，设 $B=\\begin{pmatrix}p&q\\\\r&s\\end{pmatrix}$。",
+        "无公共特征向量意味着基向量 $e_1,e_2$（A的特征向量）都不是B的特征向量，即 $Be_1=(p,r)^T$ 不平行于 $e_1\\Rightarrow r\\ne0$，且 $Be_2=(q,s)^T$ 不平行于 $e_2\\Rightarrow q\\ne0$。",
+        "计算：$AB=\\begin{pmatrix}\\mu_1p&\\mu_1q\\\\\\mu_2r&\\mu_2s\\end{pmatrix},\\ BA=\\begin{pmatrix}\\mu_1p&\\mu_2q\\\\\\mu_1r&\\mu_2s\\end{pmatrix}$，故 $C=AB-BA=(\\mu_1-\\mu_2)\\begin{pmatrix}0&q\\\\-r&0\\end{pmatrix}$。",
+        "$C^2=(\\mu_1-\\mu_2)^2\\begin{pmatrix}0&q\\\\-r&0\\end{pmatrix}^2=(\\mu_1-\\mu_2)^2\\begin{pmatrix}-qr&0\\\\0&-qr\\end{pmatrix}=-(\\mu_1-\\mu_2)^2qr\\cdot I$。",
+        "取 $\\lambda=-(\\mu_1-\\mu_2)^2qr$，因 $\\mu_1\\ne\\mu_2,\\ q\\ne0,\\ r\\ne0$，故 $\\lambda\\ne0$，且 $(AB-BA)^2=\\lambda I$。"
+      ]
+    },
+    {
+      "label": "(3b) A不可对角化",
+      "steps": [
+        "A不可对角化时，A有唯一特征值 $\\mu$（重根），特征子空间1维。取若尔当基使 $A=\\begin{pmatrix}\\mu&1\\\\0&\\mu\\end{pmatrix}$，此时A的（唯一方向的）特征向量为 $e_1$。设 $B=\\begin{pmatrix}p&q\\\\r&s\\end{pmatrix}$。",
+        "无公共特征向量要求 $e_1$ 不是B的特征向量，即 $Be_1=(p,r)^T$ 不平行 $e_1$，故 $r\\ne0$。",
+        "计算：$AB=\\begin{pmatrix}\\mu p+r&\\mu q+s\\\\\\mu r&\\mu s\\end{pmatrix},\\ BA=\\begin{pmatrix}\\mu p&p+\\mu q\\\\\\mu r&r+\\mu s\\end{pmatrix}$，故 $C=AB-BA=\\begin{pmatrix}r&s-p\\\\0&-r\\end{pmatrix}$。",
+        "验证 $\\mathrm{tr}C=r-r=0$，由(1)必有 $C^2=\\lambda I$，且 $\\lambda=-\\det C=-(r\\cdot(-r)-0)=r^2$。",
+        "因 $r\\ne0$，故 $\\lambda=r^2\\ne0$，且 $(AB-BA)^2=r^2I$，命题得证。"
+      ]
+    }
+  ],
+  "practice_questions": [
+    {
+      "text": "取 $A=\\begin{pmatrix}2&3\\\\1&-2\\end{pmatrix}$（满足 $\\mathrm{tr}A=0$），直接计算 $A^2$，并验证与Cayley-Hamilton定理给出的 $\\lambda=-\\det A$ 一致。",
+      "knowledge_points": [
+        "凯莱-哈密顿定理",
+        "矩阵乘法",
+        "行列式"
+      ],
+      "question_type": "凯莱-哈密顿定理数值验证",
+      "method": [
+        "直接矩阵乘法",
+        "行列式计算对照"
+      ],
+      "solution_steps": [
+        "直接计算A^2",
+        "计算detA并求出理论λ",
+        "比较两者一致"
+      ],
+      "math_structure": {
+        "type": "matrix_trace_commutator_structure",
+        "template": "A=\\begin{pmatrix}2&3\\\\1&-2\\end{pmatrix},\\ \\mathrm{tr}A=0",
+        "variable_count": 0
+      },
+      "difficulty": 1,
+      "estimated_minutes": 6,
+      "answer": [
+        {
+          "label": "结果",
+          "steps": [
+            "直接计算：$A^2=\\begin{pmatrix}2\\cdot2+3\\cdot1&2\\cdot3+3\\cdot(-2)\\\\1\\cdot2+(-2)\\cdot1&1\\cdot3+(-2)(-2)\\end{pmatrix}=\\begin{pmatrix}7&0\\\\0&7\\end{pmatrix}=7I$。",
+            "计算 $\\det A=2\\cdot(-2)-3\\cdot1=-7$，理论上 $\\lambda=-\\det A=7$。",
+            "两者一致：$A^2=7I=\\lambda I$，验证Cayley-Hamilton定理的结论。"
+          ]
+        }
+      ],
+      "id": "osaka-2012-30579dc571-q05-practice-01",
+      "school": "大阪大学",
+      "year": "2012"
+    },
+    {
+      "text": "取 $A=\\begin{pmatrix}1&2\\\\3&4\\end{pmatrix},\\ B=\\begin{pmatrix}0&1\\\\1&0\\end{pmatrix}$，验证 $\\mathrm{tr}(AB)=\\mathrm{tr}(BA)$，并求 $\\mathrm{tr}(AB-BA)$。",
+      "knowledge_points": [
+        "迹的循环性质",
+        "矩阵乘法"
+      ],
+      "question_type": "迹性质验证",
+      "method": [
+        "直接矩阵乘法与求迹"
+      ],
+      "solution_steps": [
+        "计算AB及其迹",
+        "计算BA及其迹",
+        "比较并求差的迹"
+      ],
+      "math_structure": {
+        "type": "matrix_trace_commutator_structure",
+        "template": "\\mathrm{tr}(AB)=\\mathrm{tr}(BA)",
+        "variable_count": 0
+      },
+      "difficulty": 2,
+      "estimated_minutes": 6,
+      "answer": [
+        {
+          "label": "结果",
+          "steps": [
+            "$AB=\\begin{pmatrix}2&1\\\\4&3\\end{pmatrix}$，$\\mathrm{tr}(AB)=2+3=5$。",
+            "$BA=\\begin{pmatrix}3&4\\\\1&2\\end{pmatrix}$，$\\mathrm{tr}(BA)=3+2=5$。",
+            "$\\mathrm{tr}(AB)=\\mathrm{tr}(BA)=5$，故 $\\mathrm{tr}(AB-BA)=5-5=0$，与一般性质一致。"
+          ]
+        }
+      ],
+      "id": "osaka-2012-30579dc571-q05-practice-02",
+      "school": "大阪大学",
+      "year": "2012"
+    },
+    {
+      "text": "取 $A=\\mathrm{diag}(1,-1)$，$B=\\begin{pmatrix}0&1\\\\1&0\\end{pmatrix}$（A可对角化，特征值不同；B无e_1,e_2作为特征向量），计算 $AB-BA$ 及其平方，并求出满足 $(AB-BA)^2=\\lambda I$ 的 $\\lambda$。",
+      "knowledge_points": [
+        "对角化矩阵的对易子",
+        "凯莱-哈密顿定理验证"
+      ],
+      "question_type": "对角化情形对易子计算",
+      "method": [
+        "直接矩阵乘法",
+        "对照(3a)的一般公式验证"
+      ],
+      "solution_steps": [
+        "计算AB与BA",
+        "求出对易子C及其平方",
+        "用(3a)公式核对λ"
+      ],
+      "math_structure": {
+        "type": "matrix_trace_commutator_structure",
+        "template": "A=\\mathrm{diag}(\\mu_1,\\mu_2),\\ B=\\begin{pmatrix}0&1\\\\1&0\\end{pmatrix}",
+        "variable_count": 0
+      },
+      "difficulty": 3,
+      "estimated_minutes": 10,
+      "answer": [
+        {
+          "label": "结果",
+          "steps": [
+            "$AB=\\begin{pmatrix}0&1\\\\-1&0\\end{pmatrix}$，$BA=\\begin{pmatrix}0&-1\\\\1&0\\end{pmatrix}$，故 $C=AB-BA=\\begin{pmatrix}0&2\\\\-2&0\\end{pmatrix}$。",
+            "$C^2=\\begin{pmatrix}0&2\\\\-2&0\\end{pmatrix}^2=\\begin{pmatrix}-4&0\\\\0&-4\\end{pmatrix}=-4I$，即 $\\lambda=-4$。",
+            "核对公式 $\\lambda=-(\\mu_1-\\mu_2)^2qr$：$\\mu_1=1,\\mu_2=-1,q=1,r=1$，得 $\\lambda=-(2)^2\\cdot1\\cdot1=-4$，与直接计算一致。"
+          ]
+        }
+      ],
+      "id": "osaka-2012-30579dc571-q05-practice-03",
+      "school": "大阪大学",
+      "year": "2012"
+    },
+    {
+      "text": "取若尔当形 $A=\\begin{pmatrix}2&1\\\\0&2\\end{pmatrix}$（不可对角化），$B=\\begin{pmatrix}1&0\\\\1&1\\end{pmatrix}$（$e_1$不是B的特征向量），计算 $AB-BA$ 及其平方，并验证 $\\lambda=r^2$（$r$为B左下角元素）。",
+      "knowledge_points": [
+        "若尔当标准型下的对易子",
+        "凯莱-哈密顿定理验证"
+      ],
+      "question_type": "不可对角化情形对易子计算",
+      "method": [
+        "直接矩阵乘法",
+        "用(3b)的一般公式核对"
+      ],
+      "solution_steps": [
+        "计算AB与BA",
+        "求出对易子C及其平方",
+        "用(3b)公式核对λ=r^2"
+      ],
+      "math_structure": {
+        "type": "matrix_trace_commutator_structure",
+        "template": "A=\\begin{pmatrix}\\mu&1\\\\0&\\mu\\end{pmatrix},\\ B=\\begin{pmatrix}p&q\\\\r&s\\end{pmatrix}",
+        "variable_count": 0
+      },
+      "difficulty": 4,
+      "estimated_minutes": 12,
+      "answer": [
+        {
+          "label": "结果",
+          "steps": [
+            "$AB=\\begin{pmatrix}2\\cdot1+1\\cdot1&2\\cdot0+1\\cdot1\\\\0\\cdot1+2\\cdot1&0\\cdot0+2\\cdot1\\end{pmatrix}=\\begin{pmatrix}3&1\\\\2&2\\end{pmatrix}$，$BA=\\begin{pmatrix}1\\cdot2+0\\cdot0&1\\cdot1+0\\cdot2\\\\1\\cdot2+1\\cdot0&1\\cdot1+1\\cdot2\\end{pmatrix}=\\begin{pmatrix}2&1\\\\2&3\\end{pmatrix}$。",
+            "$C=AB-BA=\\begin{pmatrix}1&0\\\\0&-1\\end{pmatrix}$，与公式 $\\begin{pmatrix}r&s-p\\\\0&-r\\end{pmatrix}$（$r=1,s-p=1-1=0$）一致。",
+            "$C^2=\\begin{pmatrix}1&0\\\\0&-1\\end{pmatrix}^2=\\begin{pmatrix}1&0\\\\0&1\\end{pmatrix}=I$，即 $\\lambda=1$。",
+            "核对：$\\lambda=r^2=1^2=1$，与直接计算一致，且 $\\lambda\\ne0$ 因为 $r=1\\ne0$。"
+          ]
+        }
+      ],
+      "id": "osaka-2012-30579dc571-q05-practice-04",
+      "school": "大阪大学",
+      "year": "2012"
+    }
+  ],
+  "source_question": "問4",
+  "source_pdf": "大阪大学/情报科学研究科/情报基础数学/大阪大学_情报科学研究科_情报基础数学_2012_数学过去问.pdf",
+  "source_type": "官方过去问",
+  "subject_category": "线性代数"
+}

@@ -1,0 +1,239 @@
+{
+  "id": "kobe-2025-e449e23c74-q01",
+  "school": "神户大学",
+  "year": "2025",
+  "subject": "理学研究科_数学専攻",
+  "text": "设 $a$ 为实数常数，$A=\\begin{pmatrix}2a+1 & -3a+1\\\\ a+2 & -3a+4\\end{pmatrix}$ 以 $\\begin{pmatrix}1\\\\1\\end{pmatrix}$ 为特征向量。求 $a$ 的值。进一步求出实数 $\\alpha,\\beta$ 与二阶可逆矩阵 $P$ 的一组解，使得 $P^{-1}(A^4+5A)P=\\begin{pmatrix}\\alpha & 0\\\\ 0 & \\beta\\end{pmatrix}$。",
+  "knowledge_points": [
+    "特征值与特征向量",
+    "特征方程",
+    "矩阵对角化",
+    "迹与行列式",
+    "矩阵函数在对角化下的计算"
+  ],
+  "question_type": "计算题（参数求解+相似对角化）",
+  "method": [
+    "利用特征向量定义列方程求参数",
+    "利用迹与行列式求另一特征值",
+    "求对应特征向量构造P",
+    "利用特征值代入多项式函数求对角矩阵"
+  ],
+  "solution_steps": [
+    "由 $A(1,1)^T=\\lambda(1,1)^T$ 列方程求 $a$ 与 $\\lambda$",
+    "利用 $\\mathrm{tr}(A)$ 与 $\\det(A)$ 求另一特征值",
+    "求第二个特征值对应的特征向量",
+    "构造 $P$ 使 $P^{-1}AP=\\mathrm{diag}(\\lambda_1,\\lambda_2)$",
+    "对每个特征值代入 $f(\\lambda)=\\lambda^4+5\\lambda$ 得到 $\\alpha,\\beta$"
+  ],
+  "math_structure": {
+    "type": "eigenvector_parameter_and_matrix_polynomial_diagonalization",
+    "template": "给定含参数 $a$ 的二阶矩阵 $A(a)$，已知其有给定特征向量，求 $a$ 及 $P^{-1}f(A)P$ 的对角形式，其中 $f$ 为多项式",
+    "variable_count": 1
+  },
+  "difficulty": 3,
+  "answer": [
+    {
+      "label": "(1)",
+      "steps": [
+        "计算 $A\\begin{pmatrix}1\\\\1\\end{pmatrix}=\\begin{pmatrix}(2a+1)+(-3a+1)\\\\(a+2)+(-3a+4)\\end{pmatrix}=\\begin{pmatrix}-a+2\\\\-2a+6\\end{pmatrix}$，设其等于 $\\lambda\\begin{pmatrix}1\\\\1\\end{pmatrix}$，即 $-a+2=-2a+6$，解得 $a=4$，此时 $\\lambda=-a+2=-2$。",
+        "代入 $a=4$：$A=\\begin{pmatrix}9&-11\\\\6&-8\\end{pmatrix}$。验证：$A(1,1)^T=(9-11,6-8)^T=(-2,-2)^T=-2(1,1)^T$，成立。",
+        "求另一特征值：$\\mathrm{tr}(A)=9-8=1$，$\\det(A)=9\\times(-8)-(-11)\\times6=-72+66=-6$。设另一特征值为 $\\mu$，则 $-2+\\mu=1$，故 $\\mu=3$，验证 $-2\\times3=-6$ 与 $\\det A$ 一致。",
+        "求 $\\mu=3$ 对应的特征向量：$(A-3I)v=0$ 即 $\\begin{pmatrix}6&-11\\\\6&-11\\end{pmatrix}v=0$，取 $v=(11,6)^T$。验证 $Av=(99-66,66-48)^T=(33,18)^T=3(11,6)^T$，成立。",
+        "取 $P=\\begin{pmatrix}1&11\\\\1&6\\end{pmatrix}$，则 $P^{-1}AP=\\mathrm{diag}(-2,3)$，于是 $P^{-1}(A^4+5A)P=\\mathrm{diag}((-2)^4+5(-2),\\,3^4+5\\times3)=\\mathrm{diag}(16-10,81+15)=\\mathrm{diag}(6,96)$。",
+        "结论：$a=4$，$\\alpha=6,\\ \\beta=96$，$P=\\begin{pmatrix}1&11\\\\1&6\\end{pmatrix}$（此为一组解，非唯一）。"
+      ]
+    }
+  ],
+  "practice_questions": [
+    {
+      "text": "验证 $B=\\begin{pmatrix}3&1\\\\0&2\\end{pmatrix}$ 以 $\\begin{pmatrix}1\\\\0\\end{pmatrix}$ 为特征向量，并求对应的特征值。",
+      "knowledge_points": [
+        "特征向量定义",
+        "特征值计算"
+      ],
+      "question_type": "基础验证题",
+      "method": [
+        "直接代入特征向量定义计算"
+      ],
+      "solution_steps": [
+        "计算 $B(1,0)^T$",
+        "与 $\\lambda(1,0)^T$ 比较得特征值"
+      ],
+      "math_structure": {
+        "type": "eigenvector_verification",
+        "template": "验证给定向量是矩阵的特征向量并求特征值",
+        "variable_count": 0
+      },
+      "difficulty": 1,
+      "estimated_minutes": 3,
+      "answer": [
+        {
+          "label": "求特征值",
+          "steps": [
+            "计算 $B(1,0)^T=(3,0)^T$",
+            "$(3,0)^T=3(1,0)^T$，故 $(1,0)^T$ 是特征向量，特征值为 $\\lambda=3$"
+          ]
+        }
+      ],
+      "id": "kobe-2025-e449e23c74-q01-practice-01",
+      "school": "神户大学",
+      "year": "2025"
+    },
+    {
+      "text": "对上题矩阵 $B=\\begin{pmatrix}3&1\\\\0&2\\end{pmatrix}$，利用迹与行列式求出另一个特征值。",
+      "knowledge_points": [
+        "矩阵的迹",
+        "矩阵的行列式",
+        "特征值性质"
+      ],
+      "question_type": "计算题",
+      "method": [
+        "利用特征值之和等于迹、之积等于行列式"
+      ],
+      "solution_steps": [
+        "计算 $\\mathrm{tr}(B)$ 与 $\\det(B)$",
+        "结合已知特征值3解出另一特征值"
+      ],
+      "math_structure": {
+        "type": "eigenvalue_from_trace_determinant",
+        "template": "已知一特征值，利用迹与行列式求另一特征值",
+        "variable_count": 0
+      },
+      "difficulty": 2,
+      "estimated_minutes": 4,
+      "answer": [
+        {
+          "label": "求另一特征值",
+          "steps": [
+            "$\\mathrm{tr}(B)=3+2=5$，$\\det(B)=3\\times2-1\\times0=6$",
+            "设另一特征值 $\\mu$：$3+\\mu=5\\Rightarrow \\mu=2$，验证 $3\\times2=6=\\det(B)$，成立"
+          ]
+        }
+      ],
+      "id": "kobe-2025-e449e23c74-q01-practice-02",
+      "school": "神户大学",
+      "year": "2025"
+    },
+    {
+      "text": "矩阵 $C=\\begin{pmatrix}4&-3\\\\2&-1\\end{pmatrix}$ 以 $\\begin{pmatrix}1\\\\1\\end{pmatrix}$ 为特征向量。求 $C$ 的两个特征值及对应特征向量，并写出使 $P^{-1}CP$ 为对角矩阵的 $P$。",
+      "knowledge_points": [
+        "特征值特征向量求解",
+        "对角化"
+      ],
+      "question_type": "计算题",
+      "method": [
+        "代入已知特征向量求特征值",
+        "利用迹行列式求另一特征值",
+        "求对应特征向量构造P"
+      ],
+      "solution_steps": [
+        "计算 $C(1,1)^T$ 求第一特征值",
+        "利用迹与行列式求第二特征值",
+        "求第二特征值对应特征向量",
+        "写出P"
+      ],
+      "math_structure": {
+        "type": "diagonalization_2x2",
+        "template": "已知一特征向量，求全部特征值特征向量并对角化二阶矩阵",
+        "variable_count": 0
+      },
+      "difficulty": 2,
+      "estimated_minutes": 6,
+      "answer": [
+        {
+          "label": "对角化",
+          "steps": [
+            "计算 $C(1,1)^T=(4-3,2-1)^T=(1,1)^T$，故特征值 $\\lambda_1=1$",
+            "$\\mathrm{tr}(C)=4-1=3$，$\\det(C)=4\\times(-1)-(-3)\\times2=-4+6=2$，另一特征值 $\\lambda_2=3-1=2$，验证 $1\\times2=2$ 成立",
+            "求 $\\lambda_2=2$ 对应特征向量：$(C-2I)v=0$ 即 $\\begin{pmatrix}2&-3\\\\2&-3\\end{pmatrix}v=0$，取 $v=(3,2)^T$，验证 $Cv=(12-6,6-2)^T=(6,4)^T=2(3,2)^T$",
+            "取 $P=\\begin{pmatrix}1&3\\\\1&2\\end{pmatrix}$，则 $P^{-1}CP=\\mathrm{diag}(1,2)$"
+          ]
+        }
+      ],
+      "id": "kobe-2025-e449e23c74-q01-practice-03",
+      "school": "神户大学",
+      "year": "2025"
+    },
+    {
+      "text": "沿用上题矩阵 $C$ 及其对角化 $P^{-1}CP=\\mathrm{diag}(1,2)$，求 $\\alpha,\\beta$ 使 $P^{-1}(C^3+2C)P=\\mathrm{diag}(\\alpha,\\beta)$。",
+      "knowledge_points": [
+        "矩阵多项式的对角化计算"
+      ],
+      "question_type": "计算题",
+      "method": [
+        "将特征值代入多项式函数"
+      ],
+      "solution_steps": [
+        "对每个特征值代入 $f(\\lambda)=\\lambda^3+2\\lambda$"
+      ],
+      "math_structure": {
+        "type": "matrix_polynomial_via_eigenvalues",
+        "template": "已知对角化，求矩阵多项式的对角形式",
+        "variable_count": 0
+      },
+      "difficulty": 3,
+      "estimated_minutes": 4,
+      "answer": [
+        {
+          "label": "求α,β",
+          "steps": [
+            "对 $\\lambda_1=1$：$f(1)=1^3+2\\times1=3$，故 $\\alpha=3$",
+            "对 $\\lambda_2=2$：$f(2)=2^3+2\\times2=8+4=12$，故 $\\beta=12$",
+            "结论：$P^{-1}(C^3+2C)P=\\mathrm{diag}(3,12)$"
+          ]
+        }
+      ],
+      "id": "kobe-2025-e449e23c74-q01-practice-04",
+      "school": "神户大学",
+      "year": "2025"
+    },
+    {
+      "text": "设 $a$ 为实数常数，$D(a)=\\begin{pmatrix}a+3&-2a\\\\1&a-2\\end{pmatrix}$ 以 $\\begin{pmatrix}2\\\\1\\end{pmatrix}$ 为特征向量。求 $a$ 的值，并求实数 $\\alpha,\\beta$ 与可逆矩阵 $P$，使得 $P^{-1}(D^2+3D)P=\\begin{pmatrix}\\alpha&0\\\\0&\\beta\\end{pmatrix}$。",
+      "knowledge_points": [
+        "含参数特征向量求解",
+        "对角化",
+        "矩阵多项式计算"
+      ],
+      "question_type": "综合计算题（与原题同结构）",
+      "method": [
+        "代入特征向量方程求参数",
+        "迹行列式求另一特征值",
+        "求特征向量构造P",
+        "代入多项式函数求对角元"
+      ],
+      "solution_steps": [
+        "列方程求a和第一特征值",
+        "求第二特征值",
+        "求第二特征向量",
+        "构造P",
+        "代入f(λ)=λ^2+3λ求α,β"
+      ],
+      "math_structure": {
+        "type": "eigenvector_parameter_and_matrix_polynomial_diagonalization",
+        "template": "含参数矩阵已知特征向量求参数及矩阵多项式对角化",
+        "variable_count": 1
+      },
+      "difficulty": 4,
+      "estimated_minutes": 10,
+      "answer": [
+        {
+          "label": "求a,α,β,P",
+          "steps": [
+            "计算 $D(a)(2,1)^T=(2(a+3)-2a,\\,2+(a-2))^T=(6,a)^T$，令其等于 $\\lambda(2,1)^T$：$6=2\\lambda,\\ a=\\lambda$，解得 $\\lambda=3,\\ a=3$",
+            "代入 $a=3$：$D=\\begin{pmatrix}6&-6\\\\1&1\\end{pmatrix}$，验证 $D(2,1)^T=(12-6,2+1)^T=(6,3)^T=3(2,1)^T$，成立",
+            "$\\mathrm{tr}(D)=6+1=7$，$\\det(D)=6\\times1-(-6)\\times1=6+6=12$。设另一特征值 $\\mu$：$3+\\mu=7\\Rightarrow\\mu=4$，验证 $3\\times4=12$ 成立",
+            "求 $\\mu=4$ 对应特征向量：$(D-4I)v=0$ 即 $\\begin{pmatrix}2&-6\\\\1&-3\\end{pmatrix}v=0$，取 $v=(3,1)^T$，验证 $Dv=(18-6,3+1)^T=(12,4)^T=4(3,1)^T$",
+            "取 $P=\\begin{pmatrix}2&3\\\\1&1\\end{pmatrix}$，$P^{-1}DP=\\mathrm{diag}(3,4)$；代入 $f(\\lambda)=\\lambda^2+3\\lambda$：$f(3)=9+9=18$，$f(4)=16+12=28$，故 $\\alpha=18,\\beta=28$"
+          ]
+        }
+      ],
+      "id": "kobe-2025-e449e23c74-q01-practice-05",
+      "school": "神户大学",
+      "year": "2025"
+    }
+  ],
+  "source_question": "問題1(1)",
+  "source_pdf": "神户大学/理学研究科/数学専攻/神户大学_理学研究科_数学専攻_2025.pdf",
+  "source_type": "官方过去问",
+  "subject_category": "线性代数"
+}

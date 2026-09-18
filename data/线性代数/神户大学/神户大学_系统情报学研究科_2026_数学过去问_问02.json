@@ -1,0 +1,208 @@
+{
+  "id": "kobe-2026-a798af0c90-q02",
+  "school": "神户大学",
+  "year": "2026",
+  "subject": "系统情报学研究科_全专攻",
+  "text": "对于满足 $-\\pi < \\theta < \\pi$ 的实数 $\\theta$，设矩阵 $A = \\begin{pmatrix} 0 & \\tan\\frac{\\theta}{2} \\\\ -\\tan\\frac{\\theta}{2} & 0 \\end{pmatrix}$，$I$ 为2阶单位矩阵。\n\n求矩阵乘积 $(I - A)(I + A)^{-1}$，并用 $\\sin\\theta$ 和 $\\cos\\theta$ 表示。",
+  "knowledge_points": [
+    "矩阵运算",
+    "矩阵求逆",
+    "行列式",
+    "三角恒等式",
+    "反对称矩阵"
+  ],
+  "question_type": "矩阵计算与化简",
+  "method": [
+    "直接矩阵乘法",
+    "三角恒等式简化"
+  ],
+  "solution_steps": [
+    "计算 $(I - A)$",
+    "计算 $(I + A)$ 的行列式与逆矩阵",
+    "进行矩阵乘法 $(I - A)(I + A)^{-1}$",
+    "利用半角公式 $(1-t^2)/(1+t^2)=\\cos\\theta$、$2t/(1+t^2)=\\sin\\theta$ 化简"
+  ],
+  "math_structure": {
+    "type": "matrix_rotation_formula",
+    "template": "利用反对称矩阵构造旋转矩阵：$(I - A)(I + A)^{-1}$ 其中 $A$ 为反对称",
+    "variable_count": 1
+  },
+  "difficulty": 3,
+  "answer": [
+    {
+      "label": "矩阵乘积表示",
+      "steps": [
+        "令 $t = \\tan\\frac{\\theta}{2}$，则 $A = \\begin{pmatrix} 0 & t \\\\ -t & 0 \\end{pmatrix}$",
+        "$I - A = \\begin{pmatrix} 1 & -t \\\\ t & 1 \\end{pmatrix}$",
+        "$I + A = \\begin{pmatrix} 1 & t \\\\ -t & 1 \\end{pmatrix}$",
+        "$\\det(I + A) = 1 + t^2 = \\sec^2\\frac{\\theta}{2}$",
+        "$(I + A)^{-1} = \\frac{1}{1+t^2}\\begin{pmatrix} 1 & -t \\\\ t & 1 \\end{pmatrix}$",
+        "$(I - A)(I + A)^{-1} = \\frac{1}{1+t^2}\\begin{pmatrix} 1 & -t \\\\ t & 1 \\end{pmatrix}\\begin{pmatrix} 1 & -t \\\\ t & 1 \\end{pmatrix}$",
+        "$(I - A)(I + A)^{-1} = \\frac{1}{1+t^2}\\begin{pmatrix} 1-t^2 & -2t \\\\ 2t & 1-t^2 \\end{pmatrix}$",
+        "由 $t=\\tan(\\theta/2)$ 的半角公式，$$\\frac{1-t^2}{1+t^2}=\\cos\\theta,\\qquad \\frac{2t}{1+t^2}=\\sin\\theta.$$",
+        "所以 $$ (I-A)(I+A)^{-1}=\\begin{pmatrix}\\cos\\theta&-\\sin\\theta\\\\\\sin\\theta&\\cos\\theta\\end{pmatrix}. $$"
+      ]
+    }
+  ],
+  "practice_questions": [
+    {
+      "text": "设 $A = \\begin{pmatrix} 0 & 1 \\\\ -1 & 0 \\end{pmatrix}$，求 $(I - A)(I + A)^{-1}$。",
+      "knowledge_points": [
+        "矩阵求逆",
+        "矩阵乘法"
+      ],
+      "question_type": "直接计算",
+      "method": [
+        "矩阵运算"
+      ],
+      "solution_steps": [
+        "计算行列式",
+        "求逆矩阵",
+        "进行乘法"
+      ],
+      "math_structure": {
+        "type": "matrix_operation",
+        "template": "固定反对称矩阵的矩阵运算",
+        "variable_count": 0
+      },
+      "difficulty": 2,
+      "estimated_minutes": 5,
+      "answer": [
+        {
+          "label": "矩阵乘积",
+          "steps": [
+            "$I - A = \\begin{pmatrix} 1 & -1 \\\\ 1 & 1 \\end{pmatrix}$",
+            "$I + A = \\begin{pmatrix} 1 & 1 \\\\ -1 & 1 \\end{pmatrix}$",
+            "$\\det(I+A) = 2$",
+            "$(I+A)^{-1} = \\frac{1}{2}\\begin{pmatrix} 1 & -1 \\\\ 1 & 1 \\end{pmatrix}$",
+            "$(I-A)(I+A)^{-1} = \\frac{1}{2}\\begin{pmatrix} 1 & -1 \\\\ 1 & 1 \\end{pmatrix}\\begin{pmatrix} 1 & -1 \\\\ 1 & 1 \\end{pmatrix} = \\frac{1}{2}\\begin{pmatrix} 0 & -2 \\\\ 2 & 0 \\end{pmatrix} = \\begin{pmatrix} 0 & -1 \\\\ 1 & 0 \\end{pmatrix}$"
+          ]
+        }
+      ],
+      "id": "kobe-2026-a798af0c90-q02-practice-01",
+      "school": "神户大学",
+      "year": "2026"
+    },
+    {
+      "text": "对于 $A = \\begin{pmatrix} 0 & 2 \\\\ -2 & 0 \\end{pmatrix}$，计算 $(I - A)(I + A)^{-1}$ 并化为最简形式。",
+      "knowledge_points": [
+        "矩阵求逆",
+        "矩阵化简"
+      ],
+      "question_type": "计算与化简",
+      "method": [
+        "矩阵运算",
+        "因式分解"
+      ],
+      "solution_steps": [
+        "计算矩阵乘积",
+        "化为标准形式"
+      ],
+      "math_structure": {
+        "type": "matrix_simplification",
+        "template": "含参数的反对称矩阵运算",
+        "variable_count": 1
+      },
+      "difficulty": 2,
+      "estimated_minutes": 6,
+      "answer": [
+        {
+          "label": "化简结果",
+          "steps": [
+            "$I - A = \\begin{pmatrix} 1 & -2 \\\\ 2 & 1 \\end{pmatrix}$",
+            "$I + A = \\begin{pmatrix} 1 & 2 \\\\ -2 & 1 \\end{pmatrix}$",
+            "$\\det(I+A) = 1 + 4 = 5$",
+            "$(I+A)^{-1} = \\frac{1}{5}\\begin{pmatrix} 1 & -2 \\\\ 2 & 1 \\end{pmatrix}$",
+            "$(I-A)(I+A)^{-1} = \\frac{1}{5}\\begin{pmatrix} 1 & -2 \\\\ 2 & 1 \\end{pmatrix}\\begin{pmatrix} 1 & -2 \\\\ 2 & 1 \\end{pmatrix} = \\frac{1}{5}\\begin{pmatrix} -3 & -4 \\\\ 4 & -3 \\end{pmatrix}$"
+          ]
+        }
+      ],
+      "id": "kobe-2026-a798af0c90-q02-practice-02",
+      "school": "神户大学",
+      "year": "2026"
+    },
+    {
+      "text": "设 $A = \\begin{pmatrix} 0 & a \\\\ -a & 0 \\end{pmatrix}$ 其中 $a \\neq 0$，证明 $(I - A)(I + A)^{-1}$ 是旋转矩阵。",
+      "knowledge_points": [
+        "旋转矩阵",
+        "正交矩阵",
+        "矩阵性质"
+      ],
+      "question_type": "证明题",
+      "method": [
+        "矩阵性质",
+        "正交性验证"
+      ],
+      "solution_steps": [
+        "计算 $(I-A)(I+A)^{-1}$",
+        "验证行列式",
+        "验证正交性"
+      ],
+      "math_structure": {
+        "type": "rotation_matrix_proof",
+        "template": "证明矩阵运算的几何意义",
+        "variable_count": 1
+      },
+      "difficulty": 3,
+      "estimated_minutes": 10,
+      "answer": [
+        {
+          "label": "旋转矩阵证明",
+          "steps": [
+            "$(I - A)(I + A)^{-1} = \\frac{1}{1+a^2}\\begin{pmatrix} 1-a^2 & -2a \\\\ 2a & 1-a^2 \\end{pmatrix}$",
+            "令 $R = \\frac{1}{1+a^2}\\begin{pmatrix} 1-a^2 & -2a \\\\ 2a & 1-a^2 \\end{pmatrix}$",
+            "计算 $\\det(R) = \\frac{1}{(1+a^2)^2}[(1-a^2)^2 + 4a^2] = \\frac{1}{(1+a^2)^2}(1-2a^2+a^4+4a^2) = \\frac{(1+a^2)^2}{(1+a^2)^2} = 1$",
+            "计算 $R^T R$：$R^T = \\frac{1}{1+a^2}\\begin{pmatrix} 1-a^2 & 2a \\\\ -2a & 1-a^2 \\end{pmatrix}$",
+            "$R^T R = \\frac{1}{(1+a^2)^2}\\begin{pmatrix} (1-a^2)^2+4a^2 & 0 \\\\ 0 & 4a^2+(1-a^2)^2 \\end{pmatrix} = \\frac{(1+a^2)^2}{(1+a^2)^2}I = I$",
+            "因为 $\\det(R)=1$ 且 $R^T R = I$，所以 $R$ 是旋转矩阵"
+          ]
+        }
+      ],
+      "id": "kobe-2026-a798af0c90-q02-practice-03",
+      "school": "神户大学",
+      "year": "2026"
+    },
+    {
+      "text": "在原题中，$\\theta = \\frac{\\pi}{2}$ 时，求 $(I - A)(I + A)^{-1}$。",
+      "knowledge_points": [
+        "三角函数值",
+        "矩阵代数"
+      ],
+      "question_type": "特殊值计算",
+      "method": [
+        "代入计算",
+        "三角恒等式"
+      ],
+      "solution_steps": [
+        "代入 $\\theta = \\frac{\\pi}{2}$",
+        "计算 $\\tan\\frac{\\pi}{4}$",
+        "代入矩阵运算"
+      ],
+      "math_structure": {
+        "type": "special_angle_matrix",
+        "template": "特殊角度下的矩阵计算",
+        "variable_count": 0
+      },
+      "difficulty": 2,
+      "estimated_minutes": 6,
+      "answer": [
+        {
+          "label": "特殊值结果",
+          "steps": [
+            "当 $\\theta = \\frac{\\pi}{2}$ 时，$\\tan\\frac{\\pi}{4} = 1$",
+            "$A = \\begin{pmatrix} 0 & 1 \\\\ -1 & 0 \\end{pmatrix}$",
+            "$\\sin\\frac{\\pi}{2} = 1$，$\\cos\\frac{\\pi}{2} = 0$",
+            "代入通式得到 $$ (I-A)(I+A)^{-1}=\\begin{pmatrix}0&-1\\\\1&0\\end{pmatrix}. $$"
+          ]
+        }
+      ],
+      "id": "kobe-2026-a798af0c90-q02-practice-04",
+      "school": "神户大学",
+      "year": "2026"
+    }
+  ],
+  "source_question": "問1-2",
+  "source_pdf": "神户大学/系统情报学研究科/全专攻/神户大学_系统情报学研究科_2026_数学过去问.pdf",
+  "source_type": "官方过去问",
+  "subject_category": "线性代数"
+}

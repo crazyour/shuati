@@ -1,0 +1,198 @@
+{
+  "id": "kobe-2024-dfad47cc41-q01",
+  "school": "神户大学",
+  "year": "2024",
+  "subject": "理学研究科_数学専攻",
+  "text": "设 $a,b$ 为实数. 求由 $\\mathbb{R}^4$ 中如下向量生成的子空间的维数：\n$$v_1=\\begin{pmatrix}2\\\\1\\\\1\\\\4\\end{pmatrix},\\quad v_2=\\begin{pmatrix}3\\\\2\\\\a\\\\b\\end{pmatrix},\\quad v_3=\\begin{pmatrix}5\\\\4\\\\1\\\\-5\\end{pmatrix}.$$",
+  "knowledge_points": [
+    "向量空间的生成与维数",
+    "矩阵的秩",
+    "初等行变换",
+    "线性相关与线性无关",
+    "参数化秩讨论"
+  ],
+  "question_type": "求含参数向量组生成子空间的维数",
+  "method": [
+    "把向量作为矩阵的行，用初等行变换化简",
+    "分析化简后出现的参数表达式为零的条件",
+    "根据是否为零讨论秩（维数）"
+  ],
+  "solution_steps": [
+    "将 $v_1,v_2,v_3$ 作为 $3\\times4$ 矩阵的行",
+    "用 $v_1$ 消去 $v_2,v_3$ 的第一列",
+    "继续消元得到含参数 $a,b$ 的最后一行",
+    "判断该行何时为零向量，从而确定秩为 2 还是 3"
+  ],
+  "math_structure": {
+    "type": "parametric_matrix_rank",
+    "template": "求由向量组 $\\{v_1,v_2,v_3\\}\\subset\\mathbb{R}^4$（其中某些坐标含参数 $a,b$）生成的子空间的维数，按参数取值分类讨论",
+    "variable_count": 2
+  },
+  "difficulty": 3,
+  "answer": [
+    {
+      "label": "(1)",
+      "steps": [
+        "构造矩阵 $M=\\begin{pmatrix}2&1&1&4\\\\3&2&a&b\\\\5&4&1&-5\\end{pmatrix}$，维数等于 $\\mathrm{rank}(M)$.",
+        "做行变换：$R_2'=2R_2-3R_1=(0,1,2a-3,2b-12)$；$R_3'=2R_3-5R_1=(0,3,-3,-30)$.",
+        "再做 $R_3''=R_3'-3R_2'=(0,0,6-6a,6-6b)=6(0,0,1-a,1-b)$.",
+        "此时矩阵化为 $\\begin{pmatrix}2&1&1&4\\\\0&1&2a-3&2b-12\\\\0&0&6-6a&6-6b\\end{pmatrix}$，前两行显然线性无关（第一列与第二列分别有非零主元）.",
+        "若 $(a,b)\\neq(1,1)$，则第三行非零，三行线性无关，秩为 3，故所求维数为 $\\boxed{3}$.",
+        "若 $a=b=1$，则第三行为零向量，秩降为 2，此时对应关系为 $v_3=3v_2-2v_1$（可直接验证：$3v_2-2v_1=3(3,2,1,1)-2(2,1,1,4)=(5,4,1,-5)=v_3$），故维数为 $\\boxed{2}$."
+      ]
+    }
+  ],
+  "practice_questions": [
+    {
+      "text": "求向量组 $u_1=(1,2,1)$，$u_2=(2,4,2)$，$u_3=(0,1,1)$ 生成的 $\\mathbb{R}^3$ 子空间的维数.",
+      "knowledge_points": [
+        "向量组的线性相关性",
+        "矩阵的秩"
+      ],
+      "question_type": "基本维数计算",
+      "method": [
+        "行变换求秩"
+      ],
+      "solution_steps": [
+        "写出矩阵并化简",
+        "确定非零行数即为维数"
+      ],
+      "math_structure": {
+        "type": "basic_rank",
+        "template": "求 $\\{u_1,u_2,u_3\\}\\subset\\mathbb{R}^3$ 生成子空间的维数",
+        "variable_count": 0
+      },
+      "difficulty": 1,
+      "estimated_minutes": 5,
+      "answer": [
+        {
+          "label": "维数",
+          "steps": [
+            "矩阵 $\\begin{pmatrix}1&2&1\\\\2&4&2\\\\0&1&1\\end{pmatrix}$，第二行 $=2\\times$第一行，故第二行可消去，剩 $\\begin{pmatrix}1&2&1\\\\0&1&1\\end{pmatrix}$，秩为 2.",
+            "验证：$u_2=2u_1$，$u_1,u_3$ 线性无关（不成比例）.",
+            "故维数为 $2$."
+          ]
+        }
+      ],
+      "id": "kobe-2024-dfad47cc41-q01-practice-01",
+      "school": "神户大学",
+      "year": "2024"
+    },
+    {
+      "text": "设 $t$ 为实数，求向量组 $w_1=(1,0,1)$，$w_2=(0,1,t)$，$w_3=(1,1,2)$ 生成子空间的维数，并按 $t$ 的取值分类讨论.",
+      "knowledge_points": [
+        "含参数向量组的秩",
+        "分类讨论"
+      ],
+      "question_type": "含参数维数讨论",
+      "method": [
+        "行变换消元",
+        "找到使某行为零的参数条件"
+      ],
+      "solution_steps": [
+        "构造矩阵并消元",
+        "得到含 $t$ 的表达式",
+        "分 $t$ 满足/不满足零条件两种情况讨论"
+      ],
+      "math_structure": {
+        "type": "parametric_rank_single",
+        "template": "求 $\\{w_1,w_2,w_3\\}$（含参数 $t$）生成子空间维数，按 $t$ 分类",
+        "variable_count": 1
+      },
+      "difficulty": 2,
+      "estimated_minutes": 8,
+      "answer": [
+        {
+          "label": "维数（按 $t$ 讨论）",
+          "steps": [
+            "矩阵 $\\begin{pmatrix}1&0&1\\\\0&1&t\\\\1&1&2\\end{pmatrix}$，做 $R_3'=R_3-R_1-R_2=(0,0,2-1-t)=(0,0,1-t)$.",
+            "若 $t\\neq1$，第三行非零，三行线性无关，秩为 3.",
+            "若 $t=1$，第三行为零，此时 $w_3=w_1+w_2$（验证：$w_1+w_2=(1,1,1+t)=(1,1,2)$ 当 $t=1$），秩为 2.",
+            "结论：$t\\neq1$ 时维数为 3；$t=1$ 时维数为 2."
+          ]
+        }
+      ],
+      "id": "kobe-2024-dfad47cc41-q01-practice-02",
+      "school": "神户大学",
+      "year": "2024"
+    },
+    {
+      "text": "设 $a$ 为实数，$v_1=(1,1,0,2)$，$v_2=(2,1,a,1)$，$v_3=(3,2,a,3)$，求由这三个向量生成的 $\\mathbb{R}^4$ 子空间的维数，按 $a$ 分类讨论.",
+      "knowledge_points": [
+        "含单参数向量组的秩",
+        "线性组合关系",
+        "分类讨论"
+      ],
+      "method": [
+        "行变换",
+        "寻找线性组合恒等式"
+      ],
+      "solution_steps": [
+        "构造矩阵消元",
+        "得到含 $a$ 的最后一行",
+        "判断其为零的条件并给出对应线性关系"
+      ],
+      "math_structure": {
+        "type": "parametric_rank_single_R4",
+        "template": "求 $\\{v_1,v_2,v_3\\}\\subset\\mathbb{R}^4$（含参数 $a$）生成子空间维数",
+        "variable_count": 1
+      },
+      "difficulty": 3,
+      "estimated_minutes": 10,
+      "answer": [
+        {
+          "label": "维数（按 $a$ 讨论）",
+          "steps": [
+            "矩阵 $\\begin{pmatrix}1&1&0&2\\\\2&1&a&1\\\\3&2&a&3\\end{pmatrix}$，做 $R_2'=R_2-2R_1=(0,-1,a,-3)$，$R_3'=R_3-3R_1=(0,-1,a,-3)$.",
+            "发现 $R_2'=R_3'$，说明 $R_3-3R_1-(R_2-2R_1)=R_3-R_1-R_2=0$，即恒有 $v_3=v_1+v_2$（与 $a$ 无关，验证：$v_1+v_2=(3,2,a,3)=v_3$恒成立）.",
+            "因此对任意实数 $a$，秩恒为 2（只要 $v_1,v_2$ 线性无关，显然成立，因为它们第一、二分量不成比例）.",
+            "结论：维数恒为 $2$，与 $a$ 取值无关。"
+          ]
+        }
+      ],
+      "id": "kobe-2024-dfad47cc41-q01-practice-03",
+      "school": "神户大学",
+      "year": "2024"
+    },
+    {
+      "text": "设 $a,b$ 为实数，向量 $v_1=(1,2,3)$，$v_2=(2,4,6)$，$v_3=(a,b,1)$，求它们生成的子空间维数，按 $(a,b)$ 分类讨论.",
+      "knowledge_points": [
+        "共线向量",
+        "含双参数的秩讨论"
+      ],
+      "method": [
+        "观察比例关系",
+        "行变换验证"
+      ],
+      "solution_steps": [
+        "注意到 $v_2=2v_1$",
+        "讨论 $v_3$ 是否与 $v_1$ 共线",
+        "给出维数结论"
+      ],
+      "math_structure": {
+        "type": "parametric_rank_double",
+        "template": "求 $\\{v_1,v_2,v_3\\}$（$v_2\\parallel v_1$，$v_3$ 含参数 $a,b$）生成子空间维数",
+        "variable_count": 2
+      },
+      "difficulty": 2,
+      "estimated_minutes": 7,
+      "answer": [
+        {
+          "label": "维数（按 $(a,b)$ 讨论）",
+          "steps": [
+            "由于 $v_2=2v_1$，生成子空间等于 $\\mathrm{span}\\{v_1,v_3\\}$，维数最多为 2.",
+            "$v_3$ 与 $v_1$ 共线的条件是存在 $k$ 使 $(a,b,1)=k(1,2,3)$，即 $k=1/3$，从而 $a=1/3,\\ b=2/3$.",
+            "若 $(a,b)=(1/3,2/3)$，$v_3$ 与 $v_1$ 共线，维数为 1；否则维数为 2."
+          ]
+        }
+      ],
+      "id": "kobe-2024-dfad47cc41-q01-practice-04",
+      "school": "神户大学",
+      "year": "2024"
+    }
+  ],
+  "source_question": "問題1(1)",
+  "source_pdf": "神户大学/理学研究科/数学専攻/神户大学_理学研究科_数学専攻_2024.pdf",
+  "source_type": "官方过去问",
+  "subject_category": "线性代数"
+}

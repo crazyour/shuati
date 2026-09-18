@@ -1,0 +1,213 @@
+{
+  "id": "nagoya-2007-3a846a5911-q02",
+  "school": "名古屋大学",
+  "year": "2007",
+  "subject": "多元数理科学研究科_全专攻",
+  "text": "设 $V$ 为全体 $2$ 次实方阵所构成的实向量空间。对 $r\\in\\mathbb{R}$，定义\n$$\\varphi_r(A)=A+r({}^tA)\\quad (A\\in V).$$\n回答下列问题：\n(1) 证明 $\\varphi_r$ 是 $V$ 到 $V$ 的线性变换；\n(2) 求 $\\mathrm{Ker}\\,\\varphi_r$ 的维数；\n(3) 求 $\\mathrm{Im}\\,\\varphi_r$ 的维数。",
+  "knowledge_points": [
+    "线性变换的验证",
+    "对称矩阵与反对称矩阵的直和分解",
+    "核空间与像空间维数",
+    "秩-零度定理"
+  ],
+  "question_type": "线性变换的核与像维数分类讨论",
+  "method": [
+    "验证可加性与齐次性证明线性",
+    "将矩阵分解为对称部分与反对称部分",
+    "按参数 $r$ 的取值分类讨论核与像的维数",
+    "利用秩-零度定理验证结果"
+  ],
+  "solution_steps": [
+    "证明 $\\varphi_r(A+B)=\\varphi_r(A)+\\varphi_r(B)$ 及 $\\varphi_r(cA)=c\\varphi_r(A)$",
+    "将任意 $A$ 写成 $A=S+K$（对称+反对称），计算 $\\varphi_r(A)=(1+r)S+(1-r)K$",
+    "按 $r=1$、$r=-1$、$r\\neq\\pm1$ 三种情况分别求核的维数",
+    "由 $\\dim V=4$ 及秩-零度定理求像的维数"
+  ],
+  "math_structure": {
+    "type": "linear_map_kernel_image_by_parameter",
+    "template": "phi_r(A) = A + r*A^T on 2x2 matrices, classify dim Ker and dim Im by parameter r",
+    "variable_count": 1
+  },
+  "difficulty": 3,
+  "answer": [
+    {
+      "label": "(1)",
+      "steps": [
+        "对任意 $A,B\\in V$，$\\varphi_r(A+B)=(A+B)+r\\,{}^t(A+B)=A+B+r{}^tA+r{}^tB=(A+r{}^tA)+(B+r{}^tB)=\\varphi_r(A)+\\varphi_r(B)$，满足可加性",
+        "对任意 $c\\in\\mathbb{R}$，$\\varphi_r(cA)=cA+r\\,{}^t(cA)=cA+rc\\,{}^tA=c(A+r{}^tA)=c\\varphi_r(A)$，满足齐次性",
+        "因 $\\varphi_r$ 保持加法与数乘，且值域在 $V$ 内，故 $\\varphi_r$ 是 $V$ 到 $V$ 的线性变换"
+      ]
+    },
+    {
+      "label": "(2)",
+      "steps": [
+        "任意 $A\\in V$ 可唯一分解为对称部分 $S=\\frac{A+{}^tA}{2}$ 与反对称部分 $K=\\frac{A-{}^tA}{2}$，即 $A=S+K$，其中对称矩阵空间维数为3，反对称矩阵空间维数为1",
+        "由于 ${}^tA=S-K$，故 $\\varphi_r(A)=(S+K)+r(S-K)=(1+r)S+(1-r)K$。因对称与反对称子空间直和且相互独立，$\\varphi_r(A)=0$ 当且仅当 $(1+r)S=0$ 且 $(1-r)K=0$",
+        "当 $r\\neq\\pm1$ 时，$1+r\\neq0,1-r\\neq0$，故 $S=0,K=0$，$\\mathrm{Ker}\\,\\varphi_r=\\{0\\}$，维数为 $0$",
+        "当 $r=1$ 时，$1+r=2\\neq0\\Rightarrow S=0$；$1-r=0$，$K$ 任意，故 $\\mathrm{Ker}\\,\\varphi_1$= 反对称矩阵全体，维数为 $1$",
+        "当 $r=-1$ 时，$1-r=2\\neq0\\Rightarrow K=0$；$1+r=0$，$S$ 任意，故 $\\mathrm{Ker}\\,\\varphi_{-1}$= 对称矩阵全体，维数为 $3$"
+      ]
+    },
+    {
+      "label": "(3)",
+      "steps": [
+        "由秩-零度定理，$\\dim\\mathrm{Im}\\,\\varphi_r=\\dim V-\\dim\\mathrm{Ker}\\,\\varphi_r=4-\\dim\\mathrm{Ker}\\,\\varphi_r$",
+        "当 $r\\neq\\pm1$：$\\dim\\mathrm{Im}\\,\\varphi_r=4-0=4$（即 $\\varphi_r$ 为同构，$\\mathrm{Im}=V$）",
+        "当 $r=1$：$\\dim\\mathrm{Im}\\,\\varphi_1=4-1=3$，直接验证：$\\varphi_1(A)=2S$ 覆盖全体对称矩阵，维数确为3",
+        "当 $r=-1$：$\\dim\\mathrm{Im}\\,\\varphi_{-1}=4-3=1$，直接验证：$\\varphi_{-1}(A)=2K$ 覆盖全体反对称矩阵，维数确为1"
+      ]
+    }
+  ],
+  "practice_questions": [
+    {
+      "text": "证明映射 $\\psi(A)=A-{}^tA$（$A$ 为 $2\\times2$ 实矩阵）是线性变换，并求其值域。",
+      "knowledge_points": [
+        "线性变换验证",
+        "反对称矩阵"
+      ],
+      "question_type": "线性映射基础验证",
+      "method": [
+        "验证加法与数乘性质",
+        "分析值域结构"
+      ],
+      "solution_steps": [
+        "验证可加性与齐次性",
+        "说明 $\\psi(A)$ 总是反对称矩阵",
+        "确定值域即为全体反对称矩阵"
+      ],
+      "math_structure": {
+        "type": "linear_map_verification",
+        "template": "psi(A)=A - A^T on 2x2 matrices, verify linearity and find image",
+        "variable_count": 0
+      },
+      "difficulty": 1,
+      "estimated_minutes": 5,
+      "answer": [
+        {
+          "label": "线性性与值域",
+          "steps": [
+            "$\\psi(A+B)=(A+B)-{}^t(A+B)=A-{}^tA+B-{}^tB=\\psi(A)+\\psi(B)$，$\\psi(cA)=cA-c\\,{}^tA=c\\psi(A)$，故线性",
+            "注意 ${}^t\\psi(A)={}^tA-A=-\\psi(A)$，故 $\\psi(A)$ 总为反对称矩阵",
+            "任给反对称矩阵 $K$，取 $A=K/2$ 得 $\\psi(A)=K/2-(-K/2)=K$，故值域为全体反对称矩阵，维数为1"
+          ]
+        }
+      ],
+      "id": "nagoya-2007-3a846a5911-q02-practice-01",
+      "school": "名古屋大学",
+      "year": "2007"
+    },
+    {
+      "text": "对 $2\\times2$ 实矩阵空间 $V$（$\\dim V=4$），说明为何对称矩阵子空间维数为3，反对称矩阵子空间维数为1，并验证 $V$ 是二者的直和。",
+      "knowledge_points": [
+        "对称与反对称矩阵分解",
+        "直和的证明"
+      ],
+      "question_type": "空间分解基础练习",
+      "method": [
+        "构造基底计数维数",
+        "验证唯一分解"
+      ],
+      "solution_steps": [
+        "写出对称矩阵一般形式并计数自由参数",
+        "写出反对称矩阵一般形式并计数自由参数",
+        "验证任意矩阵唯一分解为二者之和"
+      ],
+      "math_structure": {
+        "type": "symmetric_antisymmetric_decomposition",
+        "template": "decompose 2x2 real matrix space into symmetric (dim3) + antisymmetric (dim1) direct sum",
+        "variable_count": 4
+      },
+      "difficulty": 1,
+      "estimated_minutes": 5,
+      "answer": [
+        {
+          "label": "维数与直和证明",
+          "steps": [
+            "对称矩阵形如 $\\begin{pmatrix}a&b\\\\b&c\\end{pmatrix}$，自由参数 $a,b,c$ 共3个，故维数为3",
+            "反对称矩阵形如 $\\begin{pmatrix}0&d\\\\-d&0\\end{pmatrix}$，自由参数仅 $d$，维数为1",
+            "任意 $A$，令 $S=\\frac{A+{}^tA}{2}$（对称），$K=\\frac{A-{}^tA}{2}$（反对称），则 $A=S+K$；又若 $S=K$ 且 $S$ 对称 $K$ 反对称，则 $S={}^tS=-{}^tK=-K$，故 $S=K=0$，交集为零，故为直和，$3+1=4=\\dim V$吻合"
+          ]
+        }
+      ],
+      "id": "nagoya-2007-3a846a5911-q02-practice-02",
+      "school": "名古屋大学",
+      "year": "2007"
+    },
+    {
+      "text": "对固定 $r=1/2$，直接计算 $\\varphi_{1/2}(A)=A+\\frac{1}{2}{}^tA$ 作用在基底矩阵 $E_{12}=\\begin{pmatrix}0&1\\\\0&0\\end{pmatrix}$ 与 $E_{11}=\\begin{pmatrix}1&0\\\\0&0\\end{pmatrix}$ 上的结果，并求 $\\mathrm{Ker}\\,\\varphi_{1/2}$。",
+      "knowledge_points": [
+        "线性变换的显式计算",
+        "核空间求解"
+      ],
+      "question_type": "具体参数下的核计算",
+      "method": [
+        "直接代入基底计算",
+        "利用一般结论 $r\\neq\\pm1$ 时核为零"
+      ],
+      "solution_steps": [
+        "代入 $E_{11}, E_{12}$ 计算 $\\varphi_{1/2}$",
+        "利用分解结论说明核维数为0"
+      ],
+      "math_structure": {
+        "type": "kernel_computation_specific_parameter",
+        "template": "phi_r(A)=A+r A^T for fixed r=1/2, compute action on basis and find kernel",
+        "variable_count": 1
+      },
+      "difficulty": 2,
+      "estimated_minutes": 6,
+      "answer": [
+        {
+          "label": "计算与核",
+          "steps": [
+            "$\\varphi_{1/2}(E_{11})=E_{11}+\\frac12{}^tE_{11}=E_{11}+\\frac12E_{11}=\\frac32E_{11}$",
+            "$\\varphi_{1/2}(E_{12})=E_{12}+\\frac12{}^tE_{12}=E_{12}+\\frac12E_{21}=\\begin{pmatrix}0&1\\\\1/2&0\\end{pmatrix}$",
+            "因 $r=1/2\\neq\\pm1$，由一般结论 $\\mathrm{Ker}\\,\\varphi_r=\\{0\\}$，维数为0，即 $\\varphi_{1/2}$ 是单射（同构）"
+          ]
+        }
+      ],
+      "id": "nagoya-2007-3a846a5911-q02-practice-03",
+      "school": "名古屋大学",
+      "year": "2007"
+    },
+    {
+      "text": "设 $r=-1$，求 $\\mathrm{Ker}\\,\\varphi_{-1}$ 的一组基，并验证其确实落在核中。",
+      "knowledge_points": [
+        "核空间的基",
+        "对称矩阵性质"
+      ],
+      "question_type": "核空间基底求解",
+      "method": [
+        "利用 $r=-1$ 时核为对称矩阵全体的结论",
+        "代入验证"
+      ],
+      "solution_steps": [
+        "写出对称矩阵的标准基",
+        "验证每个基元素满足 $\\varphi_{-1}(A)=0$"
+      ],
+      "math_structure": {
+        "type": "kernel_basis_verification",
+        "template": "for r=-1, find basis of Ker(phi_r) = symmetric matrices and verify",
+        "variable_count": 0
+      },
+      "difficulty": 2,
+      "estimated_minutes": 6,
+      "answer": [
+        {
+          "label": "基与验证",
+          "steps": [
+            "对称矩阵空间的标准基为 $S_1=\\begin{pmatrix}1&0\\\\0&0\\end{pmatrix}, S_2=\\begin{pmatrix}0&0\\\\0&1\\end{pmatrix}, S_3=\\begin{pmatrix}0&1\\\\1&0\\end{pmatrix}$",
+            "验证 $\\varphi_{-1}(S_i)=S_i-{}^tS_i=S_i-S_i=0$（因 $S_i$ 均对称，${}^tS_i=S_i$），三者均在核中",
+            "三者线性无关，且维数吻合 $\\dim\\mathrm{Ker}\\,\\varphi_{-1}=3$，故 $\\{S_1,S_2,S_3\\}$ 为核的一组基"
+          ]
+        }
+      ],
+      "id": "nagoya-2007-3a846a5911-q02-practice-04",
+      "school": "名古屋大学",
+      "year": "2007"
+    }
+  ],
+  "source_question": "問2",
+  "source_pdf": "名古屋大学/多元数理科学研究科/全专攻/名古屋大学_多元数理科学研究科_2007_第1次_数学过去问_上午.pdf",
+  "source_type": "官方过去问",
+  "subject_category": "线性代数"
+}

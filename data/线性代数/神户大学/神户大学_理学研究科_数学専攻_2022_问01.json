@@ -1,0 +1,240 @@
+{
+  "id": "kobe-2022-f8a05dc89f-q01",
+  "school": "神户大学",
+  "year": "2022",
+  "subject": "理学研究科_数学専攻",
+  "text": "设 $a$ 为实数. 定义矩阵 $A$ 为\n$$A=\\begin{pmatrix}2 & a & 0\\\\ a & 2 & a\\\\ 0 & a & 2\\end{pmatrix}.$$\n对列向量 $v\\in\\mathbb{R}^3$, 记其转置为 ${}^{t}v$. 定义映射 $f:\\mathbb{R}^3\\to\\mathbb{R}$ 为 $f(v)={}^{t}vAv$.\n\n(1) 求 $A$ 的特征值.\n\n(2) 求 $A$ 的秩.\n\n(3) 证明 $f$ 不是线性映射.\n\n(4) 求使 $f$ 为满射的 $a$ 的取值范围.",
+  "knowledge_points": [
+    "特征值与特征多项式",
+    "三对角对称矩阵",
+    "实对称矩阵的秩与非零特征值个数",
+    "二次型",
+    "线性映射的定义",
+    "二次型的正定/负定/半定/不定性",
+    "满射的判定"
+  ],
+  "question_type": "矩阵特征值、秩与二次型满射性综合题",
+  "method": [
+    "按行(利用三对角结构)展开特征多项式并因式分解",
+    "利用实对称矩阵秩等于非零特征值个数(含重数)",
+    "用具体向量构造反例证明非线性",
+    "利用二次型在特征向量方向上的取值范围判断值域"
+  ],
+  "solution_steps": [
+    "写出 $\\det(A-\\lambda I)=0$ 并利用三对角结构展开、因式分解, 得到三个特征值",
+    "根据特征值是否为零, 结合实对称矩阵'秩=非零特征值个数'的性质求出秩",
+    "取具体向量 $v$ 及标量 $c$, 计算 $f(cv)$ 与 $cf(v)$, 说明二者不相等从而 $f$ 非线性",
+    "分析二次型 $f$ 在各特征向量方向上的取值集合, 得出 $f$ 满射当且仅当 $A$ 不定, 从而确定 $a$ 的范围"
+  ],
+  "math_structure": {
+    "type": "symmetric_tridiagonal_matrix_quadratic_form",
+    "template": "$A=\\begin{pmatrix}2 & a & 0\\\\ a & 2 & a\\\\ 0 & a & 2\\end{pmatrix}$, $f(v)={}^{t}vAv$, $v\\in\\mathbb{R}^3$",
+    "variable_count": 1
+  },
+  "difficulty": 3,
+  "answer": [
+    {
+      "label": "(1)",
+      "steps": [
+        "令 $M=A-\\lambda I=\\begin{pmatrix}2-\\lambda & a & 0\\\\ a & 2-\\lambda & a\\\\ 0 & a & 2-\\lambda\\end{pmatrix}$, 按第一行展开: $\\det M=(2-\\lambda)\\det\\begin{pmatrix}2-\\lambda & a\\\\ a & 2-\\lambda\\end{pmatrix}-a\\det\\begin{pmatrix}a & a\\\\ 0 & 2-\\lambda\\end{pmatrix}$.",
+        "计算得 $\\det M=(2-\\lambda)\\left[(2-\\lambda)^2-a^2\\right]-a\\left[a(2-\\lambda)\\right]=(2-\\lambda)^3-2a^2(2-\\lambda)$, 即 $\\det M=(2-\\lambda)\\left[(2-\\lambda)^2-2a^2\\right]$.",
+        "令 $\\det M=0$: 或 $2-\\lambda=0$, 或 $(2-\\lambda)^2=2a^2\\Rightarrow 2-\\lambda=\\pm\\sqrt{2}\\,a$.",
+        "验算: 当 $a=0$ 时公式给出三重特征值 $2$, 而此时 $A=2I$, 特征值确为 $2,2,2$, 一致.",
+        "结论: $A$ 的特征值为 $\\lambda=2,\\ 2+\\sqrt{2}\\,a,\\ 2-\\sqrt{2}\\,a$."
+      ]
+    },
+    {
+      "label": "(2)",
+      "steps": [
+        "$A$ 是实对称矩阵, 可正交对角化, 故其秩等于非零特征值的个数(计重数).",
+        "特征值 $2$ 恒不为零(与 $a$ 无关). $2+\\sqrt{2}a=0\\iff a=-\\sqrt{2}$; $2-\\sqrt{2}a=0\\iff a=\\sqrt{2}$.",
+        "当 $a\\ne\\pm\\sqrt{2}$ 时三特征值均非零, 秩为 $3$; 当 $a=\\sqrt{2}$ 时特征值为 $2,4,0$, 秩为 $2$; 当 $a=-\\sqrt{2}$ 时特征值为 $2,0,4$, 秩也为 $2$.",
+        "验算 $a=\\sqrt{2}$ 情形: $A=\\begin{pmatrix}2&\\sqrt2&0\\\\\\sqrt2&2&\\sqrt2\\\\0&\\sqrt2&2\\end{pmatrix}$, 第三行减去 $\\tfrac{\\sqrt2}{2}\\times$第二行后可化为只有两行独立, 确认秩为 $2$.",
+        "结论: $\\operatorname{rank}(A)=2$ 当 $a=\\pm\\sqrt{2}$ 时, 否则 $\\operatorname{rank}(A)=3$."
+      ]
+    },
+    {
+      "label": "(3)",
+      "steps": [
+        "若 $f$ 是线性映射, 则必须对任意 $c\\in\\mathbb{R}, v\\in\\mathbb{R}^3$ 有 $f(cv)=cf(v)$.",
+        "取 $v=(1,0,0)^{t}$, 计算 $Av=(2,a,0)^{t}$, 故 $f(v)={}^{t}vAv=1\\cdot2+0\\cdot a+0\\cdot0=2$.",
+        "取 $c=2$, 则 $2v=(2,0,0)^{t}$, $A(2v)=(4,2a,0)^{t}$, 故 $f(2v)=2\\cdot4+0\\cdot2a+0=8$.",
+        "若 $f$ 线性, 应有 $f(2v)=2f(v)=4$, 但实际计算得 $f(2v)=8\\ne 4$, 矛盾.",
+        "事实上因为 $f$ 是二次型, 一般满足 $f(cv)=c^2f(v)$ 而非 $f(cv)=cf(v)$, 故 $f$ 不是线性映射."
+      ]
+    },
+    {
+      "label": "(4)",
+      "steps": [
+        "实对称二次型 $f(v)={}^{t}vAv$ 在正交对角化后可写成 $f=\\lambda_1y_1^2+\\lambda_2y_2^2+\\lambda_3y_3^2$, 其值域仅由特征值的符号决定.",
+        "若所有特征值 $\\ge 0$(正定或半正定), 则 $f(v)\\ge 0$ 恒成立, 值域含于 $[0,\\infty)$, 不是满射; 若所有特征值 $\\le 0$ 同理值域含于 $(-\\infty,0]$, 也非满射.",
+        "若特征值既有正又有负(不定), 设正特征值对应单位特征向量 $u_+$, 负特征值对应 $u_-$, 则 $f(tu_+)=t^2\\lambda_+$ 取遍 $[0,\\infty)$, $f(tu_-)=t^2\\lambda_-$ 取遍 $(-\\infty,0]$, 二者并集为 $\\mathbb{R}$, 故 $f$ 满射.",
+        "本题特征值为 $2,\\,2+\\sqrt2 a,\\,2-\\sqrt2 a$, 其中 $2>0$ 恒成立, 故只需另两个特征值中至少一个为负: $2+\\sqrt2 a<0\\iff a<-\\sqrt2$, 或 $2-\\sqrt2 a<0\\iff a>\\sqrt2$.",
+        "当 $|a|=\\sqrt2$ 时出现零特征值, 此时 $A$ 半正定, 值域为 $[0,\\infty)\\ne\\mathbb{R}$, 应排除边界值.",
+        "结论: $f$ 为满射 $\\iff a<-\\sqrt{2}$ 或 $a>\\sqrt{2}$, 即 $|a|>\\sqrt{2}$."
+      ]
+    }
+  ],
+  "practice_questions": [
+    {
+      "text": "设 $b$ 为实数, 矩阵 $B=\\begin{pmatrix}1 & b & 0\\\\ b & 1 & b\\\\ 0 & b & 1\\end{pmatrix}$. 求 $B$ 的特征值(用 $b$ 表示).",
+      "knowledge_points": [
+        "特征多项式",
+        "三对角矩阵",
+        "行列式展开"
+      ],
+      "question_type": "特征值计算",
+      "method": [
+        "按行展开特征多项式并因式分解"
+      ],
+      "solution_steps": [
+        "写出 $\\det(B-\\lambda I)$",
+        "利用三对角结构化简为乘积形式",
+        "解出各因子对应的特征值"
+      ],
+      "math_structure": {
+        "type": "symmetric_tridiagonal_matrix_eigenvalue",
+        "template": "$B=\\begin{pmatrix}1 & b & 0\\\\ b & 1 & b\\\\ 0 & b & 1\\end{pmatrix}$",
+        "variable_count": 1
+      },
+      "difficulty": 2,
+      "estimated_minutes": 6,
+      "answer": [
+        {
+          "label": "特征值",
+          "steps": [
+            "令 $N=B-\\lambda I=\\begin{pmatrix}1-\\lambda & b & 0\\\\ b & 1-\\lambda & b\\\\ 0 & b & 1-\\lambda\\end{pmatrix}$, 按第一行展开: $\\det N=(1-\\lambda)\\left[(1-\\lambda)^2-b^2\\right]-b\\left[b(1-\\lambda)\\right]$.",
+            "化简得 $\\det N=(1-\\lambda)^3-2b^2(1-\\lambda)=(1-\\lambda)\\left[(1-\\lambda)^2-2b^2\\right]$.",
+            "令其为零: $1-\\lambda=0$ 或 $1-\\lambda=\\pm\\sqrt2\\,b$.",
+            "验算 $b=0$ 时: $B=I$, 三个特征值均应为 $1$, 与公式 $\\lambda=1,1,1$ 一致.",
+            "结论: $\\lambda=1,\\ 1+\\sqrt2\\,b,\\ 1-\\sqrt2\\,b$."
+          ]
+        }
+      ],
+      "id": "kobe-2022-f8a05dc89f-q01-practice-01",
+      "school": "神户大学",
+      "year": "2022"
+    },
+    {
+      "text": "沿用上题矩阵 $B=\\begin{pmatrix}1 & b & 0\\\\ b & 1 & b\\\\ 0 & b & 1\\end{pmatrix}$, 求所有使 $\\operatorname{rank}(B)<3$ 的实数 $b$.",
+      "knowledge_points": [
+        "实对称矩阵的秩",
+        "非零特征值个数",
+        "特征值计算"
+      ],
+      "question_type": "参数化矩阵秩的讨论",
+      "method": [
+        "利用秩=非零特征值个数",
+        "解特征值为零的方程"
+      ],
+      "solution_steps": [
+        "利用上题求得的特征值表达式",
+        "令某特征值为零解出对应的 $b$",
+        "判断此时秩是否严格小于3"
+      ],
+      "math_structure": {
+        "type": "symmetric_tridiagonal_matrix_rank",
+        "template": "$B=\\begin{pmatrix}1 & b & 0\\\\ b & 1 & b\\\\ 0 & b & 1\\end{pmatrix}$, $\\operatorname{rank}(B)$ via 特征值",
+        "variable_count": 1
+      },
+      "difficulty": 2,
+      "estimated_minutes": 6,
+      "answer": [
+        {
+          "label": "满足条件的 b",
+          "steps": [
+            "由前题特征值 $1,\\,1+\\sqrt2 b,\\,1-\\sqrt2 b$, 特征值 $1$ 恒非零.",
+            "$1+\\sqrt2 b=0\\iff b=-\\dfrac{1}{\\sqrt2}=-\\dfrac{\\sqrt2}{2}$; $1-\\sqrt2 b=0\\iff b=\\dfrac{\\sqrt2}{2}$.",
+            "在这两个取值下恰有一个特征值为零, 其余两个非零, 故秩为 $2<3$; 其余 $b$(含 $b=0$)三特征值均非零, 秩为 $3$.",
+            "结论: $\\operatorname{rank}(B)<3 \\iff b=\\dfrac{\\sqrt2}{2}\\text{ 或 } b=-\\dfrac{\\sqrt2}{2}$."
+          ]
+        }
+      ],
+      "id": "kobe-2022-f8a05dc89f-q01-practice-02",
+      "school": "神户大学",
+      "year": "2022"
+    },
+    {
+      "text": "设 $C=\\begin{pmatrix}1&0\\\\0&-1\\end{pmatrix}$, 定义 $g:\\mathbb{R}^2\\to\\mathbb{R}$ 为 $g(v)={}^{t}vCv=x^2-y^2$ (其中 $v=(x,y)^t$). 证明 $g$ 不是线性映射.",
+      "knowledge_points": [
+        "二次型",
+        "线性映射定义",
+        "反例法"
+      ],
+      "question_type": "非线性证明",
+      "method": [
+        "取具体向量与标量构造反例"
+      ],
+      "solution_steps": [
+        "计算 $g(v)$ 与 $g(cv)$ 的具体值",
+        "比较 $g(cv)$ 与 $cg(v)$ 说明不相等"
+      ],
+      "math_structure": {
+        "type": "quadratic_form_nonlinearity",
+        "template": "$g(v)={}^{t}vCv$, $C=\\operatorname{diag}(1,-1)$",
+        "variable_count": 0
+      },
+      "difficulty": 1,
+      "estimated_minutes": 4,
+      "answer": [
+        {
+          "label": "证明",
+          "steps": [
+            "取 $v=(1,0)^t$, 则 $g(v)=1^2-0^2=1$.",
+            "取 $c=2$, 则 $2v=(2,0)^t$, $g(2v)=2^2-0^2=4$.",
+            "若 $g$ 线性, 应有 $g(2v)=2g(v)=2$, 但实际 $g(2v)=4\\ne2$, 矛盾.",
+            "结论: $g$ 不是线性映射(因为 $g$ 是二次型, 满足 $g(cv)=c^2g(v)$)."
+          ]
+        }
+      ],
+      "id": "kobe-2022-f8a05dc89f-q01-practice-03",
+      "school": "神户大学",
+      "year": "2022"
+    },
+    {
+      "text": "设 $c$ 为实数, $D(c)=\\begin{pmatrix}c&0&0\\\\0&1&0\\\\0&0&4\\end{pmatrix}$, 定义 $h:\\mathbb{R}^3\\to\\mathbb{R}$ 为 $h(v)={}^{t}vD(c)v=cx^2+y^2+4z^2$. 求使 $h$ 为满射的 $c$ 的取值范围.",
+      "knowledge_points": [
+        "二次型的值域",
+        "正定/半定/不定判别",
+        "满射条件"
+      ],
+      "question_type": "参数化二次型满射性判断",
+      "method": [
+        "按特征向量方向分析取值集合",
+        "利用不定性(正负特征值并存)判断满射"
+      ],
+      "solution_steps": [
+        "写出 $D(c)$ 的特征值(对角矩阵即为对角元)",
+        "分析各特征值方向上 $h$ 的取值范围",
+        "结合 $1,4>0$ 恒正, 讨论 $c$ 的符号得出满射条件"
+      ],
+      "math_structure": {
+        "type": "diagonal_quadratic_form_surjectivity",
+        "template": "$D(c)=\\operatorname{diag}(c,1,4)$, $h(v)={}^{t}vD(c)v$",
+        "variable_count": 1
+      },
+      "difficulty": 3,
+      "estimated_minutes": 8,
+      "answer": [
+        {
+          "label": "满足满射的 c 的范围",
+          "steps": [
+            "$D(c)$ 已对角化, 特征值即为 $c,1,4$, 对应标准基向量 $e_1,e_2,e_3$ 为特征向量.",
+            "在 $e_2,e_3$ 方向上 $h(te_2)=t^2\\ge0$, $h(te_3)=4t^2\\ge0$, 恒非负, 与 $c$ 无关.",
+            "若 $c\\ge0$, 则三个系数均非负, $h(v)=cx^2+y^2+4z^2\\ge0$ 对所有 $v$ 成立, 值域含于 $[0,\\infty)$, 非满射.",
+            "若 $c<0$, 则沿 $e_1$ 方向 $h(te_1)=ct^2$ 当 $t$ 取遍 $\\mathbb{R}$ 时取遍 $(-\\infty,0]$, 而沿 $e_2$ 方向取遍 $[0,\\infty)$, 二者并集为整个 $\\mathbb{R}$, 故 $h$ 满射.",
+            "验算 $c=-1$: 取 $x=t,y=z=0$ 得 $h=-t^2$ 可任意负; 取 $x=0,y=t$ 得 $h=t^2$ 可任意非负, 合并覆盖 $\\mathbb{R}$, 验证成立.",
+            "结论: $h$ 为满射 $\\iff c<0$."
+          ]
+        }
+      ],
+      "id": "kobe-2022-f8a05dc89f-q01-practice-04",
+      "school": "神户大学",
+      "year": "2022"
+    }
+  ],
+  "source_question": "問題1",
+  "source_pdf": "神户大学/理学研究科/数学専攻/神户大学_理学研究科_数学専攻_2022.pdf",
+  "source_type": "官方过去问",
+  "subject_category": "线性代数"
+}

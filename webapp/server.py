@@ -156,6 +156,19 @@ class Library:
         scope = self._state[1].get(key)
         return list(scope.questions) if scope else []
 
+    def detail_scope(self, qid: str, subject: str = "") -> str:
+        """返回一道题所在的最深浏览范围，供“打开原题”跨文件跳转。"""
+        top_subject = str(subject or "").split("/")[0]
+        prefix = f"{top_subject}/" if top_subject else ""
+        candidates = [
+            scope.key
+            for scope in self._state[0]
+            if scope.key.startswith(prefix)
+            and scope.key.count("/") >= 4
+            and any(question.qid == qid for question in scope.questions)
+        ]
+        return max(candidates, key=lambda key: key.count("/"), default="")
+
     def error(self, key: str) -> Optional[str]:
         scope = self._state[1].get(key)
         return scope.error if scope else None
@@ -424,6 +437,7 @@ def create_app(
                 "year": str(m.question.raw.get("year") or m.question.raw.get("年度") or m.question.raw.get("年份") or "").strip(),
                 "text": question_text(m.question),
                 "score": round(m.score, 4),
+                "scope": library.detail_scope(m.question.qid, subject),
             } for m in kept],
             "db_size": len(index),
             "subject": subject,
@@ -586,6 +600,8 @@ def create_app(
                 "year": y,
                 "text": question_text(q),
                 "answer": q.raw.get("answer") or [],    # 题目库展示用，匹配接口不返回
+                # 针对原题的专属练习只随浏览接口返回，不进入 QuestionIndex。
+                "practice_questions": q.raw.get("practice_questions") or [],
             })
 
         # 按数字年份降序排：平成N=1988+N、令和N=2018+N；同年内 winter 比普通晚半年（次年初考）排前

@@ -1,0 +1,224 @@
+{
+  "id": "osaka-2014-d970074357-q05",
+  "school": "大阪大学",
+  "year": "2014",
+  "subject": "情报科学研究科_情报基础数学",
+  "text": "设 $\\alpha,\\beta$ 为正实数，$\\theta$ 为实数。考虑满足下列条件的实二阶方阵序列 $A_k, B_k\\,(k=1,2,\\dots)$：\n$$A_k\\begin{pmatrix}\\cos k\\theta\\\\ \\sin k\\theta\\end{pmatrix}=\\alpha\\begin{pmatrix}\\cos k\\theta\\\\ \\sin k\\theta\\end{pmatrix},\\qquad A_k\\begin{pmatrix}-\\sin k\\theta\\\\ \\cos k\\theta\\end{pmatrix}=\\beta\\begin{pmatrix}-\\sin k\\theta\\\\ \\cos k\\theta\\end{pmatrix},$$\n$$\\begin{cases}B_1=A_1,\\\\ B_k=A_kB_{k-1}\\ (k\\ge2).\\end{cases}$$\n(1) 求 $A_k$；\n(2) 当 $\\theta=\\dfrac{\\pi}{2}$ 时，求使 $\\displaystyle\\lim_{k\\to\\infty}B_k$ 为零矩阵的 $\\alpha,\\beta$ 的条件；\n(3) 求使 $\\displaystyle\\lim_{k\\to\\infty}B_k$ 为零矩阵的 $\\alpha,\\beta,\\theta$ 的条件。",
+  "knowledge_points": [
+    "特征值特征向量分解",
+    "旋转矩阵与正交矩阵",
+    "矩阵的相似对角化",
+    "矩阵幂的极限",
+    "二次方程根模长的判别（Jury判别法）",
+    "三角恒等式化简"
+  ],
+  "question_type": "矩阵特征分解与序列极限条件求解",
+  "method": [
+    "把两个特征向量条件写成旋转矩阵对角化的形式求 $A_k$",
+    "把 $\\theta=\\pi/2$ 代入得到对角矩阵，按奇偶分类递推求 $B_k$ 通项",
+    "一般情形利用旋转矩阵乘法关系化简 $B_k=R(k\\theta)M^k$",
+    "用二次方程判别根模长小于1的Jury条件求一般条件"
+  ],
+  "solution_steps": [
+    "利用 $(\\cos k\\theta,\\sin k\\theta)$ 与 $(-\\sin k\\theta,\\cos k\\theta)$ 构成旋转矩阵 $R(k\\theta)$ 的两列，把 $A_k$ 表示为 $R(k\\theta)\\mathrm{diag}(\\alpha,\\beta)R(k\\theta)^T$ 并展开",
+    "$\\theta=\\pi/2$ 时 $A_k$ 退化为对角矩阵，按 $k$ 的奇偶分类计算 $B_k$ 的通项，得条件 $\\alpha\\beta<1$",
+    "一般情形利用 $R(k\\theta)^{-1}R((k-1)\\theta)=R(-\\theta)$ 把 $B_k$ 化为 $R(k\\theta)M^k$，其中 $M=\\mathrm{diag}(\\alpha,\\beta)R(-\\theta)$",
+    "由 $R(k\\theta)$ 正交（保范数）知 $B_k\\to0$ 等价于 $M^k\\to0$，即 $M$ 的特征值模长均小于1",
+    "求出 $M$ 的特征方程 $\\lambda^2-(\\alpha+\\beta)\\cos\\theta\\,\\lambda+\\alpha\\beta=0$，用Jury判别法给出 $\\alpha\\beta<1$ 且 $|(\\alpha+\\beta)\\cos\\theta|<1+\\alpha\\beta$"
+  ],
+  "math_structure": {
+    "type": "rotation_matrix_eigen_recursion_limit",
+    "template": "A_k v_1=\\alpha v_1,\\ A_kv_2=\\beta v_2,\\ v_1,v_2\\ \\text{为旋转基},\\ B_k=A_kB_{k-1}",
+    "variable_count": 3
+  },
+  "difficulty": 5,
+  "answer": [
+    {
+      "label": "(1)",
+      "steps": [
+        "向量 $\\binom{\\cos k\\theta}{\\sin k\\theta}$ 与 $\\binom{-\\sin k\\theta}{\\cos k\\theta}$ 是正交单位向量，恰为旋转矩阵 $R(k\\theta)=\\begin{pmatrix}\\cos k\\theta&-\\sin k\\theta\\\\ \\sin k\\theta&\\cos k\\theta\\end{pmatrix}$ 的两列。由题设条件知 $A_kR(k\\theta)=R(k\\theta)\\mathrm{diag}(\\alpha,\\beta)$，故 $A_k=R(k\\theta)\\mathrm{diag}(\\alpha,\\beta)R(k\\theta)^{-1}=R(k\\theta)\\mathrm{diag}(\\alpha,\\beta)R(k\\theta)^{T}$（因 $R$ 正交）。",
+        "展开：$R(k\\theta)\\mathrm{diag}(\\alpha,\\beta)=\\begin{pmatrix}\\alpha\\cos k\\theta&-\\beta\\sin k\\theta\\\\ \\alpha\\sin k\\theta&\\beta\\cos k\\theta\\end{pmatrix}$，再右乘 $R(k\\theta)^T=\\begin{pmatrix}\\cos k\\theta&\\sin k\\theta\\\\ -\\sin k\\theta&\\cos k\\theta\\end{pmatrix}$。",
+        "逐项计算得：$A_k=\\begin{pmatrix}\\alpha\\cos^2k\\theta+\\beta\\sin^2k\\theta & (\\alpha-\\beta)\\sin k\\theta\\cos k\\theta\\\\ (\\alpha-\\beta)\\sin k\\theta\\cos k\\theta & \\alpha\\sin^2k\\theta+\\beta\\cos^2k\\theta\\end{pmatrix}$。",
+        "验算：该矩阵显然对称（因两特征方向正交），且直接代入验证 $A_k\\binom{\\cos k\\theta}{\\sin k\\theta}=\\alpha\\binom{\\cos k\\theta}{\\sin k\\theta}$ 与 $A_k\\binom{-\\sin k\\theta}{\\cos k\\theta}=\\beta\\binom{-\\sin k\\theta}{\\cos k\\theta}$ 均成立，符合题设。"
+      ]
+    },
+    {
+      "label": "(2)",
+      "steps": [
+        "当 $\\theta=\\pi/2$，$k\\theta=k\\pi/2$，$\\sin k\\theta\\cos k\\theta=0$ 对一切整数 $k$ 恒成立，故 $A_k$ 退化为对角矩阵。按 $k\\bmod4$ 计算：$k$ 为奇数时 $\\cos k\\theta=0,\\sin^2k\\theta=1$，$A_k=\\mathrm{diag}(\\beta,\\alpha)$；$k$ 为偶数时 $\\sin k\\theta=0,\\cos^2k\\theta=1$，$A_k=\\mathrm{diag}(\\alpha,\\beta)$。",
+        "由于所有 $A_j$ 都是对角矩阵，两两可交换，故 $B_k=A_k\\cdots A_1$ 的对角元分别为各 $A_j$ 对应对角元的乘积。设 $k$ 中有 $p$ 个奇数下标、$q$ 个偶数下标（$p+q=k$）。第 $(1,1)$ 元为（奇数项贡献 $\\beta$）$\\times$（偶数项贡献 $\\alpha$）$=\\beta^{p}\\alpha^{q}$；第 $(2,2)$ 元为 $\\alpha^{p}\\beta^{q}$。",
+        "当 $k=2m$：$p=q=m$，两个对角元均为 $(\\alpha\\beta)^m$，即 $B_{2m}=(\\alpha\\beta)^m I$。当 $k=2m+1$：$p=m+1,q=m$，得 $B_{2m+1}=(\\alpha\\beta)^m\\,\\mathrm{diag}(\\beta,\\alpha)$。",
+        "故 $\\lim_{k\\to\\infty}B_k=0$（零矩阵）当且仅当 $(\\alpha\\beta)^m\\to0$，即当且仅当 $\\alpha\\beta<1$（因 $\\alpha,\\beta>0$）。若 $\\alpha\\beta=1$ 则 $B_{2m}=I\\not\\to0$；若 $\\alpha\\beta>1$ 则发散。故条件为 $\\boxed{\\alpha\\beta<1}$。"
+      ]
+    },
+    {
+      "label": "(3)",
+      "steps": [
+        "记旋转矩阵 $R(\\varphi)=\\begin{pmatrix}\\cos\\varphi&-\\sin\\varphi\\\\ \\sin\\varphi&\\cos\\varphi\\end{pmatrix}$，则由(1)，$A_j=R(j\\theta)DR(j\\theta)^{-1}$，其中 $D=\\mathrm{diag}(\\alpha,\\beta)$，且 $R(j\\theta)^{-1}=R(-j\\theta)$。于是 $B_k=A_k\\cdots A_1=R(k\\theta)DR(-k\\theta)R((k-1)\\theta)D\\cdots R(-\\theta)$。注意 $R(-j\\theta)R((j-1)\\theta)=R(-\\theta)$ 对每一对相邻因子都成立，故所有中间旋转都化简为固定的 $R(-\\theta)$。",
+        "记 $M=DR(-\\theta)$（与 $k$ 无关的常数矩阵），则可归纳验证 $B_k=R(k\\theta)M^k$（对 $k=1$ 显然成立；设对 $k-1$ 成立，$B_k=A_kB_{k-1}=R(k\\theta)DR(-k\\theta)\\cdot R((k-1)\\theta)M^{k-1}=R(k\\theta)DR(-\\theta)M^{k-1}=R(k\\theta)M^{k}$）。",
+        "由于 $R(k\\theta)$ 是正交矩阵（保持向量2-范数及矩阵算子范数），故 $\\|B_k\\|=\\|M^k\\|$，从而 $\\lim_{k\\to\\infty}B_k=0\\iff \\lim_{k\\to\\infty}M^k=0\\iff$ $M$ 的谱半径 $\\rho(M)<1$（有限维矩阵幂收敛于零的充要条件）。",
+        "计算 $M=D R(-\\theta)=\\begin{pmatrix}\\alpha\\cos\\theta&\\alpha\\sin\\theta\\\\ -\\beta\\sin\\theta&\\beta\\cos\\theta\\end{pmatrix}$，其特征方程为 $\\lambda^2-\\mathrm{tr}(M)\\lambda+\\det(M)=0$，其中 $\\mathrm{tr}(M)=(\\alpha+\\beta)\\cos\\theta$，$\\det(M)=\\alpha\\beta\\cos^2\\theta+\\alpha\\beta\\sin^2\\theta=\\alpha\\beta$。即 $\\lambda^2-(\\alpha+\\beta)\\cos\\theta\\,\\lambda+\\alpha\\beta=0$。",
+        "对形如 $\\lambda^2-p\\lambda+q=0$（$p,q$ 实数）的二次方程，其两根（实或复）均在单位圆内的充要条件（Jury判别法）为 $|q|<1$ 且 $|p|<1+q$。这里 $p=(\\alpha+\\beta)\\cos\\theta,\\ q=\\alpha\\beta$，故条件为 $\\alpha\\beta<1$ 且 $|(\\alpha+\\beta)\\cos\\theta|<1+\\alpha\\beta$。",
+        "验算：取 $\\theta=\\pi/2$（$\\cos\\theta=0$），条件退化为 $\\alpha\\beta<1$（第二式自动满足），与(2)的结果完全一致；取 $\\theta=0$（$\\cos\\theta=1$），条件为 $\\alpha\\beta<1$ 且 $\\alpha+\\beta<1+\\alpha\\beta\\iff(1-\\alpha)(1-\\beta)>0$，结合 $\\alpha\\beta<1$ 可推出等价于 $0<\\alpha<1,0<\\beta<1$，这与 $\\theta=0$ 时 $B_k=\\mathrm{diag}(\\alpha^k,\\beta^k)\\to0$ 的直接结论一致，两次独立验证均通过。"
+      ]
+    }
+  ],
+  "practice_questions": [
+    {
+      "text": "写出旋转矩阵 $R(\\varphi)=\\begin{pmatrix}\\cos\\varphi&-\\sin\\varphi\\\\ \\sin\\varphi&\\cos\\varphi\\end{pmatrix}$，验证其为正交矩阵，并证明 $R(\\varphi)^{-1}=R(-\\varphi)$。",
+      "knowledge_points": [
+        "旋转矩阵的定义",
+        "正交矩阵的验证"
+      ],
+      "question_type": "线性代数基础验证",
+      "method": [
+        "直接计算 $R(\\varphi)^TR(\\varphi)$",
+        "验证等于单位矩阵",
+        "比较 $R(\\varphi)^T$ 与 $R(-\\varphi)$"
+      ],
+      "solution_steps": [
+        "计算 $R(\\varphi)^T$",
+        "计算 $R(\\varphi)^TR(\\varphi)$ 并化简为 $I$",
+        "说明 $R(\\varphi)^T=R(-\\varphi)$"
+      ],
+      "math_structure": {
+        "type": "rotation_matrix_basic",
+        "template": "R(\\varphi)^TR(\\varphi)=I,\\ R(\\varphi)^{-1}=R(-\\varphi)",
+        "variable_count": 1
+      },
+      "difficulty": 1,
+      "estimated_minutes": 6,
+      "answer": [
+        {
+          "label": "验证",
+          "steps": [
+            "$R(\\varphi)^T=\\begin{pmatrix}\\cos\\varphi&\\sin\\varphi\\\\ -\\sin\\varphi&\\cos\\varphi\\end{pmatrix}$。",
+            "$R(\\varphi)^TR(\\varphi)=\\begin{pmatrix}\\cos^2\\varphi+\\sin^2\\varphi&-\\cos\\varphi\\sin\\varphi+\\sin\\varphi\\cos\\varphi\\\\ -\\sin\\varphi\\cos\\varphi+\\cos\\varphi\\sin\\varphi&\\sin^2\\varphi+\\cos^2\\varphi\\end{pmatrix}=I$，故 $R(\\varphi)$ 正交。",
+            "又 $R(-\\varphi)=\\begin{pmatrix}\\cos\\varphi&\\sin\\varphi\\\\-\\sin\\varphi&\\cos\\varphi\\end{pmatrix}=R(\\varphi)^T$，而正交矩阵满足 $R^{-1}=R^T$，故 $R(\\varphi)^{-1}=R(-\\varphi)$。"
+          ]
+        }
+      ],
+      "id": "osaka-2014-d970074357-q05-practice-01",
+      "school": "大阪大学",
+      "year": "2014"
+    },
+    {
+      "text": "设2阶矩阵 $C$ 满足 $C\\binom{1}{0}=2\\binom{1}{0}$，$C\\binom{0}{1}=3\\binom{0}{1}$，求 $C$，并判断 $\\displaystyle\\lim_{k\\to\\infty}C^k$ 是否为零矩阵，说明理由。",
+      "knowledge_points": [
+        "特征值特征向量的直接应用",
+        "矩阵幂的极限判别"
+      ],
+      "question_type": "对角矩阵幂极限判断",
+      "method": [
+        "由条件直接写出 $C$ 为对角矩阵",
+        "分析特征值模长与幂的极限关系"
+      ],
+      "solution_steps": [
+        "写出 $C=\\mathrm{diag}(2,3)$",
+        "计算 $C^k=\\mathrm{diag}(2^k,3^k)$",
+        "判断极限是否为零"
+      ],
+      "math_structure": {
+        "type": "diagonal_matrix_power_limit",
+        "template": "C=\\mathrm{diag}(\\lambda_1,\\lambda_2),\\ \\lim_{k\\to\\infty}C^k",
+        "variable_count": 2
+      },
+      "difficulty": 2,
+      "estimated_minutes": 8,
+      "answer": [
+        {
+          "label": "求解与判断",
+          "steps": [
+            "由条件，标准基向量 $e_1,e_2$ 分别是特征值 $2,3$ 的特征向量，故 $C=\\begin{pmatrix}2&0\\\\0&3\\end{pmatrix}$。",
+            "$C^k=\\begin{pmatrix}2^k&0\\\\0&3^k\\end{pmatrix}$。",
+            "由于 $2>1$ 且 $3>1$，$2^k\\to\\infty,3^k\\to\\infty$，故 $C^k$ 不趋于零矩阵，而是发散。这说明矩阵幂趋于零要求所有特征值模长都小于1，仅有一个特征值小于1是不够的。"
+          ]
+        }
+      ],
+      "id": "osaka-2014-d970074357-q05-practice-02",
+      "school": "大阪大学",
+      "year": "2014"
+    },
+    {
+      "text": "设 $\\theta=\\pi$（而不是 $\\pi/2$），仍设 $A_k,B_k$ 满足原题条件，$\\alpha,\\beta>0$。求使 $\\displaystyle\\lim_{k\\to\\infty}B_k$ 为零矩阵的 $\\alpha,\\beta$ 的条件。",
+      "knowledge_points": [
+        "一般情形结论的具体代入",
+        "Jury判别法在特殊角度下的化简"
+      ],
+      "question_type": "特殊角度下的矩阵极限条件",
+      "method": [
+        "代入 $\\theta=\\pi$ 到一般判别条件中",
+        "结合 $\\alpha\\beta<1$ 化简得到关于 $\\alpha,\\beta$ 的显式条件"
+      ],
+      "solution_steps": [
+        "代入 $\\cos\\theta=-1$ 到一般条件 $\\alpha\\beta<1,|(\\alpha+\\beta)\\cos\\theta|<1+\\alpha\\beta$",
+        "化简第二个条件为 $(1-\\alpha)(1-\\beta)>0$",
+        "结合 $\\alpha\\beta<1$ 得出最终范围"
+      ],
+      "math_structure": {
+        "type": "rotation_matrix_eigen_recursion_limit",
+        "template": "\\theta=\\pi,\\ \\alpha\\beta<1,\\ |(\\alpha+\\beta)\\cos\\theta|<1+\\alpha\\beta",
+        "variable_count": 2
+      },
+      "difficulty": 3,
+      "estimated_minutes": 12,
+      "answer": [
+        {
+          "label": "求条件",
+          "steps": [
+            "代入一般条件 $\\alpha\\beta<1$ 且 $|(\\alpha+\\beta)\\cos\\theta|<1+\\alpha\\beta$，此处 $\\cos\\pi=-1$，第二条件变为 $(\\alpha+\\beta)<1+\\alpha\\beta$（因绝对值内为负，取绝对值后仍是 $\\alpha+\\beta$，且需 $\\alpha+\\beta<1+\\alpha\\beta$）。",
+            "移项：$1+\\alpha\\beta-\\alpha-\\beta=(1-\\alpha)(1-\\beta)>0$，即 $\\alpha,\\beta$ 同时小于1或同时大于1。",
+            "结合必要条件 $\\alpha\\beta<1$：若同时大于1，则 $\\alpha\\beta>1$，矛盾；故只能同时小于1。",
+            "综上，条件为 $0<\\alpha<1$ 且 $0<\\beta<1$。可直接验证：此时 $A_k=\\mathrm{diag}(\\beta,\\alpha)$ 恒定（因 $\\theta=\\pi$ 时 $\\cos k\\pi=\\pm1,\\sin k\\pi=0$，实际 $A_k$ 在偶奇 $k$ 间也是对角矩阵，与 $\\theta=0$ 情形本质相同），故 $B_k\\to0\\iff\\alpha<1,\\beta<1$，与推导一致。"
+          ]
+        }
+      ],
+      "id": "osaka-2014-d970074357-q05-practice-03",
+      "school": "大阪大学",
+      "year": "2014"
+    },
+    {
+      "text": "设 $M=\\begin{pmatrix}2\\cos\\theta&2\\sin\\theta\\\\-\\sin\\theta&\\cos\\theta\\end{pmatrix}$（对应 $\\alpha=2,\\beta=1$ 情形的辅助矩阵）。求其特征方程，并讨论是否存在 $\\theta$ 使 $M^k\\to0$（$k\\to\\infty$）。",
+      "knowledge_points": [
+        "矩阵特征方程",
+        "Jury判别法必要条件的应用"
+      ],
+      "question_type": "矩阵幂极限的反例分析",
+      "method": [
+        "计算特征方程系数 $\\mathrm{tr}(M),\\det(M)$",
+        "检验必要条件 $\\alpha\\beta<1$ 是否满足"
+      ],
+      "solution_steps": [
+        "计算 $\\mathrm{tr}(M)=3\\cos\\theta,\\det(M)=2$",
+        "写出特征方程 $\\lambda^2-3\\cos\\theta\\,\\lambda+2=0$",
+        "检验 $\\alpha\\beta=2\\ge1$ 违反必要条件",
+        "得出结论：不存在这样的 $\\theta$"
+      ],
+      "math_structure": {
+        "type": "rotation_matrix_eigen_recursion_limit",
+        "template": "M=\\mathrm{diag}(\\alpha,\\beta)R(-\\theta),\\ \\alpha=2,\\beta=1",
+        "variable_count": 1
+      },
+      "difficulty": 4,
+      "estimated_minutes": 15,
+      "answer": [
+        {
+          "label": "分析与结论",
+          "steps": [
+            "这里 $M=DR(-\\theta)$ 对应 $\\alpha=2,\\beta=1$，其特征方程为 $\\lambda^2-(\\alpha+\\beta)\\cos\\theta\\,\\lambda+\\alpha\\beta=0$，即 $\\lambda^2-3\\cos\\theta\\,\\lambda+2=0$（$\\mathrm{tr}(M)=2\\cos\\theta+\\cos\\theta=3\\cos\\theta$，$\\det(M)=2\\cos^2\\theta+2\\sin^2\\theta=2$）。",
+            "由一般结论，$M^k\\to0$ 的必要条件是常数项（即 $\\det M=\\alpha\\beta$）满足 $|\\alpha\\beta|<1$。这里 $\\alpha\\beta=2\\cdot1=2>1$，恒定不依赖 $\\theta$。",
+            "由于两根之积恒为 $2$，若两根模长都小于1，则积的模长应小于1，与 $|\\lambda_1\\lambda_2|=\\det M=2$ 矛盾。故无论 $\\theta$ 取何值，都不可能有两根同时在单位圆内。",
+            "结论：不存在任何 $\\theta$ 使 $M^k\\to0$。这与主问题中必要条件 $\\alpha\\beta<1$ 完全吻合，说明当 $\\alpha\\beta\\ge1$ 时，无论 $\\theta,$ 角度如何选取，$\\lim B_k=0$ 都不可能成立，加深了对该必要条件本质的理解。"
+          ]
+        }
+      ],
+      "id": "osaka-2014-d970074357-q05-practice-04",
+      "school": "大阪大学",
+      "year": "2014"
+    }
+  ],
+  "source_question": "問5",
+  "source_pdf": "大阪大学/情报科学研究科/情报基础数学/大阪大学_情报科学研究科_情报基础数学_2014_数学过去问.pdf",
+  "source_type": "官方过去问",
+  "subject_category": "线性代数"
+}

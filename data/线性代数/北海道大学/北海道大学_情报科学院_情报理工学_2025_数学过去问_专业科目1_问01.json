@@ -1,0 +1,261 @@
+{
+  "id": "hokkaido-2025-d025feaeaa-q01",
+  "school": "北海道大学",
+  "year": "2025",
+  "subject": "情报科学院_情报理工学",
+  "text": "以下的矩阵 $A,B$：\n$$A=\\begin{pmatrix}1&1\\\\1&1\\end{pmatrix},\\quad B=\\begin{pmatrix}2&-1\\\\-1&2\\end{pmatrix}$$\n(1) 证明矩阵 $A$ 与 $B$ 关于矩阵乘积可换。\n(2) 求同时对角化 $A$ 与 $B$ 的正交矩阵 $P$。\n(3) 利用(2)中求得的正交矩阵 $P$，求 $P^TAP$ 及 $P^TBP$（$P^T$ 表示 $P$ 的转置）。\n(4) 对实数 $\\alpha,\\beta$ 定义矩阵 $C=\\alpha A+\\beta B$，证明 $C$ 也能被 $P$ 对角化，即 $P^TCP$ 为对角矩阵。",
+  "knowledge_points": [
+    "矩阵乘法与可换性",
+    "实对称矩阵的正交对角化",
+    "矩阵的同时对角化",
+    "特征值与特征向量",
+    "正交矩阵的性质",
+    "矩阵线性组合的对角化"
+  ],
+  "question_type": "矩阵同时对角化证明与计算",
+  "method": [
+    "直接计算矩阵乘积验证可换性",
+    "求特征值与特征向量并归一化",
+    "构造正交矩阵进行对角化",
+    "利用矩阵合同变换的线性性证明公共对角化"
+  ],
+  "solution_steps": [
+    "直接计算 $AB$ 与 $BA$ 并比较，验证可换性",
+    "分别求 $A$、$B$ 的特征值与特征向量，利用可换性得到公共特征向量",
+    "将公共特征向量单位化组成正交矩阵 $P$",
+    "利用 $P$ 是 $A$、$B$ 公共特征向量矩阵的性质，得到 $P^TAP$、$P^TBP$ 为对角矩阵",
+    "利用矩阵乘法对加法的线性分配性，证明 $C=\\alpha A+\\beta B$ 同样被 $P$ 对角化"
+  ],
+  "math_structure": {
+    "type": "simultaneous_diagonalization_symmetric_matrices",
+    "template": "$A=\\begin{pmatrix}1&1\\\\1&1\\end{pmatrix}$，$B=\\begin{pmatrix}2&-1\\\\-1&2\\end{pmatrix}$；求正交矩阵 $P$ 使 $P^TAP$、$P^TBP$ 均为对角矩阵，并证明 $C=\\alpha A+\\beta B$ 可被同一个 $P$ 对角化",
+    "variable_count": 2
+  },
+  "difficulty": 3,
+  "answer": [
+    {
+      "label": "(1)",
+      "steps": [
+        "计算 $AB=\\begin{pmatrix}1&1\\\\1&1\\end{pmatrix}\\begin{pmatrix}2&-1\\\\-1&2\\end{pmatrix}=\\begin{pmatrix}1\\cdot2+1\\cdot(-1)&1\\cdot(-1)+1\\cdot2\\\\1\\cdot2+1\\cdot(-1)&1\\cdot(-1)+1\\cdot2\\end{pmatrix}=\\begin{pmatrix}1&1\\\\1&1\\end{pmatrix}$",
+        "计算 $BA=\\begin{pmatrix}2&-1\\\\-1&2\\end{pmatrix}\\begin{pmatrix}1&1\\\\1&1\\end{pmatrix}=\\begin{pmatrix}2\\cdot1+(-1)\\cdot1&2\\cdot1+(-1)\\cdot1\\\\-1\\cdot1+2\\cdot1&-1\\cdot1+2\\cdot1\\end{pmatrix}=\\begin{pmatrix}1&1\\\\1&1\\end{pmatrix}$",
+        "由于 $AB=BA=\\begin{pmatrix}1&1\\\\1&1\\end{pmatrix}$，故 $A$ 与 $B$ 关于矩阵乘积可换"
+      ]
+    },
+    {
+      "label": "(2)",
+      "steps": [
+        "求 $A$ 的特征值：特征方程 $\\det(A-\\lambda I)=(1-\\lambda)^2-1=\\lambda^2-2\\lambda=0$，解得 $\\lambda=0,2$；对应特征向量分别为 $(1,-1)^T$ 与 $(1,1)^T$",
+        "求 $B$ 的特征值：$\\text{tr}(B)=4,\\det(B)=4-1=3$，特征方程 $\\lambda^2-4\\lambda+3=0$，解得 $\\lambda=1,3$；代入 $(B-I)v=0$ 得 $\\lambda=1$ 对应 $(1,1)^T$，代入 $(B-3I)v=0$ 得 $\\lambda=3$ 对应 $(1,-1)^T$",
+        "由于 $A,B$ 可换，两者存在公共特征向量：$(1,1)^T$ 与 $(1,-1)^T$ 恰好同时是 $A$ 与 $B$ 的特征向量，将其单位化得正交矩阵 $P=\\dfrac{1}{\\sqrt2}\\begin{pmatrix}1&1\\\\1&-1\\end{pmatrix}$"
+      ]
+    },
+    {
+      "label": "(3)",
+      "steps": [
+        "对 $A$：$A\\cdot\\dfrac{1}{\\sqrt2}(1,1)^T=2\\cdot\\dfrac{1}{\\sqrt2}(1,1)^T$，$A\\cdot\\dfrac{1}{\\sqrt2}(1,-1)^T=0$，故 $P^TAP=\\begin{pmatrix}2&0\\\\0&0\\end{pmatrix}$",
+        "对 $B$：$B\\cdot\\dfrac{1}{\\sqrt2}(1,1)^T=1\\cdot\\dfrac{1}{\\sqrt2}(1,1)^T$，$B\\cdot\\dfrac{1}{\\sqrt2}(1,-1)^T=3\\cdot\\dfrac{1}{\\sqrt2}(1,-1)^T$，故 $P^TBP=\\begin{pmatrix}1&0\\\\0&3\\end{pmatrix}$",
+        "验算：直接代入矩阵乘法计算 $P^TAP,P^TBP$ 得到的结果均为对角矩阵，且对角元与(2)中求得特征值一致，结果无误"
+      ]
+    },
+    {
+      "label": "(4)",
+      "steps": [
+        "由矩阵乘法对加法与数乘的分配律，$P^TCP=P^T(\\alpha A+\\beta B)P=\\alpha P^TAP+\\beta P^TBP$",
+        "代入(3)的结果：$P^TCP=\\alpha\\begin{pmatrix}2&0\\\\0&0\\end{pmatrix}+\\beta\\begin{pmatrix}1&0\\\\0&3\\end{pmatrix}=\\begin{pmatrix}2\\alpha+\\beta&0\\\\0&3\\beta\\end{pmatrix}$",
+        "该矩阵对任意实数 $\\alpha,\\beta$ 均为对角矩阵，因此 $C$ 也被同一个正交矩阵 $P$ 对角化，本质原因是 $A,B$ 共享同一组特征向量"
+      ]
+    }
+  ],
+  "practice_questions": [
+    {
+      "text": "求实对称矩阵 $M=\\begin{pmatrix}2&1\\\\1&2\\end{pmatrix}$ 的特征值与对应的特征向量。",
+      "knowledge_points": [
+        "特征值与特征向量",
+        "实对称矩阵性质"
+      ],
+      "question_type": "特征值特征向量计算",
+      "method": [
+        "求特征方程",
+        "解线性方程组得特征向量"
+      ],
+      "solution_steps": [
+        "写出特征方程det(M-λI)=0",
+        "解出特征值",
+        "代入求特征向量"
+      ],
+      "math_structure": {
+        "type": "eigen_decomposition_2x2_symmetric",
+        "template": "M=[[2,1],[1,2]]，求特征值与特征向量",
+        "variable_count": 1
+      },
+      "difficulty": 1,
+      "estimated_minutes": 5,
+      "answer": [
+        {
+          "label": "特征值与特征向量",
+          "steps": [
+            "特征方程：$\\det(M-\\lambda I)=(2-\\lambda)^2-1=\\lambda^2-4\\lambda+3=0$，解得 $\\lambda=1,3$",
+            "对 $\\lambda=3$：$(M-3I)v=0\\Rightarrow\\begin{pmatrix}-1&1\\\\1&-1\\end{pmatrix}v=0\\Rightarrow v=(1,1)^T$",
+            "对 $\\lambda=1$：$(M-I)v=0\\Rightarrow\\begin{pmatrix}1&1\\\\1&1\\end{pmatrix}v=0\\Rightarrow v=(1,-1)^T$；验算 $Mv=1\\cdot v$ 成立"
+          ]
+        }
+      ],
+      "id": "hokkaido-2025-d025feaeaa-q01-practice-01",
+      "school": "北海道大学",
+      "year": "2025"
+    },
+    {
+      "text": "对上题中的矩阵 $M=\\begin{pmatrix}2&1\\\\1&2\\end{pmatrix}$，求正交矩阵 $P$ 使 $P^TMP$ 为对角矩阵，并写出该对角矩阵。",
+      "knowledge_points": [
+        "正交对角化",
+        "特征向量单位化"
+      ],
+      "question_type": "正交对角化计算",
+      "method": [
+        "单位化特征向量构造正交矩阵",
+        "计算P^TMP"
+      ],
+      "solution_steps": [
+        "单位化特征向量",
+        "构造正交矩阵P",
+        "计算P^TMP"
+      ],
+      "math_structure": {
+        "type": "orthogonal_diagonalization_2x2",
+        "template": "M=[[2,1],[1,2]]，求正交矩阵P使P^T M P对角化",
+        "variable_count": 1
+      },
+      "difficulty": 2,
+      "estimated_minutes": 6,
+      "answer": [
+        {
+          "label": "正交对角化",
+          "steps": [
+            "由前一题得特征向量 $(1,1)^T$（$\\lambda=3$）与 $(1,-1)^T$（$\\lambda=1$），单位化得 $\\frac{1}{\\sqrt2}(1,1)^T,\\frac{1}{\\sqrt2}(1,-1)^T$",
+            "构造正交矩阵 $P=\\dfrac{1}{\\sqrt2}\\begin{pmatrix}1&1\\\\1&-1\\end{pmatrix}$，验证 $P^TP=I$",
+            "计算 $P^TMP=\\begin{pmatrix}3&0\\\\0&1\\end{pmatrix}$，与特征值顺序一致，结果正确"
+          ]
+        }
+      ],
+      "id": "hokkaido-2025-d025feaeaa-q01-practice-02",
+      "school": "北海道大学",
+      "year": "2025"
+    },
+    {
+      "text": "证明矩阵 $N_1=\\begin{pmatrix}3&1\\\\1&3\\end{pmatrix}$ 与 $N_2=\\begin{pmatrix}1&-1\\\\-1&1\\end{pmatrix}$ 关于矩阵乘积可换。",
+      "knowledge_points": [
+        "矩阵乘法",
+        "矩阵可换性"
+      ],
+      "question_type": "矩阵可换性证明",
+      "method": [
+        "直接计算N1N2与N2N1比较"
+      ],
+      "solution_steps": [
+        "计算N1N2",
+        "计算N2N1",
+        "比较得出结论"
+      ],
+      "math_structure": {
+        "type": "matrix_commutativity_check",
+        "template": "N1=[[3,1],[1,3]], N2=[[1,-1],[-1,1]]，验证N1N2=N2N1",
+        "variable_count": 2
+      },
+      "difficulty": 2,
+      "estimated_minutes": 5,
+      "answer": [
+        {
+          "label": "可换性证明",
+          "steps": [
+            "计算 $N_1N_2=\\begin{pmatrix}3\\cdot1+1\\cdot(-1)&3\\cdot(-1)+1\\cdot1\\\\1\\cdot1+3\\cdot(-1)&1\\cdot(-1)+3\\cdot1\\end{pmatrix}=\\begin{pmatrix}2&-2\\\\-2&2\\end{pmatrix}$",
+            "计算 $N_2N_1=\\begin{pmatrix}1\\cdot3+(-1)\\cdot1&1\\cdot1+(-1)\\cdot3\\\\-1\\cdot3+1\\cdot1&-1\\cdot1+1\\cdot3\\end{pmatrix}=\\begin{pmatrix}2&-2\\\\-2&2\\end{pmatrix}$",
+            "两者相等，故 $N_1,N_2$ 关于矩阵乘积可换"
+          ]
+        }
+      ],
+      "id": "hokkaido-2025-d025feaeaa-q01-practice-03",
+      "school": "北海道大学",
+      "year": "2025"
+    },
+    {
+      "text": "对上题中可换的矩阵 $N_1=\\begin{pmatrix}3&1\\\\1&3\\end{pmatrix}$ 与 $N_2=\\begin{pmatrix}1&-1\\\\-1&1\\end{pmatrix}$，求同时对角化两者的正交矩阵 $Q$，并求 $Q^TN_1Q$ 及 $Q^TN_2Q$。",
+      "knowledge_points": [
+        "同时对角化",
+        "公共特征向量",
+        "正交矩阵构造"
+      ],
+      "question_type": "矩阵同时对角化计算",
+      "method": [
+        "分别求特征值特征向量",
+        "利用可换性寻找公共特征向量",
+        "构造正交矩阵"
+      ],
+      "solution_steps": [
+        "求N1特征值特征向量",
+        "求N2特征值特征向量",
+        "确认公共特征向量并构造Q",
+        "计算Q^TN1Q和Q^TN2Q"
+      ],
+      "math_structure": {
+        "type": "simultaneous_diagonalization_symmetric_matrices",
+        "template": "N1=[[3,1],[1,3]], N2=[[1,-1],[-1,1]]，求同时对角化的正交矩阵Q",
+        "variable_count": 2
+      },
+      "difficulty": 3,
+      "estimated_minutes": 10,
+      "answer": [
+        {
+          "label": "同时对角化",
+          "steps": [
+            "$N_1$的特征方程 $\\lambda^2-6\\lambda+8=0$，解得 $\\lambda=4,2$，对应特征向量 $(1,1)^T,(1,-1)^T$",
+            "$N_2$的特征方程 $\\lambda^2-2\\lambda=0$，解得 $\\lambda=2,0$，代入验证 $(1,-1)^T$对应$\\lambda=2$，$(1,1)^T$对应$\\lambda=0$，与$N_1$共享特征向量",
+            "令 $Q=\\dfrac{1}{\\sqrt2}\\begin{pmatrix}1&1\\\\1&-1\\end{pmatrix}$，则 $Q^TN_1Q=\\begin{pmatrix}4&0\\\\0&2\\end{pmatrix}$，$Q^TN_2Q=\\begin{pmatrix}0&0\\\\0&2\\end{pmatrix}$，代入矩阵乘法直接验算成立"
+          ]
+        }
+      ],
+      "id": "hokkaido-2025-d025feaeaa-q01-practice-04",
+      "school": "北海道大学",
+      "year": "2025"
+    },
+    {
+      "text": "沿用上题中的正交矩阵 $Q=\\dfrac{1}{\\sqrt2}\\begin{pmatrix}1&1\\\\1&-1\\end{pmatrix}$ 及 $N_1,N_2$，对实数 $\\gamma,\\delta$ 令 $D=\\gamma N_1+\\delta N_2$，求 $Q^TDQ$，并说明为何 $D$ 一定能被 $Q$ 对角化。",
+      "knowledge_points": [
+        "矩阵线性组合的对角化",
+        "矩阵合同变换线性性"
+      ],
+      "question_type": "线性组合矩阵对角化证明",
+      "method": [
+        "利用矩阵乘法的线性分配性"
+      ],
+      "solution_steps": [
+        "展开Q^TDQ为线性组合",
+        "代入已知对角矩阵结果",
+        "得出结论并解释原因"
+      ],
+      "math_structure": {
+        "type": "linear_combination_diagonalization",
+        "template": "D=γN1+δN2, 求Q^T D Q 并说明可对角化原因",
+        "variable_count": 2
+      },
+      "difficulty": 3,
+      "estimated_minutes": 8,
+      "answer": [
+        {
+          "label": "Q^TDQ及原因",
+          "steps": [
+            "由分配律 $Q^TDQ=\\gamma Q^TN_1Q+\\delta Q^TN_2Q$",
+            "代入上题结果：$=\\gamma\\begin{pmatrix}4&0\\\\0&2\\end{pmatrix}+\\delta\\begin{pmatrix}0&0\\\\0&2\\end{pmatrix}=\\begin{pmatrix}4\\gamma&0\\\\0&2\\gamma+2\\delta\\end{pmatrix}$",
+            "该矩阵对任意 $\\gamma,\\delta$ 均为对角矩阵，原因是 $N_1,N_2$ 共享同一组正交特征向量，任何线性组合仍以同一组向量为特征向量，故必被 $Q$ 对角化"
+          ]
+        }
+      ],
+      "id": "hokkaido-2025-d025feaeaa-q01-practice-05",
+      "school": "北海道大学",
+      "year": "2025"
+    }
+  ],
+  "source_question": "問1[1]",
+  "source_pdf": "北海道大学/情报科学院/情报理工学/北海道大学_情报科学院_情报理工学_2025_数学过去问_专业科目1.pdf",
+  "source_type": "官方过去问",
+  "subject_category": "线性代数"
+}

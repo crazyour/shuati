@@ -1,0 +1,226 @@
+{
+  "id": "isct-2022-6eaea5aab5-q02",
+  "school": "东京科学大学",
+  "year": "2022",
+  "subject": "理工学系_情报工学系",
+  "text": "设实矩阵 $A$ 满足性质 $A^{\\mathsf T} = -A$（即 $A$ 为实反对称矩阵），其中 $\\mathsf T$ 表示转置。回答以下问题。\n\na) 若 $A$ 有特征值 $\\lambda$，问 $-\\lambda$ 是否也是 $A$ 的特征值？并说明理由。\n\nb) 证明：对任意分量全为实数的向量 $x$，都有 $x^{\\mathsf T} A x = 0$。\n\nc) 证明：$A$ 的特征值若不为零，则必为纯虚数。\n\nd) 证明：$A$ 的行列式的值不为负。",
+  "knowledge_points": [
+    "反对称矩阵",
+    "特征值的性质",
+    "二次型",
+    "复特征值与共轭",
+    "行列式与特征值乘积"
+  ],
+  "question_type": "实反对称矩阵的特征值与行列式性质证明",
+  "method": [
+    "利用特征多项式的对称性证明±λ都是特征值",
+    "利用标量转置不变性证明二次型为零",
+    "利用复共轭内积证明特征值为纯虚数",
+    "利用特征值配对分析行列式的符号"
+  ],
+  "solution_steps": [
+    "写出特征多项式并利用A^T=-A的性质建立p(λ)与p(-λ)的关系",
+    "证明x^TAx是标量从而等于自身转置进而为零",
+    "设λ为非零特征值并用共轭向量证明其为纯虚数",
+    "按照特征值配对分析行列式的符号"
+  ],
+  "math_structure": {
+    "type": "skew_symmetric_matrix_eigenvalue_properties",
+    "template": "$A\\in\\mathbb{R}^{n\\times n}$, $A^{\\mathsf T}=-A$; 分析特征值对称性、$x^{\\mathsf T}Ax$、$\\det A$ 的符号",
+    "variable_count": 1
+  },
+  "difficulty": 4,
+  "answer": [
+    {
+      "label": "a)",
+      "steps": [
+        "特征多项式为 $p(\\lambda)=\\det(A-\\lambda I)$。转置不改变行列式，故 $\\det(A-\\lambda I)=\\det\\big((A-\\lambda I)^{\\mathsf T}\\big)=\\det(A^{\\mathsf T}-\\lambda I)$。",
+        "代入 $A^{\\mathsf T}=-A$：$\\det(A^{\\mathsf T}-\\lambda I)=\\det(-A-\\lambda I)=\\det\\big(-(A+\\lambda I)\\big)=(-1)^n\\det(A+\\lambda I)=(-1)^np(-\\lambda)$。",
+        "因此 $p(\\lambda)=(-1)^np(-\\lambda)$，即 $p(-\\lambda)=(-1)^np(\\lambda)$。若 $\\lambda$ 是特征值即 $p(\\lambda)=0$，则 $p(-\\lambda)=(-1)^n\\cdot0=0$，故 $-\\lambda$ 也是A的特征值。",
+        "结论：是，$-\\lambda$ 也是A的特征值，原因是A的特征多项式满足 $p(\\lambda)=(-1)^np(-\\lambda)$ 的对称关系（该关系正是由 $A^{\\mathsf T}=-A$ 决定的）。"
+      ]
+    },
+    {
+      "label": "b)",
+      "steps": [
+        "$x^{\\mathsf T}Ax$ 是一个 $1\\times1$ 的标量，标量等于自身的转置：$x^{\\mathsf T}Ax=(x^{\\mathsf T}Ax)^{\\mathsf T}$。",
+        "利用转置法则 $(x^{\\mathsf T}Ax)^{\\mathsf T}=x^{\\mathsf T}A^{\\mathsf T}x$，代入 $A^{\\mathsf T}=-A$ 得 $(x^{\\mathsf T}Ax)^{\\mathsf T}=-x^{\\mathsf T}Ax$。",
+        "结合以上两式得 $x^{\\mathsf T}Ax=-x^{\\mathsf T}Ax$，即 $2x^{\\mathsf T}Ax=0$，故 $x^{\\mathsf T}Ax=0$。",
+        "验证：取 $A=\\begin{pmatrix}0&1\\\\-1&0\\end{pmatrix}$，$x=(x_1,x_2)^{\\mathsf T}$，则 $x^{\\mathsf T}Ax=x_1x_2-x_2x_1=0$，与结论一致。"
+      ]
+    },
+    {
+      "label": "c)",
+      "steps": [
+        "设 $\\lambda\\neq0$ 是A的特征值，$v\\neq0$ 为对应的（一般为复数域上的）特征向量，即 $Av=\\lambda v$。",
+        "考虑标量 $v^*Av$（$v^*$ 表示共轭转置），一方面 $v^*Av=\\lambda(v^*v)=\\lambda\\|v\\|^2$。",
+        "另一方面，取共轭：由A为实矩阵知 $\\overline{v^*Av}=v^*A^{\\mathsf T}v=v^*(-A)v=-\\lambda\\|v\\|^2$（这里用到 $\\overline{v^*Av}=v^*A^{\\mathsf T}v$ 对实矩阵成立）。",
+        "于是 $\\overline{\\lambda\\|v\\|^2}=-\\lambda\\|v\\|^2$，因 $\\|v\\|^2$ 为正实数，得 $\\bar\\lambda=-\\lambda$。写 $\\lambda=a+bi$，则 $a-bi=-(a+bi)\\Rightarrow2a=0\\Rightarrow a=0$。",
+        "故 $\\lambda=bi$（$b\\neq0$，因 $\\lambda\\neq0$），即A的非零特征值必为纯虚数。"
+      ]
+    },
+    {
+      "label": "d)",
+      "steps": [
+        "由c)知A的非零特征值都是纯虚数；又由a)知特征值关于符号对称，而实矩阵的复特征值必成共轭对出现，故非零特征值必以 $ib_j,-ib_j$（$b_j\\neq0$为实数）的形式成对出现。",
+        "考察 $\\det A=\\det A^{\\mathsf T}=\\det(-A)=(-1)^n\\det A$。若n为奇数，得 $\\det A=-\\det A\\Rightarrow\\det A=0$，非负成立。",
+        "若n为偶数，$\\det A$ 等于所有特征值之积。若存在零特征值则 $\\det A=0\\ge0$；若无零特征值，则所有非零特征值两两配对，$\\det A=\\prod_j(ib_j)(-ib_j)=\\prod_jb_j^2\\ge0$。",
+        "综上，无论n奇偶、是否存在零特征值，均有 $\\det A\\ge0$，即A的行列式的值不为负。"
+      ]
+    }
+  ],
+  "practice_questions": [
+    {
+      "text": "求矩阵 $A=\\begin{pmatrix}0&2\\\\-2&0\\end{pmatrix}$ 的特征值，并验证它们均为纯虚数。",
+      "knowledge_points": [
+        "反对称矩阵",
+        "特征值计算"
+      ],
+      "question_type": "反对称矩阵特征值计算",
+      "method": [
+        "求特征方程",
+        "求解复根"
+      ],
+      "solution_steps": [
+        "写出特征方程",
+        "求解得纯虚数特征值"
+      ],
+      "math_structure": {
+        "type": "skew_symmetric_2x2_eigen",
+        "template": "$\\det(A-\\lambda I)=0,\\ A^{\\mathsf T}=-A$",
+        "variable_count": 1
+      },
+      "difficulty": 1,
+      "estimated_minutes": 5,
+      "answer": [
+        {
+          "label": "特征值",
+          "steps": [
+            "特征方程：$\\det(A-\\lambda I)=\\lambda^2-(-2)(2)\\cdot(-1)$，具体计算 $\\det\\begin{pmatrix}-\\lambda&2\\\\-2&-\\lambda\\end{pmatrix}=\\lambda^2+4=0$。",
+            "解得 $\\lambda^2=-4\\Rightarrow\\lambda=\\pm2i$。",
+            "验证：$2i$ 与 $-2i$ 均为实部为零的纯虚数，符合反对称矩阵非零特征值必为纯虚数的性质。"
+          ]
+        }
+      ],
+      "id": "isct-2022-6eaea5aab5-q02-practice-01",
+      "school": "东京科学大学",
+      "year": "2022"
+    },
+    {
+      "text": "证明：任意 $n\\times n$ 实反对称矩阵 $A$（$A^{\\mathsf T}=-A$）的迹 $\\operatorname{tr}(A)=0$。",
+      "knowledge_points": [
+        "反对称矩阵",
+        "矩阵的迹"
+      ],
+      "question_type": "反对称矩阵性质证明",
+      "method": [
+        "利用对角元素性质直接证明"
+      ],
+      "solution_steps": [
+        "写出反对称矩阵对角元素的约束",
+        "求和得迹为零"
+      ],
+      "math_structure": {
+        "type": "skew_symmetric_trace",
+        "template": "$a_{ii}=-a_{ii}\\Rightarrow a_{ii}=0$",
+        "variable_count": 1
+      },
+      "difficulty": 1,
+      "estimated_minutes": 5,
+      "answer": [
+        {
+          "label": "证明",
+          "steps": [
+            "由 $A^{\\mathsf T}=-A$ 知对任意 $i$，$a_{ii}=(A^{\\mathsf T})_{ii}=-a_{ii}$。",
+            "由 $a_{ii}=-a_{ii}$ 得 $2a_{ii}=0$，即 $a_{ii}=0$ 对所有 $i$ 成立。",
+            "因此 $\\operatorname{tr}(A)=\\sum_{i=1}^n a_{ii}=0$，得证。"
+          ]
+        }
+      ],
+      "id": "isct-2022-6eaea5aab5-q02-practice-02",
+      "school": "东京科学大学",
+      "year": "2022"
+    },
+    {
+      "text": "设 $A$ 是 $3\\times3$ 实反对称矩阵。证明 $A$ 必存在零特征值，从而 $\\det A=0$。",
+      "knowledge_points": [
+        "反对称矩阵",
+        "行列式与转置的关系",
+        "奇数维退化性"
+      ],
+      "question_type": "奇数维反对称矩阵行列式证明",
+      "method": [
+        "利用det(A)=det(A^T)=det(-A)推导矛盾"
+      ],
+      "solution_steps": [
+        "建立det(A)与自身的关系式",
+        "利用奇数维得出det(A)=0"
+      ],
+      "math_structure": {
+        "type": "odd_dimension_skew_symmetric_det",
+        "template": "$\\det A=(-1)^n\\det A,\\ n=3$",
+        "variable_count": 1
+      },
+      "difficulty": 2,
+      "estimated_minutes": 6,
+      "answer": [
+        {
+          "label": "证明",
+          "steps": [
+            "$\\det A=\\det(A^{\\mathsf T})$（转置不改变行列式），又 $A^{\\mathsf T}=-A$，故 $\\det A=\\det(-A)$。",
+            "对 $n\\times n$ 矩阵，$\\det(-A)=(-1)^n\\det A$；当 $n=3$（奇数）时，$\\det(-A)=-\\det A$。",
+            "结合两式得 $\\det A=-\\det A$，即 $2\\det A=0$，故 $\\det A=0$。",
+            "行列式为零意味着A不可逆，故0必为A的一个特征值。"
+          ]
+        }
+      ],
+      "id": "isct-2022-6eaea5aab5-q02-practice-03",
+      "school": "东京科学大学",
+      "year": "2022"
+    },
+    {
+      "text": "设 $A$ 为 $n\\times n$ 实反对称矩阵。证明：矩阵 $I+A$ 可逆，且 $\\det(I+A)>0$。",
+      "knowledge_points": [
+        "反对称矩阵",
+        "特征值平移",
+        "复共轭特征值配对",
+        "矩阵可逆性"
+      ],
+      "question_type": "反对称矩阵扰动可逆性证明",
+      "method": [
+        "利用A的特征值结构分析I+A的特征值",
+        "配对共轭特征值证明乘积为正"
+      ],
+      "solution_steps": [
+        "写出I+A的特征值与A特征值的关系",
+        "分析零特征值和纯虚数特征值对应的贡献",
+        "得出行列式为正从而可逆"
+      ],
+      "math_structure": {
+        "type": "shifted_skew_symmetric_invertibility",
+        "template": "$\\det(I+A)=\\prod_j(1+\\mu_j),\\ \\mu_j\\in\\{0\\}\\cup i\\mathbb{R}$",
+        "variable_count": 1
+      },
+      "difficulty": 3,
+      "estimated_minutes": 10,
+      "answer": [
+        {
+          "label": "证明",
+          "steps": [
+            "若 $\\mu$ 是A的特征值，对应特征向量 $v$，则 $(I+A)v=v+\\mu v=(1+\\mu)v$，故 $1+\\mu$ 是 $I+A$ 的特征值。",
+            "由前述性质，A的特征值或为 $0$，或成对出现为 $ib_j,-ib_j$（$b_j\\neq0$为实数）。对零特征值，$I+A$ 对应特征值为 $1$；对纯虚数对，$I+A$ 对应特征值为 $1+ib_j$ 与 $1-ib_j$，二者互为共轭。",
+            "$\\det(I+A)$ 等于所有特征值之积：零特征值贡献因子 $1$；每一对共轭特征值贡献 $(1+ib_j)(1-ib_j)=1+b_j^2>0$。",
+            "因此 $\\det(I+A)$ 是若干个正数（$1$ 与 $1+b_j^2>0$）的乘积，故 $\\det(I+A)>0$；由行列式非零知 $I+A$ 可逆。"
+          ]
+        }
+      ],
+      "id": "isct-2022-6eaea5aab5-q02-practice-04",
+      "school": "东京科学大学",
+      "year": "2022"
+    }
+  ],
+  "source_question": "問1 (2)",
+  "source_pdf": "东京科学大学/理工学系/情报工学系/东京科学大学_理工学系_情报工学系_2022_数学过去问.pdf",
+  "source_type": "官方过去问",
+  "subject_category": "线性代数"
+}

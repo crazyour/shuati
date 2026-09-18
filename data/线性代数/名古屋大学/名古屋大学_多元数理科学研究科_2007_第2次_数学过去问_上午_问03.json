@@ -1,0 +1,244 @@
+{
+  "id": "nagoya-2007-b4a0cf0d7b-q03",
+  "school": "名古屋大学",
+  "year": "2007",
+  "subject": "多元数理科学研究科_全专攻",
+  "text": "设三阶矩阵 $A=\\begin{pmatrix}1&-1&0\\\\0&1&1\\\\1&-2&-1\\end{pmatrix}$，定义 $\\mathbb{R}^3$ 上的线性变换 $f:\\mathbb{R}^3\\to\\mathbb{R}^3$，$f(x)=Ax\\ (x\\in\\mathbb{R}^3)$。\n\n(1) 证明 $f(\\mathbb{R}^3)$ 是 $\\mathbb{R}^3$ 的子空间，并求出其一组基。\n\n(2) 求出一个 $\\mathbb{R}^3$ 的子空间 $V$，使得 $\\dim V = \\dim f(V) = 2$，并给出 $V$ 的一组基。\n\n(3) 求出一个 $\\mathbb{R}^3$ 的子空间 $V$，使得 $\\dim V = 2,\\ \\dim f(V) = 1$，并给出 $V$ 的一组基。",
+  "knowledge_points": [
+    "线性变换的像空间",
+    "核空间",
+    "秩-零度定理",
+    "子空间的基",
+    "矩阵的秩"
+  ],
+  "question_type": "线性变换与子空间构造",
+  "method": [
+    "求矩阵的秩与像空间",
+    "求解齐次线性方程组得核空间",
+    "利用核空间与像空间维数关系构造子空间"
+  ],
+  "solution_steps": [
+    "证明像空间是子空间（对加法与数乘封闭），并通过矩阵列向量的线性相关性求出像空间的基",
+    "求 $A$ 的核（解 $Ax=0$）以确定核空间维数",
+    "对(2)：选取与核空间不相交的二维子空间，使限制映射为单射",
+    "对(3)：选取包含核空间的二维子空间，使得像空间退化为一维"
+  ],
+  "math_structure": {
+    "type": "linear_map_image_kernel_subspace",
+    "template": "A=\\begin{pmatrix}1&-1&0\\\\0&1&1\\\\1&-2&-1\\end{pmatrix},\\ f(x)=Ax,\\ \\text{find } V \\text{ with prescribed } \\dim V, \\dim f(V)",
+    "variable_count": 3
+  },
+  "difficulty": 3,
+  "answer": [
+    {
+      "label": "(1)",
+      "steps": [
+        "像空间 $f(\\mathbb{R}^3)=\\{Ax\\mid x\\in\\mathbb{R}^3\\}$ 对任意 $Ax_1,Ax_2\\in f(\\mathbb{R}^3)$ 和标量 $c$，有 $Ax_1+Ax_2=A(x_1+x_2)\\in f(\\mathbb{R}^3)$，$cAx_1=A(cx_1)\\in f(\\mathbb{R}^3)$，且 $0=A\\cdot0\\in f(\\mathbb{R}^3)$，故 $f(\\mathbb{R}^3)$ 是子空间。",
+        "$f(\\mathbb{R}^3)$ 由 $A$ 的列向量 $c_1=(1,0,1)^T, c_2=(-1,1,-2)^T, c_3=(0,1,-1)^T$ 张成。计算 $\\det A$：按第一行展开，$\\det A = 1\\cdot(1\\cdot(-1)-1\\cdot(-2)) - (-1)\\cdot(0\\cdot(-1)-1\\cdot1)+0 = 1\\cdot1 + 1\\cdot(-1)=0$，故秩 $<3$。",
+        "验证 $c_1,c_2$ 线性无关（不成比例），且 $c_3=c_1+c_2$（因 $\\alpha=1,\\beta=1$ 代入验证：$(1-1,1,1-2)=(0,1,-1)=c_3$成立），故秩为2。",
+        "结论：$f(\\mathbb{R}^3)$ 的一组基为 $\\{(1,0,1)^T,\\ (-1,1,-2)^T\\}$。"
+      ]
+    },
+    {
+      "label": "(2)",
+      "steps": [
+        "先求核空间 $\\ker A$：解方程组 $x_1-x_2=0,\\ x_2+x_3=0,\\ x_1-2x_2-x_3=0$，由前两式得 $x_1=x_2,\\ x_3=-x_2$，代入第三式验证恒成立，故 $\\ker A=\\text{span}\\{(1,1,-1)^T\\}$，维数为1。",
+        "取 $V=\\text{span}\\{e_1,e_2\\}=\\{(1,0,0)^T,(0,1,0)^T\\}$，检验 $V\\cap\\ker A=\\{0\\}$：核空间向量 $(1,1,-1)$ 的第三分量非零，不属于 $V$，故交集平凡。",
+        "由于 $f|_V$ 单射（核不交），且 $f(e_1)=c_1=(1,0,1)^T,\\ f(e_2)=c_2=(-1,1,-2)^T$ 线性无关（已在(1)中验证），故 $f(V)=\\text{span}\\{c_1,c_2\\}$ 维数为2。",
+        "结论：$V=\\text{span}\\{(1,0,0)^T,(0,1,0)^T\\}$ 满足 $\\dim V=\\dim f(V)=2$。"
+      ]
+    },
+    {
+      "label": "(3)",
+      "steps": [
+        "取 $V=\\text{span}\\{(1,1,-1)^T,\\ (1,0,0)^T\\}$，即核空间的生成元与 $e_1$ 张成的空间，两向量线性无关（不成比例），故 $\\dim V=2$。",
+        "计算 $f$ 在该基下的像：$f((1,1,-1)^T)=A(1,1,-1)^T=0$（因为该向量属于核空间），$f((1,0,0)^T)=c_1=(1,0,1)^T\\ne0$。",
+        "故 $f(V)=\\text{span}\\{0, c_1\\}=\\text{span}\\{c_1\\}$，维数为1。",
+        "结论：$V=\\text{span}\\{(1,1,-1)^T,(1,0,0)^T\\}$ 满足 $\\dim V=2,\\ \\dim f(V)=1$。"
+      ]
+    }
+  ],
+  "practice_questions": [
+    {
+      "text": "求矩阵 $B=\\begin{pmatrix}1&2&3\\\\2&4&6\\\\0&1&1\\end{pmatrix}$ 的秩。",
+      "knowledge_points": [
+        "矩阵的秩",
+        "行列式"
+      ],
+      "question_type": "基础秩计算",
+      "method": [
+        "行化简或子式判断"
+      ],
+      "solution_steps": [
+        "观察行/列的线性相关性",
+        "确定秩"
+      ],
+      "math_structure": {
+        "type": "matrix_rank_computation",
+        "template": "\\text{rank of } B",
+        "variable_count": 1
+      },
+      "difficulty": 1,
+      "estimated_minutes": 5,
+      "answer": [
+        {
+          "label": "结果",
+          "steps": [
+            "第二行是第一行的2倍，故这两行线性相关，秩$\\le2$。",
+            "第一行 $(1,2,3)$ 与第三行 $(0,1,1)$ 不成比例，线性无关，故秩$\\ge2$。",
+            "结论：秩为2。"
+          ]
+        }
+      ],
+      "id": "nagoya-2007-b4a0cf0d7b-q03-practice-01",
+      "school": "名古屋大学",
+      "year": "2007"
+    },
+    {
+      "text": "求线性变换 $g(x)=Cx$，其中 $C=\\begin{pmatrix}2&0&1\\\\0&1&-1\\\\2&1&0\\end{pmatrix}$ 的核空间 $\\ker C$。",
+      "knowledge_points": [
+        "齐次线性方程组",
+        "核空间"
+      ],
+      "question_type": "核空间求解",
+      "method": [
+        "解齐次线性方程组"
+      ],
+      "solution_steps": [
+        "列出方程组",
+        "求解通解"
+      ],
+      "math_structure": {
+        "type": "kernel_computation",
+        "template": "\\ker C, C \\text{ given}",
+        "variable_count": 3
+      },
+      "difficulty": 2,
+      "estimated_minutes": 8,
+      "answer": [
+        {
+          "label": "结果",
+          "steps": [
+            "方程组：$2x_1+x_3=0,\\ x_2-x_3=0,\\ 2x_1+x_2=0$。",
+            "由第一式 $x_3=-2x_1$，代入第二式 $x_2=x_3=-2x_1$，代入第三式验证：$2x_1+(-2x_1)=0$，恒成立。",
+            "结论：$\\ker C=\\text{span}\\{(1,-2,-2)^T\\}$，维数为1。"
+          ]
+        }
+      ],
+      "id": "nagoya-2007-b4a0cf0d7b-q03-practice-02",
+      "school": "名古屋大学",
+      "year": "2007"
+    },
+    {
+      "text": "对本题矩阵 $A$，验证 $\\{c_1,c_2\\}=\\{(1,0,1)^T,(-1,1,-2)^T\\}$ 线性无关，并求 $c_3=(0,1,-1)^T$ 在此基下的坐标。",
+      "knowledge_points": [
+        "线性无关性判断",
+        "基与坐标"
+      ],
+      "method": [
+        "行列式判断",
+        "解线性方程组求坐标"
+      ],
+      "question_type": "基与坐标计算",
+      "solution_steps": [
+        "构造方程判断线性无关",
+        "解出坐标系数"
+      ],
+      "math_structure": {
+        "type": "basis_coordinates",
+        "template": "\\text{express } c_3 = \\alpha c_1+\\beta c_2",
+        "variable_count": 2
+      },
+      "difficulty": 2,
+      "estimated_minutes": 6,
+      "answer": [
+        {
+          "label": "结果",
+          "steps": [
+            "设 $\\alpha c_1+\\beta c_2=(0,1,-1)^T$，即 $(\\alpha-\\beta,\\beta,\\alpha-2\\beta)=(0,1,-1)$。",
+            "由第二分量 $\\beta=1$，由第一分量 $\\alpha=\\beta=1$，验证第三分量 $\\alpha-2\\beta=1-2=-1$，成立。",
+            "结论：$c_3=c_1+c_2$，坐标为 $(1,1)$，且由此比例关系知 $c_1,c_2$ 本身线性无关（否则无法唯一确定该组合）。"
+          ]
+        }
+      ],
+      "id": "nagoya-2007-b4a0cf0d7b-q03-practice-03",
+      "school": "名古屋大学",
+      "year": "2007"
+    },
+    {
+      "text": "对同一矩阵 $A$，求出另一个满足 $\\dim V=\\dim f(V)=2$ 的子空间 $V$（与原题(2)中给出的 $\\text{span}\\{e_1,e_2\\}$ 不同）。",
+      "knowledge_points": [
+        "像空间维数",
+        "核空间与子空间关系"
+      ],
+      "method": [
+        "选取与核空间不相交的二维子空间"
+      ],
+      "question_type": "子空间构造",
+      "solution_steps": [
+        "选择新的两个向量",
+        "验证与核空间的交集为零",
+        "验证像的线性无关性"
+      ],
+      "math_structure": {
+        "type": "subspace_construction_dim_preserving",
+        "template": "V \\text{ with } V\\cap\\ker A=\\{0\\},\\dim V=2",
+        "variable_count": 3
+      },
+      "difficulty": 3,
+      "estimated_minutes": 10,
+      "answer": [
+        {
+          "label": "结果",
+          "steps": [
+            "取 $V=\\text{span}\\{(1,0,0)^T,(0,0,1)^T\\}$，即 $e_1,e_3$。",
+            "验证核空间向量 $(1,1,-1)$ 是否属于 $V$：若 $(1,1,-1)=a e_1+b e_3=(a,0,b)$，需 $0=1$矛盾，故不属于，交集平凡。",
+            "计算 $f(e_1)=c_1=(1,0,1)^T$, $f(e_3)=c_3=(0,1,-1)^T=c_1+c_2$，两者线性无关（因 $c_1,c_3$ 不成比例），故 $f(V)$ 维数为2，$V$ 满足条件。"
+          ]
+        }
+      ],
+      "id": "nagoya-2007-b4a0cf0d7b-q03-practice-04",
+      "school": "名古屋大学",
+      "year": "2007"
+    },
+    {
+      "text": "对同一矩阵 $A$，求出另一个满足 $\\dim V=2,\\dim f(V)=1$ 的子空间 $V$（与原题(3)不同）。",
+      "knowledge_points": [
+        "核空间包含关系",
+        "像空间退化"
+      ],
+      "method": [
+        "构造包含核空间的二维子空间"
+      ],
+      "question_type": "子空间构造",
+      "solution_steps": [
+        "选取核空间向量加上另一独立向量",
+        "验证像空间维数为1"
+      ],
+      "math_structure": {
+        "type": "subspace_construction_dim_drop",
+        "template": "V \\supset \\ker A, \\dim V=2, \\dim f(V)=1",
+        "variable_count": 3
+      },
+      "difficulty": 3,
+      "estimated_minutes": 10,
+      "answer": [
+        {
+          "label": "结果",
+          "steps": [
+            "取 $V=\\text{span}\\{(1,1,-1)^T, (0,1,0)^T\\}$，两向量线性无关。",
+            "计算 $f((1,1,-1)^T)=0$（核空间向量），$f((0,1,0)^T)=c_2=(-1,1,-2)^T\\ne0$。",
+            "故 $f(V)=\\text{span}\\{0,c_2\\}=\\text{span}\\{c_2\\}$，维数为1，满足条件。"
+          ]
+        }
+      ],
+      "id": "nagoya-2007-b4a0cf0d7b-q03-practice-05",
+      "school": "名古屋大学",
+      "year": "2007"
+    }
+  ],
+  "source_question": "問3",
+  "source_pdf": "名古屋大学/多元数理科学研究科/全专攻/名古屋大学_多元数理科学研究科_2007_第2次_数学过去问_上午.pdf",
+  "source_type": "官方过去问",
+  "subject_category": "线性代数"
+}

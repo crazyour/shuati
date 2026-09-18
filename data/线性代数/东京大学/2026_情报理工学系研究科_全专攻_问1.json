@@ -1,0 +1,162 @@
+{
+  "id": "utokyo-2026-ist-common-q1",
+  "school": "东京大学",
+  "year": "2026",
+  "subject": "情报理工学系研究科_全专攻",
+  "text": "回答下列关于实方阵的问题。\n\n(1) 设\n$$A=\\begin{pmatrix}5&-4&0\\\\-4&5&0\\\\0&0&16\\end{pmatrix}.$$\n(i) 求 $A$ 的全部特征值，并为每个特征值求一个对应的特征向量。\n(ii) 求一个满足 $B^2=A$ 的正定实对称矩阵 $B$。\n\n(2) 设 $C$ 为正定实对称矩阵。证明：满足 $D^2=C$ 的正定实对称矩阵 $D$ 唯一存在。\n\n(3) 设实方阵 $F$ 可逆。\n(i) 证明：分别唯一存在正定实对称矩阵 $S,T$ 和正交矩阵 $U,V$，使得 $F=SU=VT$。\n(ii) 证明 (i) 中的 $S,T$ 满足 $T=F^{-1}SF$。\n(iii) 证明 (i) 中的 $U,V$ 满足 $U=V$。",
+  "knowledge_points": [
+    "线性代数",
+    "实对称矩阵的谱分解",
+    "正定矩阵平方根",
+    "极分解",
+    "正交矩阵",
+    "矩阵函数的唯一性"
+  ],
+  "question_type": "特征值计算、正定平方根与极分解证明综合题",
+  "method": [
+    "正交对角化",
+    "谱定理",
+    "正定平方根构造",
+    "左右极分解",
+    "相似变换"
+  ],
+  "solution_steps": [
+    "对 $A$ 的二维分块和一维分块分别求特征值与特征向量",
+    "在特征值上取正平方根并反向进行正交变换以构造 $B$",
+    "利用正定实对称矩阵的谱分解构造并证明平方根唯一",
+    "分别从 $FF^{\\mathsf T}$ 与 $F^{\\mathsf T}F$ 构造左右极分解",
+    "利用正定平方根唯一性证明 $S,T$ 的关系，再推出两个正交因子相等"
+  ],
+  "math_structure": {
+    "type": "symmetric_positive_definite_square_root_and_polar_decomposition",
+    "template": "$A=Q\\Lambda Q^{\\mathsf T}$，$A^{1/2}=Q\\Lambda^{1/2}Q^{\\mathsf T}$；$F=SU=VT$",
+    "variable_count": 5
+  },
+  "difficulty": 4,
+  "answer": [
+    {
+      "label": "(1)(i) 求特征值与特征向量",
+      "steps": [
+        "$A$ 的左上 $2\\times2$ 分块为 $M=\\begin{pmatrix}5&-4\\\\-4&5\\end{pmatrix}$。向量 $(1,1)^{\\mathsf T}$ 与 $(1,-1)^{\\mathsf T}$ 分别满足 $M(1,1)^{\\mathsf T}=(1,1)^{\\mathsf T}$、$M(1,-1)^{\\mathsf T}=9(1,-1)^{\\mathsf T}$。",
+        "第三个坐标与前两个坐标解耦，$A(0,0,1)^{\\mathsf T}=16(0,0,1)^{\\mathsf T}$。",
+        "因此全部特征值为 $1,9,16$；可分别取特征向量 $(1,1,0)^{\\mathsf T}$、$(1,-1,0)^{\\mathsf T}$、$(0,0,1)^{\\mathsf T}$。"
+      ]
+    },
+    {
+      "label": "(1)(ii) 构造 $B$",
+      "steps": [
+        "把上述特征向量单位化，令 $Q=\\begin{pmatrix}1/\\sqrt2&1/\\sqrt2&0\\\\1/\\sqrt2&-1/\\sqrt2&0\\\\0&0&1\\end{pmatrix}$，则 $Q$ 为正交矩阵，且 $A=Q\\operatorname{diag}(1,9,16)Q^{\\mathsf T}$。",
+        "在三个正特征值上取正平方根，定义 $B=Q\\operatorname{diag}(1,3,4)Q^{\\mathsf T}$。于是 $B$ 为实对称正定矩阵，且 $B^2=A$。",
+        "乘开得到 $$B=\\begin{pmatrix}2&-1&0\\\\-1&2&0\\\\0&0&4\\end{pmatrix}.$$"
+      ]
+    },
+    {
+      "label": "(2) 证明正定平方根唯一存在",
+      "steps": [
+        "由实对称矩阵的谱定理，存在正交矩阵 $Q$ 及正数 $\\lambda_1,\\ldots,\\lambda_n$，使 $C=Q\\operatorname{diag}(\\lambda_1,\\ldots,\\lambda_n)Q^{\\mathsf T}$。",
+        "定义 $D=Q\\operatorname{diag}(\\sqrt{\\lambda_1},\\ldots,\\sqrt{\\lambda_n})Q^{\\mathsf T}$。它是实对称正定矩阵，并且直接计算得 $D^2=C$，故存在性成立。",
+        "设另有正定实对称矩阵 $E$ 满足 $E^2=C$。因为 $EC=E^3=CE$，所以 $E$ 保持 $C$ 的每个特征子空间不变。",
+        "在 $C$ 的特征值 $\\lambda$ 所对应的特征子空间上，$E^2=\\lambda I$。由于 $E$ 在该子空间上仍为实对称正定矩阵，其全部特征值为正，故只能全部等于 $\\sqrt{\\lambda}$。因此 $E$ 在该子空间上等于 $\\sqrt{\\lambda}I$。",
+        "对 $C$ 的所有特征子空间应用上述结论，得到 $E=D$，从而唯一性成立。"
+      ]
+    },
+    {
+      "label": "(3)(i) 证明左右极分解唯一存在",
+      "steps": [
+        "因为 $F$ 可逆，所以 $FF^{\\mathsf T}$ 正定。令 $S=(FF^{\\mathsf T})^{1/2}$ 为其唯一的正定实对称平方根，并令 $U=S^{-1}F$。",
+        "有 $UU^{\\mathsf T}=S^{-1}FF^{\\mathsf T}S^{-1}=S^{-1}S^2S^{-1}=I$。由于 $U$ 为方阵，它是正交矩阵，因此 $F=SU$。",
+        "若另有 $F=S_1U_1$，其中 $S_1$ 正定实对称、$U_1$ 正交，则 $FF^{\\mathsf T}=S_1^2$。由正定平方根的唯一性，$S_1=S$，继而 $U_1=S^{-1}F=U$。故左极分解唯一。",
+        "同理，令 $T=(F^{\\mathsf T}F)^{1/2}$、$V=FT^{-1}$，可验证 $V^{\\mathsf T}V=I$，从而 $F=VT$；同样利用正定平方根唯一性可得 $T,V$ 唯一。"
+      ]
+    },
+    {
+      "label": "(3)(ii) 证明 $T=F^{-1}SF$",
+      "steps": [
+        "由 $F=SU$ 得 $F^{\\mathsf T}F=U^{\\mathsf T}S^2U=(U^{\\mathsf T}SU)^2$。矩阵 $U^{\\mathsf T}SU$ 是正定实对称矩阵。",
+        "另一方面，$T$ 是 $F^{\\mathsf T}F$ 的唯一正定实对称平方根，所以 $T=U^{\\mathsf T}SU$。",
+        "由 $F=SU$ 得 $F^{-1}=U^{\\mathsf T}S^{-1}$，因此 $F^{-1}SF=U^{\\mathsf T}S^{-1}S(SU)=U^{\\mathsf T}SU=T$。"
+      ]
+    },
+    {
+      "label": "(3)(iii) 证明 $U=V$",
+      "steps": [
+        "由 (ii) 得 $T^{-1}=F^{-1}S^{-1}F$。",
+        "右极分解给出 $V=FT^{-1}$，故 $V=F(F^{-1}S^{-1}F)=S^{-1}F$。",
+        "左极分解给出 $U=S^{-1}F$，所以 $U=V$。"
+      ]
+    }
+  ],
+  "practice_questions": [
+    {
+      "id": "utokyo-2026-ist-common-q1-practice-01",
+      "school": "东京大学",
+      "year": "2026",
+      "text": "设 $A=\\begin{pmatrix}5&4\\\\4&5\\end{pmatrix}$。求 $A$ 的特征值、单位特征向量以及唯一的正定实对称平方根 $A^{1/2}$。",
+      "knowledge_points": ["实对称矩阵", "特征值与特征向量", "正定平方根"],
+      "question_type": "计算二阶正定矩阵平方根",
+      "method": ["正交对角化", "对特征值取正平方根"],
+      "solution_steps": ["求正交特征基", "写出谱分解", "在谱上取正平方根并乘开"],
+      "math_structure": {"type": "symmetric_matrix_square_root", "template": "$A=Q\\Lambda Q^{\\mathsf T}$，$A^{1/2}=Q\\Lambda^{1/2}Q^{\\mathsf T}$", "variable_count": 1},
+      "difficulty": 2,
+      "estimated_minutes": 10,
+      "answer": [
+        {
+          "label": "求谱分解与平方根",
+          "steps": [
+            "有 $A(1,1)^{\\mathsf T}=9(1,1)^{\\mathsf T}$、$A(1,-1)^{\\mathsf T}=(1,-1)^{\\mathsf T}$，故特征值为 $9,1$，对应单位特征向量可取 $q_1=(1,1)^{\\mathsf T}/\\sqrt2$、$q_2=(1,-1)^{\\mathsf T}/\\sqrt2$。",
+            "令 $Q=[q_1\\ q_2]$，则 $A=Q\\operatorname{diag}(9,1)Q^{\\mathsf T}$。",
+            "因此 $A^{1/2}=Q\\operatorname{diag}(3,1)Q^{\\mathsf T}=\\begin{pmatrix}2&1\\\\1&2\\end{pmatrix}$。"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "utokyo-2026-ist-common-q1-practice-02",
+      "school": "东京大学",
+      "year": "2026",
+      "text": "设 $C$ 为正定实对称矩阵，且其互不相同的特征值为 $\\lambda_1,\\ldots,\\lambda_r$。不用选定某一组特征向量，证明 $C$ 的正定平方根可写成 $C^{1/2}=p(C)$，其中 $p$ 是次数不超过 $r-1$ 的实系数多项式。",
+      "knowledge_points": ["谱定理", "多项式插值", "矩阵函数", "正定平方根"],
+      "question_type": "用插值多项式表示矩阵平方根",
+      "method": ["拉格朗日插值", "谱投影"],
+      "solution_steps": ["在互异特征值上插值平方根函数", "将标量恒等式代入矩阵谱分解", "验证所得矩阵正定且平方等于原矩阵"],
+      "math_structure": {"type": "matrix_function_interpolation", "template": "$p(\\lambda_i)=\\sqrt{\\lambda_i}$，$C^{1/2}=p(C)$", "variable_count": 2},
+      "difficulty": 3,
+      "estimated_minutes": 15,
+      "answer": [
+        {
+          "label": "构造并验证 $p$",
+          "steps": [
+            "由拉格朗日插值，存在唯一次数小于 $r$ 的多项式 $$p(t)=\\sum_{i=1}^r\\sqrt{\\lambda_i}\\prod_{j\\ne i}\\frac{t-\\lambda_j}{\\lambda_i-\\lambda_j},$$ 满足 $p(\\lambda_i)=\\sqrt{\\lambda_i}$。",
+            "若 $C=Q\\operatorname{diag}(\\mu_1,\\ldots,\\mu_n)Q^{\\mathsf T}$，则每个 $\\mu_j$ 都是某个 $\\lambda_i$，从而 $p(C)=Q\\operatorname{diag}(\\sqrt{\\mu_1},\\ldots,\\sqrt{\\mu_n})Q^{\\mathsf T}$。",
+            "故 $p(C)$ 实对称正定，且 $p(C)^2=C$。由正定平方根唯一性，$C^{1/2}=p(C)$。"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "utokyo-2026-ist-common-q1-practice-03",
+      "school": "东京大学",
+      "year": "2026",
+      "text": "设 $F=\\begin{pmatrix}0&-2\\\\1&0\\end{pmatrix}$。求其左极分解 $F=SU$ 与右极分解 $F=VT$，并验证两个正交因子相同。",
+      "knowledge_points": ["极分解", "正定平方根", "正交矩阵"],
+      "question_type": "计算矩阵的左右极分解",
+      "method": ["计算 $FF^{\\mathsf T}$", "计算 $F^{\\mathsf T}F$", "构造正交因子"],
+      "solution_steps": ["求左右正定因子", "由逆矩阵求正交因子", "比较两个正交因子"],
+      "math_structure": {"type": "matrix_polar_decomposition", "template": "$S=(FF^{\\mathsf T})^{1/2}$，$T=(F^{\\mathsf T}F)^{1/2}$", "variable_count": 1},
+      "difficulty": 3,
+      "estimated_minutes": 15,
+      "answer": [
+        {
+          "label": "求左右极分解",
+          "steps": [
+            "$FF^{\\mathsf T}=\\operatorname{diag}(4,1)$，故 $S=\\operatorname{diag}(2,1)$。于是 $U=S^{-1}F=\\begin{pmatrix}0&-1\\\\1&0\\end{pmatrix}$，且 $U^{\\mathsf T}U=I$。",
+            "$F^{\\mathsf T}F=\\operatorname{diag}(1,4)$，故 $T=\\operatorname{diag}(1,2)$。于是 $V=FT^{-1}=\\begin{pmatrix}0&-1\\\\1&0\\end{pmatrix}$。",
+            "因此 $$F=\\begin{pmatrix}2&0\\\\0&1\\end{pmatrix}\\begin{pmatrix}0&-1\\\\1&0\\end{pmatrix}=\\begin{pmatrix}0&-1\\\\1&0\\end{pmatrix}\\begin{pmatrix}1&0\\\\0&2\\end{pmatrix},$$ 且 $U=V$。"
+          ]
+        }
+      ]
+    }
+  ],
+  "source_pdf": "东京大学/情报理工学系研究科/全专攻/东京大学_情报理工学系研究科_全专攻_2026_数学过去问.pdf",
+  "source_type": "官方过去问"
+}

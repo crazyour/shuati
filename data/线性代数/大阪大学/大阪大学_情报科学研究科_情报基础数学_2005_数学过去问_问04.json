@@ -1,0 +1,202 @@
+{
+  "id": "osaka-2005-114027773d-q04",
+  "school": "大阪大学",
+  "year": "2005",
+  "subject": "情报科学研究科_情报基础数学",
+  "text": "(i) 计算下列行列式：\n$$D(a_1,a_2,\\dots,a_n)=\\begin{vmatrix}\na_1+1 & 1 & 1 & \\cdots & 1 & 1\\\\\n1 & a_2+1 & 1 & \\cdots & 1 & 1\\\\\n1 & 1 & a_3+1 & & & 1\\\\\n\\vdots & & & \\ddots & & \\vdots\\\\\n1 & 1 & & & a_{n-1}+1 & 1\\\\\n1 & 1 & 1 & \\cdots & 1 & a_n+1\n\\end{vmatrix}.$$\n\n(ii) 集合 $\\left\\{\\dfrac{D(1,2,\\dots,n)}{n!}\\;\\middle|\\; n=1,2,3,\\dots\\right\\}$ 是否有界？请给出证明并回答。",
+  "knowledge_points": [
+    "行列式计算",
+    "秩一矩阵更新公式",
+    "对角矩阵扰动",
+    "调和级数发散",
+    "有界性判断"
+  ],
+  "question_type": "计算与证明题",
+  "method": [
+    "矩阵行列式引理（rank-one update formula）",
+    "调和级数发散性判断有界性"
+  ],
+  "solution_steps": [
+    "识别矩阵 $M=J+\\mathrm{diag}(a_1,\\dots,a_n)$，其中 $J$ 为全1矩阵",
+    "用行列式引理 $\\det(D+uv^T)=\\det(D)(1+v^TD^{-1}u)$ 计算 $D(a_1,\\dots,a_n)$",
+    "代入 $a_i=i$ 得到 $D(1,\\dots,n)=n!(1+H_n)$，其中 $H_n$ 为调和数",
+    "由 $H_n\\to\\infty$ 判断集合无界"
+  ],
+  "math_structure": {
+    "type": "determinant_rank_one_update_and_boundedness",
+    "template": "D(a_1,\\dots,a_n)=\\prod a_i+\\sum_i\\prod_{j\\neq i}a_j;\\ \\text{boundedness of }D(1,\\dots,n)/n!",
+    "variable_count": 1
+  },
+  "difficulty": 4,
+  "answer": [
+    {
+      "label": "(i)",
+      "steps": [
+        "记 $M$ 为题中 $n\\times n$ 矩阵。注意 $M_{ii}=a_i+1$，$M_{ij}=1\\ (i\\neq j)$，可写成 $M=J+\\mathrm{diag}(a_1,\\dots,a_n)$，其中 $J$ 是元素全为1的 $n\\times n$ 矩阵，即 $J=ee^T$，$e=(1,1,\\dots,1)^T$。",
+        "设 $D_0=\\mathrm{diag}(a_1,\\dots,a_n)$。当所有 $a_i\\neq0$时，由矩阵行列式引理（Sherman-Morrison型公式）：$\\det(D_0+ee^T)=\\det(D_0)\\left(1+e^TD_0^{-1}e\\right)=\\left(\\prod_{i=1}^n a_i\\right)\\left(1+\\sum_{i=1}^n\\frac1{a_i}\\right)$。",
+        "展开右边：$\\left(\\prod_i a_i\\right)+\\left(\\prod_i a_i\\right)\\sum_i\\frac1{a_i}=\\prod_{i=1}^n a_i+\\sum_{i=1}^n\\prod_{j\\neq i}a_j$。",
+        "该表达式为 $a_1,\\dots,a_n$ 的多项式，在 $a_i=0$ 处也连续，由多项式恒等的连续延拓，结论对一切实数 $a_1,\\dots,a_n$（包括含0的情形）均成立：$$D(a_1,\\dots,a_n)=\\prod_{i=1}^n a_i+\\sum_{i=1}^n\\prod_{j\\neq i}a_j.$$ 验证 $n=2$：$D(a_1,a_2)=(a_1+1)(a_2+1)-1=a_1a_2+a_1+a_2$，与公式 $a_1a_2+(a_2+a_1)$ 一致。"
+      ]
+    },
+    {
+      "label": "(ii)",
+      "steps": [
+        "取 $a_i=i\\ (i=1,\\dots,n)$，代入(i)的公式：$\\prod_{i=1}^n a_i=n!$，且 $\\prod_{j\\neq i}a_j=\\dfrac{n!}{i}$，所以 $D(1,2,\\dots,n)=n!+\\sum_{i=1}^n\\frac{n!}{i}=n!\\left(1+\\sum_{i=1}^n\\frac1i\\right)=n!(1+H_n)$，其中 $H_n=\\sum_{i=1}^n\\frac1i$ 是第 $n$ 个调和数。",
+        "于是 $\\dfrac{D(1,2,\\dots,n)}{n!}=1+H_n$。",
+        "由调和级数 $\\sum_{i=1}^\\infty\\frac1i$ 发散，知 $H_n\\to\\infty\\ (n\\to\\infty)$（例如可用 $H_n\\ge\\ln n$ 的估计证明），故 $1+H_n\\to\\infty$。",
+        "结论：集合 $\\{D(1,2,\\dots,n)/n!\\mid n=1,2,3,\\dots\\}=\\{1+H_n\\}$ 无上界，因此该集合**不是有界的**（无界）。"
+      ]
+    }
+  ],
+  "practice_questions": [
+    {
+      "text": "计算 $3\\times3$ 情形的行列式 $D(a_1,a_2,a_3)=\\begin{vmatrix}a_1+1&1&1\\\\1&a_2+1&1\\\\1&1&a_3+1\\end{vmatrix}$，并与公式 $\\prod a_i+\\sum_i\\prod_{j\\neq i}a_j$ 核对。",
+      "knowledge_points": [
+        "行列式展开",
+        "多项式恒等验证"
+      ],
+      "question_type": "计算题",
+      "method": [
+        "直接按行/列展开计算3阶行列式"
+      ],
+      "solution_steps": [
+        "按第一行展开",
+        "化简结果",
+        "与公式比较"
+      ],
+      "math_structure": {
+        "type": "determinant_3x3_verification",
+        "template": "D(a_1,a_2,a_3)",
+        "variable_count": 3
+      },
+      "difficulty": 2,
+      "estimated_minutes": 10,
+      "answer": [
+        {
+          "label": "结果",
+          "steps": [
+            "直接展开：$D=(a_1+1)[(a_2+1)(a_3+1)-1]-1\\cdot[(a_3+1)-1]+1\\cdot[1-(a_2+1)]$",
+            "$=(a_1+1)(a_2a_3+a_2+a_3)-(a_3)-a_2$",
+            "$=a_1a_2a_3+a_1a_2+a_1a_3+a_2a_3+a_2+a_3-a_3-a_2=a_1a_2a_3+a_1a_2+a_1a_3+a_2a_3$。",
+            "公式给出 $\\prod a_i+\\sum_i\\prod_{j\\neq i}a_j=a_1a_2a_3+(a_2a_3+a_1a_3+a_1a_2)$，两者一致，验证成功。"
+          ]
+        }
+      ],
+      "id": "osaka-2005-114027773d-q04-practice-01",
+      "school": "大阪大学",
+      "year": "2005"
+    },
+    {
+      "text": "叙述并证明矩阵行列式引理（秩一更新公式）：对可逆矩阵 $D$ 和向量 $u,v$，证明 $\\det(D+uv^T)=\\det(D)(1+v^TD^{-1}u)$。",
+      "knowledge_points": [
+        "行列式引理",
+        "分块矩阵行列式"
+      ],
+      "question_type": "证明题",
+      "method": [
+        "利用分块矩阵行列式恒等式"
+      ],
+      "solution_steps": [
+        "构造分块矩阵并计算两种分块方式的行列式",
+        "比较得到公式"
+      ],
+      "math_structure": {
+        "type": "matrix_determinant_lemma_proof",
+        "template": "\\det(D+uv^T)=\\det(D)(1+v^TD^{-1}u)",
+        "variable_count": 0
+      },
+      "difficulty": 3,
+      "estimated_minutes": 15,
+      "answer": [
+        {
+          "label": "证明",
+          "steps": [
+            "考虑分块矩阵 $\\begin{pmatrix}D & u\\\\ -v^T & 1\\end{pmatrix}$。用列消去（第二列块乘以 $D^{-1}u$ 加到分块结构中）或Schur补公式：$\\det\\begin{pmatrix}D&u\\\\-v^T&1\\end{pmatrix}=\\det(D)\\cdot\\det(1+v^TD^{-1}u)=\\det(D)(1+v^TD^{-1}u)$（对1×1的Schur补）。",
+            "另一方面，用另一种分块消去（把第一块行乘以 $uv^TD^{-1}$ 之类的操作）可得 $\\det\\begin{pmatrix}D&u\\\\-v^T&1\\end{pmatrix}=\\det(D+uv^T)\\cdot\\det(1)=\\det(D+uv^T)$（对另一Schur补，因 $1$ 可逆）。",
+            "两种计算方式给出同一分块行列式，故 $\\det(D+uv^T)=\\det(D)(1+v^TD^{-1}u)$，证毕。"
+          ]
+        }
+      ],
+      "id": "osaka-2005-114027773d-q04-practice-02",
+      "school": "大阪大学",
+      "year": "2005"
+    },
+    {
+      "text": "求 $\\lim_{n\\to\\infty}\\left(H_n-\\ln n\\right)$的存在性说明（不必求出具体极限值），并由此证明 $H_n\\to\\infty$。",
+      "knowledge_points": [
+        "调和级数",
+        "欧拉常数",
+        "级数发散"
+      ],
+      "question_type": "证明题",
+      "method": [
+        "积分比较判别法证明 $H_n$发散"
+      ],
+      "solution_steps": [
+        "用积分 $\\int_1^n\\frac1x dx=\\ln n$ 与 $H_n$ 比较",
+        "得出 $H_n\\ge\\ln n$",
+        "结论 $H_n\\to\\infty$"
+      ],
+      "math_structure": {
+        "type": "harmonic_series_divergence",
+        "template": "H_n=\\sum_{i=1}^n\\frac1i\\ge\\ln n\\to\\infty",
+        "variable_count": 1
+      },
+      "difficulty": 2,
+      "estimated_minutes": 8,
+      "answer": [
+        {
+          "label": "证明",
+          "steps": [
+            "因 $1/x$ 在 $[i,i+1]$ 上递减，故 $\\frac1{i+1}\\le\\int_i^{i+1}\\frac{dx}{x}\\le\\frac1i$。",
+            "对 $i=1,\\dots,n-1$求和：$\\int_1^n\\frac{dx}{x}\\le\\sum_{i=1}^{n-1}\\frac1i=H_{n-1}\\le H_n$，即 $\\ln n\\le H_n$。",
+            "由 $\\ln n\\to\\infty$ 及 $H_n\\ge\\ln n$，得 $H_n\\to\\infty$，证毕（这也是众所周知的欧拉常数存在性定理 $H_n-\\ln n\\to\\gamma$ 的基础估计）。"
+          ]
+        }
+      ],
+      "id": "osaka-2005-114027773d-q04-practice-03",
+      "school": "大阪大学",
+      "year": "2005"
+    },
+    {
+      "text": "计算 $D(1,2,3,4)/4!$ 的具体数值，并验证它等于 $1+H_4$。",
+      "knowledge_points": [
+        "行列式数值计算",
+        "调和数计算"
+      ],
+      "question_type": "计算验证题",
+      "method": [
+        "直接代入公式计算"
+      ],
+      "solution_steps": [
+        "用 (i) 公式计算 $D(1,2,3,4)$",
+        "除以 $4!$",
+        "与 $1+H_4$ 比较"
+      ],
+      "math_structure": {
+        "type": "numerical_verification",
+        "template": "D(1,2,3,4)/4!=1+H_4",
+        "variable_count": 0
+      },
+      "difficulty": 2,
+      "estimated_minutes": 8,
+      "answer": [
+        {
+          "label": "结果",
+          "steps": [
+            "$\\prod a_i=1\\cdot2\\cdot3\\cdot4=24$；$\\sum_i\\prod_{j\\neq i}a_j=\\frac{24}1+\\frac{24}2+\\frac{24}3+\\frac{24}4=24+12+8+6=50$。",
+            "$D(1,2,3,4)=24+50=74$；$74/24=37/12$。",
+            "$H_4=1+\\frac12+\\frac13+\\frac14=\\frac{12+6+4+3}{12}=\\frac{25}{12}$，故 $1+H_4=\\frac{37}{12}$，与 $D/4!=37/12$ 一致，验证成功。"
+          ]
+        }
+      ],
+      "id": "osaka-2005-114027773d-q04-practice-04",
+      "school": "大阪大学",
+      "year": "2005"
+    }
+  ],
+  "source_question": "問4",
+  "source_pdf": "大阪大学/情报科学研究科/情报基础数学/大阪大学_情报科学研究科_情报基础数学_2005_数学过去问.pdf",
+  "source_type": "官方过去问",
+  "subject_category": "线性代数"
+}

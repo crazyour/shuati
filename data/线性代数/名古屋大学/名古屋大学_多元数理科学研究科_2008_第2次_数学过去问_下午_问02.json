@@ -1,0 +1,203 @@
+{
+  "id": "nagoya-2008-08506880d2-q02",
+  "school": "名古屋大学",
+  "year": "2008",
+  "subject": "多元数理科学研究科_全专攻",
+  "text": "回答以下问题：\n\n(1) 对于对称矩阵\n$$A = \\begin{pmatrix} 2 & 1 & -2 \\\\ 1 & 2 & -2 \\\\ -2 & -2 & 1 \\end{pmatrix}$$\n求一个正交矩阵 $P$，使得 $^tPAP$ 为对角矩阵。\n\n(2) 对三元函数\n$$f(x,y,z) = 2x^2+2y^2+z^2+2xy-4xz-4yz = (x\\ y\\ z)A\\begin{pmatrix}x\\\\y\\\\z\\end{pmatrix}$$\n求\n$$\\sup\\left\\{\\frac{f(x,y,z)}{x^2+y^2+z^2} : (x,y,z)\\in\\mathbb{R}^3, (x,y,z)\\neq(0,0,0)\\right\\}, \\quad \\inf\\left\\{\\frac{f(x,y,z)}{x^2+y^2+z^2} : (x,y,z)\\in\\mathbb{R}^3, (x,y,z)\\neq(0,0,0)\\right\\}$$",
+  "knowledge_points": [
+    "实对称矩阵对角化",
+    "正交矩阵",
+    "特征值特征向量",
+    "二次型",
+    "Rayleigh 商",
+    "上下界"
+  ],
+  "question_type": "计算题（对角化+极值）",
+  "method": [
+    "求特征多项式与特征值",
+    "求特征向量并正交归一化",
+    "利用 Rayleigh 商定理求二次型比值的上下界"
+  ],
+  "solution_steps": [
+    "写出特征方程 det(A-λE)=0 并求解得特征值",
+    "对每个特征值求解 (A-λE)v=0 得特征向量",
+    "将特征向量归一化并验证两两正交，构成正交矩阵 P",
+    "利用谱定理：f(x,y,z)/(x²+y²+z²) 的取值范围正好是 A 的最小特征值到最大特征值",
+    "得到 sup 为最大特征值，inf 为最小特征值"
+  ],
+  "math_structure": {
+    "type": "symmetric_matrix_diagonalization_quadratic_form",
+    "template": "A=[[2,1,-2],[1,2,-2],[-2,-2,1]], find orthogonal P diagonalizing A; find sup/inf of x^T A x / |x|^2",
+    "variable_count": 1
+  },
+  "difficulty": 3,
+  "answer": [
+    {
+      "label": "(1)",
+      "steps": [
+        "特征方程：$\\det(A-\\lambda E)=-\\lambda^3+5\\lambda^2+\\lambda-5=0$，即 $\\lambda^3-5\\lambda^2-\\lambda+5=0$。试根 $\\lambda=1$：$1-5-1+5=0$成立，因式分解为 $(\\lambda-1)(\\lambda^2-4\\lambda-5)=0$，解得 $\\lambda^2-4\\lambda-5=0\\Rightarrow\\lambda=5$ 或 $\\lambda=-1$。故特征值为 $1,5,-1$。",
+        "对 $\\lambda=1$：解 $(A-E)v=0$，即 $x+y-2z=0,\\ -2x-2y=0$。由第二式 $y=-x$，代入第一式得 $z=0$。特征向量 $(1,-1,0)$，归一化为 $\\dfrac{1}{\\sqrt2}(1,-1,0)$。",
+        "对 $\\lambda=5$：解 $(A-5E)v=0$：$-3x+y-2z=0,\\ x-3y-2z=0$。联立解得 $x=-z,\\ y=-z$，特征向量 $(-1,-1,1)$，归一化为 $\\dfrac{1}{\\sqrt3}(-1,-1,1)$。",
+        "对 $\\lambda=-1$：解 $(A+E)v=0$：$3x+y-2z=0,\\ x+3y-2z=0$。相减得 $x=y$，代入得 $z=2x$，特征向量 $(1,1,2)$，归一化为 $\\dfrac{1}{\\sqrt6}(1,1,2)$。",
+        "三个归一化特征向量两两正交（可直接验证内积为零），故正交矩阵 $$P=\\begin{pmatrix} 1/\\sqrt2 & -1/\\sqrt3 & 1/\\sqrt6\\\\ -1/\\sqrt2 & -1/\\sqrt3 & 1/\\sqrt6\\\\ 0 & 1/\\sqrt3 & 2/\\sqrt6\\end{pmatrix}$$ 满足 $^tPAP=\\mathrm{diag}(1,5,-1)$。"
+      ]
+    },
+    {
+      "label": "(2)",
+      "steps": [
+        "由 (1)，$A$ 的特征值为 $-1,1,5$（按大小排列：最小 $-1$，最大 $5$）。",
+        "由谱定理（Rayleigh 商定理），对任意实对称矩阵 $A$ 及非零向量 $x$，有 $\\lambda_{\\min}\\le \\dfrac{x^TAx}{x^Tx}\\le\\lambda_{\\max}$，且等号可在对应特征向量方向取到。",
+        "此处 $f(x,y,z)=x^TAx$，故 $\\dfrac{f(x,y,z)}{x^2+y^2+z^2}\\in[-1,5]$，且取 $(x,y,z)=(-1,-1,1)$（对应 $\\lambda=5$）时比值达到 $5$；取 $(x,y,z)=(1,1,2)$（对应 $\\lambda=-1$）时比值达到 $-1$。",
+        "故 $\\sup=5$，$\\inf=-1$。"
+      ]
+    }
+  ],
+  "practice_questions": [
+    {
+      "text": "求对称矩阵 $B=\\begin{pmatrix}3&1\\\\1&3\\end{pmatrix}$ 的特征值与特征向量，并写出使 $^tPBP$ 对角化的正交矩阵 $P$。",
+      "knowledge_points": [
+        "对称矩阵对角化",
+        "特征值特征向量"
+      ],
+      "question_type": "计算题",
+      "method": [
+        "特征方程求解",
+        "正交归一化"
+      ],
+      "solution_steps": [
+        "求特征多项式",
+        "求特征向量并归一化"
+      ],
+      "math_structure": {
+        "type": "symmetric_2x2_diagonalization",
+        "template": "B=[[3,1],[1,3]], find orthogonal diagonalizing matrix",
+        "variable_count": 1
+      },
+      "difficulty": 1,
+      "estimated_minutes": 6,
+      "answer": [
+        {
+          "label": "计算",
+          "steps": [
+            "特征方程 $(3-\\lambda)^2-1=0\\Rightarrow \\lambda=4$ 或 $\\lambda=2$。",
+            "对 $\\lambda=4$: $(B-4E)v=0\\Rightarrow -x+y=0\\Rightarrow$ 特征向量 $(1,1)$，归一化 $\\frac{1}{\\sqrt2}(1,1)$。对 $\\lambda=2$：$x+y=0\\Rightarrow$ 特征向量 $(1,-1)$，归一化 $\\frac{1}{\\sqrt2}(1,-1)$。",
+            "$P=\\frac{1}{\\sqrt2}\\begin{pmatrix}1&1\\\\1&-1\\end{pmatrix}$，验证 $^tPBP=\\mathrm{diag}(4,2)$。"
+          ]
+        }
+      ],
+      "id": "nagoya-2008-08506880d2-q02-practice-01",
+      "school": "名古屋大学",
+      "year": "2008"
+    },
+    {
+      "text": "对于 $3\\times3$ 对称矩阵 $C=\\begin{pmatrix}1&0&0\\\\0&2&1\\\\0&1&2\\end{pmatrix}$，求其全部特征值。",
+      "knowledge_points": [
+        "特征值计算",
+        "分块矩阵"
+      ],
+      "question_type": "计算题",
+      "method": [
+        "利用分块结构简化特征方程"
+      ],
+      "solution_steps": [
+        "注意第一行第一列独立，先求 2x2 子块特征值，再合并"
+      ],
+      "math_structure": {
+        "type": "block_symmetric_eigenvalues",
+        "template": "C block-diagonal like matrix, find eigenvalues",
+        "variable_count": 1
+      },
+      "difficulty": 1,
+      "estimated_minutes": 5,
+      "answer": [
+        {
+          "label": "计算",
+          "steps": [
+            "矩阵可看作 $1$ 与 $2\\times2$ 块 $\\begin{pmatrix}2&1\\\\1&2\\end{pmatrix}$ 的直和（第一行/列与其余正交）。",
+            "子块特征值：$(2-\\lambda)^2-1=0\\Rightarrow\\lambda=3$或$\\lambda=1$。",
+            "故 $C$ 的全部特征值为 $1,1,3$（其中 $\\lambda=1$ 是二重，一个来自独立的 $(1,1)$ 位置，一个来自子块）。"
+          ]
+        }
+      ],
+      "id": "nagoya-2008-08506880d2-q02-practice-02",
+      "school": "名古屋大学",
+      "year": "2008"
+    },
+    {
+      "text": "设实对称矩阵 $D$ 的特征值为 $-2,0,3$。求 $\\sup$ 和 $\\inf$ 于 $\\dfrac{x^TDx}{x^Tx}$（$x\\neq0$）。",
+      "knowledge_points": [
+        "Rayleigh 商",
+        "特征值极值原理"
+      ],
+      "question_type": "理论应用题",
+      "method": [
+        "直接应用谱定理"
+      ],
+      "solution_steps": [
+        "Rayleigh商范围即为特征值的最小值与最大值"
+      ],
+      "math_structure": {
+        "type": "rayleigh_quotient_bounds",
+        "template": "eigenvalues -2,0,3 of symmetric D, find sup/inf of Rayleigh quotient",
+        "variable_count": 1
+      },
+      "difficulty": 1,
+      "estimated_minutes": 3,
+      "answer": [
+        {
+          "label": "计算",
+          "steps": [
+            "由谱定理，Rayleigh 商的取值范围恰为 $[\\lambda_{\\min},\\lambda_{\\max}]=[-2,3]$。",
+            "因此 $\\sup=3$，$\\inf=-2$。"
+          ]
+        }
+      ],
+      "id": "nagoya-2008-08506880d2-q02-practice-03",
+      "school": "名古屋大学",
+      "year": "2008"
+    },
+    {
+      "text": "考虑二次型 $g(x,y)=5x^2+4xy+2y^2$，写成矩阵形式 $(x\\ y)M\\binom{x}{y}$，求 $M$ 的特征值，并求 $\\sup,\\inf$ 于 $g(x,y)/(x^2+y^2)$（$(x,y)\\neq(0,0)$）。",
+      "knowledge_points": [
+        "二次型矩阵表示",
+        "特征值",
+        "Rayleigh商极值"
+      ],
+      "question_type": "计算题",
+      "method": [
+        "构造对称矩阵",
+        "求特征值",
+        "应用极值定理"
+      ],
+      "solution_steps": [
+        "写出对称矩阵M",
+        "求特征值",
+        "得到比值范围"
+      ],
+      "math_structure": {
+        "type": "quadratic_form_sup_inf_2var",
+        "template": "g(x,y)=5x^2+4xy+2y^2, find sup/inf of g/(x^2+y^2)",
+        "variable_count": 2
+      },
+      "difficulty": 2,
+      "estimated_minutes": 8,
+      "answer": [
+        {
+          "label": "计算",
+          "steps": [
+            "$g(x,y)=(x\\ y)\\begin{pmatrix}5&2\\\\2&2\\end{pmatrix}\\binom{x}{y}$，即 $M=\\begin{pmatrix}5&2\\\\2&2\\end{pmatrix}$。",
+            "特征方程：$(5-\\lambda)(2-\\lambda)-4=0\\Rightarrow \\lambda^2-7\\lambda+6=0\\Rightarrow \\lambda=1$或$\\lambda=6$。",
+            "由 Rayleigh 商定理，$\\sup=6$，$\\inf=1$。"
+          ]
+        }
+      ],
+      "id": "nagoya-2008-08506880d2-q02-practice-04",
+      "school": "名古屋大学",
+      "year": "2008"
+    }
+  ],
+  "source_question": "問2",
+  "source_pdf": "名古屋大学/多元数理科学研究科/全专攻/名古屋大学_多元数理科学研究科_2008_第2次_数学过去问_下午.pdf",
+  "source_type": "官方过去问",
+  "subject_category": "线性代数"
+}

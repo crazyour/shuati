@@ -1,0 +1,185 @@
+{
+  "id": "kyoto-2023-fc0b120ced-q03",
+  "school": "京都大学",
+  "year": "2023",
+  "subject": "情报学研究科_先端数理科学",
+  "text": "设 $n$ 为正整数，$E_n$ 表示 $n$ 阶单位矩阵，$M_n(\\mathbb{Z})$ 表示 $n$ 阶整数矩阵的全体集合。(1) 当 $n = 2$ 时，证明存在 $X \\in M_2(\\mathbb{Z})$ 使得 $X^2 = 3E_2$。(2) 当 $n \\geq 4$ 为偶数时，讨论是否存在 $X \\in M_n(\\mathbb{Z})$ 使得 $X^2 = 3E_n$，给出理由。(3) 当 $n$ 为奇数时，讨论是否存在 $X \\in M_n(\\mathbb{Z})$ 使得 $X^2 = 3E_n$，给出理由。",
+  "knowledge_points": [
+    "矩阵方程",
+    "特征值与特征多项式",
+    "整数矩阵的性质",
+    "矩阵的迹与行列式",
+    "特征多项式的判别"
+  ],
+  "question_type": "分类讨论的矩阵方程问题",
+  "method": [
+    "特征值分析",
+    "迹和行列式的不变性",
+    "矩阵方程的可解性理论"
+  ],
+  "solution_steps": [
+    "分析X²=3E的特征值结构",
+    "利用迹和行列式的性质",
+    "根据n的奇偶性和模性质讨论可解性"
+  ],
+  "math_structure": {
+    "type": "matrix_equation_classification",
+    "template": "$X^2 = \\lambda E_n$ 其中 $X \\in M_n(\\mathbb{Z})$，$\\lambda \\in \\mathbb{Z}^+$",
+    "variable_count": 2
+  },
+  "difficulty": 4,
+  "answer": [
+    {
+      "label": "(1) n=2时的存在性",
+      "steps": [
+        "若 $X^2 = 3E_2$，设 $X$ 的特征值为 $\\lambda$，则 $\\lambda^2 = 3$",
+        "考虑 $X = \\begin{pmatrix} a & b \\\\ c & d \\end{pmatrix}$，其中 $a, b, c, d \\in \\mathbb{Z}$",
+        "特殊地，尝试 $X = \\begin{pmatrix} 0 & 3 \\\\ 1 & 0 \\end{pmatrix}$",
+        "计算：$X^2 = \\begin{pmatrix} 0 & 3 \\\\ 1 & 0 \\end{pmatrix} \\begin{pmatrix} 0 & 3 \\\\ 1 & 0 \\end{pmatrix} = \\begin{pmatrix} 3 & 0 \\\\ 0 & 3 \\end{pmatrix} = 3E_2$",
+        "因此存在满足条件的整数矩阵"
+      ]
+    },
+    {
+      "label": "(2) n≥4为偶数时",
+      "steps": [
+        "若 $X^2 = 3E_n$，对两边取迹：$\\text{tr}(X^2) = 3n$",
+        "而 $\\text{tr}(X^2) = \\sum_{i=1}^{n} \\lambda_i^2$，其中 $\\lambda_i$ 是X的特征值，满足 $\\lambda_i^2 = 3$",
+        "每个特征值为 $\\pm\\sqrt{3}$（不是整数）",
+        "设有 $k$ 个特征值为 $\\sqrt{3}$，$n-k$ 个为 $-\\sqrt{3}$",
+        "则 $\\text{tr}(X^2) = 3k + 3(n-k) = 3n$（确实相等）",
+        "但对整数矩阵，X的最小多项式系数是整数，特征多项式 $(\\lambda^2 - 3)$ 的根 $\\pm\\sqrt{3}$ 不是整数",
+        "对于整数矩阵，若所有元素为整数，特征多项式的系数也是整数，但 $\\lambda^2 - 3 = 0$ 的根是无理数",
+        "这导致了矛盾。当 $n \\geq 4$ 为偶数时，一般不存在整数解"
+      ]
+    },
+    {
+      "label": "(3) n为奇数时",
+      "steps": [
+        "对奇数 $n$，矩阵 $X^2 = 3E_n$ 必有实特征值（因为奇数维实矩阵必有实特征值）",
+        "设 $\\lambda$ 是实特征值，则 $\\lambda^2 = 3$，得 $\\lambda = \\pm\\sqrt{3}$",
+        "但 $\\sqrt{3}$ 是无理数，不能是整数矩阵的特征值",
+        "这产生矛盾，因此当 $n$ 为奇数时，不存在 $X \\in M_n(\\mathbb{Z})$ 使得 $X^2 = 3E_n$"
+      ]
+    }
+  ],
+  "practice_questions": [
+    {
+      "text": "证明：若整数矩阵 $A$ 满足 $A^2 = 2E_2$，则不存在这样的 $A$。",
+      "knowledge_points": [
+        "特征值的性质",
+        "整数矩阵的限制"
+      ],
+      "question_type": "反证法证明",
+      "method": [
+        "特征值分析",
+        "矛盾推导"
+      ],
+      "solution_steps": [
+        "假设存在",
+        "分析特征值",
+        "导出矛盾"
+      ],
+      "math_structure": {
+        "type": "impossibility_proof",
+        "template": "整数矩阵 $A$ 满足 $A^2 = kE_n$（$k$ 非完全平方数）不存在",
+        "variable_count": 2
+      },
+      "difficulty": 3,
+      "estimated_minutes": 6,
+      "answer": [
+        {
+          "label": "反证法证明",
+          "steps": [
+            "假设存在 $A \\in M_2(\\mathbb{Z})$ 使 $A^2 = 2E_2$",
+            "则A的特征值 $\\lambda$ 满足 $\\lambda^2 = 2$，即 $\\lambda = \\pm\\sqrt{2}$",
+            "但 $\\sqrt{2}$ 是无理数，整数矩阵的特征多项式系数为整数，其特征值应为整数或整系数二次方程的根",
+            "而 $\\sqrt{2}$ 不能是整系数一次方程的根，矛盾。因此不存在这样的A"
+          ]
+        }
+      ],
+      "id": "kyoto-2023-fc0b120ced-q03-practice-01",
+      "school": "京都大学",
+      "year": "2023"
+    },
+    {
+      "text": "当 $n=3$ 时，是否存在整数矩阵 $X$ 使得 $X^2 = 5E_3$？",
+      "knowledge_points": [
+        "奇数维矩阵的特征值",
+        "特征值的现实性"
+      ],
+      "question_type": "存在性讨论",
+      "method": [
+        "特征值分析",
+        "维数考虑"
+      ],
+      "solution_steps": [
+        "分析3维矩阵的特征值结构",
+        "利用奇数维矩阵必有实特征值"
+      ],
+      "math_structure": {
+        "type": "matrix_equation_odd_dim",
+        "template": "$n$ 为奇数时，$X^2 = kE_n$（$k$ 非完全平方数）无整数解",
+        "variable_count": 2
+      },
+      "difficulty": 3,
+      "estimated_minutes": 5,
+      "answer": [
+        {
+          "label": "不存在性证明",
+          "steps": [
+            "3维矩阵必有至少一个实特征值",
+            "若 $X^2 = 5E_3$，设 $\\lambda$ 是实特征值，则 $\\lambda^2 = 5$",
+            "$\\lambda = \\pm\\sqrt{5}$ 为无理数，与整数矩阵的特征值应满足整系数多项式矛盾",
+            "因此不存在整数矩阵X满足条件"
+          ]
+        }
+      ],
+      "id": "kyoto-2023-fc0b120ced-q03-practice-02",
+      "school": "京都大学",
+      "year": "2023"
+    },
+    {
+      "text": "对于 $n=4$，构造或证明不存在整数矩阵 $X$ 使得 $X^2 = 2E_4$。",
+      "knowledge_points": [
+        "偶数维矩阵",
+        "矩阵的块结构",
+        "特征值成对出现"
+      ],
+      "question_type": "构造性问题",
+      "method": [
+        "矩阵块的构造",
+        "特征值分析"
+      ],
+      "solution_steps": [
+        "考虑块对角矩阵结构",
+        "利用2×2块的Jordan形式"
+      ],
+      "math_structure": {
+        "type": "block_diagonal_matrix",
+        "template": "$X = \\begin{pmatrix} X_1 & 0 \\\\ 0 & X_2 \\end{pmatrix}$ 其中每块满足条件",
+        "variable_count": 2
+      },
+      "difficulty": 3,
+      "estimated_minutes": 7,
+      "answer": [
+        {
+          "label": "分析与结论",
+          "steps": [
+            "若 $X^2 = 2E_4$，X的特征值 $\\lambda$ 满足 $\\lambda^2 = 2$",
+            "对4维矩阵，可尝试块对角形式：$X = \\begin{pmatrix} X_1 & 0 \\\\ 0 & X_2 \\end{pmatrix}$",
+            "若 $X_1 = \\begin{pmatrix} 0 & 2 \\\\ 1 & 0 \\end{pmatrix}$，则 $X_1^2 = 2E_2$，但这要求整数矩阵有 $\\sqrt{2}$",
+            "因此 $2 \\times 2$ 块也不能满足整数条件",
+            "一般结论：当 $n \\geq 4$ 为偶数时，不存在整数矩阵X使 $X^2 = kE_n$（k非完全平方数）"
+          ]
+        }
+      ],
+      "id": "kyoto-2023-fc0b120ced-q03-practice-03",
+      "school": "京都大学",
+      "year": "2023"
+    }
+  ],
+  "source_question": "問4",
+  "source_pdf": "京都大学/情报学研究科/先端数理科学/京都大学_情报学研究科_先端数理科学_2023_数学过去问.pdf",
+  "source_type": "官方过去问",
+  "subject_category": "线性代数"
+}

@@ -1,0 +1,223 @@
+{
+  "id": "kyoto-2021-80fb76336b-q01",
+  "school": "京都大学",
+  "year": "2021",
+  "subject": "情报学研究科_智能信息学",
+  "text": "设 $A$ 为 $m\\times n$（$m>n$）实矩阵，定义矩阵 $B=A^TA$，$C=AA^T$，其中 $T$ 表示转置。对于 $l$ 维实向量 $a,b$，定义内积 $\\langle a,b\\rangle=\\sum_{k=1}^{l} a_k b_k$，其中 $a_k,b_k$ 分别为 $a,b$ 的第 $k$ 个分量。回答下列问题（可以使用如下关于实对称矩阵的性质：实对称矩阵的所有特征值均为实数；对任一特征值都可以取到实向量作为对应特征向量）。\n\n(1) 证明 $B$ 与 $C$ 均为实对称矩阵。\n\n(2) 证明 $B$ 的所有特征值均非负。\n\n(3) 实对称矩阵可用正交矩阵对角化，用来对角化 $B$ 的正交矩阵的列向量都是 $B$ 的特征向量。设 $p_i,p_j$ 是分别对应正特征值 $\\lambda_i,\\lambda_j$ 的特征向量，定义 $q_i=\\dfrac{1}{\\sqrt{\\lambda_i}}Ap_i$，$q_j=\\dfrac{1}{\\sqrt{\\lambda_j}}Ap_j$。证明 $q_i,q_j$ 是 $C$ 的特征向量，对应特征值分别为 $\\lambda_i,\\lambda_j$；并证明 $\\langle q_i,q_j\\rangle=\\begin{cases}1 & (i=j)\\\\0 & (i\\neq j)\\end{cases}$；再证明 $p_i=\\dfrac{1}{\\sqrt{\\lambda_i}}A^Tq_i$。",
+  "knowledge_points": [
+    "实对称矩阵",
+    "矩阵转置",
+    "特征值与特征向量",
+    "正交对角化",
+    "半正定二次型",
+    "内积与正交归一性",
+    "奇异值分解思想"
+  ],
+  "question_type": "证明题",
+  "method": [
+    "利用转置运算性质证明对称性",
+    "利用瑞利商证明特征值非负",
+    "直接代入验证特征向量关系",
+    "利用正交基的正交归一性计算内积"
+  ],
+  "solution_steps": [
+    "证明B、C的对称性",
+    "利用二次型证明B特征值非负",
+    "验证Cq_i=λ_i q_i",
+    "计算内积⟨q_i,q_j⟩并利用p的正交归一性化简",
+    "验证p_i与A^Tq_i的关系"
+  ],
+  "math_structure": {
+    "type": "symmetric_matrix_eigen_relation",
+    "template": "B=A^TA,\\ C=AA^T,\\ q=\\frac{1}{\\sqrt{\\lambda}}Ap",
+    "variable_count": 3
+  },
+  "difficulty": 4,
+  "answer": [
+    {
+      "label": "(1)",
+      "steps": [
+        "计算 $B^T=(A^TA)^T=A^T(A^T)^T=A^TA=B$，故 $B$ 为对称矩阵。",
+        "计算 $C^T=(AA^T)^T=(A^T)^TA^T=AA^T=C$，故 $C$ 为对称矩阵。",
+        "由于 $A$ 为实矩阵，$B,C$ 的所有元素均为实数，因此 $B,C$ 均为实对称矩阵。"
+      ]
+    },
+    {
+      "label": "(2)",
+      "steps": [
+        "设 $\\lambda$ 是 $B$ 的特征值，$v\\neq0$ 为对应特征向量，即 $Bv=\\lambda v$。",
+        "两边左乘 $v^T$：$v^TBv=\\lambda v^Tv$，即 $v^TA^TAv=\\lambda\\|v\\|^2$。",
+        "注意到 $v^TA^TAv=(Av)^T(Av)=\\|Av\\|^2\\ge0$，且 $\\|v\\|^2>0$，故 $\\lambda=\\dfrac{\\|Av\\|^2}{\\|v\\|^2}\\ge0$。",
+        "因此 $B$ 的所有特征值均非负。"
+      ]
+    },
+    {
+      "label": "(3)",
+      "steps": [
+        "计算 $Cq_i=AA^T\\cdot\\dfrac{1}{\\sqrt{\\lambda_i}}Ap_i=\\dfrac{1}{\\sqrt{\\lambda_i}}A(A^TAp_i)=\\dfrac{1}{\\sqrt{\\lambda_i}}A(Bp_i)=\\dfrac{1}{\\sqrt{\\lambda_i}}A(\\lambda_ip_i)=\\lambda_i\\cdot\\dfrac{1}{\\sqrt{\\lambda_i}}Ap_i=\\lambda_iq_i$；同理 $Cq_j=\\lambda_jq_j$，故 $q_i,q_j$ 分别是 $C$ 对应特征值 $\\lambda_i,\\lambda_j$ 的特征向量。",
+        "计算内积：$\\langle q_i,q_j\\rangle=q_i^Tq_j=\\dfrac{1}{\\sqrt{\\lambda_i\\lambda_j}}p_i^TA^TAp_j=\\dfrac{1}{\\sqrt{\\lambda_i\\lambda_j}}p_i^TBp_j=\\dfrac{1}{\\sqrt{\\lambda_i\\lambda_j}}p_i^T(\\lambda_jp_j)=\\sqrt{\\dfrac{\\lambda_j}{\\lambda_i}}\\,p_i^Tp_j$。",
+        "由于 $p_i,p_j$ 是正交矩阵的列向量，满足 $p_i^Tp_j=\\delta_{ij}$。当 $i\\neq j$ 时 $\\langle q_i,q_j\\rangle=0$；当 $i=j$ 时 $\\langle q_i,q_i\\rangle=\\sqrt{\\lambda_i/\\lambda_i}\\cdot1=1$。故 $\\langle q_i,q_j\\rangle=\\begin{cases}1&(i=j)\\\\0&(i\\neq j)\\end{cases}$。",
+        "验证 $p_i=\\dfrac{1}{\\sqrt{\\lambda_i}}A^Tq_i$：代入 $q_i$ 的定义，$\\dfrac{1}{\\sqrt{\\lambda_i}}A^Tq_i=\\dfrac{1}{\\sqrt{\\lambda_i}}A^T\\cdot\\dfrac{1}{\\sqrt{\\lambda_i}}Ap_i=\\dfrac{1}{\\lambda_i}A^TAp_i=\\dfrac{1}{\\lambda_i}Bp_i=\\dfrac{1}{\\lambda_i}(\\lambda_ip_i)=p_i$，得证。"
+      ]
+    }
+  ],
+  "practice_questions": [
+    {
+      "text": "证明：对任意实矩阵 $A$（$m\\times n$），矩阵 $A^TA$ 是对称矩阵。",
+      "knowledge_points": [
+        "矩阵转置",
+        "对称矩阵定义"
+      ],
+      "question_type": "证明题",
+      "method": [
+        "利用转置运算性质"
+      ],
+      "solution_steps": [
+        "写出(A^TA)^T的表达式",
+        "利用(A^T)^T=A化简",
+        "得出对称结论"
+      ],
+      "math_structure": {
+        "type": "symmetric_matrix_basic",
+        "template": "(A^TA)^T = A^TA",
+        "variable_count": 1
+      },
+      "difficulty": 1,
+      "estimated_minutes": 5,
+      "answer": [
+        {
+          "label": "证明",
+          "steps": [
+            "设 $A$ 为任意 $m\\times n$ 实矩阵。计算 $(A^TA)^T=A^T(A^T)^T$。",
+            "利用 $(A^T)^T=A$，得 $(A^TA)^T=A^TA$。",
+            "因此 $A^TA$ 满足对称矩阵定义 $M^T=M$，即证。"
+          ]
+        }
+      ],
+      "id": "kyoto-2021-80fb76336b-q01-practice-01",
+      "school": "京都大学",
+      "year": "2021"
+    },
+    {
+      "text": "给定 $A=\\begin{pmatrix}1&1\\\\0&1\\\\1&0\\end{pmatrix}$，计算 $B=A^TA$，并求其特征值，验证均为非负数。",
+      "knowledge_points": [
+        "矩阵乘法",
+        "特征多项式",
+        "特征值计算",
+        "二次型非负性"
+      ],
+      "question_type": "计算题",
+      "method": [
+        "矩阵乘法",
+        "特征多项式求解"
+      ],
+      "solution_steps": [
+        "计算A^TA",
+        "求特征多项式",
+        "解特征值",
+        "验证非负性"
+      ],
+      "math_structure": {
+        "type": "symmetric_matrix_eigenvalue_numeric",
+        "template": "B=A^TA \\text{ 的具体2x2矩阵求特征值}",
+        "variable_count": 1
+      },
+      "difficulty": 2,
+      "estimated_minutes": 8,
+      "answer": [
+        {
+          "label": "计算与验证",
+          "steps": [
+            "逐项计算：$B_{11}=1^2+0^2+1^2=2$，$B_{12}=1\\cdot1+0\\cdot1+1\\cdot0=1$，$B_{22}=1^2+1^2+0^2=2$，得 $B=\\begin{pmatrix}2&1\\\\1&2\\end{pmatrix}$。",
+            "特征多项式：$\\det(B-\\lambda I)=(2-\\lambda)^2-1=\\lambda^2-4\\lambda+3=0$，解得 $\\lambda=1,3$。",
+            "两个特征值均为正数，符合 $B$ 的特征值非负的结论（此处甚至严格为正），验证成立。"
+          ]
+        }
+      ],
+      "id": "kyoto-2021-80fb76336b-q01-practice-02",
+      "school": "京都大学",
+      "year": "2021"
+    },
+    {
+      "text": "沿用上题中的 $A$ 和 $B=\\begin{pmatrix}2&1\\\\1&2\\end{pmatrix}$，$B$ 对应特征值 $\\lambda=3$ 的单位特征向量为 $p=\\dfrac{1}{\\sqrt2}(1,1)^T$。令 $q=\\dfrac{1}{\\sqrt{3}}Ap$，验证 $q$ 是 $C=AA^T$ 对应特征值 $3$ 的特征向量。",
+      "knowledge_points": [
+        "特征向量验证",
+        "矩阵乘法",
+        "AA^T与A^TA的关系"
+      ],
+      "question_type": "验证计算题",
+      "method": [
+        "直接计算Ap与Cq并比较"
+      ],
+      "solution_steps": [
+        "计算Ap",
+        "得到q",
+        "计算C",
+        "计算Cq并验证等于3q"
+      ],
+      "math_structure": {
+        "type": "eigenvector_transfer_verification",
+        "template": "q=\\frac{1}{\\sqrt{\\lambda}}Ap,\\ \\text{验证 } Cq=\\lambda q",
+        "variable_count": 1
+      },
+      "difficulty": 3,
+      "estimated_minutes": 10,
+      "answer": [
+        {
+          "label": "验证",
+          "steps": [
+            "计算 $Ap=\\dfrac{1}{\\sqrt2}\\begin{pmatrix}1\\cdot1+1\\cdot1\\\\0\\cdot1+1\\cdot1\\\\1\\cdot1+0\\cdot1\\end{pmatrix}=\\dfrac{1}{\\sqrt2}\\begin{pmatrix}2\\\\1\\\\1\\end{pmatrix}$，因此 $q=\\dfrac{1}{\\sqrt3}Ap=\\dfrac{1}{\\sqrt6}(2,1,1)^T$。",
+            "计算 $C=AA^T=\\begin{pmatrix}2&1&1\\\\1&1&0\\\\1&0&1\\end{pmatrix}$（例如 $C_{11}=1^2+1^2=2$，$C_{12}=1\\cdot0+1\\cdot1=1$，$C_{22}=0^2+1^2=1$，$C_{23}=0$，$C_{33}=1$）。",
+            "计算 $C\\cdot(2,1,1)^T=(2\\cdot2+1\\cdot1+1\\cdot1,\\ 1\\cdot2+1\\cdot1+0\\cdot1,\\ 1\\cdot2+0\\cdot1+1\\cdot1)^T=(6,3,3)^T=3(2,1,1)^T$。",
+            "因此 $Cq=\\dfrac{1}{\\sqrt6}\\cdot3(2,1,1)^T=3q$，验证了 $q$ 确为 $C$ 对应特征值 $3$ 的特征向量。"
+          ]
+        }
+      ],
+      "id": "kyoto-2021-80fb76336b-q01-practice-03",
+      "school": "京都大学",
+      "year": "2021"
+    },
+    {
+      "text": "证明：设 $p_i$ 是实对称矩阵 $B=A^TA$ 对应正特征值 $\\lambda_i$ 的标准正交（单位）特征向量，定义 $q_i=Ap_i/\\sqrt{\\lambda_i}$，证明 $\\|q_i\\|=1$，并说明这与原题中 $\\langle q_i,q_i\\rangle=1$ 的结论一致。",
+      "knowledge_points": [
+        "范数计算",
+        "特征向量归一化",
+        "内积性质"
+      ],
+      "question_type": "证明题",
+      "method": [
+        "利用B的特征方程",
+        "内积计算"
+      ],
+      "solution_steps": [
+        "计算||q_i||^2的表达式",
+        "代入B的特征值关系化简",
+        "得到结果为1"
+      ],
+      "math_structure": {
+        "type": "unit_vector_verification",
+        "template": "\\|q_i\\|^2=\\frac{1}{\\lambda_i}p_i^TBp_i",
+        "variable_count": 1
+      },
+      "difficulty": 4,
+      "estimated_minutes": 10,
+      "answer": [
+        {
+          "label": "证明",
+          "steps": [
+            "由定义 $\\|q_i\\|^2=q_i^Tq_i=\\dfrac{1}{\\lambda_i}p_i^TA^TAp_i=\\dfrac{1}{\\lambda_i}p_i^TBp_i$。",
+            "因为 $Bp_i=\\lambda_ip_i$，所以 $p_i^TBp_i=\\lambda_ip_i^Tp_i=\\lambda_i\\|p_i\\|^2=\\lambda_i$（因 $p_i$ 为单位向量，$\\|p_i\\|^2=1$）。",
+            "代入得 $\\|q_i\\|^2=\\dfrac{1}{\\lambda_i}\\cdot\\lambda_i=1$，即 $\\|q_i\\|=1$，与原题中 $\\langle q_i,q_i\\rangle=1$ 的结论完全一致。"
+          ]
+        }
+      ],
+      "id": "kyoto-2021-80fb76336b-q01-practice-04",
+      "school": "京都大学",
+      "year": "2021"
+    }
+  ],
+  "source_question": "F1-1 设问2",
+  "source_pdf": "京都大学/情报学研究科/智能信息学/京都大学_情报学研究科_智能信息学_2021_数学过去问.pdf",
+  "source_type": "官方过去问",
+  "subject_category": "线性代数"
+}

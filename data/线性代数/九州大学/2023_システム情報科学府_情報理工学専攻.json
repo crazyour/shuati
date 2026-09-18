@@ -56,5 +56,123 @@
         "令 $\\mathbf{1}=(1,\\ldots ,1)^{\\mathsf T}$。第 $i$ 个分量为 $(L\\mathbf{1})_i=\\sum_k a_{ik}-\\sum_j a_{ij}=0$，所以 $L\\mathbf{1}=0$。由于 $1\\ne 0$，$0$ 是 $L$ 的特征值。"
       ]
     }
+  ],
+  "practice_questions": [
+    {
+      "id": "kyushu-2023-ist-la-practice-01",
+      "school": "九州大学",
+      "year": "2023",
+      "text": "路径图 $1-2-3$ 的邻接矩阵为 $A=\\begin{pmatrix}0&1&0\\\\1&0&1\\\\0&1&0\\end{pmatrix}$。求度矩阵 $D$ 与 Laplacian 矩阵 $L=D-A$，并验证 $L\\mathbf{1}=0$。",
+      "knowledge_points": [
+        "图 Laplacian",
+        "度矩阵",
+        "零特征值"
+      ],
+      "question_type": "计算图 Laplacian",
+      "method": [
+        "计算顶点度数",
+        "矩阵相减"
+      ],
+      "solution_steps": [
+        "由行和得到度矩阵",
+        "构造 Laplacian",
+        "与全一向量相乘"
+      ],
+      "math_structure": {
+        "type": "path_graph_laplacian",
+        "template": "$L=D-A$，$L\\mathbf{1}=0$",
+        "variable_count": 1
+      },
+      "difficulty": 1,
+      "estimated_minutes": 5,
+      "answer": [
+        {
+          "label": "求 $D,L$ 并验证",
+          "steps": [
+            "三个顶点的度数为 $(1,2,1)$，所以 $D=\\operatorname{diag}(1,2,1)$。",
+            "$$L=D-A=\\begin{pmatrix}1&-1&0\\\\-1&2&-1\\\\0&-1&1\\end{pmatrix}.$$",
+            "$L$ 的每一行之和为 $0$，因此 $L(1,1,1)^{\\mathsf T}=0$。"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "kyushu-2023-ist-la-practice-02",
+      "school": "九州大学",
+      "year": "2023",
+      "text": "求完全图 $K_m$ 的 Laplacian 矩阵及全部特征值。",
+      "knowledge_points": [
+        "图 Laplacian",
+        "全一矩阵",
+        "特征值"
+      ],
+      "question_type": "求完全图 Laplacian 的谱",
+      "method": [
+        "全一矩阵谱分解",
+        "不变子空间分解"
+      ],
+      "solution_steps": [
+        "写出邻接矩阵与度矩阵",
+        "把 Laplacian 表示为单位矩阵与全一矩阵的组合",
+        "分别考察全一向量方向及其正交补"
+      ],
+      "math_structure": {
+        "type": "complete_graph_laplacian_spectrum",
+        "template": "$L=mI_m-J_m$",
+        "variable_count": 1
+      },
+      "difficulty": 2,
+      "estimated_minutes": 8,
+      "answer": [
+        {
+          "label": "求矩阵与特征值",
+          "steps": [
+            "$K_m$ 中每个顶点度数为 $m-1$，邻接矩阵为 $A=J_m-I_m$。因此 $$L=(m-1)I_m-(J_m-I_m)=mI_m-J_m.$$",
+            "在全一向量 $\\mathbf{1}$ 的方向上，$J_m\\mathbf{1}=m\\mathbf{1}$，故 $L$ 的特征值为 $0$。",
+            "在 $\\mathbf{1}^{\\perp}$ 上，$J_mv=0$，故 $Lv=mv$。因此特征值为 $0$（重数 $1$）和 $m$（重数 $m-1$）。"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "kyushu-2023-ist-la-practice-03",
+      "school": "九州大学",
+      "year": "2023",
+      "text": "设无向图的 Laplacian 为 $L$。利用恒等式 $x^{\\mathsf T}Lx=\\sum_{\\{i,j\\}\\in E}(x_i-x_j)^2$ 证明：$0$ 特征值的重数等于图的连通分量数。",
+      "knowledge_points": [
+        "图 Laplacian",
+        "二次型",
+        "连通分量",
+        "核空间"
+      ],
+      "question_type": "证明 Laplacian 零空间维数定理",
+      "method": [
+        "Laplacian 二次型",
+        "核空间刻画"
+      ],
+      "solution_steps": [
+        "由 $Lx=0$ 推出二次型为零",
+        "说明每条边两端的分量相等",
+        "按连通分量构造核空间基"
+      ],
+      "math_structure": {
+        "type": "laplacian_nullity_components",
+        "template": "$\\dim\\ker(L)=\\#\\{\\text{连通分量}\\}$",
+        "variable_count": 1
+      },
+      "difficulty": 4,
+      "estimated_minutes": 15,
+      "answer": [
+        {
+          "label": "证明零特征值重数",
+          "steps": [
+            "若 $Lx=0$，则 $0=x^{\\mathsf T}Lx=\\sum_{\\{i,j\\}\\in E}(x_i-x_j)^2$。平方和为零说明每条边上都有 $x_i=x_j$。",
+            "沿同一连通分量中的路径传递可知，$x$ 在每个连通分量上为常数。",
+            "反之，任何在各连通分量上分别取常数的向量都满足每条边两端数值相同，从而属于 $\\ker(L)$。",
+            "每个连通分量的示性向量构成 $\\ker(L)$ 的一组基，所以核的维数等于连通分量数，也就是特征值 $0$ 的重数。"
+          ]
+        }
+      ]
+    }
   ]
 }

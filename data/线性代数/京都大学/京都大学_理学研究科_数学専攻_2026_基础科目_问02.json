@@ -1,0 +1,252 @@
+{
+  "id": "kyoto-2026-e3cfb5d851-q02",
+  "school": "京都大学",
+  "year": "2026",
+  "subject": "理学研究科_数学専攻",
+  "text": "设 $n$ 为正整数，$M_n(\\mathbb{C})$ 表示所有 $n\\times n$ 复方阵构成的复向量空间. 对任意 $X\\in M_n(\\mathbb{C})$，定义 $M_n(\\mathbb{C})$ 的子空间\n$$V_X=\\{A\\in M_n(\\mathbb{C})\\mid AX=XA\\}.$$\n证明：$\\{\\dim V_X\\mid X\\in M_n(\\mathbb{C})\\}$ 的最小值为 $n$，这里 $\\dim V_X$ 表示 $V_X$ 作为复向量空间的维数.",
+  "knowledge_points": [
+    "矩阵的中心化子(换位子)",
+    "Jordan标准形",
+    "广义特征子空间分解",
+    "同型Jordan块之间的同态空间维数",
+    "组合不等式",
+    "非退化(cyclic)矩阵"
+  ],
+  "question_type": "证明题：矩阵换位子维数的极值",
+  "method": [
+    "用Jordan标准形把 $X$ 分解为按特征值的直和",
+    "证明换位子按广义特征子空间分块对角化",
+    "对单个特征值内的Jordan块分拆用已知公式 $\\dim\\mathrm{Hom}(J_{m_i},J_{m_j})=\\min(m_i,m_j)$ 计算",
+    "用组合不等式证明下界 $n$，并给出取等的具体矩阵"
+  ],
+  "solution_steps": [
+    "设 $X$ 的Jordan标准形按不同特征值 $\\lambda_1,\\dots,\\lambda_r$ 分块，第 $\\lambda_t$ 部分是若干Jordan块 $J_{m_{t,1}},\\dots,J_{m_{t,k_t}}$ 的直和（对应尺寸分拆）",
+    "利用生成特征子空间在换位子作用下不变，说明与 $X$ 交换的矩阵必是按此分解的分块对角矩阵，从而 $V_X\\cong\\bigoplus_t V_{N_t}$，其中 $N_t$ 是相应部分的幂零化部分",
+    "利用标准事实 $\\dim\\mathrm{Hom}(J_p,J_q)=\\min(p,q)$（两个Jordan块之间与幂零平移交换的线性映射的维数），得到 $\\dim V_{N_t}=\\sum_{i,j}\\min(m_{t,i},m_{t,j})$",
+    "证明组合不等式：对任意正整数分拆 $(m_1,\\dots,m_k)$，$\\sum_{i,j}\\min(m_i,m_j)\\ge\\sum_i m_i$，且等号成立当且仅当 $k=1$",
+    "对所有特征值求和得到 $\\dim V_X\\ge n$，等号成立当且仅当每个特征值只对应一个Jordan块（即 $X$ 的极小多项式等于特征多项式，$X$ 为非退化矩阵）",
+    "构造具体例子（如 $n$ 个互不相同特征值的对角矩阵，或单个 $n$ 阶Jordan块）验证 $\\dim V_X=n$ 确实可以取到"
+  ],
+  "math_structure": {
+    "type": "matrix_centralizer_dimension_minimum",
+    "template": "minimize $\\dim\\{A\\in M_n(\\mathbb C): AX=XA\\}$ over $X\\in M_n(\\mathbb C)$",
+    "variable_count": 1
+  },
+  "difficulty": 5,
+  "answer": [
+    {
+      "label": "原题",
+      "steps": [
+        "第一步（分解）：设 $X$ 有互不相同的特征值 $\\lambda_1,\\dots,\\lambda_r$，对应广义特征子空间 $W_t=\\ker(X-\\lambda_t I)^n$，则 $\\mathbb C^n=\\bigoplus_t W_t$（Jordan分解）. 若 $A\\in V_X$，即 $AX=XA$，则 $A$ 与 $(X-\\lambda_t I)^n$ 也交换，从而 $A$ 保持每个 $\\ker(X-\\lambda_t I)^n=W_t$ 不变（因为若 $v\\in W_t$，则 $(X-\\lambda_t I)^nAv=A(X-\\lambda_t I)^nv=0$）. 因此在基适应 $\\bigoplus W_t$ 的分解下，$A$ 是分块对角矩阵，第 $t$ 块 $A_t$ 与 $X_t:=X|_{W_t}$ 交换. 反之任何这样的分块对角矩阵显然与 $X$ 交换. 故 $V_X\\cong\\bigoplus_t V_{X_t}$，从而 $\\dim V_X=\\sum_t\\dim V_{X_t}$.",
+        "第二步（化为幂零情形）：$X_t=\\lambda_tI+N_t$，其中 $N_t$ 幂零，且 $A_tX_t=X_tA_t\\iff A_tN_t=N_tA_t$（因为 $\\lambda_t I$ 与任何矩阵交换）. 故 $V_{X_t}=V_{N_t}$，只需研究幂零矩阵的换位子.",
+        "第三步（单个特征值内的Jordan结构）：设 $N_t$ 的Jordan标准形是尺寸为 $m_1\\ge m_2\\ge\\dots\\ge m_k$（$\\sum_i m_i=\\dim W_t=:n_t$）的诸幂零Jordan块 $J_{m_1},\\dots,J_{m_k}$ 的直和. 标准结论（可直接验证，如本题练习2、3所示）：与 $N_t=\\bigoplus_i J_{m_i}$ 交换的线性映射空间维数为 $\\sum_{i,j=1}^k\\dim\\mathrm{Hom}(J_{m_i},J_{m_j})=\\sum_{i,j}\\min(m_i,m_j)$，这是因为任意与 $N_t$ 交换的矩阵在分块 $(i,j)$ 位置上的部分恰是把 $J_{m_i}$ 映到 $J_{m_j}$ 的“Jordan块交织映射”，其空间维数为 $\\min(m_i,m_j)$（由幂零算子的可换性直接计算，形如练习2、3给出的Toeplitz型约束）.",
+        "第四步（组合不等式）：断言：对任意正整数 $m_1,\\dots,m_k$，$\\displaystyle\\sum_{i,j=1}^k\\min(m_i,m_j)\\ge\\sum_{i=1}^k m_i$，且等号成立当且仅当 $k=1$. 证明：把和拆成对角项与非对角项：$\\sum_{i,j}\\min(m_i,m_j)=\\sum_i \\min(m_i,m_i)+\\sum_{i\\ne j}\\min(m_i,m_j)=\\sum_i m_i+\\sum_{i\\ne j}\\min(m_i,m_j)$. 由于每个 $m_i\\ge1$，非对角项 $\\min(m_i,m_j)\\ge1>0$（当 $i\\ne j$），故当 $k\\ge2$ 时非对角项总和 $\\ge k(k-1)>0$，从而整个和严格大于 $\\sum m_i$；当 $k=1$ 时非对角项为空和，等于 $0$，此时等号成立.",
+        "第五步（求和得到全局下界）：对每个特征值 $\\lambda_t$，由第四步有 $\\dim V_{N_t}=\\sum_{i,j}\\min(m_{t,i},m_{t,j})\\ge n_t$，等号当且仅当该特征值只有一个Jordan块（$k_t=1$）. 对所有 $t$ 求和：$\\dim V_X=\\sum_t\\dim V_{N_t}\\ge\\sum_t n_t=n$，等号成立当且仅当每个特征值都恰有一个Jordan块，即 $X$ 的极小多项式与特征多项式相等（$X$ 是非退化的循环矩阵）.",
+        "第六步（构造取等的例子）：取 $X_0=\\mathrm{diag}(1,2,\\dots,n)$（$n$ 个互不相同的特征值）. 若 $AX_0=X_0A$，比较 $(i,j)$ 元得 $a_{ij}\\cdot j=i\\cdot a_{ij}$，即 $a_{ij}(j-i)=0$；因 $i\\ne j$ 时 $j-i\\ne0$，故 $a_{ij}=0$（$i\\ne j$），$A$ 必为对角矩阵，$\\dim V_{X_0}=n$. （或者取单个 $n$ 阶Jordan块 $X_0=J_n$，由第三步公式（$k=1$ 情形）直接得 $\\dim V_{X_0}=\\min(n,n)=n$，两者都验证了下界 $n$ 可以取到.）",
+        "结论：结合第五步的下界 $\\dim V_X\\ge n$（对一切 $X$）和第六步给出的达到等号的具体例子，即证得 $\\{\\dim V_X\\mid X\\in M_n(\\mathbb C)\\}$ 的最小值恰为 $n$。"
+      ]
+    }
+  ],
+  "practice_questions": [
+    {
+      "text": "设 $X=\\mathrm{diag}(1,2,3)\\in M_3(\\mathbb C)$. 求 $\\dim V_X$，其中 $V_X=\\{A\\in M_3(\\mathbb C)\\mid AX=XA\\}$.",
+      "knowledge_points": [
+        "对角矩阵的换位子",
+        "矩阵乘法逐元素比较"
+      ],
+      "question_type": "直接计算换位子维数",
+      "method": [
+        "逐元素比较 $AX$ 与 $XA$",
+        "利用特征值互不相同推出非对角元为零"
+      ],
+      "solution_steps": [
+        "比较 $(AX)_{ij}=a_{ij}x_j$ 与 $(XA)_{ij}=x_ia_{ij}$",
+        "得 $a_{ij}(x_j-x_i)=0$，因特征值互不相同得非对角元为零",
+        "对角元自由，得维数3"
+      ],
+      "math_structure": {
+        "type": "diagonal_matrix_centralizer",
+        "template": "$V_X$ for $X=\\mathrm{diag}(x_1,\\dots,x_n)$ with distinct $x_i$",
+        "variable_count": 1
+      },
+      "difficulty": 1,
+      "estimated_minutes": 6,
+      "answer": [
+        {
+          "label": "求 dim V_X",
+          "steps": [
+            "设 $A=(a_{ij})$，逐元素比较 $AX$ 与 $XA$：$(AX)_{ij}=\\sum_k a_{ik}X_{kj}=a_{ij}x_j$（因为 $X$ 是对角矩阵），$(XA)_{ij}=\\sum_k X_{ik}a_{kj}=x_ia_{ij}$；故条件为 $a_{ij}(x_j-x_i)=0$ 对所有 $i,j$ 成立.",
+            "由 $x_1=1,x_2=2,x_3=3$ 两两不同，当 $i\\ne j$ 时 $x_j-x_i\\ne0$，故必有 $a_{ij}=0$，即 $A$ 只能是对角矩阵.",
+            "对角元 $a_{11},a_{22},a_{33}$ 无约束（任何对角矩阵都与 $X$ 交换），故 $V_X$ 恰为所有对角矩阵构成的空间，维数为 $3$.",
+            "结论：$\\dim V_X=3=n$，与一般定理中“非退化矩阵取到最小值 $n$”一致。"
+          ]
+        }
+      ],
+      "id": "kyoto-2026-e3cfb5d851-q02-practice-01",
+      "school": "京都大学",
+      "year": "2026"
+    },
+    {
+      "text": "设 $X=\\begin{pmatrix}0&1&0\\\\0&0&1\\\\0&0&0\\end{pmatrix}$（单个3阶Jordan块，特征值0）. 求 $\\dim V_X$.",
+      "knowledge_points": [
+        "Jordan块的换位子",
+        "上三角Toeplitz矩阵",
+        "矩阵方程逐元素求解"
+      ],
+      "question_type": "直接计算换位子维数",
+      "method": [
+        "用矩阵乘法的列/行公式直接展开 $AX=XA$",
+        "解出所有约束方程确定自由参数个数"
+      ],
+      "solution_steps": [
+        "用 $X$ 的列结构写出 $AX$ 的具体形式",
+        "用 $X$ 的行结构写出 $XA$ 的具体形式",
+        "比较两者得到约束方程，数出自由参数"
+      ],
+      "math_structure": {
+        "type": "single_jordan_block_centralizer",
+        "template": "$V_X$ for a single nilpotent Jordan block $J_n$",
+        "variable_count": 1
+      },
+      "difficulty": 2,
+      "estimated_minutes": 10,
+      "answer": [
+        {
+          "label": "求 dim V_X",
+          "steps": [
+            "设 $A=\\begin{pmatrix}a&b&c\\\\d&e&f\\\\g&h&i\\end{pmatrix}$. $X$ 的列为 col1=0,col2=e1,col3=e2，故 $AX$ 的列为：col1=0，col2=$A\\cdot e_1=(a,d,g)^T$，col3=$A\\cdot e_2=(b,e,h)^T$，即 $AX=\\begin{pmatrix}0&a&b\\\\0&d&e\\\\0&g&h\\end{pmatrix}$.",
+            "$X$ 的行为 row1=(0,1,0),row2=(0,0,1),row3=(0,0,0)，故 $XA$ 的行为：row1=第2行的$A$=(d,e,f)，row2=第3行的$A$=(g,h,i)，row3=0，即 $XA=\\begin{pmatrix}d&e&f\\\\g&h&i\\\\0&0&0\\end{pmatrix}$.",
+            "令 $AX=XA$，逐行比较：第1行 $(0,a,b)=(d,e,f)\\Rightarrow d=0,e=a,f=b$；第2行 $(0,d,e)=(g,h,i)\\Rightarrow g=0,h=d=0,i=e=a$；第3行 $(0,g,h)=(0,0,0)$ 自动满足（因 $g=h=0$).",
+            "代入得 $A=\\begin{pmatrix}a&b&c\\\\0&a&b\\\\0&0&a\\end{pmatrix}$，自由参数为 $a,b,c$ 共 $3$ 个（恰好是 $I,X,X^2$ 的线性组合），故 $\\dim V_X=3=n$。"
+          ]
+        }
+      ],
+      "id": "kyoto-2026-e3cfb5d851-q02-practice-02",
+      "school": "京都大学",
+      "year": "2026"
+    },
+    {
+      "text": "设 $X=J_2\\oplus J_1=\\begin{pmatrix}0&1&0\\\\0&0&0\\\\0&0&0\\end{pmatrix}\\in M_3(\\mathbb C)$（一个2阶Jordan块与一个1阶Jordan块，同一特征值0）. 求 $\\dim V_X$，并说明为何它严格大于 $n=3$.",
+      "knowledge_points": [
+        "同一特征值多个Jordan块的换位子",
+        "组合公式 $\\sum\\min(m_i,m_j)$",
+        "矩阵方程直接求解"
+      ],
+      "question_type": "验证换位子维数的组合公式",
+      "method": [
+        "直接展开矩阵方程求出所有自由参数",
+        "用公式 $\\sum_{i,j}\\min(m_i,m_j)$（分拆(2,1)）核对结果"
+      ],
+      "solution_steps": [
+        "写出 $AX$ 与 $XA$ 的具体形式",
+        "比较得约束方程，数出自由参数",
+        "用分拆(2,1)的组合公式核验：$\\min(2,2)+\\min(2,1)+\\min(1,2)+\\min(1,1)=2+1+1+1=5$"
+      ],
+      "math_structure": {
+        "type": "multi_jordan_block_centralizer",
+        "template": "$V_X$ for $X=J_2\\oplus J_1$ (partition $(2,1)$ of $n=3$)",
+        "variable_count": 1
+      },
+      "difficulty": 3,
+      "estimated_minutes": 15,
+      "answer": [
+        {
+          "label": "求 dim V_X 并核验公式",
+          "steps": [
+            "设 $A=\\begin{pmatrix}a_{11}&a_{12}&a_{13}\\\\a_{21}&a_{22}&a_{23}\\\\a_{31}&a_{32}&a_{33}\\end{pmatrix}$. $X$ 的列：col1=0,col2=$(1,0,0)^T$,col3=0，故 $AX$ 的列为 col1=0,col2=$(a_{11},a_{21},a_{31})^T$,col3=0，即 $AX=\\begin{pmatrix}0&a_{11}&0\\\\0&a_{21}&0\\\\0&a_{31}&0\\end{pmatrix}$.",
+            "$X$ 的行：row1=(0,1,0),row2=0,row3=0，故 $XA$ 的行为 row1=第2行的$A$=$(a_{21},a_{22},a_{23})$,row2=0,row3=0，即 $XA=\\begin{pmatrix}a_{21}&a_{22}&a_{23}\\\\0&0&0\\\\0&0&0\\end{pmatrix}$.",
+            "令 $AX=XA$，逐行比较：第1行 $(0,a_{11},0)=(a_{21},a_{22},a_{23})\\Rightarrow a_{21}=0,a_{22}=a_{11},a_{23}=0$；第2行 $(0,a_{21},0)=(0,0,0)\\Rightarrow a_{21}=0$（已知）；第3行 $(0,a_{31},0)=(0,0,0)\\Rightarrow a_{31}=0$。",
+            "自由参数为 $a_{11}(=a_{22}),a_{12},a_{13},a_{32},a_{33}$，共 $5$ 个（$a_{21}=a_{23}=a_{31}=0$ 被固定），故 $\\dim V_X=5$.",
+            "核验：分拆为 $(m_1,m_2)=(2,1)$，公式给出 $\\sum_{i,j}\\min(m_i,m_j)=\\min(2,2)+\\min(2,1)+\\min(1,2)+\\min(1,1)=2+1+1+1=5$，与直接计算一致；由于此分拆 $k=2>1$，比下界 $n=3$ 严格大，验证了“单个Jordan块时取最小值 $n$，多个块时严格大于 $n$”的一般结论。"
+          ]
+        }
+      ],
+      "id": "kyoto-2026-e3cfb5d851-q02-practice-03",
+      "school": "京都大学",
+      "year": "2026"
+    },
+    {
+      "text": "证明：对任意正整数 $m_1,m_2,\\dots,m_k$（$k\\ge1$），都有 $\\displaystyle\\sum_{i,j=1}^k\\min(m_i,m_j)\\ge\\sum_{i=1}^k m_i$，并且等号成立当且仅当 $k=1$.",
+      "knowledge_points": [
+        "组合不等式证明",
+        "对角项与非对角项拆分",
+        "严格不等式的条件分析"
+      ],
+      "question_type": "组合恒等式/不等式证明",
+      "method": [
+        "把双重求和拆分为对角项与非对角项",
+        "利用 $m_i\\ge1$ 说明非对角项非负甚至严格正",
+        "讨论 $k=1$ 与 $k\\ge2$ 两种情形"
+      ],
+      "solution_steps": [
+        "写出 $\\sum_{i,j}\\min(m_i,m_j)=\\sum_i m_i+\\sum_{i\\ne j}\\min(m_i,m_j)$",
+        "说明非对角项非负，且当 $k\\ge2$ 时严格为正",
+        "得出等号成立当且仅当 $k=1$"
+      ],
+      "math_structure": {
+        "type": "combinatorial_inequality",
+        "template": "$\\sum_{i,j=1}^k\\min(m_i,m_j)\\ge\\sum_i m_i$ for positive integers $m_i$",
+        "variable_count": 1
+      },
+      "difficulty": 3,
+      "estimated_minutes": 10,
+      "answer": [
+        {
+          "label": "证明不等式与等号条件",
+          "steps": [
+            "把双重和按对角项 $i=j$ 与非对角项 $i\\ne j$ 拆开：$\\sum_{i,j=1}^k\\min(m_i,m_j)=\\sum_{i=1}^k\\min(m_i,m_i)+\\sum_{i\\ne j}\\min(m_i,m_j)=\\sum_{i=1}^k m_i+\\sum_{i\\ne j}\\min(m_i,m_j)$.",
+            "由于每个 $m_i\\ge1$ 是正整数，对任意 $i\\ne j$ 都有 $\\min(m_i,m_j)\\ge1>0$，因此非对角项之和 $\\sum_{i\\ne j}\\min(m_i,m_j)\\ge0$，从而立即得到 $\\sum_{i,j}\\min(m_i,m_j)\\ge\\sum_i m_i$。",
+            "当 $k=1$ 时，非对角项的求和范围为空集（不存在 $i\\ne j$ 的下标对），故非对角项之和为 $0$，等号成立：$\\sum_{i,j=1}^1\\min(m_1,m_1)=m_1=\\sum m_i$。",
+            "当 $k\\ge2$ 时，至少存在一对 $(i,j)$，$i\\ne j$（例如 $(1,2)$ 与 $(2,1)$），且 $\\min(m_1,m_2)\\ge1>0$，故非对角项之和 $\\ge2>0$，从而不等式严格成立：$\\sum_{i,j}\\min(m_i,m_j)>\\sum_i m_i$。",
+            "结论：等号 $\\sum_{i,j}\\min(m_i,m_j)=\\sum_i m_i$ 成立当且仅当 $k=1$，证毕。"
+          ]
+        }
+      ],
+      "id": "kyoto-2026-e3cfb5d851-q02-practice-04",
+      "school": "京都大学",
+      "year": "2026"
+    },
+    {
+      "text": "设 $X=J_2(\\lambda)\\oplus J_2(\\lambda)\\in M_4(\\mathbb C)$（同一特征值 $\\lambda$ 的两个2阶Jordan块）. 利用公式 $\\dim V_X=\\sum_{i,j}\\min(m_i,m_j)$（分拆 $(2,2)$）求 $\\dim V_X$，并与 $n=4$ 比较大小，说明这与原题中“最小值恰为 $n$”的结论是否矛盾。",
+      "knowledge_points": [
+        "同型多个Jordan块的换位子维数",
+        "组合公式的应用",
+        "极小值与一般值的比较"
+      ],
+      "question_type": "应用组合公式计算换位子维数",
+      "method": [
+        "直接套用公式 $\\sum_{i,j}\\min(m_i,m_j)$ 对分拆 $(2,2)$ 计算",
+        "与 $n=4$ 比较，结合前面证明的组合不等式解释结果的合理性"
+      ],
+      "solution_steps": [
+        "列出分拆 $(m_1,m_2)=(2,2)$",
+        "计算 $\\sum_{i,j=1}^2\\min(m_i,m_j)$ 的四项",
+        "求和得到 $\\dim V_X$，与 $n=4$ 比较并解释"
+      ],
+      "math_structure": {
+        "type": "multi_jordan_block_centralizer",
+        "template": "$V_X$ for $X=J_2(\\lambda)\\oplus J_2(\\lambda)$ (partition $(2,2)$ of $n=4$)",
+        "variable_count": 1
+      },
+      "difficulty": 3,
+      "estimated_minutes": 8,
+      "answer": [
+        {
+          "label": "求 dim V_X 并比较",
+          "steps": [
+            "分拆为 $(m_1,m_2)=(2,2)$，按公式需计算四项：$\\min(m_1,m_1)=\\min(2,2)=2$，$\\min(m_1,m_2)=\\min(2,2)=2$，$\\min(m_2,m_1)=\\min(2,2)=2$，$\\min(m_2,m_2)=\\min(2,2)=2$。",
+            "求和得 $\\dim V_X=2+2+2+2=8$。",
+            "比较：$n=4$，而 $\\dim V_X=8>4$，这与原题“$\\{\\dim V_X\\}$ 的最小值为 $n$”并不矛盾——原题只断言存在某个 $X$（如单个4阶Jordan块或4个不同特征值的对角矩阵）使得 $\\dim V_X=n=4$，并且对**所有** $X$ 都有 $\\dim V_X\\ge n$；本例中的 $X$ 由于同一特征值含有 $k=2>1$ 个Jordan块，按练习4证明的组合不等式，其贡献严格大于对应部分的维数和（$2+2=4$），所以 $\\dim V_X=8$ 严格大于 $n=4$，正符合“非单一Jordan块时严格大于 $n$”的一般结论。"
+          ]
+        }
+      ],
+      "id": "kyoto-2026-e3cfb5d851-q02-practice-05",
+      "school": "京都大学",
+      "year": "2026"
+    }
+  ],
+  "source_question": "問題3",
+  "source_pdf": "京都大学/理学研究科/数学専攻/京都大学_理学研究科_数学専攻_2026_基础科目.pdf",
+  "source_type": "官方过去问",
+  "subject_category": "线性代数"
+}

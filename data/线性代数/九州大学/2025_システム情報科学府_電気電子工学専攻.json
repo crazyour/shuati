@@ -41,8 +41,8 @@
     {
       "label": "(2) 证明上三角矩阵行列式公式",
       "steps": [
-        "按 Leibniz 公式 $\\det A=\\sum_{\\sigma \\in S_n}sgn(\\sigma )∏_{i}a_{i,\\sigma (i)}$。若某项非零，上三角性要求 $\\sigma (i)\\ge i$ 对所有 $i$。又 $\\sum\\sigma (i)=\\sumi$，因此只能处处取等号，即 $\\sigma$ 为恒等置换。",
-        "所以唯一可能的非零项是 $∏_{i}a_{ii}$，故 $\\det A=∏_{i}a_{ii}$。"
+        "按 Leibniz 公式 $\\det A=\\sum_{\\sigma\\in S_n}\\operatorname{sgn}(\\sigma)\\prod_i a_{i,\\sigma(i)}$。若某项非零，上三角性要求 $\\sigma(i)\\ge i$ 对所有 $i$。又 $\\sum_i\\sigma(i)=\\sum_i i$，因此只能处处取等号，即 $\\sigma$ 为恒等置换。",
+        "所以唯一可能的非零项是 $\\prod_i a_{ii}$，故 $\\det A=\\prod_i a_{ii}$。"
       ]
     }
   ]

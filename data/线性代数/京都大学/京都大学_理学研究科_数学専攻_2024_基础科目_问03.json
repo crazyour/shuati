@@ -1,0 +1,197 @@
+{
+  "id": "kyoto-2024-c50ddc5649-q03",
+  "school": "京都大学",
+  "year": "2024",
+  "subject": "理学研究科_数学専攻",
+  "text": "设 $n$ 为正整数，$M_n(\\mathbb{C})$ 为复数域上全体 $n$ 次方阵构成的（按矩阵加法与标量乘法定义的）复向量空间。定义对角矩阵 $A\\in M_n(\\mathbb{C})$ 为\n$$A=\\begin{pmatrix} 1 & 0 & \\cdots & 0 \\\\ 0 & 2 & \\cdots & 0 \\\\ \\vdots & \\vdots & \\ddots & \\vdots \\\\ 0 & 0 & \\cdots & n \\end{pmatrix}.$$\n证明：存在 $B\\in M_n(\\mathbb{C})$，使得\n$$\\{A^iB^j\\in M_n(\\mathbb{C})\\mid i,j\\in\\{0,1,\\dots,n-1\\}\\}$$\n构成 $M_n(\\mathbb{C})$ 的一组基，其中 $A^0=B^0=E$（单位矩阵）。",
+  "knowledge_points": [
+    "矩阵空间的维数",
+    "Vandermonde 行列式",
+    "循环置换矩阵",
+    "线性独立性证明",
+    "对角矩阵的幂"
+  ],
+  "question_type": "构造矩阵代数的基",
+  "method": [
+    "取 $B$ 为循环移位置换矩阵",
+    "利用 $A$ 特征值两两不同得到 Vandermonde 矩阵可逆",
+    "把 $n^2$ 个矩阵按其非零位置分类（按对角线偏移 $j$ 分组）证明线性独立",
+    "用 $n^2=\\dim M_n(\\mathbb{C})$ 完成基的判定"
+  ],
+  "solution_steps": [
+    "取标准基 $e_1,\\dots,e_n$，定义 $B$ 为循环移位矩阵：$Be_k=e_{k+1}$（$k<n$），$Be_n=e_1$，此时 $B^n=E$",
+    "说明 $A^i$ 是对角矩阵，对角元为 $1^i,2^i,\\dots,n^i$；$B^j$ 是把 $e_k$ 映为 $e_{k+j\\bmod n}$ 的置换矩阵",
+    "计算 $A^iB^j$ 的非零元素位置：$(A^iB^j)_{r,c}\\ne0$ 仅当 $r\\equiv c+j\\pmod n$，此时该元素值为 $r^i$（把 $r$ 看作 $1,\\dots,n$ 中的代表）",
+    "对每个固定的 $j$，$n$ 个矩阵 $\\{A^iB^j\\}_{i=0}^{n-1}$ 都支撑在同一组“偏移 $j$ 对角线”位置上，其系数矩阵恰为节点 $1,\\dots,n$ 的 Vandermonde 矩阵，非零可逆",
+    "假设线性组合 $\\sum_{i,j}c_{ij}A^iB^j=0$，按 $j$ 分组后利用 Vandermonde 矩阵可逆，逐一推出所有 $c_{ij}=0$，从而这 $n^2$ 个矩阵线性独立；又 $n^2=\\dim M_n(\\mathbb{C})$，故它们构成一组基"
+  ],
+  "math_structure": {
+    "type": "matrix_algebra_basis_from_diagonal_and_shift",
+    "template": "$A=\\operatorname{diag}(1,\\dots,n)$，构造 $B$ 使 $\\{A^iB^j\\}_{i,j=0}^{n-1}$ 是 $M_n(\\mathbb{C})$ 的基",
+    "variable_count": 1
+  },
+  "difficulty": 4,
+  "answer": [
+    {
+      "label": "证明",
+      "steps": [
+        "**构造 $B$**：以 $e_1,\\dots,e_n$ 为 $\\mathbb{C}^n$ 的标准基，定义线性映射（对应矩阵）$B$ 满足 $Be_k=e_{k+1}$（$1\\le k\\le n-1$），$Be_n=e_1$。$B$ 是一个置换矩阵，满足 $B^n=E$，且 $B^j$（$j=0,\\dots,n-1$）两两不同，$B^je_k=e_{k+j}$（下标按模 $n$ 落在 $\\{1,\\dots,n\\}$ 中理解）",
+        "**分析 $A^iB^j$ 的结构**：$A^i$ 是对角矩阵 $\\operatorname{diag}(1^i,2^i,\\dots,n^i)$。矩阵乘积 $A^iB^j$ 作用在 $e_k$ 上：$A^iB^je_k=A^ie_{k+j}=(k+j)^i e_{k+j}$（下标模 $n$）。因此 $A^iB^j$ 的第 $k$ 列的唯一非零元素在第 $(k+j\\bmod n)$ 行，值为 $(k+j\\bmod n)^i$。换言之，对固定 $j$，矩阵 $A^iB^j$ 支撑在“行号 $=$ 列号 $+j\\pmod n$”的那组 $n$ 个位置上，且在这组位置上按列（用行标 $\\ell=1,\\dots,n$ 作为参数）取值 $\\ell^i$",
+        "**线性独立性**：设 $\\sum_{i=0}^{n-1}\\sum_{j=0}^{n-1}c_{ij}A^iB^j=0$。由于不同的 $j$ 对应的支撑位置集合（对角线偏移 $j$）两两不交（覆盖了矩阵全部 $n^2$ 个位置，每个位置对应唯一的 $j=r-c\\bmod n$），故对每个固定 $j$，在该偏移对角线上必有 $\\sum_{i=0}^{n-1}c_{ij}\\,\\ell^i=0$ 对所有 $\\ell=1,\\dots,n$ 成立。这是关于未知量 $(c_{0j},\\dots,c_{n-1,j})$ 的线性方程组，系数矩阵为节点 $1,2,\\dots,n$（两两不同）构成的 Vandermonde 矩阵 $V=(\\ell^{i})_{\\ell=1,\\dots,n;\\,i=0,\\dots,n-1}$，其行列式 $\\det V=\\prod_{1\\le p<q\\le n}(q-p)\\ne0$，故 $V$ 可逆，从而 $c_{0j}=c_{1j}=\\cdots=c_{n-1,j}=0$",
+        "**结论**：以上对每个 $j=0,\\dots,n-1$ 都成立，故所有 $c_{ij}=0$（$i,j=0,\\dots,n-1$），说明 $\\{A^iB^j\\}_{i,j=0}^{n-1}$（共 $n^2$ 个矩阵）线性独立。又 $\\dim_{\\mathbb{C}}M_n(\\mathbb{C})=n^2$，恰好等于该集合的个数，故它们构成 $M_n(\\mathbb{C})$ 的一组基。证毕"
+      ]
+    }
+  ],
+  "practice_questions": [
+    {
+      "text": "证明：对两两不同的复数 $x_1,x_2,x_3$，Vandermonde 矩阵 $V=\\begin{pmatrix}1&x_1&x_1^2\\\\1&x_2&x_2^2\\\\1&x_3&x_3^2\\end{pmatrix}$ 是可逆矩阵。",
+      "knowledge_points": [
+        "Vandermonde 行列式",
+        "行列式与可逆性的关系"
+      ],
+      "question_type": "Vandermonde行列式证明",
+      "method": [
+        "直接展开或用公式 $\\det V=\\prod_{i<j}(x_j-x_i)$"
+      ],
+      "solution_steps": [
+        "写出行列式公式",
+        "验证两两不同保证乘积非零"
+      ],
+      "math_structure": {
+        "type": "vandermonde_determinant",
+        "template": "$\\det V=\\prod_{1\\le i<j\\le 3}(x_j-x_i)$",
+        "variable_count": 3
+      },
+      "difficulty": 2,
+      "estimated_minutes": 8,
+      "answer": [
+        {
+          "label": "证明",
+          "steps": [
+            "Vandermonde 行列式的一般公式：对 $n$ 个节点 $x_1,\\dots,x_n$，$\\det V=\\prod_{1\\le i<j\\le n}(x_j-x_i)$",
+            "对 $n=3$：$\\det V=(x_2-x_1)(x_3-x_1)(x_3-x_2)$（可直接按第一行余子式展开验证：$\\det V=1\\cdot(x_2x_3^2-x_3x_2^2)-x_1(x_3^2-x_2^2)+x_1^2(x_3-x_2)$，化简后即得上式）",
+            "由于 $x_1,x_2,x_3$ 两两不同，三个因子 $(x_2-x_1),(x_3-x_1),(x_3-x_2)$ 均非零，故 $\\det V\\ne0$",
+            "行列式非零即矩阵 $V$ 可逆，证毕"
+          ]
+        }
+      ],
+      "id": "kyoto-2024-c50ddc5649-q03-practice-01",
+      "school": "京都大学",
+      "year": "2024"
+    },
+    {
+      "text": "设 $n=2$，取 $A=\\operatorname{diag}(1,2)$，$B=\\begin{pmatrix}0&1\\\\1&0\\end{pmatrix}$。证明 $\\{A^iB^j\\mid i,j\\in\\{0,1\\}\\}=\\{E,A,B,AB\\}$ 构成 $M_2(\\mathbb{C})$ 的一组基。",
+      "knowledge_points": [
+        "小规模基构造验证",
+        "线性独立性直接计算"
+      ],
+      "question_type": "低维具体验证",
+      "method": [
+        "直接写出四个矩阵，判断是否线性独立"
+      ],
+      "solution_steps": [
+        "计算 $E,A,B,AB$ 的具体矩阵形式",
+        "将四个矩阵按四个坐标（矩阵的4个位置）排成 $4\\times4$ 系数矩阵，判断其可逆性"
+      ],
+      "math_structure": {
+        "type": "explicit_basis_verification_dim2",
+        "template": "$A=\\operatorname{diag}(1,2)$，$B=\\begin{pmatrix}0&1\\\\1&0\\end{pmatrix}$，验证 $\\{E,A,B,AB\\}$ 是基",
+        "variable_count": 0
+      },
+      "difficulty": 2,
+      "estimated_minutes": 10,
+      "answer": [
+        {
+          "label": "证明",
+          "steps": [
+            "计算：$E=\\begin{pmatrix}1&0\\\\0&1\\end{pmatrix}$，$A=\\begin{pmatrix}1&0\\\\0&2\\end{pmatrix}$，$B=\\begin{pmatrix}0&1\\\\1&0\\end{pmatrix}$，$AB=\\begin{pmatrix}1&0\\\\0&2\\end{pmatrix}\\begin{pmatrix}0&1\\\\1&0\\end{pmatrix}=\\begin{pmatrix}0&1\\\\2&0\\end{pmatrix}$",
+            "把每个矩阵按 $(位置(1,1),(1,2),(2,1),(2,2))$ 展成坐标向量：$E\\to(1,0,0,1)$，$A\\to(1,0,0,2)$，$B\\to(0,1,1,0)$，$AB\\to(0,1,2,0)$",
+            "组成 $4\\times4$ 矩阵 $\\begin{pmatrix}1&0&0&1\\\\1&0&0&2\\\\0&1&1&0\\\\0&1&2&0\\end{pmatrix}$（按行排列上面四个坐标向量），计算其行列式：前两行只涉及第1、4列，构成子块 $\\begin{pmatrix}1&1\\\\1&2\\end{pmatrix}$（对第1、4列），行列式为 $1$；后两行涉及第2、3列，子块 $\\begin{pmatrix}1&1\\\\1&2\\end{pmatrix}$，行列式为 $1$；整体分块结构给出总行列式 $=1\\times1=1\\ne0$（此对应于 $n=2$ 时的 Vandermonde 行列式 $(2-1)=1$，两组各一次）",
+            "行列式非零，说明四个矩阵线性独立，又 $\\dim M_2(\\mathbb{C})=4$，故它们构成一组基"
+          ]
+        }
+      ],
+      "id": "kyoto-2024-c50ddc5649-q03-practice-02",
+      "school": "京都大学",
+      "year": "2024"
+    },
+    {
+      "text": "设 $n=3$，$B$ 为循环移位矩阵：$Be_1=e_2,Be_2=e_3,Be_3=e_1$。写出 $B$ 的矩阵形式，并验证 $B^3=E$，且 $E,B,B^2$ 两两不同。",
+      "knowledge_points": [
+        "循环置换矩阵的构造",
+        "矩阵幂运算"
+      ],
+      "question_type": "循环矩阵基本性质验证",
+      "method": [
+        "直接写出矩阵并计算幂"
+      ],
+      "solution_steps": [
+        "根据定义写出 $B$ 的矩阵元素",
+        "计算 $B^2,B^3$",
+        "比较三者是否相等"
+      ],
+      "math_structure": {
+        "type": "cyclic_permutation_matrix_properties",
+        "template": "$B: e_k\\mapsto e_{k+1 \\bmod 3}$，验证 $B^3=E$",
+        "variable_count": 0
+      },
+      "difficulty": 1,
+      "estimated_minutes": 6,
+      "answer": [
+        {
+          "label": "证明",
+          "steps": [
+            "由 $Be_1=e_2,Be_2=e_3,Be_3=e_1$，矩阵形式（按列写像的像）为 $B=\\begin{pmatrix}0&0&1\\\\1&0&0\\\\0&1&0\\end{pmatrix}$",
+            "计算 $B^2$：$B^2e_1=B(Be_1)=Be_2=e_3$，$B^2e_2=Be_3=e_1$，$B^2e_3=Be_1=e_2$，所以 $B^2=\\begin{pmatrix}0&1&0\\\\0&0&1\\\\1&0&0\\end{pmatrix}$",
+            "计算 $B^3$：$B^3e_1=B(B^2e_1)=Be_3=e_1$，同理 $B^3e_2=e_2,B^3e_3=e_3$，即 $B^3=E$",
+            "比较 $E,B,B^2$ 三个矩阵的具体元素分布（非零位置各不相同），显然两两不同，验证完毕"
+          ]
+        }
+      ],
+      "id": "kyoto-2024-c50ddc5649-q03-practice-03",
+      "school": "京都大学",
+      "year": "2024"
+    },
+    {
+      "text": "沿用原题构造，设 $n=3$，$A=\\operatorname{diag}(1,2,3)$，$B$ 为 $n=3$ 循环移位矩阵。写出 $A^1B^2$ 的具体矩阵，并说明它的非零元素分布规律。",
+      "knowledge_points": [
+        "矩阵乘积的显式计算",
+        "对角矩阵与置换矩阵的乘积结构"
+      ],
+      "question_type": "具体矩阵乘积计算与结构分析",
+      "method": [
+        "直接计算 $B^2$，再与 $A$ 相乘"
+      ],
+      "solution_steps": [
+        "先计算 $B^2$ 的矩阵形式",
+        "计算 $A\\cdot B^2$",
+        "分析结果矩阵中非零元素所在对角线偏移及取值规律"
+      ],
+      "math_structure": {
+        "type": "explicit_matrix_product_structure",
+        "template": "$A=\\operatorname{diag}(1,2,3)$，$B$: 循环移位，计算 $A^1B^2$",
+        "variable_count": 0
+      },
+      "difficulty": 2,
+      "estimated_minutes": 8,
+      "answer": [
+        {
+          "label": "计算与结构分析",
+          "steps": [
+            "由前一练习，$B^2=\\begin{pmatrix}0&1&0\\\\0&0&1\\\\1&0&0\\end{pmatrix}$",
+            "计算 $AB^2=\\operatorname{diag}(1,2,3)\\cdot\\begin{pmatrix}0&1&0\\\\0&0&1\\\\1&0&0\\end{pmatrix}=\\begin{pmatrix}0&1&0\\\\0&0&2\\\\3&0&0\\end{pmatrix}$（每一行乘以对应对角元）",
+            "观察非零元素位置：$(1,2),(2,3),(3,1)$，均满足“行号 $\\equiv$ 列号 $+2\\pmod3$”，即对应偏移 $j=2$ 那条对角线",
+            "各非零元素的值恰为该行的行号的 $1$ 次幂：位置 $(1,2)$ 处值为 $1=1^1$，位置 $(2,3)$ 处值为 $2=2^1$，位置 $(3,1)$ 处值为 $3=3^1$，与原题证明中“$A^iB^j$ 在偏移 $j$ 对角线上取值 $\\ell^i$”的一般结论完全一致（此处 $i=1$）"
+          ]
+        }
+      ],
+      "id": "kyoto-2024-c50ddc5649-q03-practice-04",
+      "school": "京都大学",
+      "year": "2024"
+    }
+  ],
+  "source_question": "7",
+  "source_pdf": "京都大学/理学研究科/数学専攻/京都大学_理学研究科_数学専攻_2024_基础科目.pdf",
+  "source_type": "官方过去问",
+  "subject_category": "线性代数"
+}

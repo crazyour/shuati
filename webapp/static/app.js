@@ -260,6 +260,9 @@ function renderBrowseCards(data) {
     if (Array.isArray(q.answer) && q.answer.length) {
       li.appendChild(buildAnswerBlock(q.answer));
     }
+    if (Array.isArray(q.practice_questions) && q.practice_questions.length) {
+      li.appendChild(buildPracticeBlock(q.practice_questions));
+    }
     browseListEl.appendChild(li);
   });
   typeset(browseListEl);
@@ -304,6 +307,46 @@ function buildAnswerBlock(parts) {
   return details;
 }
 
+// 专属练习和原题一起存放、一起展示，但不提供“找相似题”入口，
+// 也不会由后端加入 QuestionIndex。
+function buildPracticeBlock(questions) {
+  const details = document.createElement("details");
+  details.className = "browse-practice";
+  const summary = document.createElement("summary");
+  summary.textContent = `针对本题的循序渐进练习 · ${questions.length} 题`;
+  details.appendChild(summary);
+
+  questions.forEach((question, index) => {
+    const card = document.createElement("article");
+    card.className = "browse-practice-card";
+    const head = document.createElement("div");
+    head.className = "browse-practice-head";
+    const title = document.createElement("strong");
+    title.textContent = `第 ${index + 1} 题`;
+    const meta = document.createElement("span");
+    const detailsText = [];
+    if (question.difficulty) detailsText.push(`难度 ${question.difficulty}/5`);
+    if (question.estimated_minutes) detailsText.push(`约 ${question.estimated_minutes} 分钟`);
+    meta.textContent = detailsText.join(" · ");
+    head.append(title, meta);
+    card.appendChild(head);
+    paragraphs(question.text).forEach((part) => {
+      const p = document.createElement("p");
+      p.textContent = part;
+      card.appendChild(p);
+    });
+    if (Array.isArray(question.answer) && question.answer.length) {
+      card.appendChild(buildAnswerBlock(question.answer));
+    }
+    details.appendChild(card);
+  });
+
+  details.addEventListener("toggle", () => {
+    if (details.open) typeset(details);
+  });
+  return details;
+}
+
 // 题库是热加载的：切回这个页面时顺手看看科目/学习/专业/学校有没有变
 async function refreshScope() {
   try {
@@ -341,9 +384,14 @@ function paragraphs(text) {
     .filter(Boolean);
 }
 
-// KaTeX 没加载上（离线、CDN 挂了）就保持原样，不影响其它功能
-function typeset(root) {
-  if (!window.renderMathInElement) return;
+// KaTeX 的脚本使用 defer；网络较慢时，数据可能先回来。短暂重试，避免把
+// `$...$` 永久留成原始 LaTeX。CDN 真拿不到时仍保持原文，不影响其它功能。
+function typeset(root, retries = 30) {
+  if (!root || !root.isConnected) return;
+  if (!window.renderMathInElement) {
+    if (retries > 0) window.setTimeout(() => typeset(root, retries - 1), 100);
+    return;
+  }
   window.renderMathInElement(root, {
     delimiters: [
       { left: "$$", right: "$$", display: true },
@@ -524,6 +572,36 @@ function closeSimilarDrawer() {
   document.body.classList.remove("drawer-open");
 }
 
+function highlightQuestion(questionId) {
+  const target = [...browseListEl.children]
+    .find((card) => card.dataset.questionId === questionId);
+  if (!target) return false;
+  target.scrollIntoView({ behavior: "smooth", block: "center" });
+  target.classList.add("question-highlight");
+  window.setTimeout(() => target.classList.remove("question-highlight"), 1800);
+  return true;
+}
+
+async function openOriginalQuestion(match) {
+  closeSimilarDrawer();
+  if (highlightQuestion(match.id)) return;
+  if (!match.scope) return;
+
+  const [subject = "", school = "", faculty = "", major = "", question = ""] = match.scope.split("/");
+  browseSubject = subject;
+  browseSchool = school;
+  browseFaculty = faculty;
+  browseMajor = major;
+  browseQuestion = question;
+  populateBrowseSubject();
+  populateBrowseSchool();
+  browseReady = Boolean(browseQuestion);
+  updateUrl();
+  if (!browseReady) return;
+  await fetchBrowse();
+  window.requestAnimationFrame(() => highlightQuestion(match.id));
+}
+
 function renderSimilar(data, source) {
   lastSimilar = { data, source };
   el("reopen-similar").hidden = false;
@@ -554,15 +632,7 @@ function renderSimilar(data, source) {
     jump.type = "button";
     jump.className = "jump-button";
     jump.textContent = "打开原题";
-    jump.addEventListener("click", () => {
-      closeSimilarDrawer();
-      const target = [...browseListEl.children].find((card) => card.dataset.questionId === match.id);
-      if (target) {
-        target.scrollIntoView({ behavior: "smooth", block: "center" });
-        target.classList.add("question-highlight");
-        window.setTimeout(() => target.classList.remove("question-highlight"), 1800);
-      }
-    });
+    jump.addEventListener("click", () => openOriginalQuestion(match));
     item.appendChild(jump);
     list.appendChild(item);
   });
@@ -642,7 +712,7 @@ if (wanted) {
         browseFaculty = faculty;
         browseMajor = major;
         browseQuestion = question;
-        if (senkou) browseReady = true;
+        if (question) browseReady = true;
       }
     } else if (scopeTree.some((n) => n.value === wanted)) {
       browseSubject = wanted;

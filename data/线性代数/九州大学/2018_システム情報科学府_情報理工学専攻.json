@@ -50,5 +50,121 @@
         "特征多项式满足 $\\det(A-\\lambda I)=\\det((A-\\lambda I)^{\\mathsf T})=\\det(-A-\\lambda I)=(-1)^n \\det(A+\\lambda I)$。因此 $\\det(A-\\lambda I)=0$ 时 $\\det(A+\\lambda I)=0$，故若 $\\lambda$ 是特征值，则 $-\\lambda$ 也是特征值。"
       ]
     }
+  ],
+  "practice_questions": [
+    {
+      "id": "kyushu-2018-ist-la-practice-01",
+      "school": "九州大学",
+      "year": "2018",
+      "text": "求所有 $2\\times2$ 实交错矩阵的一般形式，并计算其行列式。",
+      "knowledge_points": [
+        "交错矩阵",
+        "转置",
+        "行列式"
+      ],
+      "question_type": "刻画低阶交错矩阵",
+      "method": [
+        "比较矩阵元素",
+        "计算二阶行列式"
+      ],
+      "solution_steps": [
+        "设一般矩阵并使用 $A^{\\mathsf T}=-A$",
+        "确定对角元与非对角元关系",
+        "计算行列式"
+      ],
+      "math_structure": {
+        "type": "two_by_two_skew_symmetric",
+        "template": "$A=\\begin{pmatrix}0&a\\\\-a&0\\end{pmatrix}$",
+        "variable_count": 1
+      },
+      "difficulty": 1,
+      "estimated_minutes": 5,
+      "answer": [
+        {
+          "label": "求一般形式与行列式",
+          "steps": [
+            "设 $A=\\begin{pmatrix}a&b\\\\c&d\\end{pmatrix}$。由 $A^{\\mathsf T}=-A$ 得 $a=d=0$、$c=-b$。",
+            "因此所有这类矩阵都可写成 $A=\\begin{pmatrix}0&t\\\\-t&0\\end{pmatrix}$。",
+            "其行列式为 $\\det A=t^2$。"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "kyushu-2018-ist-la-practice-02",
+      "school": "九州大学",
+      "year": "2018",
+      "text": "设 $A$ 为实交错矩阵。证明对任意实向量 $x$，都有 $x^{\\mathsf T}Ax=0$。",
+      "knowledge_points": [
+        "交错矩阵",
+        "二次型",
+        "标量转置"
+      ],
+      "question_type": "证明交错矩阵二次型恒为零",
+      "method": [
+        "标量转置",
+        "交错条件"
+      ],
+      "solution_steps": [
+        "注意 $x^{\\mathsf T}Ax$ 是标量",
+        "对该标量取转置",
+        "利用 $A^{\\mathsf T}=-A$"
+      ],
+      "math_structure": {
+        "type": "skew_symmetric_quadratic_form",
+        "template": "$x^{\\mathsf T}Ax=-(x^{\\mathsf T}Ax)$",
+        "variable_count": 1
+      },
+      "difficulty": 2,
+      "estimated_minutes": 6,
+      "answer": [
+        {
+          "label": "证明二次型为零",
+          "steps": [
+            "令 $s=x^{\\mathsf T}Ax$。因为 $s$ 是标量，$s=s^{\\mathsf T}$。",
+            "另一方面，$s^{\\mathsf T}=x^{\\mathsf T}A^{\\mathsf T}x=x^{\\mathsf T}(-A)x=-s$。",
+            "所以 $s=-s$，从而 $s=0$。即 $x^{\\mathsf T}Ax=0$。"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "kyushu-2018-ist-la-practice-03",
+      "school": "九州大学",
+      "year": "2018",
+      "text": "设 $A$ 为奇数阶实交错矩阵。证明 $\\det(A)=0$，并说明 $0$ 是 $A$ 的特征值。",
+      "knowledge_points": [
+        "交错矩阵",
+        "行列式",
+        "特征值"
+      ],
+      "question_type": "证明奇数阶交错矩阵奇异",
+      "method": [
+        "行列式转置不变性",
+        "数乘行列式"
+      ],
+      "solution_steps": [
+        "使用 $\\det(A)=\\det(A^{\\mathsf T})$",
+        "代入 $A^{\\mathsf T}=-A$",
+        "利用阶数为奇数并推出零特征值"
+      ],
+      "math_structure": {
+        "type": "odd_skew_symmetric_singularity",
+        "template": "$\\det(A)=\\det(-A)=(-1)^n\\det(A)$",
+        "variable_count": 1
+      },
+      "difficulty": 3,
+      "estimated_minutes": 8,
+      "answer": [
+        {
+          "label": "证明奇异并确定特征值",
+          "steps": [
+            "若 $A$ 为 $n$ 阶且 $n$ 为奇数，则 $$\\det(A)=\\det(A^{\\mathsf T})=\\det(-A)=(-1)^n\\det(A)=-\\det(A).$$",
+            "因此 $2\\det(A)=0$，即 $\\det(A)=0$。",
+            "于是特征多项式在 $\\lambda=0$ 时为零，所以 $0$ 是 $A$ 的特征值。"
+          ]
+        }
+      ]
+    }
   ]
 }

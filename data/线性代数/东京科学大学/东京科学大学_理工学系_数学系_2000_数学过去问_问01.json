@@ -1,0 +1,207 @@
+{
+  "id": "isct-2000-7e67416ed8-q01",
+  "school": "东京科学大学",
+  "year": "2000",
+  "subject": "理工学系_数学系",
+  "text": "设 $A$ 为 $(m,n)$ 型非零复矩阵。\n(1) 求使得存在非零的 $(n,m)$ 型矩阵 $X$ 满足 $AX=0$ 且 $XA=0$ 的关于 $A$ 的必要充分条件。\n(2) 设 $A$ 满足 (1) 中的条件。证明存在 $x\\in\\mathbb{C}^n-\\{0\\}$ 使 $Ax=0$，以及 $y\\in\\mathbb{C}^m-\\{0\\}$ 使 ${}^tAy=0$；并且令 $X=x\\,{}^ty$，证明 $X$ 是 (1) 的一个解。\n(3) 求 (2) 中所得 $X$ 的秩；并举出一个 $A$ 的例子，使得存在 (1) 的解 $X$ 不能用 (2) 的方式（即单个外积）得到。",
+  "knowledge_points": [
+    "矩阵的秩",
+    "核空间（零空间）",
+    "转置矩阵",
+    "线性方程组的解空间",
+    "矩阵外积"
+  ],
+  "question_type": "矩阵秩与核空间构造证明题",
+  "method": [
+    "利用秩-零度定理分析AX=0与XA=0的条件",
+    "构造核空间中的向量做外积",
+    "维数计数确定一般解空间"
+  ],
+  "solution_steps": [
+    "把 AX=0 理解为 X 的每一列属于 ker(A)，把 XA=0 理解为 X 的每一行（转置后）属于 ker(A^T)",
+    "推出非零解存在的条件是 ker(A) 与 ker(A^T) 都非零，即 rank(A) < min(m,n)",
+    "在满足此条件时从两个核空间各取非零向量做外积构造具体解",
+    "计算外积矩阵的秩，并说明一般解空间的维数为 dim ker(A) · dim ker(A^T)，从而给出高秩例子"
+  ],
+  "math_structure": {
+    "type": "matrix_kernel_condition",
+    "template": "given (m,n) matrix A over C, find condition for nonzero (n,m) matrix X with AX=0, XA=0; construct X=x t y from kernels",
+    "variable_count": 3
+  },
+  "difficulty": 4,
+  "answer": [
+    {
+      "label": "(1)",
+      "steps": [
+        "把 $A$ 看成线性映射 $\\mathbb{C}^n\\to\\mathbb{C}^m$。$AX=0$（$X\\neq0$）等价于 $X$ 的每一列都落在 $\\ker A\\subset \\mathbb{C}^n$ 中，因此该式存在非零解的条件是 $\\ker A\\neq\\{0\\}$，即 $\\operatorname{rank}A<n$。",
+        "同理，$XA=0$ 取转置得 $A^tX^t=0$，说明 $X$ 的每一行（作为 $\\mathbb{C}^m$ 中向量）落在 $\\ker(A^t)$ 中，故非零解存在的条件是 $\\ker(A^t)\\neq\\{0\\}$，即 $\\operatorname{rank}A<m$（因为 $\\operatorname{rank}A^t=\\operatorname{rank}A$）。",
+        "要同时找到一个 $X\\neq0$ 满足两式，只需两核空间都非零：取 $x\\in\\ker A-\\{0\\}$、$y\\in\\ker A^t-\\{0\\}$，构造 $X=x\\,{}^ty\\neq0$（因为 $x,y$ 均非零，外积非零），则自动满足 $AX=0,\\,XA=0$。",
+        "反之若 $\\operatorname{rank}A=\\min(m,n)$，则至少一个核空间为零，使得 $AX=0$（或 $XA=0$）只有零解，从而两式联立也只有零解。综上，必要充分条件是 $\\operatorname{rank}A<\\min(m,n)$。"
+      ]
+    },
+    {
+      "label": "(2)",
+      "steps": [
+        "由 (1) 知 $\\operatorname{rank}A<n$，故 $\\dim\\ker A = n-\\operatorname{rank}A\\ge 1$，可取 $x\\in\\mathbb{C}^n-\\{0\\}$ 满足 $Ax=0$。",
+        "同理 $\\operatorname{rank}A<m$，故 $\\dim\\ker(A^t)=m-\\operatorname{rank}A\\ge1$，可取 $y\\in\\mathbb{C}^m-\\{0\\}$ 满足 $A^ty=0$（即 ${}^tAy=0$）。",
+        "令 $X=x\\,{}^ty$（$n\\times m$ 矩阵）。计算 $AX = A x\\,{}^ty = (Ax)\\,{}^ty = 0\\cdot{}^ty=0$；又 $XA = x\\,{}^ty A = x\\,{}^t(A^ty) = x\\cdot 0 = 0$。因此 $X$ 同时满足 $AX=0,XA=0$，且因 $x\\neq0,y\\neq0$ 故 $X\\neq0$，即 $X$ 是 (1) 的一个非零解。"
+      ]
+    },
+    {
+      "label": "(3)",
+      "steps": [
+        "外积矩阵 $X=x\\,{}^ty$（$x,y\\neq0$）的秩恒为 $1$：因为其列向量都是 $x$ 的标量倍（第 $j$ 列为 $y_j\\,x$），列空间为一维。",
+        "更一般的解由 $X=\\sum_i x_i\\,{}^ty_i$（$x_i\\in\\ker A,\\,y_i\\in\\ker A^t$）给出，其秩可高于 1，只要 $\\dim\\ker A\\ge2$ 且 $\\dim\\ker A^t\\ge2$。",
+        "取例子：$A=\\operatorname{diag}(1,0,0)$（$3\\times3$，$\\operatorname{rank}A=1<3$）。则 $\\ker A=\\ker A^t=\\operatorname{span}\\{e_2,e_3\\}$。取 $X=\\operatorname{diag}(0,1,1)=e_2\\,{}^te_2+e_3\\,{}^te_3$，验证 $AX=\\operatorname{diag}(0,0,0)=0$，$XA=\\operatorname{diag}(0,0,0)=0$，而 $\\operatorname{rank}X=2>1$，说明该解不能由单个外积 $x\\,{}^ty$（秩1）得到。"
+      ]
+    }
+  ],
+  "practice_questions": [
+    {
+      "text": "设 $A$ 为 $2\\times3$ 复矩阵，求存在非零 $3\\times2$ 矩阵 $X$ 满足 $AX=0,XA=0$ 的关于 $\\operatorname{rank}A$ 的条件。",
+      "knowledge_points": [
+        "矩阵秩",
+        "核空间"
+      ],
+      "question_type": "条件推导",
+      "method": [
+        "核空间维数分析"
+      ],
+      "solution_steps": [
+        "分析AX=0要求rank(A)<3",
+        "分析XA=0要求rank(A)<2",
+        "取交集给出条件"
+      ],
+      "math_structure": {
+        "type": "matrix_kernel_condition",
+        "template": "2x3 matrix rank condition",
+        "variable_count": 1
+      },
+      "difficulty": 2,
+      "estimated_minutes": 6,
+      "answer": [
+        {
+          "label": "结论",
+          "steps": [
+            "AX=0需ker A≠0即rank A<3；XA=0需ker A^t≠0即rank A<2；故条件为rank A<min(3,2)=2，即rank A≤1"
+          ]
+        }
+      ],
+      "id": "isct-2000-7e67416ed8-q01-practice-01",
+      "school": "东京科学大学",
+      "year": "2000"
+    },
+    {
+      "text": "设 $A=\\begin{pmatrix}1&0\\\\0&0\\end{pmatrix}$。求 $\\ker A$ 与 $\\ker A^t$，并写出所有满足 $AX=0,XA=0$ 的 $2\\times2$ 矩阵 $X$ 的一般形式。",
+      "knowledge_points": [
+        "核空间计算",
+        "矩阵方程通解"
+      ],
+      "question_type": "计算题",
+      "method": [
+        "直接求解线性方程"
+      ],
+      "solution_steps": [
+        "解Ax=0得ker A",
+        "解A^ty=0得ker A^t",
+        "写出X=x t y的线性组合形式"
+      ],
+      "math_structure": {
+        "type": "matrix_kernel_condition",
+        "template": "explicit 2x2 diagonal matrix kernel computation",
+        "variable_count": 1
+      },
+      "difficulty": 2,
+      "estimated_minutes": 8,
+      "answer": [
+        {
+          "label": "结果",
+          "steps": [
+            "ker A = span{(0,1)^t}，ker A^t=span{(0,1)^t}（A对称）",
+            "一般解X = c·e2 t e2 = diag(0,c)，c为任意复数",
+            "验证：AX=diag(1,0)diag(0,c)=0，XA=diag(0,c)diag(1,0)=0成立"
+          ]
+        }
+      ],
+      "id": "isct-2000-7e67416ed8-q01-practice-02",
+      "school": "东京科学大学",
+      "year": "2000"
+    },
+    {
+      "text": "给定 $x=(0,1,0)^t\\in\\mathbb{C}^3$，$y=(0,1,1)^t\\in\\mathbb{C}^3$，写出 $X=x\\,{}^ty$ 的具体矩阵形式，并验证其秩为1。",
+      "knowledge_points": [
+        "外积矩阵",
+        "矩阵秩"
+      ],
+      "question_type": "计算题",
+      "method": [
+        "外积定义直接计算"
+      ],
+      "solution_steps": [
+        "按定义计算外积矩阵各元素",
+        "观察列向量成比例得出秩为1"
+      ],
+      "math_structure": {
+        "type": "outer_product_rank",
+        "template": "compute X = x t(y) for given vectors, verify rank 1",
+        "variable_count": 2
+      },
+      "difficulty": 1,
+      "estimated_minutes": 5,
+      "answer": [
+        {
+          "label": "结果",
+          "steps": [
+            "X = x t y = \\begin{pmatrix}0&0&0\\\\0&1&1\\\\0&0&0\\end{pmatrix}",
+            "每列都是x的标量倍，故列空间维数为1，rank X=1"
+          ]
+        }
+      ],
+      "id": "isct-2000-7e67416ed8-q01-practice-03",
+      "school": "东京科学大学",
+      "year": "2000"
+    },
+    {
+      "text": "设 $A$ 为 $4\\times4$ 对角矩阵 $\\operatorname{diag}(1,1,0,0)$。求满足 $AX=0,XA=0$ 的解空间的维数，并给出一个秩为2的具体解。",
+      "knowledge_points": [
+        "核空间维数",
+        "解空间维数计数",
+        "矩阵秩构造"
+      ],
+      "question_type": "综合计算题",
+      "method": [
+        "利用dim ker(A)·dim ker(A^t)公式",
+        "构造具体高秩解"
+      ],
+      "solution_steps": [
+        "求ker A和ker A^t的维数",
+        "计算解空间总维数",
+        "构造rank2的X"
+      ],
+      "math_structure": {
+        "type": "matrix_kernel_condition",
+        "template": "4x4 diagonal matrix, solution space dimension and rank-2 example",
+        "variable_count": 1
+      },
+      "difficulty": 3,
+      "estimated_minutes": 10,
+      "answer": [
+        {
+          "label": "结果",
+          "steps": [
+            "ker A = ker A^t = span{e3,e4}，各维数2",
+            "解空间维数=2×2=4（由x_i t y_i的线性组合张成）",
+            "取X=e3 t e3+e4 t e4=diag(0,0,1,1)，验证AX=0,XA=0，且rank X=2"
+          ]
+        }
+      ],
+      "id": "isct-2000-7e67416ed8-q01-practice-04",
+      "school": "东京科学大学",
+      "year": "2000"
+    }
+  ],
+  "source_question": "専門科目（午前）問1",
+  "source_pdf": "东京科学大学/理工学系/数学系/东京科学大学_理工学系_数学系_2000_数学过去问.pdf",
+  "source_type": "官方过去问",
+  "subject_category": "线性代数"
+}

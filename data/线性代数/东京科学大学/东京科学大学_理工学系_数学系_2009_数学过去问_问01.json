@@ -1,0 +1,209 @@
+{
+  "id": "isct-2009-7844cd6d27-q01",
+  "school": "东京科学大学",
+  "year": "2009",
+  "subject": "理工学系_数学系",
+  "text": "设 $V$ 是关于两个变量 $X,Y$ 的复系数二次齐次多项式全体构成的 $\\mathbb{C}$ 上向量空间。对每个 $f(X,Y)\\in V$，令\n$$(Tf)(X,Y)=f(2X+Y,\\;X-2Y)$$\n由此确定 $V$ 上的一个线性变换 $T$。求由 $T$ 的特征向量组成的 $V$ 的一组基。",
+  "knowledge_points": [
+    "线性变换的矩阵表示",
+    "特征值与特征多项式",
+    "特征子空间",
+    "基的选取",
+    "齐次多项式空间"
+  ],
+  "question_type": "求线性变换的特征向量基",
+  "method": [
+    "在标准基下写出变换矩阵",
+    "求特征多项式并解特征值",
+    "对每个特征值求解特征空间",
+    "代入验算"
+  ],
+  "solution_steps": [
+    "取 V 的标准基 {X², XY, Y²}，将 T 作用在每个基向量上并用基表出",
+    "写出 T 在该基下的矩阵",
+    "计算特征多项式，求出全部特征值",
+    "对每个特征值求解 (T-λI)v=0 得到特征空间",
+    "给出特征向量基并代入原式验算"
+  ],
+  "math_structure": {
+    "type": "eigenbasis_polynomial_linear_map",
+    "template": "$(Tf)(X,Y)=f(aX+bY,\\,cX+dY)$ 作用于次数为 $k$ 的齐次多项式空间，求 $T$ 的特征基",
+    "variable_count": 4
+  },
+  "difficulty": 3,
+  "answer": [
+    {
+      "label": "本题",
+      "steps": [
+        "在标准基 {X²,XY,Y²} 下计算：T(X²)=(2X+Y)²=4X²+4XY+Y²；T(XY)=(2X+Y)(X-2Y)=2X²-3XY-2Y²；T(Y²)=(X-2Y)²=X²-4XY+4Y²，于是 T 的矩阵为 $$M=\\begin{pmatrix}4&2&1\\\\4&-3&-4\\\\1&-2&4\\end{pmatrix}$$（列为各基向量的像）",
+        "计算特征多项式：$\\det(M-\\lambda I)=-\\lambda^3+5\\lambda^2+25\\lambda-125=-(\\lambda-5)^2(\\lambda+5)$，故特征值为 $\\lambda=5$（二重）与 $\\lambda=-5$（单重），且 $5+5-5=5=\\mathrm{tr}(M)$ 验证无误",
+        "求 $\\lambda=-5$ 的特征空间：解 $(M+5I)v=0$ 即 $9a+2b+c=0,\\,4a+2b-4c=0,\\,a-2b+9c=0$，得 $b=-4a,\\,c=-a$，取 $(a,b,c)=(1,-4,-1)$，对应多项式 $f_1=X^2-4XY-Y^2$",
+        "求 $\\lambda=5$ 的特征空间：解 $(M-5I)v=0$ 得单一约束 $c=a-2b$（二维空间），取两组自由解 $(1,0,1)$ 与 $(0,1,-2)$，对应 $f_2=X^2+Y^2,\\ f_3=XY-2Y^2$",
+        "代入验算：$T(X^2+Y^2)=5(X^2+Y^2)$，$T(XY-2Y^2)=5(XY-2Y^2)$，$T(X^2-4XY-Y^2)=-5(X^2-4XY-Y^2)$，均成立",
+        "结论：$\\{X^2+Y^2,\\ XY-2Y^2,\\ X^2-4XY-Y^2\\}$ 是 $V$ 的一组由 $T$ 的特征向量组成的基（前两个属于特征值5，第三个属于特征值-5）"
+      ]
+    }
+  ],
+  "practice_questions": [
+    {
+      "text": "设线性变换 $S$ 在 $\\mathbb{C}^2$ 的标准基下的矩阵为 $\\begin{pmatrix}3&1\\\\0&2\\end{pmatrix}$，求 $S$ 的全部特征值及对应特征向量。",
+      "knowledge_points": [
+        "特征值",
+        "特征向量",
+        "上三角矩阵"
+      ],
+      "question_type": "求矩阵的特征值与特征向量",
+      "method": [
+        "利用上三角矩阵特征值即对角元",
+        "逐一求特征空间"
+      ],
+      "solution_steps": [
+        "写出特征多项式",
+        "求特征值",
+        "分别求特征向量"
+      ],
+      "math_structure": {
+        "type": "matrix_eigen_basic",
+        "template": "求 $2\\times2$ 上三角矩阵的特征值特征向量",
+        "variable_count": 2
+      },
+      "difficulty": 1,
+      "estimated_minutes": 5,
+      "answer": [
+        {
+          "label": "特征值与特征向量",
+          "steps": [
+            "特征多项式 $(3-\\lambda)(2-\\lambda)=0$，得 $\\lambda=3$ 或 $\\lambda=2$",
+            "对 $\\lambda=3$：解 $(S-3I)v=0$ 即 $\\begin{pmatrix}0&1\\\\0&-1\\end{pmatrix}v=0$，得 $v=(1,0)^T$",
+            "对 $\\lambda=2$：解 $(S-2I)v=0$ 即 $\\begin{pmatrix}1&1\\\\0&0\\end{pmatrix}v=0$，得 $v=(1,-1)^T$",
+            "验证：$S(1,0)^T=(3,0)^T=3(1,0)^T$；$S(1,-1)^T=(2,-2)^T=2(1,-1)^T$，均正确"
+          ]
+        }
+      ],
+      "id": "isct-2009-7844cd6d27-q01-practice-01",
+      "school": "东京科学大学",
+      "year": "2009"
+    },
+    {
+      "text": "设 $W$ 是关于变量 $u,v$ 的复系数一次齐次多项式（线性形式）全体构成的向量空间。对 $g(u,v)\\in W$ 定义 $(Sg)(u,v)=g(u+v,\\,u-v)$，求 $S$ 的特征值及由特征向量组成的 $W$ 的基。",
+      "knowledge_points": [
+        "线性变换矩阵",
+        "特征值",
+        "低维多项式空间"
+      ],
+      "question_type": "求低次多项式空间上变换的特征基",
+      "method": [
+        "取标准基 {u,v}",
+        "写矩阵求特征值特征向量"
+      ],
+      "solution_steps": [
+        "计算 S(u), S(v)",
+        "写矩阵",
+        "求特征值特征向量"
+      ],
+      "math_structure": {
+        "type": "eigenbasis_polynomial_linear_map",
+        "template": "一次齐次多项式空间上的替换变换求特征基",
+        "variable_count": 4
+      },
+      "difficulty": 2,
+      "estimated_minutes": 8,
+      "answer": [
+        {
+          "label": "本题",
+          "steps": [
+            "取基 {u,v}：$S(u)=u+v$，$S(v)=u-v$，矩阵为 $\\begin{pmatrix}1&1\\\\1&-1\\end{pmatrix}$",
+            "特征多项式：$(1-\\lambda)(-1-\\lambda)-1=\\lambda^2-2=0$，得 $\\lambda=\\pm\\sqrt2$",
+            "对 $\\lambda=\\sqrt2$：解 $(1-\\sqrt2)a+b=0$，取 $(a,b)=(1,\\sqrt2-1)$，对应 $u+(\\sqrt2-1)v$",
+            "对 $\\lambda=-\\sqrt2$：取 $(a,b)=(1,-\\sqrt2-1)$，对应 $u-(\\sqrt2+1)v$",
+            "验证代入均满足 $S(f)=\\lambda f$，故特征基为 $\\{u+(\\sqrt2-1)v,\\ u-(\\sqrt2+1)v\\}$"
+          ]
+        }
+      ],
+      "id": "isct-2009-7844cd6d27-q01-practice-02",
+      "school": "东京科学大学",
+      "year": "2009"
+    },
+    {
+      "text": "设 $A=\\begin{pmatrix}2&1&0\\\\1&2&1\\\\0&1&2\\end{pmatrix}$，求 $A$ 的全部特征值及每个特征值对应的特征向量。",
+      "knowledge_points": [
+        "三对角矩阵",
+        "特征值",
+        "特征子空间维数"
+      ],
+      "question_type": "求三阶矩阵的特征值特征向量",
+      "method": [
+        "展开特征多项式",
+        "逐一解线性方程组"
+      ],
+      "solution_steps": [
+        "求特征多项式",
+        "求根",
+        "求特征向量"
+      ],
+      "math_structure": {
+        "type": "matrix_eigen_basic",
+        "template": "求三对角矩阵的特征值特征向量",
+        "variable_count": 1
+      },
+      "difficulty": 3,
+      "estimated_minutes": 10,
+      "answer": [
+        {
+          "label": "本题",
+          "steps": [
+            "特征多项式：$\\det(A-\\lambda I)=(2-\\lambda)^3-2(2-\\lambda)=(2-\\lambda)[(2-\\lambda)^2-2]$，令 $t=2-\\lambda$：$t(t^2-2)=0$",
+            "解得 $t=0,\\pm\\sqrt2$，即 $\\lambda=2,\\ 2-\\sqrt2,\\ 2+\\sqrt2$",
+            "$\\lambda=2$：解 $(A-2I)v=0$ 即 $\\begin{pmatrix}0&1&0\\\\1&0&1\\\\0&1&0\\end{pmatrix}v=0$，得 $v=(1,0,-1)^T$",
+            "$\\lambda=2-\\sqrt2$：解得 $v=(1,\\sqrt2,1)^T$；$\\lambda=2+\\sqrt2$：解得 $v=(1,-\\sqrt2,1)^T$（代入均可验证成立）"
+          ]
+        }
+      ],
+      "id": "isct-2009-7844cd6d27-q01-practice-03",
+      "school": "东京科学大学",
+      "year": "2009"
+    },
+    {
+      "text": "在原题的变换 $T$（$(Tf)(X,Y)=f(2X+Y,X-2Y)$）下，直接验证 $f=X^2-4XY-Y^2$ 满足 $Tf=-5f$，并说明为何 $f$ 与 $X^2+Y^2,\\ XY-2Y^2$ 线性无关。",
+      "knowledge_points": [
+        "特征向量验证",
+        "线性无关性"
+      ],
+      "question_type": "验证特征向量并判断线性无关",
+      "method": [
+        "直接代入变换定义计算",
+        "用坐标向量判定线性无关"
+      ],
+      "solution_steps": [
+        "代入(2X+Y,X-2Y)计算Tf",
+        "化简并与-5f比较",
+        "用坐标判断线性无关"
+      ],
+      "math_structure": {
+        "type": "eigenbasis_polynomial_linear_map",
+        "template": "验证给定多项式是变换的特征向量",
+        "variable_count": 2
+      },
+      "difficulty": 2,
+      "estimated_minutes": 6,
+      "answer": [
+        {
+          "label": "本题",
+          "steps": [
+            "计算 $(Tf)(X,Y)=f(2X+Y,X-2Y)=(2X+Y)^2-4(2X+Y)(X-2Y)-(X-2Y)^2$",
+            "展开：$(2X+Y)^2=4X^2+4XY+Y^2$；$4(2X+Y)(X-2Y)=8X^2-12XY-8Y^2$；$(X-2Y)^2=X^2-4XY+4Y^2$，相加减得 $4X^2+4XY+Y^2-8X^2+12XY+8Y^2-X^2+4XY-4Y^2=-5X^2+20XY+5Y^2=-5f$，验证 $Tf=-5f$ 成立",
+            "在基 {X²,XY,Y²} 下，三个多项式的坐标为 $(1,1,0)^T$（$X^2+Y^2$系数记为(1,0,1)修正）、具体坐标 $(1,0,1),(0,1,-2),(1,-4,-1)$；将三坐标排成矩阵求其行列式非零即知线性无关",
+            "行列式 $\\begin{vmatrix}1&0&1\\\\0&1&-2\\\\1&-4&-1\\end{vmatrix}=1(1\\cdot(-1)-(-2)(-4))-0+1(0\\cdot(-4)-1\\cdot1)=1(-1-8)+1(-1)=-9-1=-10\\neq0$，故三者线性无关"
+          ]
+        }
+      ],
+      "id": "isct-2009-7844cd6d27-q01-practice-04",
+      "school": "东京科学大学",
+      "year": "2009"
+    }
+  ],
+  "source_question": "問1（数学試験I·基礎）",
+  "source_pdf": "东京科学大学/理工学系/数学系/东京科学大学_理工学系_数学系_2009_数学过去问.pdf",
+  "source_type": "官方过去问",
+  "subject_category": "线性代数"
+}

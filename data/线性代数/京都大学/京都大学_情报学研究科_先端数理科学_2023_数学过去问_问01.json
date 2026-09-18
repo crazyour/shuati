@@ -1,0 +1,213 @@
+{
+  "id": "kyoto-2023-fc0b120ced-q01",
+  "school": "京都大学",
+  "year": "2023",
+  "subject": "情报学研究科_先端数理科学",
+  "text": "给定矩阵 $A = \\begin{pmatrix} -2 & 0 & -1 \\\\ 3 & 3 & -2 \\\\ 3 & 3 & 2 \\end{pmatrix}$，矩阵 $C = \\begin{pmatrix} 10 & 3 & -1 & 2 \\\\ 8 & -2 & -5 & 7 \\\\ 6 & 7 & -2 & -9 \\end{pmatrix}$。(1) 求矩阵 $A$ 的行列式。(2) 设 $B$ 为某个 $3 \\times 3$ 矩阵，求其秩。(3) 当 $3 \\times 4$ 列矩阵 $D$ 满足 $BC = BD$ 时，证明 $C = D$。",
+  "knowledge_points": [
+    "行列式计算",
+    "矩阵秩的概念",
+    "矩阵方程的可解性",
+    "满秩矩阵的性质",
+    "矩阵乘法"
+  ],
+  "question_type": "多部分计算与证明题",
+  "method": [
+    "行列式展开式计算",
+    "行化简求秩",
+    "反证法与矩阵零空间理论"
+  ],
+  "solution_steps": [
+    "按第一行展开计算A的行列式",
+    "对B进行行化简确定秩的值",
+    "从BC=BD推导B(C-D)=0，利用B的满秩性质"
+  ],
+  "math_structure": {
+    "type": "matrix_equation_system",
+    "template": "$BC = BD$ 其中 $B \\in \\mathbb{R}^{m \\times n}$，$C, D \\in \\mathbb{R}^{n \\times p}$",
+    "variable_count": 3
+  },
+  "difficulty": 3,
+  "answer": [
+    {
+      "label": "(1) 行列式值",
+      "steps": [
+        "按第一行展开：$\\det(A) = -2 \\begin{vmatrix} 3 & -2 \\\\ 3 & 2 \\end{vmatrix} - 0 + (-1) \\begin{vmatrix} 3 & 3 \\\\ 3 & 3 \\end{vmatrix}$",
+        "计算2×2子式：$\\begin{vmatrix} 3 & -2 \\\\ 3 & 2 \\end{vmatrix} = 6 - (-6) = 12$",
+        "计算另一个2×2子式：$\\begin{vmatrix} 3 & 3 \\\\ 3 & 3 \\end{vmatrix} = 9 - 9 = 0$",
+        "得到：$\\det(A) = -2 \\times 12 - 1 \\times 0 = -24$"
+      ]
+    },
+    {
+      "label": "(2) 矩阵秩",
+      "steps": [
+        "对B进行初等行变换化为阶梯形",
+        "R₂ - (3/(-2))R₁，R₃ - (3/(-2))R₁",
+        "继续化简直至无法再约，计数非零行数为秩",
+        "若B与A相同，则秩为3（满秩）"
+      ]
+    },
+    {
+      "label": "(3) 证明C = D",
+      "steps": [
+        "由条件 $BC = BD$，得 $BC - BD = 0$，即 $B(C - D) = 0$",
+        "设 $E = C - D$，则 $BE = 0$，即 $E$ 在 $B$ 的零空间中",
+        "若 $B$ 满秩（rank = 3），则 $B$ 的零空间仅包含零向量",
+        "因此 $E = 0$，即 $C = D$"
+      ]
+    }
+  ],
+  "practice_questions": [
+    {
+      "text": "计算矩阵 $M = \\begin{pmatrix} 1 & 0 & 2 \\\\ 0 & 3 & -1 \\\\ 1 & 2 & 1 \\end{pmatrix}$ 的行列式。",
+      "knowledge_points": [
+        "行列式展开",
+        "行列式计算技巧"
+      ],
+      "question_type": "计算题",
+      "method": [
+        "Laplace展开",
+        "行列式性质"
+      ],
+      "solution_steps": [
+        "选择展开行或列",
+        "计算子式",
+        "求和"
+      ],
+      "math_structure": {
+        "type": "determinant_3x3",
+        "template": "$\\det(M) = a_{11}(a_{22}a_{33} - a_{23}a_{32}) - ...$",
+        "variable_count": 9
+      },
+      "difficulty": 1,
+      "estimated_minutes": 5,
+      "answer": [
+        {
+          "label": "行列式值",
+          "steps": [
+            "按第一行展开：$\\det(M) = 1(3 \\cdot 1 - (-1) \\cdot 2) - 0 + 2(0 \\cdot 2 - 3 \\cdot 1) = 1 \\cdot 5 + 2 \\cdot (-3) = 5 - 6 = -1$"
+          ]
+        }
+      ],
+      "id": "kyoto-2023-fc0b120ced-q01-practice-01",
+      "school": "京都大学",
+      "year": "2023"
+    },
+    {
+      "text": "设 $N = \\begin{pmatrix} 2 & 1 & 3 \\\\ 1 & 0 & 2 \\\\ 3 & 2 & 6 \\end{pmatrix}$，求矩阵 $N$ 的秩。",
+      "knowledge_points": [
+        "秩的定义",
+        "行化简",
+        "秩的几何意义"
+      ],
+      "question_type": "计算题",
+      "method": [
+        "Gauss消元",
+        "阶梯形矩阵"
+      ],
+      "solution_steps": [
+        "进行行变换",
+        "得到阶梯形",
+        "计数非零行"
+      ],
+      "math_structure": {
+        "type": "matrix_rank",
+        "template": "$\\text{rank}(N) = $ 阶梯形中非零行数",
+        "variable_count": 3
+      },
+      "difficulty": 2,
+      "estimated_minutes": 5,
+      "answer": [
+        {
+          "label": "矩阵秩",
+          "steps": [
+            "行变换：R₃ - R₁ - R₂，得到第三行为零向量",
+            "阶梯形有2个非零行",
+            "秩为2"
+          ]
+        }
+      ],
+      "id": "kyoto-2023-fc0b120ced-q01-practice-02",
+      "school": "京都大学",
+      "year": "2023"
+    },
+    {
+      "text": "若 $3 \\times 3$ 矩阵 $P$ 满秩，证明：若 $PA = PB$，则 $A = B$。",
+      "knowledge_points": [
+        "满秩矩阵的性质",
+        "矩阵可逆性",
+        "矩阵乘法的消去律"
+      ],
+      "question_type": "证明题",
+      "method": [
+        "可逆矩阵理论",
+        "零空间分析"
+      ],
+      "solution_steps": [
+        "从PA=PB推导P(A-B)=0",
+        "利用满秩性质"
+      ],
+      "math_structure": {
+        "type": "invertible_matrix_cancellation",
+        "template": "满秩矩阵 $P \\in \\mathbb{R}^{n \\times n}$ 满足 $PA = PB \\Rightarrow A = B$",
+        "variable_count": 3
+      },
+      "difficulty": 2,
+      "estimated_minutes": 5,
+      "answer": [
+        {
+          "label": "证明",
+          "steps": [
+            "由 $PA = PB$ 得 $PA - PB = 0$",
+            "即 $P(A - B) = 0$",
+            "设 $C = A - B$，则 $PC = 0$",
+            "P满秩意味着P可逆，两边左乘 $P^{-1}$：$C = 0$",
+            "因此 $A = B$"
+          ]
+        }
+      ],
+      "id": "kyoto-2023-fc0b120ced-q01-practice-03",
+      "school": "京都大学",
+      "year": "2023"
+    },
+    {
+      "text": "对矩阵 $Q = \\begin{pmatrix} 2 & 1 & 0 \\\\ 1 & 2 & 1 \\\\ 0 & 1 & 2 \\end{pmatrix}$，求其行列式和秩。",
+      "knowledge_points": [
+        "行列式与秩的关系",
+        "对称矩阵"
+      ],
+      "question_type": "综合计算题",
+      "method": [
+        "行列式展开",
+        "秩的判定"
+      ],
+      "solution_steps": [
+        "计算行列式判断秩",
+        "若行列式非零则秩为3"
+      ],
+      "math_structure": {
+        "type": "determinant_rank_relationship",
+        "template": "$\\det(Q) \\neq 0 \\Leftrightarrow \\text{rank}(Q) = n$",
+        "variable_count": 1
+      },
+      "difficulty": 2,
+      "estimated_minutes": 6,
+      "answer": [
+        {
+          "label": "行列式与秩",
+          "steps": [
+            "按第一行展开：$\\det(Q) = 2(4-1) - 1(2-0) + 0 = 6 - 2 = 4 \\neq 0$",
+            "因为 $\\det(Q) = 4 \\neq 0$，Q满秩，$\\text{rank}(Q) = 3$"
+          ]
+        }
+      ],
+      "id": "kyoto-2023-fc0b120ced-q01-practice-04",
+      "school": "京都大学",
+      "year": "2023"
+    }
+  ],
+  "source_question": "問1",
+  "source_pdf": "京都大学/情报学研究科/先端数理科学/京都大学_情报学研究科_先端数理科学_2023_数学过去问.pdf",
+  "source_type": "官方过去问",
+  "subject_category": "线性代数"
+}

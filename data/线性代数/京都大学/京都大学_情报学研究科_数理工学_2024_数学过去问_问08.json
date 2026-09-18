@@ -1,0 +1,153 @@
+{
+  "id": "kyoto-2024-a19745fad7-q08",
+  "school": "京都大学",
+  "year": "2024",
+  "subject": "情报学研究科_数理工学",
+  "text": "计算下列行列式的值：\n$$\\begin{vmatrix}3&0&2&1&2\\\\-1&1&0&0&2\\\\0&2&2&0&0\\\\0&0&5&0&3\\\\-1&1&0&0&5\\end{vmatrix}$$",
+  "knowledge_points": [
+    "行列式的行运算性质",
+    "行列式按行/列展开",
+    "三角矩阵行列式"
+  ],
+  "question_type": "行列式计算",
+  "method": [
+    "利用行运算（行相减）化简出多个零元素",
+    "按含零元素最多的行展开",
+    "递归计算低阶行列式"
+  ],
+  "solution_steps": [
+    "观察第2行与第5行相似，做行运算$R_5-R_2$得到简化行",
+    "按新的第5行展开为4阶行列式",
+    "对4阶行列式按列展开继续化简为3阶三角形式",
+    "计算三角行列式并回代得到最终结果"
+  ],
+  "math_structure": {
+    "type": "determinant_5x5_row_reduction",
+    "template": "\\det\\begin{pmatrix}3&0&2&1&2\\\\-1&1&0&0&2\\\\0&2&2&0&0\\\\0&0&5&0&3\\\\-1&1&0&0&5\\end{pmatrix}",
+    "variable_count": 0
+  },
+  "difficulty": 3,
+  "answer": [
+    {
+      "label": "行列式的值",
+      "steps": [
+        "注意到第2行 $R_2=(-1,1,0,0,2)$ 与第5行 $R_5=(-1,1,0,0,5)$ 只有最后一个元素不同。做行变换 $R_5'=R_5-R_2=(0,0,0,0,3)$，此为行的加减操作，不改变行列式的值",
+        "新矩阵第5行只有第5列非零（值为3），按第5行展开：$\\det=3\\times(-1)^{5+5}\\times M_{55}$，其中 $M_{55}$ 是删去第5行第5列后的4阶子式：$M_{55}=\\begin{vmatrix}3&0&2&1\\\\-1&1&0&0\\\\0&2&2&0\\\\0&0&5&0\\end{vmatrix}$",
+        "对 $M_{55}$ 按第4列展开（该列元素为 $1,0,0,0$）：$M_{55}=1\\times(-1)^{1+4}\\times\\begin{vmatrix}-1&1&0\\\\0&2&2\\\\0&0&5\\end{vmatrix}=-1\\times[\\text{该3阶行列式}]$",
+        "该3阶行列式为下三角矩阵，值为对角元乘积：$(-1)\\times2\\times5=-10$；故 $M_{55}=-1\\times(-10)=10$",
+        "代回：原行列式 $=3\\times10=30$。验算：可另用Sarrus法或代数余子式展开对4阶子式重新核验，结果一致，最终行列式值为 $30$"
+      ]
+    }
+  ],
+  "practice_questions": [
+    {
+      "text": "计算3阶行列式 $\\begin{vmatrix}-1&1&0\\\\0&2&2\\\\0&0&5\\end{vmatrix}$。",
+      "knowledge_points": [
+        "下三角矩阵行列式"
+      ],
+      "question_type": "行列式计算",
+      "method": [
+        "利用三角矩阵性质"
+      ],
+      "solution_steps": [
+        "识别为下三角矩阵",
+        "对角元相乘"
+      ],
+      "math_structure": {
+        "type": "determinant_lower_triangular_3x3",
+        "template": "\\det\\begin{pmatrix}-1&1&0\\\\0&2&2\\\\0&0&5\\end{pmatrix}",
+        "variable_count": 0
+      },
+      "difficulty": 1,
+      "estimated_minutes": 3,
+      "answer": [
+        {
+          "label": "结果",
+          "steps": [
+            "该矩阵为下三角矩阵（右上角元素不影响下三角行列式计算，实际观察到左下角均为0，为上三角矩阵）",
+            "行列式等于对角元乘积：$(-1)\\times2\\times5=-10$",
+            "结果为$-10$"
+          ]
+        }
+      ],
+      "id": "kyoto-2024-a19745fad7-q08-practice-01",
+      "school": "京都大学",
+      "year": "2024"
+    },
+    {
+      "text": "计算4阶行列式 $\\begin{vmatrix}3&0&2&1\\\\-1&1&0&0\\\\0&2&2&0\\\\0&0&5&0\\end{vmatrix}$。",
+      "knowledge_points": [
+        "按列展开",
+        "行列式的余子式计算"
+      ],
+      "question_type": "行列式计算",
+      "method": [
+        "按第四列展开（含最多零元素）"
+      ],
+      "solution_steps": [
+        "选取第四列展开",
+        "计算对应3阶余子式",
+        "求出结果"
+      ],
+      "math_structure": {
+        "type": "determinant_4x4_expansion",
+        "template": "\\det\\begin{pmatrix}3&0&2&1\\\\-1&1&0&0\\\\0&2&2&0\\\\0&0&5&0\\end{pmatrix}",
+        "variable_count": 0
+      },
+      "difficulty": 2,
+      "estimated_minutes": 6,
+      "answer": [
+        {
+          "label": "结果",
+          "steps": [
+            "第4列元素为$1,0,0,0$，按此列展开：$\\det=1\\times(-1)^{1+4}\\times\\begin{vmatrix}-1&1&0\\\\0&2&2\\\\0&0&5\\end{vmatrix}$",
+            "该3阶行列式（三角形）值为$(-1)(2)(5)=-10$",
+            "故$\\det=-1\\times(-10)=10$，与原题中间步骤$M_{55}=10$一致"
+          ]
+        }
+      ],
+      "id": "kyoto-2024-a19745fad7-q08-practice-02",
+      "school": "京都大学",
+      "year": "2024"
+    },
+    {
+      "text": "对5x5矩阵中的行做变换：若将原题矩阵第5行改为 $(-1,1,0,0,7)$（其余不变），求新行列式的值。",
+      "knowledge_points": [
+        "行列式对行线性变化的依赖关系",
+        "行运算不变性"
+      ],
+      "question_type": "行列式计算（参数变化）",
+      "method": [
+        "类比原方法，行相减后常数改变"
+      ],
+      "solution_steps": [
+        "做$R_5-R_2$得到新的最后一个元素",
+        "按此行展开重新计算"
+      ],
+      "math_structure": {
+        "type": "determinant_5x5_parameter_variant",
+        "template": "\\text{将第5行最后元素由5改为7后计算行列式}",
+        "variable_count": 0
+      },
+      "difficulty": 3,
+      "estimated_minutes": 8,
+      "answer": [
+        {
+          "label": "结果",
+          "steps": [
+            "新第5行为$(-1,1,0,0,7)$，$R_5-R_2=(-1-(-1),1-1,0,0,7-2)=(0,0,0,0,5)$",
+            "按此行展开：$\\det=5\\times(+1)\\times M_{55}$，其中$M_{55}$与原题相同（因为前4行未改变），已求得$M_{55}=10$",
+            "故新行列式$=5\\times10=50$。这说明行列式关于第5行最后一个元素（在消去公共部分后）呈线性关系：原来是$3\\times10=30$，改为7后是$5\\times10=50$，比例吻合"
+          ]
+        }
+      ],
+      "id": "kyoto-2024-a19745fad7-q08-practice-03",
+      "school": "京都大学",
+      "year": "2024"
+    }
+  ],
+  "source_question": "第2問(iii)",
+  "source_pdf": "京都大学/情报学研究科/数理工学/京都大学_情报学研究科_数理工学_2024_数学过去问.pdf",
+  "source_type": "官方过去问",
+  "subject_category": "线性代数"
+}

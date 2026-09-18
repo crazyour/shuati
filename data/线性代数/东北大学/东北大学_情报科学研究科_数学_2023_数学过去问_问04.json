@@ -1,0 +1,215 @@
+{
+  "id": "tohoku-2023-469b59f929-q04",
+  "school": "东北大学",
+  "year": "2023",
+  "subject": "情报科学研究科_数学教室",
+  "text": "(1) 设 $a,b$ 为实数，$b\\ne0$。求使三个矩阵之积 $$\\begin{pmatrix}1&x\\\\0&1\\end{pmatrix}\\begin{pmatrix}a&1\\\\1&b\\end{pmatrix}\\begin{pmatrix}1&0\\\\x&1\\end{pmatrix}$$ 成为对角矩阵的实数 $x$。\n(2) 设 $a,b$ 为实数，$b>0$。求矩阵 $\\begin{pmatrix}a&1\\\\1&b\\end{pmatrix}$ 为正定矩阵的充要条件。\n(3) 设 $n$ 为正整数，$A,B$ 为 $n$ 阶实对称矩阵。证明：$2n$ 阶实对称矩阵 $\\begin{pmatrix}A&O\\\\O&B\\end{pmatrix}$ 为正定的充要条件是 $A,B$ 都为正定矩阵，其中 $O$ 为零矩阵。\n(4) 设 $n$ 为正整数，$A,B$ 为 $n$ 阶实对称矩阵，且 $B$ 为正定矩阵。证明：$2n$ 阶实对称矩阵 $\\begin{pmatrix}A&I\\\\I&B\\end{pmatrix}$ 为正定的充要条件是 $A-B^{-1}$ 为正定矩阵，其中 $I$ 为单位矩阵。",
+  "knowledge_points": [
+    "矩阵合同变换",
+    "正定矩阵判定",
+    "Schur补",
+    "分块矩阵",
+    "Sylvester惯性定理"
+  ],
+  "question_type": "矩阵正定性判定与证明",
+  "method": [
+    "直接矩阵乘法",
+    "主子式判别法",
+    "分块矩阵合同变换（Schur补）",
+    "二次型正定性定义验证"
+  ],
+  "solution_steps": [
+    "(1)直接计算矩阵乘积，令非对角元为零解出x",
+    "(2)利用正定矩阵判别准则：对角元正且行列式正",
+    "(3)用二次型定义直接验证充要性",
+    "(4)利用分块矩阵的Schur补合同分解，结合Sylvester惯性定理证明"
+  ],
+  "math_structure": {
+    "type": "positive_definite_block_matrix",
+    "template": "判定 $2\\times2$与分块 $2n\\times2n$ 对称矩阵的正定性，涉及Schur补",
+    "variable_count": 4
+  },
+  "difficulty": 4,
+  "answer": [
+    {
+      "label": "(1)",
+      "steps": [
+        "先计算 $\\begin{pmatrix}1&x\\\\0&1\\end{pmatrix}\\begin{pmatrix}a&1\\\\1&b\\end{pmatrix}=\\begin{pmatrix}a+x&1+xb\\\\1&b\\end{pmatrix}$",
+        "再右乘 $\\begin{pmatrix}1&0\\\\x&1\\end{pmatrix}$：第一行 $\\big((a+x)+  (1+xb)x,\\ (1+xb)\\big)=(a+2x+bx^2,\\ 1+bx)$；第二行 $\\big(1+bx,\\ b\\big)$",
+        "所得矩阵为 $\\begin{pmatrix}a+2x+bx^2 & 1+bx\\\\ 1+bx & b\\end{pmatrix}$，要使其为对角矩阵，需非对角元 $1+bx=0$，解得 $x=-\\dfrac1b$（因 $b\\ne0$，此解存在唯一）"
+      ]
+    },
+    {
+      "label": "(2)",
+      "steps": [
+        "对称矩阵 $M=\\begin{pmatrix}a&1\\\\1&b\\end{pmatrix}$ 正定的充要条件（Sylvester判据）是所有顺序主子式为正：一阶主子式 $a>0$，二阶主子式（行列式）$\\det M=ab-1>0$",
+        "已知 $b>0$，故条件等价于 $a>0$ 且 $ab>1$",
+        "验证：若 $a>0,ab>1$，对任意 $(x,y)\\ne(0,0)$，二次型 $ax^2+2xy+by^2=a\\left(x+\\frac{y}{a}\\right)^2+\\left(b-\\frac1a\\right)y^2$，因 $b-\\frac1a=\\frac{ab-1}{a}>0$，故二次型恒正，正定成立；反之若正定则由主子式必正即得上述条件"
+      ]
+    },
+    {
+      "label": "(3)",
+      "steps": [
+        "（必要性）设 $\\mathrm{diag}(A,B)$ 正定。取形如 $(x,0)^T$（$x\\in\\mathbb{R}^n$，$x\\ne0$）的向量代入二次型，得 $x^TAx=(x,0)^T\\mathrm{diag}(A,B)(x,0)>0$，故 $A$ 正定；同理取 $(0,y)^T$ 得 $B$ 正定",
+        "（充分性）设 $A,B$ 均正定。对任意 $(x,y)\\in\\mathbb{R}^{2n}$，$(x,y)\\ne0$，有 $(x,y)^T\\mathrm{diag}(A,B)(x,y)=x^TAx+y^TBy$",
+        "若 $x\\ne0$，则 $x^TAx>0$，且 $y^TBy\\ge0$（$B$正定则半正定），故和 $>0$；若 $x=0$ 则 $y\\ne0$，同理 $y^TBy>0$，和 $>0$。因此对所有非零 $(x,y)$ 二次型为正，$\\mathrm{diag}(A,B)$ 正定",
+        "两方向合并，证毕充要性"
+      ]
+    },
+    {
+      "label": "(4)",
+      "steps": [
+        "考虑分块矩阵合同分解：设 $L=\\begin{pmatrix}I&B^{-1}\\\\0&I\\end{pmatrix}$（可逆），验证 $L\\begin{pmatrix}A-B^{-1}&0\\\\0&B\\end{pmatrix}L^T=\\begin{pmatrix}I&B^{-1}\\\\0&I\\end{pmatrix}\\begin{pmatrix}A-B^{-1}&0\\\\0&B\\end{pmatrix}\\begin{pmatrix}I&0\\\\B^{-1}&I\\end{pmatrix}$",
+        "逐步计算：先算左边两矩阵之积 $\\begin{pmatrix}A-B^{-1}&B^{-1}B\\\\0&B\\end{pmatrix}=\\begin{pmatrix}A-B^{-1}&I\\\\0&B\\end{pmatrix}$（因 $B^{-1}B=I$），再乘以 $\\begin{pmatrix}I&0\\\\B^{-1}&I\\end{pmatrix}$：第一行 $\\big((A-B^{-1})+I\\cdot B^{-1},\\ I\\big)=(A,\\ I)$；第二行 $\\big(0+B B^{-1},\\ B\\big)=(I,B)$，得到 $\\begin{pmatrix}A&I\\\\I&B\\end{pmatrix}$，验证合同变换成立",
+        "由 $L$ 可逆，根据Sylvester惯性定理，合同变换保持正定性不变，故 $\\begin{pmatrix}A&I\\\\I&B\\end{pmatrix}$ 正定 $\\iff$ $\\begin{pmatrix}A-B^{-1}&0\\\\0&B\\end{pmatrix}$ 正定",
+        "由(3)的结论，后者正定 $\\iff$ $A-B^{-1}$ 正定且 $B$ 正定；已知 $B$ 正定，故条件化简为 $A-B^{-1}$ 正定，即证"
+      ]
+    }
+  ],
+  "practice_questions": [
+    {
+      "text": "求实数 $x$，使得 $\\begin{pmatrix}1&0\\\\x&1\\end{pmatrix}\\begin{pmatrix}2&1\\\\1&3\\end{pmatrix}\\begin{pmatrix}1&x\\\\0&1\\end{pmatrix}$ 为对角矩阵。",
+      "knowledge_points": [
+        "矩阵乘法",
+        "对角化条件"
+      ],
+      "question_type": "矩阵方程求解",
+      "method": [
+        "直接展开矩阵乘积"
+      ],
+      "solution_steps": [
+        "计算矩阵乘积",
+        "令非对角元为零求解"
+      ],
+      "math_structure": {
+        "type": "diagonalize_via_congruence",
+        "template": "求 $x$ 使三矩阵之积为对角矩阵",
+        "variable_count": 1
+      },
+      "difficulty": 2,
+      "estimated_minutes": 8,
+      "answer": [
+        {
+          "label": "结果",
+          "steps": [
+            "先计算 $\\begin{pmatrix}2&1\\\\1&3\\end{pmatrix}\\begin{pmatrix}1&x\\\\0&1\\end{pmatrix}=\\begin{pmatrix}2&2x+1\\\\1&x+3\\end{pmatrix}$",
+            "再左乘 $\\begin{pmatrix}1&0\\\\x&1\\end{pmatrix}$：得 $\\begin{pmatrix}2&2x+1\\\\2x+1&x(2x+1)+x+3\\end{pmatrix}$，非对角元为 $2x+1$",
+            "令 $2x+1=0$，得 $x=-\\dfrac12$"
+          ]
+        }
+      ],
+      "id": "tohoku-2023-469b59f929-q04-practice-01",
+      "school": "东北大学",
+      "year": "2023"
+    },
+    {
+      "text": "判断矩阵 $\\begin{pmatrix}4&2\\\\2&3\\end{pmatrix}$ 是否为正定矩阵，并说明理由。",
+      "knowledge_points": [
+        "正定矩阵判别",
+        "主子式判据"
+      ],
+      "question_type": "正定性判断",
+      "method": [
+        "顺序主子式判据"
+      ],
+      "solution_steps": [
+        "检查一阶主子式",
+        "检查二阶主子式（行列式）"
+      ],
+      "math_structure": {
+        "type": "positive_definite_check",
+        "template": "用主子式判据判断给定对称矩阵是否正定",
+        "variable_count": 0
+      },
+      "difficulty": 1,
+      "estimated_minutes": 4,
+      "answer": [
+        {
+          "label": "结果",
+          "steps": [
+            "一阶主子式为 $4>0$",
+            "二阶主子式（行列式）为 $4\\times3-2\\times2=12-4=8>0$",
+            "两个顺序主子式均为正，故该矩阵正定"
+          ]
+        }
+      ],
+      "id": "tohoku-2023-469b59f929-q04-practice-02",
+      "school": "东北大学",
+      "year": "2023"
+    },
+    {
+      "text": "设 $A=\\begin{pmatrix}2&0\\\\0&3\\end{pmatrix}$，$B=\\begin{pmatrix}1&0\\\\0&5\\end{pmatrix}$，判断分块矩阵 $\\begin{pmatrix}A&O\\\\O&B\\end{pmatrix}$ 是否正定，并用问题(3)的结论说明理由。",
+      "knowledge_points": [
+        "分块对角矩阵正定性"
+      ],
+      "question_type": "正定性判断",
+      "method": [
+        "应用分块矩阵正定判据"
+      ],
+      "solution_steps": [
+        "分别判断A、B正定性",
+        "应用(3)结论得出结论"
+      ],
+      "math_structure": {
+        "type": "block_diagonal_positive_definite_application",
+        "template": "利用A,B均正定判断分块对角矩阵的正定性",
+        "variable_count": 0
+      },
+      "difficulty": 1,
+      "estimated_minutes": 4,
+      "answer": [
+        {
+          "label": "结果",
+          "steps": [
+            "$A=\\mathrm{diag}(2,3)$ 特征值均为正，故 $A$ 正定；同理 $B=\\mathrm{diag}(1,5)$ 正定",
+            "由问题(3)的结论，$A,B$ 均正定是 $\\mathrm{diag}(A,B)$ 正定的充要条件",
+            "故 $\\begin{pmatrix}A&O\\\\O&B\\end{pmatrix}=\\mathrm{diag}(2,3,1,5)$ 正定（对角元全正即可直接验证）"
+          ]
+        }
+      ],
+      "id": "tohoku-2023-469b59f929-q04-practice-03",
+      "school": "东北大学",
+      "year": "2023"
+    },
+    {
+      "text": "设 $B=\\begin{pmatrix}2&0\\\\0&2\\end{pmatrix}$，$A=\\begin{pmatrix}1&0\\\\0&1\\end{pmatrix}$。判断 $\\begin{pmatrix}A&I\\\\I&B\\end{pmatrix}$ 是否正定，需利用问题(4)的判据。",
+      "knowledge_points": [
+        "Schur补判据",
+        "逆矩阵计算"
+      ],
+      "question_type": "正定性判断",
+      "method": [
+        "计算 $A-B^{-1}$ 并判断其正定性"
+      ],
+      "solution_steps": [
+        "求 $B^{-1}$",
+        "计算 $A-B^{-1}$",
+        "判断正定性"
+      ],
+      "math_structure": {
+        "type": "schur_complement_application",
+        "template": "利用 $A-B^{-1}$ 正定性判断分块矩阵 $\\begin{pmatrix}A&I\\\\I&B\\end{pmatrix}$ 是否正定",
+        "variable_count": 0
+      },
+      "difficulty": 2,
+      "estimated_minutes": 6,
+      "answer": [
+        {
+          "label": "结果",
+          "steps": [
+            "$B^{-1}=\\begin{pmatrix}1/2&0\\\\0&1/2\\end{pmatrix}$",
+            "$A-B^{-1}=\\begin{pmatrix}1-1/2&0\\\\0&1-1/2\\end{pmatrix}=\\begin{pmatrix}1/2&0\\\\0&1/2\\end{pmatrix}$，其特征值均为 $1/2>0$，故 $A-B^{-1}$ 正定",
+            "由问题(4)的判据，$B$ 已正定且 $A-B^{-1}$ 正定，故 $\\begin{pmatrix}A&I\\\\I&B\\end{pmatrix}$ 正定"
+          ]
+        }
+      ],
+      "id": "tohoku-2023-469b59f929-q04-practice-04",
+      "school": "东北大学",
+      "year": "2023"
+    }
+  ],
+  "source_question": "問4",
+  "source_pdf": "东北大学/情报科学研究科/数学教室/东北大学_情报科学研究科_数学_2023_数学过去问.pdf",
+  "source_type": "官方过去问",
+  "subject_category": "线性代数"
+}

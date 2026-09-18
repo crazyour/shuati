@@ -1,0 +1,221 @@
+{
+  "id": "nagoya-2002-70eece48bf-q02",
+  "school": "名古屋大学",
+  "year": "2002",
+  "subject": "多元数理科学研究科_全专攻",
+  "text": "设实数 $a$，考虑 $\\mathbb{R}^3$ 中的曲面\n$$S_a=\\{(x,y,z)\\in\\mathbb{R}^3: f_a(x,y,z)=3a+3\\}$$\n其中\n$$f_a(x,y,z)=(x\\ y\\ z)\\begin{pmatrix}a+1&a&a\\\\a&a+1&a\\\\a&a&a+1\\end{pmatrix}\\begin{pmatrix}x\\\\y\\\\z\\end{pmatrix}=(a+1)(x^2+y^2+z^2)+2a(xy+yz+zx)$$\n回答以下问题：\n(1) 求矩阵 $\\begin{pmatrix}a+1&a&a\\\\a&a+1&a\\\\a&a&a+1\\end{pmatrix}$ 的特征值。\n(2) 求一个满足以下条件(*)的3阶正交矩阵 $P$：\n(*) 通过坐标变换 $(X\\ Y\\ Z)=(x\\ y\\ z)P$，曲面 $S_a$ 的方程变为 $AX^2+BY^2+CZ^2=3a+3$（$A,B,C$为实常数）的形式。\n(3) 求曲面 $S_a$ 连通的充要条件（用$a$表示）。\n(4) 求曲面 $S_a$ 紧致的充要条件（用$a$表示）。",
+  "knowledge_points": [
+    "实对称矩阵特征值",
+    "正交对角化",
+    "二次型标准化",
+    "二次曲面分类",
+    "连通性",
+    "紧致性"
+  ],
+  "question_type": "对称矩阵特征值与二次曲面分类",
+  "method": [
+    "将矩阵写成I+aJ的形式利用全1矩阵J的特征值",
+    "求正交特征向量构造正交矩阵P",
+    "按特征值符号讨论二次曲面类型（椭球/双曲面/柱面/锥面）"
+  ],
+  "solution_steps": [
+    "观察到矩阵可写成 A=I+aJ，J为3×3全1矩阵",
+    "求J的特征值（3和0，0是2重）从而得A的特征值",
+    "构造对应的标准正交特征向量组成P",
+    "写出标准化后的二次曲面方程AX^2+BY^2+CZ^2=3a+3",
+    "按系数符号与右端值分类讨论椭球、柱面、单叶/双叶双曲面、锥面，判断连通性与紧致性"
+  ],
+  "math_structure": {
+    "type": "quadratic_form_diagonalization_surface",
+    "template": "对称矩阵A=I+aJ(J为全1矩阵)，考虑二次曲面x^TAx=3a+3，求特征值、正交对角化矩阵P，并讨论S_a连通/紧致的充要条件",
+    "variable_count": 1
+  },
+  "difficulty": 4,
+  "answer": [
+    {
+      "label": "(1)",
+      "steps": [
+        "记 $A=I+aJ$，其中 $J=\\begin{pmatrix}1&1&1\\\\1&1&1\\\\1&1&1\\end{pmatrix}$（全1矩阵），因为对角元 $a+1=1+a\\cdot1$，非对角元 $a=1\\cdot a$，验证 $A=I+aJ$ 成立。",
+        "全1矩阵J的特征值：J的秩为1，特征值为3（对应特征向量(1,1,1)）和0（二重，对应与(1,1,1)正交的平面）。",
+        "由 $A=I+aJ$，特征值为 $1+a\\lambda_J$：对应 $\\lambda_J=3$ 得 $1+3a$（单重）；对应 $\\lambda_J=0$ 得 $1$（二重）。"
+      ]
+    },
+    {
+      "label": "(2)",
+      "steps": [
+        "取特征值 $1+3a$ 的单位特征向量 $v_1=\\frac{1}{\\sqrt3}(1,1,1)^T$。",
+        "在与 $v_1$ 正交的平面内取两个正交单位向量作为特征值1的特征向量，例如 $v_2=\\frac{1}{\\sqrt2}(1,-1,0)^T$, $v_3=\\frac{1}{\\sqrt6}(1,1,-2)^T$（可验证$v_2,v_3$与$v_1$及彼此正交，且均满足$Av_i=v_i$）。",
+        "令 $P=(v_1\\ v_2\\ v_3)=\\begin{pmatrix}1/\\sqrt3&1/\\sqrt2&1/\\sqrt6\\\\1/\\sqrt3&-1/\\sqrt2&1/\\sqrt6\\\\1/\\sqrt3&0&-2/\\sqrt6\\end{pmatrix}$，则P是正交矩阵，且坐标变换 $(X,Y,Z)=(x,y,z)P$ 下，$f_a=(1+3a)X^2+Y^2+Z^2$，即$A=1+3a,B=1,C=1$。"
+      ]
+    },
+    {
+      "label": "(3)",
+      "steps": [
+        "曲面方程化为 $(1+3a)X^2+Y^2+Z^2=3(a+1)$。分情形讨论：",
+        "当 $a>-1/3$：$1+3a>0$，右端 $3(a+1)>0$（因$a>-1/3>-1$），方程为椭球面，是连通的紧致曲面。当$a=-1/3$：方程化为$Y^2+Z^2=3(2/3)=2$，为以X轴为轴的圆柱面，连通但非紧。当$-1<a<-1/3$：$1+3a<0,3(a+1)>0$，为单叶双曲面，连通。当$a=-1$：方程化为$(1+3a)X^2+Y^2+Z^2=0$即$-2X^2+Y^2+Z^2=0$，为二次锥面，锥面本身通过原点连通两支，是连通的（非紧）。当$a<-1$：$1+3a<0,3(a+1)<0$，方程等价于$|1+3a|X^2-(Y^2+Z^2)=|3(a+1)|>0$，为双叶双曲面，两支不连通。",
+        "综上，$S_a$连通 $\\iff a\\ge -1$。"
+      ]
+    },
+    {
+      "label": "(4)",
+      "steps": [
+        "紧致性要求曲面有界。由(3)的分类：椭球面（$a>-1/3$）有界，是紧致的；圆柱面（$a=-1/3$）、单叶双曲面（$-1<a<-1/3$）、锥面（$a=-1$）、双叶双曲面（$a<-1$）均沿某方向无界，非紧。",
+        "验证边界情形：当$a=-1/3$时为圆柱，$X$方向无限延伸，非紧；当$a\\to-1/3^+$连续过渡到椭球，说明$a=-1/3$恰是紧致性的分界点，且该点本身不紧。",
+        "综上，$S_a$紧致 $\\iff a>-\\dfrac{1}{3}$。"
+      ]
+    }
+  ],
+  "practice_questions": [
+    {
+      "text": "求 $3\\times3$ 全1矩阵 $J=\\begin{pmatrix}1&1&1\\\\1&1&1\\\\1&1&1\\end{pmatrix}$ 的所有特征值及对应特征子空间的维数。",
+      "knowledge_points": [
+        "秩1矩阵特征值",
+        "特征子空间"
+      ],
+      "question_type": "计算题",
+      "method": [
+        "利用秩1矩阵性质",
+        "求trace与rank确定特征值"
+      ],
+      "solution_steps": [
+        "计算rank J=1",
+        "计算trace J=3",
+        "得出特征值0(2重)与3(1重)"
+      ],
+      "math_structure": {
+        "type": "all_ones_matrix_eigenvalues",
+        "template": "求n×n全1矩阵的特征值",
+        "variable_count": 1
+      },
+      "difficulty": 1,
+      "estimated_minutes": 4,
+      "answer": [
+        {
+          "label": "求解",
+          "steps": [
+            "J的秩为1（所有行相同），故0是特征值，几何重数=3-1=2。",
+            "tr J=3=0+0+λ，得第三个特征值λ=3。",
+            "验证：(1,1,1)^T是特征值3的特征向量，因为J(1,1,1)^T=(3,3,3)^T=3(1,1,1)^T，与(1,1,1)^T正交的向量如(1,-1,0)^T满足J(1,-1,0)^T=(0,0,0)^T，验证特征值0成立。"
+          ]
+        }
+      ],
+      "id": "nagoya-2002-70eece48bf-q02-practice-01",
+      "school": "名古屋大学",
+      "year": "2002"
+    },
+    {
+      "text": "考虑矩阵 $B=\\begin{pmatrix}4&3&3\\\\3&4&3\\\\3&3&4\\end{pmatrix}=I+3J$（对应$a=3$的情形）。求B的特征值及对角化后的二次型。",
+      "knowledge_points": [
+        "I+aJ型矩阵特征值",
+        "正交对角化"
+      ],
+      "question_type": "计算题",
+      "method": [
+        "套用A=I+aJ特征值公式"
+      ],
+      "solution_steps": [
+        "代入a=3计算特征值",
+        "写出对角化后二次型"
+      ],
+      "math_structure": {
+        "type": "specific_case_eigenvalue_computation",
+        "template": "计算A=I+aJ在a=3时的特征值",
+        "variable_count": 1
+      },
+      "difficulty": 2,
+      "estimated_minutes": 5,
+      "answer": [
+        {
+          "label": "求解",
+          "steps": [
+            "由A=I+aJ的特征值公式：1+3a(单重)对应a=3得1+9=10；1(二重)。",
+            "故B的特征值为10,1,1。",
+            "对角化后二次型为 $10X^2+Y^2+Z^2$，与原二次型$x^TBx=4(x^2+y^2+z^2)+6(xy+yz+zx)$等价（可用同样的正交向量v1,v2,v3验证）。"
+          ]
+        }
+      ],
+      "id": "nagoya-2002-70eece48bf-q02-practice-02",
+      "school": "名古屋大学",
+      "year": "2002"
+    },
+    {
+      "text": "对二次型 $2x^2+2y^2+2z^2+2xy+2yz+2zx$，求其对应对称矩阵，并求一组正交矩阵$P$将其对角化。",
+      "knowledge_points": [
+        "二次型标准化",
+        "正交对角化"
+      ],
+      "question_type": "计算题",
+      "method": [
+        "写出对称矩阵",
+        "识别为I+aJ形式并求特征值和特征向量"
+      ],
+      "solution_steps": [
+        "写出对称矩阵",
+        "识别a的值",
+        "求特征值和P"
+      ],
+      "math_structure": {
+        "type": "quadratic_form_orthogonal_diagonalization_specific",
+        "template": "对给定二次型求对称矩阵并正交对角化",
+        "variable_count": 0
+      },
+      "difficulty": 3,
+      "estimated_minutes": 8,
+      "answer": [
+        {
+          "label": "求解",
+          "steps": [
+            "二次型对应对称矩阵为 $M=\\begin{pmatrix}2&1&1\\\\1&2&1\\\\1&1&2\\end{pmatrix}=I+J$，即对应$a=1$的情形。",
+            "由公式，特征值为$1+3(1)=4$（单重，特征向量(1,1,1)/√3）和1（二重）。",
+            "取$P$同原题构造：$P=\\begin{pmatrix}1/\\sqrt3&1/\\sqrt2&1/\\sqrt6\\\\1/\\sqrt3&-1/\\sqrt2&1/\\sqrt6\\\\1/\\sqrt3&0&-2/\\sqrt6\\end{pmatrix}$，则对角化后二次型为$4X^2+Y^2+Z^2$。"
+          ]
+        }
+      ],
+      "id": "nagoya-2002-70eece48bf-q02-practice-03",
+      "school": "名古屋大学",
+      "year": "2002"
+    },
+    {
+      "text": "设 $t$ 为实数，考虑曲面 $tx^2+y^2+z^2=5$。讨论其连通性与紧致性随$t$变化的情况。",
+      "knowledge_points": [
+        "二次曲面分类",
+        "连通性",
+        "紧致性"
+      ],
+      "question_type": "分类讨论题",
+      "method": [
+        "按系数符号分类讨论椭球/双曲面/柱面"
+      ],
+      "solution_steps": [
+        "t>0情形：椭球，紧致连通",
+        "t=0情形：柱面，连通非紧",
+        "t<0情形：单叶双曲面，连通非紧"
+      ],
+      "math_structure": {
+        "type": "quadric_connectivity_compactness_classification",
+        "template": "讨论tx^2+y^2+z^2=c的连通性与紧致性",
+        "variable_count": 1
+      },
+      "difficulty": 2,
+      "estimated_minutes": 7,
+      "answer": [
+        {
+          "label": "求解",
+          "steps": [
+            "当$t>0$：方程为椭球面$\\frac{x^2}{5/t}+\\frac{y^2}{5}+\\frac{z^2}{5}=1$，有界闭集，紧致且连通。",
+            "当$t=0$：方程化为$y^2+z^2=5$，为以x轴为轴的圆柱面，x方向无界，非紧但连通（柱面是道路连通的）。",
+            "当$t<0$：方程为单叶双曲面$-|t|x^2+y^2+z^2=5$，此曲面是连通的（单叶双曲面拓扑上是连通的环面状曲面），但沿x方向无界，非紧。",
+            "结论：曲面对所有实数t都连通；紧致当且仅当$t>0$。"
+          ]
+        }
+      ],
+      "id": "nagoya-2002-70eece48bf-q02-practice-04",
+      "school": "名古屋大学",
+      "year": "2002"
+    }
+  ],
+  "source_question": "問6",
+  "source_pdf": "名古屋大学/多元数理科学研究科/全专攻/名古屋大学_多元数理科学研究科_2002_第1次_数学过去问_下午.pdf",
+  "source_type": "官方过去问",
+  "subject_category": "线性代数"
+}

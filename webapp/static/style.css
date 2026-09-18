@@ -604,12 +604,98 @@ footer {
   white-space: pre-wrap;
 }
 
+.browse-practice {
+  margin-top: 14px;
+  padding-top: 12px;
+  border-top: 1px dashed var(--line);
+  font-size: 14px;
+}
+
+.browse-practice > summary {
+  cursor: pointer;
+  color: var(--accent);
+  font-weight: 600;
+  list-style: none;
+  user-select: none;
+}
+
+.browse-practice > summary::-webkit-details-marker { display: none; }
+.browse-practice > summary::before { content: "▸ "; color: var(--ink-soft); }
+.browse-practice[open] > summary::before { content: "▾ "; }
+
+.browse-practice-card {
+  margin-top: 12px;
+  padding: 12px 14px;
+  border: 1px solid var(--line);
+  border-radius: 8px;
+  background: rgba(47, 111, 235, .025);
+  overflow: hidden;
+}
+
+.browse-practice-head {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: 12px;
+  margin-bottom: 8px;
+}
+
+.browse-practice-head span { color: var(--ink-soft); font-size: 12px; }
+.browse-practice-card .katex-display { overflow-x: auto; overflow-y: hidden; }
+
 @media (max-width: 720px) {
   .browse-layout { grid-template-columns: 1fr; }
-  .browse-sidebar { position: static; }
+  .browse-sidebar {
+    position: static;
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 10px;
+    padding: 12px;
+    margin-bottom: 0;
+  }
+  .browse-sidebar .field { min-width: 0; margin-bottom: 0; }
+  .browse-summary { width: 100%; margin-left: 0; flex-wrap: wrap; }
+  .browse-card { padding: 13px 14px; overflow: hidden; }
+  .browse-card-head { align-items: flex-start; flex-direction: column; gap: 3px; }
+  .browse-card-id { max-width: 100%; overflow-wrap: anywhere; }
+  .browse-answer-part { padding: 10px 11px; }
+  .browse-answer-steps { padding-left: 20px; }
+  .browse-card .katex-display,
+  .browse-answer .katex-display,
+  .browse-practice .katex-display,
+  .similar-result .katex-display {
+    max-width: 100%;
+    overflow-x: auto;
+    overflow-y: hidden;
+    -webkit-overflow-scrolling: touch;
+  }
+}
+
+@media (max-width: 520px) {
+  body { padding: 16px 10px 40px; font-size: 14px; }
+  header { margin-bottom: 14px; }
+  h1 { font-size: 21px; }
+  .browse-sidebar { grid-template-columns: 1fr; }
+  .browse-controls { padding: 12px; margin-bottom: 0; }
+  .browse-card { border-radius: 8px; line-height: 1.75; }
+  .similar-button, .jump-button { min-height: 38px; padding: 8px 12px; }
+  .similar-drawer {
+    width: 100vw;
+    height: 100dvh;
+    padding: 16px 12px calc(20px + env(safe-area-inset-bottom));
+    border-left: 0;
+  }
+  .drawer-close { min-width: 44px; min-height: 44px; }
+  .drawer-threshold { display: flex; align-items: center; flex-wrap: wrap; gap: 6px; }
+  .drawer-threshold input { margin: 0; }
+  .similar-results { padding-left: 0; list-style: none; }
+  .similar-result { padding: 12px; overflow: hidden; }
+  .similar-result-head { flex-direction: column; gap: 2px; }
+  .browse-practice-head { flex-direction: column; gap: 2px; }
 }
 
 @media (prefers-color-scheme: dark) {
   .browse-school:hover { background: rgba(107, 155, 255, .12); }
   .browse-answer-part { background: rgba(107, 155, 255, .08); }
+  .browse-practice-card { background: rgba(107, 155, 255, .05); }
 }

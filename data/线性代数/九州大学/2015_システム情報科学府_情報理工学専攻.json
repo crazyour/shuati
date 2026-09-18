@@ -56,5 +56,121 @@
         "由前两问，$\\sigma _u^{2}=u^{\\mathsf T}B^{\\mathsf T}Bu=\\lVert Bu\\rVert^{2}$，故 $\\sigma _u=\\lVert Bu\\rVert$。于是 $\\sigma _{u+v}=\\lVert B(u+v)\\rVert\\le \\lVert Bu\\rVert+\\lVert Bv\\rVert=\\sigma _u+\\sigma _v$。"
       ]
     }
+  ],
+  "practice_questions": [
+    {
+      "id": "kyushu-2015-ist-la-practice-01",
+      "school": "九州大学",
+      "year": "2015",
+      "text": "在 $\\mathbb{R}^2$ 中取 $x_1=(1,0)^{\\mathsf T}$、$x_2=(1,1)^{\\mathsf T}$，令 $A=x_1x_1^{\\mathsf T}+x_2x_2^{\\mathsf T}$。求 $A$，并验证对任意 $u=(a,b)^{\\mathsf T}$，$u^{\\mathsf T}Au=(u^{\\mathsf T}x_1)^2+(u^{\\mathsf T}x_2)^2$。",
+      "knowledge_points": [
+        "外积",
+        "二次型",
+        "半正定矩阵"
+      ],
+      "question_type": "计算外积和并验证恒等式",
+      "method": [
+        "计算向量外积",
+        "展开二次型"
+      ],
+      "solution_steps": [
+        "分别计算两个外积",
+        "相加得到矩阵",
+        "从等式两边分别展开并比较"
+      ],
+      "math_structure": {
+        "type": "outer_product_quadratic_form",
+        "template": "$A=\\sum_ix_ix_i^{\\mathsf T}$，$u^{\\mathsf T}Au=\\sum_i(u^{\\mathsf T}x_i)^2$",
+        "variable_count": 2
+      },
+      "difficulty": 1,
+      "estimated_minutes": 5,
+      "answer": [
+        {
+          "label": "计算并验证",
+          "steps": [
+            "$x_1x_1^{\\mathsf T}=\\begin{pmatrix}1&0\\\\0&0\\end{pmatrix}$，$x_2x_2^{\\mathsf T}=\\begin{pmatrix}1&1\\\\1&1\\end{pmatrix}$，所以 $A=\\begin{pmatrix}2&1\\\\1&1\\end{pmatrix}$。",
+            "$u^{\\mathsf T}Au=2a^2+2ab+b^2$。",
+            "另一方面，$(u^{\\mathsf T}x_1)^2+(u^{\\mathsf T}x_2)^2=a^2+(a+b)^2=2a^2+2ab+b^2$，两边相等。"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "kyushu-2015-ist-la-practice-02",
+      "school": "九州大学",
+      "year": "2015",
+      "text": "设 $A=\\sum_{i=1}^kx_ix_i^{\\mathsf T}$。证明 $$\\ker(A)=\\{u\\in\\mathbb{R}^N:u^{\\mathsf T}x_i=0\\text{ 对所有 }i\\}.$$",
+      "knowledge_points": [
+        "核空间",
+        "正交补",
+        "半正定矩阵"
+      ],
+      "question_type": "刻画外积和的核",
+      "method": [
+        "二次型恒等式",
+        "平方和为零"
+      ],
+      "solution_steps": [
+        "先由 $Au=0$ 推出 $u^{\\mathsf T}Au=0$",
+        "利用平方和为零推出每个内积为零",
+        "证明反向包含关系"
+      ],
+      "math_structure": {
+        "type": "kernel_of_gram_sum",
+        "template": "$\\ker(\\sum_ix_ix_i^{\\mathsf T})=(\\operatorname{span}\\{x_i\\})^\\perp$",
+        "variable_count": 1
+      },
+      "difficulty": 3,
+      "estimated_minutes": 10,
+      "answer": [
+        {
+          "label": "证明核空间等式",
+          "steps": [
+            "若 $Au=0$，则 $0=u^{\\mathsf T}Au=\\sum_i(u^{\\mathsf T}x_i)^2$。每一项均非负，故 $u^{\\mathsf T}x_i=0$ 对所有 $i$ 成立。",
+            "反之，若 $u^{\\mathsf T}x_i=0$ 对所有 $i$ 成立，则 $Au=\\sum_ix_i(x_i^{\\mathsf T}u)=0$，所以 $u\\in\\ker(A)$。",
+            "因此两集合相等，也即 $\\ker(A)=(\\operatorname{span}\\{x_1,\\ldots,x_k\\})^\\perp$。"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "kyushu-2015-ist-la-practice-03",
+      "school": "九州大学",
+      "year": "2015",
+      "text": "设 $A=\\begin{pmatrix}4&0\\\\0&9\\end{pmatrix}$。构造实矩阵 $B$ 使 $A=B^{\\mathsf T}B$，并利用 $\\sigma_u=\\sqrt{u^{\\mathsf T}Au}$ 证明 $\\sigma_{u+v}\\le\\sigma_u+\\sigma_v$。",
+      "knowledge_points": [
+        "矩阵平方根",
+        "欧几里得范数",
+        "三角不等式"
+      ],
+      "question_type": "用矩阵分解证明半范数三角不等式",
+      "method": [
+        "构造平方根矩阵",
+        "转化为欧几里得范数"
+      ],
+      "solution_steps": [
+        "选择满足 $B^{\\mathsf T}B=A$ 的对角矩阵",
+        "证明 $\\sigma_u=\\lVert Bu\\rVert_2$",
+        "应用范数三角不等式"
+      ],
+      "math_structure": {
+        "type": "matrix_square_root_triangle",
+        "template": "$A=B^{\\mathsf T}B$，$\\sigma_u=\\lVert Bu\\rVert_2$",
+        "variable_count": 2
+      },
+      "difficulty": 3,
+      "estimated_minutes": 10,
+      "answer": [
+        {
+          "label": "构造并证明",
+          "steps": [
+            "可取 $B=\\begin{pmatrix}2&0\\\\0&3\\end{pmatrix}$，显然 $B^{\\mathsf T}B=A$。",
+            "对任意 $u$，$\\sigma_u^2=u^{\\mathsf T}Au=u^{\\mathsf T}B^{\\mathsf T}Bu=\\lVert Bu\\rVert_2^2$，所以 $\\sigma_u=\\lVert Bu\\rVert_2$。",
+            "于是 $$\\sigma_{u+v}=\\lVert B(u+v)\\rVert_2\\le\\lVert Bu\\rVert_2+\\lVert Bv\\rVert_2=\\sigma_u+\\sigma_v.$$ "
+          ]
+        }
+      ]
+    }
   ]
 }

@@ -1,0 +1,239 @@
+{
+  "id": "osaka-2019-e184f0090b-q03",
+  "school": "大阪大学",
+  "year": "2019",
+  "subject": "情报科学研究科_情报基础数学",
+  "text": "设 $A$ 为二阶方阵 $A=\\begin{pmatrix}1&-1\\\\3&-2\\end{pmatrix}$。\n(1) 求 $A^7$。\n(2) 记向量 $v\\in\\mathbf{R}^2$ 的长度为 $|v|=\\sqrt{v_1^2+v_2^2}$，求 $\\displaystyle\\max_{v\\neq0}\\frac{|Av|^2}{|v|^2}$。",
+  "knowledge_points": [
+    "特征多项式",
+    "Cayley-Hamilton定理",
+    "矩阵的幂",
+    "单位根",
+    "对称矩阵$A^TA$的特征值",
+    "二次型的最大值(算子范数/奇异值)"
+  ],
+  "question_type": "矩阵幂与算子范数计算",
+  "method": [
+    "求特征多项式判断A的特征值为原始三次单位根，进而证明A³=I",
+    "利用A³=I及7=3×2+1化简A^7",
+    "构造A^TA，求其最大特征值即为所求最大值"
+  ],
+  "solution_steps": [
+    "(1) 求特征多项式λ²+λ+1=0；用Cayley-Hamilton证明A³=I；结合7=3·2+1得A^7=A",
+    "(2) 计算A^TA，求其特征多项式并取最大特征值"
+  ],
+  "math_structure": {
+    "type": "matrix_power_and_operator_norm",
+    "template": "给定2×2矩阵A，特征多项式λ²+λ+1=0（λ³=1），求A^n及max|Av|²/|v|²",
+    "variable_count": 0
+  },
+  "difficulty": 3,
+  "answer": [
+    {
+      "label": "(1) A^7",
+      "steps": [
+        "计算迹与行列式：$\\mathrm{tr}A=1+(-2)=-1$，$\\det A=1\\cdot(-2)-(-1)\\cdot3=-2+3=1$。特征多项式为$\\lambda^2-(\\mathrm{tr}A)\\lambda+\\det A=\\lambda^2+\\lambda+1$。",
+        "由Cayley-Hamilton定理，$A^2+A+I=0$，从而$A^3-I=(A-I)(A^2+A+I)=0$，即$A^3=I$。（直接验证：$A^2=\\begin{pmatrix}-2&1\\\\-3&1\\end{pmatrix}$，$A^3=A^2A=\\begin{pmatrix}1&0\\\\0&1\\end{pmatrix}=I$，两种方法一致。）",
+        "由$7=3\\times2+1$，得$A^7=(A^3)^2A=I^2A=A=\\begin{pmatrix}1&-1\\\\3&-2\\end{pmatrix}$。"
+      ]
+    },
+    {
+      "label": "(2) max|Av|²/|v|²",
+      "steps": [
+        "$|Av|^2=v^TA^TAv$为v的二次型，$\\max_{v\\neq0}|Av|^2/|v|^2$等于对称矩阵$A^TA$的最大特征值（瑞利商的性质）。",
+        "计算$A^T=\\begin{pmatrix}1&3\\\\-1&-2\\end{pmatrix}$，故$A^TA=\\begin{pmatrix}1&3\\\\-1&-2\\end{pmatrix}\\begin{pmatrix}1&-1\\\\3&-2\\end{pmatrix}=\\begin{pmatrix}10&-7\\\\-7&5\\end{pmatrix}$。",
+        "求$A^TA$的特征值：$\\mathrm{tr}(A^TA)=15$，$\\det(A^TA)=(\\det A)^2=1$，特征多项式$\\mu^2-15\\mu+1=0$，解得$\\mu=\\dfrac{15\\pm\\sqrt{221}}{2}$。取较大根，即最大值为$\\dfrac{15+\\sqrt{221}}{2}$。"
+      ]
+    }
+  ],
+  "practice_questions": [
+    {
+      "text": "求矩阵 $B=\\begin{pmatrix}0&-1\\\\1&0\\end{pmatrix}$ 的特征多项式，并求 $B^4$。",
+      "knowledge_points": [
+        "特征多项式",
+        "Cayley-Hamilton定理",
+        "矩阵的幂"
+      ],
+      "question_type": "矩阵幂基础计算",
+      "method": [
+        "求特征多项式后用Cayley-Hamilton化简幂"
+      ],
+      "solution_steps": [
+        "求trace,det得特征多项式λ²+1=0，用C-H得B²=-I，从而B⁴=I"
+      ],
+      "math_structure": {
+        "type": "matrix_power_basic",
+        "template": "2×2矩阵满足λ²+1=0，求B^4",
+        "variable_count": 0
+      },
+      "difficulty": 1,
+      "estimated_minutes": 5,
+      "answer": [
+        {
+          "label": "结果",
+          "steps": [
+            "$\\mathrm{tr}B=0,\\det B=1$，特征多项式为$\\lambda^2+1=0$。",
+            "由Cayley-Hamilton，$B^2+I=0$，即$B^2=-I$。",
+            "$B^4=(B^2)^2=(-I)^2=I$。直接验证：$B^2=\\begin{pmatrix}-1&0\\\\0&-1\\end{pmatrix}=-I$，与结论一致。"
+          ]
+        }
+      ],
+      "id": "osaka-2019-e184f0090b-q03-practice-01",
+      "school": "大阪大学",
+      "year": "2019"
+    },
+    {
+      "text": "求矩阵 $C=\\begin{pmatrix}0&-1\\\\1&-1\\end{pmatrix}$ 的特征值，说明它们是三次单位根，并求 $C^{10}$。",
+      "knowledge_points": [
+        "特征多项式",
+        "单位根",
+        "Cayley-Hamilton定理"
+      ],
+      "question_type": "单位根矩阵幂计算",
+      "method": [
+        "求特征多项式判断C³=I，再化简C^10"
+      ],
+      "solution_steps": [
+        "求特征多项式λ²+λ+1=0，说明其根为原始三次单位根，证明C³=I，用10=9+1化简"
+      ],
+      "math_structure": {
+        "type": "matrix_power_cube_root_unity",
+        "template": "2×2矩阵满足λ²+λ+1=0（C³=I），求C^n",
+        "variable_count": 0
+      },
+      "difficulty": 2,
+      "estimated_minutes": 8,
+      "answer": [
+        {
+          "label": "结果",
+          "steps": [
+            "$\\mathrm{tr}C=-1,\\det C=0\\cdot(-1)-(-1)\\cdot1=1$，特征多项式为$\\lambda^2+\\lambda+1=0$，其根满足$\\lambda^3=1,\\lambda\\neq1$（因$x^3-1=(x-1)(x^2+x+1)$），即为原始三次单位根。",
+            "由Cayley-Hamilton，$C^2+C+I=0$，故$C^3-I=(C-I)(C^2+C+I)=0$，即$C^3=I$。",
+            "由$10=9+1=3\\times3+1$，得$C^{10}=(C^3)^3C=I^3C=C=\\begin{pmatrix}0&-1\\\\1&-1\\end{pmatrix}$。"
+          ]
+        }
+      ],
+      "id": "osaka-2019-e184f0090b-q03-practice-02",
+      "school": "大阪大学",
+      "year": "2019"
+    },
+    {
+      "text": "对角矩阵 $D=\\begin{pmatrix}1&0\\\\0&3\\end{pmatrix}$，求 $\\displaystyle\\max_{v\\neq0}\\frac{|Dv|^2}{|v|^2}$。",
+      "knowledge_points": [
+        "二次型最大值",
+        "对角矩阵的特征值"
+      ],
+      "question_type": "基础算子范数计算",
+      "method": [
+        "直接分析对角矩阵作用下的比值"
+      ],
+      "solution_steps": [
+        "写出|Dv|²/|v|²的表达式，分析其最大值为对角元中较大者的平方"
+      ],
+      "math_structure": {
+        "type": "operator_norm_diagonal",
+        "template": "diag(1,3): max(v1²+9v2²)/(v1²+v2²)",
+        "variable_count": 0
+      },
+      "difficulty": 1,
+      "estimated_minutes": 4,
+      "answer": [
+        {
+          "label": "结果",
+          "steps": [
+            "$|Dv|^2=v_1^2+9v_2^2$，故$\\dfrac{|Dv|^2}{|v|^2}=\\dfrac{v_1^2+9v_2^2}{v_1^2+v_2^2}$。",
+            "此比值是$1$与$9$的加权平均（权重为$v_1^2,v_2^2$），故其最大值为较大的权重系数$9$，在$v_1=0,v_2\\neq0$时取得。",
+            "验算：取$v=(0,1)$，$|Dv|^2/|v|^2=9/1=9$；取$v=(1,0)$得$1$，故最大值确为9。"
+          ]
+        }
+      ],
+      "id": "osaka-2019-e184f0090b-q03-practice-03",
+      "school": "大阪大学",
+      "year": "2019"
+    },
+    {
+      "text": "求矩阵 $E=\\begin{pmatrix}2&1\\\\0&1\\end{pmatrix}$ 的 $E^TE$，并求 $\\displaystyle\\max_{v\\neq0}\\frac{|Ev|^2}{|v|^2}$。",
+      "knowledge_points": [
+        "对称矩阵特征值",
+        "算子范数/最大奇异值平方"
+      ],
+      "question_type": "非对角矩阵算子范数计算",
+      "method": [
+        "计算E^TE并求其最大特征值"
+      ],
+      "solution_steps": [
+        "计算E^T，求E^TE，求特征多项式并取最大根"
+      ],
+      "math_structure": {
+        "type": "operator_norm_via_gram_matrix",
+        "template": "max|Ev|²/|v|²=最大特征值 of E^TE",
+        "variable_count": 0
+      },
+      "difficulty": 2,
+      "estimated_minutes": 6,
+      "answer": [
+        {
+          "label": "结果",
+          "steps": [
+            "$E^T=\\begin{pmatrix}2&0\\\\1&1\\end{pmatrix}$，$E^TE=\\begin{pmatrix}2&0\\\\1&1\\end{pmatrix}\\begin{pmatrix}2&1\\\\0&1\\end{pmatrix}=\\begin{pmatrix}4&2\\\\2&2\\end{pmatrix}$。",
+            "$\\mathrm{tr}(E^TE)=6$，$\\det(E^TE)=(\\det E)^2=(2\\cdot1-1\\cdot0)^2=4$，特征多项式$\\mu^2-6\\mu+4=0$，解得$\\mu=3\\pm\\sqrt5$。",
+            "取较大根，最大值为$3+\\sqrt5$。验算：$3+\\sqrt5\\approx5.24$，与E的元素大小(含2,1)量级相符，合理。"
+          ]
+        }
+      ],
+      "id": "osaka-2019-e184f0090b-q03-practice-04",
+      "school": "大阪大学",
+      "year": "2019"
+    },
+    {
+      "text": "设矩阵 $F=\\begin{pmatrix}1&1\\\\-2&-1\\end{pmatrix}$，求 $F^7$ 及 $\\displaystyle\\max_{v\\neq0}\\frac{|Fv|^2}{|v|^2}$。",
+      "knowledge_points": [
+        "特征多项式",
+        "Cayley-Hamilton定理",
+        "矩阵幂",
+        "对称矩阵最大特征值"
+      ],
+      "question_type": "综合矩阵幂与算子范数计算",
+      "method": [
+        "求特征多项式判断F²=-I简化F^7",
+        "计算F^TF求最大特征值"
+      ],
+      "solution_steps": [
+        "求特征多项式λ²+1=0，得F²=-I，化简F^7=-F",
+        "计算F^TF并求其最大特征值"
+      ],
+      "math_structure": {
+        "type": "matrix_power_and_operator_norm",
+        "template": "2×2矩阵F满足λ²+1=0，求F^7及max|Fv|²/|v|²",
+        "variable_count": 0
+      },
+      "difficulty": 3,
+      "estimated_minutes": 10,
+      "answer": [
+        {
+          "label": "F^7",
+          "steps": [
+            "$\\mathrm{tr}F=1+(-1)=0$，$\\det F=1\\cdot(-1)-1\\cdot(-2)=-1+2=1$，特征多项式为$\\lambda^2+1=0$。",
+            "由Cayley-Hamilton，$F^2+I=0$，即$F^2=-I$；从而$F^4=(F^2)^2=I$。",
+            "$F^7=F^4\\cdot F^2\\cdot F=I\\cdot(-I)\\cdot F=-F=\\begin{pmatrix}-1&-1\\\\2&1\\end{pmatrix}$。"
+          ]
+        },
+        {
+          "label": "max|Fv|²/|v|²",
+          "steps": [
+            "$F^T=\\begin{pmatrix}1&-2\\\\1&-1\\end{pmatrix}$，$F^TF=\\begin{pmatrix}1&-2\\\\1&-1\\end{pmatrix}\\begin{pmatrix}1&1\\\\-2&-1\\end{pmatrix}=\\begin{pmatrix}5&3\\\\3&2\\end{pmatrix}$。",
+            "$\\mathrm{tr}(F^TF)=7$，$\\det(F^TF)=(\\det F)^2=1$，特征多项式$\\mu^2-7\\mu+1=0$，解得$\\mu=\\dfrac{7\\pm\\sqrt{45}}{2}=\\dfrac{7\\pm3\\sqrt5}{2}$。",
+            "取较大根，最大值为$\\dfrac{7+3\\sqrt5}{2}$。验算：数值约为$(7+6.7)/2\\approx6.85$，与矩阵元素量级相符。"
+          ]
+        }
+      ],
+      "id": "osaka-2019-e184f0090b-q03-practice-05",
+      "school": "大阪大学",
+      "year": "2019"
+    }
+  ],
+  "source_question": "問3",
+  "source_pdf": "大阪大学/情报科学研究科/情报基础数学/大阪大学_情报科学研究科_情报基础数学_2019_数学过去问.pdf",
+  "source_type": "官方过去问",
+  "subject_category": "线性代数"
+}

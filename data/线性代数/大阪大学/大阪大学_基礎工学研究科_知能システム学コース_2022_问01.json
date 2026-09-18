@@ -1,0 +1,290 @@
+{
+  "id": "osaka-2022-7424e1347b-q01",
+  "school": "大阪大学",
+  "year": "2022",
+  "subject": "基礎工学研究科_知能システム学コース",
+  "text": "设 $A$ 是秩为 $k$ 的 $m\\times n$ 实矩阵，$m,n,k$ 为正整数且 $m>n\\ge k$。$I_k$ 表示 $k\\times k$ 单位矩阵，$A^T$ 表示 $A$ 的转置。$A^TA$ 恰有 $k$ 个不为 $0$ 的相异特征值，记第 $i$ 个非零特征值为 $\\lambda_i\\ (i=1,\\dots,k)$，对应的单位（长度为 $1$）特征向量记为 $v_i$。回答以下问题：\n\n1) 证明 $A^TA$ 是实对称矩阵且是半正定矩阵。\n\n2) 证明 $\\lambda_i$ 是实数。\n\n3) 对于相异的非零特征值 $\\lambda_i,\\lambda_j\\ (i\\ne j)$，证明对应特征向量的内积 $(v_i,v_j)=0$。\n\n4) 求二次形式 $x^TA^TAx$ 的最大值和最小值，其中 $x$ 是满足 $x^Tx=1$ 的任意 $n\\times 1$ 实向量。\n\n5) 证明 $AA^T$ 的所有非零特征值都是 $A^TA$ 的特征值（反之亦然）。\n\n6) 考虑分解 $A=U\\Sigma V^T$，其中 $\\Sigma$ 是 $k\\times k$ 实对角矩阵，第 $i$ 个对角元素记为 $\\sigma_i$；$U$ 是 $m\\times k$ 矩阵满足 $U^TU=I_k$；$V$ 是 $n\\times k$ 矩阵满足 $V^TV=I_k$。写出 $A$，$\\sigma_i$，$v_i$（以及对应的 $U$ 的列向量 $u_i$）之间的关系。",
+  "knowledge_points": [
+    "实对称矩阵",
+    "半正定矩阵",
+    "特征值与特征向量",
+    "特征向量正交性",
+    "Rayleigh商",
+    "奇异值分解SVD",
+    "AA^T与A^TA的特征值关系"
+  ],
+  "question_type": "矩阵谱理论与SVD综合证明题",
+  "method": [
+    "利用转置性质证明对称性",
+    "利用二次形式非负性证明半正定",
+    "利用复内积证明特征值为实",
+    "利用特征方程做内积消去法证明正交性",
+    "利用Rayleigh商定理求极值",
+    "利用特征向量构造法联系AA^T与A^TA",
+    "利用SVD定义式建立关系"
+  ],
+  "solution_steps": [
+    "证明 $(A^TA)^T=A^TA$ 得到对称性，用 $x^T(A^TA)x=\\|Ax\\|^2\\ge0$ 得到半正定性",
+    "利用共轭转置和 $A$ 为实矩阵，证明特征值为非负实数",
+    "用 $v_i^T A^TA v_j$ 两种方式展开，得 $(\\lambda_i-\\lambda_j)(v_i,v_j)=0$，从而正交",
+    "利用谱分解与Rayleigh商，得最大值为最大特征值，最小值为 $0$（若 $k<n$）或最小特征值（若 $k=n$）",
+    "对 $A^TAv=\\lambda v\\ (\\lambda\\ne0)$ 构造 $u=Av/\\sqrt\\lambda$，验证其为 $AA^T$ 的特征向量，特征值同为 $\\lambda$；反向论证同理",
+    "利用 $Av_i=\\sigma_i u_i$ 且 $\\sigma_i=\\sqrt{\\lambda_i}$，得到 $A=U\\Sigma V^T=\\sum_i \\sigma_i u_iv_i^T$"
+  ],
+  "math_structure": {
+    "type": "svd_and_quadratic_form_analysis",
+    "template": "对 $m\\times n$ 实矩阵 $A$（秩 $k$，$m>n\\ge k$），分析 $A^TA$、$AA^T$ 的谱性质、$x^TA^TAx$ 的极值以及 SVD 分解 $A=U\\Sigma V^T$ 中 $\\sigma_i,v_i,u_i$ 的关系",
+    "variable_count": 3
+  },
+  "difficulty": 4,
+  "answer": [
+    {
+      "label": "1)",
+      "steps": [
+        "转置性质：$(A^TA)^T=A^T(A^T)^T=A^TA$，因此 $A^TA$ 是对称矩阵。",
+        "半正定性：对任意 $x\\in\\mathbb{R}^n$，$x^T(A^TA)x=(Ax)^T(Ax)=\\|Ax\\|^2\\ge0$。",
+        "因此 $A^TA$ 是实对称半正定矩阵，结论得证。"
+      ]
+    },
+    {
+      "label": "2)",
+      "steps": [
+        "设 $\\lambda$ 是 $A^TA$ 的（可能为复数的）特征值，对应特征向量 $v\\ne0$（可能为复向量），即 $A^TAv=\\lambda v$。",
+        "两边左乘 $v^H$（$v$ 的共轭转置）：$v^H A^TA v=\\lambda v^Hv$。因为 $A$ 是实矩阵，$A^T=A^H$，所以左边 $=v^HA^HAv=(Av)^H(Av)=\\|Av\\|^2\\ge0$，是非负实数；右边 $v^Hv=\\|v\\|^2>0$ 是正实数。",
+        "故 $\\lambda=\\dfrac{\\|Av\\|^2}{\\|v\\|^2}$ 是非负实数，即 $\\lambda_i$ 是实数（且与第1)问的半正定性一致，$\\lambda_i\\ge0$）。"
+      ]
+    },
+    {
+      "label": "3)",
+      "steps": [
+        "已知 $A^TAv_i=\\lambda_iv_i$，$A^TAv_j=\\lambda_jv_j$，$\\lambda_i\\ne\\lambda_j$。",
+        "计算 $v_i^T(A^TAv_j)=v_i^T(\\lambda_jv_j)=\\lambda_j(v_i,v_j)$；另一方面 $v_i^T(A^TA)v_j=(A^TAv_i)^Tv_j=(\\lambda_iv_i)^Tv_j=\\lambda_i(v_i,v_j)$（利用 $A^TA$ 对称）。",
+        "两式相等：$\\lambda_i(v_i,v_j)=\\lambda_j(v_i,v_j)$，即 $(\\lambda_i-\\lambda_j)(v_i,v_j)=0$。因为 $\\lambda_i\\ne\\lambda_j$，必有 $(v_i,v_j)=0$。"
+      ]
+    },
+    {
+      "label": "4)",
+      "steps": [
+        "$A^TA$ 是实对称矩阵，其特征值为 $\\lambda_1,\\dots,\\lambda_k>0$ 以及（若 $k<n$）$n-k$ 个特征值为 $0$；对应的单位特征向量构成 $\\mathbb{R}^n$ 的一组正交基（利用第3)问的正交性以及零空间可正交补）。",
+        "对任意满足 $x^Tx=1$ 的 $x$，按此正交基展开 $x=\\sum c_i v_i$（含零特征值部分），则 $x^TA^TAx=\\sum \\lambda_i c_i^2$，且 $\\sum c_i^2=1$，这是关于 $\\{\\lambda_i\\}$（含0）的凸组合。",
+        "因此最大值为 $\\lambda_{\\max}=\\max_i\\lambda_i$，在 $x$ 取对应最大特征值的单位特征向量时取得；最小值：若 $k<n$（存在零特征值，即 $A$ 的列不满秩），最小值为 $0$，在 $x$ 取 $A$ 的核空间中的单位向量时取得；若 $k=n$（$A$ 列满秩），最小值为 $\\lambda_{\\min}=\\min_i\\lambda_i>0$，在对应最小特征值的单位特征向量处取得。"
+      ]
+    },
+    {
+      "label": "5)",
+      "steps": [
+        "设 $\\lambda\\ne0$ 是 $A^TA$ 的特征值，$v$ 是对应的单位特征向量，即 $A^TAv=\\lambda v$。因为 $\\lambda\\ne0$，故 $Av\\ne0$（否则 $A^TAv=0=\\lambda v$ 与 $\\lambda\\ne0,v\\ne0$ 矛盾）。",
+        "令 $u=\\dfrac{Av}{\\sqrt\\lambda}$，则 $AA^Tu=\\dfrac{1}{\\sqrt\\lambda}AA^TAv=\\dfrac{1}{\\sqrt\\lambda}A(A^TAv)=\\dfrac{1}{\\sqrt\\lambda}A(\\lambda v)=\\sqrt\\lambda\\, Av=\\lambda u$，说明 $\\lambda$ 也是 $AA^T$ 的特征值（特征向量为 $u$）。",
+        "对称地，设 $\\mu\\ne0$ 是 $AA^T$ 的特征值，特征向量 $u$，令 $w=A^Tu/\\sqrt\\mu$，同理可证 $A^TAw=\\mu w$，即 $\\mu$ 也是 $A^TA$ 的特征值。结合两方向，$A^TA$ 与 $AA^T$ 的非零特征值集合完全相同（含重数）。"
+      ]
+    },
+    {
+      "label": "6)",
+      "steps": [
+        "由 $A^TAv_i=\\lambda_iv_i$ 及第5)问的构造，令 $u_i=\\dfrac{Av_i}{\\sqrt{\\lambda_i}}\\ (i=1,\\dots,k)$，则 $u_i$ 是 $AA^T$ 对应特征值 $\\lambda_i$ 的单位特征向量，且由第3)问的正交性（应用于 $AA^T$）知 $\\{u_i\\}$ 两两正交，故 $U=[u_1,\\dots,u_k]$ 满足 $U^TU=I_k$。",
+        "定义 $\\sigma_i=\\sqrt{\\lambda_i}>0$（即 $\\Sigma=\\operatorname{diag}(\\sigma_1,\\dots,\\sigma_k)$），则由 $u_i$ 的定义直接得到核心关系 $Av_i=\\sigma_i u_i,\\quad i=1,\\dots,k$。",
+        "将 $V=[v_1,\\dots,v_k]$（满足 $V^TV=I_k$）代入，上式等价于矩阵形式 $AV=U\\Sigma$，两边右乘 $V^T$ 并利用 $V$ 的列张成 $A^TA$ 的非零特征空间（即 $A$ 限制在 $VV^T$ 上不变），得到 $A=U\\Sigma V^T=\\sum_{i=1}^k \\sigma_i u_iv_i^T$，这就是 $A,\\sigma_i,v_i$（及 $u_i$）之间的关系，即 $A$ 的（截断）奇异值分解。"
+      ]
+    }
+  ],
+  "practice_questions": [
+    {
+      "text": "设 $M=\\begin{pmatrix}2&1\\\\1&2\\end{pmatrix}$。证明 $M$ 是实对称半正定矩阵，并求其特征值，验证均为非负实数。",
+      "knowledge_points": [
+        "实对称矩阵",
+        "半正定矩阵",
+        "特征值计算"
+      ],
+      "question_type": "对称矩阵性质验证",
+      "method": [
+        "直接验证对称性",
+        "计算二次形式判别半正定",
+        "求解特征方程"
+      ],
+      "solution_steps": [
+        "验证 $M^T=M$",
+        "对任意 $x$ 计算 $x^TMx$ 并配方判正负",
+        "求特征方程 $\\det(M-\\lambda I)=0$ 的根"
+      ],
+      "math_structure": {
+        "type": "symmetric_matrix_psd_check",
+        "template": "验证给定 $2\\times2$ 对称矩阵的半正定性与特征值",
+        "variable_count": 1
+      },
+      "difficulty": 1,
+      "estimated_minutes": 6,
+      "answer": [
+        {
+          "label": "唯一目标",
+          "steps": [
+            "对称性：$M^T=\\begin{pmatrix}2&1\\\\1&2\\end{pmatrix}=M$，成立。",
+            "半正定性：$x^TMx=2x_1^2+2x_1x_2+2x_2^2=(x_1+x_2)^2+x_1^2+x_2^2\\ge0$，恒非负，故半正定。",
+            "特征值：$\\det(M-\\lambda I)=(2-\\lambda)^2-1=0\\Rightarrow \\lambda=1,3$，均为非负实数，与对称半正定的结论一致。"
+          ]
+        }
+      ],
+      "id": "osaka-2022-7424e1347b-q01-practice-01",
+      "school": "大阪大学",
+      "year": "2022"
+    },
+    {
+      "text": "沿用上题矩阵 $M=\\begin{pmatrix}2&1\\\\1&2\\end{pmatrix}$，其特征值为 $\\lambda_1=3,\\lambda_2=1$。求出对应的单位特征向量 $v_1,v_2$，并验证 $(v_1,v_2)=0$。",
+      "knowledge_points": [
+        "特征向量计算",
+        "特征向量正交性"
+      ],
+      "question_type": "特征向量求解与正交性验证",
+      "method": [
+        "解齐次线性方程组求特征向量",
+        "单位化",
+        "计算内积验证正交"
+      ],
+      "solution_steps": [
+        "对每个特征值解 $(M-\\lambda I)v=0$",
+        "归一化得单位向量",
+        "计算 $v_1^Tv_2$"
+      ],
+      "math_structure": {
+        "type": "eigenvector_orthogonality_check",
+        "template": "求 $2\\times2$ 对称矩阵不同特征值对应的单位特征向量并验证正交性",
+        "variable_count": 1
+      },
+      "difficulty": 2,
+      "estimated_minutes": 7,
+      "answer": [
+        {
+          "label": "唯一目标",
+          "steps": [
+            "对 $\\lambda_1=3$：$(M-3I)v=0\\Rightarrow \\begin{pmatrix}-1&1\\\\1&-1\\end{pmatrix}v=0\\Rightarrow v_1\\propto(1,1)^T$，单位化得 $v_1=\\frac{1}{\\sqrt2}(1,1)^T$。",
+            "对 $\\lambda_2=1$：$(M-I)v=0\\Rightarrow\\begin{pmatrix}1&1\\\\1&1\\end{pmatrix}v=0\\Rightarrow v_2\\propto(1,-1)^T$，单位化得 $v_2=\\frac{1}{\\sqrt2}(1,-1)^T$。",
+            "验证正交：$v_1^Tv_2=\\frac{1}{2}(1\\cdot1+1\\cdot(-1))=0$，正交性成立，与一般定理一致。"
+          ]
+        }
+      ],
+      "id": "osaka-2022-7424e1347b-q01-practice-02",
+      "school": "大阪大学",
+      "year": "2022"
+    },
+    {
+      "text": "设 $A=\\begin{pmatrix}1&1\\\\1&-1\\\\0&1\\end{pmatrix}$（$3\\times2$ 矩阵）。计算 $A^TA$，求其特征值与特征向量，并求二次形式 $x^TA^TAx$（$x^Tx=1$）的最大值和最小值。",
+      "knowledge_points": [
+        "矩阵乘法",
+        "特征值特征向量",
+        "Rayleigh商极值"
+      ],
+      "question_type": "二次形式极值计算",
+      "method": [
+        "直接计算矩阵乘积",
+        "求解特征方程",
+        "利用谱分解得极值"
+      ],
+      "solution_steps": [
+        "计算 $A^TA$",
+        "求特征值和特征向量",
+        "根据是否满秩判断最小值取值"
+      ],
+      "math_structure": {
+        "type": "quadratic_form_extrema_from_ATA",
+        "template": "给定 $m\\times n$ 矩阵 $A$，计算 $A^TA$ 特征值并求 $x^TA^TAx$ 在单位球上的最大最小值",
+        "variable_count": 2
+      },
+      "difficulty": 3,
+      "estimated_minutes": 10,
+      "answer": [
+        {
+          "label": "唯一目标",
+          "steps": [
+            "列向量 $a_1=(1,1,0)^T,a_2=(1,-1,1)^T$，计算 $A^TA=\\begin{pmatrix}a_1\\cdot a_1 & a_1\\cdot a_2\\\\a_2\\cdot a_1& a_2\\cdot a_2\\end{pmatrix}=\\begin{pmatrix}2&0\\\\0&3\\end{pmatrix}$。",
+            "该矩阵已是对角矩阵，特征值为 $\\lambda_1=2$（特征向量 $e_1=(1,0)^T$），$\\lambda_2=3$（特征向量 $e_2=(0,1)^T$），且 $k=n=2$（$A$ 列满秩，因 $a_1,a_2$ 线性无关）。",
+            "由第4)问结论：因为 $k=n$，最大值 $=\\lambda_{\\max}=3$（在 $x=(0,1)^T$ 处取得），最小值 $=\\lambda_{\\min}=2$（在 $x=(1,0)^T$ 处取得）。验证：$x=(1,0)^T$ 时 $x^TA^TAx=2$；$x=(0,1)^T$ 时 $=3$，符合。"
+          ]
+        }
+      ],
+      "id": "osaka-2022-7424e1347b-q01-practice-03",
+      "school": "大阪大学",
+      "year": "2022"
+    },
+    {
+      "text": "沿用上题矩阵 $A=\\begin{pmatrix}1&1\\\\1&-1\\\\0&1\\end{pmatrix}$，其 $A^TA$ 的非零特征值为 $\\{2,3\\}$。计算 $AA^T$（$3\\times3$矩阵），并验证 $\\operatorname{trace}(AA^T)=\\operatorname{trace}(A^TA)$，从而说明 $AA^T$ 的非零特征值也应为 $\\{2,3\\}$（另有一个特征值为 $0$，因为 $\\operatorname{rank}(A)=2<3$）。",
+      "knowledge_points": [
+        "矩阵乘法",
+        "迹的性质",
+        "AA^T与A^TA特征值关系"
+      ],
+      "question_type": "特征值关系验证",
+      "method": [
+        "计算矩阵乘积",
+        "利用迹相等性质做交叉验证",
+        "利用秩确定零特征值个数"
+      ],
+      "solution_steps": [
+        "计算 $AA^T$ 各元素",
+        "计算迹并对比",
+        "结合秩说明零特征值存在"
+      ],
+      "math_structure": {
+        "type": "trace_based_eigenvalue_verification",
+        "template": "给定 $A$，计算 $AA^T$ 并通过迹验证与 $A^TA$ 非零特征值集合一致",
+        "variable_count": 2
+      },
+      "difficulty": 3,
+      "estimated_minutes": 9,
+      "answer": [
+        {
+          "label": "唯一目标",
+          "steps": [
+            "设 $A$ 各行为 $r_1=(1,1),r_2=(1,-1),r_3=(0,1)$，$(AA^T)_{ij}=r_i\\cdot r_j$，计算得 $AA^T=\\begin{pmatrix}2&0&1\\\\0&2&-1\\\\1&-1&1\\end{pmatrix}$。",
+            "计算迹：$\\operatorname{trace}(AA^T)=2+2+1=5$；而 $\\operatorname{trace}(A^TA)=2+3=5$，两者相等（这是因为迹等于所有元素平方和，与 $A^TA$ 一致）。",
+            "由第5)问的一般定理，$AA^T$ 的非零特征值集合与 $A^TA$ 的非零特征值集合相同，即为 $\\{2,3\\}$；又因 $\\operatorname{rank}(A)=2<3=$ 行数，$AA^T$ 必有一个特征值为 $0$，三个特征值之和应为 $2+3+0=5$，与迹吻合，验证一致。"
+          ]
+        }
+      ],
+      "id": "osaka-2022-7424e1347b-q01-practice-04",
+      "school": "大阪大学",
+      "year": "2022"
+    },
+    {
+      "text": "设 $A=\\begin{pmatrix}3&0\\\\0&2\\end{pmatrix}$。写出 $A$ 的奇异值分解 $A=U\\Sigma V^T$，指出 $\\sigma_1,\\sigma_2$ 及 $U,V$，并验证 $Av_i=\\sigma_iu_i$。",
+      "knowledge_points": [
+        "奇异值分解",
+        "对角矩阵的SVD",
+        "SVD关系验证"
+      ],
+      "question_type": "SVD构造与验证",
+      "method": [
+        "利用A^TA对角化直接读出奇异值",
+        "构造U,V",
+        "逐一验证SVD核心关系式"
+      ],
+      "solution_steps": [
+        "计算A^TA判断已是对角形式",
+        "确定奇异值及排序",
+        "验证 $Av_i=\\sigma_iu_i$"
+      ],
+      "math_structure": {
+        "type": "svd_diagonal_matrix_construction",
+        "template": "给定对角矩阵 $A$，直接构造其奇异值分解并验证核心关系",
+        "variable_count": 1
+      },
+      "difficulty": 2,
+      "estimated_minutes": 6,
+      "answer": [
+        {
+          "label": "唯一目标",
+          "steps": [
+            "计算 $A^TA=\\begin{pmatrix}9&0\\\\0&4\\end{pmatrix}$，特征值为 $9,4$，对应单位特征向量 $v_1=(1,0)^T,v_2=(0,1)^T$，故奇异值 $\\sigma_1=\\sqrt9=3,\\sigma_2=\\sqrt4=2$。",
+            "由 $u_i=Av_i/\\sigma_i$ 计算：$Av_1=(3,0)^T\\Rightarrow u_1=(1,0)^T$；$Av_2=(0,2)^T\\Rightarrow u_2=(0,1)^T$。取 $U=I_2,\\ V=I_2,\\ \\Sigma=\\operatorname{diag}(3,2)$。",
+            "验证：$Av_1=(3,0)^T=3\\cdot(1,0)^T=\\sigma_1u_1$，$Av_2=(0,2)^T=2\\cdot(0,1)^T=\\sigma_2u_2$，均成立，故 $A=U\\Sigma V^T=I\\cdot\\operatorname{diag}(3,2)\\cdot I=A$，分解正确。"
+          ]
+        }
+      ],
+      "id": "osaka-2022-7424e1347b-q01-practice-05",
+      "school": "大阪大学",
+      "year": "2022"
+    }
+  ],
+  "source_question": "問2 (1)~6)",
+  "source_pdf": "大阪大学/基礎工学研究科/知能システム学コース/大阪大学_基礎工学研究科_知能システム学コース_2022.pdf",
+  "source_type": "官方过去问",
+  "subject_category": "线性代数"
+}

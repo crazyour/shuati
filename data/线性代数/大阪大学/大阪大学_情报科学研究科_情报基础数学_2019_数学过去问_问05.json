@@ -1,0 +1,232 @@
+{
+  "id": "osaka-2019-e184f0090b-q05",
+  "school": "大阪大学",
+  "year": "2019",
+  "subject": "情报科学研究科_情报基础数学",
+  "text": "设 $V$ 为有限维实向量空间，$f:V\\to V$ 为线性映射，$\\mathrm{id}_V:V\\to V$ 为恒等映射。\n(1) 设 $f^3=\\mathrm{id}_V$。证明：$f$ 在$V$的某个基下可对角化的必要充分条件是 $f=\\mathrm{id}_V$。\n(2) 设 $f^2=\\mathrm{id}_V$。证明：$f$ 在$V$的某个基下必可对角化。",
+  "knowledge_points": [
+    "最小多项式",
+    "特征值与可对角化判据",
+    "Cayley-Hamilton定理",
+    "实数域上不可约多项式",
+    "投影算子分解",
+    "单位根"
+  ],
+  "question_type": "线性算子可对角化证明题",
+  "method": [
+    "利用f^k=id_V推出f的最小多项式整除x^k-1",
+    "分析x^k-1在R上的因式分解，判断是否含无实根的不可约二次因子",
+    "(2)可直接构造投影P=(id+f)/2, Q=(id-f)/2分解V"
+  ],
+  "solution_steps": [
+    "(1) 必要性：若可对角化则所有(实)特征值满足λ³=1，实数中只能λ=1，从而f=id_V；充分性显然",
+    "(2) 构造P=(id_V+f)/2, Q=(id_V-f)/2，验证P,Q为互补的幂等映射，V=im(P)⊕im(Q)，f在此分解下分别作用为+1和-1，从而可对角化"
+  ],
+  "math_structure": {
+    "type": "diagonalizability_via_minimal_polynomial",
+    "template": "f^k=id_V ⟹ 最小多项式整除x^k-1；可对角化 iff 最小多项式在R上可分解为不同实一次因式之积",
+    "variable_count": 0
+  },
+  "difficulty": 4,
+  "answer": [
+    {
+      "label": "(1)",
+      "steps": [
+        "（充分性）若$f=\\mathrm{id}_V$，则f在任意基下的矩阵都是单位矩阵，显然是对角矩阵，故f可对角化。",
+        "（必要性）设f在V的某基下可对角化，则V可分解为f的（实）特征子空间的直和。设$\\lambda$是f的任一（实）特征值，对应特征向量$v\\neq0$，由$f^3=\\mathrm{id}_V$得$f^3(v)=v$，而$f^3(v)=\\lambda^3v$，故$(\\lambda^3-1)v=0$，由$v\\neq0$得$\\lambda^3=1$。",
+        "因$x^3-1=(x-1)(x^2+x+1)$，且$x^2+x+1$的判别式为$1-4=-3<0$，在实数域中无实根，故实数方程$\\lambda^3=1$唯一解为$\\lambda=1$。因此f的所有特征值均为1，结合f可对角化，f在该基下的表示矩阵为$\\mathrm{diag}(1,\\dots,1)=I$，故f对V中每个基向量的作用都是恒等，即$f=\\mathrm{id}_V$。"
+      ]
+    },
+    {
+      "label": "(2)",
+      "steps": [
+        "定义$P=\\dfrac12(\\mathrm{id}_V+f)$，$Q=\\dfrac12(\\mathrm{id}_V-f)$，则$P+Q=\\mathrm{id}_V$。",
+        "验证P,Q幂等：$P^2=\\dfrac14(\\mathrm{id}+f)^2=\\dfrac14(\\mathrm{id}+2f+f^2)=\\dfrac14(\\mathrm{id}+2f+\\mathrm{id})=\\dfrac12(\\mathrm{id}+f)=P$（用$f^2=\\mathrm{id}_V$）。同理$Q^2=Q$，且$PQ=\\dfrac14(\\mathrm{id}+f)(\\mathrm{id}-f)=\\dfrac14(\\mathrm{id}-f^2)=\\dfrac14(\\mathrm{id}-\\mathrm{id})=0$。",
+        "由$P+Q=\\mathrm{id}_V$及P,Q幂等、$PQ=QP=0$，得$V=\\mathrm{im}(P)\\oplus\\mathrm{im}(Q)$。计算$fP=\\dfrac12(f+f^2)=\\dfrac12(f+\\mathrm{id})=P$，故对$v\\in\\mathrm{im}(P)$（即$v=Pw$某个w），$f(v)=f(Pw)=(fP)(w)=Pw=v$，即f在$\\mathrm{im}(P)$上作用为恒等(特征值1)。类似地$fQ=\\dfrac12(f-f^2)=-Q$，故f在$\\mathrm{im}(Q)$上作用为$-\\mathrm{id}$(特征值-1)。",
+        "取$\\mathrm{im}(P)$与$\\mathrm{im}(Q)$各自的一组基合并为V的一个基，则f在此基下的矩阵为对角矩阵，对角元为1（对应$\\mathrm{im}(P)$中的基向量）和-1（对应$\\mathrm{im}(Q)$中的基向量），故f可对角化。"
+      ]
+    }
+  ],
+  "practice_questions": [
+    {
+      "text": "证明：若线性映射 $f:V\\to V$ 满足 $f^2=\\mathrm{id}_V$，则f的特征值只能是 $\\pm1$。",
+      "knowledge_points": [
+        "特征值定义",
+        "多项式方程的根"
+      ],
+      "question_type": "特征值约束证明",
+      "method": [
+        "代入特征向量方程直接求解"
+      ],
+      "solution_steps": [
+        "设v是特征向量，代入f²=id得λ²=1"
+      ],
+      "math_structure": {
+        "type": "eigenvalue_constraint",
+        "template": "f^2=id_V ⟹ eigenvalues λ satisfy λ²=1",
+        "variable_count": 0
+      },
+      "difficulty": 1,
+      "estimated_minutes": 3,
+      "answer": [
+        {
+          "label": "证明",
+          "steps": [
+            "设$\\lambda$是f的特征值，对应特征向量$v\\neq0$，即$f(v)=\\lambda v$。",
+            "两边再作用f：$f^2(v)=\\lambda f(v)=\\lambda^2v$。又由$f^2=\\mathrm{id}_V$知$f^2(v)=v$，故$\\lambda^2v=v$，即$(\\lambda^2-1)v=0$。",
+            "由$v\\neq0$得$\\lambda^2=1$，即$\\lambda=1$或$\\lambda=-1$，特征值只能取$\\pm1$。"
+          ]
+        }
+      ],
+      "id": "osaka-2019-e184f0090b-q05-practice-01",
+      "school": "大阪大学",
+      "year": "2019"
+    },
+    {
+      "text": "证明：多项式 $x^2-1$ 在实数域R上没有重根，并说明这对满足$f^2=\\mathrm{id}_V$的f的最小多项式意味着什么。",
+      "knowledge_points": [
+        "多项式判别式",
+        "最小多项式",
+        "重根判定"
+      ],
+      "question_type": "多项式性质证明",
+      "method": [
+        "计算判别式判断根的重复性"
+      ],
+      "solution_steps": [
+        "因式分解x²-1=(x-1)(x+1)，判断两根不同，推出最小多项式无重根"
+      ],
+      "math_structure": {
+        "type": "polynomial_no_repeated_root",
+        "template": "x²-1=(x-1)(x+1)无重根 ⟹ 最小多项式整除它则也无重根",
+        "variable_count": 0
+      },
+      "difficulty": 2,
+      "estimated_minutes": 5,
+      "answer": [
+        {
+          "label": "证明",
+          "steps": [
+            "$x^2-1=(x-1)(x+1)$，两根为$1,-1$，不相等，故$x^2-1$在R上无重根（判别式为$0-4\\cdot1\\cdot(-1)=4>0$，两个不同实根）。",
+            "由$f^2=\\mathrm{id}_V$，f满足多项式方程$x^2-1=0$，故f的最小多项式整除$x^2-1=(x-1)(x+1)$。",
+            "因$(x-1)(x+1)$本身无重根，它的任意因子（包括自身、单独的$(x-1)$或$(x+1)$）也不含重根，所以f的最小多项式必无重根——这正是f可对角化的关键条件之一。"
+          ]
+        }
+      ],
+      "id": "osaka-2019-e184f0090b-q05-practice-02",
+      "school": "大阪大学",
+      "year": "2019"
+    },
+    {
+      "text": "设 $V=\\mathbf{R}^2$，$f(x,y)=(y,x)$（交换坐标的线性映射）。验证 $f^2=\\mathrm{id}_V$，并显式求出使f对角化的基及对角矩阵。",
+      "knowledge_points": [
+        "投影分解的具体应用",
+        "特征向量求解"
+      ],
+      "question_type": "具体对角化构造",
+      "method": [
+        "直接求解特征方程f(x,y)=λ(x,y)"
+      ],
+      "solution_steps": [
+        "验证f²=id，解特征方程得λ=±1对应的特征向量，写出对角化矩阵"
+      ],
+      "math_structure": {
+        "type": "explicit_diagonalization_example",
+        "template": "f(x,y)=(y,x): 特征向量(1,1)对应1,(1,-1)对应-1",
+        "variable_count": 0
+      },
+      "difficulty": 2,
+      "estimated_minutes": 8,
+      "answer": [
+        {
+          "label": "结果",
+          "steps": [
+            "计算$f^2(x,y)=f(y,x)=(x,y)$，故$f^2=\\mathrm{id}_V$，满足条件。",
+            "解特征方程$f(x,y)=(y,x)=\\lambda(x,y)$：取$\\lambda=1$需$y=x$，特征向量为$(1,1)$；取$\\lambda=-1$需$y=-x$，特征向量为$(1,-1)$。",
+            "取新基$e_1'=(1,1),e_2'=(1,-1)$，验证$f(e_1')=(1,1)=e_1'$，$f(e_2')=(-1,1)=-e_2'$。故在此基下f的表示矩阵为$\\begin{pmatrix}1&0\\\\0&-1\\end{pmatrix}$，为对角矩阵。"
+          ]
+        }
+      ],
+      "id": "osaka-2019-e184f0090b-q05-practice-03",
+      "school": "大阪大学",
+      "year": "2019"
+    },
+    {
+      "text": "证明：若 $f^3=\\mathrm{id}_V$ 且 $\\dim V=1$，则必有 $f=\\mathrm{id}_V$。",
+      "knowledge_points": [
+        "一维线性映射",
+        "实数方程的根"
+      ],
+      "question_type": "低维特殊情形证明",
+      "method": [
+        "把f视为标量，解实数方程c³=1"
+      ],
+      "solution_steps": [
+        "由dim V=1知f为标量乘法，代入f³=id得c³=1，结合实数解出c=1"
+      ],
+      "math_structure": {
+        "type": "one_dim_cube_root_case",
+        "template": "dim V=1, f³=id_V ⟹ f=id_V",
+        "variable_count": 0
+      },
+      "difficulty": 2,
+      "estimated_minutes": 5,
+      "answer": [
+        {
+          "label": "证明",
+          "steps": [
+            "因$\\dim V=1$，f作用在V上等价于乘以某个标量$c\\in\\mathbf{R}$，即$f(v)=cv$对V中任意向量v成立。",
+            "由$f^3=\\mathrm{id}_V$，得$c^3=1$。因$c$是实数，而$c^3-1=(c-1)(c^2+c+1)$，其中$c^2+c+1$判别式为$1-4=-3<0$，在R上无实根，故实数方程$c^3=1$的唯一解为$c=1$。",
+            "因此$c=1$，即$f(v)=v$对所有$v\\in V$成立，故$f=\\mathrm{id}_V$。"
+          ]
+        }
+      ],
+      "id": "osaka-2019-e184f0090b-q05-practice-04",
+      "school": "大阪大学",
+      "year": "2019"
+    },
+    {
+      "text": "设 $f^4=\\mathrm{id}_V$。讨论：f在V的某个基下可对角化的必要充分条件是什么？请证明你的结论。",
+      "knowledge_points": [
+        "最小多项式",
+        "实数域上不可约二次因子",
+        "可对角化判据",
+        "结合(1)(2)的结论"
+      ],
+      "question_type": "综合推广证明题",
+      "method": [
+        "分析x^4-1在R上的因式分解",
+        "利用(2)的结论证明充分性，利用不可约因子分析必要性"
+      ],
+      "solution_steps": [
+        "因式分解x^4-1=(x-1)(x+1)(x²+1)，说明x²+1不可约无实根",
+        "证明可对角化 iff 最小多项式不含x²+1因子 iff f²=id_V"
+      ],
+      "math_structure": {
+        "type": "diagonalizability_via_minimal_polynomial",
+        "template": "f^4=id_V的前提下，f可对角化 iff f²=id_V",
+        "variable_count": 0
+      },
+      "difficulty": 4,
+      "estimated_minutes": 12,
+      "answer": [
+        {
+          "label": "结论及证明",
+          "steps": [
+            "由$f^4=\\mathrm{id}_V$，f的最小多项式整除$x^4-1=(x-1)(x+1)(x^2+1)$，其中$x^2+1$在R上不可约（判别式$0-4<0$，无实根）。",
+            "（必要性）若f在V的某基下可对角化，则f的所有特征值均为实数，且最小多项式在R上可分解为不同实一次因式之积。由于$x^4-1$的实一次因子只有$(x-1),(x+1)$，最小多项式不能含$x^2+1$这一不可约二次因子（否则无法分解为实一次因式），故最小多项式必整除$(x-1)(x+1)=x^2-1$，即$f^2=\\mathrm{id}_V$。",
+            "（充分性）若$f^2=\\mathrm{id}_V$，由本题(2)的结论，f必在V的某基下可对角化。",
+            "综上，在$f^4=\\mathrm{id}_V$的前提下，f可对角化的必要充分条件是$f^2=\\mathrm{id}_V$。"
+          ]
+        }
+      ],
+      "id": "osaka-2019-e184f0090b-q05-practice-05",
+      "school": "大阪大学",
+      "year": "2019"
+    }
+  ],
+  "source_question": "問5",
+  "source_pdf": "大阪大学/情报科学研究科/情报基础数学/大阪大学_情报科学研究科_情报基础数学_2019_数学过去问.pdf",
+  "source_type": "官方过去问",
+  "subject_category": "线性代数"
+}

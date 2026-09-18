@@ -41,8 +41,118 @@
     {
       "label": "(2) 证明上三角矩阵行列式公式",
       "steps": [
-        "按 Leibniz 公式 $\\det A=\\sum_{\\sigma \\in S_n}sgn(\\sigma )∏_{i}a_{i,\\sigma (i)}$。若某项非零，上三角性要求 $\\sigma (i)\\ge i$ 对所有 $i$。又 $\\sum\\sigma (i)=\\sumi$，因此只能处处取等号，即 $\\sigma$ 为恒等置换。",
-        "所以唯一可能的非零项是 $∏_{i}a_{ii}$，故 $\\det A=∏_{i}a_{ii}$。"
+        "按 Leibniz 公式 $\\det A=\\sum_{\\sigma\\in S_n}\\operatorname{sgn}(\\sigma)\\prod_i a_{i,\\sigma(i)}$。若某项非零，上三角性要求 $\\sigma(i)\\ge i$ 对所有 $i$。又 $\\sum_i\\sigma(i)=\\sum_i i$，因此只能处处取等号，即 $\\sigma$ 为恒等置换。",
+        "所以唯一可能的非零项是 $\\prod_i a_{ii}$，故 $\\det A=\\prod_i a_{ii}$。"
+      ]
+    }
+  ],
+  "practice_questions": [
+    {
+      "id": "kyushu-2025-ist-la-practice-01",
+      "school": "九州大学",
+      "year": "2025",
+      "text": "计算矩阵 $A=\\begin{pmatrix}1&0&2\\\\0&3&0\\\\4&0&5\\end{pmatrix}$ 的行列式。",
+      "knowledge_points": [
+        "行列式",
+        "Laplace 展开"
+      ],
+      "question_type": "计算稀疏矩阵行列式",
+      "method": [
+        "沿稀疏行或列展开"
+      ],
+      "solution_steps": [
+        "选择第二行展开",
+        "计算二阶余子式",
+        "合并符号与系数"
+      ],
+      "math_structure": {
+        "type": "sparse_determinant",
+        "template": "$\\det(A)=3\\det\\begin{pmatrix}1&2\\\\4&5\\end{pmatrix}$",
+        "variable_count": 0
+      },
+      "difficulty": 1,
+      "estimated_minutes": 4,
+      "answer": [
+        {
+          "label": "计算行列式",
+          "steps": [
+            "沿第二行展开，唯一非零元为 $a_{22}=3$，其代数余子式符号为正。",
+            "所以 $$\\det(A)=3\\det\\begin{pmatrix}1&2\\\\4&5\\end{pmatrix}=3(5-8)=-9.$$ "
+          ]
+        }
+      ]
+    },
+    {
+      "id": "kyushu-2025-ist-la-practice-02",
+      "school": "九州大学",
+      "year": "2025",
+      "text": "不直接展开，判断矩阵 $B=\\begin{pmatrix}1&2&3\\\\2&4&6\\\\0&1&1\\end{pmatrix}$ 的行列式，并说明理由。",
+      "knowledge_points": [
+        "行列式",
+        "行线性相关",
+        "初等性质"
+      ],
+      "question_type": "由行相关判断行列式",
+      "method": [
+        "识别成比例的行"
+      ],
+      "solution_steps": [
+        "比较前两行",
+        "利用行列式在线性相关时为零的性质"
+      ],
+      "math_structure": {
+        "type": "dependent_rows_determinant",
+        "template": "$R_2=2R_1\\Rightarrow\\det(B)=0$",
+        "variable_count": 0
+      },
+      "difficulty": 1,
+      "estimated_minutes": 3,
+      "answer": [
+        {
+          "label": "判断行列式",
+          "steps": [
+            "矩阵的第二行恰好是第一行的 $2$ 倍，即 $R_2=2R_1$。",
+            "因此各行线性相关，故 $\\det(B)=0$。"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "kyushu-2025-ist-la-practice-03",
+      "school": "九州大学",
+      "year": "2025",
+      "text": "设 $$T=\\begin{pmatrix}a&1&0&2\\\\0&2&-1&0\\\\0&0&-1&3\\\\0&0&0&b\\end{pmatrix}.$$ 求 $\\det(T)$，并判断 $T$ 何时可逆。",
+      "knowledge_points": [
+        "上三角矩阵",
+        "行列式",
+        "可逆性"
+      ],
+      "question_type": "使用三角矩阵行列式公式",
+      "method": [
+        "主对角线乘积",
+        "行列式非零判据"
+      ],
+      "solution_steps": [
+        "确认矩阵为上三角矩阵",
+        "相乘主对角元",
+        "令行列式非零"
+      ],
+      "math_structure": {
+        "type": "triangular_determinant_invertibility",
+        "template": "$\\det(T)=\\prod_{i=1}^4t_{ii}$",
+        "variable_count": 2
+      },
+      "difficulty": 2,
+      "estimated_minutes": 5,
+      "answer": [
+        {
+          "label": "求行列式并判断可逆性",
+          "steps": [
+            "$T$ 为上三角矩阵，所以行列式等于主对角元之积。",
+            "因此 $\\det(T)=a\\cdot2\\cdot(-1)\\cdot b=-2ab$。",
+            "矩阵可逆当且仅当行列式非零，即当且仅当 $a\\ne0$ 且 $b\\ne0$。"
+          ]
+        }
       ]
     }
   ]

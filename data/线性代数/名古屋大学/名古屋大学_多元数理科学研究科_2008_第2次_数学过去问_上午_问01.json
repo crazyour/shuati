@@ -1,0 +1,249 @@
+{
+  "id": "nagoya-2008-b8c47866c6-q01",
+  "school": "名古屋大学",
+  "year": "2008",
+  "subject": "多元数理科学研究科_全专攻",
+  "text": "设矩阵 $$A=\\begin{pmatrix}-8&9&-9\\\\9&-8&9\\\\9&-9&10\\end{pmatrix}.$$ 回答下列问题：\n(1) 求 $A$ 的特征值，并对每个特征值求出对应特征空间的一组基。\n(2) 判断是否存在实矩阵 $B$ 满足 $A=B^2$。若存在，求出一个这样的 $B$；若不存在，说明理由。\n(3) 判断是否存在实矩阵 $C$ 满足 $A=C^3$。若存在，求出一个这样的 $C$；若不存在，说明理由。",
+  "knowledge_points": [
+    "特征值与特征向量",
+    "特征空间",
+    "矩阵对角化",
+    "实矩阵的平方根",
+    "实矩阵的立方根",
+    "Jordan标准形与负特征值的实平方根存在性"
+  ],
+  "question_type": "矩阵特征值与矩阵函数存在性",
+  "method": [
+    "特征多项式因式分解",
+    "求解齐次线性方程组得特征空间",
+    "相似对角化 $A=PDP^{-1}$",
+    "利用负实特征值重数奇偶性判断实平方根存在性",
+    "对角矩阵直接开立方构造 $C$"
+  ],
+  "solution_steps": [
+    "计算 $\\mathrm{tr}(A)$、主子式之和、$\\det(A)$，写出特征多项式",
+    "因式分解特征多项式求特征值及其重数",
+    "对每个特征值解 $(A-\\lambda I)v=0$ 求特征空间基",
+    "验证 $A$ 可对角化（三个特征向量线性无关）",
+    "分析负特征值 $-8$ 的重数（=1，奇数）得出不存在实平方根",
+    "对角矩阵开立方（负数立方根仍为实数）构造 $C=PD^{1/3}P^{-1}$ 并计算"
+  ],
+  "math_structure": {
+    "type": "matrix_eigen_root",
+    "template": "求 3x3 实矩阵 $A$ 的特征值/特征空间, 并判断/构造满足 $A=B^k$ 的实矩阵 $B$",
+    "variable_count": 9
+  },
+  "difficulty": 4,
+  "answer": [
+    {
+      "label": "(1)",
+      "steps": [
+        "计算 $\\mathrm{tr}(A)=-8-8+10=-6$，$\\det(A)=-8$；三个 $2\\times2$ 主子式之和为 $-17+1+1=-15$，得特征多项式 $\\lambda^3+6\\lambda^2-15\\lambda+8$。",
+        "试根 $\\lambda=1$ 满足方程，分解得 $\\lambda^3+6\\lambda^2-15\\lambda+8=(\\lambda-1)^2(\\lambda+8)$，故特征值为 $\\lambda=1$（重数2）和 $\\lambda=-8$（重数1）。",
+        "对 $\\lambda=1$：$A-I=\\begin{pmatrix}-9&9&-9\\\\9&-9&9\\\\9&-9&9\\end{pmatrix}$，方程为 $-x+y-z=0$ 即 $y=x+z$，基为 $(1,1,0),(0,1,1)$。",
+        "对 $\\lambda=-8$：$A+8I=\\begin{pmatrix}0&9&-9\\\\9&0&9\\\\9&-9&18\\end{pmatrix}$，解得 $y=z,\\ x=-z$，基为 $(-1,1,1)$；验证 $A(-1,1,1)^T=(8,-8,-8)^T=-8(-1,1,1)^T$成立。"
+      ]
+    },
+    {
+      "label": "(2)",
+      "steps": [
+        "$A$ 可对角化（三个特征向量 $(1,1,0),(0,1,1),(-1,1,1)$ 线性无关，行列式为 $-1\\ne0$）。",
+        "若 $A=B^2$ 且 $B$ 为实矩阵，则对负特征值 $-8$，$B$ 的对应不变子空间上必产生一对共轭复特征值 $\\pm i\\sqrt8$，对应一个 $2\\times2$ 实旋转-伸缩型 Jordan块，因此特征值 $-8$ 在 $A$ 中的（代数）重数必须为偶数才能由这样的实二维块配对得到。",
+        "但 $-8$ 在 $A$ 中重数为 $1$（奇数），无法由偶数维实块产生，矛盾。",
+        "结论：不存在实矩阵 $B$ 使 $A=B^2$。"
+      ]
+    },
+    {
+      "label": "(3)",
+      "steps": [
+        "取 $P$ 的列为特征向量 $(1,1,0),(0,1,1),(-1,1,1)$，则 $A=PDP^{-1}$，$D=\\mathrm{diag}(1,1,-8)$。",
+        "由于实数的立方根总是实数，取 $D^{1/3}=\\mathrm{diag}(1,1,-2)$（因 $(-2)^3=-8$），令 $C=PD^{1/3}P^{-1}$。",
+        "计算得 $P^{-1}=\\begin{pmatrix}0&1&-1\\\\1&-1&2\\\\-1&1&-1\\end{pmatrix}$，$PD^{1/3}=\\begin{pmatrix}1&0&2\\\\1&1&-2\\\\0&1&-2\\end{pmatrix}$，乘积得 $$C=\\begin{pmatrix}-2&3&-3\\\\3&-2&3\\\\3&-3&4\\end{pmatrix}.$$",
+        "验证：$\\mathrm{tr}(C)=0=1+1-2$，$\\det(C)=-2=1\\cdot1\\cdot(-2)$，且 $C$ 与 $A$ 共享同一组特征向量，特征值分别立方后为 $1,1,-8$，故 $C^3=A$ 成立。"
+      ]
+    }
+  ],
+  "practice_questions": [
+    {
+      "text": "求矩阵 $M=\\begin{pmatrix}2&0\\\\0&3\\end{pmatrix}$ 的特征值和特征向量。",
+      "knowledge_points": [
+        "对角矩阵特征值"
+      ],
+      "question_type": "基础特征值计算",
+      "method": [
+        "直接观察对角矩阵"
+      ],
+      "solution_steps": [
+        "对角矩阵特征值即对角元",
+        "标准基向量即特征向量"
+      ],
+      "math_structure": {
+        "type": "diagonal_eigen",
+        "template": "对角矩阵 $\\mathrm{diag}(a,b)$ 的特征值特征向量",
+        "variable_count": 2
+      },
+      "difficulty": 1,
+      "estimated_minutes": 3,
+      "answer": [
+        {
+          "label": "结果",
+          "steps": [
+            "特征值为 $2$ 和 $3$",
+            "对应特征向量分别为 $(1,0)^T$ 和 $(0,1)^T$"
+          ]
+        }
+      ],
+      "id": "nagoya-2008-b8c47866c6-q01-practice-01",
+      "school": "名古屋大学",
+      "year": "2008"
+    },
+    {
+      "text": "求矩阵 $N=\\begin{pmatrix}4&-2\\\\1&1\\end{pmatrix}$ 的特征值及每个特征值对应的特征空间基。",
+      "knowledge_points": [
+        "特征多项式",
+        "特征空间"
+      ],
+      "question_type": "2x2矩阵特征值计算",
+      "method": [
+        "特征多项式求根",
+        "解齐次方程组"
+      ],
+      "solution_steps": [
+        "写出特征多项式 $\\lambda^2-5\\lambda+6=0$",
+        "求根 $\\lambda=2,3$",
+        "分别解 $(N-\\lambda I)v=0$"
+      ],
+      "math_structure": {
+        "type": "matrix_2x2_eigen",
+        "template": "求 $2\\times2$ 矩阵 $\\begin{pmatrix}a&b\\\\c&d\\end{pmatrix}$ 的特征值特征向量",
+        "variable_count": 4
+      },
+      "difficulty": 2,
+      "estimated_minutes": 6,
+      "answer": [
+        {
+          "label": "结果",
+          "steps": [
+            "特征多项式：$\\lambda^2-5\\lambda+6=0$，得 $\\lambda=2$ 或 $\\lambda=3$",
+            "$\\lambda=2$: $(N-2I)v=0$ 给出 $2x-2y=0$，基为 $(1,1)$",
+            "$\\lambda=3$: $(N-3I)v=0$ 给出 $x-2y=0$，基为 $(2,1)$"
+          ]
+        }
+      ],
+      "id": "nagoya-2008-b8c47866c6-q01-practice-02",
+      "school": "名古屋大学",
+      "year": "2008"
+    },
+    {
+      "text": "设 $D=\\mathrm{diag}(4,9,-1)$。判断是否存在实矩阵 $B$ 满足 $D=B^2$；若存在写出一个 $B$，若不存在说明理由。",
+      "knowledge_points": [
+        "实平方根存在性",
+        "负特征值奇偶性"
+      ],
+      "question_type": "对角矩阵实平方根判定",
+      "method": [
+        "逐个特征值判断实平方根是否存在"
+      ],
+      "solution_steps": [
+        "正特征值直接开方",
+        "负特征值($-1$，重数1)判断能否配对"
+      ],
+      "math_structure": {
+        "type": "diagonal_real_sqrt",
+        "template": "判断对角矩阵 $\\mathrm{diag}(\\lambda_1,\\ldots,\\lambda_n)$ 是否存在实平方根",
+        "variable_count": 3
+      },
+      "difficulty": 3,
+      "estimated_minutes": 8,
+      "answer": [
+        {
+          "label": "结果",
+          "steps": [
+            "特征值 $4,9$ 为正，可开方为 $2,3$",
+            "特征值 $-1$ 重数为1（奇数），无法配对形成实 $2\\times2$ 旋转块",
+            "因此不存在实矩阵 $B$ 使 $D=B^2$"
+          ]
+        }
+      ],
+      "id": "nagoya-2008-b8c47866c6-q01-practice-03",
+      "school": "名古屋大学",
+      "year": "2008"
+    },
+    {
+      "text": "设 $E=\\mathrm{diag}(1,1,-27)$。求一个实矩阵 $C$ 满足 $E=C^3$。",
+      "knowledge_points": [
+        "实立方根存在性",
+        "对角化后逐元开立方"
+      ],
+      "question_type": "对角矩阵实立方根构造",
+      "method": [
+        "利用负数立方根仍为实数直接构造"
+      ],
+      "solution_steps": [
+        "对角元逐个开立方",
+        "组装对角矩阵作为 $C$"
+      ],
+      "math_structure": {
+        "type": "diagonal_real_cube_root",
+        "template": "构造满足 $D=C^3$ 的对角矩阵 $C$",
+        "variable_count": 3
+      },
+      "difficulty": 2,
+      "estimated_minutes": 5,
+      "answer": [
+        {
+          "label": "结果",
+          "steps": [
+            "$1^{1/3}=1,\\ 1^{1/3}=1,\\ (-27)^{1/3}=-3$",
+            "取 $C=\\mathrm{diag}(1,1,-3)$",
+            "验证 $C^3=\\mathrm{diag}(1,1,-27)=E$"
+          ]
+        }
+      ],
+      "id": "nagoya-2008-b8c47866c6-q01-practice-04",
+      "school": "名古屋大学",
+      "year": "2008"
+    },
+    {
+      "text": "设 $F=\\begin{pmatrix}5&-4&2\\\\-4&5&2\\\\2&2&2\\end{pmatrix}$，已知其特征值为 $1,1,10$。求对应特征空间基，并判断是否存在实矩阵 $G$ 使 $F=G^2$。",
+      "knowledge_points": [
+        "特征空间求解",
+        "对角化",
+        "正特征值实平方根存在性"
+      ],
+      "question_type": "综合特征值与平方根构造",
+      "method": [
+        "解齐次线性方程组求特征空间",
+        "全正特征值直接构造平方根"
+      ],
+      "solution_steps": [
+        "对每个特征值求特征空间基",
+        "由于所有特征值均为正, 用相似对角化开方构造 $G$"
+      ],
+      "math_structure": {
+        "type": "matrix_eigen_positive_sqrt",
+        "template": "已知特征值全为正的对称矩阵, 构造其实平方根",
+        "variable_count": 9
+      },
+      "difficulty": 4,
+      "estimated_minutes": 12,
+      "answer": [
+        {
+          "label": "结果",
+          "steps": [
+            "对 $\\lambda=1$：$F-I=\\begin{pmatrix}4&-4&2\\\\-4&4&2\\\\2&2&1\\end{pmatrix}$，解得平面 $2x+2y+z=0$ 且 $x=y$，即 $4x+z=0$；基为如 $(1,1,-4)$，再补一个独立解如 $(1,-1,0)$（验证均满足方程组）",
+            "对 $\\lambda=10$：解 $(F-10I)v=0$ 得基为 $(1,1,1)$（验证 $Fv=10v$）",
+            "因所有特征值 $1,1,10$均为正，可对角化后逐元开正平方根 $\\mathrm{diag}(1,1,\\sqrt{10})$，构造 $G=PD^{1/2}P^{-1}$，其中 $P$ 由上述特征向量组成，故存在这样的实矩阵 $G$"
+          ]
+        }
+      ],
+      "id": "nagoya-2008-b8c47866c6-q01-practice-05",
+      "school": "名古屋大学",
+      "year": "2008"
+    }
+  ],
+  "source_question": "問1",
+  "source_pdf": "名古屋大学/多元数理科学研究科/全专攻/名古屋大学_多元数理科学研究科_2008_第2次_数学过去问_上午.pdf",
+  "source_type": "官方过去问",
+  "subject_category": "线性代数"
+}

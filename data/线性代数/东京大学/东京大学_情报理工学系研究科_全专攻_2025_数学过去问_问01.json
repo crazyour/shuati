@@ -1,0 +1,235 @@
+{
+  "id": "utokyo-2025-fbe287135a-q01",
+  "school": "东京大学",
+  "year": "2025",
+  "subject": "情报理工学系研究科_全专攻",
+  "text": "在二维平面上，直线可表示为 $\\alpha x + \\beta y + \\gamma = 0$，其中 $(x,y)$ 是直线上的点。列向量 $(\\alpha,\\beta,\\gamma)^T$ 称为该直线的系数向量，约束条件：$\\alpha^2 + \\beta^2 = 1$。\n\n(1) 求过点 $\\vec{a}$ 且垂直于单位向量 $\\vec{v}$ 的直线的系数向量。\n\n(2) 设直线 $B$ 过点 $\\vec{b}$、法向量为单位向量 $\\vec{n}$。给定直线 $A$，设 $A'$ 是 $A$ 关于 $B$ 的镜像。用 $\\vec{b}$ 和 $\\vec{n}$ 写出三维方阵，将 $A$ 的系数向量变换为 $A'$ 的系数向量。\n\n(3) 求问(2)中矩阵的行列式。\n\n(4) 直线 $D_t$ 的系数向量为 $(4t, 4t^2-1, t)^T$，求其过的固定点。\n\n(5) 直线 $D_t$ 通过关于 $M_t$ 的镜像变换得到系数向量 $(0,1,-t)^T$ 的直线。求 $M_t$ 的系数向量 $(\\alpha_t, \\beta_t, \\gamma_t)^T$（$t>0$ 时，$\\alpha_t>0, \\beta_t>0$）。\n\n(6) 当 $t \\in [0,+\\infty)$ 时，$M_t$ 的存在区域的数学表达式与示意图。",
+  "knowledge_points": [
+    "直线方程与法向量",
+    "镜像变换矩阵",
+    "行列式计算",
+    "参数化曲线包络"
+  ],
+  "question_type": "几何变换与参数化综合题",
+  "method": [
+    "法向量确定直线",
+    "反射矩阵公式",
+    "参数消除法"
+  ],
+  "solution_steps": [
+    "利用垂直条件写出直线方程",
+    "构造镜像矩阵 $M=I-2\\vec{n}\\vec{n}^T$",
+    "计算行列式得 $-1$",
+    "将固定点代入参数方程求解",
+    "通过两直线交点与角平分线得 $M_t$",
+    "用二次方程判别式确定包络"
+  ],
+  "math_structure": {
+    "type": "affine_transformation",
+    "template": "参数化直线族的镜像与包络",
+    "variable_count": 2
+  },
+  "difficulty": 4,
+  "answer": [
+    {
+      "label": "(1)",
+      "steps": [
+        "系数向量 $(v_1, v_2, -(v_1 a_1 + v_2 a_2))^T$"
+      ]
+    },
+    {
+      "label": "(2)",
+      "steps": [
+        "$$M = \\begin{pmatrix} 1-2n_1^2 & -2n_1 n_2 & -2n_1(\\vec{n}\\cdot\\vec{b}) \\\\ -2n_1 n_2 & 1-2n_2^2 & -2n_2(\\vec{n}\\cdot\\vec{b}) \\\\ 0 & 0 & 1 \\end{pmatrix}$$"
+      ]
+    },
+    {
+      "label": "(3)",
+      "steps": [
+        "$\\det(M) = -1$（镜像的行列式为负一）"
+      ]
+    },
+    {
+      "label": "(4)",
+      "steps": [
+        "固定点：$(-\\frac{1}{4}, 0)$"
+      ]
+    },
+    {
+      "label": "(5)",
+      "steps": [
+        "交点 $(-t^2, t)$；法向量为 $(1, 2t)/\\sqrt{1+4t^2}$；系数向量 $(\\frac{1}{\\sqrt{1+4t^2}}, \\frac{2t}{\\sqrt{1+4t^2}}, \\frac{-t^2}{\\sqrt{1+4t^2}})^T$"
+      ]
+    },
+    {
+      "label": "(6)",
+      "steps": [
+        "区域：$\\{(x,y): x + y^2 \\geq 0\\}$；示意图为抛物线 $x=-y^2$ 内侧（包括边界）"
+      ]
+    }
+  ],
+  "practice_questions": [
+    {
+      "text": "求过点 $(2,3)$ 且垂直于单位向量 $(\\frac{4}{5}, \\frac{3}{5})$ 的直线的标准系数向量。",
+      "knowledge_points": [
+        "直线方程",
+        "单位向量"
+      ],
+      "question_type": "基础计算",
+      "method": [
+        "法向量法"
+      ],
+      "solution_steps": [
+        "系数向量 $(\\frac{4}{5}, \\frac{3}{5}, -\\frac{17}{5})^T$"
+      ],
+      "math_structure": {
+        "type": "line_equation",
+        "template": "过点法向量直线",
+        "variable_count": 1
+      },
+      "difficulty": 1,
+      "estimated_minutes": 3,
+      "answer": [
+        {
+          "label": "标准系数向量",
+          "steps": [
+            "$(\\frac{4}{5}, \\frac{3}{5}, -\\frac{17}{5})^T$"
+          ]
+        }
+      ],
+      "id": "utokyo-2025-fbe287135a-q01-practice-01",
+      "school": "东京大学",
+      "year": "2025"
+    },
+    {
+      "text": "直线族 $L_s: sx + (s^2-2)y + s = 0$ 是否有过定点的直线？",
+      "knowledge_points": [
+        "参数化直线",
+        "定点判断"
+      ],
+      "question_type": "参数分析",
+      "method": [
+        "参数消除"
+      ],
+      "solution_steps": [
+        "对所有 $s$ 恒成立需系数全为零，但 $s^2$ 项无法消除，故无定点"
+      ],
+      "math_structure": {
+        "type": "parametric_lines",
+        "template": "直线族包含 $s^2$ 的参数",
+        "variable_count": 1
+      },
+      "difficulty": 2,
+      "estimated_minutes": 5,
+      "answer": [
+        {
+          "label": "定点存在性",
+          "steps": [
+            "无定点"
+          ]
+        }
+      ],
+      "id": "utokyo-2025-fbe287135a-q01-practice-02",
+      "school": "东京大学",
+      "year": "2025"
+    },
+    {
+      "text": "直线族 $M_u: x + uy - u^2 = 0$ 的包络曲线方程。",
+      "knowledge_points": [
+        "包络曲线",
+        "参数消除"
+      ],
+      "question_type": "包络求解",
+      "method": [
+        "包络的偏导条件"
+      ],
+      "solution_steps": [
+        "$F=x+uy-u^2=0$, $\\frac{\\partial F}{\\partial u}=y-2u=0$，得 $u=\\frac{y}{2}$，代入得 $x=\\frac{y^2}{4}$"
+      ],
+      "math_structure": {
+        "type": "envelope",
+        "template": "参数直线族的包络为二次曲线",
+        "variable_count": 2
+      },
+      "difficulty": 3,
+      "estimated_minutes": 8,
+      "answer": [
+        {
+          "label": "包络曲线",
+          "steps": [
+            "$x = \\frac{y^2}{4}$"
+          ]
+        }
+      ],
+      "id": "utokyo-2025-fbe287135a-q01-practice-03",
+      "school": "东京大学",
+      "year": "2025"
+    },
+    {
+      "text": "验证：直线族 $M_t: x+2ty-t^2=0$ 的包络上的点 $(-y^2, y)$ 对应参数 $t=y$。",
+      "knowledge_points": [
+        "包络点的参数对应"
+      ],
+      "question_type": "包络参数化",
+      "method": [
+        "二重根判别式"
+      ],
+      "solution_steps": [
+        "点在包络上 $\\Rightarrow$ $t^2-2ty-(-y^2)=0$ 有二重根 $\\Rightarrow$ $\\Delta=4y^2+4y^2=0$ 矛盾；重新：若 $x=-y^2$ 则 $t^2-2ty+y^2=0$，得 $(t-y)^2=0$，即 $t=y$"
+      ],
+      "math_structure": {
+        "type": "double_root",
+        "template": "包络处方程有重根",
+        "variable_count": 2
+      },
+      "difficulty": 3,
+      "estimated_minutes": 7,
+      "answer": [
+        {
+          "label": "参数对应验证",
+          "steps": [
+            "包络上点 $(-y^2,y)$ 满足 $t=y$"
+          ]
+        }
+      ],
+      "id": "utokyo-2025-fbe287135a-q01-practice-04",
+      "school": "东京大学",
+      "year": "2025"
+    },
+    {
+      "text": "若 $M_t$ 的系数向量满足 $\\alpha_t=\\cos\\theta(t), \\beta_t=\\sin\\theta(t)$，求 $M_t$ 是单位向量。",
+      "knowledge_points": [
+        "单位向量性质"
+      ],
+      "question_type": "验证题",
+      "method": [
+        "直接计算"
+      ],
+      "solution_steps": [
+        "$\\alpha_t^2+\\beta_t^2=\\cos^2\\theta+\\sin^2\\theta=1$"
+      ],
+      "math_structure": {
+        "type": "unit_vector",
+        "template": "三角参数化保证单位性",
+        "variable_count": 1
+      },
+      "difficulty": 1,
+      "estimated_minutes": 2,
+      "answer": [
+        {
+          "label": "验证",
+          "steps": [
+            "确实满足 $\\alpha_t^2+\\beta_t^2=1$"
+          ]
+        }
+      ],
+      "id": "utokyo-2025-fbe287135a-q01-practice-05",
+      "school": "东京大学",
+      "year": "2025"
+    }
+  ],
+  "source_question": "第1问",
+  "source_pdf": "东京大学/情报理工学系研究科/全专攻/东京大学_情报理工学系研究科_全专攻_2025_数学过去问.pdf",
+  "source_type": "官方过去问",
+  "subject_category": "线性代数"
+}

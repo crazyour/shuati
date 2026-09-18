@@ -1,0 +1,250 @@
+{
+  "id": "isct-2006-cc04ba9918-q01",
+  "school": "东京科学大学",
+  "year": "2006",
+  "subject": "理工学系_数学系",
+  "text": "设 $A$ 为 $m$ 行 $n$ 列矩阵，$B$ 为 $n$ 行 $m$ 列矩阵。\n(1) 证明：若 $\\lambda$ 是 $AB$ 的特征值且 $\\lambda\\neq 0$，则 $\\lambda$ 也是 $BA$ 的特征值。\n(2) 证明：当 $\\lambda$ 是 $AB$ 的非零特征值时，$AB$ 关于 $\\lambda$ 的特征空间的维数与 $BA$ 关于 $\\lambda$ 的特征空间的维数相等。",
+  "knowledge_points": [
+    "特征值与特征向量",
+    "矩阵乘积AB与BA的关系",
+    "特征空间维数",
+    "线性映射的单射性",
+    "矩阵秩与零空间"
+  ],
+  "question_type": "证明题",
+  "method": [
+    "利用特征向量构造对应关系",
+    "证明诱导映射的良定性与单射性",
+    "双向单射得维数相等"
+  ],
+  "solution_steps": [
+    "设 $ABv=\\lambda v,\\,v\\neq0$，考察 $Bv$ 是否为零向量",
+    "计算 $BA(Bv)=B(ABv)=\\lambda Bv$，说明 $Bv$ 是 $BA$ 的特征向量",
+    "构造映射 $\\varphi:\\ker(AB-\\lambda I)\\to\\ker(BA-\\lambda I)$，$v\\mapsto Bv$，并证明其为单射线性映射",
+    "对称构造 $\\psi:\\ker(BA-\\lambda I)\\to\\ker(AB-\\lambda I)$，$w\\mapsto Aw$，同样为单射",
+    "由两个方向的单射得两空间维数相等"
+  ],
+  "math_structure": {
+    "type": "matrix_product_eigenvalue",
+    "template": "A: m\\times n,\\ B: n\\times m,\\ \\lambda\\neq0\\ \\text{eigenvalue of } AB \\Rightarrow \\lambda\\ \\text{eigenvalue of } BA,\\ \\dim\\ker(AB-\\lambda I)=\\dim\\ker(BA-\\lambda I)",
+    "variable_count": 3
+  },
+  "difficulty": 3,
+  "answer": [
+    {
+      "label": "(1)",
+      "steps": [
+        "设 $v\\in\\mathbb{C}^n$，$v\\neq0$，满足 $ABv=\\lambda v$，其中 $\\lambda\\neq0$。",
+        "先证 $Bv\\neq0$：若 $Bv=0$，则 $ABv=A\\cdot0=0$，但 $ABv=\\lambda v\\neq0$（因 $\\lambda\\neq0,v\\neq0$），矛盾。故 $Bv\\neq0$。",
+        "计算 $BA(Bv)=B(ABv)=B(\\lambda v)=\\lambda(Bv)$，说明 $Bv$ 是 $BA$ 属于特征值 $\\lambda$ 的特征向量。",
+        "由于 $Bv\\neq0$，故 $\\lambda$ 确为 $BA$ 的特征值。"
+      ]
+    },
+    {
+      "label": "(2)",
+      "steps": [
+        "设 $V_\\lambda(AB)=\\ker(AB-\\lambda I_m)\\subset\\mathbb{C}^m$，$V_\\lambda(BA)=\\ker(BA-\\lambda I_n)\\subset\\mathbb{C}^n$。",
+        "定义线性映射 $\\varphi:V_\\lambda(AB)\\to V_\\lambda(BA)$，$\\varphi(v)=Bv$。由(1)证明的计算，$BA(Bv)=\\lambda(Bv)$，所以 $\\varphi$ 确实落在 $V_\\lambda(BA)$ 中，映射良定。",
+        "$\\varphi$ 是单射：若 $v\\in V_\\lambda(AB)$ 且 $Bv=0$，则 $ABv=0=\\lambda v$，因 $\\lambda\\neq0$ 得 $v=0$。故 $\\ker\\varphi=\\{0\\}$，$\\varphi$ 单射，从而 $\\dim V_\\lambda(AB)\\le\\dim V_\\lambda(BA)$。",
+        "对称地定义 $\\psi:V_\\lambda(BA)\\to V_\\lambda(AB)$，$\\psi(w)=Aw$：由 $AB(Aw)=A(BAw)=\\lambda(Aw)$ 知良定，且若 $Aw=0$ 则 $BAw=0=\\lambda w\\Rightarrow w=0$（$\\lambda\\neq0$），故 $\\psi$ 也是单射，得 $\\dim V_\\lambda(BA)\\le\\dim V_\\lambda(AB)$。",
+        "结合两个不等式得 $\\dim V_\\lambda(AB)=\\dim V_\\lambda(BA)$，证毕。"
+      ]
+    }
+  ],
+  "practice_questions": [
+    {
+      "text": "设 $A=\\begin{pmatrix}1&2\\end{pmatrix}$（$1\\times2$），$B=\\begin{pmatrix}3\\\\4\\end{pmatrix}$（$2\\times1$）。分别求 $AB$ 与 $BA$ 的全部特征值，并验证非零特征值相同。",
+      "knowledge_points": [
+        "矩阵乘积的特征值",
+        "特征多项式",
+        "迹与行列式"
+      ],
+      "question_type": "计算题",
+      "method": [
+        "直接计算矩阵乘积",
+        "求特征多项式的根"
+      ],
+      "solution_steps": [
+        "计算 $AB$（$1\\times1$矩阵）",
+        "计算 $BA$（$2\\times2$矩阵）",
+        "求两者特征值并比较"
+      ],
+      "math_structure": {
+        "type": "eigenvalue_computation",
+        "template": "A:1\\times2,\\ B:2\\times1,\\ \\text{求 } \\mathrm{eig}(AB),\\mathrm{eig}(BA)",
+        "variable_count": 2
+      },
+      "difficulty": 2,
+      "estimated_minutes": 8,
+      "answer": [
+        {
+          "label": "结果",
+          "steps": [
+            "$AB=1\\cdot3+2\\cdot4=11$，是 $1\\times1$ 矩阵，其唯一特征值为 $11$。",
+            "$BA=\\begin{pmatrix}3\\cdot1&3\\cdot2\\\\4\\cdot1&4\\cdot2\\end{pmatrix}=\\begin{pmatrix}3&6\\\\4&8\\end{pmatrix}$，其迹为 $11$，行列式为 $3\\cdot8-6\\cdot4=0$，故特征值为 $0$ 和 $11$。",
+            "非零特征值 $11$ 在 $AB$ 与 $BA$ 中都出现，验证了定理的结论；而 $0$ 只出现在 $BA$ 中，说明 $\\lambda=0$ 的情形确需排除。"
+          ]
+        }
+      ],
+      "id": "isct-2006-cc04ba9918-q01-practice-01",
+      "school": "东京科学大学",
+      "year": "2006"
+    },
+    {
+      "text": "设 $A$ 为 $m\\times n$ 矩阵，$B$ 为 $n\\times m$ 矩阵。证明 $\\operatorname{tr}(AB)=\\operatorname{tr}(BA)$。",
+      "knowledge_points": [
+        "矩阵迹的性质",
+        "双重求和交换"
+      ],
+      "question_type": "证明题",
+      "method": [
+        "展开迹的定义为二重求和",
+        "交换求和顺序"
+      ],
+      "solution_steps": [
+        "写出 $\\operatorname{tr}(AB)$ 的求和表达式",
+        "写出 $\\operatorname{tr}(BA)$ 的求和表达式",
+        "比较两者相等"
+      ],
+      "math_structure": {
+        "type": "trace_identity",
+        "template": "\\operatorname{tr}(AB)=\\operatorname{tr}(BA),\\ A:m\\times n, B:n\\times m",
+        "variable_count": 2
+      },
+      "difficulty": 2,
+      "estimated_minutes": 6,
+      "answer": [
+        {
+          "label": "证明",
+          "steps": [
+            "$\\operatorname{tr}(AB)=\\sum_{i=1}^m (AB)_{ii}=\\sum_{i=1}^m\\sum_{k=1}^n A_{ik}B_{ki}$。",
+            "$\\operatorname{tr}(BA)=\\sum_{k=1}^n (BA)_{kk}=\\sum_{k=1}^n\\sum_{i=1}^m B_{ki}A_{ik}$。",
+            "两个二重和的被加项相同，只是求和顺序不同，因此二者相等：$\\operatorname{tr}(AB)=\\operatorname{tr}(BA)$。"
+          ]
+        }
+      ],
+      "id": "isct-2006-cc04ba9918-q01-practice-02",
+      "school": "东京科学大学",
+      "year": "2006"
+    },
+    {
+      "text": "设 $A,B$ 均为 $n\\times n$ 方阵。证明 $\\det(\\lambda I-AB)=\\det(\\lambda I-BA)$ 对所有 $\\lambda$ 成立（即 $AB$ 与 $BA$ 有相同的特征多项式）。",
+      "knowledge_points": [
+        "相似矩阵",
+        "可逆矩阵的稠密性",
+        "多项式恒等式的延拓"
+      ],
+      "question_type": "证明题",
+      "method": [
+        "先证A可逆时的相似关系",
+        "用连续性延拓到一般情形"
+      ],
+      "solution_steps": [
+        "设A可逆，证明BA与AB相似",
+        "利用相似矩阵特征多项式相同得出结论",
+        "对不可逆A用连续性/稠密性论证延拓"
+      ],
+      "math_structure": {
+        "type": "characteristic_polynomial_equality",
+        "template": "A,B\\ n\\times n,\\ \\det(\\lambda I-AB)=\\det(\\lambda I-BA)",
+        "variable_count": 2
+      },
+      "difficulty": 3,
+      "estimated_minutes": 12,
+      "answer": [
+        {
+          "label": "证明",
+          "steps": [
+            "若 $A$ 可逆，则 $BA=A^{-1}(AB)A$，即 $BA$ 与 $AB$ 相似，故它们有相同的特征多项式：$\\det(\\lambda I-AB)=\\det(\\lambda I-BA)$。",
+            "对固定的 $\\lambda$，函数 $A\\mapsto\\det(\\lambda I-AB)-\\det(\\lambda I-BA)$ 是 $A$ 的矩阵元的多项式函数，在可逆矩阵组成的稠密开集上恒为 $0$。",
+            "多项式函数若在一个稠密集合（可逆矩阵全体）上为零，则由连续性它在全空间（所有 $n\\times n$ 矩阵）上恒为零，故对一般（包括不可逆）的 $A$ 该等式也成立。"
+          ]
+        }
+      ],
+      "id": "isct-2006-cc04ba9918-q01-practice-03",
+      "school": "东京科学大学",
+      "year": "2006"
+    },
+    {
+      "text": "给出矩阵 $A$（$1\\times2$）与 $B$（$2\\times1$）的例子，使得 $\\lambda=0$ 是 $AB$ 与 $BA$ 的公共特征值，但对应的（几何）特征空间维数不相等，以说明定理中 $\\lambda\\neq0$ 条件的必要性。",
+      "knowledge_points": [
+        "零特征值的特殊性",
+        "秩-零化度定理",
+        "反例构造"
+      ],
+      "question_type": "构造反例",
+      "method": [
+        "选取B为零矩阵简化计算",
+        "比较零空间维数"
+      ],
+      "solution_steps": [
+        "取A=[1,0],B为2x1零矩阵",
+        "计算AB, BA",
+        "比较0特征值的几何重数"
+      ],
+      "math_structure": {
+        "type": "counterexample_zero_eigenvalue",
+        "template": "A=[1,0],\\ B=\\begin{pmatrix}0\\\\0\\end{pmatrix},\\ \\text{比较 } \\dim\\ker AB\\ \\text{与}\\ \\dim\\ker BA",
+        "variable_count": 2
+      },
+      "difficulty": 2,
+      "estimated_minutes": 7,
+      "answer": [
+        {
+          "label": "构造与验证",
+          "steps": [
+            "取 $A=(1,0)$（$1\\times2$矩阵），$B=\\begin{pmatrix}0\\\\0\\end{pmatrix}$（$2\\times1$矩阵，即零矩阵）。",
+            "$AB=(1\\cdot0+0\\cdot0)=(0)$，是 $1\\times1$ 零矩阵，其关于特征值 $0$ 的特征空间是整个 $\\mathbb{C}^1$，维数为 $1$。",
+            "$BA=\\begin{pmatrix}0\\\\0\\end{pmatrix}(1,0)=\\begin{pmatrix}0&0\\\\0&0\\end{pmatrix}$，是 $2\\times2$ 零矩阵，其关于特征值 $0$ 的特征空间是整个 $\\mathbb{C}^2$，维数为 $2$。",
+            "两维数 $1\\neq2$，说明当 $\\lambda=0$ 时，$AB$ 与 $BA$ 关于该特征值的特征空间维数一般不相等，验证了原题中 $\\lambda\\neq0$ 条件不可省略。"
+          ]
+        }
+      ],
+      "id": "isct-2006-cc04ba9918-q01-practice-04",
+      "school": "东京科学大学",
+      "year": "2006"
+    },
+    {
+      "text": "设 $A$ 为 $2\\times3$ 矩阵 $\\begin{pmatrix}1&0&0\\\\0&1&0\\end{pmatrix}$，$B$ 为 $3\\times2$ 矩阵 $\\begin{pmatrix}2&0\\\\0&2\\\\0&0\\end{pmatrix}$。求 $AB$ 和 $BA$ 的特征值及各非零特征值对应特征空间维数，验证原题结论。",
+      "knowledge_points": [
+        "特征空间维数计算",
+        "矩阵乘积",
+        "分块矩阵"
+      ],
+      "question_type": "计算验证题",
+      "method": [
+        "直接计算AB, BA",
+        "求特征值与特征空间"
+      ],
+      "solution_steps": [
+        "计算AB (2x2)",
+        "计算BA (3x3)",
+        "求特征值及特征空间维数并比较"
+      ],
+      "math_structure": {
+        "type": "eigenspace_dimension_verification",
+        "template": "A:2\\times3,\\ B:3\\times2,\\ \\text{比较 } \\dim\\ker(AB-\\lambda I)\\ \\text{与}\\ \\dim\\ker(BA-\\lambda I)\\ (\\lambda\\neq0)",
+        "variable_count": 2
+      },
+      "difficulty": 3,
+      "estimated_minutes": 12,
+      "answer": [
+        {
+          "label": "计算与验证",
+          "steps": [
+            "$AB=\\begin{pmatrix}1&0&0\\\\0&1&0\\end{pmatrix}\\begin{pmatrix}2&0\\\\0&2\\\\0&0\\end{pmatrix}=\\begin{pmatrix}2&0\\\\0&2\\end{pmatrix}=2I_2$，特征值为 $2$（二重），对应特征空间为全 $\\mathbb{C}^2$，维数为 $2$。",
+            "$BA=\\begin{pmatrix}2&0\\\\0&2\\\\0&0\\end{pmatrix}\\begin{pmatrix}1&0&0\\\\0&1&0\\end{pmatrix}=\\begin{pmatrix}2&0&0\\\\0&2&0\\\\0&0&0\\end{pmatrix}$，特征值为 $2,2,0$；对应 $\\lambda=2$ 的特征空间是 $\\{(x,y,0)\\}$，维数为 $2$；对应 $\\lambda=0$ 的特征空间是 $\\{(0,0,z)\\}$，维数为 $1$。",
+            "比较非零特征值 $\\lambda=2$：$AB$ 的特征空间维数为 $2$，$BA$ 的特征空间维数也为 $2$，两者相等，验证了原题结论；而 $\\lambda=0$ 只出现在 $BA$ 中（因为 $AB$ 是 $2\\times2$ 满秩矩阵没有零特征值），这也符合原题只对非零特征值断言相等。"
+          ]
+        }
+      ],
+      "id": "isct-2006-cc04ba9918-q01-practice-05",
+      "school": "东京科学大学",
+      "year": "2006"
+    }
+  ],
+  "source_question": "上午 問1",
+  "source_pdf": "东京科学大学/理工学系/数学系/东京科学大学_理工学系_数学系_2006_数学过去问.pdf",
+  "source_type": "官方过去问",
+  "subject_category": "线性代数"
+}

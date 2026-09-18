@@ -1,0 +1,222 @@
+{
+  "id": "nagoya-2022-d331f9e201-q02",
+  "school": "名古屋大学",
+  "year": "2022",
+  "subject": "情報学研究科_情報学専攻",
+  "text": "设 $A=\\begin{pmatrix}0&-1&-1\\\\3&2&3\\\\-1&1&0\\end{pmatrix}$。回答以下各问：\n(1) 将 $A$ 对角化。\n(2) 设 $\\vec{a}=\\begin{pmatrix}0\\\\0\\\\1\\end{pmatrix}$，求 $\\displaystyle\\lim_{n\\to\\infty}\\frac{A^n\\vec{a}}{\\|A^n\\vec{a}\\|}$，其中 $\\|\\vec{a}\\|$ 表示 $\\vec{a}$ 的标准（欧几里得）范数。",
+  "knowledge_points": [
+    "特征值与特征多项式",
+    "矩阵的对角化",
+    "特征向量的求解",
+    "向量在特征基下的分解",
+    "矩阵幂的渐近行为",
+    "主特征值主导原理"
+  ],
+  "question_type": "矩阵对角化与矩阵幂极限方向",
+  "method": [
+    "求特征多项式并因式分解求特征值",
+    "对每个特征值求解齐次方程得特征向量",
+    "写出 $P,D$ 使 $A=PDP^{-1}$",
+    "将初始向量按特征基分解",
+    "利用最大模特征值主导 $A^n\\vec a$ 的渐近方向"
+  ],
+  "solution_steps": [
+    "展开 $\\det(A-\\lambda I)$ 得到特征多项式并因式分解",
+    "解出三个特征值 $\\lambda=1,2,-1$",
+    "分别代入 $(A-\\lambda I)v=0$ 求出对应特征向量",
+    "组成可逆矩阵 $P$ 与对角矩阵 $D$，得到对角化",
+    "把 $\\vec a$ 用特征向量线性表出，写出 $A^n\\vec a$ 的表达式",
+    "利用模最大的特征值 $\\lambda=2$ 主导渐近行为，求出极限方向并单位化"
+  ],
+  "math_structure": {
+    "type": "matrix_diagonalization_power_limit_direction",
+    "template": "给定 3x3 矩阵 A，(1) 求特征值特征向量完成对角化；(2) 把给定向量按特征基分解，求 $\\lim A^n v/\\|A^n v\\|$（由模最大特征值对应特征向量方向给出）",
+    "variable_count": 0
+  },
+  "difficulty": 3,
+  "answer": [
+    {
+      "label": "(1)",
+      "steps": [
+        "特征多项式：$\\det(A-\\lambda I)=\\det\\begin{pmatrix}-\\lambda&-1&-1\\\\3&2-\\lambda&3\\\\-1&1&-\\lambda\\end{pmatrix}$，按第一行展开得 $-\\lambda^3+2\\lambda^2+\\lambda-2$，即特征方程为 $\\lambda^3-2\\lambda^2-\\lambda+2=0$。",
+        "因式分解：$\\lambda=1$ 代入得 $1-2-1+2=0$，为根；作除法得 $\\lambda^3-2\\lambda^2-\\lambda+2=(\\lambda-1)(\\lambda^2-\\lambda-2)=(\\lambda-1)(\\lambda-2)(\\lambda+1)$。故特征值为 $\\lambda=1,2,-1$。",
+        "对 $\\lambda=1$：解 $(A-I)v=0$，即 $-x-y-z=0,\\ 3x+y+3z=0,\\ -x+y-z=0$，解得 $y=0,\\ x=-z$，取特征向量 $v_1=(-1,0,1)^T$。",
+        "对 $\\lambda=2$：解 $(A-2I)v=0$，即 $-2x-y-z=0,\\ 3x+3z=0,\\ -x+y-2z=0$，解得 $x=-z,\\ y=z$，取特征向量 $v_2=(-1,1,1)^T$。",
+        "对 $\\lambda=-1$：解 $(A+I)v=0$，即 $x-y-z=0,\\ 3x+3y+3z=0,\\ -x+y+z=0$，解得 $x=0,\\ y=-z$，取特征向量 $v_3=(0,-1,1)^T$。",
+        "令 $P=\\begin{pmatrix}-1&-1&0\\\\0&1&-1\\\\1&1&1\\end{pmatrix}$，$D=\\begin{pmatrix}1&0&0\\\\0&2&0\\\\0&0&-1\\end{pmatrix}$，则 $A=PDP^{-1}$。验算：将 $Av_2$ 直接计算，$Av_2=A(-1,1,1)^T=(0\\cdot(-1)+(-1)\\cdot1+(-1)\\cdot1,\\ 3\\cdot(-1)+2\\cdot1+3\\cdot1,\\ -1\\cdot(-1)+1\\cdot1+0\\cdot1)^T=(-2,2,2)^T=2v_2$，与 $\\lambda=2$ 一致。"
+      ]
+    },
+    {
+      "label": "(2)",
+      "steps": [
+        "将 $\\vec a=(0,0,1)^T$ 用特征向量表出：设 $\\vec a=c_1v_1+c_2v_2+c_3v_3$，即 $Pc=a$，得方程组 $-c_1-c_2=0,\\ c_2-c_3=0,\\ c_1+c_2+c_3=1$。",
+        "由第一式 $c_1=-c_2$，第二式 $c_2=c_3$，代入第三式：$-c_2+c_2+c_2=1\\Rightarrow c_2=1$，从而 $c_1=-1,\\ c_3=1$。验算：$-v_1+v_2+v_3=-(-1,0,1)+(-1,1,1)+(0,-1,1)=(1,0,-1)+(-1,1,1)+(0,-1,1)=(0,0,1)=\\vec a$，成立。",
+        "于是 $A^n\\vec a=-1\\cdot1^n v_1+1\\cdot2^n v_2+1\\cdot(-1)^n v_3=-v_1+2^n v_2+(-1)^n v_3$。",
+        "将其除以 $2^n$：$\\dfrac{A^n\\vec a}{2^n}=-\\dfrac{v_1}{2^n}+v_2+\\dfrac{(-1)^n}{2^n}v_3\\to v_2$（当 $n\\to\\infty$），因为 $|2|$ 是三个特征值中模最大的，故 $\\lambda=2$ 的分量渐近主导。",
+        "因此 $\\dfrac{A^n\\vec a}{\\|A^n\\vec a\\|}\\to\\dfrac{v_2}{\\|v_2\\|}=\\dfrac{(-1,1,1)^T}{\\sqrt{1^2+1^2+1^2}}=\\dfrac{1}{\\sqrt3}\\begin{pmatrix}-1\\\\1\\\\1\\end{pmatrix}$。"
+      ]
+    }
+  ],
+  "practice_questions": [
+    {
+      "text": "求矩阵 $B=\\begin{pmatrix}2&1\\\\1&2\\end{pmatrix}$ 的特征值与对应的特征向量。",
+      "knowledge_points": [
+        "特征多项式",
+        "特征值与特征向量的求解"
+      ],
+      "question_type": "二阶矩阵特征值特征向量的基础计算",
+      "method": [
+        "求特征多项式 $\\det(B-\\lambda I)=0$",
+        "解齐次方程求特征向量"
+      ],
+      "solution_steps": [
+        "写出特征方程",
+        "解出特征值",
+        "分别代入求特征向量"
+      ],
+      "math_structure": {
+        "type": "basic_eigen_decomposition_2x2",
+        "template": "2x2 对称矩阵求特征值特征向量",
+        "variable_count": 0
+      },
+      "difficulty": 1,
+      "estimated_minutes": 4,
+      "answer": [
+        {
+          "label": "特征值与特征向量",
+          "steps": [
+            "特征方程：$\\det(B-\\lambda I)=(2-\\lambda)^2-1=\\lambda^2-4\\lambda+3=0$，解得 $\\lambda=1$ 或 $\\lambda=3$。",
+            "对 $\\lambda=3$：$(B-3I)v=0$ 即 $-x+y=0$，取 $v=(1,1)^T$。",
+            "对 $\\lambda=1$：$(B-I)v=0$ 即 $x+y=0$，取 $v=(1,-1)^T$。验算：$Bv=B(1,-1)^T=(2-1,1-2)^T=(1,-1)^T=1\\cdot v$，正确。"
+          ]
+        }
+      ],
+      "id": "nagoya-2022-d331f9e201-q02-practice-01",
+      "school": "名古屋大学",
+      "year": "2022"
+    },
+    {
+      "text": "将矩阵 $C=\\begin{pmatrix}3&1&0\\\\0&2&0\\\\0&0&1\\end{pmatrix}$ 对角化。",
+      "knowledge_points": [
+        "上三角矩阵的特征值",
+        "特征向量的求解",
+        "矩阵对角化"
+      ],
+      "question_type": "三阶（上三角）矩阵的对角化",
+      "method": [
+        "利用上三角矩阵特征值即对角元",
+        "分别求特征向量组成 P"
+      ],
+      "solution_steps": [
+        "读出特征值",
+        "逐一求特征向量",
+        "写出 $P,D$ 使 $C=PDP^{-1}$"
+      ],
+      "math_structure": {
+        "type": "triangular_matrix_diagonalization",
+        "template": "上三角 3x3 矩阵，特征值为对角元，求特征向量完成对角化",
+        "variable_count": 0
+      },
+      "difficulty": 2,
+      "estimated_minutes": 6,
+      "answer": [
+        {
+          "label": "对角化 $C=PDP^{-1}$",
+          "steps": [
+            "由于 $C$ 为上三角矩阵，特征值即对角元：$\\lambda=3,2,1$。",
+            "对 $\\lambda=3$：$(C-3I)v=0$ 即 $-2y=0,\\ -y=0,\\ -2z=0$，得 $y=0,z=0$，取 $v_1=(1,0,0)^T$。",
+            "对 $\\lambda=2$：$(C-2I)v=0$ 即 $x+y=0,\\ 0=0,\\ -z=0$，得 $z=0,x=-y$，取 $v_2=(-1,1,0)^T$。",
+            "对 $\\lambda=1$：$(C-I)v=0$ 即 $2x+y=0,\\ y=0,\\ 0=0$，得 $y=0,x=0$，取 $v_3=(0,0,1)^T$。",
+            "令 $P=\\begin{pmatrix}1&-1&0\\\\0&1&0\\\\0&0&1\\end{pmatrix}$，$D=\\operatorname{diag}(3,2,1)$，则 $C=PDP^{-1}$。验算：$Cv_2=C(-1,1,0)^T=(-3+1,2,0)^T=(-2,2,0)^T=2v_2$，正确。"
+          ]
+        }
+      ],
+      "id": "nagoya-2022-d331f9e201-q02-practice-02",
+      "school": "名古屋大学",
+      "year": "2022"
+    },
+    {
+      "text": "沿用上题中矩阵 $C$ 及特征向量 $v_1=(1,0,0)^T,v_2=(-1,1,0)^T,v_3=(0,0,1)^T$，把向量 $w=(2,3,4)^T$ 表示为 $v_1,v_2,v_3$ 的线性组合。",
+      "knowledge_points": [
+        "向量在基下的坐标分解",
+        "线性方程组的求解"
+      ],
+      "question_type": "向量在特征基下的坐标分解",
+      "method": [
+        "设 $w=c_1v_1+c_2v_2+c_3v_3$",
+        "解线性方程组求系数"
+      ],
+      "solution_steps": [
+        "列出坐标方程",
+        "逐步求解 $c_1,c_2,c_3$",
+        "代回验算"
+      ],
+      "math_structure": {
+        "type": "vector_decomposition_in_eigenbasis",
+        "template": "已知特征向量组，将给定向量表示为其线性组合",
+        "variable_count": 0
+      },
+      "difficulty": 2,
+      "estimated_minutes": 6,
+      "answer": [
+        {
+          "label": "系数 $c_1,c_2,c_3$",
+          "steps": [
+            "设 $w=c_1v_1+c_2v_2+c_3v_3$，按分量：$c_1-c_2=2,\\ c_2=3,\\ c_3=4$。",
+            "由 $c_2=3$ 代入第一式：$c_1-3=2\\Rightarrow c_1=5$。",
+            "故 $w=5v_1+3v_2+4v_3$。验算：$5(1,0,0)+3(-1,1,0)+4(0,0,1)=(5-3,3,4)=(2,3,4)=w$，成立。"
+          ]
+        }
+      ],
+      "id": "nagoya-2022-d331f9e201-q02-practice-03",
+      "school": "名古屋大学",
+      "year": "2022"
+    },
+    {
+      "text": "设 $A_2=\\begin{pmatrix}3&0&0\\\\1&1&0\\\\0&2&-1\\end{pmatrix}$，其特征值为 $3,1,-1$，对应特征向量分别为 $(4,2,1)^T,(0,1,1)^T,(0,0,1)^T$。设 $w=(4,3,2)^T$，求 $\\displaystyle\\lim_{n\\to\\infty}\\frac{A_2^n w}{\\|A_2^n w\\|}$。",
+      "knowledge_points": [
+        "矩阵幂的渐近行为",
+        "主特征值主导原理",
+        "向量在特征基下的分解"
+      ],
+      "question_type": "矩阵幂极限方向的求解（与原题结构相同的预演）",
+      "method": [
+        "把 $w$ 用特征向量分解",
+        "写出 $A_2^n w$ 的表达式",
+        "利用模最大特征值主导求极限方向"
+      ],
+      "solution_steps": [
+        "求分解系数",
+        "写出 $A_2^n w$ 表达式",
+        "除以模最大特征值的幂取极限",
+        "单位化得到最终方向"
+      ],
+      "math_structure": {
+        "type": "matrix_power_limit_direction_pre_exercise",
+        "template": "已知特征值特征向量，将向量分解后求 $A^n w/\\|A^n w\\|$ 的极限",
+        "variable_count": 0
+      },
+      "difficulty": 3,
+      "estimated_minutes": 8,
+      "answer": [
+        {
+          "label": "极限方向",
+          "steps": [
+            "设 $w=c_1(4,2,1)^T+c_2(0,1,1)^T+c_3(0,0,1)^T$。由第一分量 $4c_1=4\\Rightarrow c_1=1$；第二分量 $2c_1+c_2=3\\Rightarrow c_2=1$；第三分量 $c_1+c_2+c_3=2\\Rightarrow c_3=0$。",
+            "验算：$1\\cdot(4,2,1)+1\\cdot(0,1,1)+0=(4,3,2)=w$，成立。",
+            "于是 $A_2^n w=3^n(4,2,1)^T+1^n(0,1,1)^T=3^n(4,2,1)^T+(0,1,1)^T$（$c_3=0$ 使 $-1$ 的分量消失）。",
+            "除以 $3^n$：$\\dfrac{A_2^n w}{3^n}=(4,2,1)^T+\\dfrac{1}{3^n}(0,1,1)^T\\to(4,2,1)^T$（$n\\to\\infty$），因为 $3$ 是模最大的特征值。",
+            "故 $\\dfrac{A_2^n w}{\\|A_2^n w\\|}\\to\\dfrac{(4,2,1)^T}{\\sqrt{16+4+1}}=\\dfrac{1}{\\sqrt{21}}(4,2,1)^T$。"
+          ]
+        }
+      ],
+      "id": "nagoya-2022-d331f9e201-q02-practice-04",
+      "school": "名古屋大学",
+      "year": "2022"
+    }
+  ],
+  "source_question": "第2科目 問1",
+  "source_pdf": "名古屋大学/情報学研究科/情報学専攻/名古屋大学_情報学研究科_情報学専攻_2022.pdf",
+  "source_type": "官方过去问",
+  "subject_category": "线性代数"
+}

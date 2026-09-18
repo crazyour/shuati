@@ -1,0 +1,179 @@
+{
+  "id": "kobe-2025-15b4e28a23-q02",
+  "school": "神户大学",
+  "year": "2025",
+  "subject": "系统情报学研究科_全专攻",
+  "text": "设 $a$ 为实数，矩阵 $A = \\begin{pmatrix} 2a-1 & a & a-1 \\\\ a & 2a & a \\\\ a-1 & a & 2a-1 \\end{pmatrix}$。\n\n(2-a) 求满足 $|A| = 0$ 的 $a$ 值。\n\n(2-b) 求矩阵 $A$ 的秩 $\\text{rank}(A)$。",
+  "knowledge_points": [
+    "行列式计算",
+    "矩阵秩",
+    "参数方程",
+    "行变换",
+    "矩阵秩的性质"
+  ],
+  "question_type": "参数矩阵的行列式与秩",
+  "method": [
+    "直接计算行列式",
+    "初等行变换求秩"
+  ],
+  "solution_steps": [
+    "计算矩阵行列式并令其为零",
+    "求参数值",
+    "代入参数值进行行变换求秩"
+  ],
+  "math_structure": {
+    "type": "parametric_matrix_rank",
+    "template": "$A = \\begin{pmatrix} 2a-1 & a & a-1 \\\\ a & 2a & a \\\\ a-1 & a & 2a-1 \\end{pmatrix}$，求 $\\det(A) = 0$ 和 $\\text{rank}(A)$",
+    "variable_count": 1
+  },
+  "difficulty": 3,
+  "answer": [
+    {
+      "label": "(2-a) 求 $|A| = 0$ 的 $a$ 值",
+      "steps": [
+        "观察矩阵，第三行是第一行减去 $(1, 1, 1)$",
+        "计算行列式：$|A| = \\begin{vmatrix} 2a-1 & a & a-1 \\\\ a & 2a & a \\\\ a-1 & a & 2a-1 \\end{vmatrix}$",
+        "对第一行进行操作，从第一行减去第三行：$\\begin{vmatrix} a & 0 & -a \\\\ a & 2a & a \\\\ a-1 & a & 2a-1 \\end{vmatrix}$",
+        "不如用行列式的展开：按第一列展开",
+        "$|A| = (2a-1)\\begin{vmatrix} 2a & a \\\\ a & 2a-1 \\end{vmatrix} - a\\begin{vmatrix} a & a-1 \\\\ a & 2a-1 \\end{vmatrix} + (a-1)\\begin{vmatrix} a & a-1 \\\\ 2a & a \\end{vmatrix}$",
+        "$(2a-1)[2a(2a-1) - a^2] = (2a-1)(4a^2 - 2a - a^2) = (2a-1)(3a^2 - 2a)$",
+        "$-a[a(2a-1) - a(a-1)] = -a[2a^2 - a - a^2 + a] = -a^3$",
+        "$(a-1)[a^2 - 2a(a-1)] = (a-1)(a^2 - 2a^2 + 2a) = (a-1)(2a - a^2)$",
+        "$|A| = (2a-1) \\cdot a(3a-2) - a^3 + (a-1) \\cdot a(2-a)$",
+        "$= a[(2a-1)(3a-2) - a^2 + (a-1)(2-a)]$",
+        "$= a[6a^2 - 4a - 3a + 2 - a^2 + (a-1)(2-a)]$",
+        "$= a[5a^2 - 7a + 2 + 2a - a^2 - 2 + a]$",
+        "$= a[4a^2 - 4a] = 4a^2(a-1)$",
+        "所以 $|A| = 0$ 当 $a = 0$ 或 $a = 1$"
+      ]
+    },
+    {
+      "label": "(2-b) 求秩 $\\text{rank}(A)$",
+      "steps": [
+        "当 $a = 0$ 时，$A = \\begin{pmatrix} -1 & 0 & -1 \\\\ 0 & 0 & 0 \\\\ -1 & 0 & -1 \\end{pmatrix}$",
+        "第一行与第三行成比例，$\\text{rank}(A) = 1$",
+        "当 $a = 1$ 时，$A = \\begin{pmatrix} 1 & 1 & 0 \\\\ 1 & 2 & 1 \\\\ 0 & 1 & 1 \\end{pmatrix}$",
+        "进行行变换：$R_2 - R_1 \\Rightarrow \\begin{pmatrix} 1 & 1 & 0 \\\\ 0 & 1 & 1 \\\\ 0 & 1 & 1 \\end{pmatrix}$",
+        "$R_3 - R_2 \\Rightarrow \\begin{pmatrix} 1 & 1 & 0 \\\\ 0 & 1 & 1 \\\\ 0 & 0 & 0 \\end{pmatrix}$",
+        "$\\text{rank}(A) = 2$",
+        "当 $a \\neq 0, 1$ 时，$|A| \\neq 0$，所以 $\\text{rank}(A) = 3$"
+      ]
+    }
+  ],
+  "practice_questions": [
+    {
+      "text": "设矩阵 $B = \\begin{pmatrix} 1 & 2 & 1 \\\\ 2 & 4 & t \\\\ 1 & 2 & 1 \\end{pmatrix}$，其中 $t$ 为参数。求 $\\text{rank}(B)$。",
+      "knowledge_points": [
+        "矩阵秩",
+        "行变换",
+        "参数分析"
+      ],
+      "question_type": "参数矩阵的秩",
+      "method": [
+        "行变换法"
+      ],
+      "solution_steps": [
+        "对矩阵进行行变换",
+        "根据参数值分类讨论",
+        "确定秩"
+      ],
+      "math_structure": {
+        "type": "parametric_rank_analysis",
+        "template": "求矩阵 $B = \\begin{pmatrix} 1 & 2 & 1 \\\\ 2 & 4 & t \\\\ 1 & 2 & 1 \\end{pmatrix}$ 的秩",
+        "variable_count": 1
+      },
+      "difficulty": 2,
+      "estimated_minutes": 8,
+      "answer": [
+        {
+          "label": "矩阵秩",
+          "steps": [
+            "$R_2 - 2R_1 \\Rightarrow \\begin{pmatrix} 1 & 2 & 1 \\\\ 0 & 0 & t-2 \\\\ 1 & 2 & 1 \\end{pmatrix}$",
+            "$R_3 - R_1 \\Rightarrow \\begin{pmatrix} 1 & 2 & 1 \\\\ 0 & 0 & t-2 \\\\ 0 & 0 & 0 \\end{pmatrix}$",
+            "当 $t = 2$ 时，$\\text{rank}(B) = 1$",
+            "当 $t \\neq 2$ 时，$\\text{rank}(B) = 2$"
+          ]
+        }
+      ],
+      "id": "kobe-2025-15b4e28a23-q02-practice-01",
+      "school": "神户大学",
+      "year": "2025"
+    },
+    {
+      "text": "已知矩阵 $C = \\begin{pmatrix} 1 & 0 & 0 \\\\ 0 & 2 & 0 \\\\ 0 & 0 & k \\end{pmatrix}$，求 $\\det(C)$ 和 $\\text{rank}(C)$。",
+      "knowledge_points": [
+        "对角矩阵",
+        "行列式",
+        "秩"
+      ],
+      "question_type": "对角矩阵的行列式与秩",
+      "method": [
+        "直接计算"
+      ],
+      "solution_steps": [
+        "对角矩阵的行列式为对角元素的乘积",
+        "秩取决于非零对角元素的个数"
+      ],
+      "math_structure": {
+        "type": "diagonal_matrix_properties",
+        "template": "对角矩阵 $C = \\text{diag}(1, 2, k)$ 的行列式与秩",
+        "variable_count": 1
+      },
+      "difficulty": 1,
+      "estimated_minutes": 4,
+      "answer": [
+        {
+          "label": "行列式与秩",
+          "steps": [
+            "对于对角矩阵，$\\det(C) = 1 \\times 2 \\times k = 2k$",
+            "当 $k \\neq 0$ 时，所有对角元素非零，$\\text{rank}(C) = 3$",
+            "当 $k = 0$ 时，$\\text{rank}(C) = 2$"
+          ]
+        }
+      ],
+      "id": "kobe-2025-15b4e28a23-q02-practice-02",
+      "school": "神户大学",
+      "year": "2025"
+    },
+    {
+      "text": "设矩阵 $D = \\begin{pmatrix} 1 & 1 & 0 \\\\ 1 & 1 & 1 \\\\ 0 & 1 & 1 \\end{pmatrix}$，求 $|D|$ 和 $\\text{rank}(D)$。",
+      "knowledge_points": [
+        "行列式计算",
+        "秩的性质"
+      ],
+      "question_type": "矩阵的行列式与秩",
+      "method": [
+        "按行展开",
+        "行变换"
+      ],
+      "solution_steps": [
+        "计算行列式",
+        "根据行列式的值判断秩"
+      ],
+      "math_structure": {
+        "type": "matrix_rank_det",
+        "template": "求矩阵 $D$ 的行列式与秩",
+        "variable_count": 0
+      },
+      "difficulty": 2,
+      "estimated_minutes": 6,
+      "answer": [
+        {
+          "label": "行列式与秩",
+          "steps": [
+            "$|D| = 1 \\cdot \\begin{vmatrix} 1 & 1 \\\\ 1 & 1 \\end{vmatrix} - 1 \\cdot \\begin{vmatrix} 1 & 1 \\\\ 0 & 1 \\end{vmatrix} + 0$",
+            "$= 1(1-1) - 1(1-0) = 0 - 1 = -1$",
+            "由于 $|D| = -1 \\neq 0$，所以 $\\text{rank}(D) = 3$"
+          ]
+        }
+      ],
+      "id": "kobe-2025-15b4e28a23-q02-practice-03",
+      "school": "神户大学",
+      "year": "2025"
+    }
+  ],
+  "source_question": "問2",
+  "source_pdf": "神户大学/系统情报学研究科/全专攻/神户大学_系统情报学研究科_2025_三期_数学过去问.pdf",
+  "source_type": "官方过去问",
+  "subject_category": "线性代数"
+}

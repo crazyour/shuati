@@ -1,0 +1,244 @@
+{
+  "id": "osaka-2026-35e169c42a-q01",
+  "school": "大阪大学",
+  "year": "2026",
+  "subject": "基礎工学研究科_知能システム学コース",
+  "text": "求下列矩阵 $A,B$（$x$ 为实数）的行列式。\n\n$$A=\\begin{pmatrix}1+x^2 & x & 0 & 0\\\\ x & 1+x^2 & x & 0\\\\ 0 & x & 1+x^2 & x\\\\ 0 & 0 & x & 1+x^2\\end{pmatrix}$$\n\n$$B=\\begin{pmatrix}1 & 1 & 1 & 1\\\\ 1 & x+1 & 1 & 1\\\\ 1 & 1 & x+1 & 1\\\\ 1 & 1 & 1 & x+1\\end{pmatrix}$$",
+  "knowledge_points": [
+    "三对角矩阵行列式递推",
+    "行列式的按行/按列展开",
+    "秩一更新（矩阵行列式引理）",
+    "特殊矩阵（全1矩阵+对角矩阵）的特征值",
+    "多项式恒等式验证"
+  ],
+  "question_type": "行列式计算",
+  "method": [
+    "三对角矩阵递推法",
+    "矩阵行列式引理 $\\det(xI+J)$",
+    "特征值分解法"
+  ],
+  "solution_steps": [
+    "对 $A$：设 $D_n$ 为对应 $n\\times n$ 三对角矩阵（对角元 $1+x^2$，次对角元 $x$）的行列式，按最后一行展开得递推式 $D_n=(1+x^2)D_{n-1}-x^2D_{n-2}$，初值 $D_0=1,\\;D_1=1+x^2$。",
+    "依次计算 $D_2=1+x^2+x^4$，$D_3=1+x^2+x^4+x^6$，$D_4=1+x^2+x^4+x^6+x^8$，即为 $\\det A$。",
+    "对 $B$：注意到 $B=xI_4+J_4$，其中 $J_4$ 为全1矩阵。$J_4$ 的特征值为 $4$（重数1，对应特征向量 $(1,1,1,1)^T$）与 $0$（重数3）。",
+    "因此 $B=xI_4+J_4$ 的特征值为 $x+4$（重数1）与 $x$（重数3），故 $\\det B=(x+4)\\cdot x^3$。",
+    "代入 $x=0$ 检验：$\\det A(0)=1$（单位矩阵行列式为1，符合），$\\det B(0)=0$（此时 $B=J_4$ 为奇异矩阵，秩1，符合）。"
+  ],
+  "math_structure": {
+    "type": "tridiagonal_and_rank_one_update_determinant",
+    "template": "$A$ 为 $n\\times n$ 三对角矩阵，主对角元为 $1+x^2$、副对角元为 $x$；$B=xI_n+J_n$，其中 $J_n$ 为全一矩阵，且 $n=4$",
+    "variable_count": 1
+  },
+  "difficulty": 3,
+  "answer": [
+    {
+      "label": "det(A)",
+      "steps": [
+        "设 $D_n$ 表示对角元为 $1+x^2$、次对角元为 $x$ 的 $n\\times n$ 三对角矩阵行列式。按最后一行/列展开（标准三对角矩阵展开公式）得递推关系：$D_n=(1+x^2)D_{n-1}-x^2D_{n-2}$，边界 $D_0=1$（空矩阵约定），$D_1=1+x^2$。",
+        "计算 $D_2=(1+x^2)(1+x^2)-x^2\\cdot1=1+2x^2+x^4-x^2=1+x^2+x^4$。",
+        "计算 $D_3=(1+x^2)D_2-x^2D_1=(1+x^2)(1+x^2+x^4)-x^2(1+x^2)$。展开：$(1+x^2)(1+x^2+x^4)=1+2x^2+2x^4+x^6$，减去 $x^2+x^4$，得 $D_3=1+x^2+x^4+x^6$。",
+        "计算 $D_4=(1+x^2)D_3-x^2D_2=(1+x^2)(1+x^2+x^4+x^6)-x^2(1+x^2+x^4)$。展开 $(1+x^2)(1+x^2+x^4+x^6)=1+2x^2+2x^4+2x^6+x^8$，减去 $x^2+x^4+x^6$，得 $D_4=1+x^2+x^4+x^6+x^8$。",
+        "所以 $\\det A=1+x^2+x^4+x^6+x^8$。规律：$D_n=\\sum_{k=0}^n x^{2k}$，与逐次代入结果一致，验证无误。"
+      ]
+    },
+    {
+      "label": "det(B)",
+      "steps": [
+        "观察 $B$ 的结构：所有非对角元均为 $1$，对角元为 $x+1$，因此可写成 $B=xI_4+J_4$，其中 $I_4$ 为单位矩阵，$J_4$ 为 $4\\times4$ 全1矩阵。",
+        "全1矩阵 $J_4$ 的秩为1，其非零特征值为 $\\mathrm{tr}(J_4)=4$（对应特征向量 $(1,1,1,1)^T$），其余特征值均为 $0$（重数3，对应任何满足元素和为0的向量）。",
+        "由于 $I_4$ 与 $J_4$ 同时可对角化（$J_4$ 是对称矩阵），故 $B=xI_4+J_4$ 的特征值为：$x+4$（重数1）与 $x+0=x$（重数3）。",
+        "行列式为所有特征值之积：$\\det B=(x+4)\\cdot x\\cdot x\\cdot x=x^3(x+4)$。",
+        "验证：取 $x=1$，直接代入原矩阵计算（或用初等行变换：第2、3、4行分别减去第1行，再化简）也可得 $\\det B=1^3\\cdot5=5$，与公式 $x^3(x+4)\\big|_{x=1}=1\\cdot5=5$ 一致。"
+      ]
+    }
+  ],
+  "practice_questions": [
+    {
+      "text": "求 $3\\times3$ 三对角矩阵 $C=\\begin{pmatrix}1+t^2 & t & 0\\\\ t & 1+t^2 & t\\\\ 0 & t & 1+t^2\\end{pmatrix}$（$t$ 为实数）的行列式。",
+      "knowledge_points": [
+        "三对角矩阵行列式递推",
+        "行列式按行展开"
+      ],
+      "question_type": "行列式计算",
+      "method": [
+        "递推法"
+      ],
+      "solution_steps": [
+        "设 $D_1=1+t^2$，$D_2=(1+t^2)^2-t^2$，利用递推 $D_3=(1+t^2)D_2-t^2D_1$ 计算。",
+        "化简得到最终多项式表达式。"
+      ],
+      "math_structure": {
+        "type": "tridiagonal_determinant",
+        "template": "n=3 tridiagonal, diag=1+t^2, offdiag=t",
+        "variable_count": 1
+      },
+      "difficulty": 1,
+      "estimated_minutes": 6,
+      "answer": [
+        {
+          "label": "det(C)",
+          "steps": [
+            "$D_1=1+t^2$。",
+            "$D_2=(1+t^2)(1+t^2)-t^2\\cdot1=1+t^2+t^4$。",
+            "$D_3=(1+t^2)D_2-t^2D_1=(1+t^2)(1+t^2+t^4)-t^2(1+t^2)$。展开 $(1+t^2)(1+t^2+t^4)=1+2t^2+2t^4+t^6$，减去 $t^2+t^4$，得 $D_3=1+t^2+t^4+t^6$。",
+            "结论：$\\det C=1+t^2+t^4+t^6$，符合 $D_n=\\sum_{k=0}^n t^{2k}$ 的一般规律（$n=3$ 情形）。"
+          ]
+        }
+      ],
+      "id": "osaka-2026-35e169c42a-q01-practice-01",
+      "school": "大阪大学",
+      "year": "2026"
+    },
+    {
+      "text": "沿用原题中三对角矩阵递推关系 $D_n=(1+x^2)D_{n-1}-x^2D_{n-2}$（$D_0=1,D_1=1+x^2$），求 $5\\times5$ 同类型矩阵（对角元 $1+x^2$，次对角元 $x$）的行列式 $D_5$。",
+      "knowledge_points": [
+        "递推关系求解",
+        "多项式化简"
+      ],
+      "question_type": "递推计算",
+      "method": [
+        "递推法延伸"
+      ],
+      "solution_steps": [
+        "已知 $D_4=1+x^2+x^4+x^6+x^8$，$D_3=1+x^2+x^4+x^6$。",
+        "代入递推 $D_5=(1+x^2)D_4-x^2D_3$ 展开化简。"
+      ],
+      "math_structure": {
+        "type": "tridiagonal_determinant",
+        "template": "n=5 tridiagonal, diag=1+x^2, offdiag=x",
+        "variable_count": 1
+      },
+      "difficulty": 2,
+      "estimated_minutes": 8,
+      "answer": [
+        {
+          "label": "D_5",
+          "steps": [
+            "$D_5=(1+x^2)D_4-x^2D_3=(1+x^2)(1+x^2+x^4+x^6+x^8)-x^2(1+x^2+x^4+x^6)$。",
+            "展开第一项：$(1+x^2)(1+x^2+x^4+x^6+x^8)=1+2x^2+2x^4+2x^6+2x^8+x^{10}$。",
+            "减去第二项 $x^2+x^4+x^6+x^8$，得 $D_5=1+x^2+x^4+x^6+x^8+x^{10}$。",
+            "结论：$D_5=\\sum_{k=0}^{5}x^{2k}=1+x^2+x^4+x^6+x^8+x^{10}$，与规律 $D_n=\\sum_{k=0}^n x^{2k}$ 一致。"
+          ]
+        }
+      ],
+      "id": "osaka-2026-35e169c42a-q01-practice-02",
+      "school": "大阪大学",
+      "year": "2026"
+    },
+    {
+      "text": "求 $3\\times3$ 矩阵 $E=\\begin{pmatrix}y+1 & 1 & 1\\\\ 1 & y+1 & 1\\\\ 1 & 1 & y+1\\end{pmatrix}$（$y$ 为实数）的行列式，其中 $E$ 的结构类似原题中的 $B$。",
+      "knowledge_points": [
+        "矩阵行列式引理",
+        "全1矩阵特征值",
+        "秩一更新"
+      ],
+      "question_type": "行列式计算",
+      "method": [
+        "特征值分解法 $E=yI+J$"
+      ],
+      "solution_steps": [
+        "写出 $E=yI_3+J_3$，求 $J_3$ 的特征值。",
+        "求出 $E$ 的特征值并计算乘积。"
+      ],
+      "math_structure": {
+        "type": "rank_one_update_determinant",
+        "template": "yI_n + J_n, n=3",
+        "variable_count": 1
+      },
+      "difficulty": 2,
+      "estimated_minutes": 7,
+      "answer": [
+        {
+          "label": "det(E)",
+          "steps": [
+            "$E=yI_3+J_3$，其中 $J_3$ 为 $3\\times3$ 全1矩阵，其非零特征值为 $\\mathrm{tr}(J_3)=3$（重数1），其余特征值为0（重数2）。",
+            "故 $E$ 的特征值为 $y+3$（重数1）与 $y$（重数2）。",
+            "$\\det E=(y+3)\\cdot y\\cdot y=y^2(y+3)$。",
+            "验证：取 $y=1$，代入原矩阵直接展开计算（第一行按余子式展开）也得 $\\det E=4$，与公式 $y^2(y+3)\\big|_{y=1}=1\\cdot4=4$ 一致。"
+          ]
+        }
+      ],
+      "id": "osaka-2026-35e169c42a-q01-practice-03",
+      "school": "大阪大学",
+      "year": "2026"
+    },
+    {
+      "text": "设 $A(x)=\\begin{pmatrix}1+x^2 & x & 0 & 0\\\\ x & 1+x^2 & x & 0\\\\ 0 & x & 1+x^2 & x\\\\ 0 & 0 & x & 1+x^2\\end{pmatrix}$（原题中的矩阵）。判断是否存在实数 $x$ 使得 $\\det A(x)=0$，并说明理由。",
+      "knowledge_points": [
+        "多项式正定性判断",
+        "行列式的性质"
+      ],
+      "question_type": "存在性判断",
+      "method": [
+        "直接分析多项式表达式的符号"
+      ],
+      "solution_steps": [
+        "利用已知结果 $\\det A(x)=1+x^2+x^4+x^6+x^8$。",
+        "分析该多项式对所有实数 $x$ 的取值范围。"
+      ],
+      "math_structure": {
+        "type": "polynomial_sign_analysis",
+        "template": "det(A)=1+x^2+x^4+x^6+x^8=0?, x in R",
+        "variable_count": 1
+      },
+      "difficulty": 2,
+      "estimated_minutes": 5,
+      "answer": [
+        {
+          "label": "是否存在实数解",
+          "steps": [
+            "由主题结论，$\\det A(x)=1+x^2+x^4+x^6+x^8$。",
+            "对任意实数 $x$，各偶次幂项 $x^2,x^4,x^6,x^8\\ge 0$，且常数项为 $1>0$，因此 $\\det A(x)\\ge 1>0$ 恒成立。",
+            "结论：不存在实数 $x$ 使 $\\det A(x)=0$，即矩阵 $A(x)$ 对任意实数 $x$ 均可逆（非奇异）。"
+          ]
+        }
+      ],
+      "id": "osaka-2026-35e169c42a-q01-practice-04",
+      "school": "大阪大学",
+      "year": "2026"
+    },
+    {
+      "text": "推导一般公式：设 $J_n$ 为 $n\\times n$ 全1矩阵，$I_n$ 为单位矩阵，证明 $\\det(xI_n+J_n)=x^{n-1}(x+n)$，并用该公式重新验证原题中 $\\det B$（$n=4$）的结果。",
+      "knowledge_points": [
+        "矩阵行列式引理",
+        "特征值与行列式关系",
+        "秩一矩阵性质"
+      ],
+      "question_type": "公式证明与应用",
+      "method": [
+        "特征值分解法",
+        "矩阵行列式引理"
+      ],
+      "solution_steps": [
+        "分析 $J_n$ 的特征值结构（秩1，非零特征值为 $n$）。",
+        "得出 $xI_n+J_n$ 的特征值，进而求行列式。",
+        "代入 $n=4$ 验证与原题一致。"
+      ],
+      "math_structure": {
+        "type": "rank_one_update_determinant_general",
+        "template": "det(xI_n + J_n) = x^{n-1}(x+n)",
+        "variable_count": 2
+      },
+      "difficulty": 3,
+      "estimated_minutes": 10,
+      "answer": [
+        {
+          "label": "一般公式证明",
+          "steps": [
+            "$J_n$ 是秩为1的对称矩阵，可写成 $J_n=\\mathbf{1}\\mathbf{1}^T$，其中 $\\mathbf{1}=(1,1,\\dots,1)^T$。其特征值为 $\\mathbf{1}^T\\mathbf{1}=n$（重数1，特征向量为 $\\mathbf{1}$）与 $0$（重数 $n-1$，特征子空间为与 $\\mathbf{1}$ 正交的向量集合）。",
+            "因为 $I_n$ 与 $J_n$ 可同时对角化（同一组特征向量），所以 $xI_n+J_n$ 的特征值为 $x+n$（重数1）与 $x$（重数 $n-1$）。",
+            "行列式为所有特征值之积：$\\det(xI_n+J_n)=(x+n)\\cdot x^{n-1}$。",
+            "代入 $n=4$：$\\det(xI_4+J_4)=x^3(x+4)$，与原题中 $\\det B=x^3(x+4)$ 完全一致，公式验证成功。"
+          ]
+        }
+      ],
+      "id": "osaka-2026-35e169c42a-q01-practice-05",
+      "school": "大阪大学",
+      "year": "2026"
+    }
+  ],
+  "source_question": "2-1)",
+  "source_pdf": "大阪大学/基礎工学研究科/知能システム学コース/大阪大学_基礎工学研究科_知能システム学コース_2026.pdf",
+  "source_type": "官方过去问",
+  "subject_category": "线性代数"
+}

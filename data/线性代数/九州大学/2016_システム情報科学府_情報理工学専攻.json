@@ -50,5 +50,120 @@
         "所列 $2d$ 个向量都属于 $V\\times V$。若 $\\sum_{i}\\alpha _{i}(v_{i},v_{i})+\\sum_{i}\\beta _{i}(v_{i},-v_{i})=0$，则由上下两块分别得到 $\\alpha _{i}+\\beta _{i}=0$、$\\alpha _{i}-\\beta _{i}=0$，故所有系数为$0$。它们线性无关且数量等于维数，所以是一组基。"
       ]
     }
+  ],
+  "practice_questions": [
+    {
+      "id": "kyushu-2016-ist-la-practice-01",
+      "school": "九州大学",
+      "year": "2016",
+      "text": "对 $1\\times1$ 矩阵 $A=(a)$，计算 $f(A)=2^{-1/2}\\begin{pmatrix}A&A\\\\A&-A\\end{pmatrix}$，并求 $f(A)^{\\mathsf T}f(A)$。据此判断何时 $f(A)$ 为正交矩阵。",
+      "knowledge_points": [
+        "分块矩阵",
+        "正交矩阵",
+        "矩阵乘法"
+      ],
+      "question_type": "计算分块构造的正交条件",
+      "method": [
+        "直接矩阵乘法"
+      ],
+      "solution_steps": [
+        "写出 $f(A)$",
+        "计算 $f(A)^{\\mathsf T}f(A)$",
+        "与单位矩阵比较"
+      ],
+      "math_structure": {
+        "type": "scalar_block_orthogonality",
+        "template": "$f((a))^{\\mathsf T}f((a))=a^2I_2$",
+        "variable_count": 1
+      },
+      "difficulty": 1,
+      "estimated_minutes": 5,
+      "answer": [
+        {
+          "label": "计算并判断",
+          "steps": [
+            "$f(A)=\\frac{a}{\\sqrt2}\\begin{pmatrix}1&1\\\\1&-1\\end{pmatrix}$。",
+            "直接相乘得 $f(A)^{\\mathsf T}f(A)=a^2I_2$。",
+            "因此 $f(A)$ 为正交矩阵当且仅当 $a^2=1$，即 $a=\\pm1$。"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "kyushu-2016-ist-la-practice-02",
+      "school": "九州大学",
+      "year": "2016",
+      "text": "令 $A_0=(1)$、$A_n=f(A_{n-1})$。写出 $A_1,A_2$，并计算长度为 $4$ 的全一行向量 $\\mathbf{1}_4$ 与 $A_2$ 的乘积。",
+      "knowledge_points": [
+        "递归矩阵",
+        "Hadamard 矩阵",
+        "分块计算"
+      ],
+      "question_type": "展开递归定义并计算乘积",
+      "method": [
+        "递归展开",
+        "按列求和"
+      ],
+      "solution_steps": [
+        "由定义计算 $A_1$",
+        "把 $A_1$ 代入得到 $A_2$",
+        "计算各列元素之和"
+      ],
+      "math_structure": {
+        "type": "recursive_hadamard_matrix",
+        "template": "$A_n=2^{-1/2}\\begin{pmatrix}A_{n-1}&A_{n-1}\\\\A_{n-1}&-A_{n-1}\\end{pmatrix}$",
+        "variable_count": 1
+      },
+      "difficulty": 2,
+      "estimated_minutes": 8,
+      "answer": [
+        {
+          "label": "求 $A_1,A_2$ 与乘积",
+          "steps": [
+            "$A_1=\\frac1{\\sqrt2}\\begin{pmatrix}1&1\\\\1&-1\\end{pmatrix}$。",
+            "$A_2=\\frac12\\begin{pmatrix}1&1&1&1\\\\1&-1&1&-1\\\\1&1&-1&-1\\\\1&-1&-1&1\\end{pmatrix}$。",
+            "将 $A_2$ 各列求和可得 $$\\mathbf{1}_4A_2=(2,0,0,0).$$ "
+          ]
+        }
+      ]
+    },
+    {
+      "id": "kyushu-2016-ist-la-practice-03",
+      "school": "九州大学",
+      "year": "2016",
+      "text": "设 $A$ 为任意 $m\\times n$ 实矩阵，$f(A)=2^{-1/2}\\begin{pmatrix}A&A\\\\A&-A\\end{pmatrix}$。证明 $\\operatorname{rank}(f(A))=2\\operatorname{rank}(A)$。",
+      "knowledge_points": [
+        "矩阵秩",
+        "列空间",
+        "分块矩阵"
+      ],
+      "question_type": "求分块矩阵的秩",
+      "method": [
+        "刻画列空间",
+        "直积空间维数"
+      ],
+      "solution_steps": [
+        "令 $V=\\operatorname{Col}(A)$",
+        "证明 $\\operatorname{Col}(f(A))=V\\times V$",
+        "计算直积空间维数"
+      ],
+      "math_structure": {
+        "type": "block_matrix_rank_doubling",
+        "template": "$\\operatorname{Col}(f(A))=\\operatorname{Col}(A)\\times\\operatorname{Col}(A)$",
+        "variable_count": 1
+      },
+      "difficulty": 3,
+      "estimated_minutes": 12,
+      "answer": [
+        {
+          "label": "证明秩加倍",
+          "steps": [
+            "记 $V=\\operatorname{Col}(A)$。对任意 $x,y\\in\\mathbb{R}^n$，$$f(A)\\binom{x}{y}=\\frac1{\\sqrt2}\\binom{A(x+y)}{A(x-y)},$$ 所以像空间包含于 $V\\times V$。",
+            "反过来，给定 $u=Ar$、$v=As$，取 $x=(r+s)/\\sqrt2$、$y=(r-s)/\\sqrt2$，便有 $f(A)(x,y)^{\\mathsf T}=(u,v)^{\\mathsf T}$。故像空间恰为 $V\\times V$。",
+            "因此 $\\operatorname{rank}(f(A))=\\dim(V\\times V)=2\\dim V=2\\operatorname{rank}(A)$。"
+          ]
+        }
+      ]
+    }
   ]
 }

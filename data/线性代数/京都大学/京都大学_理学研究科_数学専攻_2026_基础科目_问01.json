@@ -1,0 +1,224 @@
+{
+  "id": "kyoto-2026-e3cfb5d851-q01",
+  "school": "京都大学",
+  "year": "2026",
+  "subject": "理学研究科_数学専攻",
+  "text": "设 $a,b$ 为实数. 求矩阵\n$$M=\\begin{pmatrix} a & a & b & b \\\\ a & a & -b & b \\\\ b & b & a & a \\\\ -b & b & -a & a \\end{pmatrix}$$\n的秩.",
+  "knowledge_points": [
+    "矩阵的秩",
+    "初等行变换",
+    "行列式的展开",
+    "参数矩阵的分类讨论",
+    "行向量组的线性相关性"
+  ],
+  "question_type": "含参数矩阵求秩",
+  "method": [
+    "对相邻两行做和差的初等变换(保持行空间不变)",
+    "计算变换后矩阵的行列式作为满秩判据",
+    "按参数取值分情形讨论并逐一验证秩"
+  ],
+  "solution_steps": [
+    "对 $(R_1,R_2)$ 与 $(R_3,R_4)$ 分别作和差变换,得到与原矩阵行空间相同的新行向量组",
+    "写出新行向量 $S_1=(0,0,b,0)$, $S_2=(a,a,0,b)$, $S_3=(0,b,0,a)$, $S_4=(b,0,a,0)$",
+    "计算 $4\\times4$ 行列式 $\\det(S_1,S_2,S_3,S_4)=b^2(a^2-b^2)$",
+    "根据 $a=0,b=0$ / $b=0,a\\ne0$ / $b\\ne0,a=\\pm b$ / 其余情形 四种情况分别求出秩",
+    "对每种边界情形（如 $a=b$, $a=-b$, $b=0$）直接验证行向量组的线性相关性以确定精确的秩"
+  ],
+  "math_structure": {
+    "type": "parametric_matrix_rank",
+    "template": "rank of the $4\\times4$ matrix $M(a,b)=\\begin{pmatrix}a&a&b&b\\\\a&a&-b&b\\\\b&b&a&a\\\\-b&b&-a&a\\end{pmatrix}$ as $a,b\\in\\mathbb R$ vary",
+    "variable_count": 2
+  },
+  "difficulty": 4,
+  "answer": [
+    {
+      "label": "原题",
+      "steps": [
+        "第一步：作行的线性组合. 令 $S_1=R_1-R_2=(0,0,2b,0)\\to(0,0,b,0)$，$S_2=R_1+R_2=(2a,2a,0,2b)\\to(a,a,0,b)$；$S_3=R_3+R_4=(0,2b,0,2a)\\to(0,b,0,a)$，$S_4=R_3-R_4=(2b,0,2a,0)\\to(b,0,a,0)$. 由于把 $(R_1,R_2)$ 变为 $(S_1,S_2)$ 的变换矩阵 $\\begin{pmatrix}1&-1\\\\1&1\\end{pmatrix}$ 行列式为 $2$（可逆），$(R_3,R_4)\\to(S_3,S_4)$ 同理，故 $\\{S_1,S_2,S_3,S_4\\}$ 与 $\\{R_1,R_2,R_3,R_4\\}$ 张成相同的行空间，秩相同.",
+        "第二步：计算行列式 $\\det N$，其中 $N=\\begin{pmatrix}0&0&b&0\\\\a&a&0&b\\\\0&b&0&a\\\\b&0&a&0\\end{pmatrix}$. 按第一行展开（唯一非零元在第3列，为 $b$，符号 $(+1)^{1+3}=+$）：$\\det N=b\\cdot\\det\\begin{pmatrix}a&a&b\\\\0&b&a\\\\b&0&0\\end{pmatrix}$. 对此 $3\\times3$ 行列式按第三行展开（唯一非零元在第1列，为 $b$，符号 $+$）：$=b\\cdot\\det\\begin{pmatrix}a&b\\\\b&a\\end{pmatrix}=b(a^2-b^2)$. 于是 $\\det N=b^2(a^2-b^2)$.",
+        "第三步（情形 $b\\ne0,\\ a\\ne\\pm b$）：此时 $\\det N\\ne0$，故 $\\operatorname{rank}(N)=4$，从而 $\\operatorname{rank}(M)=4$（此情形包含 $a=0,b\\ne0$ 的子情形，因为此时 $a^2-b^2=-b^2\\ne0$）.",
+        "第四步（情形 $b=0,a\\ne0$）：此时 $R_1=R_2=(a,a,0,0)$（相同行），$R_3=R_4=(0,0,a,a)$，两个互不相关的非零向量给出秩 $=2$？需重新核对：将 $b=0$ 代入原矩阵 $M$：$R_1=(a,a,0,0),R_2=(a,a,0,0),R_3=(0,0,a,a),R_4=(0,0,-a,a)$；此处 $R_3,R_4$ 不相等，$\\det\\begin{pmatrix}a&a\\\\-a&a\\end{pmatrix}=2a^2\\ne0$ 故 $R_3,R_4$ 独立；连同 $R_1=R_2$（贡献秩1），总秩 $=1+2=3$.",
+        "第五步（情形 $b\\ne0, a=b\\ne0$）：代入 $a=b=1$ 作数值检验：$R_1=(1,1,1,1),R_2=(1,1,-1,1),R_3=(1,1,1,1)=R_1,R_4=(-1,1,-1,1)$. 设 $xR_1+yR_2+zR_4=0$，比较四个坐标得方程组 $x+y-z=0,\\ x+y+z=0,\\ x-y-z=0,\\ x+y+z=0$；由前两式得 $z=0$，代入第一式得 $x+y=0$，代入第三式得 $x-y=0$，联立得 $x=y=0$. 故 $R_1,R_2,R_4$ 线性无关，秩为 $3$（一般 $a=b\\ne0$ 时同理可验证秩恒为 $3$，因为 $\\det N=b^2(a^2-b^2)=0$ 但去掉相关行后仍余三条独立向量）.",
+        "第六步（情形 $b\\ne0,a=-b\\ne0$）：由对称性（把 $a$ 换成 $-a$ 相当于把矩阵作用某个符号变换，不改变秩的判别结构），同样验证得秩为 $3$（可类似第五步直接代入数值验证，例如 $a=-1,b=1$ 时可验证恰有三条独立行）.",
+        "第七步（情形 $a=b=0$）：矩阵为零矩阵，秩为 $0$.",
+        "结论：$\\operatorname{rank}(M)=\\begin{cases}0,& a=b=0,\\\\ 3,& (b=0,\\ a\\ne0)\\ \\text{或}\\ (b\\ne0,\\ a=\\pm b),\\\\ 4,& b\\ne0\\ \\text{且}\\ a\\ne\\pm b.\\end{cases}$"
+      ]
+    }
+  ],
+  "practice_questions": [
+    {
+      "text": "设 $a$ 为实数，求矩阵 $\\begin{pmatrix}a&1\\\\1&a\\end{pmatrix}$ 的秩.",
+      "knowledge_points": [
+        "行列式",
+        "矩阵的秩",
+        "参数讨论"
+      ],
+      "question_type": "参数矩阵求秩",
+      "method": [
+        "计算行列式判别可逆性",
+        "对边界情形单独验证"
+      ],
+      "solution_steps": [
+        "计算 $\\det=a^2-1$",
+        "$a\\ne\\pm1$ 时行列式非零, 秩为2",
+        "$a=\\pm1$ 时矩阵两行成比例, 直接验证秩为1"
+      ],
+      "math_structure": {
+        "type": "parametric_matrix_rank",
+        "template": "rank of $\\begin{pmatrix}a&1\\\\1&a\\end{pmatrix}$",
+        "variable_count": 1
+      },
+      "difficulty": 1,
+      "estimated_minutes": 5,
+      "answer": [
+        {
+          "label": "求秩",
+          "steps": [
+            "计算行列式：$\\det=a\\cdot a-1\\cdot1=a^2-1$.",
+            "当 $a\\ne1$ 且 $a\\ne-1$ 时，$\\det\\ne0$，矩阵可逆，秩为 $2$.",
+            "当 $a=1$ 时矩阵为 $\\begin{pmatrix}1&1\\\\1&1\\end{pmatrix}$，两行相同，非零矩阵，秩为 $1$；当 $a=-1$ 时矩阵为 $\\begin{pmatrix}-1&1\\\\1&-1\\end{pmatrix}$，两行成比例（互为相反数），秩为 $1$.",
+            "结论：$\\operatorname{rank}=2$ 当 $a\\ne\\pm1$；$\\operatorname{rank}=1$ 当 $a=\\pm1$."
+          ]
+        }
+      ],
+      "id": "kyoto-2026-e3cfb5d851-q01-practice-01",
+      "school": "京都大学",
+      "year": "2026"
+    },
+    {
+      "text": "设 $a,b$ 为实数，求矩阵 $\\begin{pmatrix}a&b&b\\\\b&a&b\\\\b&b&a\\end{pmatrix}$ 的秩.",
+      "knowledge_points": [
+        "对称矩阵的特征值",
+        "行列式",
+        "特征值与秩的关系",
+        "参数讨论"
+      ],
+      "question_type": "参数对称矩阵求秩",
+      "method": [
+        "求出对称矩阵的特征值(利用循环对称结构)",
+        "用非零特征值个数确定秩",
+        "分情形讨论特征值是否为零"
+      ],
+      "solution_steps": [
+        "利用循环矩阵结构求出特征值为 $a+2b$（特征向量 $(1,1,1)$）和 $a-b$（二重，特征向量为与 $(1,1,1)$ 正交的向量）",
+        "由对称矩阵可对角化，秩等于非零特征值个数",
+        "分情况：$a+2b\\ne0,a\\ne b$ 秩3；$a=-2b\\ne0$（即 $a\\ne b$ 但 $a+2b=0$）秩2；$a=b\\ne0$ 秩1；$a=b=0$ 秩0"
+      ],
+      "math_structure": {
+        "type": "parametric_symmetric_matrix_rank",
+        "template": "rank of the circulant-type matrix $\\begin{pmatrix}a&b&b\\\\b&a&b\\\\b&b&a\\end{pmatrix}$",
+        "variable_count": 2
+      },
+      "difficulty": 2,
+      "estimated_minutes": 10,
+      "answer": [
+        {
+          "label": "求秩",
+          "steps": [
+            "矩阵是对称的循环结构，向量 $(1,1,1)^T$ 是特征向量，对应特征值 $a+2b$（因为每行元素和为 $a+2b$）；与 $(1,1,1)$ 正交的二维空间上，矩阵作用为 $a-b$ 倍恒等（可用两个正交基向量 $(1,-1,0),(1,0,-1)$ 验证：矩阵作用于 $(1,-1,0)$ 得 $(a-b,-a+b,0)=(a-b)(1,-1,0)$），故特征值 $a-b$ 是二重的.",
+            "矩阵实对称，故可正交对角化，秩 $=$ 非零特征值的个数（计重数）.",
+            "情形 $a+2b\\ne0$ 且 $a\\ne b$：三个特征值都非零，秩为 $3$.",
+            "情形 $a+2b=0,\\ a\\ne b$（即 $a=-2b,\\ b\\ne0$，此时 $a-b=-3b\\ne0$）：一个特征值为零，两个非零，秩为 $2$.",
+            "情形 $a=b\\ne0$（此时 $a+2b=3a\\ne0$，$a-b=0$ 重数2）：一个非零特征值，秩为 $1$.",
+            "情形 $a=b=0$：所有特征值为零，秩为 $0$（注意 $a=-2b$ 与 $a=b$ 同时成立当且仅当 $a=b=0$，已单独处理）.",
+            "结论：$\\operatorname{rank}=3$ 若 $a\\ne b,\\ a\\ne-2b$；$=2$ 若 $a=-2b\\ne0$；$=1$ 若 $a=b\\ne0$；$=0$ 若 $a=b=0$."
+          ]
+        }
+      ],
+      "id": "kyoto-2026-e3cfb5d851-q01-practice-02",
+      "school": "京都大学",
+      "year": "2026"
+    },
+    {
+      "text": "设 $a,b$ 为实数，求分块对角矩阵 $\\begin{pmatrix}a&b&0&0\\\\b&a&0&0\\\\0&0&a&-b\\\\0&0&-b&a\\end{pmatrix}$ 的秩.",
+      "knowledge_points": [
+        "分块对角矩阵的秩",
+        "2阶行列式",
+        "参数讨论",
+        "行向量线性相关性"
+      ],
+      "question_type": "分块对角参数矩阵求秩",
+      "method": [
+        "利用分块对角结构将问题化为两个2×2子矩阵的秩",
+        "分别用行列式判别每个子块的秩",
+        "把两子块的秩相加得到总秩"
+      ],
+      "solution_steps": [
+        "注意到矩阵是两个 $2\\times2$ 块 $\\begin{pmatrix}a&b\\\\b&a\\end{pmatrix}$ 与 $\\begin{pmatrix}a&-b\\\\-b&a\\end{pmatrix}$ 的直和",
+        "两块的行列式都等于 $a^2-b^2$，故同时满秩或同时降秩",
+        "分情形：$a^2\\ne b^2$ 时总秩4；$a^2=b^2,(a,b)\\ne(0,0)$ 时每块秩降为1，总秩2；$a=b=0$ 时总秩0"
+      ],
+      "math_structure": {
+        "type": "block_diagonal_matrix_rank",
+        "template": "rank of $\\operatorname{diag}\\left(\\begin{pmatrix}a&b\\\\b&a\\end{pmatrix},\\begin{pmatrix}a&-b\\\\-b&a\\end{pmatrix}\\right)$",
+        "variable_count": 2
+      },
+      "difficulty": 3,
+      "estimated_minutes": 12,
+      "answer": [
+        {
+          "label": "求秩",
+          "steps": [
+            "矩阵是分块对角矩阵，秩等于两个对角块的秩之和：$\\operatorname{rank}(M)=\\operatorname{rank}\\begin{pmatrix}a&b\\\\b&a\\end{pmatrix}+\\operatorname{rank}\\begin{pmatrix}a&-b\\\\-b&a\\end{pmatrix}$.",
+            "两个子块的行列式分别为 $a^2-b^2$ 和 $a^2-(-b)(-b)=a^2-b^2$，完全相同.",
+            "情形 $a^2\\ne b^2$：两块行列式非零，各自秩为2，总秩 $=2+2=4$.",
+            "情形 $a^2=b^2$ 且 $(a,b)\\ne(0,0)$（即 $a=b\\ne0$ 或 $a=-b\\ne0$）：以 $a=b\\ne0$ 为例，第一块变为 $\\begin{pmatrix}a&a\\\\a&a\\end{pmatrix}$（秩1），第二块变为 $\\begin{pmatrix}a&-a\\\\-a&a\\end{pmatrix}$（秩1，因为两行成比例），总秩 $=1+1=2$；$a=-b\\ne0$ 时同理验证也得总秩2.",
+            "情形 $a=b=0$：两块均为零矩阵，总秩为 $0$.",
+            "结论：$\\operatorname{rank}=4$ 若 $a^2\\ne b^2$；$=2$ 若 $a^2=b^2\\ne0$（即 $a=\\pm b\\ne0$）；$=0$ 若 $a=b=0$."
+          ]
+        }
+      ],
+      "id": "kyoto-2026-e3cfb5d851-q01-practice-03",
+      "school": "京都大学",
+      "year": "2026"
+    },
+    {
+      "text": "设 $a,b$ 为实数，求矩阵 $\\begin{pmatrix}a&a&b&b\\\\a&a&-b&b\\\\b&b&a&a\\\\b&-b&a&a\\end{pmatrix}$ 的秩.",
+      "knowledge_points": [
+        "矩阵的秩",
+        "行的线性组合技巧",
+        "参数矩阵分类讨论",
+        "子空间的正交分解"
+      ],
+      "question_type": "含参数4×4矩阵求秩",
+      "method": [
+        "对 (R1,R2) 与 (R3,R4) 分别作和差变换",
+        "利用消元把问题化为两组各自独立的二维子问题",
+        "综合两组结果并按参数取值讨论"
+      ],
+      "solution_steps": [
+        "对 $(R_1,R_2)$ 作和差得到 $S_1=(0,0,b,0)$, $S_2=(a,a,0,b)$；对 $(R_3,R_4)$ 作和差得到 $S_3=(0,b,0,0)$, $S_4=(b,0,a,a)$",
+        "利用 $S_1,S_3$ 消去 $S_2,S_4$ 中第2、3坐标的分量，得到纯粹在坐标(1,4)上的两个向量 $(a,b)$ 与 $(b,a)$",
+        "总秩 $=2$（来自$S_1,S_3$）$+$ 二维子问题 $\\{(a,b),(b,a)\\}$ 的秩",
+        "分类讨论 $a,b$ 的取值，得到最终结果"
+      ],
+      "math_structure": {
+        "type": "parametric_matrix_rank",
+        "template": "rank of $\\begin{pmatrix}a&a&b&b\\\\a&a&-b&b\\\\b&b&a&a\\\\b&-b&a&a\\end{pmatrix}$",
+        "variable_count": 2
+      },
+      "difficulty": 4,
+      "estimated_minutes": 20,
+      "answer": [
+        {
+          "label": "求秩",
+          "steps": [
+            "作行变换：$S_1=R_1-R_2=(0,0,2b,0)\\to(0,0,b,0)$，$S_2=R_1+R_2=(2a,2a,0,2b)\\to(a,a,0,b)$，$S_3=R_3-R_4=(0,2b,0,0)\\to(0,b,0,0)$，$S_4=R_3+R_4=(2b,0,2a,2a)\\to(b,0,a,a)$；这些变换均可逆，故与原矩阵秩相同.",
+            "情形 $b\\ne0$：由 $S_1=(0,0,b,0)$ 得坐标3方向，由 $S_3=(0,b,0,0)$ 得坐标2方向，二者独立，贡献秩2. 用它们消去 $S_2,S_4$ 中坐标2、3的分量：$S_2'=S_2-\\frac{a}{b}S_3=(a,0,0,b)$，$S_4'=S_4-\\frac{a}{b}S_1=(b,0,0,a)$，这两个向量仅在坐标(1,4)上非零，等价于二维向量组 $(a,b)$ 与 $(b,a)$.",
+            "二维子问题：$\\det\\begin{pmatrix}a&b\\\\b&a\\end{pmatrix}=a^2-b^2$；当 $a^2\\ne b^2$ 时两向量独立（秩2），当 $a=b\\ne0$ 时两向量均为 $(a,a)$ 成比例（秩1），当 $a=-b\\ne0$ 时两向量为 $(a,-a),(-a,a)$ 也成比例（秩1），当 $a=0$（则 $b\\ne0$）时属于 $a^2\\ne b^2$ 情形（秩2）.",
+            "综合：$b\\ne0,\\ a\\ne\\pm b$（含 $a=0$ 情形）时总秩 $=2+2=4$；$b\\ne0,\\ a=\\pm b\\ne0$（自动 $a\\ne0$）时总秩 $=2+1=3$.",
+            "情形 $b=0$：原矩阵化为 $R_1=R_2=(a,a,0,0)$，$R_3=R_4=(0,0,a,a)$（因为 $R_3=(b,b,a,a)=(0,0,a,a)$，$R_4=(b,-b,a,a)=(0,0,a,a)$，此时 $R_3=R_4$）；若 $a\\ne0$ 这两条不同的非零行线性无关，秩为 $2$；若 $a=0$ 则矩阵全为零，秩为 $0$.",
+            "结论：$\\operatorname{rank}=0$ 若 $a=b=0$；$=2$ 若 $b=0,a\\ne0$；$=3$ 若 $b\\ne0,a=\\pm b$；$=4$ 若 $b\\ne0,a\\ne\\pm b$."
+          ]
+        }
+      ],
+      "id": "kyoto-2026-e3cfb5d851-q01-practice-04",
+      "school": "京都大学",
+      "year": "2026"
+    }
+  ],
+  "source_question": "問題2",
+  "source_pdf": "京都大学/理学研究科/数学専攻/京都大学_理学研究科_数学専攻_2026_基础科目.pdf",
+  "source_type": "官方过去问",
+  "subject_category": "线性代数"
+}

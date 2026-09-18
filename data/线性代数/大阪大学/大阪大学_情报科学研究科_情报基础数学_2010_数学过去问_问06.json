@@ -1,0 +1,218 @@
+{
+  "id": "osaka-2010-d2b8f5102c-q06",
+  "school": "大阪大学",
+  "year": "2010",
+  "subject": "情报科学研究科_情报基础数学",
+  "text": "设 $0<r<n$，$n$阶方阵 $A(n,r)$ 的 $(i,j)$ 元素 $a_{ij}$ 定义为：\n$$a_{ij}=\\begin{cases}1,&(n+j-i)\\bmod n < r\\\\0,&(n+j-i)\\bmod n \\ge r\\end{cases}$$\n(即每行是长度为$r$的循环连续1，其余为0)。\n(i) 证明满足 $A(n,r)x=0$ 的列向量 $x$ 的各分量 $x_1,\\ldots,x_n$ 满足\n$$x_i=x_{i+r}\\quad(i=1,2,\\ldots,n-r).$$\n(ii) 当 $r$ 与 $n$ 互素时，证明满足 $A(n,r)x=0$ 的列向量 $x$ 只能是零向量。\n(iii) 当 $r$ 与 $n$ 的最大公约数 $g\\ge2$ 时，给出一个满足 $A(n,r)x=0$ 的非零列向量 $x$。",
+  "knowledge_points": [
+    "循环矩阵",
+    "线性方程组解的结构",
+    "最大公约数与循环群",
+    "矩阵零空间"
+  ],
+  "question_type": "循环结构矩阵零空间性质证明与构造",
+  "method": [
+    "相邻行相减",
+    "循环子群轨道分析",
+    "构造周期函数"
+  ],
+  "solution_steps": [
+    "第i部分：写出第i行方程为r个连续分量之和为0，比较相邻两行方程之差得到分量间的循环递推关系",
+    "第ii部分：利用gcd(r,n)=1，说明步长r在模n下生成整个循环群，从而所有分量相等，再代入原方程求得公共值为0",
+    "第iii部分：利用gcd(r,n)=g≥2，构造以g为周期、满足周期内元素和为0的非零函数作为x的分量"
+  ],
+  "math_structure": {
+    "type": "circulant_matrix_nullspace",
+    "template": "A(n,r)_{ij}=1 \\text{ iff } (n+j-i)\\bmod n<r,\\ \\text{分析}A(n,r)x=0",
+    "variable_count": 2
+  },
+  "difficulty": 5,
+  "answer": [
+    {
+      "label": "i)",
+      "steps": [
+        "分析$(i,j)$元素条件：$a_{ij}=1$ 当且仅当 $(n+j-i)\\bmod n=(j-i)\\bmod n\\in\\{0,1,\\ldots,r-1\\}$，即$j$取遍$i,i+1,\\ldots,i+r-1$（模$n$意义下的循环连续$r$个下标）",
+        "因此第$i$行方程为：$S_i:=x_i+x_{i+1}+\\cdots+x_{i+r-1}=0$（下标模$n$取$1,\\ldots,n$中的代表），对所有$i=1,\\ldots,n$成立",
+        "对$i=1,\\ldots,n-r$，因$i\\le n-r$，有$i+r-1\\le n-1<n$，故$S_i=x_i+x_{i+1}+\\cdots+x_{i+r-1}$中所有下标不超过$n-1$，无需模$n$折返；同理对$i+1\\le n-r+1$，$S_{i+1}=x_{i+1}+\\cdots+x_{i+r}$中最大下标$i+r\\le n$，同样无需折返",
+        "两式相减：$S_{i+1}-S_i=x_{i+r}-x_i$。由$S_i=S_{i+1}=0$，得$x_{i+r}-x_i=0$，即$x_i=x_{i+r}$，对$i=1,\\ldots,n-r$成立"
+      ]
+    },
+    {
+      "label": "ii)",
+      "steps": [
+        "先扩展(i)的结论到循环意义：对所有$i=1,\\ldots,n$（包括$i>n-r$的情形，此时下标需模$n$），同样有$S_i=0$对所有$i$成立（包括循环折返的行），从而由相邻行差得到$x_{i+r}=x_i$（下标模$n$）对所有$i=1,\\ldots,n$成立（视$S_{n+1}=S_1$）",
+        "考虑映射$\\varphi:\\{1,\\ldots,n\\}\\to\\{1,\\ldots,n\\}$，$\\varphi(i)=i+r\\pmod n$。因$\\gcd(r,n)=1$，$r$在$\\mathbb{Z}_n$中生成整个加法群，故从任意起点$i$反复应用$\\varphi$可遍历所有$n$个下标，即$\\{i,i+r,i+2r,\\ldots\\}\\pmod n$覆盖$\\{1,\\ldots,n\\}$全体",
+        "由$x_i=x_{i+r}$（模$n$）对所有$i$成立，结合上述轨道遍历性，得$x_1=x_2=\\cdots=x_n=:t$（所有分量相等）",
+        "代入方程$S_1=x_1+x_2+\\cdots+x_r=0$：得$r\\cdot t=0$。因$r>0$（$r$为正整数），故$t=0$",
+        "因此$x_1=\\cdots=x_n=0$，即$x$必为零向量"
+      ]
+    },
+    {
+      "label": "iii)",
+      "steps": [
+        "设$g=\\gcd(r,n)\\ge2$，则$r=g r'$，$n=g n'$，其中$r',n'$为正整数且$\\gcd(r',n')=1$",
+        "由(ii)的分析思路，步长$r$在$\\mathbb{Z}_n$中生成的子群阶数为$n/g$，其轨道恰好是模$g$同余类（即$i$与$i+r$模$g$同余，因$r\\equiv0\\pmod g$），故满足$x_i=x_{i+r}$（模$n$）的解$x$必是周期为$g$的函数，即$x_i$仅依赖于$i\\bmod g$",
+        "设$x_i$依赖于$i\\bmod g$的函数$f:\\mathbb{Z}_g\\to\\mathbb{R}$。因$r=g r'$是$g$的倍数，任意$r$个连续下标恰好覆盖每个模$g$剩余类恰好$r'$次，故$S_i=r'\\sum_{j=0}^{g-1}f(j)$，对所有$i$相同",
+        "为使$S_i=0$对所有$i$成立，只需$\\sum_{j=0}^{g-1}f(j)=0$。取非零选择：$f(1)=1,\\,f(0)=-1$，其余$f(j)=0\\,(j=2,\\ldots,g-1)$（因$g\\ge2$，此定义有效且非零）",
+        "即构造$x$为：对每个$i=1,\\ldots,n$，令$x_i=1$若$i\\equiv1\\pmod g$，$x_i=-1$若$i\\equiv0\\pmod g$，其余$x_i=0$。此向量非零（例如$x_1=1$），且满足$\\sum_{j=0}^{g-1}f(j)=1+(-1)+0+\\cdots+0=0$，从而$S_i=r'\\cdot0=0$对所有$i$成立，即$A(n,r)x=0$，构造成功"
+      ]
+    }
+  ],
+  "practice_questions": [
+    {
+      "text": "写出 $A(4,2)$ 的具体矩阵（按题目定义），并直接求解 $A(4,2)x=0$ 的所有解。",
+      "knowledge_points": [
+        "循环矩阵构造",
+        "线性方程组求解"
+      ],
+      "question_type": "小规模循环矩阵零空间直接求解",
+      "method": [
+        "直接构造矩阵",
+        "解线性方程组"
+      ],
+      "solution_steps": [
+        "根据定义逐行写出矩阵元素",
+        "列出线性方程组",
+        "求解并给出通解"
+      ],
+      "math_structure": {
+        "type": "circulant_matrix_nullspace",
+        "template": "A(4,2)x=0",
+        "variable_count": 0
+      },
+      "difficulty": 2,
+      "estimated_minutes": 10,
+      "answer": [
+        {
+          "label": "结果",
+          "steps": [
+            "按定义构造：第$i$行为$x_i,x_{i+1}$位置为1（模4循环），得矩阵$\\begin{pmatrix}1&1&0&0\\\\0&1&1&0\\\\0&0&1&1\\\\1&0&0&1\\end{pmatrix}$",
+            "方程组：$x_1+x_2=0,\\,x_2+x_3=0,\\,x_3+x_4=0,\\,x_4+x_1=0$",
+            "由第一式$x_2=-x_1$，第二式$x_3=-x_2=x_1$，第三式$x_4=-x_3=-x_1$，第四式验证：$x_4+x_1=-x_1+x_1=0$恒成立",
+            "通解：$x=t(1,-1,1,-1)^T$，$t\\in\\mathbb{R}$为自由参数，解空间维数为1（注意$\\gcd(2,4)=2\\ge2$，与(iii)结论一致：$g=2$，构造的$(1,-1,1,-1)$恰好对应周期2交替模式）"
+          ]
+        }
+      ],
+      "id": "osaka-2010-d2b8f5102c-q06-practice-01",
+      "school": "大阪大学",
+      "year": "2010"
+    },
+    {
+      "text": "对 $n=5,r=2$（$\\gcd(2,5)=1$），证明 $A(5,2)x=0$ 只有零解（可直接构造矩阵验证）。",
+      "knowledge_points": [
+        "循环矩阵",
+        "互素条件下零空间的唯一性"
+      ],
+      "question_type": "互素情形零解验证",
+      "method": [
+        "直接构造矩阵并求解",
+        "或应用(ii)的一般结论"
+      ],
+      "solution_steps": [
+        "构造具体矩阵",
+        "写出方程组",
+        "求解验证仅有零解"
+      ],
+      "math_structure": {
+        "type": "circulant_matrix_nullspace",
+        "template": "A(5,2)x=0,\\ \\gcd(2,5)=1",
+        "variable_count": 0
+      },
+      "difficulty": 3,
+      "estimated_minutes": 10,
+      "answer": [
+        {
+          "label": "结果",
+          "steps": [
+            "方程组为：$x_i+x_{i+1}=0$对$i=1,\\ldots,5$（下标模5，即$x_6=x_1$）：$x_1+x_2=0,x_2+x_3=0,x_3+x_4=0,x_4+x_5=0,x_5+x_1=0$",
+            "由前四式递推：$x_2=-x_1,x_3=x_1,x_4=-x_1,x_5=x_1$，代入第五式：$x_5+x_1=x_1+x_1=2x_1=0$，得$x_1=0$",
+            "从而所有分量均为0：$x_1=x_2=x_3=x_4=x_5=0$，验证了$\\gcd(2,5)=1$情形下仅有零解，与一般结论(ii)一致"
+          ]
+        }
+      ],
+      "id": "osaka-2010-d2b8f5102c-q06-practice-02",
+      "school": "大阪大学",
+      "year": "2010"
+    },
+    {
+      "text": "对一般的 $n,r$，证明part(i)结论的循环扩展版本：$S_{i+1}-S_i=x_{i+r}-x_i$（模$n$意义下，包括折返情形），并说明为何原题只需限定$i=1,\\ldots,n-r$。",
+      "knowledge_points": [
+        "循环矩阵行差分析",
+        "模运算下标处理"
+      ],
+      "question_type": "一般性证明的补充说明",
+      "method": [
+        "直接展开求和式相减"
+      ],
+      "solution_steps": [
+        "写出一般的S_i表达式（模n意义）",
+        "计算S_{i+1}-S_i并化简",
+        "讨论折返对结论形式的影响"
+      ],
+      "math_structure": {
+        "type": "circulant_matrix_nullspace",
+        "template": "S_i=\\sum_{k=0}^{r-1}x_{(i+k-1)\\bmod n+1},\\ S_{i+1}-S_i",
+        "variable_count": 2
+      },
+      "difficulty": 4,
+      "estimated_minutes": 12,
+      "answer": [
+        {
+          "label": "结果",
+          "steps": [
+            "定义$S_i=\\sum_{k=0}^{r-1}x_{\\sigma(i+k)}$，其中$\\sigma(m)$表示$m$模$n$后取$1,\\ldots,n$的代表",
+            "$S_{i+1}=\\sum_{k=0}^{r-1}x_{\\sigma(i+1+k)}=\\sum_{k=1}^{r}x_{\\sigma(i+k)}$，与$S_i=\\sum_{k=0}^{r-1}x_{\\sigma(i+k)}$相比，两者共享$k=1,\\ldots,r-1$的项，差异在于$S_{i+1}$多了$k=r$项（即$x_{\\sigma(i+r)}$），$S_i$多了$k=0$项（即$x_{\\sigma(i)}=x_i$）",
+            "故一般地$S_{i+1}-S_i=x_{\\sigma(i+r)}-x_i$，此式对所有$i=1,\\ldots,n$（模$n$循环意义）成立，不限于$i\\le n-r$",
+            "原题只要求$i=1,\\ldots,n-r$的原因是：在此范围内$\\sigma(i+r)=i+r$（无需折返，因$i+r\\le n$），可以直接写成$x_{i+r}$而非$x_{\\sigma(i+r)}$，表达更简洁；但结论本身在循环意义下对所有$i$都成立，这也是(ii)中需要用到的更强（循环）版本"
+          ]
+        }
+      ],
+      "id": "osaka-2010-d2b8f5102c-q06-practice-03",
+      "school": "大阪大学",
+      "year": "2010"
+    },
+    {
+      "text": "对 $n=6,r=4$（$\\gcd(4,6)=2$），利用(iii)的构造方法给出一个非零解 $x$，并直接验证 $A(6,4)x=0$。",
+      "knowledge_points": [
+        "循环矩阵零空间构造",
+        "最大公约数分析",
+        "验证解的正确性"
+      ],
+      "question_type": "非互素情形非零解构造与验证",
+      "method": [
+        "应用(iii)的周期构造法",
+        "直接代入验证"
+      ],
+      "solution_steps": [
+        "计算g=gcd(4,6)=2，按(iii)方法构造周期为2的x",
+        "写出具体的x向量",
+        "代入原方程组逐一验证成立"
+      ],
+      "math_structure": {
+        "type": "circulant_matrix_nullspace",
+        "template": "A(6,4)x=0,\\ g=\\gcd(4,6)=2",
+        "variable_count": 0
+      },
+      "difficulty": 3,
+      "estimated_minutes": 10,
+      "answer": [
+        {
+          "label": "结果",
+          "steps": [
+            "$g=\\gcd(4,6)=2$，按构造：$x_i=1$若$i\\equiv1\\pmod2$（即奇数下标），$x_i=-1$若$i\\equiv0\\pmod2$（偶数下标），即$x=(1,-1,1,-1,1,-1)$",
+            "验证第1行：$S_1=x_1+x_2+x_3+x_4=1-1+1-1=0$ ✓",
+            "验证第2行：$S_2=x_2+x_3+x_4+x_5=-1+1-1+1=0$ ✓（同理其他行由周期性和$r=4$为偶数个周期2的完整对，和恒为0）",
+            "所有6行的和都是2对交替的$(1,-1)$，故均为0，验证$A(6,4)x=0$成立，$x=(1,-1,1,-1,1,-1)^T$为非零解，与理论构造一致"
+          ]
+        }
+      ],
+      "id": "osaka-2010-d2b8f5102c-q06-practice-04",
+      "school": "大阪大学",
+      "year": "2010"
+    }
+  ],
+  "source_question": "問5",
+  "source_pdf": "大阪大学/情报科学研究科/情报基础数学/大阪大学_情报科学研究科_情报基础数学_2010_数学过去问.pdf",
+  "source_type": "官方过去问",
+  "subject_category": "线性代数"
+}

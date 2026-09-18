@@ -1,0 +1,162 @@
+{
+  "id": "kyushu-2021-ist-linear-algebra",
+  "school": "九州大学",
+  "year": "2021",
+  "subject": "システム情報科学府_情報理工学専攻",
+  "text": "给定矩阵 $$A=\\begin{pmatrix}1&0&0&-2&0&0\\\\0&1&0&-2&-3&-5\\\\-2&-2&0&4&6&0\\end{pmatrix}.$$ 对列指标集合 $J$ 记子矩阵为 $A[J]$。(1) 求所有使列向量线性无关的 $J$；(2) 求所有极小线性相关的 $J$；(3) 证明若 $I\\subseteq J$ 且 $\\operatorname{rank}A[J]=|J|$，则 $\\operatorname{rank}A[I]=|I|$。",
+  "knowledge_points": [
+    "列向量线性无关",
+    "矩阵秩",
+    "极小相关集"
+  ],
+  "question_type": "线性无关集合枚举与证明题",
+  "method": [
+    "列关系",
+    "秩",
+    "反证法"
+  ],
+  "solution_steps": [
+    "先识别零列和平行列",
+    "枚举最大到三列的独立组合",
+    "用线性无关组的子集仍线性无关完成证明"
+  ],
+  "math_structure": {
+    "type": "column_matroid_independence",
+    "template": "$\\operatorname{rank}A[J]=|J|$",
+    "variable_count": 6
+  },
+  "difficulty": 5,
+  "answer": [
+    {
+      "label": "(1) 线性无关集合",
+      "steps": [
+        "思路：采用列关系、秩、反证法，先先识别零列和平行列。",
+        "全部为 $\\varnothing$；",
+        "单元集 $\\{1\\},\\{2\\},\\{4\\},\\{5\\},\\{6\\}$；",
+        "二元集 $\\{1,2\\},\\{1,4\\},\\{1,5\\},\\{1,6\\},\\{2,4\\},\\{2,6\\},\\{4,5\\},\\{4,6\\},\\{5,6\\}$；",
+        "三元集 $\\{1,2,4\\},\\{1,2,6\\},\\{1,4,5\\},\\{1,5,6\\},\\{2,4,6\\},\\{4,5,6\\}$。"
+      ]
+    },
+    {
+      "label": "(2) 极小相关集合",
+      "steps": [
+        "思路：采用列关系、秩、反证法，先枚举最大到三列的独立组合。",
+        "它们是 $\\{3\\}$、$\\{2,5\\}$、$\\{1,4,6\\}$。",
+        "其中第 3 列为零，第 5 列为第 2 列的 $-3$ 倍，而第 $1,4,6$ 列有关系 $10a_1+5a_4-2a_6=0$，且任意两列不相关。"
+      ]
+    },
+    {
+      "label": "(3) 一般证明",
+      "steps": [
+        "思路：采用列关系、秩、反证法，先用线性无关组的子集仍线性无关完成证明。",
+        "$\\operatorname{rank}A[J]=|J|$ 表示 $J$ 对应的列向量线性无关。",
+        "线性无关组的任何子集仍线性无关，因此 $I$ 对应列的秩为列数 $|I|$。"
+      ]
+    }
+  ],
+  "practice_questions": [
+    {
+      "id": "kyushu-2021-ist-la-p1",
+      "school": "九州大学",
+      "year": "2021",
+      "text": "若矩阵的一列为零向量，包含该列的列向量组能否线性无关？",
+      "knowledge_points": [
+        "零向量",
+        "线性无关"
+      ],
+      "question_type": "判断含零向量组",
+      "method": [
+        "定义"
+      ],
+      "solution_steps": [
+        "构造非平凡线性关系"
+      ],
+      "math_structure": {
+        "type": "zero_column_dependence",
+        "template": "$1\\cdot0=0$",
+        "variable_count": 1
+      },
+      "difficulty": 1,
+      "estimated_minutes": 2,
+      "answer": [
+        {
+          "label": "答案",
+          "steps": [
+            "先围绕零向量、线性无关采用定义：构造非平凡线性关系。",
+            "不能。",
+            "令零列的系数为 $1$、其余系数为 $0$，就得到非平凡的零线性组合。"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "kyushu-2021-ist-la-p2",
+      "school": "九州大学",
+      "year": "2021",
+      "text": "若 $a_2=-3a_1$ 且 $a_1\\ne0$，说明 $\\{a_1,a_2\\}$ 是极小线性相关集。",
+      "knowledge_points": [
+        "线性相关",
+        "极小相关"
+      ],
+      "question_type": "验证极小相关",
+      "method": [
+        "倍数关系"
+      ],
+      "solution_steps": [
+        "写出二元线性关系",
+        "检查两个真子集"
+      ],
+      "math_structure": {
+        "type": "two_vector_circuit",
+        "template": "$3a_1+a_2=0$",
+        "variable_count": 1
+      },
+      "difficulty": 1,
+      "estimated_minutes": 3,
+      "answer": [
+        {
+          "label": "答案",
+          "steps": [
+            "先围绕线性相关、极小相关采用倍数关系：写出二元线性关系。",
+            "关系 $3a_1+a_2=0$ 非平凡，所以二者相关；",
+            "两个单元真子集分别由非零向量组成，均线性无关，故为极小相关。"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "kyushu-2021-ist-la-p3",
+      "school": "九州大学",
+      "year": "2021",
+      "text": "证明线性无关向量组的任意子集仍线性无关。",
+      "knowledge_points": [
+        "线性无关"
+      ],
+      "question_type": "证明遗传性质",
+      "method": [
+        "补零系数"
+      ],
+      "solution_steps": [
+        "假设子集存在关系",
+        "给其余向量补零系数"
+      ],
+      "math_structure": {
+        "type": "independence_hereditary",
+        "template": "$I\\subseteq J$",
+        "variable_count": 1
+      },
+      "difficulty": 2,
+      "estimated_minutes": 4,
+      "answer": [
+        {
+          "label": "答案",
+          "steps": [
+            "先围绕线性无关采用补零系数：假设子集存在关系。",
+            "若子集有非平凡零组合，给原组中其余向量的系数补零，就得到原组的非平凡零组合，与原组线性无关矛盾。",
+            "上述推导只使用题设条件与对应定义，因此所要求的结论成立。"
+          ]
+        }
+      ]
+    }
+  ]
+}

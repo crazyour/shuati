@@ -1,0 +1,190 @@
+{
+  "id": "osaka-2015-247ebe2ae6-q02",
+  "school": "大阪大学",
+  "year": "2015",
+  "subject": "情报科学研究科_情报基础数学",
+  "text": "设 $n$ 为不小于2的自然数，$x_1,\\ldots,x_{n-1},b_1,\\ldots,b_{n-1}$ 为 $2(n-1)$ 个数。对 $1\\le i,j\\le n$，定义\n$$a_{ij}=\\begin{cases}1 & (i=1),\\\\ b_{i-1} & (1<i\\le j),\\\\ x_j & (i>j).\\end{cases}$$\n求由此确定的 $n$ 阶方阵 $A_n=(a_{ij})$ 的行列式的值。",
+  "knowledge_points": [
+    "行列式按行(列)展开",
+    "余子式的相同列判零技巧",
+    "行列式的递推关系",
+    "分块矩阵的自相似结构"
+  ],
+  "question_type": "含参数方阵行列式求值",
+  "method": [
+    "按最后一行展开",
+    "利用相邻列相等使部分余子式为零",
+    "建立并求解行列式的递推关系"
+  ],
+  "solution_steps": [
+    "约定$b_0=1$，观察第$n-1$列与第$n$列对前$n-1$行完全相同",
+    "按第n行展开行列式，凡删去第j列(j≤n-2)后第n-1、n两列仍相同,对应余子式为0",
+    "确定j=n-1与j=n对应的余子式都等于低一阶的同型行列式$D_{n-1}$",
+    "整理得递推式$D_n=(b_{n-1}-x_{n-1})D_{n-1}$，结合$D_1=1$得到通项"
+  ],
+  "math_structure": {
+    "type": "parametric_determinant_recursion",
+    "template": "a_{ij}=\\begin{cases}1,& i=1\\\\ b_{i-1},&1<i\\le j\\\\ x_j,& i>j\\end{cases},\\quad D_n=\\det A_n",
+    "variable_count": 1
+  },
+  "difficulty": 4,
+  "answer": [
+    {
+      "label": "解",
+      "steps": [
+        "记$D_n=\\det A_n$，约定$b_0=1$。对任意$1\\le i\\le n-1$，第$n-1$列与第$n$列的第i行元素都等于$b_{i-1}$（因条件$i\\le j$对$j=n-1,n$同时成立），故取前$n-1$行时第$n-1$列与第$n$列完全相同。",
+        "按第n行(元素为$x_1,\\ldots,x_{n-1},b_{n-1}$)展开：$D_n=\\sum_{j=1}^{n-1}(-1)^{n+j}x_jM_{nj}+b_{n-1}M_{nn}$，其中$M_{nj}$为删去第n行、第j列后的$(n-1)$阶余子式。",
+        "当$j\\le n-2$时，删去第j列后第$n-1$列与第$n$列仍同时保留且仍相等(由第1步)，故这两列相同，$M_{nj}=0$。",
+        "当$j=n-1$时，剩余列为$1,\\ldots,n-2,n$；第n列在前$n-1$行的取值恰为$b_1,\\ldots,b_{n-2}$(与被删去的第$n-1$列相同)，故该余子式等于用$x_1,\\ldots,x_{n-2},b_1,\\ldots,b_{n-2}$构造的$(n-1)$阶矩阵$A_{n-1}$的行列式，即$M_{n,n-1}=D_{n-1}$。",
+        "当$j=n$时，$M_{nn}$恰为行$1,\\ldots,n-1$、列$1,\\ldots,n-1$构成的矩阵，即$A_{n-1}$本身，故$M_{nn}=D_{n-1}$。",
+        "代入展开式：$D_n=(-1)^{2n-1}x_{n-1}D_{n-1}+b_{n-1}D_{n-1}=(b_{n-1}-x_{n-1})D_{n-1}$。",
+        "边界情形$n=1$只有$a_{11}=1$，故$D_1=1$；由递推式逐次展开得$D_n=\\displaystyle\\prod_{i=1}^{n-1}(b_i-x_i)$。",
+        "验证：$n=2$时公式给出$b_1-x_1$，直接计算$\\det\\begin{pmatrix}1&1\\\\x_1&b_1\\end{pmatrix}=b_1-x_1$，一致；$n=3$时公式给出$(b_1-x_1)(b_2-x_2)$，直接展开$\\begin{pmatrix}1&1&1\\\\x_1&b_1&b_1\\\\x_1&x_2&b_2\\end{pmatrix}$确得同样结果，验证无误。"
+      ]
+    }
+  ],
+  "practice_questions": [
+    {
+      "text": "对 $x_1=5,\\ b_1=2$，写出对应的2阶矩阵 $\\begin{pmatrix}1&1\\\\x_1&b_1\\end{pmatrix}$ 并求其行列式，验证是否等于 $b_1-x_1$。",
+      "knowledge_points": [
+        "2阶行列式计算"
+      ],
+      "question_type": "行列式数值验证",
+      "method": [
+        "直接按定义计算2阶行列式"
+      ],
+      "solution_steps": [
+        "代入数值写出矩阵",
+        "计算行列式并与公式比较"
+      ],
+      "math_structure": {
+        "type": "parametric_determinant_recursion",
+        "template": "\\det\\begin{pmatrix}1&1\\\\x_1&b_1\\end{pmatrix}",
+        "variable_count": 0
+      },
+      "difficulty": 1,
+      "estimated_minutes": 4,
+      "answer": [
+        {
+          "label": "结果",
+          "steps": [
+            "矩阵为$\\begin{pmatrix}1&1\\\\5&2\\end{pmatrix}$，行列式$=1\\cdot2-1\\cdot5=-3$。",
+            "公式$b_1-x_1=2-5=-3$，与直接计算一致。"
+          ]
+        }
+      ],
+      "id": "osaka-2015-247ebe2ae6-q02-practice-01",
+      "school": "大阪大学",
+      "year": "2015"
+    },
+    {
+      "text": "取 $x_1=1,\\ x_2=-1,\\ b_1=3,\\ b_2=4$，写出对应3阶矩阵并求其行列式。",
+      "knowledge_points": [
+        "3阶行列式展开",
+        "行列式递推验证"
+      ],
+      "question_type": "行列式数值计算",
+      "method": [
+        "直接展开3阶行列式"
+      ],
+      "solution_steps": [
+        "写出矩阵",
+        "按第一行(或第三行)展开计算",
+        "与公式(b1-x1)(b2-x2)比较"
+      ],
+      "math_structure": {
+        "type": "parametric_determinant_recursion",
+        "template": "\\det\\begin{pmatrix}1&1&1\\\\x_1&b_1&b_1\\\\x_1&x_2&b_2\\end{pmatrix}",
+        "variable_count": 0
+      },
+      "difficulty": 2,
+      "estimated_minutes": 8,
+      "answer": [
+        {
+          "label": "结果",
+          "steps": [
+            "矩阵为$\\begin{pmatrix}1&1&1\\\\1&3&3\\\\1&-1&4\\end{pmatrix}$。",
+            "按第一行展开：$1\\cdot(3\\cdot4-3\\cdot(-1))-1\\cdot(1\\cdot4-3\\cdot1)+1\\cdot(1\\cdot(-1)-3\\cdot1)=15-1-4=10$。",
+            "公式$(b_1-x_1)(b_2-x_2)=(3-1)(4-(-1))=2\\cdot5=10$，一致。"
+          ]
+        }
+      ],
+      "id": "osaka-2015-247ebe2ae6-q02-practice-02",
+      "school": "大阪大学",
+      "year": "2015"
+    },
+    {
+      "text": "证明：在原题的$n$阶矩阵$A_n$中，对任意$1\\le i\\le n-1$，第$n-1$列与第$n$列在第$i$行的元素相等。",
+      "knowledge_points": [
+        "矩阵元素条件分析",
+        "分类讨论证明"
+      ],
+      "question_type": "矩阵结构性质证明",
+      "method": [
+        "直接代入定义分类验证"
+      ],
+      "solution_steps": [
+        "分别写出第n-1列和第n列第i行元素的取值条件",
+        "证明两者在i≤n-1时都等于b_{i-1}"
+      ],
+      "math_structure": {
+        "type": "parametric_determinant_recursion",
+        "template": "a_{i,n-1}=a_{i,n}\\ (1\\le i\\le n-1)",
+        "variable_count": 0
+      },
+      "difficulty": 3,
+      "estimated_minutes": 10,
+      "answer": [
+        {
+          "label": "证明",
+          "steps": [
+            "对第$n-1$列第i行：当$i=1$取值为1；当$1<i\\le n-1$时，由$i\\le n-1$知条件$1<i\\le j$(j=n-1)成立，取值$b_{i-1}$。",
+            "对第$n$列第i行：当$i=1$取值为1；当$1<i\\le n-1$时，同样$i\\le n-1<n$，条件$1<i\\le j$(j=n)成立，取值$b_{i-1}$。",
+            "约定$b_0=1$后两列在$i=1,\\ldots,n-1$的取值都是$b_{i-1}$，故两列(限制在前n-1行)完全相等，证毕。"
+          ]
+        }
+      ],
+      "id": "osaka-2015-247ebe2ae6-q02-practice-03",
+      "school": "大阪大学",
+      "year": "2015"
+    },
+    {
+      "text": "利用递推公式 $D_n=(b_{n-1}-x_{n-1})D_{n-1}$，对 $x_1=0,x_2=1,x_3=2,\\ b_1=2,b_2=3,b_3=5$ 求4阶矩阵 $A_4$ 的行列式。",
+      "knowledge_points": [
+        "行列式递推公式应用"
+      ],
+      "question_type": "行列式数值计算",
+      "method": [
+        "直接套用递推公式逐次相乘"
+      ],
+      "solution_steps": [
+        "写出各因子(b_i-x_i)",
+        "逐次相乘得最终结果"
+      ],
+      "math_structure": {
+        "type": "parametric_determinant_recursion",
+        "template": "D_4=\\prod_{i=1}^{3}(b_i-x_i)",
+        "variable_count": 0
+      },
+      "difficulty": 3,
+      "estimated_minutes": 8,
+      "answer": [
+        {
+          "label": "结果",
+          "steps": [
+            "各因子：$b_1-x_1=2-0=2$，$b_2-x_2=3-1=2$，$b_3-x_3=5-2=3$。",
+            "乘积：$D_4=2\\times2\\times3=12$。",
+            "即 $\\det A_4=12$。"
+          ]
+        }
+      ],
+      "id": "osaka-2015-247ebe2ae6-q02-practice-04",
+      "school": "大阪大学",
+      "year": "2015"
+    }
+  ],
+  "source_question": "問2",
+  "source_pdf": "大阪大学/情报科学研究科/情报基础数学/大阪大学_情报科学研究科_情报基础数学_2015_数学过去问.pdf",
+  "source_type": "官方过去问",
+  "subject_category": "线性代数"
+}

@@ -1,0 +1,213 @@
+{
+  "id": "isct-2002-60756c36b1-q01",
+  "school": "东京科学大学",
+  "year": "2002",
+  "subject": "理工学系_数学系",
+  "text": "设 $A$ 为 $n$ 次复方阵，满足 $\\operatorname{rank}(A)=\\operatorname{rank}(A^2)$。设 $f_A:\\mathbb{C}^n\\to\\mathbb{C}^n$ 为 $A$ 所表示的线性映射。证明：\n(1) $\\mathbb{C}^n = \\operatorname{Im} f_A \\oplus \\operatorname{Ker} f_A$（直和）。\n(2) 对任意 $m\\ge 2$，有 $\\operatorname{rank}(A^m)=\\operatorname{rank}(A)$。",
+  "knowledge_points": [
+    "秩-零化度定理",
+    "像与核的直和分解",
+    "线性映射的不变子空间",
+    "幂零/幂等结构分析",
+    "矩阵乘法与子空间像"
+  ],
+  "question_type": "证明题（矩阵秩与直和分解）",
+  "method": [
+    "利用 $\\operatorname{rank}(A)=\\operatorname{rank}(A^2)$ 推出 $\\operatorname{Ker}A=\\operatorname{Ker}A^2$",
+    "维数计数证明直和",
+    "证明 $A$ 限制在 $\\operatorname{Im}A$ 上是双射",
+    "数学归纳法证明高次幂秩不变"
+  ],
+  "solution_steps": [
+    "由秩-零化度定理得 $\\dim\\operatorname{Ker}A=n-r$，$\\dim\\operatorname{Ker}A^2=n-r$（因 $\\operatorname{rank}A=\\operatorname{rank}A^2=r$），结合 $\\operatorname{Ker}A\\subseteq\\operatorname{Ker}A^2$ 得两者相等",
+    "证明 $\\operatorname{Im}A\\cap\\operatorname{Ker}A=\\{0\\}$：若 $x=Ay\\in\\operatorname{Im}A$ 且 $Ax=0$，则 $y\\in\\operatorname{Ker}A^2=\\operatorname{Ker}A$，故 $x=Ay=0$",
+    "维数相加 $r+(n-r)=n$ 且交为零，得直和分解",
+    "证明 $A(\\operatorname{Im}A)=\\operatorname{Im}A$（因为 $\\operatorname{Im}A^2\\subseteq\\operatorname{Im}A$ 且维数相等），从而 $A$ 限制在 $\\operatorname{Im}A$ 上是双射",
+    "由双射性得对所有 $m\\ge1$，$A^m(\\operatorname{Im}A)=\\operatorname{Im}A$，且 $A^m(\\operatorname{Ker}A)=0$，故 $\\operatorname{Im}A^m=\\operatorname{Im}A$，即 $\\operatorname{rank}A^m=\\operatorname{rank}A$"
+  ],
+  "math_structure": {
+    "type": "matrix_rank_stability",
+    "template": "given rank(A)=rank(A^2) for n x n complex matrix A, prove Im/Ker direct sum decomposition and rank(A^m)=rank(A) for m>=2",
+    "variable_count": 2
+  },
+  "difficulty": 4,
+  "answer": [
+    {
+      "label": "(1)",
+      "steps": [
+        "设 $r=\\operatorname{rank}(A)$。由秩-零化度定理，$\\dim\\operatorname{Im}A=r$，$\\dim\\operatorname{Ker}A=n-r$。同理由 $\\operatorname{rank}(A^2)=r$ 得 $\\dim\\operatorname{Ker}A^2=n-r$。",
+        "显然 $\\operatorname{Ker}A\\subseteq\\operatorname{Ker}A^2$（若 $Ax=0$ 则 $A^2x=0$）。两者维数相同（均为 $n-r$），故 $\\operatorname{Ker}A=\\operatorname{Ker}A^2$。",
+        "任取 $x\\in\\operatorname{Im}A\\cap\\operatorname{Ker}A$，则存在 $y$ 使 $x=Ay$，且 $Ax=0$，即 $A^2y=0$，故 $y\\in\\operatorname{Ker}A^2=\\operatorname{Ker}A$，于是 $x=Ay=0$。所以 $\\operatorname{Im}A\\cap\\operatorname{Ker}A=\\{0\\}$。",
+        "由 $\\dim\\operatorname{Im}A+\\dim\\operatorname{Ker}A=r+(n-r)=n$ 且两子空间交为零，可知 $\\mathbb{C}^n=\\operatorname{Im}A\\oplus\\operatorname{Ker}A$。"
+      ]
+    },
+    {
+      "label": "(2)",
+      "steps": [
+        "由 $A(\\operatorname{Im}A)=\\operatorname{Im}A^2\\subseteq\\operatorname{Im}A$，且 $\\dim\\operatorname{Im}A^2=\\operatorname{rank}(A^2)=r=\\dim\\operatorname{Im}A$，故 $\\operatorname{Im}A^2=\\operatorname{Im}A$，即 $A$ 把 $\\operatorname{Im}A$ 映满自身。",
+        "$\\operatorname{Im}A$ 是有限维空间，$A|_{\\operatorname{Im}A}$ 是满射线性变换，故必为双射（有限维空间满射线性映射即为单射）。",
+        "利用 (1) 的直和分解 $\\mathbb{C}^n=\\operatorname{Im}A\\oplus\\operatorname{Ker}A$，对任意 $x\\in\\mathbb{C}^n$ 写 $x=u+v$，$u\\in\\operatorname{Im}A,v\\in\\operatorname{Ker}A$，则 $A^m x=A^m u$（因 $Av=0$）。",
+        "由 $A|_{\\operatorname{Im}A}$ 是 $\\operatorname{Im}A$ 上的双射，归纳可得 $A^m(\\operatorname{Im}A)=\\operatorname{Im}A$ 对所有 $m\\ge1$ 成立，从而 $\\operatorname{Im}(A^m)=A^m(\\mathbb{C}^n)=A^m(\\operatorname{Im}A)=\\operatorname{Im}A$。",
+        "故对所有 $m\\ge2$（甚至 $m\\ge1$），$\\operatorname{rank}(A^m)=\\dim\\operatorname{Im}A^m=\\dim\\operatorname{Im}A=r=\\operatorname{rank}(A)$，命题得证。"
+      ]
+    }
+  ],
+  "practice_questions": [
+    {
+      "text": "设 $P$ 是 $n$ 次复方阵，满足 $P^2=P$（幂等矩阵）。证明 $\\mathbb{C}^n=\\operatorname{Im}P\\oplus\\operatorname{Ker}P$。",
+      "knowledge_points": [
+        "幂等矩阵",
+        "直和分解",
+        "秩-零化度定理"
+      ],
+      "question_type": "证明题",
+      "method": [
+        "直接验证交为零",
+        "维数计数"
+      ],
+      "solution_steps": [
+        "证明 $\\operatorname{Im}P\\cap\\operatorname{Ker}P=\\{0\\}$",
+        "用 $x=Px+(x-Px)$ 分解任意向量",
+        "验证 $Px\\in\\operatorname{Im}P$，$x-Px\\in\\operatorname{Ker}P$"
+      ],
+      "math_structure": {
+        "type": "idempotent_decomposition",
+        "template": "P^2=P, prove C^n = Im P + Ker P direct sum",
+        "variable_count": 1
+      },
+      "difficulty": 2,
+      "estimated_minutes": 8,
+      "answer": [
+        {
+          "label": "证明",
+          "steps": [
+            "任取 $x\\in\\mathbb{C}^n$，写 $x=Px+(x-Px)$。因 $P(Px)=P^2x=Px$，故 $Px\\in\\operatorname{Im}P$ 自动满足；又 $P(x-Px)=Px-P^2x=Px-Px=0$，故 $x-Px\\in\\operatorname{Ker}P$。这说明 $\\mathbb{C}^n=\\operatorname{Im}P+\\operatorname{Ker}P$。",
+            "设 $y\\in\\operatorname{Im}P\\cap\\operatorname{Ker}P$，则 $y=Pz$ 对某 $z$，且 $Py=0$。由 $P^2=P$ 得 $y=Pz=P^2z=P(Pz)=Py=0$。故交集为 $\\{0\\}$。",
+            "结合以上两点，得到 $\\mathbb{C}^n=\\operatorname{Im}P\\oplus\\operatorname{Ker}P$，即幂等矩阵总满足直和分解（这是原题条件的特例，因幂等矩阵自动满足 $\\operatorname{rank}(P)=\\operatorname{rank}(P^2)$）。"
+          ]
+        }
+      ],
+      "id": "isct-2002-60756c36b1-q01-practice-01",
+      "school": "东京科学大学",
+      "year": "2002"
+    },
+    {
+      "text": "取矩阵 $A=\\begin{pmatrix}1&1\\\\0&0\\end{pmatrix}$，计算 $\\operatorname{rank}(A)$ 和 $\\operatorname{rank}(A^2)$，验证两者是否相等，并求 $\\operatorname{Im}A$ 与 $\\operatorname{Ker}A$。",
+      "knowledge_points": [
+        "矩阵秩计算",
+        "像空间与核空间"
+      ],
+      "question_type": "计算题",
+      "method": [
+        "直接矩阵乘法",
+        "行列变换求秩"
+      ],
+      "solution_steps": [
+        "计算 $A^2$",
+        "比较秩",
+        "求解 $Ax=0$ 得核空间",
+        "求列空间得像空间"
+      ],
+      "math_structure": {
+        "type": "rank_verification",
+        "template": "given specific 2x2 matrix A, compute rank(A), rank(A^2), Im A, Ker A",
+        "variable_count": 0
+      },
+      "difficulty": 1,
+      "estimated_minutes": 6,
+      "answer": [
+        {
+          "label": "计算",
+          "steps": [
+            "$A^2=\\begin{pmatrix}1&1\\\\0&0\\end{pmatrix}\\begin{pmatrix}1&1\\\\0&0\\end{pmatrix}=\\begin{pmatrix}1&1\\\\0&0\\end{pmatrix}=A$，即 $A$ 是幂等矩阵。",
+            "$\\operatorname{rank}(A)=1$（第二行为零，第一行非零），$\\operatorname{rank}(A^2)=\\operatorname{rank}(A)=1$，两者相等，满足题目条件。",
+            "解 $Ax=0$：$x_1+x_2=0$，得 $\\operatorname{Ker}A=\\operatorname{span}\\{(1,-1)^T\\}$；$\\operatorname{Im}A=\\operatorname{span}\\{(1,0)^T\\}$（列空间）。验证 $\\operatorname{Im}A\\cap\\operatorname{Ker}A=\\{0\\}$：$(1,0)$ 与 $(1,-1)$ 线性无关，故交为零，$\\mathbb{C}^2=\\operatorname{Im}A\\oplus\\operatorname{Ker}A$，与理论一致。"
+          ]
+        }
+      ],
+      "id": "isct-2002-60756c36b1-q01-practice-02",
+      "school": "东京科学大学",
+      "year": "2002"
+    },
+    {
+      "text": "设 $N=\\begin{pmatrix}0&1&0\\\\0&0&1\\\\0&0&0\\end{pmatrix}$ 为 $3\\times3$ 幂零矩阵。计算 $\\operatorname{rank}(N)$ 与 $\\operatorname{rank}(N^2)$，说明本题定理条件在此是否成立，并解释原因。",
+      "knowledge_points": [
+        "幂零矩阵",
+        "秩的变化",
+        "Jordan块结构"
+      ],
+      "question_type": "计算与分析题",
+      "method": [
+        "直接计算矩阵幂",
+        "分析 Jordan 块对秩的影响"
+      ],
+      "solution_steps": [
+        "计算 $N^2$",
+        "求秩",
+        "比较并解释条件是否满足"
+      ],
+      "math_structure": {
+        "type": "nilpotent_rank_change",
+        "template": "3x3 nilpotent Jordan block N, compare rank(N) and rank(N^2)",
+        "variable_count": 0
+      },
+      "difficulty": 2,
+      "estimated_minutes": 7,
+      "answer": [
+        {
+          "label": "分析",
+          "steps": [
+            "计算 $N^2=\\begin{pmatrix}0&0&1\\\\0&0&0\\\\0&0&0\\end{pmatrix}$。",
+            "$\\operatorname{rank}(N)=2$（两行非零且线性独立），$\\operatorname{rank}(N^2)=1$。两者不相等，说明本题条件 $\\operatorname{rank}(A)=\\operatorname{rank}(A^2)$ 在此**不成立**。",
+            "原因：$N$ 是幂零指标为3的 Jordan 块（$N^3=0$ 但 $N^2\\ne0$），特征值 $0$ 的代数重数为3而几何重数（$\\dim\\operatorname{Ker}N=1$）小于代数重数，此时 $0$ 特征值对应的 Jordan 块尺寸大于1，秩会随幂次递减，直到 $N^3=0$。这正说明原题条件本质上要求 $0$ 特征值（若存在）对应的所有 Jordan 块尺寸恰为1。"
+          ]
+        }
+      ],
+      "id": "isct-2002-60756c36b1-q01-practice-03",
+      "school": "东京科学大学",
+      "year": "2002"
+    },
+    {
+      "text": "证明：对复方阵 $A$，$\\operatorname{rank}(A)=\\operatorname{rank}(A^2)$ 当且仅当 $0$ 不是 $A$ 的特征值，或者 $0$ 是特征值但对应的所有 Jordan 块大小均为 $1$（即 $\\operatorname{Ker}A=\\operatorname{Ker}A^2$）。",
+      "knowledge_points": [
+        "Jordan标准型",
+        "特征值代数与几何重数",
+        "幂零部分分析"
+      ],
+      "question_type": "证明题（结构刻画）",
+      "method": [
+        "Jordan分解",
+        "分块分析特征值0对应块"
+      ],
+      "solution_steps": [
+        "将A分解为可逆部分与幂零部分",
+        "分析幂零Jordan块对rank(A^m)的影响",
+        "得出等价条件"
+      ],
+      "math_structure": {
+        "type": "jordan_rank_characterization",
+        "template": "characterize rank(A)=rank(A^2) via Jordan blocks at eigenvalue 0",
+        "variable_count": 1
+      },
+      "difficulty": 4,
+      "estimated_minutes": 15,
+      "answer": [
+        {
+          "label": "证明",
+          "steps": [
+            "将 $A$ 通过相似变换化为 Jordan 标准型 $A=S J S^{-1}$，$J$ 由若干 Jordan 块组成。非零特征值对应的块是可逆的，不影响秩的变化（可逆矩阵的幂仍可逆），只有特征值 $0$ 对应的 Jordan 块 $J_k(0)$（大小为$k$）会影响秩。",
+            "对大小为 $k\\ge2$ 的零特征值 Jordan 块 $J_k(0)$，直接计算得 $\\operatorname{rank}(J_k(0))=k-1$，而 $\\operatorname{rank}(J_k(0)^2)=k-2$（当 $k\\ge2$），两者不等，故只要存在大小 $\\ge2$ 的零特征值块，$\\operatorname{rank}(A)\\ne\\operatorname{rank}(A^2)$。",
+            "反之，若所有零特征值块大小均为1（即 $J_1(0)=(0)$，对应零矩阵的$1\\times1$块），则该块贡献的秩恒为0（对任意幂），不产生秩下降；结合可逆块贡献不变，得 $\\operatorname{rank}(A)=\\operatorname{rank}(A^2)$。若 $0$ 根本不是特征值，则 $A$ 可逆，$\\operatorname{rank}(A)=\\operatorname{rank}(A^2)=n$，条件也自动成立。综上等价性得证。"
+          ]
+        }
+      ],
+      "id": "isct-2002-60756c36b1-q01-practice-04",
+      "school": "东京科学大学",
+      "year": "2002"
+    }
+  ],
+  "source_question": "午前 [1]",
+  "source_pdf": "东京科学大学/理工学系/数学系/东京科学大学_理工学系_数学系_2002_数学过去问.pdf",
+  "source_type": "官方过去问",
+  "subject_category": "线性代数"
+}

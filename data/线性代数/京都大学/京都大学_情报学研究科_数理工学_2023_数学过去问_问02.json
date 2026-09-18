@@ -1,0 +1,261 @@
+{
+  "id": "kyoto-2023-a9d208b11b-q02",
+  "school": "京都大学",
+  "year": "2023",
+  "subject": "情报学研究科_数理工学",
+  "text": "次で与えられる3次正方行列 $A$ について考える。\n$$A = \\begin{pmatrix} 1 & 2 & -1 \\\\ 2 & 1 & 1 \\\\ 2 & 0 & 2 \\end{pmatrix}$$\n\n以下の問いに答えよ。\n\n(i) 行列 $A$ の行列式を求めよ。\n\n(ii) 行列 $A$ の固有値をすべて求め、各固有値に対する固有ベクトルを求めよ。\n\n(iii) $B = P^{-1}AP$ となるような正則行列 $P$ と対角行列 $B$ を求めよ。\n\n(iv) $x, y, z$ に関する連立一次方程式\n$$\\begin{cases} x + 2y - z = 2 \\\\ 2x + y + z = 1 \\\\ x + z = 0 \\end{cases}$$\nを解け。",
+  "knowledge_points": [
+    "行列式の計算",
+    "固有値と固有ベクトル",
+    "固有多項式",
+    "行列の対角化",
+    "連立一次方程式の解法",
+    "ガウス消去法"
+  ],
+  "question_type": "計算問題",
+  "method": [
+    "余因子展開による行列式計算",
+    "特性方程式の求解",
+    "固有ベクトルの決定",
+    "行列の対角化",
+    "前進消去と後進代入"
+  ],
+  "solution_steps": [
+    "行列式を直接計算する",
+    "固有多項式 $\\det(A - \\lambda I) = 0$ から固有値を求める",
+    "各固有値に対して固有ベクトルを求める",
+    "固有ベクトルを列とする行列 $P$ を構成し、対角化行列を得る",
+    "連立方程式を行基本操作で解く"
+  ],
+  "math_structure": {
+    "type": "eigenvalue_diagonalization_system",
+    "template": "3×3行列の行列式、固有値・固有ベクトル、対角化、連立方程式",
+    "variable_count": 4
+  },
+  "difficulty": 3,
+  "answer": [
+    {
+      "label": "(i) 行列式",
+      "steps": [
+        "第3行で余因子展開：$\\det(A) = 2\\begin{vmatrix} 2 & -1 \\\\ 1 & 1 \\end{vmatrix} - 0 + 2\\begin{vmatrix} 1 & 2 \\\\ 2 & 1 \\end{vmatrix}$",
+        "$= 2(2 + 1) + 2(1 - 4) = 2 \\cdot 3 + 2 \\cdot (-3) = 6 - 6 = 0$",
+        "したがって、$\\det(A) = 0$"
+      ]
+    },
+    {
+      "label": "(ii) 固有値と固有ベクトル",
+      "steps": [
+        "固有多項式：$\\det(A - \\lambda I) = \\begin{vmatrix} 1-\\lambda & 2 & -1 \\\\ 2 & 1-\\lambda & 1 \\\\ 2 & 0 & 2-\\lambda \\end{vmatrix}$",
+        "第3行で展開：$2\\begin{vmatrix} 2 & -1 \\\\ 1-\\lambda & 1 \\end{vmatrix} + (2-\\lambda)\\begin{vmatrix} 1-\\lambda & 2 \\\\ 2 & 1-\\lambda \\end{vmatrix}$",
+        "$= 2[2 + (1-\\lambda)] + (2-\\lambda)[(1-\\lambda)^2 - 4]$",
+        "$= 2(3-\\lambda) + (2-\\lambda)[\\lambda^2 - 2\\lambda - 3]$",
+        "$= 6 - 2\\lambda + (2-\\lambda)(\\lambda-3)(\\lambda+1)$",
+        "$= -\\lambda^3 + 4\\lambda^2 - 3\\lambda = -\\lambda(\\lambda-1)(\\lambda-3)$",
+        "固有値：$\\lambda = 0, 1, 3$",
+        "固有値 $\\lambda = 0$：$(A - 0I)v = 0$ から、$v_1 = \\begin{pmatrix} -1 \\\\ 1 \\\\ 1 \\end{pmatrix}$",
+        "固有値 $\\lambda = 1$：$(A - I)v = 0$ から、$v_2 = \\begin{pmatrix} 1 \\\\ -1 \\\\ -2 \\end{pmatrix}$",
+        "固有値 $\\lambda = 3$：$(A - 3I)v = 0$ から、$v_3 = \\begin{pmatrix} 1 \\\\ 2 \\\\ 2 \\end{pmatrix}$"
+      ]
+    },
+    {
+      "label": "(iii) 対角化",
+      "steps": [
+        "$P = \\begin{pmatrix} -1 & 1 & 1 \\\\ 1 & -1 & 2 \\\\ 1 & -2 & 2 \\end{pmatrix}$ （固有ベクトルを列とする）",
+        "$B = \\begin{pmatrix} 0 & 0 & 0 \\\\ 0 & 1 & 0 \\\\ 0 & 0 & 3 \\end{pmatrix}$ （固有値を対角要素とする）"
+      ]
+    },
+    {
+      "label": "(iv) 連立一次方程式の解",
+      "steps": [
+        "第3式から $z = -x$",
+        "第1式に代入：$x + 2y - (-x) = 2$、すなわち $2x + 2y = 2$、$x + y = 1$",
+        "第2式に $z = -x$ を代入：$2x + y + (-x) = 1$、すなわち $x + y = 1$ ✓",
+        "第3式と第1式は一貫性を持つ。自由変数 $x = t$ とすると：",
+        "解は $\\begin{pmatrix} x \\\\ y \\\\ z \\end{pmatrix} = t\\begin{pmatrix} 1 \\\\ -1 \\\\ -1 \\end{pmatrix} + \\begin{pmatrix} 0 \\\\ 1 \\\\ 0 \\end{pmatrix} = \\begin{pmatrix} t \\\\ 1-t \\\\ -t \\end{pmatrix}$ （$t$ は任意の実数）"
+      ]
+    }
+  ],
+  "practice_questions": [
+    {
+      "text": "行列 $A = \\begin{pmatrix} 2 & 1 \\\\ 1 & 2 \\end{pmatrix}$ の行列式と固有値を求めよ。",
+      "knowledge_points": [
+        "2×2行列の行列式",
+        "固有値の計算"
+      ],
+      "question_type": "計算問題",
+      "method": [
+        "行列式の直接計算",
+        "特性方程式を立てる"
+      ],
+      "solution_steps": [
+        "行列式：$\\det(A) = ad - bc$",
+        "固有多項式を設定",
+        "固有値を求める"
+      ],
+      "math_structure": {
+        "type": "eigenvalue_2x2",
+        "template": "2×2対称行列の固有値",
+        "variable_count": 1
+      },
+      "difficulty": 1,
+      "estimated_minutes": 5,
+      "answer": [
+        {
+          "label": "行列式と固有値",
+          "steps": [
+            "$\\det(A) = 2 \\cdot 2 - 1 \\cdot 1 = 4 - 1 = 3$",
+            "$\\det(A - \\lambda I) = (2-\\lambda)^2 - 1 = \\lambda^2 - 4\\lambda + 3 = (\\lambda - 1)(\\lambda - 3) = 0$",
+            "固有値：$\\lambda = 1, 3$"
+          ]
+        }
+      ],
+      "id": "kyoto-2023-a9d208b11b-q02-practice-01",
+      "school": "京都大学",
+      "year": "2023"
+    },
+    {
+      "text": "行列 $A = \\begin{pmatrix} 3 & 0 \\\\ 0 & 2 \\end{pmatrix}$ の固有値と固有ベクトルを求めよ。",
+      "knowledge_points": [
+        "対角行列の固有値・固有ベクトル"
+      ],
+      "question_type": "計算問題",
+      "method": [
+        "対角行列の性質を利用"
+      ],
+      "solution_steps": [
+        "対角行列では対角要素が固有値"
+      ],
+      "math_structure": {
+        "type": "eigenvalue_diagonal",
+        "template": "対角行列の固有値・固有ベクトル",
+        "variable_count": 1
+      },
+      "difficulty": 1,
+      "estimated_minutes": 3,
+      "answer": [
+        {
+          "label": "対角行列の固有値・固有ベクトル",
+          "steps": [
+            "対角行列では対角要素が固有値：$\\lambda_1 = 3$、$\\lambda_2 = 2$",
+            "固有値 $\\lambda_1 = 3$ に対する固有ベクトル：$v_1 = \\begin{pmatrix} 1 \\\\ 0 \\end{pmatrix}$",
+            "固有値 $\\lambda_2 = 2$ に対する固有ベクトル：$v_2 = \\begin{pmatrix} 0 \\\\ 1 \\end{pmatrix}$"
+          ]
+        }
+      ],
+      "id": "kyoto-2023-a9d208b11b-q02-practice-02",
+      "school": "京都大学",
+      "year": "2023"
+    },
+    {
+      "text": "連立一次方程式 $\\begin{cases} x + y = 1 \\\\ 2x + 2y = 2 \\end{cases}$ を解け。",
+      "knowledge_points": [
+        "連立一次方程式",
+        "解の自由度"
+      ],
+      "question_type": "計算問題",
+      "method": [
+        "ガウス消去法"
+      ],
+      "solution_steps": [
+        "拡大係数行列を設定",
+        "行基本操作を実行"
+      ],
+      "math_structure": {
+        "type": "linear_system_underdetermined",
+        "template": "不定系の連立一次方程式",
+        "variable_count": 2
+      },
+      "difficulty": 1,
+      "estimated_minutes": 5,
+      "answer": [
+        {
+          "label": "不定系の解",
+          "steps": [
+            "拡大係数行列：$\\left(\\begin{array}{cc|c} 1 & 1 & 1 \\\\ 2 & 2 & 2 \\end{array}\\right)$",
+            "$R_2 \\to R_2 - 2R_1$：$\\left(\\begin{array}{cc|c} 1 & 1 & 1 \\\\ 0 & 0 & 0 \\end{array}\\right)$",
+            "第2式は恒等式。自由変数 $y = t$ とすると $x = 1 - t$",
+            "解：$\\begin{pmatrix} x \\\\ y \\end{pmatrix} = \\begin{pmatrix} 1-t \\\\ t \\end{pmatrix}$ （$t$ は任意の実数）"
+          ]
+        }
+      ],
+      "id": "kyoto-2023-a9d208b11b-q02-practice-03",
+      "school": "京都大学",
+      "year": "2023"
+    },
+    {
+      "text": "行列 $A = \\begin{pmatrix} 1 & 2 \\\\ 0 & 3 \\end{pmatrix}$ の固有ベクトルを求めよ。",
+      "knowledge_points": [
+        "上三角行列の固有値・固有ベクトル"
+      ],
+      "question_type": "計算問題",
+      "method": [
+        "上三角行列の固有値は対角要素"
+      ],
+      "solution_steps": [
+        "固有値を特定",
+        "各固有値に対するベクトルを求める"
+      ],
+      "math_structure": {
+        "type": "eigenvector_upper_triangular",
+        "template": "上三角行列の固有ベクトル",
+        "variable_count": 2
+      },
+      "difficulty": 2,
+      "estimated_minutes": 8,
+      "answer": [
+        {
+          "label": "上三角行列の固有ベクトル",
+          "steps": [
+            "固有値は対角要素：$\\lambda_1 = 1$、$\\lambda_2 = 3$",
+            "固有値 $\\lambda_1 = 1$：$(A - I)v = 0$ より、$\\begin{pmatrix} 0 & 2 \\\\ 0 & 2 \\end{pmatrix}\\begin{pmatrix} v_1 \\\\ v_2 \\end{pmatrix} = 0$",
+            "第1行から $2v_2 = 0$、つまり $v_2 = 0$。$v_1$ は自由。固有ベクトル：$v = \\begin{pmatrix} 1 \\\\ 0 \\end{pmatrix}$",
+            "固有値 $\\lambda_2 = 3$：$(A - 3I)v = 0$ より、$\\begin{pmatrix} -2 & 2 \\\\ 0 & 0 \\end{pmatrix}\\begin{pmatrix} v_1 \\\\ v_2 \\end{pmatrix} = 0$",
+            "第1行から $-2v_1 + 2v_2 = 0$、つまり $v_1 = v_2$。固有ベクトル：$v = \\begin{pmatrix} 1 \\\\ 1 \\end{pmatrix}$"
+          ]
+        }
+      ],
+      "id": "kyoto-2023-a9d208b11b-q02-practice-04",
+      "school": "京都大学",
+      "year": "2023"
+    },
+    {
+      "text": "行列 $A = \\begin{pmatrix} 0 & 1 \\\\ -1 & 0 \\end{pmatrix}$ の固有値を求めよ。",
+      "knowledge_points": [
+        "複素固有値",
+        "回転行列"
+      ],
+      "question_type": "計算問題",
+      "method": [
+        "特性方程式を解く"
+      ],
+      "solution_steps": [
+        "特性方程式を立てる",
+        "複素固有値を求める"
+      ],
+      "math_structure": {
+        "type": "complex_eigenvalue",
+        "template": "複素固有値を持つ行列",
+        "variable_count": 1
+      },
+      "difficulty": 2,
+      "estimated_minutes": 5,
+      "answer": [
+        {
+          "label": "複素固有値",
+          "steps": [
+            "$\\det(A - \\lambda I) = \\begin{vmatrix} -\\lambda & 1 \\\\ -1 & -\\lambda \\end{vmatrix} = \\lambda^2 + 1 = 0$",
+            "$\\lambda^2 = -1$ より、$\\lambda = \\pm i$",
+            "固有値：$\\lambda_1 = i$、$\\lambda_2 = -i$"
+          ]
+        }
+      ],
+      "id": "kyoto-2023-a9d208b11b-q02-practice-05",
+      "school": "京都大学",
+      "year": "2023"
+    }
+  ],
+  "source_question": "問2",
+  "source_pdf": "京都大学/情报学研究科/数理工学/京都大学_情报学研究科_数理工学_2023_数学过去问.pdf",
+  "source_type": "官方过去问",
+  "subject_category": "线性代数"
+}

@@ -1,0 +1,197 @@
+{
+  "id": "osaka-2018-37980f84c0-q05",
+  "school": "大阪大学",
+  "year": "2018",
+  "subject": "情报科学研究科_情报基础数学",
+  "text": "设 $V$ 是 $2n$ 维实向量空间，$V_1,V_2$ 是 $V$ 的 $n$ 维子空间，满足 $V_1\\cap V_2=\\{0\\}$（$0$ 为 $V$ 的零向量）。回答下列问题：\n(1) 对 $V$ 的 $n$ 维子空间 $W\\subset V$，非负整数组\n$$(n_1,n_2)=(\\dim(W\\cap V_1),\\ \\dim(W\\cap V_2))$$\n可以取哪些值？\n(2) 若 $V$ 的两个 $n$ 维子空间 $W,W'\\subset V$ 满足\n$$(\\dim(W\\cap V_1),\\dim(W\\cap V_2))=(\\dim(W'\\cap V_1),\\dim(W'\\cap V_2))$$\n证明存在同型映射（线性同构）$f:V\\to V$，满足\n$$f(V_1)=V_1,\\quad f(V_2)=V_2,\\quad f(W)=W'$$",
+  "knowledge_points": [
+    "直和分解",
+    "子空间维数与交空间",
+    "投影映射",
+    "线性同构的显式构造",
+    "秩-零化度定理"
+  ],
+  "question_type": "抽象向量空间维数与同构构造证明题",
+  "method": [
+    "利用 $V=V_1\\oplus V_2$ 及投影映射进行维数计数",
+    "构造性方法：将 $W$ 分解为 $(W\\cap V_1)\\oplus(W\\cap V_2)\\oplus(\\text{对角部分})$，再对每部分分别构造同构并拼接"
+  ],
+  "solution_steps": [
+    "(1) 先证明约束 $n_1+n_2\\le n$（利用 $V_1\\cap V_2=\\{0\\}$ 得 $(W\\cap V_1)+(W\\cap V_2)$ 是直和且含于 $W$）",
+    "(1) 再通过显式构造（取 $W$ 含 $n_1$ 维在 $V_1$ 中、$n_2$ 维在 $V_2$ 中，余下部分取 $V_1,V_2$ 剩余方向的“对角线”子空间）说明所有满足 $0\\le n_1,n_2,\\ n_1+n_2\\le n$ 的组合均可实现",
+    "(2) 将 $W=U_1\\oplus U_2\\oplus D$（$U_1=W\\cap V_1,U_2=W\\cap V_2,D$ 为对角部分）与 $W'=U_1'\\oplus U_2'\\oplus D'$ 类似分解，维数分别对应相等",
+    "(2) 分别在 $V_1,V_2$ 内构造自同构 $g_1,g_2$，把 $U_1\\to U_1',U_2\\to U_2'$，并协调剩余基向量使对角部分 $D\\to D'$，令 $f=g_1\\oplus g_2$（关于 $V=V_1\\oplus V_2$ 的直和分解）"
+  ],
+  "math_structure": {
+    "type": "subspace_intersection_dimension_and_isomorphism",
+    "template": "V=V_1\\oplus V_2,\\ \\dim V=2n,\\ \\dim V_1=\\dim V_2=n,\\ \\dim W=n,\\ (n_1,n_2)=(\\dim(W\\cap V_1),\\dim(W\\cap V_2))",
+    "variable_count": 1
+  },
+  "difficulty": 5,
+  "answer": [
+    {
+      "label": "(1)",
+      "steps": [
+        "首先证明约束 $n_1+n_2\\le n$：因为 $V_1\\cap V_2=\\{0\\}$，故 $(W\\cap V_1)\\cap(W\\cap V_2)\\subseteq V_1\\cap V_2=\\{0\\}$，所以 $(W\\cap V_1)+(W\\cap V_2)$ 是直和，其维数为 $n_1+n_2$。又 $(W\\cap V_1)+(W\\cap V_2)\\subseteq W$，而 $\\dim W=n$，故 $n_1+n_2\\le n$。同时显然 $n_1,n_2\\ge0$。",
+        "反之，证明满足 $n_1,n_2\\ge0,\\ n_1+n_2\\le n$ 的任意组合都可实现：由 $V=V_1\\oplus V_2$，取 $V_1$ 的一组基 $e_1,\\dots,e_n$，$V_2$ 的一组基 $f_1,\\dots,f_n$。设 $m=n-n_1-n_2\\ (\\ge0)$。",
+        "构造 $U_1=\\mathrm{span}(e_1,\\dots,e_{n_1})$，$U_2=\\mathrm{span}(f_1,\\dots,f_{n_2})$，以及“对角部分” $D=\\mathrm{span}(e_{n_1+1}+f_{n_2+1},\\ e_{n_1+2}+f_{n_2+2},\\dots,\\ e_{n_1+m}+f_{n_2+m})$，这里用到 $V_1$ 中剩余的 $n-n_1\\ge m$ 个基向量与 $V_2$ 中剩余的 $n-n_2\\ge m$ 个基向量中各取 $m$ 个配对。",
+        "令 $W=U_1\\oplus U_2\\oplus D$，则 $\\dim W=n_1+n_2+m=n$。验证：$W\\cap V_1$——$D$ 中任意非零向量的 $f$-分量非零，故不在 $V_1$ 中；从而 $W\\cap V_1=U_1$，维数恰为 $n_1$。同理 $W\\cap V_2=U_2$，维数为 $n_2$。",
+        "综上，$(n_1,n_2)$ 可取的值恰为满足 $n_1\\ge0,\\ n_2\\ge0,\\ n_1+n_2\\le n$ 的所有非负整数对。"
+      ]
+    },
+    {
+      "label": "(2)",
+      "steps": [
+        "按(1)的构造，将 $W$ 分解为 $W=U_1\\oplus U_2\\oplus D$，其中 $U_1=W\\cap V_1$（维数 $n_1$）、$U_2=W\\cap V_2$（维数 $n_2$）、$D$ 是与 $V_1,V_2$ 中各取 $m=n-n_1-n_2$ 个补充方向构成的对角子空间（即 $D$ 中每个向量的 $V_1$-分量与 $V_2$-分量都非零，且到各自补空间的投影是同构）。类似地把 $W'$ 分解为 $U_1'\\oplus U_2'\\oplus D'$，维数分别也是 $n_1,n_2,m$（由已知条件两组维数相等）。",
+        "在 $V_1$（维数 $n$）内选基：先取 $U_1$ 的基 $e_1,\\dots,e_{n_1}$，再取 $D$ 在 $V_1$ 方向的投影基 $e_{n_1+1},\\dots,e_{n_1+m}$（由 $D$ 的构造知它们线性独立），再补足 $V_1$ 的剩余基 $e_{n_1+m+1},\\dots,e_n$。类似地为 $U_1'$ 和 $D'$ 在 $V_1$ 方向的投影选取对应的基 $e_1',\\dots,e_{n_1}',e_{n_1+1}',\\dots,e_{n_1+m}',\\dots,e_n'$。",
+        "定义 $g_1:V_1\\to V_1$ 为把 $e_i$ 映到 $e_i'$（对所有 $i=1,\\dots,n$）的线性映射；因为两组都是 $V_1$ 的基，$g_1$ 是自同构，且 $g_1(U_1)=U_1'$。类似地在 $V_2$ 中选基并定义自同构 $g_2:V_2\\to V_2$，满足 $g_2(U_2)=U_2'$，并使 $D$ 中第 $i$ 个对角向量（$V_1$-分量 $e_{n_1+i}$，$V_2$-分量记为 $h_i$）对应到 $D'$ 中第 $i$ 个对角向量（分量 $e_{n_1+i}'$ 和 $h_i'$）时，$g_2(h_i)=h_i'$（这只需按对应关系选取 $V_2$ 的基即可实现）。",
+        "令 $f:V\\to V$ 为 $f=g_1\\oplus g_2$，即对 $v=v_1+v_2\\in V\\ (v_1\\in V_1,v_2\\in V_2)$，定义 $f(v)=g_1(v_1)+g_2(v_2)$。由 $g_1,g_2$ 均为自同构，$f$ 是 $V$ 上的线性同构（同型映射），且显然 $f(V_1)=V_1,\\ f(V_2)=V_2$。",
+        "验证 $f(W)=W'$：$f(U_1)=g_1(U_1)=U_1'$，$f(U_2)=g_2(U_2)=U_2'$；对 $D$ 中的对角向量 $e_{n_1+i}+h_i$，$f(e_{n_1+i}+h_i)=g_1(e_{n_1+i})+g_2(h_i)=e_{n_1+i}'+h_i'\\in D'$，故 $f(D)=D'$。由 $f$ 线性且 $W=U_1\\oplus U_2\\oplus D$，得 $f(W)=f(U_1)\\oplus f(U_2)\\oplus f(D)=U_1'\\oplus U_2'\\oplus D'=W'$，证毕。"
+      ]
+    }
+  ],
+  "practice_questions": [
+    {
+      "text": "设 $n=1$，即 $V=\\mathbf{R}^2$，$V_1,V_2$ 是两条不同的过原点直线（各为 $1$ 维子空间），$V_1\\cap V_2=\\{0\\}$。$W$ 是 $V$ 的一条 $1$ 维子空间（直线）。请列出 $(n_1,n_2)=(\\dim(W\\cap V_1),\\dim(W\\cap V_2))$ 可能取的全部值。",
+      "knowledge_points": [
+        "子空间维数",
+        "直和分解"
+      ],
+      "question_type": "低维具体情形分析",
+      "method": [
+        "直接按 $W$ 与 $V_1,V_2$ 是否重合分类讨论"
+      ],
+      "solution_steps": [
+        "讨论 $W=V_1$、$W=V_2$、$W$ 与两者都不同的三种情形"
+      ],
+      "math_structure": {
+        "type": "subspace_intersection_dimension_and_isomorphism",
+        "template": "n=1: (n_1,n_2)\\in\\{(1,0),(0,1),(0,0)\\}",
+        "variable_count": 1
+      },
+      "difficulty": 1,
+      "estimated_minutes": 4,
+      "answer": [
+        {
+          "label": "结果",
+          "steps": [
+            "若 $W=V_1$，则 $W\\cap V_1=V_1$（维数1），$W\\cap V_2=W\\cap V_2$，由 $V_1\\ne V_2$ 且都是过原点直线知 $W\\cap V_2=\\{0\\}$（维数0），得 $(n_1,n_2)=(1,0)$。",
+            "若 $W=V_2$，同理得 $(n_1,n_2)=(0,1)$。",
+            "若 $W\\ne V_1$ 且 $W\\ne V_2$（$W$ 是另一条直线），则 $W\\cap V_1=\\{0\\}$，$W\\cap V_2=\\{0\\}$，得 $(n_1,n_2)=(0,0)$。综上，可能值为 $(1,0),(0,1),(0,0)$，均满足 $n_1+n_2\\le1$。"
+          ]
+        }
+      ],
+      "id": "osaka-2018-37980f84c0-q05-practice-01",
+      "school": "大阪大学",
+      "year": "2018"
+    },
+    {
+      "text": "设 $n=2$（即 $\\dim V=4,\\dim V_1=\\dim V_2=2$）。请写出 $(n_1,n_2)$ 全部可能取值，并说明依据。",
+      "knowledge_points": [
+        "子空间维数",
+        "直和分解",
+        "约束不等式"
+      ],
+      "method": [
+        "套用 $n_1+n_2\\le n$ 的一般结论"
+      ],
+      "solution_steps": [
+        "列出满足 $0\\le n_1,n_2\\le2$ 且 $n_1+n_2\\le2$ 的所有整数对"
+      ],
+      "math_structure": {
+        "type": "subspace_intersection_dimension_and_isomorphism",
+        "template": "n=2: 0\\le n_1,n_2,\\ n_1+n_2\\le2",
+        "variable_count": 1
+      },
+      "difficulty": 2,
+      "estimated_minutes": 5,
+      "answer": [
+        {
+          "label": "结果",
+          "steps": [
+            "由一般结论（原题(1)），$(n_1,n_2)$ 满足 $n_1,n_2\\ge0$ 且 $n_1+n_2\\le n=2$。",
+            "列出所有满足此不等式的非负整数对：$(0,0),(1,0),(0,1),(2,0),(0,2),(1,1)$。",
+            "共 $6$ 组，均可通过原题(1)中的显式构造（取 $U_1,U_2$ 维数分别为 $n_1,n_2$，再用对角部分补足剩余维数）实现，例如 $(1,1)$ 时 $m=0$，无需对角部分，直接取 $W=\\mathrm{span}(e_1,f_1)$ 即可。"
+          ]
+        }
+      ],
+      "id": "osaka-2018-37980f84c0-q05-practice-02",
+      "school": "大阪大学",
+      "year": "2018"
+    },
+    {
+      "text": "在 $n=2$ 的情形（$V=\\mathbf{R}^4$，$V_1=\\mathrm{span}(e_1,e_2)$，$V_2=\\mathrm{span}(e_3,e_4)$），显式构造一个 $2$ 维子空间 $W$ 使得 $(n_1,n_2)=(1,0)$，并验证。",
+      "knowledge_points": [
+        "直和分解",
+        "显式子空间构造"
+      ],
+      "method": [
+        "按原题(1)构造法：$n_1=1$ 维部分取自 $V_1$，剩余 $1$ 维用对角部分补足"
+      ],
+      "solution_steps": [
+        "取 $U_1=\\mathrm{span}(e_1)$，对角部分用剩余 $V_1,V_2$ 方向各取一个基向量配对",
+        "验证 $W\\cap V_1,W\\cap V_2$ 的维数"
+      ],
+      "math_structure": {
+        "type": "subspace_intersection_dimension_and_isomorphism",
+        "template": "n=2,(n_1,n_2)=(1,0): W=U_1\\oplus D",
+        "variable_count": 1
+      },
+      "difficulty": 2,
+      "estimated_minutes": 8,
+      "answer": [
+        {
+          "label": "结果",
+          "steps": [
+            "取 $U_1=\\mathrm{span}(e_1)$（对应 $n_1=1$），$U_2=\\{0\\}$（对应 $n_2=0$），故 $m=n-n_1-n_2=2-1-0=1$，需要一个对角向量。",
+            "从 $V_1$ 剩余基向量 $e_2$ 与 $V_2$ 的基向量（取 $e_3$）构造对角向量 $e_2+e_3$，令 $W=\\mathrm{span}(e_1,\\ e_2+e_3)$，则 $\\dim W=2$。",
+            "验证 $W\\cap V_1$：设 $a e_1+b(e_2+e_3)\\in V_1=\\mathrm{span}(e_1,e_2)$，则其 $e_3$ 分量 $b$ 必须为 $0$，故该向量为 $ae_1\\in\\mathrm{span}(e_1)$，即 $W\\cap V_1=\\mathrm{span}(e_1)$，维数为 $1=n_1$。",
+            "验证 $W\\cap V_2$：同样地，$ae_1+b(e_2+e_3)\\in V_2=\\mathrm{span}(e_3,e_4)$ 要求 $e_1,e_2$ 分量均为 $0$，即 $a=0,b=0$，故 $W\\cap V_2=\\{0\\}$，维数为 $0=n_2$，与目标一致。"
+          ]
+        }
+      ],
+      "id": "osaka-2018-37980f84c0-q05-practice-03",
+      "school": "大阪大学",
+      "year": "2018"
+    },
+    {
+      "text": "只利用 $V_1\\cap V_2=\\{0\\}$ 这一条件，证明对任意 $n$ 维子空间 $W\\subset V$（$\\dim V=2n,\\dim V_1=\\dim V_2=n$），都有 $\\dim(W\\cap V_1)+\\dim(W\\cap V_2)\\le n$（即原题(1)结论中不等式部分，不要求实现所有取值）。",
+      "knowledge_points": [
+        "直和的维数",
+        "子空间的交与和"
+      ],
+      "method": [
+        "证明 $(W\\cap V_1)+(W\\cap V_2)$ 是直和且含于 $W$"
+      ],
+      "solution_steps": [
+        "证明交空间之间是直和关系",
+        "利用维数公式与 $W$ 的维数上界得出不等式"
+      ],
+      "math_structure": {
+        "type": "subspace_intersection_dimension_and_isomorphism",
+        "template": "V_1\\cap V_2=\\{0\\}\\Rightarrow \\dim(W\\cap V_1)+\\dim(W\\cap V_2)\\le \\dim W",
+        "variable_count": 1
+      },
+      "difficulty": 3,
+      "estimated_minutes": 8,
+      "answer": [
+        {
+          "label": "结果",
+          "steps": [
+            "考察 $(W\\cap V_1)\\cap(W\\cap V_2)$：这是 $W\\cap V_1\\cap V_2\\subseteq V_1\\cap V_2=\\{0\\}$，故 $(W\\cap V_1)\\cap(W\\cap V_2)=\\{0\\}$。",
+            "由此 $(W\\cap V_1)+(W\\cap V_2)$ 是直和，其维数满足 $\\dim\\left[(W\\cap V_1)+(W\\cap V_2)\\right]=\\dim(W\\cap V_1)+\\dim(W\\cap V_2)$（直和的维数公式，因为交为零）。",
+            "又因为 $W\\cap V_1\\subseteq W$ 且 $W\\cap V_2\\subseteq W$，所以 $(W\\cap V_1)+(W\\cap V_2)\\subseteq W$，从而其维数不超过 $\\dim W=n$。",
+            "综合两步得 $\\dim(W\\cap V_1)+\\dim(W\\cap V_2)\\le n$，证毕。"
+          ]
+        }
+      ],
+      "id": "osaka-2018-37980f84c0-q05-practice-04",
+      "school": "大阪大学",
+      "year": "2018"
+    }
+  ],
+  "source_question": "問5",
+  "source_pdf": "大阪大学/情报科学研究科/情报基础数学/大阪大学_情报科学研究科_情报基础数学_2018_数学过去问.pdf",
+  "source_type": "官方过去问",
+  "subject_category": "线性代数"
+}

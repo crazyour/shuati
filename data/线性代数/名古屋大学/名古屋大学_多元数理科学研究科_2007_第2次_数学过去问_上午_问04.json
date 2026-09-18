@@ -1,0 +1,233 @@
+{
+  "id": "nagoya-2007-b4a0cf0d7b-q04",
+  "school": "名古屋大学",
+  "year": "2007",
+  "subject": "多元数理科学研究科_全专攻",
+  "text": "设对称矩阵 $A=\\begin{pmatrix}a&b\\\\b&a\\end{pmatrix}$，其中 $a>0,\\ b>0,\\ a+b=1$。\n\n(1) 求矩阵 $A$ 的特征值与特征向量。\n\n(2) 对任意向量 $v=\\begin{pmatrix}x\\\\y\\end{pmatrix}\\in\\mathbb{R}^2$，证明成立：\n$$\\lim_{n\\to\\infty} A^n v = \\frac{x+y}{2}\\begin{pmatrix}1\\\\1\\end{pmatrix}.$$",
+  "knowledge_points": [
+    "对称矩阵特征值特征向量",
+    "矩阵对角化",
+    "矩阵幂的极限",
+    "特征分解应用"
+  ],
+  "question_type": "特征值分解与矩阵幂极限",
+  "method": [
+    "特征多项式求解",
+    "特征向量求解",
+    "利用特征基分解向量并求矩阵幂极限"
+  ],
+  "solution_steps": [
+    "求特征多项式 $(a-\\lambda)^2-b^2=0$ 并解出特征值",
+    "分别代入求对应特征向量",
+    "将任意向量按特征向量基分解",
+    "利用 $|\\lambda_2|<1$ 得到 $A^n v$ 的极限"
+  ],
+  "math_structure": {
+    "type": "symmetric_matrix_power_limit",
+    "template": "A=\\begin{pmatrix}a&b\\\\b&a\\end{pmatrix},\\ a+b=1,a,b>0,\\ \\lim_{n\\to\\infty}A^nv",
+    "variable_count": 2
+  },
+  "difficulty": 3,
+  "answer": [
+    {
+      "label": "(1)",
+      "steps": [
+        "特征多项式：$\\det(A-\\lambda I)=(a-\\lambda)^2-b^2=0$，展开为 $(a-\\lambda-b)(a-\\lambda+b)=0$，解得 $\\lambda_1=a+b=1,\\ \\lambda_2=a-b$。",
+        "对 $\\lambda_1=1$：解 $(A-I)v=0$，即 $\\begin{pmatrix}a-1&b\\\\b&a-1\\end{pmatrix}v=0$。因 $a-1=-b$（由 $a+b=1$），方程化为 $-bv_1+bv_2=0\\Rightarrow v_1=v_2$，特征向量为 $(1,1)^T$。",
+        "对 $\\lambda_2=a-b$：解 $(A-(a-b)I)v=0$，即 $\\begin{pmatrix}b&b\\\\b&b\\end{pmatrix}v=0\\Rightarrow v_1+v_2=0$，特征向量为 $(1,-1)^T$。",
+        "结论：特征值 $\\lambda_1=1$ 对应特征向量 $(1,1)^T$；特征值 $\\lambda_2=a-b$ 对应特征向量 $(1,-1)^T$。"
+      ]
+    },
+    {
+      "label": "(2)",
+      "steps": [
+        "因 $a,b>0$ 且 $a+b=1$，所以 $0<a<1$，从而 $-1<a-b<1$（因为 $a-b=2a-1\\in(-1,1)$），即 $|\\lambda_2|<1$。",
+        "将任意 $v=(x,y)^T$ 用特征向量基分解：设 $v=c_1(1,1)^T+c_2(1,-1)^T$，解得 $c_1=\\dfrac{x+y}{2},\\ c_2=\\dfrac{x-y}{2}$。",
+        "由特征分解性质，$A^n v = c_1\\lambda_1^n(1,1)^T + c_2\\lambda_2^n(1,-1)^T = c_1\\cdot1^n\\cdot(1,1)^T + c_2(a-b)^n(1,-1)^T$。",
+        "由 $|\\lambda_2|<1$，当 $n\\to\\infty$ 时 $\\lambda_2^n\\to0$，故 $\\lim_{n\\to\\infty}A^nv = c_1(1,1)^T = \\dfrac{x+y}{2}\\begin{pmatrix}1\\\\1\\end{pmatrix}$，得证。"
+      ]
+    }
+  ],
+  "practice_questions": [
+    {
+      "text": "求对称矩阵 $M=\\begin{pmatrix}0.6&0.4\\\\0.4&0.6\\end{pmatrix}$ 的特征值与特征向量。",
+      "knowledge_points": [
+        "对称矩阵特征值",
+        "特征向量求解"
+      ],
+      "question_type": "特征值特征向量计算",
+      "method": [
+        "特征多项式求解"
+      ],
+      "solution_steps": [
+        "求特征多项式并解出特征值",
+        "分别求特征向量"
+      ],
+      "math_structure": {
+        "type": "symmetric_2x2_eigen",
+        "template": "M=\\begin{pmatrix}0.6&0.4\\\\0.4&0.6\\end{pmatrix}",
+        "variable_count": 0
+      },
+      "difficulty": 1,
+      "estimated_minutes": 6,
+      "answer": [
+        {
+          "label": "结果",
+          "steps": [
+            "特征多项式 $(0.6-\\lambda)^2-0.4^2=0$，解得 $\\lambda_1=0.6+0.4=1,\\ \\lambda_2=0.6-0.4=0.2$。",
+            "对 $\\lambda_1=1$：特征向量 $(1,1)^T$；对 $\\lambda_2=0.2$：特征向量 $(1,-1)^T$（与本题结构一致，因 $a=0.6,b=0.4,a+b=1$）。"
+          ]
+        }
+      ],
+      "id": "nagoya-2007-b4a0cf0d7b-q04-practice-01",
+      "school": "名古屋大学",
+      "year": "2007"
+    },
+    {
+      "text": "将向量 $v=(3,1)^T$ 按基 $\\{(1,1)^T,(1,-1)^T\\}$ 分解，求系数 $c_1,c_2$。",
+      "knowledge_points": [
+        "基分解",
+        "线性方程组求解"
+      ],
+      "question_type": "向量分解计算",
+      "method": [
+        "解线性方程组"
+      ],
+      "solution_steps": [
+        "设分解式并列方程",
+        "解出系数"
+      ],
+      "math_structure": {
+        "type": "vector_decomposition",
+        "template": "v=(3,1)^T=c_1(1,1)^T+c_2(1,-1)^T",
+        "variable_count": 2
+      },
+      "difficulty": 1,
+      "estimated_minutes": 5,
+      "answer": [
+        {
+          "label": "结果",
+          "steps": [
+            "由公式 $c_1=(x+y)/2, c_2=(x-y)/2$，代入 $x=3,y=1$：$c_1=(3+1)/2=2,\\ c_2=(3-1)/2=1$。",
+            "验证：$2(1,1)^T+1(1,-1)^T=(2+1,2-1)=(3,1)$，正确。"
+          ]
+        }
+      ],
+      "id": "nagoya-2007-b4a0cf0d7b-q04-practice-02",
+      "school": "名古屋大学",
+      "year": "2007"
+    },
+    {
+      "text": "设 $A$ 为对称矩阵，特征值为 $\\lambda_1=1,\\lambda_2=0.5$，对应特征向量分别为 $(1,1)^T,(1,-1)^T$。求 $\\displaystyle\\lim_{n\\to\\infty}A^n\\begin{pmatrix}4\\\\2\\end{pmatrix}$。",
+      "knowledge_points": [
+        "特征分解",
+        "矩阵幂极限"
+      ],
+      "question_type": "矩阵幂极限计算",
+      "method": [
+        "特征基分解",
+        "利用 |\\lambda_2|<1 求极限"
+      ],
+      "solution_steps": [
+        "分解向量",
+        "代入 A^n 公式取极限"
+      ],
+      "math_structure": {
+        "type": "matrix_power_limit_application",
+        "template": "\\lim A^n(4,2)^T,\\ \\lambda_1=1,\\lambda_2=0.5",
+        "variable_count": 2
+      },
+      "difficulty": 2,
+      "estimated_minutes": 6,
+      "answer": [
+        {
+          "label": "结果",
+          "steps": [
+            "分解：$c_1=(4+2)/2=3, c_2=(4-2)/2=1$。",
+            "$A^n v = 3\\cdot1^n(1,1)^T + 1\\cdot0.5^n(1,-1)^T$，当 $n\\to\\infty$，$0.5^n\\to0$。",
+            "极限为 $3(1,1)^T=(3,3)^T$。"
+          ]
+        }
+      ],
+      "id": "nagoya-2007-b4a0cf0d7b-q04-practice-03",
+      "school": "名古屋大学",
+      "year": "2007"
+    },
+    {
+      "text": "证明：若 $a,b$ 满足 $a>0,b>0,a+b=1$，则 $\\lambda_2=a-b$ 满足 $-1<\\lambda_2<1$。",
+      "knowledge_points": [
+        "不等式证明",
+        "特征值范围"
+      ],
+      "question_type": "不等式证明",
+      "method": [
+        "代数不等式变形"
+      ],
+      "solution_steps": [
+        "用 a+b=1 消元",
+        "证明不等式两端"
+      ],
+      "math_structure": {
+        "type": "eigenvalue_bound_proof",
+        "template": "a+b=1,a,b>0 \\Rightarrow -1<a-b<1",
+        "variable_count": 2
+      },
+      "difficulty": 2,
+      "estimated_minutes": 6,
+      "answer": [
+        {
+          "label": "证明",
+          "steps": [
+            "由 $b=1-a$，得 $a-b=a-(1-a)=2a-1$。",
+            "因 $a>0$ 且 $b=1-a>0\\Rightarrow a<1$，所以 $0<a<1$。",
+            "代入 $2a-1$：当 $a\\to0^+$，$2a-1\\to-1$；当 $a\\to1^-$，$2a-1\\to1$，故 $-1<2a-1<1$，即 $-1<a-b<1$，证毕。"
+          ]
+        }
+      ],
+      "id": "nagoya-2007-b4a0cf0d7b-q04-practice-04",
+      "school": "名古屋大学",
+      "year": "2007"
+    },
+    {
+      "text": "对矩阵 $A=\\begin{pmatrix}0.3&0.7\\\\0.7&0.3\\end{pmatrix}$，验证 $a=0.3,b=0.7$ 是否满足题设条件，并求 $\\displaystyle\\lim_{n\\to\\infty}A^n\\begin{pmatrix}2\\\\6\\end{pmatrix}$。",
+      "knowledge_points": [
+        "条件验证",
+        "矩阵幂极限综合应用"
+      ],
+      "question_type": "综合应用题",
+      "method": [
+        "验证条件",
+        "特征分解求极限"
+      ],
+      "solution_steps": [
+        "检查 a,b>0且a+b=1",
+        "求特征值特征向量",
+        "分解向量并求极限"
+      ],
+      "math_structure": {
+        "type": "full_application",
+        "template": "A=\\begin{pmatrix}0.3&0.7\\\\0.7&0.3\\end{pmatrix},\\ v=(2,6)^T",
+        "variable_count": 2
+      },
+      "difficulty": 3,
+      "estimated_minutes": 10,
+      "answer": [
+        {
+          "label": "结果",
+          "steps": [
+            "验证：$a=0.3>0, b=0.7>0, a+b=1$，条件满足。",
+            "特征值：$\\lambda_1=1,\\ \\lambda_2=0.3-0.7=-0.4$，满足 $|\\lambda_2|<1$；特征向量分别为 $(1,1)^T,(1,-1)^T$。",
+            "分解 $v=(2,6)^T$：$c_1=(2+6)/2=4,\\ c_2=(2-6)/2=-2$。极限为 $c_1(1,1)^T=4(1,1)^T=(4,4)^T$，与公式 $\\frac{x+y}{2}(1,1)^T=\\frac{8}{2}(1,1)^T=(4,4)^T$ 一致。"
+          ]
+        }
+      ],
+      "id": "nagoya-2007-b4a0cf0d7b-q04-practice-05",
+      "school": "名古屋大学",
+      "year": "2007"
+    }
+  ],
+  "source_question": "問4",
+  "source_pdf": "名古屋大学/多元数理科学研究科/全专攻/名古屋大学_多元数理科学研究科_2007_第2次_数学过去问_上午.pdf",
+  "source_type": "官方过去问",
+  "subject_category": "线性代数"
+}

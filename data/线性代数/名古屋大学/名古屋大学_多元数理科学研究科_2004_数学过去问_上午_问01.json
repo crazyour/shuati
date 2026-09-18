@@ -1,0 +1,215 @@
+{
+  "id": "nagoya-2004-51004956ab-q01",
+  "school": "名古屋大学",
+  "year": "2004",
+  "subject": "多元数理科学研究科_全专攻",
+  "text": "考虑 $\\mathbb{R}^3$ 上的线性映射 $\\varphi:\\mathbb{R}^3\\to\\mathbb{R}^3$，$\\varphi\\begin{pmatrix}x_1\\\\x_2\\\\x_3\\end{pmatrix}=\\begin{pmatrix}x_1\\\\-x_3\\\\x_2+2x_3\\end{pmatrix}$。又设 $\\mathbb{R}^3$ 的子集 $V=\\left\\{\\begin{pmatrix}x_1\\\\x_2\\\\x_3\\end{pmatrix}\\in\\mathbb{R}^3\\ \\middle|\\ x_1+x_2+x_3=0\\right\\}$。回答以下问题：\n(1) 证明 $V$ 是 $\\mathbb{R}^3$ 的子空间。\n(2) 证明 $\\varphi(V)\\subset V$。\n(3) 求 $V$ 的一组基。\n(4) 设 $\\varphi_V:V\\to V$ 为 $\\varphi$ 限制到 $V$ 上得到的线性映射，求 $\\varphi_V$ 关于 (3) 中所求基的矩阵表示。",
+  "knowledge_points": [
+    "子空间的判定",
+    "线性映射的像",
+    "子空间的基与维数",
+    "线性映射的矩阵表示",
+    "限制映射"
+  ],
+  "question_type": "线性代数综合证明与计算",
+  "method": [
+    "用零向量与线性组合封闭性验证子空间",
+    "代入验证不变子空间",
+    "求解齐次线性方程组得基",
+    "计算基向量的像并用基表出得矩阵"
+  ],
+  "solution_steps": [
+    "验证 V 对加法和标量乘法封闭且含零向量，说明其为子空间",
+    "取 V 中任意向量代入 φ，验证像的三坐标之和仍为 0",
+    "利用 x1+x2+x3=0 的自由度为 2，选取两个线性无关解作为基",
+    "分别计算 φ(v1),φ(v2) 并用基 {v1,v2} 线性表出，写出系数矩阵"
+  ],
+  "math_structure": {
+    "type": "linear_map_invariant_subspace",
+    "template": "phi(x1,x2,x3)=(x1,-x3,x2+2x3); V={x1+x2+x3=0}; find basis of V and matrix of phi|_V",
+    "variable_count": 3
+  },
+  "difficulty": 3,
+  "answer": [
+    {
+      "label": "(1)",
+      "steps": [
+        "零向量 $(0,0,0)$ 满足 $0+0+0=0$，故 $\\mathbf{0}\\in V$。",
+        "设 $u=(u_1,u_2,u_3),w=(w_1,w_2,w_3)\\in V$，即 $u_1+u_2+u_3=0,\\ w_1+w_2+w_3=0$。则 $u+w=(u_1+w_1,u_2+w_2,u_3+w_3)$，其三坐标之和为 $(u_1+u_2+u_3)+(w_1+w_2+w_3)=0$，故 $u+w\\in V$。",
+        "对任意 $\\lambda\\in\\mathbb{R}$，$\\lambda u$ 三坐标之和为 $\\lambda(u_1+u_2+u_3)=0$，故 $\\lambda u\\in V$。",
+        "综上，$V$ 对加法与标量乘法封闭且含零向量，故 $V$ 是 $\\mathbb{R}^3$ 的子空间（实际上 $V=\\ker(l)$，其中 $l(x)=x_1+x_2+x_3$ 是线性泛函，核必为子空间）。"
+      ]
+    },
+    {
+      "label": "(2)",
+      "steps": [
+        "设 $v=(x_1,x_2,x_3)\\in V$，即 $x_1+x_2+x_3=0$。",
+        "计算 $\\varphi(v)=(x_1,-x_3,x_2+2x_3)$，其三坐标之和为 $x_1+(-x_3)+(x_2+2x_3)=x_1+x_2+x_3=0$。",
+        "因此 $\\varphi(v)\\in V$，对任意 $v\\in V$ 都成立，即 $\\varphi(V)\\subset V$。"
+      ]
+    },
+    {
+      "label": "(3)",
+      "steps": [
+        "$V$ 由方程 $x_1+x_2+x_3=0$ 定义，是一个齐次线性方程，自由变量个数为 $2$，故 $\\dim V=2$。",
+        "取 $x_2=-1,x_3=0\\Rightarrow x_1=1$，得 $v_1=(1,-1,0)$；取 $x_2=0,x_3=-1\\Rightarrow x_1=1$，得 $v_2=(1,0,-1)$。",
+        "验证 $v_1,v_2$ 满足方程且线性无关（第2、3坐标不成比例），故 $\\{v_1,v_2\\}$ 是 $V$ 的一组基。"
+      ]
+    },
+    {
+      "label": "(4)",
+      "steps": [
+        "计算 $\\varphi(v_1)=\\varphi(1,-1,0)=(1,-0,-1+0)=(1,0,-1)=v_2$，即 $\\varphi(v_1)=0\\cdot v_1+1\\cdot v_2$。",
+        "计算 $\\varphi(v_2)=\\varphi(1,0,-1)=(1,-(-1),0+2(-1))=(1,1,-2)$。设 $(1,1,-2)=a v_1+b v_2=(a+b,-a,-b)$，得 $a+b=1,\\ -a=1,\\ -b=-2$，解得 $a=-1,b=2$（验证 $a+b=1$ 成立）。故 $\\varphi(v_2)=-v_1+2v_2$。",
+        "以 $\\{v_1,v_2\\}$ 为基，φ的矩阵表示的第一列为 $\\varphi(v_1)$ 的坐标 $(0,1)^T$，第二列为 $\\varphi(v_2)$ 的坐标 $(-1,2)^T$，故 $A=\\begin{pmatrix}0&-1\\\\1&2\\end{pmatrix}$。"
+      ]
+    }
+  ],
+  "practice_questions": [
+    {
+      "text": "判断 $W=\\{(x_1,x_2,x_3)\\in\\mathbb{R}^3\\mid x_1-2x_2+x_3=0\\}$ 是否为 $\\mathbb{R}^3$ 的子空间，并求其维数。",
+      "knowledge_points": [
+        "子空间的判定",
+        "齐次线性方程的解空间"
+      ],
+      "question_type": "子空间判定",
+      "method": [
+        "零向量与封闭性验证"
+      ],
+      "solution_steps": [
+        "验证零向量满足方程",
+        "验证加法与标量乘法封闭",
+        "由自由变量个数确定维数"
+      ],
+      "math_structure": {
+        "type": "subspace_verification",
+        "template": "W={a*x1+b*x2+c*x3=0}",
+        "variable_count": 3
+      },
+      "difficulty": 1,
+      "estimated_minutes": 5,
+      "answer": [
+        {
+          "label": "结论",
+          "steps": [
+            "$(0,0,0)$ 满足方程，故 $\\mathbf 0\\in W$。",
+            "设 $u,w\\in W$，则 $u+w$ 与 $\\lambda u$ 也满足该齐次线性方程，故 $W$ 对运算封闭，是子空间。",
+            "方程含2个自由变量，故 $\\dim W=2$。"
+          ]
+        }
+      ],
+      "id": "nagoya-2004-51004956ab-q01-practice-01",
+      "school": "名古屋大学",
+      "year": "2004"
+    },
+    {
+      "text": "求线性映射 $\\psi(x_1,x_2,x_3)=(x_2,x_3,x_1)$（坐标循环置换）下，子空间 $V=\\{x_1+x_2+x_3=0\\}$ 是否满足 $\\psi(V)\\subset V$。",
+      "knowledge_points": [
+        "不变子空间",
+        "线性映射的像"
+      ],
+      "question_type": "不变性验证",
+      "method": [
+        "代入验证"
+      ],
+      "solution_steps": [
+        "取V中任意向量代入ψ",
+        "验证像仍满足定义方程"
+      ],
+      "math_structure": {
+        "type": "invariant_subspace_check",
+        "template": "psi(x1,x2,x3)=(x2,x3,x1); V={x1+x2+x3=0}",
+        "variable_count": 3
+      },
+      "difficulty": 1,
+      "estimated_minutes": 5,
+      "answer": [
+        {
+          "label": "结论",
+          "steps": [
+            "设 $(x_1,x_2,x_3)\\in V$，即 $x_1+x_2+x_3=0$。",
+            "$\\psi$ 的像为 $(x_2,x_3,x_1)$，三坐标之和仍为 $x_1+x_2+x_3=0$。",
+            "故 $\\psi(V)\\subset V$成立。"
+          ]
+        }
+      ],
+      "id": "nagoya-2004-51004956ab-q01-practice-02",
+      "school": "名古屋大学",
+      "year": "2004"
+    },
+    {
+      "text": "求向量空间 $U=\\{(x_1,x_2,x_3,x_4)\\in\\mathbb{R}^4\\mid x_1+x_2=0,\\ x_3-x_4=0\\}$ 的一组基，并说明维数。",
+      "knowledge_points": [
+        "齐次线性方程组的解空间",
+        "基的构造"
+      ],
+      "question_type": "求基",
+      "method": [
+        "自由变量参数化"
+      ],
+      "solution_steps": [
+        "确定自由变量个数",
+        "分别令一个自由变量为1其余为0构造基向量"
+      ],
+      "math_structure": {
+        "type": "basis_construction",
+        "template": "U={x1+x2=0, x3-x4=0} in R^4",
+        "variable_count": 4
+      },
+      "difficulty": 2,
+      "estimated_minutes": 6,
+      "answer": [
+        {
+          "label": "结论",
+          "steps": [
+            "方程组给出2个约束，4个变量，自由变量数为2，故 $\\dim U=2$。",
+            "取 $x_2=-1$(其余按约束确定): $u_1=(-1,1,0,0)$，令$x_3=1,x_4=1$其余为0: $u_2=(0,0,1,1)$。",
+            "验证 $u_1,u_2$ 均满足方程且线性无关，故 $\\{u_1,u_2\\}$ 为一组基。"
+          ]
+        }
+      ],
+      "id": "nagoya-2004-51004956ab-q01-practice-03",
+      "school": "名古屋大学",
+      "year": "2004"
+    },
+    {
+      "text": "设 $\\varphi_V:V\\to V$ 如原题(4)所定义，求矩阵 $A$ 的特征值。",
+      "knowledge_points": [
+        "特征值与特征多项式",
+        "限制映射的矩阵表示"
+      ],
+      "question_type": "特征值计算",
+      "method": [
+        "求解特征多项式"
+      ],
+      "solution_steps": [
+        "写出特征多项式 det(A-λI)",
+        "求解二次方程得特征值"
+      ],
+      "math_structure": {
+        "type": "eigenvalue_computation",
+        "template": "A=[[0,-1],[1,2]]; find eigenvalues",
+        "variable_count": 1
+      },
+      "difficulty": 2,
+      "estimated_minutes": 6,
+      "answer": [
+        {
+          "label": "结论",
+          "steps": [
+            "特征多项式：$\\det(A-\\lambda I)=\\det\\begin{pmatrix}-\\lambda&-1\\\\1&2-\\lambda\\end{pmatrix}=\\lambda^2-2\\lambda+1=(\\lambda-1)^2$。",
+            "解得唯一特征值 $\\lambda=1$（重数2）。",
+            "验证：矩阵的迹为 $0+2=2=2\\times1$，行列式为 $0\\times2-(-1)\\times1=1=1\\times1$，与特征值吻合。"
+          ]
+        }
+      ],
+      "id": "nagoya-2004-51004956ab-q01-practice-04",
+      "school": "名古屋大学",
+      "year": "2004"
+    }
+  ],
+  "source_question": "問1",
+  "source_pdf": "名古屋大学/多元数理科学研究科/全专攻/名古屋大学_多元数理科学研究科_2004_数学过去问_上午.pdf",
+  "source_type": "官方过去问",
+  "subject_category": "线性代数"
+}

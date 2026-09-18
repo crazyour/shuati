@@ -1,0 +1,206 @@
+{
+  "id": "osaka-2022-c07cb3c8db-q04",
+  "school": "大阪大学",
+  "year": "2022",
+  "subject": "情报科学研究科_情报基础数学",
+  "text": "设$M(m,n)$为所有实$(m,n)$矩阵组成的集合，通过分量对应把$M(m,n)$等同于$\\mathbb{R}^{mn}$。设映射$f:M(m,n)\\to\\mathbb{R}$定义为$f(X)=\\operatorname{rank}X$。\n\n(1) 设$A\\in M(n,n)$满足$f(A)=n$。判断$f$在$A$处是否连续。\n\n(2) 设$r\\in f(M(m,n))$，$A\\in M(m,n)$满足$f(A)=r$。判断$f$在$A$处是否连续。",
+  "knowledge_points": [
+    "矩阵的秩",
+    "行列式作为连续函数",
+    "开集与闭集",
+    "矩阵的相抵标准型",
+    "秩函数的（不）连续性",
+    "矩阵空间上的拓扑"
+  ],
+  "question_type": "判断矩阵秩函数在给定点的连续性",
+  "method": [
+    "利用行列式（或子式）连续，其非零集为开集，证明满秩处连续",
+    "利用相抵标准型构造扰动序列，证明非满秩处不连续",
+    "综合得出连续性依赖于$r$是否等于$\\min(m,n)$"
+  ],
+  "solution_steps": [
+    "(1): $A$可逆等价于$\\det A\\neq0$；$\\det$是$A$的分量的多项式，连续；故存在$A$的邻域使$\\det\\neq0$，从而邻域内矩阵均满秩$n$，$f$在$A$附近恒为常数$n$，故连续",
+    "(2): 若$r=\\min(m,n)$（最大可能秩），用类似(1)的论证（某个$\\min(m,n)$阶子式的行列式非零且连续），得$f$在$A$处连续",
+    "若$r<\\min(m,n)$，利用相抵标准型$A=PJ_rQ$（$P,Q$可逆，$J_r$为标准秩$r$矩阵），构造扰动$A(\\varepsilon)=P(J_r+\\varepsilon E_{r+1,r+1})Q\\to A$（$\\varepsilon\\to0$），但$f(A(\\varepsilon))=r+1\\neq r$对所有$\\varepsilon\\neq0$成立，故$f$在$A$处不连续"
+  ],
+  "math_structure": {
+    "type": "rank_function_continuity_on_matrix_space",
+    "template": "f:M(m,n)\\cong\\mathbb{R}^{mn}\\to\\mathbb{R},\\ f(X)=\\operatorname{rank}X;\\ \\text{continuity at }A\\text{ with }f(A)=r",
+    "variable_count": 3
+  },
+  "difficulty": 4,
+  "answer": [
+    {
+      "label": "(1)",
+      "steps": [
+        "由$f(A)=n$（$A\\in M(n,n)$）知$A$是$n\\times n$矩阵且秩为$n$，即$A$可逆，等价于$\\det A\\neq0$。",
+        "映射$\\det:M(n,n)=\\mathbb{R}^{n^2}\\to\\mathbb{R}$是$A$各分量的多项式函数，因而处处连续。由于$\\det(A)\\neq0$，而$\\mathbb{R}\\setminus\\{0\\}$是$\\mathbb{R}$中的开集，连续函数的原像是开集，所以存在$A$的一个开邻域$U\\subset M(n,n)$，使得对所有$X\\in U$都有$\\det X\\neq0$。",
+        "对$U$中任意$X$，$\\det X\\neq0$意味着$X$可逆，从而$\\operatorname{rank}X=n$。因此在邻域$U$上$f$恒等于常数$n=f(A)$，即$f$在$U$上是局部常值函数。",
+        "局部常值函数显然连续，故$f$在$A$处连续。"
+      ]
+    },
+    {
+      "label": "(2)",
+      "steps": [
+        "情形一：$r=\\min(m,n)$（即$A$取到该矩阵尺寸下可能的最大秩，行满秩或列满秩）。不妨设$m\\le n$，$r=m$表示$A$的$m$个行向量线性无关，等价于$A$的某个$m\\times m$子矩阵（选取$m$列）的行列式非零。该行列式是$A$分量的多项式，连续，其非零集是开集；又因为$m\\times n$矩阵（$m\\le n$）的秩不可能超过$m$，故该开邻域内的矩阵秩恒为$m=r$。因此与(1)完全类似地，$f$在$A$处连续。",
+        "情形二：$r<\\min(m,n)$。由线性代数中的相抵标准型定理，存在可逆矩阵$P\\in GL(m,\\mathbb{R})$、$Q\\in GL(n,\\mathbb{R})$，使得$A=P J_r Q$，其中$J_r=\\begin{pmatrix}I_r&0\\\\0&0\\end{pmatrix}$是标准秩$r$矩阵（$I_r$是$r$阶单位矩阵）。由于$r<\\min(m,n)$，位置$(r+1,r+1)$在$J_r$中存在（即$m,n$都至少为$r+1$）。",
+        "对$\\varepsilon\\neq0$，令$J_r(\\varepsilon)=J_r+\\varepsilon E_{r+1,r+1}$，其中$E_{r+1,r+1}$是仅在$(r+1,r+1)$位置为$1$、其余为$0$的矩阵单位。$J_r(\\varepsilon)$在其前$r+1$个对角位置依次为$1,\\dots,1,\\varepsilon$（其余元素仍为$0$），当$\\varepsilon\\neq0$时这$r+1$个对角元全部非零且分处不同行不同列，故$\\operatorname{rank}J_r(\\varepsilon)=r+1$。",
+        "令$A(\\varepsilon)=PJ_r(\\varepsilon)Q$。因为$P,Q$可逆，秩在左乘、右乘可逆矩阵下不变，故$\\operatorname{rank}A(\\varepsilon)=\\operatorname{rank}J_r(\\varepsilon)=r+1$对所有$\\varepsilon\\neq0$成立。又因为矩阵乘法是连续（线性）运算，当$\\varepsilon\\to0$时$A(\\varepsilon)=P(J_r+\\varepsilon E_{r+1,r+1})Q\\to PJ_rQ=A$。",
+        "于是我们得到一列（或一族）矩阵$A(\\varepsilon)\\to A$（当$\\varepsilon\\to0$），但$f(A(\\varepsilon))=r+1\\neq r=f(A)$对所有$\\varepsilon\\neq0$恒成立，因此$\\lim_{\\varepsilon\\to0}f(A(\\varepsilon))=r+1\\neq f(A)=r$，这说明$f$在$A$处不连续。综上，$f$在$A$处连续当且仅当$r=f(A)=\\min(m,n)$；否则（$r<\\min(m,n)$）$f$在$A$处不连续。"
+      ]
+    }
+  ],
+  "practice_questions": [
+    {
+      "text": "证明：$2\\times2$实可逆矩阵全体构成的集合$GL(2,\\mathbb{R})$是$\\mathbb{R}^4$（即$M(2,2)$）中的开集。",
+      "knowledge_points": [
+        "行列式的连续性",
+        "开集的定义",
+        "可逆矩阵"
+      ],
+      "question_type": "证明可逆矩阵集合是开集",
+      "method": [
+        "利用$\\det$连续，$GL(2,\\mathbb{R})=\\det^{-1}(\\mathbb{R}\\setminus\\{0\\})$"
+      ],
+      "solution_steps": [
+        "写出$\\det$为分量的多项式",
+        "说明$\\mathbb{R}\\setminus\\{0\\}$是开集",
+        "连续函数的开集原像是开集"
+      ],
+      "math_structure": {
+        "type": "invertible_matrices_open_set",
+        "template": "GL(2,\\mathbb{R})=\\{X\\in M(2,2): \\det X\\neq0\\}\\ \\text{is open}",
+        "variable_count": 0
+      },
+      "difficulty": 1,
+      "estimated_minutes": 4,
+      "answer": [
+        {
+          "label": "证明",
+          "steps": [
+            "对$X=\\begin{pmatrix}a&b\\\\c&d\\end{pmatrix}\\in M(2,2)\\cong\\mathbb{R}^4$，$\\det X=ad-bc$是$a,b,c,d$的多项式函数，因而在$\\mathbb{R}^4$上处处连续。",
+            "$GL(2,\\mathbb{R})=\\{X\\mid\\det X\\neq0\\}=\\det^{-1}(\\mathbb{R}\\setminus\\{0\\})$。由于$\\mathbb{R}\\setminus\\{0\\}$是$\\mathbb{R}$中的开集，而$\\det$连续，连续映射下开集的原像是开集，故$GL(2,\\mathbb{R})$是$\\mathbb{R}^4$中的开集。"
+          ]
+        }
+      ],
+      "id": "osaka-2022-c07cb3c8db-q04-practice-01",
+      "school": "大阪大学",
+      "year": "2022"
+    },
+    {
+      "text": "证明：对任意固定的整数$k$（$0\\le k\\le\\min(m,n)$），集合$\\{X\\in M(m,n)\\mid \\operatorname{rank}X\\ge k\\}$是$M(m,n)\\cong\\mathbb{R}^{mn}$中的开集。",
+      "knowledge_points": [
+        "子式判别法",
+        "多项式函数的连续性",
+        "开集的并"
+      ],
+      "question_type": "证明秩不小于某值的矩阵集合是开集",
+      "method": [
+        "用子式非零刻画秩$\\ge k$，写成有限个开集的并"
+      ],
+      "solution_steps": [
+        "$\\operatorname{rank}X\\ge k$等价于存在某个$k$阶子式非零",
+        "每个子式行列式是连续函数，非零集是开集",
+        "取所有可能子式对应开集的并，仍是开集"
+      ],
+      "math_structure": {
+        "type": "rank_at_least_k_open_set",
+        "template": "\\{X\\in M(m,n): \\operatorname{rank}X\\ge k\\}\\ \\text{is open}",
+        "variable_count": 1
+      },
+      "difficulty": 3,
+      "estimated_minutes": 8,
+      "answer": [
+        {
+          "label": "证明",
+          "steps": [
+            "$\\operatorname{rank}X\\ge k$成立，当且仅当$X$中存在某个$k\\times k$子矩阵（从$X$的行中任取$k$行、列中任取$k$列构成）的行列式非零。设所有这样的行、列组合共有有限个，记为$X_{I,J}$（$I,J$分别是行、列下标的$k$元子集），对每一组合$(I,J)$，$\\det X_{I,J}$是$X$分量的多项式，连续。",
+            "对每个$(I,J)$，集合$U_{I,J}=\\{X\\mid \\det X_{I,J}\\neq0\\}$是连续函数$\\det X_{I,J}$在开集$\\mathbb{R}\\setminus\\{0\\}$下的原像，因而是开集。",
+            "而$\\{X\\mid\\operatorname{rank}X\\ge k\\}=\\bigcup_{(I,J)}U_{I,J}$（因为秩$\\ge k$等价于至少有一组$(I,J)$使子式非零），是有限个开集的并，因而是开集。"
+          ]
+        }
+      ],
+      "id": "osaka-2022-c07cb3c8db-q04-practice-02",
+      "school": "大阪大学",
+      "year": "2022"
+    },
+    {
+      "text": "利用上一题的结论，证明：对任意固定的整数$k$（$0\\le k\\le\\min(m,n)$），集合$\\{X\\in M(m,n)\\mid \\operatorname{rank}X\\le k\\}$是$M(m,n)$中的闭集。",
+      "knowledge_points": [
+        "开集与闭集的互补关系",
+        "秩的分层结构"
+      ],
+      "question_type": "证明秩不超过某值的矩阵集合是闭集",
+      "method": [
+        "利用$\\{rank\\le k\\}$是$\\{rank\\ge k+1\\}$的补集"
+      ],
+      "solution_steps": [
+        "写出$\\{rank\\le k\\}=M(m,n)\\setminus\\{rank\\ge k+1\\}$",
+        "由上一题$\\{rank\\ge k+1\\}$是开集",
+        "开集的补集是闭集"
+      ],
+      "math_structure": {
+        "type": "rank_at_most_k_closed_set",
+        "template": "\\{X\\in M(m,n): \\operatorname{rank}X\\le k\\}\\ \\text{is closed}",
+        "variable_count": 1
+      },
+      "difficulty": 2,
+      "estimated_minutes": 5,
+      "answer": [
+        {
+          "label": "证明",
+          "steps": [
+            "注意到$\\operatorname{rank}X\\le k$与$\\operatorname{rank}X\\ge k+1$恰好互斥且覆盖所有情形（秩是非负整数），故$\\{X\\mid\\operatorname{rank}X\\le k\\}=M(m,n)\\setminus\\{X\\mid\\operatorname{rank}X\\ge k+1\\}$。",
+            "由前一练习的结论（对$k+1\\le\\min(m,n)$时，或者$k+1>\\min(m,n)$时后者为空集，仍是开集），$\\{X\\mid\\operatorname{rank}X\\ge k+1\\}$是开集。",
+            "开集的补集是闭集，故$\\{X\\in M(m,n)\\mid\\operatorname{rank}X\\le k\\}$是闭集。"
+          ]
+        }
+      ],
+      "id": "osaka-2022-c07cb3c8db-q04-practice-03",
+      "school": "大阪大学",
+      "year": "2022"
+    },
+    {
+      "text": "取$A=\\begin{pmatrix}1&0\\\\0&0\\end{pmatrix}\\in M(2,2)$，此时$\\operatorname{rank}A=1<\\min(2,2)=2$。请显式构造一列矩阵$A(\\varepsilon)\\to A$（当$\\varepsilon\\to0$）使得$\\operatorname{rank}A(\\varepsilon)=2$对所有$\\varepsilon\\neq0$成立，从而说明秩函数$f$在$A$处不连续。",
+      "knowledge_points": [
+        "矩阵秩的直接计算",
+        "扰动构造反例",
+        "行列式判别可逆性"
+      ],
+      "question_type": "构造具体反例说明秩函数不连续",
+      "method": [
+        "直接在$A$的$(2,2)$位置加上扰动$\\varepsilon$"
+      ],
+      "solution_steps": [
+        "定义$A(\\varepsilon)=A+\\varepsilon E_{22}$",
+        "计算$\\det A(\\varepsilon)=\\varepsilon$",
+        "说明$\\varepsilon\\neq0$时可逆即秩为2，而$\\varepsilon\\to0$时$A(\\varepsilon)\\to A$但秩不连续变化"
+      ],
+      "math_structure": {
+        "type": "explicit_rank_discontinuity_example",
+        "template": "A=\\operatorname{diag}(1,0),\\ A(\\varepsilon)=A+\\varepsilon E_{22}",
+        "variable_count": 1
+      },
+      "difficulty": 2,
+      "estimated_minutes": 6,
+      "answer": [
+        {
+          "label": "具体反例构造",
+          "steps": [
+            "定义$A(\\varepsilon)=A+\\varepsilon E_{22}=\\begin{pmatrix}1&0\\\\0&\\varepsilon\\end{pmatrix}$，其中$E_{22}$是$(2,2)$位置为$1$、其余为$0$的矩阵单位。",
+            "计算$\\det A(\\varepsilon)=1\\cdot\\varepsilon-0\\cdot0=\\varepsilon$。当$\\varepsilon\\neq0$时$\\det A(\\varepsilon)\\neq0$，故$A(\\varepsilon)$可逆，$\\operatorname{rank}A(\\varepsilon)=2$。",
+            "又显然当$\\varepsilon\\to0$时，$A(\\varepsilon)=\\begin{pmatrix}1&0\\\\0&\\varepsilon\\end{pmatrix}\\to\\begin{pmatrix}1&0\\\\0&0\\end{pmatrix}=A$（每个分量都收敛）。",
+            "于是$A(\\varepsilon)\\to A$，但$f(A(\\varepsilon))=2$（对所有$\\varepsilon\\neq0$）而$f(A)=1$，即$\\lim_{\\varepsilon\\to0}f(A(\\varepsilon))=2\\neq1=f(A)$，说明$f$在$A$处不连续，这与一般结论（$r=1<\\min(2,2)=2$时不连续）一致。"
+          ]
+        }
+      ],
+      "id": "osaka-2022-c07cb3c8db-q04-practice-04",
+      "school": "大阪大学",
+      "year": "2022"
+    }
+  ],
+  "source_question": "4",
+  "source_pdf": "大阪大学/情报科学研究科/情报基础数学/大阪大学_情报科学研究科_情报基础数学_2022_数学过去问.pdf",
+  "source_type": "官方过去问",
+  "subject_category": "线性代数"
+}

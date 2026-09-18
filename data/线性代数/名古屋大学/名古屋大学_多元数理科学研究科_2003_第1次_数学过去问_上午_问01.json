@@ -1,0 +1,208 @@
+{
+  "id": "nagoya-2003-999b646212-q01",
+  "school": "名古屋大学",
+  "year": "2003",
+  "subject": "多元数理科学研究科_全专攻",
+  "text": "设 $a,b,c,d,p,q$ 为实数. 实线性空间 $\\mathbb{R}^5$ 的子集\n$$V=\\left\\{\\begin{pmatrix}x_1\\\\x_2\\\\x_3\\\\x_4\\\\x_5\\end{pmatrix}\\in\\mathbb{R}^5\\ \\middle|\\ \\begin{aligned}\n x_1+x_2+(p+1)x_3+3x_4+qx_5&=a\\\\\n x_1+2x_2+(2p+1)x_3+2x_4&=b\\\\\n x_1-px_3+4x_4+4qx_5&=c\\\\\n x_2-p^2x_3-x_4-2qx_5&=d\n\\end{aligned}\\right\\}$$\n若 $V$ 是 $\\mathbb{R}^5$ 的三维线性子空间, 回答以下问题.\n(1) 求 $a,b,c,d,p,q$.\n(2) 求 $V$ 的一组基.",
+  "knowledge_points": [
+    "线性子空间判定",
+    "齐次线性方程组",
+    "矩阵的秩",
+    "解空间维数",
+    "基的求法"
+  ],
+  "question_type": "参数确定与基的求解",
+  "method": [
+    "利用子空间必含零向量确定常数项",
+    "对系数矩阵做行变换求秩",
+    "解齐次方程组求核空间基底"
+  ],
+  "solution_steps": [
+    "由 $0\\in V$ 得 $a=b=c=d=0$",
+    "写出系数矩阵, 要求核空间维数为3, 即秩为2",
+    "把其余行表示为前两行的线性组合, 解出 $p,q$",
+    "在给定 $p,q$ 下解齐次方程组, 取自由变量得到基底"
+  ],
+  "math_structure": {
+    "type": "linear_subspace_parametrized_system",
+    "template": "kernel of 4x5 matrix with parameters p,q; require rank=2 for 3-dim subspace",
+    "variable_count": 6
+  },
+  "difficulty": 3,
+  "answer": [
+    {
+      "label": "(1)",
+      "steps": [
+        "因为 $V$ 是线性子空间, 必含零向量, 代入 $x_1=\\cdots=x_5=0$ 得 $a=b=c=d=0$.",
+        "此时系数矩阵为 $M=\\begin{pmatrix}1&1&p+1&3&q\\\\1&2&2p+1&2&0\\\\1&0&-p&4&4q\\\\0&1&-p^2&-1&-2q\\end{pmatrix}$, $V=\\ker M$, 维数为3要求 $\\operatorname{rank}M=2$.",
+        "设第3行 $=\\alpha\\cdot$第1行$+\\beta\\cdot$第2行. 由第1,2,4列: $\\alpha+\\beta=1,\\ \\alpha+2\\beta=0,\\ 3\\alpha+2\\beta=4$ 解得 $\\alpha=2,\\beta=-1$（三式自洽）.",
+        "代入第3列: $2(p+1)-(2p+1)=1$ 需等于 $-p$, 故 $1=-p\\Rightarrow p=-1$; 代入第5列: $2q=4q\\Rightarrow q=0$.",
+        "验证第4行 $=-1\\cdot$第1行$+1\\cdot$第2行 在 $p=-1,q=0$ 下确实成立, 故秩恰为2, 满足维数3的要求. 结论: $a=b=c=d=0,\\ p=-1,\\ q=0$."
+      ]
+    },
+    {
+      "label": "(2)",
+      "steps": [
+        "代入 $p=-1,q=0$ 后, 独立方程组为 $x_1+x_2+3x_4=0$ 及 $x_1+2x_2-x_3+2x_4=0$（其余两行是它们的线性组合）；$x_5$ 不出现在任何方程中, 为自由变量.",
+        "由第一式 $x_1=-x_2-3x_4$, 代入第二式解得 $x_3=x_2-x_4$. 故自由变量为 $x_2,x_4,x_5$.",
+        "取 $(x_2,x_4,x_5)=(1,0,0),(0,1,0),(0,0,1)$ 分别得 $v_1=(-1,1,1,0,0),\\ v_2=(-3,0,-1,1,0),\\ v_3=(0,0,0,0,1)$.",
+        "代入原四个方程逐一验证 $v_1,v_2,v_3$ 均满足（结果均为0）, 且三向量线性无关, 故 $\\{v_1,v_2,v_3\\}$ 是 $V$ 的一组基."
+      ]
+    }
+  ],
+  "practice_questions": [
+    {
+      "text": "求齐次方程组 $x_1+x_2+2x_3=0,\\ 2x_1+2x_2+4x_3=0$ 的解空间的维数与一组基.",
+      "knowledge_points": [
+        "齐次方程组",
+        "解空间",
+        "矩阵的秩"
+      ],
+      "question_type": "解空间求基",
+      "method": [
+        "行化简",
+        "自由变量法"
+      ],
+      "solution_steps": [
+        "化简系数矩阵求秩",
+        "确定自由变量",
+        "写出基底"
+      ],
+      "math_structure": {
+        "type": "linear_subspace_basic",
+        "template": "kernel of simple 2x3 matrix",
+        "variable_count": 3
+      },
+      "difficulty": 1,
+      "estimated_minutes": 5,
+      "answer": [
+        {
+          "label": "结果",
+          "steps": [
+            "第二个方程是第一个的2倍, 秩为1, 解空间维数 $=3-1=2$.",
+            "由 $x_1=-x_2-2x_3$, 取 $(x_2,x_3)=(1,0),(0,1)$ 得基 $(-1,1,0),(-2,0,1)$.",
+            "验证: 两向量代入方程均为0, 且线性无关, 故为一组基."
+          ]
+        }
+      ],
+      "id": "nagoya-2003-999b646212-q01-practice-01",
+      "school": "名古屋大学",
+      "year": "2003"
+    },
+    {
+      "text": "设 $k$ 为实数, 齐次方程组 $x_1+x_2+kx_3=0,\\ x_1-x_2+x_3=0$ 的解空间维数何时为2? 此时求基.",
+      "knowledge_points": [
+        "参数化齐次方程组",
+        "秩与维数关系"
+      ],
+      "question_type": "参数讨论与基的求法",
+      "method": [
+        "行变换判断秩",
+        "分类讨论参数"
+      ],
+      "solution_steps": [
+        "写出系数矩阵",
+        "判断两行是否总是无关",
+        "解方程求基"
+      ],
+      "math_structure": {
+        "type": "linear_subspace_param_simple",
+        "template": "kernel of 2x3 matrix depending on k",
+        "variable_count": 3
+      },
+      "difficulty": 2,
+      "estimated_minutes": 7,
+      "answer": [
+        {
+          "label": "结果",
+          "steps": [
+            "系数矩阵 $\\begin{pmatrix}1&1&k\\\\1&-1&1\\end{pmatrix}$, 两行成比例当且仅当 $\\frac{1}{1}=\\frac{1}{-1}$ 不成立, 故对任意 $k$ 两行均线性无关, 秩恒为2.",
+            "故解空间维数恒为 $3-2=1$（对任意实数 $k$）.",
+            "解方程: 由两式相加 $2x_1+(k+1)x_3=0\\Rightarrow x_1=-\\frac{k+1}{2}x_3$; 代入第二式解出 $x_2$. 取 $x_3=2$ 得基向量 $\\left(-(k+1),\\,k-1,\\,2\\right)$（可验证满足两方程）."
+          ]
+        }
+      ],
+      "id": "nagoya-2003-999b646212-q01-practice-02",
+      "school": "名古屋大学",
+      "year": "2003"
+    },
+    {
+      "text": "设 $p$ 为实数, 求 $p$ 的值使得矩阵 $\\begin{pmatrix}1&1&p\\\\2&2&2p\\\\1&0&1\\end{pmatrix}$ 的秩等于2, 并给出此时对应的核空间的一组基.",
+      "knowledge_points": [
+        "矩阵秩",
+        "参数确定使秩降低",
+        "核空间基底"
+      ],
+      "question_type": "参数确定+基求解",
+      "method": [
+        "行简化",
+        "线性相关性分析"
+      ],
+      "solution_steps": [
+        "观察行之间倍数关系",
+        "确定使某行冗余的p值",
+        "求核空间基"
+      ],
+      "math_structure": {
+        "type": "rank_condition_matrix",
+        "template": "3x3 matrix with parameter p, find p for rank 2",
+        "variable_count": 3
+      },
+      "difficulty": 2,
+      "estimated_minutes": 6,
+      "answer": [
+        {
+          "label": "结果",
+          "steps": [
+            "第二行 $=2\\times$第一行恒成立(对任意p), 故秩最多为2(由第一,三行决定), 只需第一,三行线性无关即可, 即 $(1,1,p)$ 与 $(1,0,1)$ 不成比例, 这对所有 $p\\ne 1$ (当p=1时(1,1,1)与(1,0,1)仍不成比例)其实恒成立.",
+            "验证: 两行成比例需要 $1/1=1/0$ 不可能, 故对任意实数 $p$ 秩恒为2, 无需额外条件.",
+            "核空间: 解 $x_1+x_2+px_3=0,\\ x_1+x_3=0\\Rightarrow x_1=-x_3,\\ x_2=-px_3-x_1=(1-p)x_3$. 取 $x_3=1$ 得基 $(-1,\\,1-p,\\,1)$."
+          ]
+        }
+      ],
+      "id": "nagoya-2003-999b646212-q01-practice-03",
+      "school": "名古屋大学",
+      "year": "2003"
+    },
+    {
+      "text": "在原题的方法下, 若把系数矩阵第4行改为 $x_2 - p^2x_3 - x_4 - 2qx_5 = 0$ 中的 $q$ 换成 $2q$（即变为 $-4qx_5$）, 其余不变, 试问当 $a=b=c=d=0$ 时, 使 $V$ 为3维子空间的 $(p,q)$ 是否仍为 $(-1,0)$? 说明理由.",
+      "knowledge_points": [
+        "参数扰动分析",
+        "线性方程组秩的稳定性"
+      ],
+      "question_type": "验证与说明",
+      "method": [
+        "重新代入验证行的线性相关关系"
+      ],
+      "solution_steps": [
+        "重新写出新矩阵",
+        "检验p=-1,q=0是否仍使第3,4行为第1,2行组合",
+        "得出结论"
+      ],
+      "math_structure": {
+        "type": "linear_subspace_perturbation_check",
+        "template": "modified 4x5 matrix, check same p,q still gives rank 2",
+        "variable_count": 6
+      },
+      "difficulty": 3,
+      "estimated_minutes": 8,
+      "answer": [
+        {
+          "label": "结果",
+          "steps": [
+            "在 $q=0$ 时, 无论第4行系数是 $-2q$ 还是 $-4q$, 该项都变为0, 对第4行本身没有影响.",
+            "第3行含 $4qx_5$ 项, 当 $q=0$ 时同样消失, 因此改动不影响 $q=0$ 时的行内容, 原有的行相关关系(第3行$=2\\times$第1行$-$第2行, 第4行$=-$第1行$+$第2行)仍然成立.",
+            "故 $(p,q)=(-1,0)$ 仍使 $\\operatorname{rank}=2$, 即 $V$ 仍为3维子空间; 说明该扰动在 $q=0$ 处不改变结论."
+          ]
+        }
+      ],
+      "id": "nagoya-2003-999b646212-q01-practice-04",
+      "school": "名古屋大学",
+      "year": "2003"
+    }
+  ],
+  "source_question": "問1",
+  "source_pdf": "名古屋大学/多元数理科学研究科/全专攻/名古屋大学_多元数理科学研究科_2003_第1次_数学过去问_上午.pdf",
+  "source_type": "官方过去问",
+  "subject_category": "线性代数"
+}

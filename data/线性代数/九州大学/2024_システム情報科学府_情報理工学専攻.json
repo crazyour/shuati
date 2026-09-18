@@ -57,5 +57,122 @@
         "由 (3) 得 $b=0$，所以 $S=\\operatorname{Ker}(A)$。$A$ 为正则方阵时 $\\operatorname{Ker}(A)=\\left\\{0\\right\\}$，故 $S=\\left\\{0\\right\\}$。"
       ]
     }
+  ],
+  "practice_questions": [
+    {
+      "id": "kyushu-2024-ist-la-practice-01",
+      "school": "九州大学",
+      "year": "2024",
+      "text": "设 $A=\\begin{pmatrix}1&2&3\\\\0&1&1\\end{pmatrix}$，线性映射 $f(x)=Ax$。求 $\\ker(f)$ 的维数及一组基。",
+      "knowledge_points": [
+        "齐次线性方程组",
+        "核空间",
+        "基与维数"
+      ],
+      "question_type": "求矩阵的核",
+      "method": [
+        "高斯消元",
+        "参数表示"
+      ],
+      "solution_steps": [
+        "求解 $Ax=0$",
+        "选取自由变量",
+        "写成向量参数形式"
+      ],
+      "math_structure": {
+        "type": "matrix_kernel_basis",
+        "template": "$\\ker(A)=\\{x:Ax=0\\}$",
+        "variable_count": 3
+      },
+      "difficulty": 1,
+      "estimated_minutes": 6,
+      "answer": [
+        {
+          "label": "求核的基与维数",
+          "steps": [
+            "方程组为 $x_1+2x_2+3x_3=0$、$x_2+x_3=0$。",
+            "令 $x_3=t$，则 $x_2=-t$，再由第一式得 $x_1=-t$。",
+            "所以 $x=t(-1,-1,1)^{\\mathsf T}$，故 $\\ker(f)=\\operatorname{span}\\{(-1,-1,1)^{\\mathsf T}\\}$，维数为 $1$。"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "kyushu-2024-ist-la-practice-02",
+      "school": "九州大学",
+      "year": "2024",
+      "text": "设线性方程 $Ax=b$ 有一个特解 $x_0$。证明其解集 $S$ 可写成 $S=x_0+\\ker(A)$，并说明为什么当 $b\\ne0$ 时 $S$ 不是子空间。",
+      "knowledge_points": [
+        "非齐次线性方程组",
+        "仿射子空间",
+        "核空间"
+      ],
+      "question_type": "刻画非齐次方程解集",
+      "method": [
+        "特解加齐次解",
+        "子空间零向量条件"
+      ],
+      "solution_steps": [
+        "证明任意解与 $x_0$ 的差属于核",
+        "证明特解加核中的向量仍是解",
+        "用 $0\\notin S$ 判断非子空间"
+      ],
+      "math_structure": {
+        "type": "affine_solution_set",
+        "template": "$S=x_0+\\ker(A)$",
+        "variable_count": 2
+      },
+      "difficulty": 2,
+      "estimated_minutes": 8,
+      "answer": [
+        {
+          "label": "证明解集形式",
+          "steps": [
+            "若 $x\\in S$，则 $Ax=b=Ax_0$，所以 $A(x-x_0)=0$，即 $x-x_0\\in\\ker(A)$。故 $x\\in x_0+\\ker(A)$。",
+            "反之，若 $z\\in\\ker(A)$，则 $A(x_0+z)=Ax_0+Az=b$，所以 $x_0+z\\in S$。因此 $S=x_0+\\ker(A)$。",
+            "若 $b\\ne0$，则 $A0=0\\ne b$，所以 $0\\notin S$。任何子空间都必须包含零向量，故 $S$ 不是子空间。"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "kyushu-2024-ist-la-practice-03",
+      "school": "九州大学",
+      "year": "2024",
+      "text": "对任意实矩阵 $A$ 和向量 $b$，令 $S=\\{x:Ax=b\\}$。证明 $S$ 是向量子空间当且仅当 $b=0$。若 $A$ 为 $m\\times n$ 且秩为 $r$，进一步求此时 $\\dim S$。",
+      "knowledge_points": [
+        "子空间判定",
+        "核空间",
+        "秩—零度定理"
+      ],
+      "question_type": "判定线性方程解集何时为子空间",
+      "method": [
+        "零向量条件",
+        "核空间",
+        "秩—零度定理"
+      ],
+      "solution_steps": [
+        "由 $S$ 是子空间推出 $0\\in S$",
+        "证明 $b=0$ 时 $S=\\ker(A)$",
+        "应用秩—零度定理"
+      ],
+      "math_structure": {
+        "type": "solution_subspace_characterization",
+        "template": "$S\\le\\mathbb{R}^n\\iff b=0$，$\\dim S=n-\\operatorname{rank}(A)$",
+        "variable_count": 1
+      },
+      "difficulty": 3,
+      "estimated_minutes": 10,
+      "answer": [
+        {
+          "label": "证明并求维数",
+          "steps": [
+            "若 $S$ 是子空间，则 $0\\in S$，因而 $b=A0=0$。",
+            "反之，若 $b=0$，则 $S=\\{x:Ax=0\\}=\\ker(A)$，而线性映射的核总是子空间。",
+            "当 $\\operatorname{rank}(A)=r$ 时，由秩—零度定理，$$\\dim S=\\dim\\ker(A)=n-r.$$ "
+          ]
+        }
+      ]
+    }
   ]
 }

@@ -1,0 +1,260 @@
+{
+  "id": "nagoya-2004-3f09534199-q01",
+  "school": "名古屋大学",
+  "year": "2004",
+  "subject": "多元数理科学研究科_全专攻",
+  "text": "设 $V$ 是 $\\mathbb{C}$ 上的一个非零有限维向量空间，线性变换 $f: V \\to V$ 满足条件\n$$\\mathrm{Ker}\\,f = \\mathrm{Im}\\,f,$$\n其中 $\\mathrm{Ker}\\,f = \\{v \\in V \\mid f(v)=0\\}$，$\\mathrm{Im}\\,f = \\{f(v) \\mid v \\in V\\}$。回答以下问题：\n\n(1) 证明 $\\mathrm{Ker}\\,f \\neq \\{0\\}$ 且 $\\mathrm{Im}\\,f \\neq V$。\n\n(2) 设 $\\{v_1,\\dots,v_n\\}$ 是 $\\mathrm{Im}\\,f$ 的一组基。取 $V$ 中向量 $w_1,\\dots,w_n$ 满足 $f(w_i)=v_i$（$i=1,\\dots,n$），证明 $\\{v_1,\\dots,v_n,w_1,\\dots,w_n\\}$ 线性无关。\n\n(3) 证明 (2) 中的 $\\{v_1,\\dots,v_n,w_1,\\dots,w_n\\}$ 是 $V$ 的一组基。\n\n(4) 求 $f$ 关于 $V$ 的基 $\\{v_1,w_1,v_2,w_2,\\dots,v_n,w_n\\}$ 的矩阵表示。",
+  "knowledge_points": [
+    "线性变换的核与像",
+    "维数定理（rank-nullity）",
+    "基的扩张与构造",
+    "线性无关性证明",
+    "线性变换的矩阵表示",
+    "幂零变换结构"
+  ],
+  "question_type": "证明题+矩阵计算",
+  "method": [
+    "维数定理",
+    "反证法/直接计算证线性无关",
+    "基的计数论证",
+    "分块矩阵表示"
+  ],
+  "solution_steps": [
+    "利用 Ker f = Im f 结合维数定理得到 dim V = 2·dim(Ker f)",
+    "由 V ≠ {0} 推出 dim(Ker f) ≥ 1 且 dim(Im f) < dim V",
+    "对线性组合 Σa_i v_i + Σb_i w_i = 0 两边作用 f，利用 v_i ∈ Ker f 得到 Σb_i v_i=0，从而 b_i=0，再回代得 a_i=0",
+    "由 2n 个线性无关向量恰等于 dim V 个数，得基",
+    "按给定基的顺序排列计算 f 在每对基向量上的作用，得到分块矩阵"
+  ],
+  "math_structure": {
+    "type": "linear_map_kernel_equals_image",
+    "template": "f: V→V, Ker f = Im f, dim V = 2n, 求基与矩阵表示",
+    "variable_count": 3
+  },
+  "difficulty": 4,
+  "answer": [
+    {
+      "label": "(1)",
+      "steps": [
+        "由维数定理（rank-nullity theorem）：$\\dim V = \\dim(\\mathrm{Ker}\\,f) + \\dim(\\mathrm{Im}\\,f)$。",
+        "由题设 $\\mathrm{Ker}\\,f=\\mathrm{Im}\\,f$，故 $\\dim(\\mathrm{Ker}\\,f)=\\dim(\\mathrm{Im}\\,f)$，代入上式得 $\\dim V = 2\\dim(\\mathrm{Ker}\\,f)$。",
+        "因为 $V \\neq \\{0\\}$，$\\dim V \\ge 1$，又 $\\dim V$ 是偶数（等于 $2\\dim(\\mathrm{Ker}\\,f)$），所以 $\\dim V \\ge 2$，从而 $\\dim(\\mathrm{Ker}\\,f) = \\dim V/2 \\ge 1$，即 $\\mathrm{Ker}\\,f \\neq \\{0\\}$。",
+        "同理 $\\dim(\\mathrm{Im}\\,f) = \\dim V /2 < \\dim V$（因为 $\\dim V \\ge 2$），故 $\\mathrm{Im}\\,f \\neq V$。"
+      ]
+    },
+    {
+      "label": "(2)",
+      "steps": [
+        "设 $n=\\dim(\\mathrm{Im}\\,f)=\\dim(\\mathrm{Ker}\\,f)$，取 $\\mathrm{Im}\\,f$ 的基 $\\{v_1,\\dots,v_n\\}$，因 $\\mathrm{Ker}\\,f=\\mathrm{Im}\\,f$，故 $\\{v_1,\\dots,v_n\\}$ 也是 $\\mathrm{Ker}\\,f$ 的基，即每个 $v_i$ 满足 $f(v_i)=0$。",
+        "取 $w_i \\in V$ 使 $f(w_i)=v_i$（存在性由 $v_i \\in \\mathrm{Im}\\,f$ 保证）。设有线性组合 $\\sum_{i=1}^n a_i v_i + \\sum_{i=1}^n b_i w_i = 0$。",
+        "对等式两边作用 $f$：$\\sum a_i f(v_i) + \\sum b_i f(w_i) = f(0) = 0$。由 $f(v_i)=0$，$f(w_i)=v_i$，得 $\\sum_{i=1}^n b_i v_i = 0$。",
+        "因 $\\{v_1,\\dots,v_n\\}$ 线性无关，故所有 $b_i = 0$。代回原等式得 $\\sum a_i v_i = 0$，再由线性无关性得所有 $a_i=0$。",
+        "因此仅有平凡的线性组合为零，$\\{v_1,\\dots,v_n,w_1,\\dots,w_n\\}$ 线性无关。"
+      ]
+    },
+    {
+      "label": "(3)",
+      "steps": [
+        "由 (1) 知 $\\dim V = 2n$（因为 $n = \\dim(\\mathrm{Ker}\\,f)=\\dim(\\mathrm{Im}\\,f)$）。",
+        "由 (2) 知 $\\{v_1,\\dots,v_n,w_1,\\dots,w_n\\}$ 是 $2n$ 个线性无关的向量。",
+        "在维数为 $2n$ 的向量空间中，任何 $2n$ 个线性无关的向量必构成一组基（线性无关向量组的个数不超过维数，且达到维数时自动张成全空间）。",
+        "故 $\\{v_1,\\dots,v_n,w_1,\\dots,w_n\\}$ 是 $V$ 的一组基。"
+      ]
+    },
+    {
+      "label": "(4)",
+      "steps": [
+        "按基的顺序 $\\{v_1,w_1,v_2,w_2,\\dots,v_n,w_n\\}$ 计算 $f$ 在每个基向量上的作用：$f(v_i)=0$（因 $v_i \\in \\mathrm{Ker}\\,f$），$f(w_i)=v_i$。",
+        "将 $f(v_i)=0$ 用基向量表示为全零列；$f(w_i)=v_i$ 表示为在 $v_i$ 位置系数为1，其余为0的列。",
+        "对每一对 $(v_i,w_i)$，其对应的 $2\\times 2$ 子矩阵为 $\\begin{pmatrix}0&1\\\\0&0\\end{pmatrix}$（第一列对应 $f(v_i)=0$，第二列对应 $f(w_i)=v_i$）。",
+        "由于不同的 $v_i,w_i$ 对之间没有相互作用（$f(v_i)$ 和 $f(w_i)$ 只涉及自身的 $v_i$），故整个矩阵是分块对角矩阵，共 $n$ 个 $2\\times 2$ 的对角块，每块均为 $\\begin{pmatrix}0&1\\\\0&0\\end{pmatrix}$：\n$$\\begin{pmatrix} 0&1&&&&\\\\ 0&0&&&&\\\\ &&0&1&&\\\\ &&0&0&&\\\\ &&&&\\ddots&\\\\ &&&&&0\\ 1\\\\ &&&&&0\\ 0\\end{pmatrix}$$",
+        "验证：该矩阵的平方为零矩阵（因为每个 $2\\times2$ 块的平方为零），与 $f(f(w_i))=f(v_i)=0$，$f(f(v_i))=f(0)=0$ 一致，说明 $f^2=0$，符合 $\\mathrm{Im}\\,f = \\mathrm{Ker}\\,f$ 的性质。"
+      ]
+    }
+  ],
+  "practice_questions": [
+    {
+      "text": "设 $V$ 是 4 维复向量空间，线性变换 $f:V\\to V$ 满足 $\\mathrm{Ker}\\,f = \\mathrm{Im}\\,f$。求 $\\dim(\\mathrm{Ker}\\,f)$。",
+      "knowledge_points": [
+        "维数定理",
+        "核与像"
+      ],
+      "question_type": "计算题",
+      "method": [
+        "维数定理直接应用"
+      ],
+      "solution_steps": [
+        "利用 dim V = dim Ker f + dim Im f 及 Ker f=Im f 求解"
+      ],
+      "math_structure": {
+        "type": "dimension_formula_application",
+        "template": "dim V = 2n, 求 n",
+        "variable_count": 1
+      },
+      "difficulty": 1,
+      "estimated_minutes": 3,
+      "answer": [
+        {
+          "label": "求 dim(Ker f)",
+          "steps": [
+            "由 dim V = dim Ker f + dim Im f 及 Ker f = Im f，得 4 = 2 dim(Ker f)，故 dim(Ker f) = 2。"
+          ]
+        }
+      ],
+      "id": "nagoya-2004-3f09534199-q01-practice-01",
+      "school": "名古屋大学",
+      "year": "2004"
+    },
+    {
+      "text": "验证：$V=\\mathbb{C}^2$，$f(x,y)=(y,0)$ 满足 $\\mathrm{Ker}\\,f=\\mathrm{Im}\\,f$，并求 $\\mathrm{Ker}\\,f$ 和 $\\mathrm{Im}\\,f$ 的基。",
+      "knowledge_points": [
+        "核与像的计算",
+        "具体线性映射分析"
+      ],
+      "question_type": "计算验证题",
+      "method": [
+        "直接代入定义求核与像"
+      ],
+      "solution_steps": [
+        "计算 Ker f",
+        "计算 Im f",
+        "比较两者"
+      ],
+      "math_structure": {
+        "type": "explicit_kernel_image_example",
+        "template": "f(x,y)=(y,0)，验证 Ker f=Im f",
+        "variable_count": 2
+      },
+      "difficulty": 2,
+      "estimated_minutes": 5,
+      "answer": [
+        {
+          "label": "验证与求基",
+          "steps": [
+            "$f(x,y)=(y,0)=0 \\iff y=0$，故 $\\mathrm{Ker}\\,f=\\{(x,0)\\mid x\\in\\mathbb{C}\\}$，基为 $\\{(1,0)\\}$。",
+            "$\\mathrm{Im}\\,f=\\{(y,0)\\mid y\\in\\mathbb{C}\\}=\\{(x,0)\\mid x\\in\\mathbb{C}\\}$，基也为 $\\{(1,0)\\}$。",
+            "两者相等，故 $\\mathrm{Ker}\\,f=\\mathrm{Im}\\,f$，验证成立，且 $n=1$，与原题结构一致。"
+          ]
+        }
+      ],
+      "id": "nagoya-2004-3f09534199-q01-practice-02",
+      "school": "名古屋大学",
+      "year": "2004"
+    },
+    {
+      "text": "在上一题的 $V=\\mathbb{C}^2$，$f(x,y)=(y,0)$ 中，取 $v_1=(1,0)$（$\\mathrm{Im}\\,f$ 的基），求满足 $f(w_1)=v_1$ 的 $w_1$，并验证 $\\{v_1,w_1\\}$ 线性无关。",
+      "knowledge_points": [
+        "基的构造",
+        "线性无关性验证"
+      ],
+      "question_type": "计算验证题",
+      "method": [
+        "解线性方程求原像",
+        "行列式判定线性无关"
+      ],
+      "solution_steps": [
+        "求 w1 使 f(w1)=v1",
+        "写出 {v1,w1} 判断行列式"
+      ],
+      "math_structure": {
+        "type": "preimage_and_independence_check",
+        "template": "f(w)=v_1，验证 {v_1,w} 线性无关",
+        "variable_count": 2
+      },
+      "difficulty": 2,
+      "estimated_minutes": 5,
+      "answer": [
+        {
+          "label": "求 w1 并验证",
+          "steps": [
+            "设 $w_1=(a,b)$，则 $f(w_1)=(b,0)=(1,0)$，得 $b=1$，$a$ 任意，取 $a=0$，即 $w_1=(0,1)$。",
+            "矩阵 $\\begin{pmatrix}1&0\\\\0&1\\end{pmatrix}$（列为 $v_1,w_1$）的行列式为 $1\\neq 0$，故 $\\{v_1,w_1\\}$ 线性无关。",
+            "验证：$\\{v_1,w_1\\}=\\{(1,0),(0,1)\\}$ 恰为 $\\mathbb{C}^2$ 的标准基，与原题结论一致。"
+          ]
+        }
+      ],
+      "id": "nagoya-2004-3f09534199-q01-practice-03",
+      "school": "名古屋大学",
+      "year": "2004"
+    },
+    {
+      "text": "沿用上题的基 $\\{v_1,w_1\\}=\\{(1,0),(0,1)\\}$，写出 $f(x,y)=(y,0)$ 关于此基的矩阵表示，并验证其平方为零矩阵。",
+      "knowledge_points": [
+        "线性变换的矩阵表示",
+        "幂零矩阵性质"
+      ],
+      "question_type": "矩阵计算题",
+      "method": [
+        "按基向量计算像并写出矩阵列",
+        "矩阵乘法验证幂零性"
+      ],
+      "solution_steps": [
+        "计算 f(v1), f(w1) 并用基表示",
+        "写出矩阵",
+        "计算矩阵平方验证为零"
+      ],
+      "math_structure": {
+        "type": "matrix_representation_of_linear_map",
+        "template": "求 f 关于基 {v1,w1} 的矩阵，验证 A^2=0",
+        "variable_count": 1
+      },
+      "difficulty": 2,
+      "estimated_minutes": 5,
+      "answer": [
+        {
+          "label": "求矩阵并验证",
+          "steps": [
+            "$f(v_1)=f(1,0)=(0,0)=0\\cdot v_1+0\\cdot w_1$，$f(w_1)=f(0,1)=(1,0)=1\\cdot v_1+0\\cdot w_1$。",
+            "故矩阵为 $A=\\begin{pmatrix}0&1\\\\0&0\\end{pmatrix}$（第一列对应 $f(v_1)$ 的坐标，第二列对应 $f(w_1)$ 的坐标）。",
+            "计算 $A^2=\\begin{pmatrix}0&1\\\\0&0\\end{pmatrix}\\begin{pmatrix}0&1\\\\0&0\\end{pmatrix}=\\begin{pmatrix}0&0\\\\0&0\\end{pmatrix}$，验证 $A^2=0$，与 $f^2=0$（因为 $\\mathrm{Im}\\,f=\\mathrm{Ker}\\,f$）一致。"
+          ]
+        }
+      ],
+      "id": "nagoya-2004-3f09534199-q01-practice-04",
+      "school": "名古屋大学",
+      "year": "2004"
+    },
+    {
+      "text": "设 $V$ 是 6 维复向量空间，$f:V\\to V$ 满足 $\\mathrm{Ker}\\,f=\\mathrm{Im}\\,f$。仿照原题构造 $V$ 的基并写出 $f$ 的一般矩阵形式（用分块矩阵表示）。",
+      "knowledge_points": [
+        "一般维数下的基构造",
+        "分块矩阵表示"
+      ],
+      "question_type": "综合应用题",
+      "method": [
+        "套用原题(1)-(4)的方法",
+        "分块矩阵一般化"
+      ],
+      "solution_steps": [
+        "确定 n=3",
+        "构造基 {v1,w1,v2,w2,v3,w3}",
+        "写出分块矩阵"
+      ],
+      "math_structure": {
+        "type": "general_block_matrix_kernel_image",
+        "template": "dim V=6, 求 f 的分块矩阵表示",
+        "variable_count": 1
+      },
+      "difficulty": 3,
+      "estimated_minutes": 8,
+      "answer": [
+        {
+          "label": "构造与矩阵",
+          "steps": [
+            "由 $\\dim V = 2n = 6$，得 $n=3$，即 $\\mathrm{Im}\\,f=\\mathrm{Ker}\\,f$ 的维数均为 3。",
+            "取 $\\mathrm{Im}\\,f$ 的基 $\\{v_1,v_2,v_3\\}$，选取 $w_1,w_2,w_3$ 使 $f(w_i)=v_i$，由原题(2)(3)知 $\\{v_1,w_1,v_2,w_2,v_3,w_3\\}$ 是 $V$ 的基。",
+            "关于此基，$f$ 的矩阵表示为分块对角矩阵，含 3 个 $2\\times2$ 的对角块 $\\begin{pmatrix}0&1\\\\0&0\\end{pmatrix}$：\n$$A=\\mathrm{diag}\\left(\\begin{pmatrix}0&1\\\\0&0\\end{pmatrix},\\begin{pmatrix}0&1\\\\0&0\\end{pmatrix},\\begin{pmatrix}0&1\\\\0&0\\end{pmatrix}\\right)$$",
+            "验证 $A^2=0$（每个对角块平方为零，非对角块本身为零），符合 $f^2=0$ 的一般结论。"
+          ]
+        }
+      ],
+      "id": "nagoya-2004-3f09534199-q01-practice-05",
+      "school": "名古屋大学",
+      "year": "2004"
+    }
+  ],
+  "source_question": "問1",
+  "source_pdf": "名古屋大学/多元数理科学研究科/全专攻/名古屋大学_多元数理科学研究科_2004_数学过去问_下午.pdf",
+  "source_type": "官方过去问",
+  "subject_category": "线性代数"
+}

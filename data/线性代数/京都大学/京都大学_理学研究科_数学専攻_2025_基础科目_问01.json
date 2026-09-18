@@ -1,0 +1,215 @@
+{
+  "id": "kyoto-2025-847a34f337-q01",
+  "school": "京都大学",
+  "year": "2025",
+  "subject": "理学研究科_数学専攻",
+  "text": "设 $\\alpha$ 为复数，$A(\\alpha)$ 是如下的三阶方阵：\n$$A(\\alpha)=\\begin{pmatrix}1 & \\alpha & 0\\\\ \\alpha & \\alpha & \\alpha\\\\ -\\alpha-1 & -2\\alpha & -\\alpha\\end{pmatrix}.$$\n求 $A(\\alpha)$ 的全部特征值，并求各特征值对应的特征空间的维数。",
+  "knowledge_points": [
+    "特征值与特征多项式",
+    "行列式按行展开",
+    "特征空间与几何重数",
+    "矩阵秩的计算",
+    "参数依赖的谱分析"
+  ],
+  "question_type": "含参数矩阵的特征值与特征空间维数",
+  "method": [
+    "按第一行展开计算特征多项式",
+    "对参数分类讨论求秩",
+    "解齐次线性方程组求特征向量"
+  ],
+  "solution_steps": [
+    "写出 $A(\\alpha)-\\lambda I$，按第一行展开计算行列式得到特征多项式",
+    "化简特征多项式得到 $(1-\\lambda)\\lambda^2$，从而得特征值 $\\lambda=1$（单重）与 $\\lambda=0$（代数重数2）",
+    "对 $\\lambda=1$ 求解 $(A-I)v=0$，得到一维特征空间",
+    "对 $\\lambda=0$，通过行变换求 $\\mathrm{rank}\\,A(\\alpha)$，按 $\\alpha=0$ 与 $\\alpha\\neq0$ 分类讨论几何重数"
+  ],
+  "math_structure": {
+    "type": "parametric_matrix_eigenspace",
+    "template": "含复参数 $\\alpha$ 的 $3\\times3$ 矩阵；求特征值及各特征空间维数随 $\\alpha$ 的变化",
+    "variable_count": 1
+  },
+  "difficulty": 3,
+  "answer": [
+    {
+      "label": "特征值",
+      "steps": [
+        "计算 $\\det(A(\\alpha)-\\lambda I)$：按第一行展开，$M_{11}=\\det\\begin{pmatrix}\\alpha-\\lambda & \\alpha\\\\ -2\\alpha & -\\alpha-\\lambda\\end{pmatrix}=(\\alpha-\\lambda)(-\\alpha-\\lambda)+2\\alpha^2=\\lambda^2-\\alpha^2+2\\alpha^2=\\lambda^2+\\alpha^2$。",
+        "$M_{12}=\\det\\begin{pmatrix}\\alpha & \\alpha\\\\ -\\alpha-1 & -\\alpha-\\lambda\\end{pmatrix}=\\alpha(-\\alpha-\\lambda)-\\alpha(-\\alpha-1)=\\alpha(1-\\lambda)$。第三列为零，第三项无贡献。",
+        "于是 $\\det(A-\\lambda I)=(1-\\lambda)(\\lambda^2+\\alpha^2)-\\alpha\\cdot\\alpha(1-\\lambda)=(1-\\lambda)\\big[\\lambda^2+\\alpha^2-\\alpha^2\\big]=(1-\\lambda)\\lambda^2$。",
+        "验证：矩阵迹 $=1+\\alpha-\\alpha=1$，与特征值之和 $1+0+0=1$ 吻合。因此特征值为 $\\lambda=1$（代数重数1）和 $\\lambda=0$（代数重数2），且此结论与 $\\alpha$ 无关。"
+      ]
+    },
+    {
+      "label": "$\\lambda=1$ 对应特征空间的维数",
+      "steps": [
+        "解 $(A(\\alpha)-I)v=0$：第一行给出 $\\alpha y=0$。",
+        "若 $\\alpha\\neq0$，则 $y=0$；代入第二行 $\\alpha x+\\alpha z=0\\Rightarrow x+z=0$，第三行自动满足，得特征向量 $(1,0,-1)^{T}$，维数为1。",
+        "若 $\\alpha=0$，矩阵变为 $\\begin{pmatrix}0&0&0\\\\0&-1&0\\\\-1&0&-1\\end{pmatrix}$，解得 $y=0,\\ z=-x$，同样得一维特征空间，向量 $(1,0,-1)^{T}$。",
+        "结论：对任意 $\\alpha$，特征值 $\\lambda=1$ 的特征空间维数恒为 $1$（几何重数等于代数重数，符合单重特征值的一般性质）。"
+      ]
+    },
+    {
+      "label": "$\\lambda=0$ 对应特征空间的维数",
+      "steps": [
+        "对 $A(\\alpha)$ 做行变换：$R_2-\\alpha R_1=(0,\\ \\alpha(1-\\alpha),\\ \\alpha)$，$R_3+(\\alpha+1)R_1=(0,\\ \\alpha(\\alpha-1),\\ -\\alpha)=-R_2'$，说明变换后第三行是第二行的相反数。",
+        "当 $\\alpha\\neq0$ 时，$R_2'=(0,\\alpha(1-\\alpha),\\alpha)$ 非零且与 $R_1=(1,\\alpha,0)$ 线性无关，故 $\\mathrm{rank}\\,A(\\alpha)=2$，几何重数 $=3-2=1$。具体特征向量：由 $x=-\\alpha y,\\ z=(\\alpha-1)y$ 得 $v=(-\\alpha,1,\\alpha-1)^T$。",
+        "当 $\\alpha=0$ 时，$A(0)=\\begin{pmatrix}1&0&0\\\\0&0&0\\\\-1&0&0\\end{pmatrix}$，$\\mathrm{rank}=1$，几何重数 $=3-1=2$，特征空间由 $(0,1,0)^T,(0,0,1)^T$ 张成。",
+        "综上：$\\alpha\\neq0$ 时 $\\lambda=0$ 的特征空间维数为 $1$；$\\alpha=0$ 时维数为 $2$（此时该矩阵不可对角化，因为几何重数之和 $1+2=3$ 恰等于阶数3，实际上是可对角化的——验证：三个特征值对应几何重数 $1,2$ 之和为3，故此时反而可对角化）。"
+      ]
+    }
+  ],
+  "practice_questions": [
+    {
+      "text": "求矩阵 $\\begin{pmatrix}2&1\\\\0&2\\end{pmatrix}$ 的特征值及对应特征空间的维数。",
+      "knowledge_points": [
+        "特征值",
+        "特征空间维数",
+        "若尔当块"
+      ],
+      "question_type": "二阶矩阵特征值与特征空间",
+      "method": [
+        "求特征多项式",
+        "解齐次方程组"
+      ],
+      "solution_steps": [
+        "写出特征多项式 $(\\lambda-2)^2=0$",
+        "求解 $(A-2I)v=0$",
+        "确定几何重数"
+      ],
+      "math_structure": {
+        "type": "jordan_block_eigenspace",
+        "template": "2x2 upper triangular matrix with repeated eigenvalue",
+        "variable_count": 0
+      },
+      "difficulty": 1,
+      "estimated_minutes": 5,
+      "answer": [
+        {
+          "label": "结果",
+          "steps": [
+            "特征多项式为 $(2-\\lambda)^2=0$，唯一特征值 $\\lambda=2$（代数重数2）。",
+            "解 $(A-2I)v=0$：$\\begin{pmatrix}0&1\\\\0&0\\end{pmatrix}v=0\\Rightarrow y=0$，特征空间为 $\\{(x,0):x\\in\\mathbb{C}\\}$，维数为1。",
+            "故几何重数1小于代数重数2，矩阵不可对角化。"
+          ]
+        }
+      ],
+      "id": "kyoto-2025-847a34f337-q01-practice-01",
+      "school": "京都大学",
+      "year": "2025"
+    },
+    {
+      "text": "对含参数 $t$ 的矩阵 $B(t)=\\begin{pmatrix}t&1\\\\0&t\\end{pmatrix}+\\begin{pmatrix}0&0\\\\1&0\\end{pmatrix}=\\begin{pmatrix}t&1\\\\1&t\\end{pmatrix}$，求其特征值并讨论特征空间维数是否依赖于 $t$。",
+      "knowledge_points": [
+        "含参数矩阵特征值",
+        "特征空间维数的稳定性"
+      ],
+      "question_type": "参数矩阵谱分析",
+      "method": [
+        "求特征多项式",
+        "验证特征值互异性"
+      ],
+      "solution_steps": [
+        "计算特征多项式",
+        "求出特征值表达式",
+        "判断每个 $t$ 下特征值是否互异"
+      ],
+      "math_structure": {
+        "type": "parametric_2x2_eigen",
+        "template": "symmetric 2x2 matrix with parameter t on diagonal",
+        "variable_count": 1
+      },
+      "difficulty": 2,
+      "estimated_minutes": 8,
+      "answer": [
+        {
+          "label": "结果",
+          "steps": [
+            "特征多项式：$(t-\\lambda)^2-1=0\\Rightarrow \\lambda=t\\pm1$。",
+            "对任意 $t$，两特征值 $t+1\\neq t-1$ 恒不相等，故均为单特征值，几何重数恒为1。",
+            "因此特征空间维数不依赖于 $t$，恒为1，与原题中 $\\lambda=0$ 在 $\\alpha=0$ 处出现跳变形成对比。"
+          ]
+        }
+      ],
+      "id": "kyoto-2025-847a34f337-q01-practice-02",
+      "school": "京都大学",
+      "year": "2025"
+    },
+    {
+      "text": "设 $M(s)=\\begin{pmatrix}0&s&0\\\\s&0&s\\\\-s&-2s&0\\end{pmatrix}$（$s$为实参数）。求 $\\det M(s)$ 并说明 $\\mathrm{rank}\\,M(s)$ 关于 $s$ 的变化。",
+      "knowledge_points": [
+        "行列式计算",
+        "矩阵秩与参数的关系",
+        "行变换"
+      ],
+      "question_type": "参数矩阵秩讨论",
+      "method": [
+        "行展开计算行列式",
+        "行变换求秩"
+      ],
+      "solution_steps": [
+        "按第一行展开计算行列式",
+        "对 $s=0$ 与 $s\\neq0$ 分类讨论矩阵的秩"
+      ],
+      "math_structure": {
+        "type": "parametric_matrix_rank",
+        "template": "3x3 matrix scaled by parameter s, discuss rank at s=0 vs s!=0",
+        "variable_count": 1
+      },
+      "difficulty": 2,
+      "estimated_minutes": 8,
+      "answer": [
+        {
+          "label": "结果",
+          "steps": [
+            "$\\det M(s)=0$对任意 $s$（可直接验证第三行是第一、二行的线性组合）。",
+            "当 $s=0$ 时 $M(0)$ 为零矩阵，秩为0。",
+            "当 $s\\neq0$ 时，第一行 $(0,s,0)$ 与第二行 $(s,0,s)$ 线性无关，故秩为2；第三行 $(-s,-2s,0)=-2\\times$第一行$-$第二行，验证依赖关系。"
+          ]
+        }
+      ],
+      "id": "kyoto-2025-847a34f337-q01-practice-03",
+      "school": "京都大学",
+      "year": "2025"
+    },
+    {
+      "text": "在原题中，进一步验证：当 $\\alpha=0$ 时 $A(0)$ 是否可对角化？请通过比较代数重数与几何重数之和给出结论。",
+      "knowledge_points": [
+        "可对角化判定",
+        "代数重数与几何重数关系"
+      ],
+      "question_type": "可对角化性判定",
+      "method": [
+        "比较代数重数与几何重数之和是否等于阶数"
+      ],
+      "solution_steps": [
+        "列出所有特征值的代数重数",
+        "求出对应几何重数",
+        "比较总和与矩阵阶数"
+      ],
+      "math_structure": {
+        "type": "diagonalizability_check",
+        "template": "given algebraic and geometric multiplicities of eigenvalues at special parameter value, check diagonalizability",
+        "variable_count": 0
+      },
+      "difficulty": 2,
+      "estimated_minutes": 6,
+      "answer": [
+        {
+          "label": "结果",
+          "steps": [
+            "$\\alpha=0$ 时，特征值 $\\lambda=1$ 代数重数1，几何重数1；$\\lambda=0$ 代数重数2，几何重数2。",
+            "几何重数之和 $1+2=3$ 等于矩阵阶数3。",
+            "由可对角化判定定理，$A(0)$ 可对角化。"
+          ]
+        }
+      ],
+      "id": "kyoto-2025-847a34f337-q01-practice-04",
+      "school": "京都大学",
+      "year": "2025"
+    }
+  ],
+  "source_question": "問2 (2)",
+  "source_pdf": "京都大学/理学研究科/数学専攻/京都大学_理学研究科_数学専攻_2025_基础科目.pdf",
+  "source_type": "官方过去问",
+  "subject_category": "线性代数"
+}

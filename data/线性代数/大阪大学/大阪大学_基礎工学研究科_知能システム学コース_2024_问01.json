@@ -1,0 +1,230 @@
+{
+  "id": "osaka-2024-6921ffce7d-q01",
+  "school": "大阪大学",
+  "year": "2024",
+  "subject": "基礎工学研究科_知能システム学コース",
+  "text": "考虑 $2\\times 2$ 矩阵 $A=\\begin{pmatrix}1-p & q\\\\ p & 1-q\\end{pmatrix}$，其中 $p,q$ 为实数。回答以下小问 a)~d)。\n\na) 求 $A$ 的全部特征值。\n\nb) 判断 $A$ 是否可对角化，若可对角化则将其对角化。\n\nc) 将 $A^n$（$n$ 为正整数）表示为 $2\\times 2$ 矩阵的形式。\n\nd) 求使 $\\displaystyle\\lim_{n\\to\\infty}A^n$ 收敛于只含常数的矩阵 $A^{\\infty}$ 的 $p,q$ 条件，并求出所有满足条件时的 $A^{\\infty}$。",
+  "knowledge_points": [
+    "特征值与特征多项式",
+    "矩阵对角化的判定",
+    "对角化求矩阵幂",
+    "矩阵序列的极限",
+    "谱半径与收敛性"
+  ],
+  "question_type": "矩阵特征值、对角化、矩阵幂与极限",
+  "method": [
+    "特征多项式求特征值",
+    "求特征向量构造相似变换矩阵",
+    "利用 $A=PDP^{-1}$ 计算 $A^n=PD^nP^{-1}$",
+    "分析 $|r|<1$ 保证幂次项收敛"
+  ],
+  "solution_steps": [
+    "写出特征方程 $\\det(A-\\lambda I)=0$ 并求解得到 $\\lambda_1,\\lambda_2$",
+    "判断特征值是否相异，分情形讨论对角化的可能性",
+    "求出对应特征向量，构造可逆矩阵 $P$ 及对角矩阵 $D$",
+    "利用 $A^n=PD^nP^{-1}$ 展开得到显式表达式",
+    "分析 $r=1-p-q$ 的取值范围以确定 $r^n$ 收敛条件，进而给出 $A^{\\infty}$"
+  ],
+  "math_structure": {
+    "type": "parametric_2x2_matrix_power_limit",
+    "template": "$A=\\begin{pmatrix}1-p&q\\\\p&1-q\\end{pmatrix}$，特征值为 $1$ 与 $1-p-q$；通过对角化求 $A^n$ 并判断收敛性",
+    "variable_count": 2
+  },
+  "difficulty": 3,
+  "answer": [
+    {
+      "label": "a) 特征值",
+      "steps": [
+        "特征方程为 $\\det(A-\\lambda I)=(1-p-\\lambda)(1-q-\\lambda)-pq=0$。",
+        "令 $\\mu=1-\\lambda$，则方程化为 $(\\mu-p)(\\mu-q)-pq=\\mu^2-(p+q)\\mu=0$，即 $\\mu\\big(\\mu-(p+q)\\big)=0$，解得 $\\mu=0$ 或 $\\mu=p+q$。",
+        "由 $\\lambda=1-\\mu$ 得 $\\lambda_1=1$，$\\lambda_2=1-(p+q)$。",
+        "验算：$\\mathrm{tr}A=(1-p)+(1-q)=2-p-q=\\lambda_1+\\lambda_2$；$\\det A=(1-p)(1-q)-pq=1-p-q=\\lambda_1\\lambda_2$，两者均一致，结果正确。"
+      ]
+    },
+    {
+      "label": "b) 对角化判定",
+      "steps": [
+        "当 $p+q\\neq 0$ 时，$\\lambda_1=1\\neq\\lambda_2=1-p-q$，两特征值相异，故 $A$ 一定可对角化。",
+        "求特征向量：对 $\\lambda_1=1$，$(A-I)v=0$ 即 $-pv_1+qv_2=0$，取 $v_1=(q,p)^\\top$（验证 $-pq+qp=0$ 成立）。对 $\\lambda_2=1-p-q$，$A-\\lambda_2 I=\\begin{pmatrix}q&q\\\\p&p\\end{pmatrix}$，方程给出 $v_1=-v_2$，取 $v_2=(1,-1)^\\top$。",
+        "令 $P=\\begin{pmatrix}q&1\\\\p&-1\\end{pmatrix}$，$\\det P=-(p+q)\\neq0$，故 $P$ 可逆，$A=PDP^{-1}$，其中 $D=\\mathrm{diag}(1,\\,1-p-q)$。",
+        "当 $p+q=0$ 时 $\\lambda_1=\\lambda_2=1$：若 $p=q=0$，$A=I$ 本身已是对角矩阵，可对角化；若 $p\\neq0$（此时 $q=-p$），$A-I=\\begin{pmatrix}-p&-p\\\\p&p\\end{pmatrix}$ 的秩为1，特征子空间维数为1，小于代数重数2，故 $A$ **不可对角化**。"
+      ]
+    },
+    {
+      "label": "c) $A^n$ 的表达式",
+      "steps": [
+        "对 $p+q\\neq0$ 的情形，利用 $A^n=PD^nP^{-1}$，其中 $D^n=\\mathrm{diag}(1,r^n)$，$r=1-p-q$。",
+        "计算 $PD^n=\\begin{pmatrix}q&r^n\\\\p&-r^n\\end{pmatrix}$，并求 $P^{-1}=\\dfrac{1}{p+q}\\begin{pmatrix}1&1\\\\p&-q\\end{pmatrix}$（由 $\\det P=-(p+q)$ 及余子式计算得到）。",
+        "两者相乘得 $A^n=\\dfrac{1}{p+q}\\begin{pmatrix}q+pr^n & q(1-r^n)\\\\ p(1-r^n) & p+qr^n\\end{pmatrix}$，其中 $r=1-p-q$。",
+        "验算 $n=1$：取 $p=0.2,q=0.3$，$r=0.5$，代入得矩阵为 $\\begin{pmatrix}0.8&0.3\\\\0.2&0.7\\end{pmatrix}$，恰好等于原矩阵 $A$，公式正确。当 $p=q=0$ 时 $A=I$，显然 $A^n=I$（此情形不适用上式，需单独说明）。"
+      ]
+    },
+    {
+      "label": "d) 收敛条件与 $A^{\\infty}$",
+      "steps": [
+        "由 c) 的表达式，$A^n$ 是否收敛取决于 $r^n=(1-p-q)^n$ 是否收敛，这要求 $|r|<1$，即 $|1-p-q|<1$，等价于 $0<p+q<2$。",
+        "若 $p+q=0$：当 $p=q=0$ 时 $A=I$，$A^n=I\\to I$，收敛；当 $p=-q\\neq0$ 时 $A$ 不可对角化（见 b)），其若尔当形含幂次为 $n$ 的项，$A^n$ 的元素随 $n$ 线性增长，不收敛。",
+        "若 $p+q\\ge2$：$r\\le-1$，$r^n$ 不收敛（$r=-1$ 时振荡，$r<-1$或者$p+q<0$时$|r|>1$发散）。",
+        "综上，收敛条件为 $p=q=0$ 或 $0<p+q<2$。当 $p=q=0$ 时 $A^{\\infty}=I=\\begin{pmatrix}1&0\\\\0&1\\end{pmatrix}$；当 $0<p+q<2$ 时 $r^n\\to0$，代入 c) 的公式得 $A^{\\infty}=\\dfrac{1}{p+q}\\begin{pmatrix}q&q\\\\p&p\\end{pmatrix}$。",
+        "验算：以 $p=0.2,q=0.3$ 为例，$A^{\\infty}=\\dfrac{1}{0.5}\\begin{pmatrix}0.3&0.3\\\\0.2&0.2\\end{pmatrix}=\\begin{pmatrix}0.6&0.6\\\\0.4&0.4\\end{pmatrix}$，其每列元素之和为1，与 $A$ 列元素之和为1（即列随机矩阵性质）保持一致，结果合理。"
+      ]
+    }
+  ],
+  "practice_questions": [
+    {
+      "text": "求上三角矩阵 $A=\\begin{pmatrix}3&1\\\\0&2\\end{pmatrix}$ 的全部特征值。",
+      "knowledge_points": [
+        "特征值",
+        "三角矩阵性质"
+      ],
+      "question_type": "特征值计算",
+      "method": [
+        "特征多项式法",
+        "三角矩阵对角元即特征值"
+      ],
+      "solution_steps": [
+        "写出特征方程 $\\det(A-\\lambda I)=0$",
+        "利用上三角矩阵行列式为对角元乘积直接读出特征值"
+      ],
+      "math_structure": {
+        "type": "triangular_matrix_eigenvalues",
+        "template": "A=[[3,1],[0,2]], eigenvalues = diagonal entries",
+        "variable_count": 0
+      },
+      "difficulty": 1,
+      "estimated_minutes": 4,
+      "answer": [
+        {
+          "label": "特征值",
+          "steps": [
+            "特征方程 $\\det(A-\\lambda I)=(3-\\lambda)(2-\\lambda)-0\\cdot1=(3-\\lambda)(2-\\lambda)=0$。",
+            "解得 $\\lambda_1=3,\\ \\lambda_2=2$。",
+            "验算：迹 $3+2=5=\\mathrm{tr}A$，行列式 $3\\times2=6=\\det A$，均一致。"
+          ]
+        }
+      ],
+      "id": "osaka-2024-6921ffce7d-q01-practice-01",
+      "school": "大阪大学",
+      "year": "2024"
+    },
+    {
+      "text": "对矩阵 $A=\\begin{pmatrix}4&1\\\\2&3\\end{pmatrix}$，求其特征值并将其对角化，即求出 $P,D$ 使 $A=PDP^{-1}$。",
+      "knowledge_points": [
+        "特征值",
+        "特征向量",
+        "矩阵对角化"
+      ],
+      "question_type": "矩阵对角化",
+      "method": [
+        "特征多项式求特征值",
+        "解 $(A-\\lambda I)v=0$ 求特征向量"
+      ],
+      "solution_steps": [
+        "求特征方程的根",
+        "对每个特征值求特征向量",
+        "组装 $P$ 与 $D$"
+      ],
+      "math_structure": {
+        "type": "2x2_diagonalization",
+        "template": "A=[[4,1],[2,3]], find P,D with A=PDP^{-1}",
+        "variable_count": 0
+      },
+      "difficulty": 2,
+      "estimated_minutes": 8,
+      "answer": [
+        {
+          "label": "特征值与对角化",
+          "steps": [
+            "特征方程：$\\lambda^2-7\\lambda+(12-2)=\\lambda^2-7\\lambda+10=(\\lambda-5)(\\lambda-2)=0$，得 $\\lambda_1=5,\\lambda_2=2$。",
+            "对 $\\lambda_1=5$：$(A-5I)v=0$ 即 $\\begin{pmatrix}-1&1\\\\2&-2\\end{pmatrix}v=0\\Rightarrow v_1=v_2$，取 $v=(1,1)^\\top$。对 $\\lambda_2=2$：$(A-2I)v=0$ 即 $\\begin{pmatrix}2&1\\\\2&1\\end{pmatrix}v=0\\Rightarrow 2v_1+v_2=0$，取 $v=(1,-2)^\\top$。",
+            "令 $P=\\begin{pmatrix}1&1\\\\1&-2\\end{pmatrix}$，$D=\\begin{pmatrix}5&0\\\\0&2\\end{pmatrix}$，则 $A=PDP^{-1}$。",
+            "验算：$AP=\\begin{pmatrix}4\\cdot1+1\\cdot1 & 4\\cdot1+1\\cdot(-2)\\\\2\\cdot1+3\\cdot1&2\\cdot1+3\\cdot(-2)\\end{pmatrix}=\\begin{pmatrix}5&2\\\\5&-4\\end{pmatrix}$，而 $PD=\\begin{pmatrix}5&2\\\\5&-4\\end{pmatrix}$，两者相等，说明分解正确。"
+          ]
+        }
+      ],
+      "id": "osaka-2024-6921ffce7d-q01-practice-02",
+      "school": "大阪大学",
+      "year": "2024"
+    },
+    {
+      "text": "利用上一题得到的对角化结果，求 $A^n=\\begin{pmatrix}4&1\\\\2&3\\end{pmatrix}^n$（$n$ 为正整数）的显式表达式。",
+      "knowledge_points": [
+        "矩阵对角化",
+        "矩阵幂计算"
+      ],
+      "question_type": "矩阵幂计算",
+      "method": [
+        "利用 $A^n=PD^nP^{-1}$ 展开计算"
+      ],
+      "solution_steps": [
+        "写出 $P^{-1}$",
+        "计算 $PD^n$",
+        "计算 $PD^nP^{-1}$ 得到最终矩阵"
+      ],
+      "math_structure": {
+        "type": "matrix_power_via_diagonalization",
+        "template": "A^n = P diag(5^n,2^n) P^{-1} for A=[[4,1],[2,3]]",
+        "variable_count": 1
+      },
+      "difficulty": 3,
+      "estimated_minutes": 10,
+      "answer": [
+        {
+          "label": "A^n 的表达式",
+          "steps": [
+            "由 $P=\\begin{pmatrix}1&1\\\\1&-2\\end{pmatrix}$ 得 $\\det P=-3$，$P^{-1}=\\dfrac{1}{3}\\begin{pmatrix}2&1\\\\1&-1\\end{pmatrix}$。",
+            "计算 $PD^n=\\begin{pmatrix}5^n&2^n\\\\5^n&-2\\cdot2^n\\end{pmatrix}$。",
+            "两者相乘：$A^n=\\dfrac{1}{3}\\begin{pmatrix}2\\cdot5^n+2^n & 5^n-2^n\\\\ 2\\cdot5^n-2^{n+1} & 5^n+2^{n+1}\\end{pmatrix}$。",
+            "验算 $n=1$：$\\dfrac{1}{3}\\begin{pmatrix}10+2&5-2\\\\10-4&5+4\\end{pmatrix}=\\dfrac{1}{3}\\begin{pmatrix}12&3\\\\6&9\\end{pmatrix}=\\begin{pmatrix}4&1\\\\2&3\\end{pmatrix}=A$，与原矩阵一致，公式正确。"
+          ]
+        }
+      ],
+      "id": "osaka-2024-6921ffce7d-q01-practice-03",
+      "school": "大阪大学",
+      "year": "2024"
+    },
+    {
+      "text": "考虑对称参数矩阵 $A(t)=\\begin{pmatrix}1-t&t\\\\t&1-t\\end{pmatrix}$（$t$ 为实数，可视为原题中 $p=q=t$ 的特殊情形）。求 $A(t)$ 的特征值，并求使 $\\displaystyle\\lim_{n\\to\\infty}A(t)^n$ 收敛于常数矩阵的 $t$ 的取值范围，同时求出该极限矩阵。",
+      "knowledge_points": [
+        "特征值",
+        "矩阵幂的极限",
+        "收敛性分析"
+      ],
+      "question_type": "参数矩阵极限分析",
+      "method": [
+        "利用原题结论 $\\lambda_1=1,\\lambda_2=1-p-q$",
+        "分析 $|r|<1$ 的范围"
+      ],
+      "solution_steps": [
+        "代入 $p=q=t$ 得到特征值",
+        "利用收敛条件 $0<p+q<2$ 或 $p=q=0$ 求出 $t$ 范围",
+        "代入极限公式求出 $A^{\\infty}$"
+      ],
+      "math_structure": {
+        "type": "symmetric_case_matrix_limit",
+        "template": "A(t)=[[1-t,t],[t,1-t]], eigenvalues 1, 1-2t; converges iff 0<=t<1",
+        "variable_count": 1
+      },
+      "difficulty": 4,
+      "estimated_minutes": 10,
+      "answer": [
+        {
+          "label": "特征值与收敛条件",
+          "steps": [
+            "由原题一般公式（$p=q=t$）：$\\lambda_1=1,\\ \\lambda_2=1-(p+q)=1-2t$。",
+            "收敛条件为 $p=q=0$（即 $t=0$）或 $0<p+q<2$（即 $0<2t<2$，也即 $0<t<1$）；合并得 $0\\le t<1$。",
+            "当 $t=0$ 时 $A(0)=I$，故 $A^{\\infty}=I$。当 $0<t<1$ 时，代入原题公式 $A^{\\infty}=\\dfrac{1}{p+q}\\begin{pmatrix}q&q\\\\p&p\\end{pmatrix}=\\dfrac{1}{2t}\\begin{pmatrix}t&t\\\\t&t\\end{pmatrix}=\\dfrac{1}{2}\\begin{pmatrix}1&1\\\\1&1\\end{pmatrix}$，此极限矩阵与 $t$ 的具体取值无关。",
+            "验算：取 $t=0.5$，$A=\\begin{pmatrix}0.5&0.5\\\\0.5&0.5\\end{pmatrix}$，此时 $A^2=A$（幂等），故 $A^n=A=\\dfrac12\\begin{pmatrix}1&1\\\\1&1\\end{pmatrix}$ 对所有 $n$ 成立，与极限公式一致，结果正确。"
+          ]
+        }
+      ],
+      "id": "osaka-2024-6921ffce7d-q01-practice-04",
+      "school": "大阪大学",
+      "year": "2024"
+    }
+  ],
+  "source_question": "問2 1)",
+  "source_pdf": "大阪大学/基礎工学研究科/知能システム学コース/大阪大学_基礎工学研究科_知能システム学コース_2024.pdf",
+  "source_type": "官方过去问",
+  "subject_category": "线性代数"
+}

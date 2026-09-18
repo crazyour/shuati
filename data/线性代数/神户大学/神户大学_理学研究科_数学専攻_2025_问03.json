@@ -1,0 +1,241 @@
+{
+  "id": "kobe-2025-e449e23c74-q03",
+  "school": "神户大学",
+  "year": "2025",
+  "subject": "理学研究科_数学専攻",
+  "text": "设 $A=\\begin{pmatrix}0&-1&2\\\\3&-2&1\\\\-3&-1&5\\end{pmatrix}$。求 $A$ 的特征多项式，并求 $A^{2025}$。",
+  "knowledge_points": [
+    "特征多项式的计算",
+    "3阶行列式展开",
+    "Cayley-Hamilton定理",
+    "矩阵幂的降次计算"
+  ],
+  "question_type": "计算题",
+  "method": [
+    "行列式展开求特征多项式",
+    "利用Cayley-Hamilton定理建立递推关系降低幂次",
+    "计算低次幂矩阵代入递推公式"
+  ],
+  "solution_steps": [
+    "写出 $\\det(\\lambda I-A)$ 并展开求特征多项式",
+    "由特征多项式得出 Cayley-Hamilton 关系式",
+    "利用关系式将 $A^n$ 化简为 $A^2$ 的倍数",
+    "计算 $A^2$",
+    "代入 $n=2025$ 求最终结果"
+  ],
+  "math_structure": {
+    "type": "characteristic_polynomial_and_matrix_power_via_cayley_hamilton",
+    "template": "给定3阶矩阵 $A$，求特征多项式 $p(\\lambda)$，并利用 $p(A)=0$ 计算 $A^N$（$N$ 为大整数）",
+    "variable_count": 1
+  },
+  "difficulty": 4,
+  "answer": [
+    {
+      "label": "特征多项式",
+      "steps": [
+        "计算 $\\det(A-\\lambda I)=\\det\\begin{pmatrix}-\\lambda&-1&2\\\\3&-2-\\lambda&1\\\\-3&-1&5-\\lambda\\end{pmatrix}$，按第一行展开：$-\\lambda[(-2-\\lambda)(5-\\lambda)-1\\times(-1)]-(-1)[3(5-\\lambda)-1\\times(-3)]+2[3\\times(-1)-(-2-\\lambda)(-3)]$",
+        "逐项计算：$(-2-\\lambda)(5-\\lambda)=\\lambda^2-3\\lambda-10$，加1得 $\\lambda^2-3\\lambda-9$，第一项为 $-\\lambda^3+3\\lambda^2+9\\lambda$；第二项为 $18-3\\lambda$；第三项为 $2(-3-(6+3\\lambda))=-18-6\\lambda$",
+        "求和：$-\\lambda^3+3\\lambda^2+9\\lambda+18-3\\lambda-18-6\\lambda=-\\lambda^3+3\\lambda^2$，即 $\\det(A-\\lambda I)=-\\lambda^2(\\lambda-3)$，故特征多项式（以 $\\det(\\lambda I-A)$ 形式）为 $p(\\lambda)=\\lambda^3-3\\lambda^2=\\lambda^2(\\lambda-3)$，特征值为 $0$（二重）和 $3$"
+      ]
+    },
+    {
+      "label": "$A^{2025}$",
+      "steps": [
+        "由 Cayley-Hamilton 定理，$A^3-3A^2=0$，即 $A^3=3A^2$。由此归纳可得对所有 $n\\ge2$，$A^n=3^{n-2}A^2$（因为 $A^{n+1}=A\\cdot A^n=3^{n-2}A^3=3^{n-2}\\cdot3A^2=3^{n-1}A^2$）",
+        "计算 $A^2$：直接矩阵乘法得 $A^2=\\begin{pmatrix}-9&0&9\\\\-9&0&9\\\\-18&0&18\\end{pmatrix}$（例如第1行第1列：$0\\times0+(-1)\\times3+2\\times(-3)=-9$；第1行第3列：$0\\times2+(-1)\\times1+2\\times5=9$，其余同理计算得出）",
+        "代入 $n=2025$：$A^{2025}=3^{2023}A^2=3^{2023}\\begin{pmatrix}-9&0&9\\\\-9&0&9\\\\-18&0&18\\end{pmatrix}=3^{2025}\\begin{pmatrix}-1&0&1\\\\-1&0&1\\\\-2&0&2\\end{pmatrix}$（因 $3^{2023}\\times9=3^{2025}$）",
+        "验证：用 $A^3=3A^2$ 直接校验，例如 $(A^3)_{11}=$ 第1行 $A$ 与第1列 $A^2$ 的内积 $=0\\times(-9)+(-1)\\times(-9)+2\\times(-18)=-27$，而 $3(A^2)_{11}=3\\times(-9)=-27$，两者相符，说明递推关系成立，最终结果 $A^{2025}=3^{2025}\\begin{pmatrix}-1&0&1\\\\-1&0&1\\\\-2&0&2\\end{pmatrix}$ 正确"
+      ]
+    }
+  ],
+  "practice_questions": [
+    {
+      "text": "求矩阵 $\\begin{pmatrix}2&1\\\\0&3\\end{pmatrix}$ 的特征多项式。",
+      "knowledge_points": [
+        "特征多项式定义",
+        "上三角矩阵特征值"
+      ],
+      "question_type": "基础计算题",
+      "method": [
+        "直接计算 $\\det(\\lambda I-A)$"
+      ],
+      "solution_steps": [
+        "写出 $\\lambda I-A$",
+        "计算行列式（上三角矩阵直接取对角元乘积）"
+      ],
+      "math_structure": {
+        "type": "characteristic_polynomial_basic",
+        "template": "求二阶上三角矩阵的特征多项式",
+        "variable_count": 0
+      },
+      "difficulty": 1,
+      "estimated_minutes": 3,
+      "answer": [
+        {
+          "label": "特征多项式",
+          "steps": [
+            "$\\lambda I-A=\\begin{pmatrix}\\lambda-2&-1\\\\0&\\lambda-3\\end{pmatrix}$，为上三角矩阵，行列式为对角元乘积",
+            "$p(\\lambda)=(\\lambda-2)(\\lambda-3)$"
+          ]
+        }
+      ],
+      "id": "kobe-2025-e449e23c74-q03-practice-01",
+      "school": "神户大学",
+      "year": "2025"
+    },
+    {
+      "text": "对矩阵 $A=\\begin{pmatrix}0&1\\\\-2&-3\\end{pmatrix}$，求特征多项式并验证 Cayley-Hamilton 定理，即验证 $A^2+3A+2I=0$。",
+      "knowledge_points": [
+        "特征多项式",
+        "Cayley-Hamilton定理验证"
+      ],
+      "question_type": "验证题",
+      "method": [
+        "求特征多项式",
+        "直接计算$A^2$并代入验证"
+      ],
+      "solution_steps": [
+        "计算特征多项式",
+        "计算$A^2$",
+        "代入验证等式为零矩阵"
+      ],
+      "math_structure": {
+        "type": "cayley_hamilton_verification",
+        "template": "求二阶矩阵特征多项式并验证Cayley-Hamilton定理",
+        "variable_count": 0
+      },
+      "difficulty": 2,
+      "estimated_minutes": 5,
+      "answer": [
+        {
+          "label": "验证",
+          "steps": [
+            "$\\mathrm{tr}(A)=-3,\\det(A)=0\\times(-3)-1\\times(-2)=2$，特征多项式 $p(\\lambda)=\\lambda^2+3\\lambda+2$",
+            "计算 $A^2=\\begin{pmatrix}0\\times0+1\\times(-2)&0\\times1+1\\times(-3)\\\\-2\\times0+(-3)\\times(-2)&-2\\times1+(-3)\\times(-3)\\end{pmatrix}=\\begin{pmatrix}-2&-3\\\\6&7\\end{pmatrix}$",
+            "计算 $A^2+3A+2I=\\begin{pmatrix}-2+0+2&-3+3+0\\\\6-6+0&7-9+2\\end{pmatrix}=\\begin{pmatrix}0&0\\\\0&0\\end{pmatrix}$，验证成立"
+          ]
+        }
+      ],
+      "id": "kobe-2025-e449e23c74-q03-practice-02",
+      "school": "神户大学",
+      "year": "2025"
+    },
+    {
+      "text": "沿用上题的 $A=\\begin{pmatrix}0&1\\\\-2&-3\\end{pmatrix}$，利用 Cayley-Hamilton 关系 $A^2=-3A-2I$，计算 $A^5$。",
+      "knowledge_points": [
+        "矩阵幂的递推降次",
+        "Cayley-Hamilton应用"
+      ],
+      "method": [
+        "逐次利用递推关系将高次幂降为A和I的线性组合"
+      ],
+      "question_type": "计算题",
+      "solution_steps": [
+        "由A^2表达式递推计算A^3,A^4,A^5",
+        "写出最终矩阵形式"
+      ],
+      "math_structure": {
+        "type": "matrix_power_reduction_via_recursion",
+        "template": "利用二阶矩阵的特征方程递推计算矩阵的高次幂",
+        "variable_count": 0
+      },
+      "difficulty": 3,
+      "estimated_minutes": 8,
+      "answer": [
+        {
+          "label": "求A^5",
+          "steps": [
+            "由 $A^2=-3A-2I$，计算 $A^3=A\\cdot A^2=-3A^2-2A=-3(-3A-2I)-2A=7A+6I$",
+            "计算 $A^4=A\\cdot A^3=7A^2+6A=7(-3A-2I)+6A=-15A-14I$",
+            "计算 $A^5=A\\cdot A^4=-15A^2-14A=-15(-3A-2I)-14A=31A+30I$",
+            "代入数值：$A^5=31\\begin{pmatrix}0&1\\\\-2&-3\\end{pmatrix}+30\\begin{pmatrix}1&0\\\\0&1\\end{pmatrix}=\\begin{pmatrix}30&31\\\\-62&-63\\end{pmatrix}$"
+          ]
+        }
+      ],
+      "id": "kobe-2025-e449e23c74-q03-practice-03",
+      "school": "神户大学",
+      "year": "2025"
+    },
+    {
+      "text": "设 $B=\\begin{pmatrix}1&-1&0\\\\1&-1&0\\\\0&0&2\\end{pmatrix}$。求 $B$ 的特征多项式，并计算 $B^2$。",
+      "knowledge_points": [
+        "分块矩阵特征值",
+        "特征多项式计算",
+        "矩阵乘法"
+      ],
+      "question_type": "计算题",
+      "method": [
+        "利用分块结构分别求各块特征值",
+        "直接矩阵乘法计算B^2"
+      ],
+      "solution_steps": [
+        "观察B为分块（准）对角结构",
+        "求左上2x2块的特征值",
+        "结合右下角元素得完整特征多项式",
+        "计算B^2"
+      ],
+      "math_structure": {
+        "type": "block_matrix_characteristic_polynomial",
+        "template": "求分块矩阵的特征多项式并计算其平方",
+        "variable_count": 0
+      },
+      "difficulty": 3,
+      "estimated_minutes": 8,
+      "answer": [
+        {
+          "label": "特征多项式与B^2",
+          "steps": [
+            "左上 $2\\times2$ 块 $M=\\begin{pmatrix}1&-1\\\\1&-1\\end{pmatrix}$，$\\mathrm{tr}(M)=0,\\det(M)=1\\times(-1)-(-1)\\times1=0$，特征值均为0",
+            "第三个对角元为2，是独立特征值",
+            "故 $B$ 的特征多项式为 $p(\\lambda)=\\lambda^2(\\lambda-2)$（对应特征值 $0,0,2$）",
+            "计算 $B^2$：$M^2=\\begin{pmatrix}1\\times1+(-1)\\times1 & 1\\times(-1)+(-1)\\times(-1)\\\\1\\times1+(-1)\\times1&1\\times(-1)+(-1)\\times(-1)\\end{pmatrix}=\\begin{pmatrix}0&0\\\\0&0\\end{pmatrix}$，右下角 $2^2=4$，故 $B^2=\\begin{pmatrix}0&0&0\\\\0&0&0\\\\0&0&4\\end{pmatrix}$"
+          ]
+        }
+      ],
+      "id": "kobe-2025-e449e23c74-q03-practice-04",
+      "school": "神户大学",
+      "year": "2025"
+    },
+    {
+      "text": "沿用上题的 $B=\\begin{pmatrix}1&-1&0\\\\1&-1&0\\\\0&0&2\\end{pmatrix}$，其特征多项式为 $\\lambda^2(\\lambda-2)$，故满足 $B^3=2B^2$。利用此关系式计算 $B^{10}$。",
+      "knowledge_points": [
+        "Cayley-Hamilton定理",
+        "矩阵高次幂的递推计算"
+      ],
+      "question_type": "综合计算题（与原题同结构）",
+      "method": [
+        "由特征多项式得递推关系$B^n=2^{n-2}B^2$",
+        "代入已知B^2计算最终结果"
+      ],
+      "solution_steps": [
+        "由$B^3=2B^2$归纳证明$B^n=2^{n-2}B^2$对$n\\ge2$成立",
+        "代入n=10及已知B^2的值",
+        "计算最终矩阵"
+      ],
+      "math_structure": {
+        "type": "characteristic_polynomial_and_matrix_power_via_cayley_hamilton",
+        "template": "给定3阶（分块）矩阵，特征多项式含重根0，利用Cayley-Hamilton计算其高次幂",
+        "variable_count": 0
+      },
+      "difficulty": 4,
+      "estimated_minutes": 10,
+      "answer": [
+        {
+          "label": "求B^10",
+          "steps": [
+            "由 $B^3=2B^2$，归纳得 $B^n=2^{n-2}B^2$ 对所有 $n\\ge2$ 成立（同原题的证明方式：$B^{n+1}=B\\cdot B^n=2^{n-2}B^3=2^{n-2}\\cdot2B^2=2^{n-1}B^2$）",
+            "已知 $B^2=\\begin{pmatrix}0&0&0\\\\0&0&0\\\\0&0&4\\end{pmatrix}$，代入 $n=10$：$B^{10}=2^{8}B^2=256\\begin{pmatrix}0&0&0\\\\0&0&0\\\\0&0&4\\end{pmatrix}=\\begin{pmatrix}0&0&0\\\\0&0&0\\\\0&0&1024\\end{pmatrix}$",
+            "验证：$1024=2^{10}$，与直接由分块结构知 $B^{10}$ 右下角应为 $2^{10}=1024$、左上块（幂零块，其平方已为0）任意高次幂均为0矩阵，结果一致"
+          ]
+        }
+      ],
+      "id": "kobe-2025-e449e23c74-q03-practice-05",
+      "school": "神户大学",
+      "year": "2025"
+    }
+  ],
+  "source_question": "問題1(3)",
+  "source_pdf": "神户大学/理学研究科/数学専攻/神户大学_理学研究科_数学専攻_2025.pdf",
+  "source_type": "官方过去问",
+  "subject_category": "线性代数"
+}

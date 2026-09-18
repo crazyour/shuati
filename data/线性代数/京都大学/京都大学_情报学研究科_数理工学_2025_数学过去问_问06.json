@@ -1,0 +1,156 @@
+{
+  "id": "kyoto-2025-0964b49f99-q06",
+  "school": "京都大学",
+  "year": "2025",
+  "subject": "情报学研究科_数理工学",
+  "text": "设 $B=\\begin{pmatrix}-1&-3&2&2\\\\1&1&0&-6\\\\0&2&-2&4\\end{pmatrix}$，线性映射 $f:\\mathbb{R}^4\\to\\mathbb{R}^3$ 定义为 $f(x)=Bx$。求核空间 $\\mathrm{Ker}f$ 与像空间 $\\mathrm{Im}f$ 各一组基。",
+  "knowledge_points": [
+    "线性映射",
+    "核空间与像空间",
+    "矩阵秩",
+    "行简化"
+  ],
+  "question_type": "核空间与像空间求解",
+  "method": [
+    "行简化求解齐次方程组得核空间基",
+    "取列向量的极大线性无关组得像空间基"
+  ],
+  "solution_steps": [
+    "对 $B$ 做行简化得到简化行阶梯形",
+    "由自由变量参数化求核空间基",
+    "验证核空间向量满足 $Bx=0$",
+    "选取两个线性无关的列向量作为像空间基并验证其余列可由其表出"
+  ],
+  "math_structure": {
+    "type": "linear_map_kernel_image",
+    "template": "f(x)=Bx, B\\in\\mathbb{R}^{3\\times4}, 求Ker f, Im f 的基",
+    "variable_count": 12
+  },
+  "difficulty": 3,
+  "answer": [
+    {
+      "label": "Ker f 与 Im f 的基",
+      "steps": [
+        "行简化：将 $B$ 的行进行消元，最终得到简化行阶梯形 $\\begin{pmatrix}1&0&1&-8\\\\0&1&-1&2\\\\0&0&0&0\\end{pmatrix}$（秩为2）",
+        "得方程组 $x_1+x_3-8x_4=0,\\ x_2-x_3+2x_4=0$，自由变量为 $x_3,x_4$",
+        "令 $x_3=1,x_4=0$ 得 $(-1,1,1,0)^T$；令 $x_3=0,x_4=1$ 得 $(8,-2,0,1)^T$，故 $\\mathrm{Ker}f$ 的一组基为 $\\{(-1,1,1,0)^T,(8,-2,0,1)^T\\}$",
+        "验证：代入 $B$ 计算均得零向量，验证成立",
+        "由秩为2，$\\mathrm{Im}f$ 是2维子空间，取 $B$ 的第1、2列 $(-1,1,0)^T,(-3,1,2)^T$ 作为一组基（线性无关，且第3、4列均可由其线性组合表出，如第3列 $=$ 第1列 $-$ 第2列，第3、4列关系与核空间向量一致）"
+      ]
+    }
+  ],
+  "practice_questions": [
+    {
+      "text": "求矩阵 $\\begin{pmatrix}1&2\\\\2&4\\end{pmatrix}$ 对应线性映射的核空间与像空间的基。",
+      "knowledge_points": [
+        "核空间",
+        "像空间",
+        "矩阵秩"
+      ],
+      "question_type": "核空间像空间求解",
+      "method": [
+        "行简化"
+      ],
+      "solution_steps": [
+        "化简矩阵",
+        "求核空间基",
+        "求像空间基"
+      ],
+      "math_structure": {
+        "type": "linear_map_kernel_image",
+        "template": "f(x)=Cx, C\\in\\mathbb{R}^{2\\times2}",
+        "variable_count": 4
+      },
+      "difficulty": 1,
+      "estimated_minutes": 5,
+      "answer": [
+        {
+          "label": "结果",
+          "steps": [
+            "矩阵秩为1，方程 $x_1+2x_2=0$，核空间基为 $(-2,1)^T$",
+            "像空间基取第一列 $(1,2)^T$"
+          ]
+        }
+      ],
+      "id": "kyoto-2025-0964b49f99-q06-practice-01",
+      "school": "京都大学",
+      "year": "2025"
+    },
+    {
+      "text": "求矩阵 $C=\\begin{pmatrix}1&0&1\\\\0&1&1\\end{pmatrix}$ 对应线性映射 $\\mathbb{R}^3\\to\\mathbb{R}^2$ 的核空间与像空间的基。",
+      "knowledge_points": [
+        "核空间",
+        "像空间",
+        "自由变量"
+      ],
+      "question_type": "核空间像空间求解",
+      "method": [
+        "直接观察简化形式求解"
+      ],
+      "solution_steps": [
+        "写出方程组",
+        "求核空间基",
+        "求像空间基（已满秩为2，像空间为全 $\\mathbb{R}^2$）"
+      ],
+      "math_structure": {
+        "type": "linear_map_kernel_image",
+        "template": "f(x)=Cx, C\\in\\mathbb{R}^{2\\times3}",
+        "variable_count": 6
+      },
+      "difficulty": 2,
+      "estimated_minutes": 6,
+      "answer": [
+        {
+          "label": "结果",
+          "steps": [
+            "方程 $x_1+x_3=0,x_2+x_3=0$，自由变量 $x_3$，核空间基 $(-1,-1,1)^T$",
+            "秩为2，像空间为 $\\mathbb{R}^2$ 全空间，基可取标准基 $\\{(1,0)^T,(0,1)^T\\}$，或列 $(1,0)^T,(0,1)^T$"
+          ]
+        }
+      ],
+      "id": "kyoto-2025-0964b49f99-q06-practice-02",
+      "school": "京都大学",
+      "year": "2025"
+    },
+    {
+      "text": "验证原题中求得的核空间基向量 $(-1,1,1,0)^T$ 与 $(8,-2,0,1)^T$ 线性无关，并说明 $\\dim\\mathrm{Ker}f+\\dim\\mathrm{Im}f=4$ 是否成立。",
+      "knowledge_points": [
+        "线性无关性验证",
+        "维数定理（秩-零度定理）"
+      ],
+      "question_type": "线性代数性质验证",
+      "method": [
+        "行列式/比例判断线性无关",
+        "秩-零度定理"
+      ],
+      "solution_steps": [
+        "判断两向量是否成比例",
+        "应用秩-零度定理验证"
+      ],
+      "math_structure": {
+        "type": "rank_nullity_theorem",
+        "template": "\\dim\\mathrm{Ker}f+\\dim\\mathrm{Im}f=\\dim(\\text{定义域})",
+        "variable_count": 2
+      },
+      "difficulty": 2,
+      "estimated_minutes": 5,
+      "answer": [
+        {
+          "label": "结果",
+          "steps": [
+            "两向量 $(-1,1,1,0)^T$ 和 $(8,-2,0,1)^T$ 显然不成比例（分量比不一致），故线性无关",
+            "$\\dim\\mathrm{Ker}f=2$，$\\dim\\mathrm{Im}f=2$（矩阵秩为2），故 $2+2=4=\\dim\\mathbb{R}^4$",
+            "秩-零度定理成立，验证一致"
+          ]
+        }
+      ],
+      "id": "kyoto-2025-0964b49f99-q06-practice-03",
+      "school": "京都大学",
+      "year": "2025"
+    }
+  ],
+  "source_question": "問2(ii)",
+  "source_pdf": "京都大学/情报学研究科/数理工学/京都大学_情报学研究科_数理工学_2025_数学过去问.pdf",
+  "source_type": "官方过去问",
+  "subject_category": "线性代数"
+}

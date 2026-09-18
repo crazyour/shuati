@@ -1,0 +1,235 @@
+{
+  "id": "nagoya-2003-ccf1e04087-q01",
+  "school": "名古屋大学",
+  "year": "2003",
+  "subject": "多元数理科学研究科_全专攻",
+  "text": "设 $V$ 是复数域 $\\mathbb{C}$ 上的 3 维线性空间，$F:V\\to V$ 是线性变换。设 $U$ 是 $V$ 的 2 维线性子空间，且 $F$ 满足以下条件：\n\n(a) $F(U)=\\{0\\}$；\n\n(b) 存在 $v_1\\in V$，$v_1\\notin U$ 且 $F(v_1)\\neq 0$。\n\n回答以下问题：\n\n(1) 取满足条件(b)的 $v_1$，设 $\\{v_2,v_3\\}$ 是 $U$ 的一组基，证明 $\\{v_1,v_2,v_3\\}$ 是 $V$ 的一组基。\n\n(2) 设 $F$ 关于(1)中基的表示矩阵为 $A$，证明 $A$ 具有形式\n$$A=\\begin{pmatrix}a&0&0\\\\b&0&0\\\\c&0&0\\end{pmatrix}$$\n\n(3) 当条件(b)中的 $v_1$ 可以取到使 $F(v_1)\\notin U$ 时，证明 $A$ 可对角化。\n\n(4) 当条件(b)中的 $v_1$ 只能取到 $F(v_1)\\in U$ 时，求 $A$ 的若尔当标准形。",
+  "knowledge_points": [
+    "线性空间的基与直和分解",
+    "线性变换的矩阵表示",
+    "特征值与代数/几何重数",
+    "矩阵可对角化的判定",
+    "若尔当标准形",
+    "幂零矩阵"
+  ],
+  "question_type": "线性变换的表示矩阵与标准形证明题",
+  "method": [
+    "基扩张证明线性无关",
+    "利用子空间上的作用构造矩阵形式",
+    "计算特征多项式判断重数",
+    "分析零空间维数确定可对角化性",
+    "对幂零矩阵直接构造若尔当基"
+  ],
+  "solution_steps": [
+    "证明 v1,v2,v3 线性无关从而构成基",
+    "利用 F(v2)=F(v3)=0 及 F(v1) 在基下的坐标写出矩阵 A 的形式",
+    "计算 A 的特征多项式，得到非零特征值 a 与二重特征值 0",
+    "比较特征值0的代数重数与几何重数判断可对角化",
+    "当 a=0 时验证 A^2=0 且 rank(A)=1，构造若尔当基给出标准形"
+  ],
+  "math_structure": {
+    "type": "linear_transformation_jordan_form",
+    "template": "V=U\\oplus\\langle v_1\\rangle,\\ F|_U=0,\\ F(v_1)=av_1+bv_2+cv_3,\\ A=\\begin{pmatrix}a&0&0\\\\b&0&0\\\\c&0&0\\end{pmatrix}",
+    "variable_count": 4
+  },
+  "difficulty": 4,
+  "answer": [
+    {
+      "label": "(1)",
+      "steps": [
+        "设 $\\alpha v_1+\\beta v_2+\\gamma v_3=0$。若 $\\alpha\\neq 0$，则 $v_1=-\\frac{\\beta}{\\alpha}v_2-\\frac{\\gamma}{\\alpha}v_3\\in U$，与 $v_1\\notin U$ 矛盾，故 $\\alpha=0$。",
+        "此时 $\\beta v_2+\\gamma v_3=0$，因为 $\\{v_2,v_3\\}$ 是 $U$ 的基（线性无关），所以 $\\beta=\\gamma=0$。",
+        "故 $v_1,v_2,v_3$ 线性无关，又 $\\dim V=3$，所以 $\\{v_1,v_2,v_3\\}$ 是 $V$ 的一组基。"
+      ]
+    },
+    {
+      "label": "(2)",
+      "steps": [
+        "由条件(a)，$v_2,v_3\\in U$ 时 $F(v_2)=F(v_3)=0$，即在基 $\\{v_1,v_2,v_3\\}$ 下，$F(v_2)$、$F(v_3)$ 的坐标都是 $(0,0,0)^T$。",
+        "$F(v_1)\\in V$，可唯一表示为 $F(v_1)=av_1+bv_2+cv_3$（某些常数 $a,b,c\\in\\mathbb{C}$）。",
+        "矩阵 $A$ 的第 $i$ 列即 $F(v_i)$ 在基下的坐标，因此 $A=\\begin{pmatrix}a&0&0\\\\b&0&0\\\\c&0&0\\end{pmatrix}$，与要求形式一致。"
+      ]
+    },
+    {
+      "label": "(3)",
+      "steps": [
+        "$F(v_1)\\notin U$ 等价于 $a\\neq 0$（否则 $F(v_1)=bv_2+cv_3\\in U$）。",
+        "计算特征多项式：$\\det(A-\\lambda I)=\\det\\begin{pmatrix}a-\\lambda&0&0\\\\b&-\\lambda&0\\\\c&0&-\\lambda\\end{pmatrix}=(a-\\lambda)\\lambda^2$，故特征值为 $a$（单重）与 $0$（代数重数2）。",
+        "求特征值0的特征空间：$Av=0\\iff ax=0,\\ bx=0,\\ cx=0$（$v=(x,y,z)^T$），因 $a\\neq0$，得 $x=0$，即特征空间为 $\\{x=0\\}$，维数为2，与代数重数相等。",
+        "特征值 $a$ 也是单根，几何重数自然为1，两特征值几何重数之和为 $1+2=3=\\dim V$，故 $A$ 可对角化。"
+      ]
+    },
+    {
+      "label": "(4)",
+      "steps": [
+        "$F(v_1)\\in U$ 等价于 $a=0$，此时 $F(v_1)\\neq 0$ 要求 $(b,c)\\neq(0,0)$。",
+        "此时 $A=\\begin{pmatrix}0&0&0\\\\b&0&0\\\\c&0&0\\end{pmatrix}$，对任意 $v=(x,y,z)^T$，$Av=(0,bx,cx)^T$，故 $\\mathrm{rank}(A)=1$（因 $(b,c)\\neq0$）。",
+        "计算 $A^2v=A(0,bx,cx)^T=(0,0,0)^T$，即 $A^2=0$，故 $A$ 是幂零矩阵，唯一特征值为0，且指数（幂零阶）为2。",
+        "3×3 幂零矩阵满足 $\\mathrm{rank}(A)=1$、$A^2=0$，对应若尔当块结构为一个2阶块与一个1阶块（因为2阶块贡献秩1，1阶块贡献秩0，总秩=1，且总阶数=3）。",
+        "故 $A$ 的若尔当标准形为 $J=\\begin{pmatrix}0&1&0\\\\0&0&0\\\\0&0&0\\end{pmatrix}$。"
+      ]
+    }
+  ],
+  "practice_questions": [
+    {
+      "text": "设 $V$ 是 $\\mathbb{C}$ 上的2维线性空间，$U$ 是 $V$ 的1维子空间，$F:V\\to V$ 线性变换满足 $F(U)=\\{0\\}$，且存在 $v_1\\notin U$，$F(v_1)\\neq 0$。取 $u\\in U$ 为 $U$ 的基向量，写出 $F$ 在基 $\\{v_1,u\\}$ 下的表示矩阵的一般形式，并讨论其在 $F(v_1)\\in U$ 与 $F(v_1)\\notin U$ 两种情形下的若尔当标准形。",
+      "knowledge_points": [
+        "线性变换表示矩阵",
+        "低维直和分解",
+        "若尔当标准形"
+      ],
+      "question_type": "简化版矩阵形式与标准形讨论",
+      "method": [
+        "构造基",
+        "写出矩阵形式",
+        "分类讨论特征值"
+      ],
+      "solution_steps": [
+        "证明{v1,u}为基",
+        "利用F(u)=0确定矩阵第二列",
+        "写出F(v1)=a v1+b u确定矩阵",
+        "分类a=0或a≠0求标准形"
+      ],
+      "math_structure": {
+        "type": "linear_transformation_jordan_form_2d",
+        "template": "A=\\begin{pmatrix}a&0\\\\b&0\\end{pmatrix}",
+        "variable_count": 2
+      },
+      "difficulty": 2,
+      "estimated_minutes": 10,
+      "answer": [
+        {
+          "label": "矩阵形式与标准形",
+          "steps": [
+            "同(1)(2)的证法：$v_1,u$ 线性无关（因 $v_1\\notin U=\\mathrm{span}(u)$），构成基；$F(u)=0$，$F(v_1)=av_1+bu$，故矩阵为 $A=\\begin{pmatrix}a&0\\\\b&0\\end{pmatrix}$。",
+            "若 $a\\neq0$（即 $F(v_1)\\notin U$）：特征值为 $a,0$ 均单重，$A$ 可对角化，标准形即对角矩阵 $\\mathrm{diag}(a,0)$。",
+            "若 $a=0$（即 $F(v_1)\\in U$，须 $b\\neq0$ 保证 $F(v_1)\\neq0$）：$A=\\begin{pmatrix}0&0\\\\b&0\\end{pmatrix}$，$\\mathrm{rank}(A)=1$，$A^2=0$，是2阶幂零矩阵，若尔当标准形为 $\\begin{pmatrix}0&1\\\\0&0\\end{pmatrix}$。"
+          ]
+        }
+      ],
+      "id": "nagoya-2003-ccf1e04087-q01-practice-01",
+      "school": "名古屋大学",
+      "year": "2003"
+    },
+    {
+      "text": "设 $A=\\begin{pmatrix}2&0&0\\\\3&0&0\\\\5&0&0\\end{pmatrix}$ 是复数域上的 $3\\times 3$ 矩阵，求 $A$ 的所有特征值及对应的特征子空间维数，并判断 $A$ 是否可对角化。",
+      "knowledge_points": [
+        "特征值计算",
+        "特征子空间",
+        "可对角化判定"
+      ],
+      "question_type": "特征值与可对角化判定计算题",
+      "method": [
+        "求特征多项式",
+        "求零空间维数比较代数与几何重数"
+      ],
+      "solution_steps": [
+        "写出特征多项式",
+        "求出特征值0(重2)和2(重1)",
+        "求特征值0对应的特征空间维数",
+        "比较重数得出结论"
+      ],
+      "math_structure": {
+        "type": "eigenvalue_diagonalizability",
+        "template": "A=\\begin{pmatrix}a&0&0\\\\b&0&0\\\\c&0&0\\end{pmatrix}",
+        "variable_count": 3
+      },
+      "difficulty": 2,
+      "estimated_minutes": 8,
+      "answer": [
+        {
+          "label": "特征值与可对角化性",
+          "steps": [
+            "特征多项式 $\\det(A-\\lambda I)=(2-\\lambda)\\lambda^2$，特征值为 $\\lambda=2$（单重）和 $\\lambda=0$（代数重数2）。",
+            "对 $\\lambda=0$：解 $Av=0$，即 $2x=0,3x=0,5x=0$，得 $x=0$，$y,z$ 自由，特征空间维数为2，等于代数重数。",
+            "两个特征值几何重数之和 $1+2=3=n$，故 $A$ 可对角化，相似于 $\\mathrm{diag}(2,0,0)$。"
+          ]
+        }
+      ],
+      "id": "nagoya-2003-ccf1e04087-q01-practice-02",
+      "school": "名古屋大学",
+      "year": "2003"
+    },
+    {
+      "text": "设 $B$ 是 $3\\times3$ 复矩阵，满足 $B^2=0$ 且 $\\mathrm{rank}(B)=1$。求 $B$ 的若尔当标准形，并说明理由。",
+      "knowledge_points": [
+        "幂零矩阵",
+        "若尔当标准形",
+        "秩与幂零指数关系"
+      ],
+      "question_type": "幂零矩阵标准形判定",
+      "method": [
+        "利用秩与若尔当块大小关系",
+        "利用B^2=0限制块大小不超过2"
+      ],
+      "solution_steps": [
+        "说明B所有特征值为0",
+        "由B^2=0得若尔当块阶数≤2",
+        "由rank(B)=1确定块结构为(2,1)"
+      ],
+      "math_structure": {
+        "type": "nilpotent_jordan_form",
+        "template": "B^2=0,\\ \\mathrm{rank}(B)=1,\\ \\dim=3",
+        "variable_count": 1
+      },
+      "difficulty": 2,
+      "estimated_minutes": 8,
+      "answer": [
+        {
+          "label": "若尔当标准形",
+          "steps": [
+            "$B^2=0$ 意味 $B$ 幂零，且幂零指数不超过2，故所有若尔当块的大小 $\\le 2$。",
+            "一般地，若尔当块大小为 $n$ 的幂零块对秩的贡献为 $n-1$；设块大小分别为 $n_1\\ge n_2\\ge\\dots$，满足 $\\sum n_i=3$ 且 $\\sum(n_i-1)=\\mathrm{rank}(B)=1$。",
+            "由 $n_i\\le 2$ 且 $\\sum n_i=3$，唯一可能为块大小 $(2,1)$，此时秩贡献为 $(2-1)+(1-1)=1$，恰好满足条件。",
+            "故 $B$ 的若尔当标准形为 $\\begin{pmatrix}0&1&0\\\\0&0&0\\\\0&0&0\\end{pmatrix}$。"
+          ]
+        }
+      ],
+      "id": "nagoya-2003-ccf1e04087-q01-practice-03",
+      "school": "名古屋大学",
+      "year": "2003"
+    },
+    {
+      "text": "在原题(4)的情形中，若额外假设 $b=0,\\ c\\neq0$（即 $A=\\begin{pmatrix}0&0&0\\\\0&0&0\\\\c&0&0\\end{pmatrix}$），验证 $A$ 的若尔当标准形是否仍与一般情形相同，并给出具体的若尔当基（用 $v_1,v_2,v_3$ 表示）。",
+      "knowledge_points": [
+        "若尔当基构造",
+        "幂零变换的核与像"
+      ],
+      "question_type": "若尔当基的具体构造",
+      "method": [
+        "计算Av,求核",
+        "选取满足Av=w的向量构造广义特征向量链"
+      ],
+      "solution_steps": [
+        "计算A作用在基向量上的结果",
+        "确定ker(A)与im(A)",
+        "构造若尔当链{v3, Av3}"
+      ],
+      "math_structure": {
+        "type": "jordan_basis_construction",
+        "template": "A=\\begin{pmatrix}0&0&0\\\\0&0&0\\\\c&0&0\\end{pmatrix},\\ c\\neq0",
+        "variable_count": 1
+      },
+      "difficulty": 3,
+      "estimated_minutes": 12,
+      "answer": [
+        {
+          "label": "若尔当基构造",
+          "steps": [
+            "计算 $Av_1=(0,0,c)^T=cv_3$，$Av_2=0$，$Av_3=0$（因矩阵第2、3列为零）。",
+            "取链的顶端向量 $w=v_1$，则 $Aw=cv_3\\neq0$（因 $c\\neq0$），且 $A(Aw)=A(cv_3)=0$，说明 $\\{w,Aw\\}=\\{v_1,cv_3\\}$ 构成一个长度2的若尔当链。",
+            "第三个基向量取 $v_2$（因 $Av_2=0$，且 $v_2$ 与链 $\\{v_1,cv_3\\}$ 线性无关），构成完整若尔当基 $\\{v_1,\\,cv_3,\\,v_2\\}$。",
+            "在此基下 $A$ 的表示矩阵即为标准若尔当形 $\\begin{pmatrix}0&1&0\\\\0&0&0\\\\0&0&0\\end{pmatrix}$，与一般情形一致，说明标准形不依赖 $b,c$ 的具体取值（只需 $(b,c)\\neq(0,0)$）。"
+          ]
+        }
+      ],
+      "id": "nagoya-2003-ccf1e04087-q01-practice-04",
+      "school": "名古屋大学",
+      "year": "2003"
+    }
+  ],
+  "source_question": "問1",
+  "source_pdf": "名古屋大学/多元数理科学研究科/全专攻/名古屋大学_多元数理科学研究科_2003_第1次_数学过去问_下午.pdf",
+  "source_type": "官方过去问",
+  "subject_category": "线性代数"
+}

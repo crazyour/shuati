@@ -1,0 +1,231 @@
+{
+  "id": "nagoya-2001-b2a59dbd58-q01",
+  "school": "名古屋大学",
+  "year": "2001",
+  "subject": "多元数理科学研究科_全专攻",
+  "text": "设 $V = \\{\\begin{pmatrix}x\\\\y\\\\z\\end{pmatrix} \\in \\mathbb{R}^3 \\mid x+y+z=0\\}$ 是 $\\mathbb{R}^3$ 的线性部分空间。\n\n(1) 求 $V$ 的一组基底。\n\n(2) 对任意 $\\begin{pmatrix}x\\\\y\\\\z\\end{pmatrix} \\in V$，定义线性变换 $f: \\begin{pmatrix}x\\\\y\\\\z\\end{pmatrix} \\mapsto \\begin{pmatrix}y\\\\z\\\\x\\end{pmatrix}$。求在 (1) 中所得基底下 $f$ 的矩阵表示。",
+  "knowledge_points": [
+    "线性部分空间",
+    "约束条件参数化",
+    "基底与维数",
+    "线性变换",
+    "矩阵表示",
+    "坐标变换"
+  ],
+  "question_type": "线性变换的矩阵表示",
+  "method": [
+    "参数化约束条件得到基向量",
+    "对基向量应用线性变换",
+    "用基底表示像向量的坐标",
+    "组合成矩阵的列向量"
+  ],
+  "solution_steps": [
+    "由约束条件 $x+y+z=0$ 参数化得基向量",
+    "计算 $f$ 在各基向量上的作用",
+    "将像向量用基底线性表示",
+    "由坐标写出矩阵表示"
+  ],
+  "math_structure": {
+    "type": "constrained_linear_transformation",
+    "template": "$V = \\{\\mathbf{v} \\in \\mathbb{R}^n \\mid \\mathbf{a} \\cdot \\mathbf{v} = 0\\}$ 上的线性变换 $f: \\mathbf{v} \\mapsto P\\mathbf{v}$，求基底和矩阵表示",
+    "variable_count": 3
+  },
+  "difficulty": 2,
+  "answer": [
+    {
+      "label": "(1) 求 $V$ 的基底",
+      "steps": [
+        "由约束条件 $x+y+z=0$，得 $z = -x-y$。",
+        "故 $\\begin{pmatrix}x\\\\y\\\\z\\end{pmatrix} = \\begin{pmatrix}x\\\\y\\\\-x-y\\end{pmatrix} = x\\begin{pmatrix}1\\\\0\\\\-1\\end{pmatrix} + y\\begin{pmatrix}0\\\\1\\\\-1\\end{pmatrix}$。",
+        "验证线性无关性：若 $c_1\\begin{pmatrix}1\\\\0\\\\-1\\end{pmatrix} + c_2\\begin{pmatrix}0\\\\1\\\\-1\\end{pmatrix} = \\begin{pmatrix}0\\\\0\\\\0\\end{pmatrix}$，则 $c_1 = 0, c_2 = 0$。",
+        "因此 $V$ 的一组基底为：$$\\boxed{v_1 = \\begin{pmatrix}1\\\\0\\\\-1\\end{pmatrix}, \\quad v_2 = \\begin{pmatrix}0\\\\1\\\\-1\\end{pmatrix}}$$"
+      ]
+    },
+    {
+      "label": "(2) 求 $f$ 的矩阵表示",
+      "steps": [
+        "对基向量 $v_1$ 应用变换：$f(v_1) = f\\begin{pmatrix}1\\\\0\\\\-1\\end{pmatrix} = \\begin{pmatrix}0\\\\-1\\\\1\\end{pmatrix}$。",
+        "对基向量 $v_2$ 应用变换：$f(v_2) = f\\begin{pmatrix}0\\\\1\\\\-1\\end{pmatrix} = \\begin{pmatrix}1\\\\-1\\\\0\\end{pmatrix}$。",
+        "将 $f(v_1) = \\begin{pmatrix}0\\\\-1\\\\1\\end{pmatrix}$ 用基 $\\{v_1, v_2\\}$ 表示。设 $\\begin{pmatrix}0\\\\-1\\\\1\\end{pmatrix} = a_1 v_1 + a_2 v_2$：",
+        "$a_1 \\cdot 1 + a_2 \\cdot 0 = 0 \\Rightarrow a_1 = 0$；$a_1 \\cdot 0 + a_2 \\cdot 1 = -1 \\Rightarrow a_2 = -1$；$a_1 \\cdot (-1) + a_2 \\cdot (-1) = 0 + 1 = 1$ ✓",
+        "故 $f(v_1) = 0 \\cdot v_1 + (-1) \\cdot v_2$。",
+        "将 $f(v_2) = \\begin{pmatrix}1\\\\-1\\\\0\\end{pmatrix}$ 用基 $\\{v_1, v_2\\}$ 表示。设 $\\begin{pmatrix}1\\\\-1\\\\0\\end{pmatrix} = b_1 v_1 + b_2 v_2$：",
+        "$b_1 \\cdot 1 + b_2 \\cdot 0 = 1 \\Rightarrow b_1 = 1$；$b_1 \\cdot 0 + b_2 \\cdot 1 = -1 \\Rightarrow b_2 = -1$；$b_1 \\cdot (-1) + b_2 \\cdot (-1) = -1 + 1 = 0$ ✓",
+        "故 $f(v_2) = 1 \\cdot v_1 + (-1) \\cdot v_2$。",
+        "矩阵的第1列由 $f(v_1)$ 的坐标 $(0, -1)^T$ 组成，第2列由 $f(v_2)$ 的坐标 $(1, -1)^T$ 组成。",
+        "因此 $f$ 的矩阵表示为：$$\\boxed{[f] = \\begin{pmatrix}0 & 1\\\\-1 & -1\\end{pmatrix}}$$"
+      ]
+    }
+  ],
+  "practice_questions": [
+    {
+      "text": "设 $W = \\{\\begin{pmatrix}x\\\\y\\\\z\\end{pmatrix} \\in \\mathbb{R}^3 \\mid 2x-y+z=0\\}$。求 $W$ 的一组基底。",
+      "knowledge_points": [
+        "线性部分空间",
+        "约束条件参数化",
+        "基底"
+      ],
+      "question_type": "求线性子空间的基底",
+      "method": [
+        "参数化约束条件"
+      ],
+      "solution_steps": [
+        "从约束条件消去一个变量",
+        "参数化剩余两个自由变量",
+        "写出基向量"
+      ],
+      "math_structure": {
+        "type": "linear_subspace_basis",
+        "template": "从约束 $\\sum c_i x_i = 0$ 确定参数化并找出基向量",
+        "variable_count": 2
+      },
+      "difficulty": 1,
+      "estimated_minutes": 5,
+      "answer": [
+        {
+          "label": "求 $W$ 的基底",
+          "steps": [
+            "由约束 $2x - y + z = 0$ 得 $z = y - 2x$。",
+            "向量形式：$\\begin{pmatrix}x\\\\y\\\\z\\end{pmatrix} = \\begin{pmatrix}x\\\\y\\\\y-2x\\end{pmatrix} = x\\begin{pmatrix}1\\\\0\\\\-2\\end{pmatrix} + y\\begin{pmatrix}0\\\\1\\\\1\\end{pmatrix}$。",
+            "因此 $W$ 的一组基底为 $\\boxed{\\begin{pmatrix}1\\\\0\\\\-2\\end{pmatrix}, \\begin{pmatrix}0\\\\1\\\\1\\end{pmatrix}}$。"
+          ]
+        }
+      ],
+      "id": "nagoya-2001-b2a59dbd58-q01-practice-01",
+      "school": "名古屋大学",
+      "year": "2001"
+    },
+    {
+      "text": "设 $V = \\{\\begin{pmatrix}x\\\\y\\\\z\\end{pmatrix} \\in \\mathbb{R}^3 \\mid x+y+z=0\\}$，线性变换 $g: \\begin{pmatrix}x\\\\y\\\\z\\end{pmatrix} \\mapsto \\begin{pmatrix}z\\\\x\\\\y\\end{pmatrix}$。求 $g$ 在基 $v_1 = \\begin{pmatrix}1\\\\0\\\\-1\\end{pmatrix}, v_2 = \\begin{pmatrix}0\\\\1\\\\-1\\end{pmatrix}$ 下的矩阵表示。",
+      "knowledge_points": [
+        "线性变换",
+        "矩阵表示",
+        "坐标计算"
+      ],
+      "question_type": "求线性变换的矩阵表示",
+      "method": [
+        "对基向量应用变换",
+        "用基表示像向量"
+      ],
+      "solution_steps": [
+        "计算变换作用在基向量上的结果",
+        "线性表示为基向量的组合",
+        "写出矩阵列向量"
+      ],
+      "math_structure": {
+        "type": "linear_transformation_representation",
+        "template": "已知基和线性变换规则，求矩阵表示 $[f(v_i)] = \\sum_j a_{ji} v_j$",
+        "variable_count": 2
+      },
+      "difficulty": 2,
+      "estimated_minutes": 8,
+      "answer": [
+        {
+          "label": "求 $g$ 的矩阵表示",
+          "steps": [
+            "计算 $g(v_1)$：$g\\begin{pmatrix}1\\\\0\\\\-1\\end{pmatrix} = \\begin{pmatrix}-1\\\\1\\\\0\\end{pmatrix}$。",
+            "用基表示：设 $\\begin{pmatrix}-1\\\\1\\\\0\\end{pmatrix} = c_1 v_1 + c_2 v_2$，得 $c_1 = -1, c_2 = 1, -c_1 - c_2 = 0$ ✓",
+            "所以 $g(v_1) = -v_1 + v_2$。",
+            "计算 $g(v_2)$：$g\\begin{pmatrix}0\\\\1\\\\-1\\end{pmatrix} = \\begin{pmatrix}-1\\\\0\\\\1\\end{pmatrix}$。",
+            "用基表示：设 $\\begin{pmatrix}-1\\\\0\\\\1\\end{pmatrix} = d_1 v_1 + d_2 v_2$，得 $d_1 = -1, d_2 = 0, -d_1 = 1$ ✓",
+            "所以 $g(v_2) = -v_1$。",
+            "矩阵表示：$$[g] = \\begin{pmatrix}-1 & -1\\\\1 & 0\\end{pmatrix}$$"
+          ]
+        }
+      ],
+      "id": "nagoya-2001-b2a59dbd58-q01-practice-02",
+      "school": "名古屋大学",
+      "year": "2001"
+    },
+    {
+      "text": "设基向量 $u_1 = \\begin{pmatrix}1\\\\1\\\\1\\end{pmatrix}, u_2 = \\begin{pmatrix}1\\\\-1\\\\0\\end{pmatrix}$，定义变换 $h$ 的矩阵（相对于此基）为 $[h] = \\begin{pmatrix}2 & 1\\\\1 & -1\\end{pmatrix}$。求 $h(u_1)$ 和 $h(u_2)$。",
+      "knowledge_points": [
+        "线性变换",
+        "矩阵表示",
+        "坐标变换"
+      ],
+      "question_type": "从矩阵表示反推变换结果",
+      "method": [
+        "矩阵-向量乘法",
+        "坐标到向量的转换"
+      ],
+      "solution_steps": [
+        "取基向量在该基下的坐标",
+        "用矩阵左乘坐标向量",
+        "将结果转换回标准坐标"
+      ],
+      "math_structure": {
+        "type": "matrix_to_transformation",
+        "template": "已知 $[h] = M$，求 $h(v) = \\sum_i (Mv)_i u_i$",
+        "variable_count": 2
+      },
+      "difficulty": 2,
+      "estimated_minutes": 7,
+      "answer": [
+        {
+          "label": "求 $h(u_1)$ 和 $h(u_2)$",
+          "steps": [
+            "$u_1$ 在基 $\\{u_1, u_2\\}$ 下的坐标为 $(1, 0)^T$。",
+            "由矩阵表示：$[h]\\begin{pmatrix}1\\\\0\\end{pmatrix} = \\begin{pmatrix}2 & 1\\\\1 & -1\\end{pmatrix}\\begin{pmatrix}1\\\\0\\end{pmatrix} = \\begin{pmatrix}2\\\\1\\end{pmatrix}$。",
+            "故 $h(u_1) = 2u_1 + 1u_2 = 2\\begin{pmatrix}1\\\\1\\\\1\\end{pmatrix} + \\begin{pmatrix}1\\\\-1\\\\0\\end{pmatrix} = \\boxed{\\begin{pmatrix}3\\\\1\\\\2\\end{pmatrix}}$。",
+            "$u_2$ 在基 $\\{u_1, u_2\\}$ 下的坐标为 $(0, 1)^T$。",
+            "由矩阵表示：$[h]\\begin{pmatrix}0\\\\1\\end{pmatrix} = \\begin{pmatrix}2 & 1\\\\1 & -1\\end{pmatrix}\\begin{pmatrix}0\\\\1\\end{pmatrix} = \\begin{pmatrix}1\\\\-1\\end{pmatrix}$。",
+            "故 $h(u_2) = 1u_1 + (-1)u_2 = \\begin{pmatrix}1\\\\1\\\\1\\end{pmatrix} - \\begin{pmatrix}1\\\\-1\\\\0\\end{pmatrix} = \\boxed{\\begin{pmatrix}0\\\\2\\\\1\\end{pmatrix}}$。"
+          ]
+        }
+      ],
+      "id": "nagoya-2001-b2a59dbd58-q01-practice-03",
+      "school": "名古屋大学",
+      "year": "2001"
+    },
+    {
+      "text": "设 $V = \\{\\begin{pmatrix}x\\\\y\\\\z\\end{pmatrix} \\in \\mathbb{R}^3 \\mid x+y+z=0\\}$，$f$ 在基 $v_1 = \\begin{pmatrix}1\\\\0\\\\-1\\end{pmatrix}, v_2 = \\begin{pmatrix}0\\\\1\\\\-1\\end{pmatrix}$ 下的矩阵为 $M = \\begin{pmatrix}0 & 1\\\\-1 & -1\\end{pmatrix}$。求 $f$ 的核（kernel）和像（image）的维数。",
+      "knowledge_points": [
+        "矩阵的秩",
+        "线性变换的核和像",
+        "维数",
+        "秩零化度定理"
+      ],
+      "question_type": "求核和像的维数",
+      "method": [
+        "化简矩阵求秩",
+        "应用秩零化度定理"
+      ],
+      "solution_steps": [
+        "对矩阵进行行化简",
+        "判断秩",
+        "计算核的维数"
+      ],
+      "math_structure": {
+        "type": "kernel_image_dimension",
+        "template": "给定矩阵 $M$，$\\dim(\\ker f) = n - \\text{rank}(M)$，$\\dim(\\text{im} f) = \\text{rank}(M)$",
+        "variable_count": 2
+      },
+      "difficulty": 2,
+      "estimated_minutes": 8,
+      "answer": [
+        {
+          "label": "求核和像的维数",
+          "steps": [
+            "对矩阵 $M = \\begin{pmatrix}0 & 1\\\\-1 & -1\\end{pmatrix}$ 行化简。",
+            "交换第1、2行：$\\begin{pmatrix}-1 & -1\\\\0 & 1\\end{pmatrix}$。",
+            "第1行乘以 $-1$：$\\begin{pmatrix}1 & 1\\\\0 & 1\\end{pmatrix}$。",
+            "第1行减去第2行：$\\begin{pmatrix}1 & 0\\\\0 & 1\\end{pmatrix}$。",
+            "矩阵的秩为 $\\text{rank}(M) = 2$。",
+            "由秩零化度定理：$\\dim(\\ker f) + \\dim(\\text{im} f) = \\text{维数}(V) = 2$。",
+            "$\\dim(\\text{im} f) = \\text{rank}(M) = \\boxed{2}$。",
+            "$\\dim(\\ker f) = 2 - 2 = \\boxed{0}$。",
+            "即 $f$ 是单射，核为平凡子空间 $\\{0\\}$。"
+          ]
+        }
+      ],
+      "id": "nagoya-2001-b2a59dbd58-q01-practice-04",
+      "school": "名古屋大学",
+      "year": "2001"
+    }
+  ],
+  "source_question": "問1",
+  "source_pdf": "名古屋大学/多元数理科学研究科/全专攻/名古屋大学_多元数理科学研究科_2001_第1次_数学过去问_上午.pdf",
+  "source_type": "官方过去问",
+  "subject_category": "线性代数"
+}

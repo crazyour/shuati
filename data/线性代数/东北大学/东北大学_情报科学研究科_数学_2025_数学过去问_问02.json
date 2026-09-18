@@ -1,0 +1,255 @@
+{
+  "id": "tohoku-2025-4edab22cfc-q02",
+  "school": "东北大学",
+  "year": "2025",
+  "subject": "情报科学研究科_数学教室",
+  "text": "设 $c$ 为实数。对于两个矩阵\n$$A=\\begin{pmatrix}1&2&0&0\\\\2&4&0&0\\\\0&0&3&3\\\\0&0&c&c\\end{pmatrix},\\quad B=\\begin{pmatrix}1&0&1&0\\\\0&2&0&4\\\\1&0&1&0\\\\0&1&0&2\\end{pmatrix},$$\n定义线性映射 $f_A,f_B:\\mathbb{R}^4\\to\\mathbb{R}^4$ 为 $f_A(x)=Ax$，$f_B(x)=Bx$，其中 $x$ 表示 $\\mathbb{R}^4$ 中的列向量。\n(1) 求 $f_A$ 的核 $\\mathrm{Ker}\\,f_A$ 的一组基。\n(2) 求 $f_B$ 的核 $\\mathrm{Ker}\\,f_B$ 的一组基。\n(3) 设 $\\mathrm{Ker}\\,f_A$ 在 $f_B$ 下的像 $f_B(\\mathrm{Ker}\\,f_A)$ 与 $\\mathrm{Ker}\\,f_B$ 在 $f_A$ 下的像 $f_A(\\mathrm{Ker}\\,f_B)$ 的交集包含非零向量，求实数 $c$。",
+  "knowledge_points": [
+    "矩阵的核（零空间）",
+    "线性映射的像",
+    "齐次线性方程组求解",
+    "子空间的交集",
+    "参数方程求解"
+  ],
+  "question_type": "线性映射的核与像综合题",
+  "method": [
+    "直接求解齐次方程组得核的基",
+    "把核的基向量代入另一矩阵求像",
+    "设一般线性组合，比较分量得到关于参数的方程"
+  ],
+  "solution_steps": [
+    "把 A 看成两个 2×2 分块，分别求各分块的核",
+    "把 B 看成结构（行/列成比例）矩阵，直接求 Bx=0 的解空间",
+    "把 Ker fA 的基代入 B，求出 fB(Ker fA) 的一般表达式（含参数关系）",
+    "把 Ker fB 的基代入 A（含参数 c），求出 fA(Ker fB) 的一般表达式",
+    "令两个像空间的一般向量相等，比较各分量得到关于系数与 c 的方程组，解出 c"
+  ],
+  "math_structure": {
+    "type": "kernel_image_intersection_parametric",
+    "template": "find c such that f_B(Ker f_A) \\cap f_A(Ker f_B) \\ne \\{0\\}",
+    "variable_count": 1
+  },
+  "difficulty": 4,
+  "answer": [
+    {
+      "label": "(1)",
+      "steps": [
+        "A 是分块矩阵：第一块 $\\begin{pmatrix}1&2\\\\2&4\\end{pmatrix}$ 作用在 $(x_1,x_2)$ 上，第二块 $\\begin{pmatrix}3&3\\\\c&c\\end{pmatrix}$ 作用在 $(x_3,x_4)$ 上。",
+        "第一块：$(x_1+2x_2,\\,2x_1+4x_2)=(x_1+2x_2)(1,2)$，为零当且仅当 $x_1+2x_2=0$，解为 $(x_1,x_2)=t(-2,1)$。",
+        "第二块：$(3x_3+3x_4,\\,cx_3+cx_4)=(x_3+x_4)(3,c)$，因 $(3,c)\\ne(0,0)$（第一分量恒为3），为零当且仅当 $x_3+x_4=0$，解为 $(x_3,x_4)=s(1,-1)$，此结论对任意 $c$ 都成立。",
+        "故 $\\mathrm{Ker}\\,f_A=\\mathrm{span}\\{(-2,1,0,0)^T,(0,0,1,-1)^T\\}$，此为一组基（与 $c$ 无关）。"
+      ]
+    },
+    {
+      "label": "(2)",
+      "steps": [
+        "观察 B：第1行与第3行相同 $(1,0,1,0)$；第2行 $=2\\times$ 第4行（$(0,2,0,4)=2(0,1,0,2)$），故 $\\mathrm{rank}\\,B=2$。",
+        "由第1（=第3）行：$x_1+x_3=0$；由第4行（等价于第2行）：$x_2+2x_4=0$。",
+        "解得 $x_1=-x_3,\\ x_2=-2x_4$，$x_3,x_4$ 自由。取 $x_3=1,x_4=0$ 得 $(-1,0,1,0)^T$；取 $x_3=0,x_4=1$ 得 $(0,-2,0,1)^T$。",
+        "故 $\\mathrm{Ker}\\,f_B=\\mathrm{span}\\{(-1,0,1,0)^T,(0,-2,0,1)^T\\}$。"
+      ]
+    },
+    {
+      "label": "(3)",
+      "steps": [
+        "计算 $B$ 作用在 $\\mathrm{Ker}\\,f_A$ 的基上：$B(-2,1,0,0)^T=-2(1,0,1,0)^T+(0,2,0,1)^T=(-2,2,-2,1)^T$；$B(0,0,1,-1)^T=(1,0,1,0)^T-(0,4,0,2)^T=(1,-4,1,-2)^T$。",
+        "设 $f_B(\\mathrm{Ker}f_A)$ 中一般向量为 $a(-2,2,-2,1)+b(1,-4,1,-2)=(p,q,p,r)$，其中 $p=-2a+b,\\ r=a-2b$，可解得 $q=2r$（第2分量恒等于第4分量的2倍）。故该像空间为 $\\{(p,2r,p,r):p,r\\in\\mathbb R\\}$。",
+        "计算 $A$（含参数 $c$）作用在 $\\mathrm{Ker}\\,f_B$ 的基上：$A(-1,0,1,0)^T=-(1,2,0,0)^T+(0,0,3,c)^T=(-1,-2,3,c)^T$；$A(0,-2,0,1)^T=-2(2,4,0,0)^T+(0,0,3,c)^T=(-4,-8,3,c)^T$。",
+        "设 $f_A(\\mathrm{Ker}f_B)$ 中一般向量为 $s(-1,-2,3,c)+t(-4,-8,3,c)$；用另一组线性组合参数改写为 $s'(-1,-2,3,c)+t'(0,0,3,c)$（由 $(-4,-8,3,c)-4(-1,-2,3,c)=(0,0,-9,-3c)$ 得到），即一般元为 $(-s,-2s,3(s+t),c(s+t))$。",
+        "令两像空间相交非零：由 $p=-s,\\ q=-2s=2r\\Rightarrow r=-s$；又 $p=3(s+t)\\Rightarrow -s=3(s+t)\\Rightarrow t=-\\tfrac{4s}{3}$；再由 $r=c(s+t)$：$-s=c\\left(s-\\tfrac{4s}{3}\\right)=c\\cdot\\left(-\\tfrac{s}{3}\\right)$。",
+        "当 $s\\ne0$ 时两边除以 $-\\tfrac{s}{3}$：$c=3$。取 $s=3,t=-4$ 验证：向量为 $(-3,-6,-3,-3)$，代入 $A$ 的组合：$3(-1,-2,3,3)+(-4)(0,0,3,3)=(-3,-6,9-12,9-12)=(-3,-6,-3,-3)$，与 $f_B$ 侧取 $a=b=3$ 得到的 $(-3,-6,-3,-3)$ 完全一致，验证成功。",
+        "故所求实数为 $c=3$。"
+      ]
+    }
+  ],
+  "practice_questions": [
+    {
+      "text": "求矩阵 $A_1=\\begin{pmatrix}1&3\\\\2&6\\end{pmatrix}$ 定义的线性映射 $f_{A_1}(x)=A_1x$ 的核的一组基。",
+      "knowledge_points": [
+        "矩阵核",
+        "齐次线性方程组"
+      ],
+      "question_type": "求核基础题",
+      "method": [
+        "解齐次方程组"
+      ],
+      "solution_steps": [
+        "写出方程 x1+3x2=0",
+        "求解得基向量"
+      ],
+      "math_structure": {
+        "type": "matrix_kernel_basic",
+        "template": "\\mathrm{Ker}(A_1x=0),\\ A_1=\\begin{pmatrix}1&3\\\\2&6\\end{pmatrix}",
+        "variable_count": 0
+      },
+      "difficulty": 1,
+      "estimated_minutes": 4,
+      "answer": [
+        {
+          "label": "结果",
+          "steps": [
+            "第二行是第一行的2倍，方程组等价于 $x_1+3x_2=0$。",
+            "取 $x_2=1$ 得 $x_1=-3$，基向量为 $(-3,1)^T$。",
+            "验证：$A_1(-3,1)^T=(-3+3,-6+6)^T=(0,0)^T$，正确。"
+          ]
+        }
+      ],
+      "id": "tohoku-2025-4edab22cfc-q02-practice-01",
+      "school": "东北大学",
+      "year": "2025"
+    },
+    {
+      "text": "设 $A_2=\\begin{pmatrix}1&1&0&0\\\\3&3&0&0\\\\0&0&2&5\\\\0&0&2&5\\end{pmatrix}$，求 $\\mathrm{Ker}\\,f_{A_2}$ 的一组基。",
+      "knowledge_points": [
+        "分块矩阵的核",
+        "齐次线性方程组"
+      ],
+      "question_type": "分块矩阵求核",
+      "method": [
+        "按块分别求解"
+      ],
+      "solution_steps": [
+        "第一块给出 x1+x2=0",
+        "第二块给出 2x3+5x4=0",
+        "合并两组解"
+      ],
+      "math_structure": {
+        "type": "block_matrix_kernel",
+        "template": "\\mathrm{Ker}(A_2x=0),\\ A_2=\\mathrm{diag block}(1,1;3,3),(2,5;2,5)",
+        "variable_count": 0
+      },
+      "difficulty": 2,
+      "estimated_minutes": 6,
+      "answer": [
+        {
+          "label": "结果",
+          "steps": [
+            "第一块 $(x_1+x_2,3x_1+3x_2)$ 为零 $\\Leftrightarrow x_1+x_2=0$，解为 $(1,-1,0,0)$。",
+            "第二块 $(2x_3+5x_4,2x_3+5x_4)$ 为零 $\\Leftrightarrow 2x_3+5x_4=0$，取 $x_4=-2$ 得 $x_3=5$，即 $(0,0,5,-2)$。",
+            "基为 $\\{(1,-1,0,0)^T,(0,0,5,-2)^T\\}$，容易验证均满足 $A_2x=0$。"
+          ]
+        }
+      ],
+      "id": "tohoku-2025-4edab22cfc-q02-practice-02",
+      "school": "东北大学",
+      "year": "2025"
+    },
+    {
+      "text": "设 $B_2=\\begin{pmatrix}1&0&2&0\\\\0&1&0&3\\\\1&0&2&0\\\\0&1&0&3\\end{pmatrix}$，求 $\\mathrm{Ker}\\,f_{B_2}$ 的一组基。",
+      "knowledge_points": [
+        "重复行矩阵的核",
+        "秩与自由变量"
+      ],
+      "question_type": "求核",
+      "method": [
+        "利用重复行简化方程组"
+      ],
+      "solution_steps": [
+        "由行1、2得两条独立方程",
+        "求解得两个自由参数对应的基向量"
+      ],
+      "math_structure": {
+        "type": "repeated_row_matrix_kernel",
+        "template": "\\mathrm{Ker}(B_2x=0),\\ B_2\\ \\text{rows}\\ 1{=}3,\\ 2{=}4",
+        "variable_count": 0
+      },
+      "difficulty": 2,
+      "estimated_minutes": 6,
+      "answer": [
+        {
+          "label": "结果",
+          "steps": [
+            "行1与行3相同：$x_1+2x_3=0$；行2与行4相同：$x_2+3x_4=0$。",
+            "$x_3,x_4$ 自由：取 $(x_3,x_4)=(1,0)\\Rightarrow(-2,0,1,0)$；取 $(0,1)\\Rightarrow(0,-3,0,1)$。",
+            "基为 $\\{(-2,0,1,0)^T,(0,-3,0,1)^T\\}$。"
+          ]
+        }
+      ],
+      "id": "tohoku-2025-4edab22cfc-q02-practice-03",
+      "school": "东北大学",
+      "year": "2025"
+    },
+    {
+      "text": "利用上两题的 $A_2,B_2$，计算 $f_{B_2}(\\mathrm{Ker}f_{A_2})$，并把结果表示为尽可能简单的两个向量的张空间。",
+      "knowledge_points": [
+        "子空间的像",
+        "矩阵作用于基向量",
+        "线性组合化简"
+      ],
+      "question_type": "子空间像的计算",
+      "method": [
+        "把核基代入矩阵计算像",
+        "化简为简单基"
+      ],
+      "solution_steps": [
+        "代入B2求两个像向量",
+        "做线性组合化简为整数简单基"
+      ],
+      "math_structure": {
+        "type": "subspace_image_under_matrix",
+        "template": "f_{B_2}(\\mathrm{Ker}f_{A_2})",
+        "variable_count": 0
+      },
+      "difficulty": 3,
+      "estimated_minutes": 8,
+      "answer": [
+        {
+          "label": "结果",
+          "steps": [
+            "$B_2(1,-1,0,0)^T=$列1$-$列2$=(1,0,1,0)-(0,1,0,1)=(1,-1,1,-1)^T$。",
+            "$B_2(0,0,5,-2)^T=5\\cdot$列3$-2\\cdot$列4$=5(2,0,2,0)-2(0,3,0,3)=(10,-6,10,-6)^T$。",
+            "$(10,-6,10,-6)-10(1,-1,1,-1)=(0,4,0,4)$，化简得 $(0,1,0,1)$；故像空间 $=\\mathrm{span}\\{(1,-1,1,-1)^T,(0,1,0,1)^T\\}$。"
+          ]
+        }
+      ],
+      "id": "tohoku-2025-4edab22cfc-q02-practice-04",
+      "school": "东北大学",
+      "year": "2025"
+    },
+    {
+      "text": "设 $A'=\\begin{pmatrix}1&2&0&0\\\\2&4&0&0\\\\0&0&1&1\\\\0&0&k&k\\end{pmatrix}$，$B'=\\begin{pmatrix}1&0&1&0\\\\0&3&0&6\\\\1&0&1&0\\\\0&1&0&2\\end{pmatrix}$，定义 $f_{A'},f_{B'}$ 同原题方式。求使得 $f_{B'}(\\mathrm{Ker}f_{A'})\\cap f_{A'}(\\mathrm{Ker}f_{B'})$ 含非零向量的实数 $k$。",
+      "knowledge_points": [
+        "矩阵核与像",
+        "参数方程求解",
+        "子空间交集"
+      ],
+      "question_type": "参数化核像交集问题",
+      "method": [
+        "分别求两个核的基",
+        "求像空间的一般表达式",
+        "比较分量解出参数"
+      ],
+      "solution_steps": [
+        "求Ker f_{A'}与Ker f_{B'}的基",
+        "求两个像空间的一般向量形式",
+        "联立方程解k"
+      ],
+      "math_structure": {
+        "type": "kernel_image_intersection_parametric",
+        "template": "find k such that f_{B'}(Ker f_{A'}) \\cap f_{A'}(Ker f_{B'}) \\ne \\{0\\}",
+        "variable_count": 1
+      },
+      "difficulty": 4,
+      "estimated_minutes": 20,
+      "answer": [
+        {
+          "label": "结果",
+          "steps": [
+            "同原题方法：$\\mathrm{Ker}f_{A'}=\\mathrm{span}\\{(-2,1,0,0),(0,0,1,-1)\\}$，$\\mathrm{Ker}f_{B'}=\\mathrm{span}\\{(-1,0,1,0),(0,-2,0,1)\\}$（与原题结构相同，因B'的行比例关系一致）。",
+            "$B'(-2,1,0,0)=(-2,3,-2,1)$，$B'(0,0,1,-1)=(1,-6,1,-2)$；一般元 $a(-2,3,-2,1)+b(1,-6,1,-2)=(p,q,p,r)$，其中 $p=-2a+b,\\,r=a-2b$，可得 $q=3r$。",
+            "$A'(-1,0,1,0)=(-1,-2,1,k)$，$A'(0,-2,0,1)=(-4,-8,1,k)$；差化简得一般元 $s(-1,-2,1,k)+t(0,0,1,k)=(-s,-2s,s+t,k(s+t))$。",
+            "令 $p=-s$，$q=-2s=3r\\Rightarrow r=-2s/3$；由 $p=s+t\\Rightarrow t=-2s$；由 $r=k(s+t)=k(-s)$：$-2s/3=-ks\\Rightarrow k=2/3$（当 $s\\ne0$）。",
+            "验证：取 $s=3,t=-6,k=2/3$，向量为 $(-3,-6,-3,-2)$，两侧计算一致，故 $k=2/3$。"
+          ]
+        }
+      ],
+      "id": "tohoku-2025-4edab22cfc-q02-practice-05",
+      "school": "东北大学",
+      "year": "2025"
+    }
+  ],
+  "source_question": "2",
+  "source_pdf": "东北大学/情报科学研究科/数学教室/东北大学_情报科学研究科_数学_2025_数学过去问.pdf",
+  "source_type": "官方过去问",
+  "subject_category": "线性代数"
+}

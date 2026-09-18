@@ -1,0 +1,225 @@
+{
+  "id": "nagoya-2022-d331f9e201-q01",
+  "school": "名古屋大学",
+  "year": "2022",
+  "subject": "情報学研究科_情報学専攻",
+  "text": "设 $e_1,e_2,e_3,e_4,e_5$ 为 $\\mathbb{R}^5$ 的标准基。设 $L:\\mathbb{R}^5\\to\\mathbb{R}^5$ 是满足如下条件的线性映射（其中 $a,b,c\\in\\mathbb{R}$）：\n$$L(e_1)=\\begin{pmatrix}0\\\\1\\\\0\\\\2\\\\0\\end{pmatrix},\\quad L(e_2)=\\begin{pmatrix}0\\\\a\\\\0\\\\b\\\\0\\end{pmatrix},\\quad L(e_3)=\\begin{pmatrix}0\\\\0\\\\a\\\\0\\\\b\\end{pmatrix},\\quad L(e_4)=\\begin{pmatrix}a\\\\0\\\\0\\\\0\\\\c\\end{pmatrix},\\quad L(e_5)=\\begin{pmatrix}c\\\\0\\\\b\\\\0\\\\0\\end{pmatrix}$$\n请回答以下各问：\n(1) 求映射 $L$ 在标准基下的表示矩阵。\n(2) 求所有使得 $\\mathrm{Ker}\\,L=\\{v\\in\\mathbb{R}^5:L(v)=0\\}=\\{0\\}$ 成立的 $a,b,c$。\n(3) 当 $a=0$ 且 $b\\neq0$ 且 $c\\neq0$ 时，求由 $L(e_1),L(e_2),L(e_3),L(e_4),L(e_5)$ 张成的 $\\mathbb{R}^5$ 的子空间\n$$\\mathrm{span}\\{L(e_1),L(e_2),L(e_3),L(e_4),L(e_5)\\}$$\n的维数。",
+  "knowledge_points": [
+    "线性映射的表示矩阵",
+    "核（Ker）与单射性",
+    "行列式的余子式展开",
+    "参数化矩阵的可逆性条件",
+    "向量组张成子空间的维数",
+    "线性相关与线性无关的判定"
+  ],
+  "question_type": "含参数线性映射的表示矩阵、核与张成空间维数",
+  "method": [
+    "把 $L(e_i)$ 按列排成表示矩阵",
+    "利用 $\\mathrm{Ker}\\,L=\\{0\\}\\iff \\det M\\neq0$",
+    "沿含零元较多的列做行列式的余子式展开",
+    "在退化参数下逐分量消元判断线性相关性"
+  ],
+  "solution_steps": [
+    "把 $L(e_1),\\dots,L(e_5)$ 依次作为列向量，得到表示矩阵 $M$",
+    "利用 $\\mathrm{Ker}\\,L=\\{0\\}$ 等价于 $M$ 可逆，即 $\\det M\\neq0$",
+    "沿含较多零元的第三列做余子式展开，计算出 $\\det M=a(2a-b)(b^2+c^2)$",
+    "由 $\\det M\\neq0$ 得到 $a,b,c$ 应满足的条件",
+    "代入 $a=0,b\\neq0,c\\neq0$ 化简五个像向量，找出线性相关关系，确定张成空间的维数"
+  ],
+  "math_structure": {
+    "type": "parametric_linear_map_kernel_and_span_dimension",
+    "template": "$L(e_i)$ 由含参数 $a,b,c$ 的向量给出；求表示矩阵 $M$，由 $\\det M\\ne0$ 确定 $\\operatorname{Ker}L=\\{0\\}$ 的参数范围，并在特殊参数下求 $\\operatorname{span}\\{L(e_i)\\}$ 的维数",
+    "variable_count": 3
+  },
+  "difficulty": 4,
+  "answer": [
+    {
+      "label": "(1)",
+      "steps": [
+        "将 $L(e_1),L(e_2),L(e_3),L(e_4),L(e_5)$ 分别作为矩阵的第 1 至第 5 列。",
+        "第1列为 $(0,1,0,2,0)^T$，第2列为 $(0,a,0,b,0)^T$，第3列为 $(0,0,a,0,b)^T$，第4列为 $(a,0,0,0,c)^T$，第5列为 $(c,0,b,0,0)^T$。",
+        "故表示矩阵为 $$M=\\begin{pmatrix}0&0&0&a&c\\\\1&a&0&0&0\\\\0&0&a&0&b\\\\2&b&0&0&0\\\\0&0&b&c&0\\end{pmatrix}$$"
+      ]
+    },
+    {
+      "label": "(2)",
+      "steps": [
+        "$\\mathrm{Ker}\\,L=\\{0\\}$ 当且仅当 $M$ 为可逆矩阵，即 $\\det M\\neq0$。",
+        "沿第3列（元素为 $0,0,a,0,b$）展开：$\\det M=a\\cdot A_{33}+b\\cdot A_{53}$，其中 $A_{33}$、$A_{53}$ 为对应的代数余子式。",
+        "计算得 $A_{33}=\\det\\begin{pmatrix}0&0&a&c\\\\1&a&0&0\\\\2&b&0&0\\\\0&0&c&0\\end{pmatrix}=c^2(2a-b)$，$A_{53}=\\det\\begin{pmatrix}0&0&a&c\\\\1&a&0&0\\\\0&0&0&b\\\\2&b&0&0\\end{pmatrix}=ab(2a-b)$。",
+        "于是 $\\det M=a\\cdot c^2(2a-b)+b\\cdot ab(2a-b)=(2a-b)\\bigl(ac^2+ab^2\\bigr)=a(2a-b)(b^2+c^2)$。",
+        "代入 $a=1,b=1,c=1$ 直接展开验证：得 $\\det M=2$，与公式 $1\\cdot(2-1)\\cdot(1+1)=2$ 一致，验算通过。",
+        "故 $\\mathrm{Ker}\\,L=\\{0\\}\\iff a\\neq0,\\ b\\neq2a,\\ (b,c)\\neq(0,0)$（即 $a\\neq0$ 且 $b\\neq2a$ 且 $b,c$ 不同时为 $0$）。"
+      ]
+    },
+    {
+      "label": "(3)",
+      "steps": [
+        "代入 $a=0$：$L(e_1)=(0,1,0,2,0)$，$L(e_2)=(0,0,0,b,0)$，$L(e_3)=(0,0,0,0,b)$，$L(e_4)=(0,0,0,0,c)$，$L(e_5)=(c,0,b,0,0)$。",
+        "注意 $L(e_3)=b\\,e_5$，$L(e_4)=c\\,e_5$，因 $b,c\\neq0$，两者同方向（都平行于标准基向量 $e_5$），只贡献 $1$ 维。",
+        "设 $\\alpha L(e_1)+\\beta L(e_2)+\\gamma L(e_3)+\\delta L(e_5)=0$（舍去冗余的 $L(e_4)$），逐分量列方程：$e_1$ 分量给出 $\\delta c=0\\Rightarrow\\delta=0$（因 $c\\neq0$）；$e_2$ 分量给出 $\\alpha=0$；$e_4$ 分量给出 $2\\alpha+\\beta b=0\\Rightarrow\\beta=0$（因 $b\\neq0$）；$e_5$ 分量给出 $\\gamma b=0\\Rightarrow\\gamma=0$（因 $b\\neq0$）。",
+        "故 $L(e_1),L(e_2),L(e_3),L(e_5)$ 线性无关，而 $L(e_4)=\\dfrac{c}{b}L(e_3)$ 由其余向量线性表出。",
+        "所以 $\\mathrm{span}\\{L(e_1),\\dots,L(e_5)\\}$ 的维数为 $4$。"
+      ]
+    }
+  ],
+  "practice_questions": [
+    {
+      "text": "设 $L:\\mathbb{R}^2\\to\\mathbb{R}^2$ 满足 $L(e_1)=\\begin{pmatrix}1\\\\2\\end{pmatrix}$，$L(e_2)=\\begin{pmatrix}3\\\\4\\end{pmatrix}$。求 $L$ 在标准基下的表示矩阵，并计算 $L\\begin{pmatrix}5\\\\6\\end{pmatrix}$。",
+      "knowledge_points": [
+        "线性映射的表示矩阵",
+        "矩阵与向量的乘法"
+      ],
+      "question_type": "线性映射表示矩阵的基础构造",
+      "method": [
+        "把 $L(e_i)$ 排成矩阵的列",
+        "利用 $L(v)=Mv$ 计算像"
+      ],
+      "solution_steps": [
+        "把 $L(e_1),L(e_2)$ 作为两列组成矩阵 $M$",
+        "利用 $v=5e_1+6e_2$，计算 $Mv=5L(e_1)+6L(e_2)$"
+      ],
+      "math_structure": {
+        "type": "basic_linear_map_matrix",
+        "template": "L(e_i) 给定，求表示矩阵 M 及 L(v)=Mv",
+        "variable_count": 0
+      },
+      "difficulty": 1,
+      "estimated_minutes": 4,
+      "answer": [
+        {
+          "label": "表示矩阵与 L(5,6)",
+          "steps": [
+            "表示矩阵为 $M=\\begin{pmatrix}1&3\\\\2&4\\end{pmatrix}$（列分别为 $L(e_1),L(e_2)$）。",
+            "计算 $L\\begin{pmatrix}5\\\\6\\end{pmatrix}=M\\begin{pmatrix}5\\\\6\\end{pmatrix}=\\begin{pmatrix}1\\cdot5+3\\cdot6\\\\2\\cdot5+4\\cdot6\\end{pmatrix}=\\begin{pmatrix}23\\\\34\\end{pmatrix}$。",
+            "验算：也可写成 $5L(e_1)+6L(e_2)=5\\binom{1}{2}+6\\binom{3}{4}=\\binom{5}{10}+\\binom{18}{24}=\\binom{23}{34}$，结果一致。"
+          ]
+        }
+      ],
+      "id": "nagoya-2022-d331f9e201-q01-practice-01",
+      "school": "名古屋大学",
+      "year": "2022"
+    },
+    {
+      "text": "设线性映射 $L:\\mathbb{R}^3\\to\\mathbb{R}^3$ 满足 $L(e_1)=(1,0,0)^T$，$L(e_2)=(0,t,0)^T$，$L(e_3)=(0,0,t+1)^T$，其中 $t\\in\\mathbb{R}$。求所有使 $\\mathrm{Ker}\\,L=\\{0\\}$ 成立的 $t$。",
+      "knowledge_points": [
+        "对角矩阵的可逆性",
+        "核与行列式的关系"
+      ],
+      "question_type": "参数化对角矩阵的核条件",
+      "method": [
+        "写出表示矩阵（对角矩阵）",
+        "利用对角矩阵可逆当且仅当对角元均非零"
+      ],
+      "solution_steps": [
+        "表示矩阵为 $\\mathrm{diag}(1,t,t+1)$",
+        "$\\mathrm{Ker}\\,L=\\{0\\}\\iff\\det\\neq0\\iff$ 各对角元非零"
+      ],
+      "math_structure": {
+        "type": "parametric_diagonal_kernel",
+        "template": "diag(1,t,t+1) 的行列式条件",
+        "variable_count": 1
+      },
+      "difficulty": 2,
+      "estimated_minutes": 5,
+      "answer": [
+        {
+          "label": "t 的取值范围",
+          "steps": [
+            "表示矩阵为 $M=\\begin{pmatrix}1&0&0\\\\0&t&0\\\\0&0&t+1\\end{pmatrix}$，为对角矩阵。",
+            "$\\det M=1\\cdot t\\cdot(t+1)=t(t+1)$，$\\mathrm{Ker}\\,L=\\{0\\}\\iff\\det M\\neq0\\iff t(t+1)\\neq0$。",
+            "即 $t\\neq0$ 且 $t\\neq-1$。验算：当 $t=0$ 时第二列为零向量，显然存在非零核向量 $(0,1,0)^T$，与结论一致。"
+          ]
+        }
+      ],
+      "id": "nagoya-2022-d331f9e201-q01-practice-02",
+      "school": "名古屋大学",
+      "year": "2022"
+    },
+    {
+      "text": "设四阶方阵 $N=\\begin{pmatrix}0&0&p&0\\\\1&p&0&0\\\\0&0&0&q\\\\2&q&0&0\\end{pmatrix}$（$p,q\\in\\mathbb{R}$）。用沿零元较多的列展开的方法，求 $\\det N$ 关于 $p,q$ 的表达式，并给出 $N$ 可逆的条件。",
+      "knowledge_points": [
+        "行列式的余子式展开",
+        "含参数矩阵的可逆性"
+      ],
+      "question_type": "含参数行列式的余子式展开计算",
+      "method": [
+        "沿第三列（含两个非零元）做余子式展开",
+        "化简为 p,q 的乘积形式"
+      ],
+      "solution_steps": [
+        "确定第三列非零元位置",
+        "分别计算对应余子式",
+        "合并得到 det N 的表达式",
+        "由 det N ≠ 0 得可逆条件"
+      ],
+      "math_structure": {
+        "type": "cofactor_expansion_parametric_determinant",
+        "template": "沿含两个非零元的列对 4x4 参数矩阵做余子式展开",
+        "variable_count": 2
+      },
+      "difficulty": 3,
+      "estimated_minutes": 8,
+      "answer": [
+        {
+          "label": "det N 及可逆条件",
+          "steps": [
+            "第三列元素为 $(p,0,0,0)^T$，只有第一行非零，故 $\\det N=(-1)^{1+3}p\\cdot\\det\\begin{pmatrix}1&p&0\\\\0&0&q\\\\2&q&0\\end{pmatrix}$。",
+            "对该 $3\\times3$ 行列式沿第二行（元素 $0,0,q$）展开：$=(-1)^{2+3}q\\cdot\\det\\begin{pmatrix}1&p\\\\2&q\\end{pmatrix}=-q(q-2p)=q(2p-q)$。",
+            "于是 $\\det N=p\\cdot q(2p-q)=pq(2p-q)$。",
+            "验算：取 $p=1,q=1$，得 $\\det N=1\\cdot1\\cdot(2-1)=1$；直接按定义展开 $N=\\begin{pmatrix}0&0&1&0\\\\1&1&0&0\\\\0&0&0&1\\\\2&1&0&0\\end{pmatrix}$ 亦可验证行列式为 $1$（沿第一列展开：$-1\\cdot\\det\\begin{pmatrix}0&1&0\\\\0&0&1\\\\1&0&0\\end{pmatrix}-2\\cdot\\det\\begin{pmatrix}0&1&0\\\\1&0&0\\\\0&0&1\\end{pmatrix}=-1\\cdot1-2\\cdot(-1)=1$），结果一致。",
+            "故 $N$ 可逆 $\\iff\\det N\\neq0\\iff p\\neq0,\\ q\\neq0,\\ q\\neq2p$。"
+          ]
+        }
+      ],
+      "id": "nagoya-2022-d331f9e201-q01-practice-03",
+      "school": "名古屋大学",
+      "year": "2022"
+    },
+    {
+      "text": "设 $b,c\\in\\mathbb{R}$ 均不为零，考虑 $\\mathbb{R}^4$ 中向量 $w_1=(0,1,2,0)$，$w_2=(0,0,b,0)$，$w_3=(0,0,c,0)$，$w_4=(b,0,0,c)$。求 $\\mathrm{span}\\{w_1,w_2,w_3,w_4\\}$ 的维数。",
+      "knowledge_points": [
+        "向量组的线性相关性",
+        "张成空间的维数",
+        "齐次线性方程组的求解"
+      ],
+      "question_type": "参数向量组张成空间维数的判定",
+      "method": [
+        "设线性组合为零，逐分量列方程",
+        "求解出唯一的相关关系",
+        "维数 = 向量个数 - 独立相关关系个数"
+      ],
+      "solution_steps": [
+        "列出线性组合为零的方程组",
+        "由第1、2分量确定部分系数为零",
+        "由第3分量得到 w2,w3 间的唯一非平凡关系",
+        "得出维数"
+      ],
+      "math_structure": {
+        "type": "span_dimension_with_dependency",
+        "template": "四个含参数向量，判断唯一线性相关关系并求 span 的维数",
+        "variable_count": 2
+      },
+      "difficulty": 3,
+      "estimated_minutes": 8,
+      "answer": [
+        {
+          "label": "span 的维数",
+          "steps": [
+            "设 $\\alpha w_1+\\beta w_2+\\gamma w_3+\\delta w_4=0$。按分量列方程：第1分量 $\\delta b=0\\Rightarrow\\delta=0$（$b\\neq0$）；第2分量 $\\alpha=0$；第4分量 $\\delta c=0$（已满足）。",
+            "代入 $\\alpha=\\delta=0$，第3分量给出 $2\\alpha+\\beta b+\\gamma c=0\\Rightarrow\\beta b+\\gamma c=0$，这是唯一的非平凡约束（如取 $\\beta=c,\\gamma=-b$ 即为非零解）。",
+            "因此在 $w_1,w_2,w_3,w_4$ 之间恰好存在一个独立的线性相关关系（$c\\,w_2-b\\,w_3=0$），其余组合线性无关。",
+            "故 $\\dim\\,\\mathrm{span}\\{w_1,w_2,w_3,w_4\\}=4-1=3$。验算：取 $b=1,c=2$，$w_2=(0,0,1,0)$，$w_3=(0,0,2,0)=2w_2$，确认二者平行，去掉一个后 $w_1,w_2,w_4$ 线性无关（分量结构互不相关），维数确为 $3$。"
+          ]
+        }
+      ],
+      "id": "nagoya-2022-d331f9e201-q01-practice-04",
+      "school": "名古屋大学",
+      "year": "2022"
+    }
+  ],
+  "source_question": "第1科目 問1",
+  "source_pdf": "名古屋大学/情報学研究科/情報学専攻/名古屋大学_情報学研究科_情報学専攻_2022.pdf",
+  "source_type": "官方过去问",
+  "subject_category": "线性代数"
+}
