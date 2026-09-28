@@ -98,7 +98,7 @@ function populateBrowseSubject() {
     if (isSubjectNode(node)) {
       const opt = document.createElement("option");
       opt.value = node.value;
-      opt.textContent = `${node.label}（${node.count}）`;
+      opt.textContent = node.label;
       browseSubjectEl.appendChild(opt);
     }
   });
@@ -121,7 +121,7 @@ function populateBrowseSchool() {
     select.replaceChildren(...options.map((item) => {
       const option = document.createElement("option");
       option.value = item.value.slice(prefix.length + 1);
-      option.textContent = `${item.label}（${item.count}）`;
+      option.textContent = item.label;
       return option;
     }));
     const values = [...select.options].map((option) => option.value);

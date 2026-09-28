@@ -56,11 +56,12 @@ def test_home_page_renders_filter_options_without_javascript(subject_app):
     """脚本尚未加载或加载失败时，下拉框也应由服务端提供首屏内容。"""
     res = subject_app.get("/")
     body = res.get_data(as_text=True)
-    assert '<option value="线性代数">线性代数（3）</option>' in body
-    assert '<option value="九州大学">九州大学（1）</option>' in body
-    assert '<option value="理学院">理学院（1）</option>' in body
-    assert '<option value="情报理工">情报理工（1）</option>' in body
-    assert '<option value="2024">2024（1）</option>' in body
+    assert '<option value="线性代数">线性代数</option>' in body
+    assert '<option value="九州大学">九州大学</option>' in body
+    assert '<option value="理学院">理学院</option>' in body
+    assert '<option value="情报理工">情报理工</option>' in body
+    assert '<option value="2024">2024</option>' in body
+    assert "线性代数（3）" not in body
 
 
 def test_match_returns_question_metadata(client):

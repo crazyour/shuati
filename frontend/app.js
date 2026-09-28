@@ -28,7 +28,7 @@ function setOptions(select, values, selected) {
   select.replaceChildren(...values.map((item) => {
     const option = document.createElement("option");
     option.value = item.value;
-    option.textContent = `${item.label}（${item.count}）`;
+    option.textContent = item.label;
     return option;
   }));
   select.value = values.some((item) => item.value === selected) ? selected : (values[0]?.value || "");
