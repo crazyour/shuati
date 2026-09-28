@@ -1,0 +1,412 @@
+[
+  {
+    "id": "osaka-2020-c0d447f766-q02",
+    "school": "大阪大学",
+    "year": "2020",
+    "subject": "情报科学研究科_情报基础数学",
+    "text": "求实二元函数\n$$f(x,y)=(x+y)e^{-x^2-y^2}$$\n的极值。",
+    "knowledge_points": [
+      "多元函数偏导数",
+      "临界点方程组求解",
+      "Hessian矩阵判别法",
+      "指数函数求导",
+      "极值分类"
+    ],
+    "question_type": "二元函数极值问题",
+    "method": [
+      "求一阶偏导数并令其为零求临界点",
+      "求二阶偏导数构成Hessian矩阵",
+      "用Hessian判别式在各临界点判断极大/极小/鞍点"
+    ],
+    "solution_steps": [
+      "计算 $f_x,f_y$ 并令其为零",
+      "解出所有临界点",
+      "计算 $f_{xx},f_{yy},f_{xy}$ 并代入各临界点",
+      "用判别式 $D=f_{xx}f_{yy}-f_{xy}^2$ 判定极值类型"
+    ],
+    "math_structure": {
+      "type": "two_variable_extremum",
+      "template": "f(x,y)=(x+y)e^{-x^2-y^2}",
+      "variable_count": 2
+    },
+    "difficulty": 3,
+    "answer": [
+      {
+        "label": "极值点与极值",
+        "steps": [
+          "求偏导数：$f_x=e^{-x^2-y^2}\\left[1-2x(x+y)\\right]$，$f_y=e^{-x^2-y^2}\\left[1-2y(x+y)\\right]$。因 $e^{-x^2-y^2}\\neq0$，临界点满足 $1-2x(x+y)=0$ 与 $1-2y(x+y)=0$。",
+          "两式相减得 $2(x+y)(y-x)=0$。若 $x+y=0$，代入第一式得 $1=0$，矛盾；故必有 $x=y$。代入 $1-4x^2=0$ 得 $x=\\pm\\dfrac12$，对应临界点 $\\left(\\dfrac12,\\dfrac12\\right)$ 和 $\\left(-\\dfrac12,-\\dfrac12\\right)$。",
+          "计算二阶偏导并代入 $\\left(\\dfrac12,\\dfrac12\\right)$：得 $f_{xx}=-3e^{-1/2}$，$f_{yy}=-3e^{-1/2}$，$f_{xy}=-e^{-1/2}$，判别式 $D=f_{xx}f_{yy}-f_{xy}^2=9e^{-1}-e^{-1}=8e^{-1}>0$，且 $f_{xx}<0$，故为极大值点，极大值 $f\\left(\\dfrac12,\\dfrac12\\right)=e^{-1/2}$。",
+          "同理在 $\\left(-\\dfrac12,-\\dfrac12\\right)$：$f_{xx}=3e^{-1/2}>0$，$D=8e^{-1}>0$，为极小值点，极小值 $f\\left(-\\dfrac12,-\\dfrac12\\right)=-e^{-1/2}$。综上，无其它临界点，$f$ 恰有一个极大值 $e^{-1/2}$ 和一个极小值 $-e^{-1/2}$。"
+        ]
+      }
+    ],
+    "practice_questions": [
+      {
+        "text": "求一元函数 $g(x)=xe^{-x^2}$ 的极值。",
+        "knowledge_points": [
+          "一元函数求导",
+          "临界点",
+          "二阶导数判别法"
+        ],
+        "question_type": "一元函数极值",
+        "method": [
+          "求 $g'(x)$ 并令其为零",
+          "用二阶导数判别极值类型"
+        ],
+        "solution_steps": [
+          "求 $g'(x)$",
+          "解 $g'(x)=0$",
+          "求 $g''(x)$ 判别类型"
+        ],
+        "math_structure": {
+          "type": "single_variable_extremum",
+          "template": "g(x)=xe^{-x^2}",
+          "variable_count": 1
+        },
+        "difficulty": 1,
+        "estimated_minutes": 5,
+        "answer": [
+          {
+            "label": "极值点",
+            "steps": [
+              "$g'(x)=e^{-x^2}+x\\cdot(-2x)e^{-x^2}=e^{-x^2}(1-2x^2)$，令 $g'(x)=0$ 得 $x=\\pm\\dfrac{1}{\\sqrt2}$。",
+              "$g''(x)=e^{-x^2}(-2x)(1-2x^2)+e^{-x^2}(-4x)=e^{-x^2}\\left[-2x+4x^3-4x\\right]=e^{-x^2}(4x^3-6x)$；在 $x=1/\\sqrt2$ 处 $g''=e^{-1/2}\\left(4\\cdot\\frac{1}{2\\sqrt2}-6\\cdot\\frac{1}{\\sqrt2}\\right)=e^{-1/2}\\left(\\frac{2}{\\sqrt2}-\\frac{6}{\\sqrt2}\\right)=-\\frac{4}{\\sqrt2}e^{-1/2}<0$，为极大值点，$g(1/\\sqrt2)=\\frac{1}{\\sqrt2}e^{-1/2}$。",
+              "在 $x=-1/\\sqrt2$ 处由奇函数性质 $g(-x)=-g(x)$，得极小值 $g(-1/\\sqrt2)=-\\frac{1}{\\sqrt2}e^{-1/2}$，且此处 $g''>0$ 可验证为极小值点。"
+            ]
+          }
+        ],
+        "id": "osaka-2020-c0d447f766-q02-practice-01",
+        "school": "大阪大学",
+        "year": "2020"
+      },
+      {
+        "text": "求二元函数 $h(x,y)=x^2+y^2-2x-4y$ 的极值，并用Hessian判别式验证。",
+        "knowledge_points": [
+          "多元函数偏导数",
+          "配方法",
+          "Hessian判别式"
+        ],
+        "question_type": "二元二次函数极值",
+        "method": [
+          "求偏导数并求临界点",
+          "用Hessian判别",
+          "配方验证"
+        ],
+        "solution_steps": [
+          "求 $h_x,h_y$",
+          "解出临界点",
+          "计算Hessian判别式"
+        ],
+        "math_structure": {
+          "type": "two_variable_extremum",
+          "template": "h(x,y)=x^2+y^2-2x-4y",
+          "variable_count": 2
+        },
+        "difficulty": 2,
+        "estimated_minutes": 6,
+        "answer": [
+          {
+            "label": "极值点",
+            "steps": [
+              "$h_x=2x-2=0\\Rightarrow x=1$；$h_y=2y-4=0\\Rightarrow y=2$，唯一临界点 $(1,2)$。",
+              "$h_{xx}=2,h_{yy}=2,h_{xy}=0$，判别式 $D=2\\cdot2-0=4>0$，且 $h_{xx}=2>0$，故 $(1,2)$ 为极小值点。",
+              "配方验证：$h(x,y)=(x-1)^2+(y-2)^2-5\\ge-5$，当且仅当 $(x,y)=(1,2)$ 时取最小值 $-5$，与Hessian判别结果一致。"
+            ]
+          }
+        ],
+        "id": "osaka-2020-c0d447f766-q02-practice-02",
+        "school": "大阪大学",
+        "year": "2020"
+      },
+      {
+        "text": "求函数 $p(x,y)=(x-y)e^{-x^2-y^2}$ 的极值。",
+        "knowledge_points": [
+          "多元函数偏导数",
+          "临界点方程组",
+          "Hessian判别式",
+          "对称性分析"
+        ],
+        "question_type": "二元函数极值（与原题结构相近）",
+        "method": [
+          "求偏导数并联立求临界点",
+          "用Hessian判别极值类型",
+          "利用与原题对比检验计算"
+        ],
+        "solution_steps": [
+          "求 $p_x,p_y$",
+          "联立解方程组求临界点",
+          "求二阶偏导并判别"
+        ],
+        "math_structure": {
+          "type": "two_variable_extremum",
+          "template": "p(x,y)=(x-y)e^{-x^2-y^2}",
+          "variable_count": 2
+        },
+        "difficulty": 3,
+        "estimated_minutes": 10,
+        "answer": [
+          {
+            "label": "极值点与极值",
+            "steps": [
+              "$p_x=e^{-x^2-y^2}\\left[1-2x(x-y)\\right]$，$p_y=e^{-x^2-y^2}\\left[-1-2y(x-y)\\right]$。令两者为零：$1-2x(x-y)=0$，$-1-2y(x-y)=0$。两式相加得 $-2(x-y)^2\\cdot$（需展开）：将两方程相加：$1-2x(x-y)-1-2y(x-y)=0\\Rightarrow -2(x-y)(x+y)=0$，即 $x=y$ 或 $x=-y$。",
+              "若 $x=y$：代入第一式 $1-2x\\cdot0=1\\neq0$，矛盾，无解。若 $x=-y$：代入第一式 $1-2x(2x)=1-4x^2=0\\Rightarrow x=\\pm\\dfrac12$，得临界点 $\\left(\\dfrac12,-\\dfrac12\\right)$ 和 $\\left(-\\dfrac12,\\dfrac12\\right)$。",
+              "在 $\\left(\\dfrac12,-\\dfrac12\\right)$处，用与原题相同方法计算可得 $p_{xx}=-3e^{-1/2}<0$，判别式$D=8e^{-1}>0$，为极大值，$p\\left(\\dfrac12,-\\dfrac12\\right)=e^{-1/2}$；在 $\\left(-\\dfrac12,\\dfrac12\\right)$为极小值 $-e^{-1/2}$，与原题的极值大小完全一致，仅临界点位置由 $x=y$ 换成 $x=-y$。"
+            ]
+          }
+        ],
+        "id": "osaka-2020-c0d447f766-q02-practice-03",
+        "school": "大阪大学",
+        "year": "2020"
+      },
+      {
+        "text": "设 $c>0$ 为常数，求 $q(x,y)=(x+y)e^{-c(x^2+y^2)}$ 的极值（用一般常数 $c$ 表示结果）。",
+        "knowledge_points": [
+          "多元函数偏导数",
+          "含参数的极值问题",
+          "Hessian判别式",
+          "一般化推广"
+        ],
+        "question_type": "含参数二元函数极值",
+        "method": [
+          "求偏导数并解出含 $c$ 的临界点",
+          "用Hessian判别",
+          "与 $c=1$（原题）情形对照验证"
+        ],
+        "solution_steps": [
+          "求 $q_x,q_y$",
+          "解方程组得临界点(含 $c$)",
+          "求二阶偏导并判别，代入 $c=1$ 核对原题结果"
+        ],
+        "math_structure": {
+          "type": "two_variable_extremum",
+          "template": "q(x,y)=(x+y)e^{-c(x^2+y^2)}",
+          "variable_count": 2
+        },
+        "difficulty": 4,
+        "estimated_minutes": 12,
+        "answer": [
+          {
+            "label": "极值点与极值",
+            "steps": [
+              "$q_x=e^{-c(x^2+y^2)}[1-2cx(x+y)]$，$q_y=e^{-c(x^2+y^2)}[1-2cy(x+y)]$。同原题方法，两式相减得 $(x+y)(y-x)=0$；$x+y=0$ 导致矛盾，故 $x=y$，代入得 $1-4cx^2=0\\Rightarrow x=\\pm\\dfrac{1}{2\\sqrt c}$，临界点为 $\\left(\\dfrac{1}{2\\sqrt c},\\dfrac{1}{2\\sqrt c}\\right)$，$\\left(-\\dfrac{1}{2\\sqrt c},-\\dfrac{1}{2\\sqrt c}\\right)$。",
+              "在正临界点处，函数值 $q=\\dfrac{1}{\\sqrt c}e^{-c\\cdot\\frac{1}{2c}}=\\dfrac{1}{\\sqrt c}e^{-1/2}$；用与原题相同的二阶偏导计算可验证判别式 $D>0$且 $q_{xx}<0$，为极大值点，极大值 $\\dfrac{e^{-1/2}}{\\sqrt c}$。",
+              "在负临界点处，由奇对称性 $q(-x,-y)=-q(x,y)$，为极小值点，极小值 $-\\dfrac{e^{-1/2}}{\\sqrt c}$。当 $c=1$ 时结果化为 $\\pm e^{-1/2}$，与原题结果完全一致，验证了一般公式的正确性。"
+            ]
+          }
+        ],
+        "id": "osaka-2020-c0d447f766-q02-practice-04",
+        "school": "大阪大学",
+        "year": "2020"
+      }
+    ],
+    "source_question": "2",
+    "source_pdf": "大阪大学/情报科学研究科/情报基础数学/大阪大学_情报科学研究科_情报基础数学_2020_数学过去问.pdf",
+    "source_type": "官方过去问",
+    "subject_category": "微积分"
+  },
+  {
+    "id": "osaka-2020-c0d447f766-q04",
+    "school": "大阪大学",
+    "year": "2020",
+    "subject": "情报科学研究科_情报基础数学",
+    "text": "设 $a$ 为正常数，\n$$V=\\{(x,y,z)\\mid 0\\le x+y^{1/2}+z^{1/3}\\le a^2,\\ 0\\le x,\\ 0\\le y,\\ 0\\le z\\}$$\n求积分\n$$\\iiint_V dx\\,dy\\,dz$$\n的值。",
+    "knowledge_points": [
+      "三重积分变量替换",
+      "Dirichlet积分公式(广义Beta积分)",
+      "Gamma函数性质",
+      "非线性边界区域的体积计算",
+      "Jacobian变换"
+    ],
+    "question_type": "三重积分求体积（Dirichlet积分公式应用）",
+    "method": [
+      "令 $u=y^{1/2}, v=z^{1/3}$ 化简约束为线性单形",
+      "应用广义Dirichlet积分公式 $\\iiint_{x_i\\ge0,\\sum x_i\\le L}x_1^{a_1-1}\\cdots dx=L^{\\sum a_i}\\frac{\\prod\\Gamma(a_i)}{\\Gamma(1+\\sum a_i)}$",
+      "代入Gamma函数具体值化简"
+    ],
+    "solution_steps": [
+      "令 $u=y^{1/2}(y=u^2,dy=2u\\,du)$，$v=z^{1/3}(z=v^3,dz=3v^2dv)$，把区域化为 $x+u+v\\le a^2, x,u,v\\ge0$",
+      "把体积元 $dxdydz$ 化为 $6uv^2\\,dx\\,du\\,dv$",
+      "用Dirichlet积分公式计算 $\\iiint_{x+u+v\\le L} uv^2\\,dx\\,du\\,dv$（$L=a^2$，指数为 $x^0u^1v^2$）",
+      "代入 $\\Gamma(1)=\\Gamma(2)=1,\\Gamma(3)=2,\\Gamma(7)=720$ 化简，乘常数6得最终结果"
+    ],
+    "math_structure": {
+      "type": "dirichlet_integral_volume",
+      "template": "\\iiint_{x+y^{1/2}+z^{1/3}\\le a^2, x,y,z\\ge0} dxdydz",
+      "variable_count": 1
+    },
+    "difficulty": 4,
+    "answer": [
+      {
+        "label": "1",
+        "steps": [
+          "作变量替换 $u=\\sqrt y$（$y=u^2,dy=2u\\,du,u\\ge0$），$v=z^{1/3}$（$z=v^3,dz=3v^2dv,v\\ge0$）。区域 $V$ 对应到 $\\{(x,u,v):x+u+v\\le a^2,x,u,v\\ge0\\}$（记 $L=a^2$）。",
+          "于是 $\\displaystyle\\iiint_V dxdydz=\\iiint_{x+u+v\\le L,\\,x,u,v\\ge0}2u\\cdot3v^2\\,dx\\,du\\,dv=6\\iiint_{x+u+v\\le L}uv^2\\,dx\\,du\\,dv$。",
+          "利用广义Dirichlet积分公式：对 $x,u,v\\ge0,x+u+v\\le L$，$$\\iiint x^{p-1}u^{q-1}v^{r-1}dx\\,du\\,dv=L^{p+q+r}\\frac{\\Gamma(p)\\Gamma(q)\\Gamma(r)}{\\Gamma(p+q+r+1)}$$ 此处被积函数为 $x^0u^1v^2$，即 $p=1,q=2,r=3$，故 $$\\iiint uv^2\\,dx\\,du\\,dv=L^6\\frac{\\Gamma(1)\\Gamma(2)\\Gamma(3)}{\\Gamma(7)}=L^6\\cdot\\frac{1\\cdot1\\cdot2}{720}=\\frac{L^6}{360}$$",
+          "代回 $L=a^2$ 且乘以系数6：$$\\iiint_V dxdydz=6\\cdot\\frac{a^{12}}{360}=\\frac{a^{12}}{60}$$"
+        ]
+      }
+    ],
+    "practice_questions": [
+      {
+        "text": "验证Dirichlet积分公式的最基本情形：求 $\\displaystyle\\iint_{x,y\\ge0,\\,x+y\\le L} dx\\,dy$（$L>0$）。",
+        "knowledge_points": [
+          "二重积分",
+          "简单区域面积",
+          "Dirichlet积分公式基本情形"
+        ],
+        "question_type": "二维Dirichlet积分基础验证",
+        "method": [
+          "直接几何计算三角形面积",
+          "用Dirichlet公式核对"
+        ],
+        "solution_steps": [
+          "画出积分区域（直角三角形）",
+          "直接计算面积",
+          "用Dirichlet公式(p=q=1)核对"
+        ],
+        "math_structure": {
+          "type": "dirichlet_integral_volume",
+          "template": "\\iint_{x+y\\le L,x,y\\ge0} dxdy",
+          "variable_count": 1
+        },
+        "difficulty": 1,
+        "estimated_minutes": 5,
+        "answer": [
+          {
+            "label": "结果",
+            "steps": [
+              "区域是以 $(0,0),(L,0),(0,L)$ 为顶点的直角三角形，直接积分：$\\int_0^L\\int_0^{L-x}dy\\,dx=\\int_0^L(L-x)dx=L^2-\\frac{L^2}{2}=\\frac{L^2}{2}$。",
+              "用Dirichlet公式核对：$p=q=1$，$\\iint dxdy=L^{2}\\dfrac{\\Gamma(1)\\Gamma(1)}{\\Gamma(3)}=L^2\\cdot\\dfrac{1}{2}=\\dfrac{L^2}{2}$，与直接积分结果一致。"
+            ]
+          }
+        ],
+        "id": "osaka-2020-c0d447f766-q04-practice-01",
+        "school": "大阪大学",
+        "year": "2020"
+      },
+      {
+        "text": "求 $\\displaystyle\\iiint_{x,y,z\\ge0,\\,x+y+z\\le L}xyz\\,dx\\,dy\\,dz$（$L>0$）。",
+        "knowledge_points": [
+          "Dirichlet积分公式",
+          "Gamma函数值",
+          "三重积分"
+        ],
+        "question_type": "三重积分（Dirichlet公式直接应用）",
+        "method": [
+          "识别被积函数指数对应的Dirichlet参数",
+          "代入Dirichlet公式计算"
+        ],
+        "solution_steps": [
+          "确定 $p=q=r=2$",
+          "代入Dirichlet公式",
+          "化简Gamma函数值得结果"
+        ],
+        "math_structure": {
+          "type": "dirichlet_integral_volume",
+          "template": "\\iiint_{x+y+z\\le L,x,y,z\\ge0} xyz\\,dxdydz",
+          "variable_count": 1
+        },
+        "difficulty": 2,
+        "estimated_minutes": 6,
+        "answer": [
+          {
+            "label": "结果",
+            "steps": [
+              "被积函数 $xyz=x^1y^1z^1$，对应 $p-1=q-1=r-1=1$，即 $p=q=r=2$。",
+              "由Dirichlet公式：$\\iiint xyz\\,dxdydz=L^{p+q+r}\\dfrac{\\Gamma(2)\\Gamma(2)\\Gamma(2)}{\\Gamma(7)}=L^6\\cdot\\dfrac{1\\cdot1\\cdot1}{720}$。",
+              "所以结果为 $\\dfrac{L^6}{720}$。"
+            ]
+          }
+        ],
+        "id": "osaka-2020-c0d447f766-q04-practice-02",
+        "school": "大阪大学",
+        "year": "2020"
+      },
+      {
+        "text": "设 $b>0$，$V'=\\{(x,y,z)\\mid 0\\le x+\\sqrt y+z\\le b,\\ x,y,z\\ge0\\}$，求 $\\displaystyle\\iiint_{V'}dxdydz$。",
+        "knowledge_points": [
+          "单变量换元",
+          "Dirichlet积分公式",
+          "三重积分区域变换"
+        ],
+        "question_type": "单一变量替换的三重积分体积计算",
+        "method": [
+          "只对 $y$ 作 $u=\\sqrt y$ 换元",
+          "应用Dirichlet积分公式",
+          "化简得体积公式"
+        ],
+        "solution_steps": [
+          "令 $u=\\sqrt y$，$dy=2u\\,du$",
+          "把区域化为线性单形 $x+u+z\\le b$",
+          "用Dirichlet公式计算并化简"
+        ],
+        "math_structure": {
+          "type": "dirichlet_integral_volume",
+          "template": "\\iiint_{x+\\sqrt y+z\\le b,x,y,z\\ge0} dxdydz",
+          "variable_count": 1
+        },
+        "difficulty": 3,
+        "estimated_minutes": 10,
+        "answer": [
+          {
+            "label": "结果",
+            "steps": [
+              "令 $u=\\sqrt y$（$y=u^2,dy=2u\\,du,u\\ge0$），区域化为 $\\{(x,u,z):x+u+z\\le b,x,u,z\\ge0\\}$，体积 $=\\displaystyle\\iiint_{x+u+z\\le b}2u\\,dx\\,du\\,dz=2\\iiint u\\,dx\\,du\\,dz$。",
+              "对 $x^0u^1z^0$，即 $p=1,q=2,r=1$，由Dirichlet公式：$\\iiint u\\,dxdudz=b^{4}\\dfrac{\\Gamma(1)\\Gamma(2)\\Gamma(1)}{\\Gamma(5)}=b^4\\cdot\\dfrac{1}{24}$。",
+              "乘以系数2：$\\displaystyle\\iiint_{V'}dxdydz=2\\cdot\\dfrac{b^4}{24}=\\dfrac{b^4}{12}$。"
+            ]
+          }
+        ],
+        "id": "osaka-2020-c0d447f766-q04-practice-03",
+        "school": "大阪大学",
+        "year": "2020"
+      },
+      {
+        "text": "设 $a$ 为正常数，$V''=\\{(x,y,z)\\mid 0\\le x+y^{1/2}+z^{1/4}\\le a^3,\\ x,y,z\\ge0\\}$，求 $\\displaystyle\\iiint_{V''}dxdydz$（与原题结构相同但 $z$ 的指数与右端不同）。",
+        "knowledge_points": [
+          "多变量换元",
+          "Dirichlet积分公式",
+          "Gamma函数计算",
+          "与原题方法的迁移应用"
+        ],
+        "question_type": "推广型三重积分（不同指数）",
+        "method": [
+          "对 $y,z$ 分别作 $u=\\sqrt y,\\ w=z^{1/4}$ 换元",
+          "应用Dirichlet积分公式",
+          "代入更高阶Gamma函数值化简"
+        ],
+        "solution_steps": [
+          "设 $u=\\sqrt y,w=z^{1/4}$，求出 $dy,dz$",
+          "将区域化为线性单形",
+          "用Dirichlet公式计算并乘以Jacobian系数"
+        ],
+        "math_structure": {
+          "type": "dirichlet_integral_volume",
+          "template": "\\iiint_{x+y^{1/2}+z^{1/4}\\le a^3,x,y,z\\ge0} dxdydz",
+          "variable_count": 1
+        },
+        "difficulty": 4,
+        "estimated_minutes": 15,
+        "answer": [
+          {
+            "label": "结果",
+            "steps": [
+              "令 $u=\\sqrt y$（$y=u^2,dy=2u\\,du$）与 $w=z^{1/4}$（$z=w^4,dz=4w^3dw$），区域化为 $\\{(x,u,w):x+u+w\\le a^3,x,u,w\\ge0\\}$（记 $L=a^3$）。",
+              "体积 $=\\displaystyle\\iiint_{x+u+w\\le L}2u\\cdot4w^3\\,dx\\,du\\,dw=8\\iiint uw^3\\,dx\\,du\\,dw$。对 $x^0u^1w^3$，即 $p=1,q=2,r=4$。",
+              "由Dirichlet公式：$\\iiint uw^3\\,dxdudw=L^{7}\\dfrac{\\Gamma(1)\\Gamma(2)\\Gamma(4)}{\\Gamma(8)}=L^7\\cdot\\dfrac{1\\cdot1\\cdot6}{5040}=\\dfrac{L^7}{840}$。",
+              "乘以系数8并代回 $L=a^3$：$$\\iiint_{V''}dxdydz=8\\cdot\\frac{a^{21}}{840}=\\frac{a^{21}}{105}$$"
+            ]
+          }
+        ],
+        "id": "osaka-2020-c0d447f766-q04-practice-04",
+        "school": "大阪大学",
+        "year": "2020"
+      }
+    ],
+    "source_question": "4",
+    "source_pdf": "大阪大学/情报科学研究科/情报基础数学/大阪大学_情报科学研究科_情报基础数学_2020_数学过去问.pdf",
+    "source_type": "官方过去问",
+    "subject_category": "微积分"
+  }
+]

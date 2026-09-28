@@ -1,0 +1,815 @@
+[
+  {
+    "id": "isct-2009-7844cd6d27-q02",
+    "school": "东京科学大学",
+    "year": "2009",
+    "subject": "理工学系_数学系",
+    "text": "设 $\\{f_n\\}$ 是 $[0,1]$ 上的连续函数列。若 $\\{f_n\\}$ 在 $[0,1]$ 上一致收敛到 $f$，证明 $f$ 是 $[0,1]$ 上的连续函数。",
+    "knowledge_points": [
+      "一致收敛",
+      "连续函数的极限",
+      "三角不等式",
+      "ε-δ 论证"
+    ],
+    "question_type": "证明题：一致收敛保持连续性",
+    "method": [
+      "三段夹逼（三角不等式拆分）",
+      "利用一致收敛的定义控制第一、三项",
+      "利用单个 f_N 的连续性控制中间项"
+    ],
+    "solution_steps": [
+      "任取 x0∈[0,1]和ε>0",
+      "由一致收敛选取N使得对所有x有|f_N(x)-f(x)|<ε/3",
+      "由f_N在x0处连续选取δ",
+      "用三角不等式合并三项得|f(x)-f(x0)|<ε"
+    ],
+    "math_structure": {
+      "type": "uniform_convergence_continuity",
+      "template": "$\\{f_n\\}\\subset C[a,b]$ 且 $f_n\\to f$ 在 $[a,b]$ 上一致收敛 $\\Rightarrow f\\in C[a,b]$",
+      "variable_count": 2
+    },
+    "difficulty": 2,
+    "answer": [
+      {
+        "label": "本题",
+        "steps": [
+          "设 $x_0\\in[0,1]$，给定 $\\varepsilon>0$。因 $f_n\\to f$ 在 $[0,1]$ 上一致收敛，存在 $N$，使得对所有 $x\\in[0,1]$ 都有 $|f_N(x)-f(x)|<\\varepsilon/3$",
+          "$f_N$ 在 $x_0$ 处连续，故存在 $\\delta>0$，当 $|x-x_0|<\\delta,\\ x\\in[0,1]$ 时 $|f_N(x)-f_N(x_0)|<\\varepsilon/3$",
+          "对满足 $|x-x_0|<\\delta$ 的 $x$，由三角不等式：$|f(x)-f(x_0)|\\le|f(x)-f_N(x)|+|f_N(x)-f_N(x_0)|+|f_N(x_0)-f(x_0)|<\\varepsilon/3+\\varepsilon/3+\\varepsilon/3=\\varepsilon$",
+          "由 $x_0$ 任意，$f$ 在 $[0,1]$ 上每一点连续，即 $f\\in C[0,1]$，证毕"
+        ]
+      }
+    ],
+    "practice_questions": [
+      {
+        "text": "举例说明：若 $\\{f_n\\}$ 只是逐点收敛而非一致收敛到 $f$，$f$ 可以不连续。请给出 $[0,1]$ 上这样的一个例子并说明原因。",
+        "knowledge_points": [
+          "逐点收敛",
+          "一致收敛的必要性",
+          "反例构造"
+        ],
+        "question_type": "构造反例",
+        "method": [
+          "构造分段函数族 f_n(x)=x^n"
+        ],
+        "solution_steps": [
+          "定义f_n(x)=x^n",
+          "求逐点极限",
+          "说明不一致收敛"
+        ],
+        "math_structure": {
+          "type": "pointwise_vs_uniform_convergence",
+          "template": "构造逐点收敛但极限不连续的函数列",
+          "variable_count": 1
+        },
+        "difficulty": 1,
+        "estimated_minutes": 5,
+        "answer": [
+          {
+            "label": "本题",
+            "steps": [
+              "取 $f_n(x)=x^n$，$x\\in[0,1]$，每个 $f_n$ 连续",
+              "逐点极限：当 $0\\le x<1$ 时 $f_n(x)\\to0$；当 $x=1$ 时 $f_n(1)=1\\to1$，故 $f(x)=0\\ (x<1),\\ f(1)=1$，在 $x=1$ 处不连续",
+              "说明非一致收敛：取 $\\varepsilon=1/2$，对任意 $N$，取 $x=(1/2)^{1/N}<1$ 接近1，有 $f_N(x)=1/2>1/2-\\delta$，无法使 $\\sup_x|f_N(x)-f(x)|<\\varepsilon$ 对所有充分大N成立，说明收敛非一致"
+            ]
+          }
+        ],
+        "id": "isct-2009-7844cd6d27-q02-practice-01",
+        "school": "东京科学大学",
+        "year": "2009"
+      },
+      {
+        "text": "设 $f_n(x)=\\dfrac{\\sin(nx)}{n}$，$x\\in[0,1]$。证明 $\\{f_n\\}$ 在 $[0,1]$ 上一致收敛，并求其极限函数，验证极限连续。",
+        "knowledge_points": [
+          "一致收敛的判定",
+          "sup范数估计"
+        ],
+        "question_type": "证明一致收敛并求极限",
+        "method": [
+          "用|sin|≤1估计sup范数"
+        ],
+        "solution_steps": [
+          "估计|f_n(x)-0|",
+          "取sup并令n→∞",
+          "得出极限函数连续"
+        ],
+        "math_structure": {
+          "type": "uniform_convergence_continuity",
+          "template": "利用范数估计验证函数列一致收敛于连续函数",
+          "variable_count": 1
+        },
+        "difficulty": 2,
+        "estimated_minutes": 6,
+        "answer": [
+          {
+            "label": "本题",
+            "steps": [
+              "对所有 $x\\in[0,1]$，$|f_n(x)-0|=\\left|\\dfrac{\\sin nx}{n}\\right|\\le\\dfrac1n$",
+              "取上确界：$\\sup_{x\\in[0,1]}|f_n(x)-0|\\le\\dfrac1n\\to0\\ (n\\to\\infty)$，故 $f_n\\to0$ 一致收敛",
+              "极限函数 $f\\equiv0$ 显然连续，与本题结论一致"
+            ]
+          }
+        ],
+        "id": "isct-2009-7844cd6d27-q02-practice-02",
+        "school": "东京科学大学",
+        "year": "2009"
+      },
+      {
+        "text": "设 $\\{f_n\\}$ 在 $[0,1]$ 上一致收敛于 $f$，且每个 $f_n$ 连续。证明对任意 $x_n\\to x_0$（$x_n,x_0\\in[0,1]$）有 $f_n(x_n)\\to f(x_0)$。",
+        "knowledge_points": [
+          "一致收敛",
+          "连续函数的序列极限",
+          "复合极限"
+        ],
+        "question_type": "证明一致收敛下的联合极限",
+        "method": [
+          "三角不等式拆分为一致收敛项与连续性项"
+        ],
+        "solution_steps": [
+          "拆分|f_n(x_n)-f(x_0)|",
+          "分别控制两部分",
+          "得出结论"
+        ],
+        "math_structure": {
+          "type": "uniform_convergence_continuity",
+          "template": "证明一致收敛函数列在动点处的极限等于极限函数在定点的值",
+          "variable_count": 1
+        },
+        "difficulty": 3,
+        "estimated_minutes": 8,
+        "answer": [
+          {
+            "label": "本题",
+            "steps": [
+              "由本题结论，$f$ 连续，故 $f(x_n)\\to f(x_0)$",
+              "拆分 $|f_n(x_n)-f(x_0)|\\le|f_n(x_n)-f(x_n)|+|f(x_n)-f(x_0)|$",
+              "第一项 $\\le\\sup_x|f_n(x)-f(x)|\\to0$（一致收敛），第二项由$f$连续及$x_n\\to x_0$知也 $\\to0$",
+              "两项趋于0，故 $f_n(x_n)\\to f(x_0)$，证毕"
+            ]
+          }
+        ],
+        "id": "isct-2009-7844cd6d27-q02-practice-03",
+        "school": "东京科学大学",
+        "year": "2009"
+      }
+    ],
+    "source_question": "問2(1)（数学試験I·基礎）",
+    "source_pdf": "东京科学大学/理工学系/数学系/东京科学大学_理工学系_数学系_2009_数学过去问.pdf",
+    "source_type": "官方过去问",
+    "subject_category": "微积分"
+  },
+  {
+    "id": "isct-2009-7844cd6d27-q03",
+    "school": "东京科学大学",
+    "year": "2009",
+    "subject": "理工学系_数学系",
+    "text": "设 $P(x),Q(x)$ 是互素的多项式，$P$ 的次数为 $m$，$Q$ 的次数为 $n$，并设对任意 $x\\ge0$ 都有 $P(x)\\neq0$。求 $$\\int_0^\\infty \\frac{Q(x)}{P(x)}\\,dx$$ 存在（收敛）的必要充分条件，用 $m,n$ 表示。",
+    "knowledge_points": [
+      "有理函数的渐近阶",
+      "反常积分收敛判别",
+      "多项式次数比较",
+      "p-积分判别法"
+    ],
+    "question_type": "求反常积分收敛的充要条件",
+    "method": [
+      "分析被积函数在无穷远处的渐近行为",
+      "利用 p-积分判别法比较阶数"
+    ],
+    "solution_steps": [
+      "说明[0,∞)上无奇点，只需考察x→∞的收敛性",
+      "求Q(x)/P(x)在无穷远处的渐近阶x^{n-m}",
+      "用∫x^{n-m}dx的收敛条件得到m,n关系"
+    ],
+    "math_structure": {
+      "type": "improper_integral_convergence_rational_function",
+      "template": "$P,Q$ 互素，$\\deg P=m,\\deg Q=n$，$P(x)\\neq0\\ (x\\ge0)$，求 $\\int_0^\\infty Q/P\\,dx$ 收敛的充要条件",
+      "variable_count": 2
+    },
+    "difficulty": 3,
+    "answer": [
+      {
+        "label": "本题",
+        "steps": [
+          "由 $P(x)\\neq0$ 对一切 $x\\ge0$，故 $Q(x)/P(x)$ 在 $[0,\\infty)$ 上连续，在任意有限区间 $[0,A]$ 上都可积，收敛性问题只在 $x\\to\\infty$ 处",
+          "设 $P(x)=a_mx^m+\\cdots,\\ Q(x)=b_nx^n+\\cdots$（$a_m,b_n\\neq0$），则当 $x\\to\\infty$ 时 $Q(x)/P(x)\\sim (b_n/a_m)x^{n-m}$",
+          "由 p-积分判别法，$\\int_1^\\infty x^{n-m}dx$ 收敛 $\\iff n-m<-1\\iff m>n+1\\iff m\\ge n+2$（因 $m,n$ 为整数）",
+          "又因 $Q(x)/P(x)$ 与 $(b_n/a_m)x^{n-m}$ 在无穷远处同阶（比值极限为非零常数），故原积分与 $\\int_1^\\infty x^{n-m}dx$ 同时收敛或发散",
+          "结论：$\\int_0^\\infty Q(x)/P(x)\\,dx$ 收敛的必要充分条件是 $m\\ge n+2$"
+        ]
+      }
+    ],
+    "practice_questions": [
+      {
+        "text": "判断 $\\displaystyle\\int_0^\\infty \\frac{1}{x^2+1}\\,dx$ 是否收敛，并求其值。",
+        "knowledge_points": [
+          "有理函数积分",
+          "反三角函数积分"
+        ],
+        "question_type": "计算反常积分",
+        "method": [
+          "m=2,n=0满足m≥n+2，故收敛",
+          "直接用arctan求值"
+        ],
+        "solution_steps": [
+          "验证m≥n+2",
+          "求原函数arctan x",
+          "代入上下限"
+        ],
+        "math_structure": {
+          "type": "improper_integral_convergence_rational_function",
+          "template": "计算简单有理函数反常积分",
+          "variable_count": 0
+        },
+        "difficulty": 1,
+        "estimated_minutes": 5,
+        "answer": [
+          {
+            "label": "本题",
+            "steps": [
+              "此处 $m=2,n=0$，满足 $m\\ge n+2$，故积分收敛",
+              "原函数为 $\\arctan x$，故 $\\int_0^\\infty\\frac{dx}{x^2+1}=[\\arctan x]_0^\\infty=\\frac\\pi2-0=\\frac\\pi2$",
+              "结论：积分收敛，值为 $\\pi/2$"
+            ]
+          }
+        ],
+        "id": "isct-2009-7844cd6d27-q03-practice-01",
+        "school": "东京科学大学",
+        "year": "2009"
+      },
+      {
+        "text": "判断 $\\displaystyle\\int_0^\\infty \\frac{x}{x^2+1}\\,dx$ 是否收敛，并说明原因。",
+        "knowledge_points": [
+          "有理函数积分",
+          "临界阶(m=n+1)不收敛"
+        ],
+        "question_type": "判断反常积分收敛性",
+        "method": [
+          "比较m,n关系判断是否满足m≥n+2"
+        ],
+        "solution_steps": [
+          "求m,n",
+          "验证不满足m≥n+2",
+          "直接计算说明发散"
+        ],
+        "math_structure": {
+          "type": "improper_integral_convergence_rational_function",
+          "template": "判断临界阶有理函数积分发散",
+          "variable_count": 0
+        },
+        "difficulty": 2,
+        "estimated_minutes": 5,
+        "answer": [
+          {
+            "label": "本题",
+            "steps": [
+              "此处 $m=2,\\ n=1$，只满足 $m=n+1$，不满足 $m\\ge n+2$，故按本题结论积分应发散",
+              "直接验证：$\\int_0^A\\frac{x}{x^2+1}dx=\\frac12\\ln(A^2+1)-\\frac12\\ln1=\\frac12\\ln(A^2+1)\\to\\infty\\ (A\\to\\infty)$",
+              "结论：积分发散，与判别条件一致"
+            ]
+          }
+        ],
+        "id": "isct-2009-7844cd6d27-q03-practice-02",
+        "school": "东京科学大学",
+        "year": "2009"
+      },
+      {
+        "text": "设 $P(x)=x^4+x^2+1$（在 $x\\ge0$ 上无零点），$Q(x)=2x$。判断 $\\int_0^\\infty Q(x)/P(x)\\,dx$ 的收敛性并求其值。",
+        "knowledge_points": [
+          "有理函数收敛判别",
+          "换元积分",
+          "反正切积分"
+        ],
+        "question_type": "综合判断与计算反常积分",
+        "method": [
+          "先用m,n判别收敛性，再换元t=x²计算"
+        ],
+        "solution_steps": [
+          "验证m=4,n=1满足m≥n+2",
+          "换元t=x²化简积分",
+          "用arctan公式求值"
+        ],
+        "math_structure": {
+          "type": "improper_integral_convergence_rational_function",
+          "template": "综合判别并计算次数差为3的有理函数积分",
+          "variable_count": 0
+        },
+        "difficulty": 3,
+        "estimated_minutes": 8,
+        "answer": [
+          {
+            "label": "本题",
+            "steps": [
+              "此处 $m=4,n=1$，满足 $m\\ge n+2$（$4\\ge3$），故积分收敛",
+              "令 $t=x^2,\\ dt=2x\\,dx$，则 $\\int_0^\\infty\\frac{2x}{x^4+x^2+1}dx=\\int_0^\\infty\\frac{dt}{t^2+t+1}$",
+              "配方 $t^2+t+1=(t+1/2)^2+3/4$，用标准公式 $\\int\\frac{dt}{(t+1/2)^2+3/4}=\\frac{2}{\\sqrt3}\\arctan\\frac{2t+1}{\\sqrt3}+C$",
+              "代入上下限：$\\frac{2}{\\sqrt3}\\left[\\arctan\\frac{2t+1}{\\sqrt3}\\right]_0^\\infty=\\frac{2}{\\sqrt3}\\left(\\frac\\pi2-\\arctan\\frac{1}{\\sqrt3}\\right)=\\frac{2}{\\sqrt3}\\left(\\frac\\pi2-\\frac\\pi6\\right)=\\frac{2}{\\sqrt3}\\cdot\\frac\\pi3=\\frac{2\\pi}{3\\sqrt3}$",
+              "结论：积分收敛，值为 $\\dfrac{2\\pi}{3\\sqrt3}=\\dfrac{2\\sqrt3\\pi}{9}$"
+            ]
+          }
+        ],
+        "id": "isct-2009-7844cd6d27-q03-practice-03",
+        "school": "东京科学大学",
+        "year": "2009"
+      }
+    ],
+    "source_question": "問2(2)（数学試験I·基礎）",
+    "source_pdf": "东京科学大学/理工学系/数学系/东京科学大学_理工学系_数学系_2009_数学过去问.pdf",
+    "source_type": "官方过去问",
+    "subject_category": "微积分"
+  },
+  {
+    "id": "isct-2009-7844cd6d27-q04",
+    "school": "东京科学大学",
+    "year": "2009",
+    "subject": "理工学系_数学系",
+    "text": "构造一个数列 $\\{a_n\\}_{n=1}^\\infty$，使得 $\\lim_{n\\to\\infty} n a_n=0$，但无限级数 $\\sum_{n=1}^\\infty a_n$ 发散。",
+    "knowledge_points": [
+      "级数收敛判别",
+      "积分判别法",
+      "反例构造",
+      "p-级数的临界情形"
+    ],
+    "question_type": "构造反例",
+    "method": [
+      "取 a_n=1/(n\\ln n) 型数列",
+      "用积分判别法验证发散",
+      "验证na_n→0"
+    ],
+    "solution_steps": [
+      "选取候选数列a_n=1/(n\\ln n)（n≥2）",
+      "验证极限na_n→0",
+      "用积分判别法验证级数发散"
+    ],
+    "math_structure": {
+      "type": "counterexample_series_divergence_with_vanishing_na_n",
+      "template": "构造 $\\{a_n\\}$ 满足 $\\lim na_n=0$ 但 $\\sum a_n=\\infty$",
+      "variable_count": 0
+    },
+    "difficulty": 3,
+    "answer": [
+      {
+        "label": "本题",
+        "steps": [
+          "取 $a_1=0$，对 $n\\ge2$ 令 $a_n=\\dfrac{1}{n\\ln n}$",
+          "验证 $\\lim_{n\\to\\infty}na_n=\\lim_{n\\to\\infty}\\dfrac{1}{\\ln n}=0$，满足要求",
+          "用积分判别法：令 $f(x)=\\dfrac{1}{x\\ln x}$（在$x\\ge2$上正、连续、单调递减），$\\int_2^\\infty\\frac{dx}{x\\ln x}=[\\ln\\ln x]_2^\\infty=\\infty$，故级数 $\\sum_{n=2}^\\infty\\frac1{n\\ln n}$ 发散",
+          "结论：$a_n=\\begin{cases}0,&n=1\\\\1/(n\\ln n),&n\\ge2\\end{cases}$ 满足 $na_n\\to0$ 而 $\\sum a_n$ 发散，为所求反例"
+        ]
+      }
+    ],
+    "practice_questions": [
+      {
+        "text": "验证 $\\sum_{n=2}^\\infty \\dfrac{1}{n\\ln n}$ 用比较判别法或比值判别法均不能直接判断发散，只能用积分判别法，请说明原因。",
+        "knowledge_points": [
+          "积分判别法的适用场景",
+          "比较判别法的局限"
+        ],
+        "question_type": "说明判别法适用性",
+        "method": [
+          "比较1/(n ln n)与1/n^p的关系",
+          "说明比值极限为1无法判定"
+        ],
+        "solution_steps": [
+          "计算比值极限",
+          "说明比较判别法找不到合适的比较对象",
+          "说明积分判别法可行"
+        ],
+        "math_structure": {
+          "type": "counterexample_series_divergence_with_vanishing_na_n",
+          "template": "分析1/(n ln n)型级数判别法的适用性",
+          "variable_count": 0
+        },
+        "difficulty": 2,
+        "estimated_minutes": 6,
+        "answer": [
+          {
+            "label": "本题",
+            "steps": [
+              "比值判别法：$\\dfrac{a_{n+1}}{a_n}=\\dfrac{n\\ln n}{(n+1)\\ln(n+1)}\\to1$，比值判别法失效（无法判断）",
+              "比较判别法：对任意 $p>1$，$\\dfrac{1/(n\\ln n)}{1/n^p}=n^{p-1}/\\ln n\\to\\infty$，说明 $1/(n\\ln n)$ 比任何 $1/n^p\\ (p>1)$ 都大，找不到收敛的p级数作上界比较；而与 $1/n$ 比较：$\\dfrac{1/(n\\ln n)}{1/n}=1/\\ln n\\to0$，虽知比 $1/n$ 小但 $\\sum1/n$ 本身发散，无法得出结论",
+              "只有积分判别法（利用 $f(x)=1/(x\\ln x)$ 单调递减且可求原函数 $\\ln\\ln x$）能直接判断发散，这是本类临界级数的标准方法"
+            ]
+          }
+        ],
+        "id": "isct-2009-7844cd6d27-q04-practice-01",
+        "school": "东京科学大学",
+        "year": "2009"
+      },
+      {
+        "text": "验证 $\\sum_{n=2}^\\infty \\dfrac{1}{n(\\ln n)^2}$ 收敛，并说明它与 $\\sum 1/(n\\ln n)$ 的区别体现了积分判别法的精细度。",
+        "knowledge_points": [
+          "积分判别法",
+          "p-积分的临界比较"
+        ],
+        "question_type": "判断级数收敛性",
+        "method": [
+          "积分判别法计算∫dx/(x(ln x)^2)"
+        ],
+        "solution_steps": [
+          "设置积分判别",
+          "换元u=ln x计算积分",
+          "得出收敛结论"
+        ],
+        "math_structure": {
+          "type": "counterexample_series_divergence_with_vanishing_na_n",
+          "template": "用积分判别法判断(ln n)^2型级数收敛",
+          "variable_count": 0
+        },
+        "difficulty": 2,
+        "estimated_minutes": 6,
+        "answer": [
+          {
+            "label": "本题",
+            "steps": [
+              "令 $f(x)=\\dfrac{1}{x(\\ln x)^2}$，在 $x\\ge2$ 上正、连续、递减",
+              "换元 $u=\\ln x,\\ du=dx/x$：$\\int_2^\\infty\\frac{dx}{x(\\ln x)^2}=\\int_{\\ln2}^\\infty\\frac{du}{u^2}=\\left[-\\frac1u\\right]_{\\ln2}^\\infty=\\frac{1}{\\ln2}<\\infty$",
+              "故 $\\sum_{n=2}^\\infty\\frac1{n(\\ln n)^2}$ 收敛，说明只需把 $\\ln n$ 的指数从1提高到2（即使增长极慢）即可从发散变为收敛，体现临界级数对指数的敏感性"
+            ]
+          }
+        ],
+        "id": "isct-2009-7844cd6d27-q04-practice-02",
+        "school": "东京科学大学",
+        "year": "2009"
+      },
+      {
+        "text": "是否存在数列 $\\{a_n\\}$ 满足 $\\lim_{n\\to\\infty} n^2a_n=0$ 但 $\\sum a_n$ 发散？若存在给出一例；若不存在给出证明。",
+        "knowledge_points": [
+          "p-级数判别",
+          "极限阶与级数收敛性关系"
+        ],
+        "question_type": "判断存在性并构造或证明",
+        "method": [
+          "利用n^2a_n→0推出a_n=o(1/n^2)从而用比较判别法"
+        ],
+        "solution_steps": [
+          "假设n^2a_n→0推导a_n上界",
+          "用比较判别法说明∑a_n必收敛",
+          "结论不存在这样的反例"
+        ],
+        "math_structure": {
+          "type": "counterexample_series_divergence_with_vanishing_na_n",
+          "template": "判断更强衰减条件n^2 a_n→0是否仍允许级数发散",
+          "variable_count": 0
+        },
+        "difficulty": 3,
+        "estimated_minutes": 7,
+        "answer": [
+          {
+            "label": "本题",
+            "steps": [
+              "不存在。由 $n^2a_n\\to0$，取 $\\varepsilon=1$，存在 $N$，当 $n\\ge N$ 时 $|n^2a_n|<1$，即 $|a_n|<1/n^2$",
+              "而 $\\sum_{n\\ge N}1/n^2$ 收敛（$p=2>1$的p-级数），由比较判别法 $\\sum_{n\\ge N}|a_n|$ 收敛，从而整个级数 $\\sum a_n$ 绝对收敛",
+              "结论：条件 $n^2a_n\\to0$ 比原题的 $na_n\\to0$ 强得多，足以保证级数（绝对）收敛，故不存在满足题设的反例；这也说明原题选用 $na_n\\to0$（而非更高阶）正是使发散反例存在的临界条件"
+            ]
+          }
+        ],
+        "id": "isct-2009-7844cd6d27-q04-practice-03",
+        "school": "东京科学大学",
+        "year": "2009"
+      }
+    ],
+    "source_question": "問2(3)（数学試験I·基礎）",
+    "source_pdf": "东京科学大学/理工学系/数学系/东京科学大学_理工学系_数学系_2009_数学过去问.pdf",
+    "source_type": "官方过去问",
+    "subject_category": "微积分"
+  },
+  {
+    "id": "isct-2009-7844cd6d27-q06",
+    "school": "东京科学大学",
+    "year": "2009",
+    "subject": "理工学系_数学系",
+    "text": "设 $f$ 是区间 $[-1,1]$ 上的连续函数。对 $t>0$，令 $$u(t)=\\int_{-1}^1 e^{-|y|/t}f(y)\\,dy$$\n(1) 证明 $u$ 是 $(0,\\infty)$ 上的连续函数。\n(2) 证明 $\\lim_{t\\to0}u(t)=0$。\n(3) 求 $t\\to\\infty$ 时 $tu(t)$ 存在有限极限的关于 $f$ 的条件。",
+    "knowledge_points": [
+      "含参量积分的连续性",
+      "控制收敛/优势收敛判别",
+      "渐近展开",
+      "反常积分极限"
+    ],
+    "question_type": "含参量积分的连续性与渐近分析",
+    "method": [
+      "用优势收敛定理证明连续性",
+      "用逐点极限加优势收敛证明极限为0",
+      "对指数函数做一阶展开分析tu(t)的极限"
+    ],
+    "solution_steps": [
+      "(1)用被积函数关于t连续且被|f(y)|控制证明u连续",
+      "(2)用逐点极限e^{-|y|/t}→0(y≠0)结合控制收敛定理",
+      "(3)分析t→∞时u(t)的极限，若不为零则tu(t)→∞，故需∫f=0；此时用一阶展开求tu(t)的极限"
+    ],
+    "math_structure": {
+      "type": "parameter_integral_continuity_limit",
+      "template": "$u(t)=\\int_{-1}^1 e^{-|y|/t}f(y)dy$；讨论 $u$ 在 $(0,\\infty)$ 上的连续性、$t\\to0$ 的极限、$tu(t)$ 在 $t\\to\\infty$ 时的渐近行为",
+      "variable_count": 1
+    },
+    "difficulty": 3,
+    "answer": [
+      {
+        "label": "(1)",
+        "steps": [
+          "对固定 $y\\in[-1,1]$，函数 $t\\mapsto e^{-|y|/t}$ 在 $(0,\\infty)$ 上连续（是连续函数的复合）",
+          "对所有 $t>0$，$|e^{-|y|/t}f(y)|\\le|f(y)|$，而 $f$ 在紧区间 $[-1,1]$ 上连续，故 $|f|$ 有界且可积，是与 $t$ 无关的可积优函数",
+          "由控制收敛定理（或含参量积分连续性定理），$u(t)=\\int_{-1}^1 e^{-|y|/t}f(y)dy$ 在 $(0,\\infty)$ 上连续"
+        ]
+      },
+      {
+        "label": "(2)",
+        "steps": [
+          "对每个固定 $y\\neq0$，当 $t\\to0^+$ 时 $|y|/t\\to\\infty$，故 $e^{-|y|/t}\\to0$；在 $y=0$（测度为零的单点）处 $e^{-|y|/t}=1$恒成立，但不影响积分",
+          "对所有 $t>0$，$|e^{-|y|/t}f(y)|\\le|f(y)|$，$|f|$ 可积，构成与 $t$ 无关的优函数",
+          "由控制收敛定理，$\\lim_{t\\to0^+}u(t)=\\int_{-1}^1\\lim_{t\\to0^+}e^{-|y|/t}f(y)\\,dy=\\int_{-1}^1 0\\,dy=0$"
+        ]
+      },
+      {
+        "label": "(3)",
+        "steps": [
+          "当 $t\\to\\infty$ 时，$e^{-|y|/t}\\to1$ 对所有 $y\\in[-1,1]$ 一致成立（因 $|y|/t\\le1/t\\to0$），故 $u(t)\\to\\int_{-1}^1 f(y)dy=:I$",
+          "若 $I\\neq0$，则 $tu(t)\\to\\infty\\cdot I$（发散到无穷），故 $tu(t)$ 有有限极限的必要条件是 $I=\\int_{-1}^1 f(y)dy=0$",
+          "在 $I=0$ 的假设下，写 $tu(t)=t\\int_{-1}^1[e^{-|y|/t}-1]f(y)dy$（因为额外减去的 $t\\cdot I=0$）；利用不等式 $-|y|/t\\le e^{-|y|/t}-1\\le0$，得 $|t[e^{-|y|/t}-1]|\\le|y|$，即被 $|y|$（在$[-1,1]$上可积）一致控制，且对每个固定 $y$，$t[e^{-|y|/t}-1]\\to-|y|\\ (t\\to\\infty)$",
+          "由控制收敛定理，$\\lim_{t\\to\\infty}tu(t)=\\int_{-1}^1(-|y|)f(y)dy=-\\int_{-1}^1|y|f(y)dy$，该极限对任何连续 $f$（满足 $I=0$）总是存在且有限（因 $|y|f(y)$ 在紧区间上可积）",
+          "结论：$tu(t)$ 存在有限极限的充要条件是 $\\int_{-1}^1 f(y)dy=0$；此时极限值为 $-\\int_{-1}^1|y|f(y)dy$"
+        ]
+      }
+    ],
+    "practice_questions": [
+      {
+        "text": "设 $f(y)=1$（常数函数）于 $[-1,1]$，求 $u(t)=\\int_{-1}^1 e^{-|y|/t}dy$ 的显式表达式，并验证当 $t\\to0$ 时 $u(t)\\to0$。",
+        "knowledge_points": [
+          "含参量积分显式计算",
+          "极限验证"
+        ],
+        "question_type": "计算显式含参积分并验证极限",
+        "method": [
+          "对称性化为2∫_0^1，直接积分计算"
+        ],
+        "solution_steps": [
+          "利用被积函数为偶函数化简",
+          "直接积分求出u(t)",
+          "取t→0验证极限为0"
+        ],
+        "math_structure": {
+          "type": "parameter_integral_continuity_limit",
+          "template": "显式计算u(t)=∫e^{-|y|/t}dy并验证t→0极限",
+          "variable_count": 1
+        },
+        "difficulty": 2,
+        "estimated_minutes": 6,
+        "answer": [
+          {
+            "label": "本题",
+            "steps": [
+              "由被积函数关于y是偶函数，$u(t)=2\\int_0^1 e^{-y/t}dy=2\\left[-t e^{-y/t}\\right]_0^1=2t(1-e^{-1/t})$",
+              "验证 $t\\to0^+$：$e^{-1/t}\\to0$，故 $u(t)=2t(1-e^{-1/t})\\to2\\cdot0\\cdot1=0$，与理论结论一致",
+              "此例中 $I=\\int_{-1}^1 1\\,dy=2\\neq0$，故按(3)的结论 $tu(t)$ 应当发散到无穷；验证：$tu(t)=2t^2(1-e^{-1/t})\\to0$？重新核查——这里应计算的是 $u(t)$本身趋于0，而按(3)是讨论 $t\\to\\infty$ 时 $tu(t)$，此处 $u(t)=2t(1-e^{-1/t})\\to2t\\cdot1=2t\\to\\infty$ 当 $t\\to\\infty$（因 $I=2\\neq0$），从而 $tu(t)\\sim2t^2\\to\\infty$，印证了 $I\\neq0$ 时 $tu(t)$ 发散"
+            ]
+          }
+        ],
+        "id": "isct-2009-7844cd6d27-q06-practice-01",
+        "school": "东京科学大学",
+        "year": "2009"
+      },
+      {
+        "text": "设 $f(y)=y$（$y\\in[-1,1]$），验证 $\\int_{-1}^1 f(y)dy=0$，并求 $\\lim_{t\\to\\infty}tu(t)$ 的值。",
+        "knowledge_points": [
+          "奇函数积分为零",
+          "含参积分渐近极限公式应用"
+        ],
+        "question_type": "验证条件并求渐近极限",
+        "method": [
+          "验证奇函数积分为0满足(3)条件",
+          "用公式-∫|y|f(y)dy计算极限"
+        ],
+        "solution_steps": [
+          "验证∫f=0",
+          "代入公式计算-∫|y|f(y)dy"
+        ],
+        "math_structure": {
+          "type": "parameter_integral_continuity_limit",
+          "template": "验证奇函数满足I=0并计算tu(t)极限",
+          "variable_count": 1
+        },
+        "difficulty": 3,
+        "estimated_minutes": 7,
+        "answer": [
+          {
+            "label": "本题",
+            "steps": [
+              "$f(y)=y$ 是奇函数，$\\int_{-1}^1 y\\,dy=0$，满足(3)中的必要条件 $I=0$",
+              "由(3)结论，$\\lim_{t\\to\\infty}tu(t)=-\\int_{-1}^1|y|f(y)dy=-\\int_{-1}^1|y|\\cdot y\\,dy$",
+              "注意 $|y|\\cdot y$ 是奇函数（因 $|y|$偶，$y$奇，乘积为奇），故 $\\int_{-1}^1|y|y\\,dy=0$",
+              "结论：$\\lim_{t\\to\\infty}tu(t)=0$"
+            ]
+          }
+        ],
+        "id": "isct-2009-7844cd6d27-q06-practice-02",
+        "school": "东京科学大学",
+        "year": "2009"
+      },
+      {
+        "text": "设 $f(y)=1-y^2$（$y\\in[-1,1]$），判断是否满足 $\\int_{-1}^1 f(y)dy=0$；若不满足，说明 $tu(t)$ 在 $t\\to\\infty$ 时的行为。",
+        "knowledge_points": [
+          "判定条件是否成立",
+          "不满足条件时的发散阶数"
+        ],
+        "question_type": "判断条件并分析发散行为",
+        "method": [
+          "直接计算∫(1-y²)dy",
+          "判断非零后说明u(t)→I及tu(t)阶数"
+        ],
+        "solution_steps": [
+          "计算积分I",
+          "判断I≠0",
+          "说明tu(t)~It→∞"
+        ],
+        "math_structure": {
+          "type": "parameter_integral_continuity_limit",
+          "template": "分析I≠0情形下tu(t)的发散阶数",
+          "variable_count": 1
+        },
+        "difficulty": 2,
+        "estimated_minutes": 6,
+        "answer": [
+          {
+            "label": "本题",
+            "steps": [
+              "计算 $I=\\int_{-1}^1(1-y^2)dy=\\left[y-\\frac{y^3}{3}\\right]_{-1}^1=(1-\\tfrac13)-(-1+\\tfrac13)=\\tfrac23+\\tfrac23=\\tfrac43\\neq0$",
+              "不满足 $I=0$，故按(3)的结论，$u(t)\\to I=4/3\\neq0$ 当 $t\\to\\infty$",
+              "因此 $tu(t)\\sim \\tfrac43 t\\to\\infty$，即 $tu(t)$ 以线性阶发散，不存在有限极限"
+            ]
+          }
+        ],
+        "id": "isct-2009-7844cd6d27-q06-practice-03",
+        "school": "东京科学大学",
+        "year": "2009"
+      }
+    ],
+    "source_question": "問7（数学試験II）",
+    "source_pdf": "东京科学大学/理工学系/数学系/东京科学大学_理工学系_数学系_2009_数学过去问.pdf",
+    "source_type": "官方过去问",
+    "subject_category": "微积分"
+  },
+  {
+    "id": "isct-2009-7844cd6d27-q07",
+    "school": "东京科学大学",
+    "year": "2009",
+    "subject": "理工学系_数学系",
+    "text": "设 $f$ 是定义在 $x\\ge0$ 上的非负连续函数，满足 $\\int_0^\\infty x f(x)\\,dx<\\infty$。令 $$\\phi(t)=\\int_0^\\infty f(x)\\sin^2(tx)\\,dx$$\n证明：\n(1) $\\phi$ 是 $C^1(\\mathbb{R})$ 类函数。\n(2) $\\displaystyle\\int_0^\\infty \\frac{\\phi(t)}{t^2}\\,dt<\\infty$。",
+    "knowledge_points": [
+      "参数积分的可微性",
+      "控制收敛/微分与积分交换",
+      "Fubini-Tonelli定理",
+      "标准积分∫(sin s/s)^2ds"
+    ],
+    "question_type": "证明含参积分的可微性与二次积分收敛性",
+    "method": [
+      "用中值定理估计Lipschitz连续性",
+      "用一致优函数xf(x)证明可微且导数连续",
+      "用Tonelli定理交换积分次序并换元求出精确值"
+    ],
+    "solution_steps": [
+      "(1)用sin²的差估计|φ(t)-φ(t0)|≤Lipschitz常数|t-t0|证明连续，再用优函数xf(x)证明可微及导数连续",
+      "(2)用Tonelli定理交换t,x积分次序，内层积分换元s=tx算出∫sin²(s)/s²ds=π/2"
+    ],
+    "math_structure": {
+      "type": "parameter_integral_differentiability_fubini",
+      "template": "$\\phi(t)=\\int_0^\\infty f(x)\\sin^2(tx)dx$，$\\int_0^\\infty xf(x)dx<\\infty$；证明 $\\phi\\in C^1$ 且 $\\int_0^\\infty\\phi(t)/t^2\\,dt<\\infty$",
+      "variable_count": 1
+    },
+    "difficulty": 4,
+    "answer": [
+      {
+        "label": "(1)",
+        "steps": [
+          "记 $C=\\int_0^\\infty xf(x)dx<\\infty$。用恒等式 $\\sin^2A-\\sin^2B=\\sin(A+B)\\sin(A-B)$，取 $A=tx,B=t_0x$：$|\\sin^2(tx)-\\sin^2(t_0x)|=|\\sin((t+t_0)x)\\sin((t-t_0)x)|\\le1\\cdot|(t-t_0)x|=|t-t_0|x$",
+          "故 $|\\phi(t)-\\phi(t_0)|\\le\\int_0^\\infty f(x)|\\sin^2(tx)-\\sin^2(t_0x)|dx\\le|t-t_0|\\int_0^\\infty xf(x)dx=C|t-t_0|$，即 $\\phi$ 是（全局）Lipschitz函数，从而连续",
+          "对固定x，$\\partial_t[f(x)\\sin^2(tx)]=2xf(x)\\sin(tx)\\cos(tx)=xf(x)\\sin(2tx)$，且对所有 $t$：$|xf(x)\\sin(2tx)|\\le xf(x)$，即被与 $t$ 无关的可积函数 $xf(x)$ 一致控制",
+          "由微分与积分交换定理（Leibniz积分法则的控制收敛版本），$\\phi$ 在 $\\mathbb{R}$ 上处处可微，且 $\\phi'(t)=\\int_0^\\infty xf(x)\\sin(2tx)\\,dx$",
+          "$\\phi'(t)$ 的连续性：被积函数 $xf(x)\\sin(2tx)$ 关于 $t$ 连续，且被 $xf(x)$（可积、与 $t$ 无关）控制，由控制收敛定理 $\\phi'$ 在 $\\mathbb{R}$ 上连续，故 $\\phi\\in C^1(\\mathbb{R})$"
+        ]
+      },
+      {
+        "label": "(2)",
+        "steps": [
+          "被积函数 $f(x)\\sin^2(tx)/t^2\\ge0$，由Tonelli定理可交换积分次序：$\\int_0^\\infty\\frac{\\phi(t)}{t^2}dt=\\int_0^\\infty\\int_0^\\infty\\frac{f(x)\\sin^2(tx)}{t^2}\\,dx\\,dt=\\int_0^\\infty f(x)\\left[\\int_0^\\infty\\frac{\\sin^2(tx)}{t^2}dt\\right]dx$",
+          "对内层积分作换元 $s=tx$（固定 $x>0$），$dt=ds/x,\\ t^2=s^2/x^2$：$\\int_0^\\infty\\frac{\\sin^2(tx)}{t^2}dt=\\int_0^\\infty\\frac{\\sin^2s}{s^2/x^2}\\cdot\\frac{ds}{x}=x\\int_0^\\infty\\left(\\frac{\\sin s}{s}\\right)^2ds$",
+          "利用经典结果 $\\displaystyle\\int_0^\\infty\\left(\\frac{\\sin s}{s}\\right)^2ds=\\frac{\\pi}{2}$，得内层积分 $=\\frac{\\pi}{2}x$（对 $x=0$ 情形单点不影响积分值，$f$连续故无实质影响）",
+          "代入得 $\\int_0^\\infty\\frac{\\phi(t)}{t^2}dt=\\int_0^\\infty f(x)\\cdot\\frac{\\pi}{2}x\\,dx=\\frac{\\pi}{2}\\int_0^\\infty xf(x)dx=\\frac{\\pi}{2}C<\\infty$（由题设 $C<\\infty$）",
+          "结论：$\\int_0^\\infty\\phi(t)/t^2\\,dt=\\frac{\\pi}{2}\\int_0^\\infty xf(x)dx<\\infty$，证毕"
+        ]
+      }
+    ],
+    "practice_questions": [
+      {
+        "text": "验证经典积分公式 $\\displaystyle\\int_0^\\infty\\left(\\frac{\\sin s}{s}\\right)^2 ds=\\frac{\\pi}{2}$ 中所用到的 $\\int_0^\\infty\\frac{\\sin s}{s}ds=\\frac\\pi2$ 的结论是否与之一致（简要说明两者关系，不要求重新证明这两个基本积分本身）。",
+        "knowledge_points": [
+          "Dirichlet积分",
+          "sinc函数平方积分"
+        ],
+        "question_type": "说明经典积分之间的关系",
+        "method": [
+          "用分部积分把∫(sin s/s)^2ds转化为∫sin s/s ds"
+        ],
+        "solution_steps": [
+          "写出分部积分公式",
+          "说明边界项消失",
+          "得到两积分相等"
+        ],
+        "math_structure": {
+          "type": "parameter_integral_differentiability_fubini",
+          "template": "关联sinc函数积分与其平方积分",
+          "variable_count": 0
+        },
+        "difficulty": 2,
+        "estimated_minutes": 6,
+        "answer": [
+          {
+            "label": "本题",
+            "steps": [
+              "分部积分：$\\int_0^\\infty\\frac{\\sin^2s}{s^2}ds=\\int_0^\\infty\\sin^2s\\cdot\\left(-\\frac1s\\right)'\\cdot(-1)ds$，更直接地取 $u=\\sin^2s,\\ dv=s^{-2}ds$，则 $v=-1/s$，$du=2\\sin s\\cos s\\,ds=\\sin(2s)ds$",
+              "$\\int_0^\\infty\\frac{\\sin^2s}{s^2}ds=\\left[-\\frac{\\sin^2s}{s}\\right]_0^\\infty+\\int_0^\\infty\\frac{\\sin(2s)}{s}ds$，边界项在 $s\\to0$ 时 $\\sin^2s/s\\to0$，在 $s\\to\\infty$ 时也 $\\to0$，故边界项为0",
+              "$\\int_0^\\infty\\frac{\\sin(2s)}{s}ds$，令 $u=2s$：$=\\int_0^\\infty\\frac{\\sin u}{u}du=\\frac\\pi2$（利用给定的Dirichlet积分结论）",
+              "故 $\\int_0^\\infty(\\sin s/s)^2ds=\\pi/2$，与已知结论一致，说明两个经典积分通过分部积分直接关联"
+            ]
+          }
+        ],
+        "id": "isct-2009-7844cd6d27-q07-practice-01",
+        "school": "东京科学大学",
+        "year": "2009"
+      },
+      {
+        "text": "设 $f(x)=e^{-x}$（$x\\ge0$）。验证 $\\int_0^\\infty xf(x)dx<\\infty$，并利用原题(2)的结论直接求 $\\int_0^\\infty \\phi(t)/t^2\\,dt$ 的值（无需重新计算$\\phi(t)$本身）。",
+        "knowledge_points": [
+          "公式应用",
+          "Gamma函数∫xe^{-x}dx=1"
+        ],
+        "question_type": "应用公式计算具体积分",
+        "method": [
+          "直接验证条件并代入(π/2)∫xf(x)dx公式"
+        ],
+        "solution_steps": [
+          "计算∫xe^{-x}dx=1",
+          "代入公式得π/2"
+        ],
+        "math_structure": {
+          "type": "parameter_integral_differentiability_fubini",
+          "template": "应用一般公式计算具体f(x)=e^{-x}情形的积分",
+          "variable_count": 0
+        },
+        "difficulty": 2,
+        "estimated_minutes": 5,
+        "answer": [
+          {
+            "label": "本题",
+            "steps": [
+              "$\\int_0^\\infty xe^{-x}dx=\\Gamma(2)=1!=1<\\infty$，满足条件",
+              "直接代入原题(2)的公式 $\\int_0^\\infty\\phi(t)/t^2dt=\\frac\\pi2\\int_0^\\infty xf(x)dx=\\frac\\pi2\\cdot1=\\frac\\pi2$",
+              "结论：所求积分值为 $\\pi/2$"
+            ]
+          }
+        ],
+        "id": "isct-2009-7844cd6d27-q07-practice-02",
+        "school": "东京科学大学",
+        "year": "2009"
+      },
+      {
+        "text": "说明为什么本题条件中要求 $\\int_0^\\infty xf(x)dx<\\infty$，而不是仅要求 $\\int_0^\\infty f(x)dx<\\infty$；举例说明满足后者但不满足前者的函数会使得(2)的结论不再成立。",
+        "knowledge_points": [
+          "条件的必要性分析",
+          "反例构造"
+        ],
+        "question_type": "分析条件必要性并构造反例",
+        "method": [
+          "构造f(x)使得∫f<∞但∫xf=∞",
+          "说明此时∫φ(t)/t²dt发散"
+        ],
+        "solution_steps": [
+          "构造具体f(x)如1/(1+x)^2 型使xf(x)不可积",
+          "说明按公式(π/2)∫xf(x)dx发散"
+        ],
+        "math_structure": {
+          "type": "parameter_integral_differentiability_fubini",
+          "template": "分析xf(x)可积条件的必要性并给出反例",
+          "variable_count": 0
+        },
+        "difficulty": 3,
+        "estimated_minutes": 8,
+        "answer": [
+          {
+            "label": "本题",
+            "steps": [
+              "取 $f(x)=\\dfrac{1}{(1+x)^2}$，则 $\\int_0^\\infty f(x)dx=\\left[-\\frac{1}{1+x}\\right]_0^\\infty=1<\\infty$，即 $f$ 本身可积",
+              "但 $xf(x)=\\dfrac{x}{(1+x)^2}\\sim\\dfrac1x$ 当 $x\\to\\infty$，故 $\\int_0^\\infty xf(x)dx=\\int_0^\\infty\\frac{x}{(1+x)^2}dx=\\infty$（与 $\\int1/x\\,dx$ 同阶发散），不满足本题条件",
+              "由(2)的推导过程，$\\int_0^\\infty\\phi(t)/t^2dt=\\frac\\pi2\\int_0^\\infty xf(x)dx$，此时右边为 $\\infty$，说明当 $\\int xf(x)dx$ 发散时结论(2)不再成立，这正体现了题设条件 $\\int xf(x)dx<\\infty$（而非仅 $\\int f(x)dx<\\infty$）是保证(2)成立的关键、不可弱化的假设"
+            ]
+          }
+        ],
+        "id": "isct-2009-7844cd6d27-q07-practice-03",
+        "school": "东京科学大学",
+        "year": "2009"
+      }
+    ],
+    "source_question": "問8（数学試験II）",
+    "source_pdf": "东京科学大学/理工学系/数学系/东京科学大学_理工学系_数学系_2009_数学过去问.pdf",
+    "source_type": "官方过去问",
+    "subject_category": "微积分"
+  }
+]

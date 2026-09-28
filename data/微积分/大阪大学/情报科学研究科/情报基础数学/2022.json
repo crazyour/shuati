@@ -1,0 +1,410 @@
+[
+  {
+    "id": "osaka-2022-c07cb3c8db-q02",
+    "school": "大阪大学",
+    "year": "2022",
+    "subject": "情报科学研究科_情报基础数学",
+    "text": "设$a$为正的常数，令\n$$V=\\{(x,y,z,w)\\mid x^2+y^2+z^2+w^2\\le a^2\\},$$\n求四重积分\n$$\\iiiint_V dx\\,dy\\,dz\\,dw$$\n的值。",
+    "knowledge_points": [
+      "多重积分",
+      "n维球体积公式",
+      "球坐标变换与雅可比行列式",
+      "Wallis积分/Beta-Gamma函数",
+      "累次积分中固定一个变量降维"
+    ],
+    "question_type": "多重积分求四维球体体积",
+    "method": [
+      "固定一个坐标，把剩余变量的积分域化为三维球，用三维球体积公式",
+      "对剩余单变量积分利用三角换元与Wallis公式求值",
+      "或直接套用n维球体积公式$V_n(r)=\\frac{\\pi^{n/2}}{\\Gamma(n/2+1)}r^n$验证"
+    ],
+    "solution_steps": [
+      "固定$w\\in[-a,a]$，此时$(x,y,z)$满足$x^2+y^2+z^2\\le a^2-w^2$，是半径$\\sqrt{a^2-w^2}$的三维球，体积为$\\frac{4}{3}\\pi(a^2-w^2)^{3/2}$",
+      "对$w$积分：$V=\\int_{-a}^{a}\\frac{4}{3}\\pi(a^2-w^2)^{3/2}\\,dw$",
+      "令$w=a\\sin\\theta$，把积分化为$\\theta\\in[-\\pi/2,\\pi/2]$上的$\\cos^4\\theta$积分",
+      "利用Wallis公式$\\int_0^{\\pi/2}\\cos^4\\theta\\,d\\theta=\\frac{3\\pi}{16}$求出最终结果$V=\\frac{\\pi^2}{2}a^4$"
+    ],
+    "math_structure": {
+      "type": "multiple_integral_ball_volume",
+      "template": "\\iiiint_{x^2+y^2+z^2+w^2\\le a^2} dx\\,dy\\,dz\\,dw",
+      "variable_count": 1
+    },
+    "difficulty": 3,
+    "answer": [
+      {
+        "label": "积分值",
+        "steps": [
+          "对最后一个变量$w$固定在$[-a,a]$中的某个值，此时$(x,y,z)$的取值范围是$x^2+y^2+z^2\\le a^2-w^2$，这是一个半径为$r(w)=\\sqrt{a^2-w^2}$的三维实心球，其体积公式为$\\frac{4}{3}\\pi r^3$，故该截面上三重积分的值为$\\frac{4}{3}\\pi\\left(a^2-w^2\\right)^{3/2}$。",
+          "于是四重积分化为单变量积分$V=\\displaystyle\\int_{-a}^{a}\\frac{4}{3}\\pi\\left(a^2-w^2\\right)^{3/2}dw$。令$w=a\\sin\\theta$，$dw=a\\cos\\theta\\,d\\theta$，$\\theta$从$-\\pi/2$到$\\pi/2$，且$a^2-w^2=a^2\\cos^2\\theta$，故$(a^2-w^2)^{3/2}=a^3\\cos^3\\theta$，积分变为$\\frac{4}{3}\\pi a^4\\int_{-\\pi/2}^{\\pi/2}\\cos^4\\theta\\,d\\theta$。",
+          "利用Wallis公式$\\int_0^{\\pi/2}\\cos^4\\theta\\,d\\theta=\\frac{3}{4}\\cdot\\frac{1}{2}\\cdot\\frac{\\pi}{2}=\\frac{3\\pi}{16}$，故$\\int_{-\\pi/2}^{\\pi/2}\\cos^4\\theta\\,d\\theta=2\\cdot\\frac{3\\pi}{16}=\\frac{3\\pi}{8}$。",
+          "代入得$V=\\frac{4}{3}\\pi a^4\\cdot\\frac{3\\pi}{8}=\\frac{\\pi^2}{2}a^4$。用n维球体积公式$V_n(r)=\\frac{\\pi^{n/2}}{\\Gamma(n/2+1)}r^n$在$n=4,r=a$处验算：$\\Gamma(3)=2!=2$，$V_4(a)=\\frac{\\pi^2}{2}a^4$，与直接计算结果一致，故最终答案为$\\boxed{\\dfrac{\\pi^2}{2}a^4}$。"
+        ]
+      }
+    ],
+    "practice_questions": [
+      {
+        "text": "求二维圆盘$\\{(x,y)\\mid x^2+y^2\\le b^2\\}$（$b>0$为常数）的面积，即计算$\\iint_{x^2+y^2\\le b^2}dx\\,dy$。",
+        "knowledge_points": [
+          "二重积分",
+          "极坐标变换",
+          "圆的面积"
+        ],
+        "question_type": "二重积分求圆盘面积",
+        "method": [
+          "极坐标换元直接积分"
+        ],
+        "solution_steps": [
+          "换元为极坐标$x=r\\cos\\theta,y=r\\sin\\theta$",
+          "积分$\\int_0^{2\\pi}\\int_0^b r\\,dr\\,d\\theta$",
+          "计算得$\\pi b^2$"
+        ],
+        "math_structure": {
+          "type": "double_integral_disk_area",
+          "template": "\\iint_{x^2+y^2\\le b^2}dx\\,dy",
+          "variable_count": 1
+        },
+        "difficulty": 1,
+        "estimated_minutes": 3,
+        "answer": [
+          {
+            "label": "面积",
+            "steps": [
+              "用极坐标变换$x=r\\cos\\theta, y=r\\sin\\theta$，雅可比行列式为$r$，积分域变为$0\\le r\\le b,\\ 0\\le\\theta\\le2\\pi$。",
+              "积分$\\iint r\\,dr\\,d\\theta=\\int_0^{2\\pi}d\\theta\\int_0^b r\\,dr=2\\pi\\cdot\\frac{b^2}{2}=\\pi b^2$。",
+              "与已知圆面积公式$\\pi b^2$一致，验算成立。"
+            ]
+          }
+        ],
+        "id": "osaka-2022-c07cb3c8db-q02-practice-01",
+        "school": "大阪大学",
+        "year": "2022"
+      },
+      {
+        "text": "利用球坐标变换，直接计算三维实心球$\\{(x,y,z)\\mid x^2+y^2+z^2\\le r^2\\}$（$r>0$）的体积$\\iiint dx\\,dy\\,dz$。",
+        "knowledge_points": [
+          "三重积分",
+          "球坐标变换",
+          "雅可比行列式$\\rho^2\\sin\\varphi$"
+        ],
+        "question_type": "三重积分求三维球体积",
+        "method": [
+          "球坐标换元",
+          "分离变量逐次积分"
+        ],
+        "solution_steps": [
+          "设$x=\\rho\\sin\\varphi\\cos\\theta,y=\\rho\\sin\\varphi\\sin\\theta,z=\\rho\\cos\\varphi$",
+          "积分$\\int_0^{2\\pi}\\int_0^\\pi\\int_0^r \\rho^2\\sin\\varphi\\,d\\rho\\,d\\varphi\\,d\\theta$",
+          "计算得$\\frac{4}{3}\\pi r^3$"
+        ],
+        "math_structure": {
+          "type": "triple_integral_ball_volume",
+          "template": "\\iiint_{x^2+y^2+z^2\\le r^2}dx\\,dy\\,dz",
+          "variable_count": 1
+        },
+        "difficulty": 2,
+        "estimated_minutes": 6,
+        "answer": [
+          {
+            "label": "体积",
+            "steps": [
+              "采用球坐标$x=\\rho\\sin\\varphi\\cos\\theta, y=\\rho\\sin\\varphi\\sin\\theta, z=\\rho\\cos\\varphi$，雅可比行列式为$\\rho^2\\sin\\varphi$，积分域为$0\\le\\rho\\le r,\\ 0\\le\\varphi\\le\\pi,\\ 0\\le\\theta\\le2\\pi$。",
+              "积分$\\int_0^{2\\pi}d\\theta\\int_0^\\pi\\sin\\varphi\\,d\\varphi\\int_0^r\\rho^2\\,d\\rho=2\\pi\\cdot2\\cdot\\frac{r^3}{3}$。",
+              "计算得$\\frac{4}{3}\\pi r^3$，与经典球体积公式一致，验算成立。"
+            ]
+          }
+        ],
+        "id": "osaka-2022-c07cb3c8db-q02-practice-02",
+        "school": "大阪大学",
+        "year": "2022"
+      },
+      {
+        "text": "证明并利用「固定最后一个坐标，把剩余变量积分域化为低一维球体」的方法，导出递推公式$V_n(r)=\\dfrac{2\\pi r^2}{n}V_{n-2}(r)$，其中$V_n(r)$表示$n$维实心球（半径$r$）的体积。（约定$V_0(r)=1$。）",
+        "knowledge_points": [
+          "多重积分降维技巧",
+          "递推关系",
+          "Wallis积分",
+          "n维球体积"
+        ],
+        "question_type": "推导n维球体积的递推公式",
+        "method": [
+          "固定最后一个坐标变量，将剩余积分化为$(n-2)$维球体积的积分",
+          "三角换元计算含$\\cos^{n-1}\\theta$的Wallis积分"
+        ],
+        "solution_steps": [
+          "固定坐标$x_n\\in[-r,r]$，其余$(n-1)$个坐标满足半径为$\\sqrt{r^2-x_n^2}$的$(n-1)$维球——但需再降一维配合已知公式",
+          "结合已知$V_1,V_2,V_3,V_4$验证递推公式的正确性",
+          "写出一般证明思路"
+        ],
+        "math_structure": {
+          "type": "n_dim_ball_volume_recursion",
+          "template": "V_n(r)=\\frac{2\\pi r^2}{n}V_{n-2}(r)",
+          "variable_count": 1
+        },
+        "difficulty": 3,
+        "estimated_minutes": 10,
+        "answer": [
+          {
+            "label": "递推公式的验证与说明",
+            "steps": [
+              "先验证公式在已知情形下成立：由$V_0(r)=1,\\ V_1(r)=2r,\\ V_2(r)=\\pi r^2,\\ V_3(r)=\\frac{4}{3}\\pi r^3$。代入$n=2$：$\\frac{2\\pi r^2}{2}V_0(r)=\\pi r^2\\cdot1=\\pi r^2=V_2(r)$，成立；代入$n=3$：$\\frac{2\\pi r^2}{3}V_1(r)=\\frac{2\\pi r^2}{3}\\cdot2r=\\frac{4\\pi r^3}{3}=V_3(r)$，也成立。",
+              "一般证明：固定坐标$x_n=t\\in[-r,r]$，其余$n-1$个坐标满足$x_1^2+\\cdots+x_{n-1}^2\\le r^2-t^2$，这是$(n-1)$维球，但更方便地把最后两个坐标$(x_{n-1},x_n)$用极坐标$x_{n-1}=\\rho\\cos\\theta,x_n=\\rho\\sin\\theta$表示，此时前$n-2$个坐标满足$(n-2)$维球$\\sum x_i^2\\le r^2-\\rho^2$，体积微元为$\\rho\\,d\\rho\\,d\\theta$乘以$(n-2)$维球体积$V_{n-2}(\\sqrt{r^2-\\rho^2})=\\left(\\sqrt{r^2-\\rho^2}\\right)^{n-2}V_{n-2}(1)$。",
+              "对$\\theta\\in[0,2\\pi)$与$\\rho\\in[0,r]$积分，并利用$V_{n-2}(r)=r^{n-2}V_{n-2}(1)$的齐次性，经过换元$\\rho=r\\sin\\alpha$可整理出$V_n(r)=2\\pi\\int_0^r \\rho (r^2-\\rho^2)^{(n-2)/2}V_{n-2}(1)\\,d\\rho=\\frac{2\\pi r^2}{n}\\cdot r^{n-2}V_{n-2}(1)=\\frac{2\\pi r^2}{n}V_{n-2}(r)$，从而递推公式成立（关键积分$\\int_0^r\\rho(r^2-\\rho^2)^{(n-2)/2}d\\rho=\\frac{r^n}{n}$可由换元$u=r^2-\\rho^2$直接验证）。",
+              "综上，递推公式$V_n(r)=\\frac{2\\pi r^2}{n}V_{n-2}(r)$在已知低维情形下数值吻合，且一般推导也自洽，公式得证。"
+            ]
+          }
+        ],
+        "id": "osaka-2022-c07cb3c8db-q02-practice-03",
+        "school": "大阪大学",
+        "year": "2022"
+      },
+      {
+        "text": "利用递推公式$V_n(r)=\\dfrac{2\\pi r^2}{n}V_{n-2}(r)$（$V_1(r)=2r,\\ V_3(r)=\\frac{4}{3}\\pi r^3$），求五维实心球$\\{(x_1,\\dots,x_5)\\mid x_1^2+\\cdots+x_5^2\\le r^2\\}$的体积。",
+        "knowledge_points": [
+          "n维球体积递推公式的应用",
+          "多重积分"
+        ],
+        "question_type": "利用递推公式求高维球体积",
+        "method": [
+          "直接代入递推公式$n=5$"
+        ],
+        "solution_steps": [
+          "代入$n=5$：$V_5(r)=\\frac{2\\pi r^2}{5}V_3(r)$",
+          "代入$V_3(r)=\\frac{4}{3}\\pi r^3$计算"
+        ],
+        "math_structure": {
+          "type": "n_dim_ball_volume_application",
+          "template": "V_5(r)=\\frac{2\\pi r^2}{5}V_3(r)",
+          "variable_count": 1
+        },
+        "difficulty": 3,
+        "estimated_minutes": 5,
+        "answer": [
+          {
+            "label": "五维球体积",
+            "steps": [
+              "代入递推公式$n=5$：$V_5(r)=\\dfrac{2\\pi r^2}{5}V_3(r)$。",
+              "已知$V_3(r)=\\frac{4}{3}\\pi r^3$，代入得$V_5(r)=\\dfrac{2\\pi r^2}{5}\\cdot\\dfrac{4}{3}\\pi r^3=\\dfrac{8\\pi^2}{15}r^5$。",
+              "用一般公式$V_n(r)=\\frac{\\pi^{n/2}}{\\Gamma(n/2+1)}r^n$验算：$n=5$时$\\Gamma(7/2)=\\frac{15\\sqrt\\pi}{8}$，故$V_5(r)=\\frac{\\pi^{5/2}}{\\frac{15\\sqrt\\pi}{8}}r^5=\\frac{8\\pi^2}{15}r^5$，与递推公式结果一致，验算通过。"
+            ]
+          }
+        ],
+        "id": "osaka-2022-c07cb3c8db-q02-practice-04",
+        "school": "大阪大学",
+        "year": "2022"
+      }
+    ],
+    "source_question": "2",
+    "source_pdf": "大阪大学/情报科学研究科/情报基础数学/大阪大学_情报科学研究科_情报基础数学_2022_数学过去问.pdf",
+    "source_type": "官方过去问",
+    "subject_category": "微积分"
+  },
+  {
+    "id": "osaka-2022-c07cb3c8db-q03",
+    "school": "大阪大学",
+    "year": "2022",
+    "subject": "情报科学研究科_情报基础数学",
+    "text": "设$f(x)$是$\\mathbb{R}$上的实值连续函数，且在$x\\neq0$处可微。判断以下两个命题是否正确，正确则证明，错误则给出反例：\n\n(1) 若存在实数$c$使得$\\displaystyle\\lim_{x\\to0}f'(x)=c$，则$f(x)$在$x=0$处可微。\n\n(2) 若$f(x)$在$x=0$处可微，则存在实数$c$使得$\\displaystyle\\lim_{x\\to0}f'(x)=c$。",
+    "knowledge_points": [
+      "导数的定义",
+      "拉格朗日中值定理",
+      "极限的存在性",
+      "反例的构造",
+      "振荡函数$\\sin(1/x)$",
+      "可微性与导函数连续性的区别"
+    ],
+    "question_type": "判断命题真伪并给出证明/反例",
+    "method": [
+      "对(1)用拉格朗日中值定理，把差商写成中间点处导数值",
+      "对(2)构造$f(x)=x^2\\sin(1/x)$型振荡反例"
+    ],
+    "solution_steps": [
+      "(1)：对任意小的$h>0$，在$[0,h]$上用中值定理得$\\frac{f(h)-f(0)}{h}=f'(\\xi_h)$，$\\xi_h\\in(0,h)$，令$h\\to0^+$得右导数$=c$；对$h<0$类似得左导数$=c$；两者相等，故$f'(0)=c$存在，命题(1)成立",
+      "(2)：取$f(x)=x^2\\sin(1/x)\\ (x\\neq0)$，$f(0)=0$；验证$f$在$\\mathbb{R}$上连续、在$x=0$处可微（$f'(0)=0$），但对$x\\neq0$有$f'(x)=2x\\sin(1/x)-\\cos(1/x)$，当$x\\to0$时$\\cos(1/x)$无极限，故$f'(x)$无极限，命题(2)不成立"
+    ],
+    "math_structure": {
+      "type": "differentiability_vs_limit_of_derivative",
+      "template": "f continuous on R, differentiable for x\\neq0; relate \\lim_{x\\to0}f'(x) to differentiability at 0",
+      "variable_count": 1
+    },
+    "difficulty": 4,
+    "answer": [
+      {
+        "label": "(1)",
+        "steps": [
+          "命题(1)正确。设$\\lim_{x\\to0}f'(x)=c$存在。对任意充分小的$h>0$，$f$在闭区间$[0,h]$上连续，在开区间$(0,h)$上可微（因为$(0,h)$中的点都$\\neq0$），由拉格朗日中值定理，存在$\\xi_h\\in(0,h)$使得$\\dfrac{f(h)-f(0)}{h}=f'(\\xi_h)$。",
+          "当$h\\to0^+$时，由$0<\\xi_h<h$可知$\\xi_h\\to0^+$；结合假设$\\lim_{x\\to0}f'(x)=c$，得$f'(\\xi_h)\\to c$，从而右极限$\\displaystyle\\lim_{h\\to0^+}\\frac{f(h)-f(0)}{h}=c$。",
+          "对$h<0$同理，在$[h,0]$上应用中值定理，存在$\\eta_h\\in(h,0)$使$\\dfrac{f(0)-f(h)}{-h}=f'(\\eta_h)$，即$\\dfrac{f(h)-f(0)}{h}=f'(\\eta_h)$，当$h\\to0^-$时$\\eta_h\\to0^-$，同样得$f'(\\eta_h)\\to c$，故左极限也等于$c$。",
+          "左右极限均存在且等于$c$，故$\\displaystyle\\lim_{h\\to0}\\frac{f(h)-f(0)}{h}=c$存在，即$f$在$x=0$处可微，且$f'(0)=c$。命题(1)得证。"
+        ]
+      },
+      {
+        "label": "(2)",
+        "steps": [
+          "命题(2)不正确。构造反例：设$f(x)=x^2\\sin\\dfrac{1}{x}$（$x\\neq0$），$f(0)=0$。",
+          "先验证$f$在$\\mathbb{R}$上连续：当$x\\neq0$时$f$显然连续；在$x=0$处，由$|f(x)|=|x^2\\sin(1/x)|\\le x^2\\to0=f(0)$（$x\\to0$），故$f$在$0$处连续。又对$x\\neq0$，$f$是初等函数的乘积与复合，显然可微。",
+          "验证$f$在$x=0$处可微：$\\dfrac{f(h)-f(0)}{h}=\\dfrac{h^2\\sin(1/h)}{h}=h\\sin(1/h)$。由$|h\\sin(1/h)|\\le|h|\\to0$（$h\\to0$），由夹逼定理得$\\displaystyle\\lim_{h\\to0}\\frac{f(h)-f(0)}{h}=0$，故$f$在$0$处可微，且$f'(0)=0$。",
+          "计算$x\\neq0$时的导数：$f'(x)=2x\\sin\\dfrac1x+x^2\\cos\\dfrac1x\\cdot\\left(-\\dfrac1{x^2}\\right)=2x\\sin\\dfrac1x-\\cos\\dfrac1x$。取序列$x_n=\\dfrac{1}{2n\\pi}\\to0$，则$\\cos(1/x_n)=\\cos(2n\\pi)=1$，故$f'(x_n)\\to0-1=-1$；取$x_n'=\\dfrac1{(2n+1)\\pi}\\to0$，则$\\cos(1/x_n')=\\cos((2n+1)\\pi)=-1$，故$f'(x_n')\\to0+1=1$。两个子序列极限不同（$-1\\neq1$），故$\\displaystyle\\lim_{x\\to0}f'(x)$不存在，即不存在满足条件的实数$c$。命题(2)被此反例否定。"
+        ]
+      }
+    ],
+    "practice_questions": [
+      {
+        "text": "设$g(x)$在闭区间$[a,b]$上连续，在开区间$(a,b)$上可微，且对所有$x\\in(a,b)$有$g'(x)=0$。证明$g$在$[a,b]$上是常数函数。",
+        "knowledge_points": [
+          "拉格朗日中值定理",
+          "常数函数的判定"
+        ],
+        "question_type": "利用中值定理证明函数为常数",
+        "method": [
+          "对任意两点用中值定理"
+        ],
+        "solution_steps": [
+          "任取$a\\le x_1<x_2\\le b$",
+          "在$[x_1,x_2]$上用中值定理",
+          "由$g'\\equiv0$得$g(x_1)=g(x_2)$"
+        ],
+        "math_structure": {
+          "type": "mvt_constant_function",
+          "template": "g'(x)=0\\ \\text{on}\\ (a,b)\\Rightarrow g\\ \\text{constant}",
+          "variable_count": 1
+        },
+        "difficulty": 1,
+        "estimated_minutes": 5,
+        "answer": [
+          {
+            "label": "证明",
+            "steps": [
+              "任取$a\\le x_1<x_2\\le b$。由$g$在$[x_1,x_2]\\subset[a,b]$上连续，在$(x_1,x_2)\\subset(a,b)$上可微，由拉格朗日中值定理，存在$\\xi\\in(x_1,x_2)$使$g(x_2)-g(x_1)=g'(\\xi)(x_2-x_1)$。",
+              "由假设$g'(\\xi)=0$（因为$\\xi\\in(a,b)$），故$g(x_2)-g(x_1)=0$，即$g(x_1)=g(x_2)$。",
+              "由$x_1,x_2$的任意性，$g$在$[a,b]$上任意两点取值相等，即$g$是常数函数。"
+            ]
+          }
+        ],
+        "id": "osaka-2022-c07cb3c8db-q03-practice-01",
+        "school": "大阪大学",
+        "year": "2022"
+      },
+      {
+        "text": "设$f$在$[0,\\delta)$（$\\delta>0$）上连续，在$(0,\\delta)$上可微，且$\\displaystyle\\lim_{x\\to0^+}f'(x)=L$存在。证明$f$在$x=0$处的右导数存在且等于$L$。",
+        "knowledge_points": [
+          "单侧导数",
+          "拉格朗日中值定理",
+          "极限"
+        ],
+        "question_type": "证明单侧导数存在性（(1)的单侧版本）",
+        "method": [
+          "对$[0,h]$用中值定理，令$h\\to0^+$"
+        ],
+        "solution_steps": [
+          "对$h\\in(0,\\delta)$用中值定理得$\\xi_h\\in(0,h)$",
+          "令$h\\to0^+$，$\\xi_h\\to0^+$",
+          "得右导数$=L$"
+        ],
+        "math_structure": {
+          "type": "one_sided_derivative_limit",
+          "template": "\\lim_{x\\to0^+}f'(x)=L\\Rightarrow f'_+(0)=L",
+          "variable_count": 1
+        },
+        "difficulty": 2,
+        "estimated_minutes": 6,
+        "answer": [
+          {
+            "label": "证明",
+            "steps": [
+              "对任意$h\\in(0,\\delta)$，$f$在$[0,h]$上连续，在$(0,h)$上可微，由拉格朗日中值定理存在$\\xi_h\\in(0,h)$使$\\dfrac{f(h)-f(0)}{h}=f'(\\xi_h)$。",
+              "当$h\\to0^+$时，由$0<\\xi_h<h$知$\\xi_h\\to0^+$，结合$\\lim_{x\\to0^+}f'(x)=L$，得$f'(\\xi_h)\\to L$。",
+              "因此$\\displaystyle\\lim_{h\\to0^+}\\frac{f(h)-f(0)}{h}=L$，即右导数$f'_+(0)$存在且等于$L$。"
+            ]
+          }
+        ],
+        "id": "osaka-2022-c07cb3c8db-q03-practice-02",
+        "school": "大阪大学",
+        "year": "2022"
+      },
+      {
+        "text": "设$f(x)=x^3\\sin\\dfrac1x$（$x\\neq0$），$f(0)=0$。判断$f$是否在$x=0$处可微，并判断$\\displaystyle\\lim_{x\\to0}f'(x)$是否存在。将结论与函数$x^2\\sin(1/x)$的情形作比较。",
+        "knowledge_points": [
+          "可微性判定",
+          "导函数极限",
+          "振荡函数的夹逼估计"
+        ],
+        "question_type": "判定可微性与导函数极限（对照反例）",
+        "method": [
+          "用定义计算$f'(0)$",
+          "对$x\\neq0$求导并用夹逼估计极限"
+        ],
+        "solution_steps": [
+          "计算差商$h^2\\sin(1/h)\\to0$得$f'(0)=0$",
+          "求$f'(x)=3x^2\\sin(1/x)-x\\cos(1/x)$",
+          "证明该式当$x\\to0$时极限为$0$，与$x^2\\sin(1/x)$情形相反"
+        ],
+        "math_structure": {
+          "type": "differentiability_and_derivative_limit_contrast",
+          "template": "f(x)=x^3\\sin(1/x),\\ f(0)=0",
+          "variable_count": 0
+        },
+        "difficulty": 3,
+        "estimated_minutes": 8,
+        "answer": [
+          {
+            "label": "可微性与导函数极限的判断",
+            "steps": [
+              "在$0$处的可微性：$\\dfrac{f(h)-f(0)}{h}=\\dfrac{h^3\\sin(1/h)}{h}=h^2\\sin(1/h)$。由$|h^2\\sin(1/h)|\\le h^2\\to0$，夹逼定理给出$\\lim_{h\\to0}\\frac{f(h)-f(0)}{h}=0$，故$f$在$0$处可微，且$f'(0)=0$。",
+              "对$x\\neq0$，求导得$f'(x)=3x^2\\sin\\dfrac1x+x^3\\cos\\dfrac1x\\cdot\\left(-\\dfrac1{x^2}\\right)=3x^2\\sin\\dfrac1x-x\\cos\\dfrac1x$。",
+              "估计当$x\\to0$时：$|3x^2\\sin(1/x)|\\le3x^2\\to0$，$|x\\cos(1/x)|\\le|x|\\to0$，两项都被夹逼到$0$，故$\\lim_{x\\to0}f'(x)=0$存在，且恰好等于$f'(0)=0$。",
+              "对比：函数$x^2\\sin(1/x)$的导数含有不随$x\\to0$衰减的振荡项$-\\cos(1/x)$，故极限不存在；而$x^3\\sin(1/x)$多乘了一次$x$，使振荡项也被衰减因子$x$控制，从而导函数在$0$处连续。这说明幂次的高低决定了导函数是否在可微点处连续。"
+            ]
+          }
+        ],
+        "id": "osaka-2022-c07cb3c8db-q03-practice-03",
+        "school": "大阪大学",
+        "year": "2022"
+      },
+      {
+        "text": "设$f(x)=x^2$（$x\\ge0$），$f(x)=x^3$（$x<0$）。判断$f$在$\\mathbb{R}$上是否连续，是否在$x\\neq0$处可微，并利用命题(1)的结论判断$f$是否在$x=0$处可微。",
+        "knowledge_points": [
+          "分段函数的连续性与可微性",
+          "命题(1)的应用",
+          "极限计算"
+        ],
+        "question_type": "应用中值定理型判据判断分段函数在分界点的可微性",
+        "method": [
+          "验证连续性",
+          "分别计算$x>0$和$x<0$处的导数并求极限$c$",
+          "套用(1)的结论得出$f'(0)=c$"
+        ],
+        "solution_steps": [
+          "验证$f$在$0$处连续",
+          "求$f'(x)$在$x>0,x<0$的表达式",
+          "验证$\\lim_{x\\to0}f'(x)=0$存在，套用(1)得$f'(0)=0$",
+          "直接用定义验算"
+        ],
+        "math_structure": {
+          "type": "piecewise_function_differentiability_via_limit_criterion",
+          "template": "f(x)=x^2\\ (x\\ge0),\\ f(x)=x^3\\ (x<0)",
+          "variable_count": 0
+        },
+        "difficulty": 2,
+        "estimated_minutes": 6,
+        "answer": [
+          {
+            "label": "可微性判断",
+            "steps": [
+              "连续性：当$x\\to0^+$，$f(x)=x^2\\to0$；当$x\\to0^-$，$f(x)=x^3\\to0$；且$f(0)=0^2=0$（按$x\\ge0$的定义）。三者一致，故$f$在$0$处连续，在其余点显然连续（多项式），故$f$在$\\mathbb{R}$上连续。",
+              "在$x\\neq0$处可微：当$x>0$，$f'(x)=2x$；当$x<0$，$f'(x)=3x^2$，均为多项式求导，显然可微。",
+              "计算$\\lim_{x\\to0}f'(x)$：当$x\\to0^+$，$f'(x)=2x\\to0$；当$x\\to0^-$，$f'(x)=3x^2\\to0$。左右极限都是$0$，故$\\lim_{x\\to0}f'(x)=0=c$存在。",
+              "由命题(1)（$f$连续、$x\\neq0$可微、且$\\lim_{x\\to0}f'(x)=c$存在，则$f$在$0$处可微且$f'(0)=c$），得$f$在$0$处可微且$f'(0)=0$。直接验算：$\\frac{f(h)-f(0)}{h}=h\\to0$（$h>0$时为$h^2/h=h$）或$\\frac{h^3}{h}=h^2\\to0$（$h<0$时），两者都趋于$0$，与结论一致。"
+            ]
+          }
+        ],
+        "id": "osaka-2022-c07cb3c8db-q03-practice-04",
+        "school": "大阪大学",
+        "year": "2022"
+      }
+    ],
+    "source_question": "3",
+    "source_pdf": "大阪大学/情报科学研究科/情报基础数学/大阪大学_情报科学研究科_情报基础数学_2022_数学过去问.pdf",
+    "source_type": "官方过去问",
+    "subject_category": "微积分"
+  }
+]

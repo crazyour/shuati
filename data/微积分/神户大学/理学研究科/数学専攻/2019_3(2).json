@@ -1,0 +1,153 @@
+[
+  {
+    "id": "kobe-2019-math-q03-2",
+    "school": "神户大学",
+    "year": "2019",
+    "subject": "理学研究科_数学専攻",
+    "text": "对 $f(x,y)=(x^2-y^2)e^{-x^2-y^2}$，求全部极大点、极小点和鞍点。",
+    "knowledge_points": [
+      "二元函数的驻点分类",
+      "大学数学综合应用"
+    ],
+    "question_type": "二元函数的驻点分类",
+    "method": [
+      "详细推导"
+    ],
+    "solution_steps": [
+      "$f_x=2xe^{-r^2}(1-x^2+y^2)$，$f_y=-2ye^{-r^2}(1+x^2-y^2)$。同时为零只可能得 $(0,0),(\\pm1,0),(0,\\pm1)$。",
+      "函数值分别为 $0,e^{-1},-e^{-1}$。在 $(\\pm1,0)$ 附近二次型为负定，故为极大点；$(0,\\pm1)$ 附近二次型为正定，故为极小点。",
+      "原点处沿 $y=0$ 有 $f(x,0)\\ge0$，沿 $x=0$ 有 $f(0,y)\\le0$，且邻域内都有严格正负值，故 $(0,0)$ 是鞍点。"
+    ],
+    "math_structure": {
+      "type": "reviewed_exam_question",
+      "template": "对 $f(x,y)=(x^2-y^2)e^{-x^2-y^2}$，求全部极大点、极小点和鞍点。",
+      "variable_count": 3
+    },
+    "difficulty": 3,
+    "answer": [
+      {
+        "label": "步骤 1",
+        "steps": [
+          "$f_x=2xe^{-r^2}(1-x^2+y^2)$，$f_y=-2ye^{-r^2}(1+x^2-y^2)$。同时为零只可能得 $(0,0),(\\pm1,0),(0,\\pm1)$。"
+        ]
+      },
+      {
+        "label": "步骤 2",
+        "steps": [
+          "函数值分别为 $0,e^{-1},-e^{-1}$。在 $(\\pm1,0)$ 附近二次型为负定，故为极大点；$(0,\\pm1)$ 附近二次型为正定，故为极小点。"
+        ]
+      },
+      {
+        "label": "步骤 3",
+        "steps": [
+          "原点处沿 $y=0$ 有 $f(x,0)\\ge0$，沿 $x=0$ 有 $f(0,y)\\le0$，且邻域内都有严格正负值，故 $(0,0)$ 是鞍点。"
+        ]
+      }
+    ],
+    "practice_questions": [
+      {
+        "id": "kobe-2019-math-q03-2-practice-01",
+        "school": "神户大学",
+        "year": "2019",
+        "text": "分类 $f=x^2-y^2$ 的原点。",
+        "knowledge_points": [
+          "二元函数的驻点分类",
+          "基础计算与证明"
+        ],
+        "question_type": "递进练习",
+        "method": [
+          "使用原题核心方法"
+        ],
+        "solution_steps": [
+          "识别结构",
+          "完成计算或证明"
+        ],
+        "math_structure": {
+          "type": "exclusive_practice",
+          "template": "分类 $f=x^2-y^2$ 的原点。",
+          "variable_count": 2
+        },
+        "difficulty": 2,
+        "estimated_minutes": 6,
+        "answer": [
+          {
+            "label": "解答",
+            "steps": [
+              "沿两坐标轴异号，是鞍点。"
+            ]
+          }
+        ]
+      },
+      {
+        "id": "kobe-2019-math-q03-2-practice-02",
+        "school": "神户大学",
+        "year": "2019",
+        "text": "求 $xe^{-x^2}$ 的驻点。",
+        "knowledge_points": [
+          "二元函数的驻点分类",
+          "基础计算与证明"
+        ],
+        "question_type": "递进练习",
+        "method": [
+          "使用原题核心方法"
+        ],
+        "solution_steps": [
+          "识别结构",
+          "完成计算或证明"
+        ],
+        "math_structure": {
+          "type": "exclusive_practice",
+          "template": "求 $xe^{-x^2}$ 的驻点。",
+          "variable_count": 2
+        },
+        "difficulty": 3,
+        "estimated_minutes": 8,
+        "answer": [
+          {
+            "label": "解答",
+            "steps": [
+              "$f'=e^{-x^2}(1-2x^2)$，驻点 $x=\\pm1/\\sqrt2$。"
+            ]
+          }
+        ]
+      },
+      {
+        "id": "kobe-2019-math-q03-2-practice-03",
+        "school": "神户大学",
+        "year": "2019",
+        "text": "说明为什么 $e^{-x^2-y^2}$ 不会产生额外驻点。",
+        "knowledge_points": [
+          "二元函数的驻点分类",
+          "基础计算与证明"
+        ],
+        "question_type": "递进练习",
+        "method": [
+          "使用原题核心方法"
+        ],
+        "solution_steps": [
+          "识别结构",
+          "完成计算或证明"
+        ],
+        "math_structure": {
+          "type": "exclusive_practice",
+          "template": "说明为什么 $e^{-x^2-y^2}$ 不会产生额外驻点。",
+          "variable_count": 2
+        },
+        "difficulty": 4,
+        "estimated_minutes": 10,
+        "answer": [
+          {
+            "label": "解答",
+            "steps": [
+              "该因子处处严格为正，偏导方程可安全除去它。"
+            ]
+          }
+        ]
+      }
+    ],
+    "source_question": "问题3(2)",
+    "source_pdf": "神户大学/理学研究科/数学専攻/神户大学_理学研究科_数学専攻_2019.pdf",
+    "source_type": "官方过去问",
+    "subject_category": "微积分"
+  }
+]

@@ -1,0 +1,617 @@
+[
+  {
+    "id": "kyoto-2021-80fb76336b-q02",
+    "school": "京都大学",
+    "year": "2021",
+    "subject": "情报学研究科_智能信息学",
+    "text": "求下列函数的导函数，并只用 $y$（不含 $x$）表示导函数，同时给出该导函数的值域：\n(A) $y=f(x)=\\dfrac{1}{1+e^{-x}}$\n(B) $y=f(x)=\\dfrac{e^{x}+e^{-x}}{e^{x}-e^{-x}}$（即 $y=\\coth x$，$x\\ne0$）",
+    "knowledge_points": [
+      "复合函数求导",
+      "双曲函数",
+      "sigmoid函数性质",
+      "反函数替换技巧",
+      "值域分析"
+    ],
+    "question_type": "导数计算与值域分析",
+    "method": [
+      "直接求导后用y替换x的表达式",
+      "利用双曲函数恒等式",
+      "由函数值域反推导数值域"
+    ],
+    "solution_steps": [
+      "对(A)求导并化简为y的表达式，分析y的取值范围得到导数值域",
+      "对(B)利用coth的导数恒等式化简为y的表达式，分析y的取值范围得到导数值域"
+    ],
+    "math_structure": {
+      "type": "derivative_in_terms_of_function_value",
+      "template": "y'=g(y)\\ \\text{对 sigmoid 与 } \\coth \\text{ 函数}",
+      "variable_count": 2
+    },
+    "difficulty": 2,
+    "answer": [
+      {
+        "label": "(A)",
+        "steps": [
+          "设 $y=\\dfrac{1}{1+e^{-x}}$（sigmoid函数）。求导：$y'=\\dfrac{e^{-x}}{(1+e^{-x})^2}$。",
+          "注意 $1-y=1-\\dfrac{1}{1+e^{-x}}=\\dfrac{e^{-x}}{1+e^{-x}}$，于是 $y'=\\dfrac{e^{-x}}{(1+e^{-x})^2}=y(1-y)$。",
+          "因为 $x\\in\\mathbb{R}$ 时 $y\\in(0,1)$，设 $g(y)=y(1-y)$，其在 $(0,1)$ 上是开口向下的抛物线，最大值在 $y=1/2$ 处取到 $g(1/2)=1/4$，端点处 $g\\to0$（不能取到0）。",
+          "因此导函数的值域为 $y'\\in(0,\\tfrac14]$。"
+        ]
+      },
+      {
+        "label": "(B)",
+        "steps": [
+          "设 $y=\\coth x$（$x\\neq0$）。利用双曲函数求导公式 $y'=-\\mathrm{csch}^2x=1-\\coth^2x$。",
+          "因此 $y'=1-y^2$，已完全用 $y$ 表示出导函数。",
+          "分析值域：$x\\ne0$ 时 $|\\coth x|>1$，即 $y\\in(-\\infty,-1)\\cup(1,\\infty)$，此时 $y^2>1$，故 $y'=1-y^2<0$；当 $|y|\\to1^+$ 时 $y'\\to0^-$，当 $|y|\\to\\infty$ 时 $y'\\to-\\infty$。",
+          "因此导函数的值域为 $y'\\in(-\\infty,0)$。"
+        ]
+      }
+    ],
+    "practice_questions": [
+      {
+        "text": "求 $y=e^{2x}$ 的导数，并用 $y$ 表示。",
+        "knowledge_points": [
+          "指数函数求导",
+          "变量替换"
+        ],
+        "question_type": "导数计算",
+        "method": [
+          "直接求导后代入y"
+        ],
+        "solution_steps": [
+          "求导",
+          "用y替换e^{2x}"
+        ],
+        "math_structure": {
+          "type": "derivative_exponential_basic",
+          "template": "y=e^{2x},\\ y'=2y",
+          "variable_count": 1
+        },
+        "difficulty": 1,
+        "estimated_minutes": 3,
+        "answer": [
+          {
+            "label": "结果",
+            "steps": [
+              "求导：$y'=2e^{2x}$。",
+              "因为 $y=e^{2x}$，代入得 $y'=2y$。"
+            ]
+          }
+        ],
+        "id": "kyoto-2021-80fb76336b-q02-practice-01",
+        "school": "京都大学",
+        "year": "2021"
+      },
+      {
+        "text": "求 $y=\\tanh x=\\dfrac{e^x-e^{-x}}{e^x+e^{-x}}$ 的导数，用 $y$ 表示，并给出该导数的值域。",
+        "knowledge_points": [
+          "双曲函数求导",
+          "值域分析"
+        ],
+        "question_type": "导数计算与值域分析",
+        "method": [
+          "利用tanh的导数恒等式"
+        ],
+        "solution_steps": [
+          "求导得到1-y^2的表达式",
+          "分析tanh值域得出导数值域"
+        ],
+        "math_structure": {
+          "type": "derivative_in_terms_of_function_value",
+          "template": "y=\\tanh x,\\ y'=1-y^2",
+          "variable_count": 1
+        },
+        "difficulty": 2,
+        "estimated_minutes": 6,
+        "answer": [
+          {
+            "label": "结果",
+            "steps": [
+              "利用恒等式 $\\dfrac{d}{dx}\\tanh x=\\mathrm{sech}^2x=1-\\tanh^2x$，故 $y'=1-y^2$。",
+              "因为 $x\\in\\mathbb{R}$ 时 $y=\\tanh x\\in(-1,1)$，故 $y^2\\in[0,1)$，因此 $y'=1-y^2\\in(0,1]$。",
+              "验证：$x=0$ 时 $y=0$，$y'=1$，恰为最大值，与直接求导 $y'(0)=\\mathrm{sech}^2(0)=1$ 一致。"
+            ]
+          }
+        ],
+        "id": "kyoto-2021-80fb76336b-q02-practice-02",
+        "school": "京都大学",
+        "year": "2021"
+      },
+      {
+        "text": "求 sigmoid 函数 $y=\\dfrac{1}{1+e^{-x}}$ 在 $x=0$ 处的导数值，并验证它与该导数在 $(0,1)$ 上的最大值是否吻合。",
+        "knowledge_points": [
+          "sigmoid函数",
+          "导数求值",
+          "极值验证"
+        ],
+        "question_type": "计算验证题",
+        "method": [
+          "直接代入y(1-y)公式"
+        ],
+        "solution_steps": [
+          "计算y(0)",
+          "代入y(1-y)",
+          "与最大值1/4比较"
+        ],
+        "math_structure": {
+          "type": "derivative_value_check",
+          "template": "y'(x_0)=y(1-y)\\big|_{x_0}",
+          "variable_count": 1
+        },
+        "difficulty": 2,
+        "estimated_minutes": 5,
+        "answer": [
+          {
+            "label": "结果",
+            "steps": [
+              "计算 $y(0)=\\dfrac{1}{1+e^0}=\\dfrac12$。",
+              "代入 $y'=y(1-y)$ 得 $y'(0)=\\dfrac12\\cdot\\dfrac12=\\dfrac14$。",
+              "这恰好等于原题(A)中求得的导数值域上界 $\\tfrac14$，说明 $x=0$（即 $y=1/2$）正是取得最大导数值的点，验证一致。"
+            ]
+          }
+        ],
+        "id": "kyoto-2021-80fb76336b-q02-practice-03",
+        "school": "京都大学",
+        "year": "2021"
+      },
+      {
+        "text": "设 $y=\\ln(1+e^x)$（softplus函数），求 $y'$，并尝试仅用 $y$ 表示，说明能否完全消去 $x$；若可以，写出用 $y$ 表示的导数并给出其值域。",
+        "knowledge_points": [
+          "softplus函数",
+          "复合函数求导",
+          "反函数替换",
+          "值域分析"
+        ],
+        "question_type": "综合计算题",
+        "method": [
+          "求导后利用e^x=e^y-1消去x"
+        ],
+        "solution_steps": [
+          "求导得到sigmoid形式",
+          "利用y的定义反解e^x",
+          "代入化简为y的表达式",
+          "分析值域"
+        ],
+        "math_structure": {
+          "type": "derivative_in_terms_of_function_value",
+          "template": "y=\\ln(1+e^x),\\ y'=1-e^{-y}",
+          "variable_count": 1
+        },
+        "difficulty": 3,
+        "estimated_minutes": 10,
+        "answer": [
+          {
+            "label": "结果",
+            "steps": [
+              "求导：$y'=\\dfrac{e^x}{1+e^x}$（即sigmoid函数）。",
+              "由 $y=\\ln(1+e^x)$ 得 $e^y=1+e^x$，故 $e^x=e^y-1$，从而 $1+e^x=e^y$。",
+              "代入得 $y'=\\dfrac{e^y-1}{e^y}=1-e^{-y}$，成功仅用 $y$ 表示导数，可以完全消去 $x$。",
+              "因为 $x\\in\\mathbb{R}$ 时 $y=\\ln(1+e^x)\\in(0,\\infty)$，故 $e^{-y}\\in(0,1)$，因此 $y'=1-e^{-y}\\in(0,1)$。"
+            ]
+          }
+        ],
+        "id": "kyoto-2021-80fb76336b-q02-practice-04",
+        "school": "京都大学",
+        "year": "2021"
+      }
+    ],
+    "source_question": "F1-2 设问1(1)",
+    "source_pdf": "京都大学/情报学研究科/智能信息学/京都大学_情报学研究科_智能信息学_2021_数学过去问.pdf",
+    "source_type": "官方过去问",
+    "subject_category": "微积分"
+  },
+  {
+    "id": "kyoto-2021-80fb76336b-q03",
+    "school": "京都大学",
+    "year": "2021",
+    "subject": "情报学研究科_智能信息学",
+    "text": "在条件 $x^2+y^2-1=0$ 且 $0\\le x,y\\le1$ 下，求 $f(x,y)=x^3+2y^3$ 的极值。",
+    "knowledge_points": [
+      "约束极值",
+      "三角参数化",
+      "一元函数求导",
+      "临界点分析",
+      "端点比较"
+    ],
+    "question_type": "条件极值",
+    "method": [
+      "参数化 $x=\\cos\\theta,\\ y=\\sin\\theta$",
+      "对参数求导找临界点",
+      "比较边界值与临界值确定最值"
+    ],
+    "solution_steps": [
+      "利用约束参数化为x=cosθ,y=sinθ,θ∈[0,π/2]",
+      "代入目标函数得到关于θ的一元函数",
+      "求导找临界点",
+      "比较临界点函数值与端点值确定最大最小值"
+    ],
+    "math_structure": {
+      "type": "constrained_extremum_on_arc",
+      "template": "f(x,y)=x^3+2y^3 \\text{ s.t. } x^2+y^2=1,\\ 0\\le x,y\\le1",
+      "variable_count": 2
+    },
+    "difficulty": 3,
+    "answer": [
+      {
+        "label": "极值求解",
+        "steps": [
+          "由约束 $x^2+y^2=1$，$0\\le x,y\\le1$，可令 $x=\\cos\\theta,\\ y=\\sin\\theta$，$\\theta\\in[0,\\pi/2]$。",
+          "代入目标函数：$f(\\theta)=\\cos^3\\theta+2\\sin^3\\theta$。求导：$f'(\\theta)=-3\\cos^2\\theta\\sin\\theta+6\\sin^2\\theta\\cos\\theta=3\\sin\\theta\\cos\\theta(2\\sin\\theta-\\cos\\theta)$。",
+          "令 $f'(\\theta)=0$：得 $\\sin\\theta=0\\ (\\theta=0)$，或 $\\cos\\theta=0\\ (\\theta=\\pi/2)$，或 $\\tan\\theta=\\tfrac12$。当 $\\tan\\theta=\\tfrac12$ 时，$\\sin\\theta=\\tfrac{1}{\\sqrt5},\\ \\cos\\theta=\\tfrac{2}{\\sqrt5}$。",
+          "计算各点函数值：$\\theta=0$（点$(1,0)$）：$f=1$；$\\theta=\\pi/2$（点$(0,1)$）：$f=2$；$\\tan\\theta=1/2$（点$(\\tfrac{2}{\\sqrt5},\\tfrac{1}{\\sqrt5})$）：$f=\\left(\\tfrac{2}{\\sqrt5}\\right)^3+2\\left(\\tfrac{1}{\\sqrt5}\\right)^3=\\tfrac{8}{5\\sqrt5}+\\tfrac{2}{5\\sqrt5}=\\tfrac{10}{5\\sqrt5}=\\tfrac{2\\sqrt5}{5}\\approx0.894$。",
+          "分析符号：$\\theta$从0增大时 $2\\sin\\theta-\\cos\\theta<0$，$f'<0$（递减）；过临界点后 $2\\sin\\theta-\\cos\\theta>0$，$f'>0$（递增），故该临界点为局部极小值点。比较 $1,\\,2,\\,\\tfrac{2\\sqrt5}{5}\\approx0.894$，得最大值 $2$（在 $(x,y)=(0,1)$ 处取得），最小值 $\\tfrac{2\\sqrt5}{5}$（在 $(x,y)=(\\tfrac{2}{\\sqrt5},\\tfrac{1}{\\sqrt5})$ 处取得）。"
+        ]
+      }
+    ],
+    "practice_questions": [
+      {
+        "text": "在 $x^2+y^2=1$（$x,y\\ge0$）上求 $f(x,y)=x+y$ 的最大值与最小值。",
+        "knowledge_points": [
+          "三角参数化",
+          "一元函数极值"
+        ],
+        "question_type": "约束极值基础题",
+        "method": [
+          "参数化后利用和角公式"
+        ],
+        "solution_steps": [
+          "参数化",
+          "化简为单个正弦函数",
+          "求最值"
+        ],
+        "math_structure": {
+          "type": "constrained_extremum_on_arc",
+          "template": "f(x,y)=x+y \\text{ s.t. } x^2+y^2=1,x,y\\ge0",
+          "variable_count": 2
+        },
+        "difficulty": 1,
+        "estimated_minutes": 5,
+        "answer": [
+          {
+            "label": "结果",
+            "steps": [
+              "令 $x=\\cos\\theta,y=\\sin\\theta,\\theta\\in[0,\\pi/2]$，得 $f=\\cos\\theta+\\sin\\theta=\\sqrt2\\sin(\\theta+\\pi/4)$。",
+              "当 $\\theta=\\pi/4$ 时取最大值 $\\sqrt2$（对应 $(x,y)=(\\tfrac{\\sqrt2}{2},\\tfrac{\\sqrt2}{2})$）。",
+              "端点 $\\theta=0$ 或 $\\theta=\\pi/2$ 时 $f=1$，为最小值。故最大值 $\\sqrt2$，最小值 $1$。"
+            ]
+          }
+        ],
+        "id": "kyoto-2021-80fb76336b-q03-practice-01",
+        "school": "京都大学",
+        "year": "2021"
+      },
+      {
+        "text": "求 $g(x,y)=x^2+3y^2$ 在约束 $x^2+y^2=1,\\ x,y\\ge0$ 下的极值。",
+        "knowledge_points": [
+          "三角参数化",
+          "单调性分析"
+        ],
+        "question_type": "约束极值基础题",
+        "method": [
+          "参数化后化简为关于θ的单调函数"
+        ],
+        "solution_steps": [
+          "参数化",
+          "化简表达式",
+          "判断单调性",
+          "确定最值"
+        ],
+        "math_structure": {
+          "type": "constrained_extremum_on_arc",
+          "template": "g(x,y)=x^2+3y^2 \\text{ s.t. } x^2+y^2=1",
+          "variable_count": 2
+        },
+        "difficulty": 2,
+        "estimated_minutes": 6,
+        "answer": [
+          {
+            "label": "结果",
+            "steps": [
+              "令 $x=\\cos\\theta,y=\\sin\\theta$，得 $g(\\theta)=\\cos^2\\theta+3\\sin^2\\theta=1+2\\sin^2\\theta$，$\\theta\\in[0,\\pi/2]$。",
+              "因为 $\\sin^2\\theta$ 在 $[0,\\pi/2]$ 上单调递增，$g(\\theta)$ 也单调递增，无内部临界点。",
+              "最小值在 $\\theta=0$（点$(1,0)$）取得 $g=1$；最大值在 $\\theta=\\pi/2$（点$(0,1)$）取得 $g=3$。"
+            ]
+          }
+        ],
+        "id": "kyoto-2021-80fb76336b-q03-practice-02",
+        "school": "京都大学",
+        "year": "2021"
+      },
+      {
+        "text": "求 $h(x,y)=2x^3+y^3$ 在约束 $x^2+y^2=1,\\ 0\\le x,y\\le1$ 下的极值。",
+        "knowledge_points": [
+          "三角参数化",
+          "导数求临界点",
+          "符号分析"
+        ],
+        "question_type": "约束极值进阶题",
+        "method": [
+          "参数化后求导找临界点，比较端点"
+        ],
+        "solution_steps": [
+          "参数化",
+          "求导",
+          "解临界点",
+          "比较各点函数值确定最值"
+        ],
+        "math_structure": {
+          "type": "constrained_extremum_on_arc",
+          "template": "h(x,y)=2x^3+y^3 \\text{ s.t. } x^2+y^2=1,0\\le x,y\\le1",
+          "variable_count": 2
+        },
+        "difficulty": 3,
+        "estimated_minutes": 10,
+        "answer": [
+          {
+            "label": "结果",
+            "steps": [
+              "令 $x=\\cos\\theta,y=\\sin\\theta$，得 $h(\\theta)=2\\cos^3\\theta+\\sin^3\\theta$。求导：$h'(\\theta)=-6\\cos^2\\theta\\sin\\theta+3\\sin^2\\theta\\cos\\theta=3\\sin\\theta\\cos\\theta(\\sin\\theta-2\\cos\\theta)$。",
+              "临界点：$\\theta=0,\\ \\theta=\\pi/2$，或 $\\tan\\theta=2\\Rightarrow \\sin\\theta=\\tfrac{2}{\\sqrt5},\\cos\\theta=\\tfrac{1}{\\sqrt5}$。",
+              "计算函数值：$\\theta=0$：$h=2$；$\\theta=\\pi/2$：$h=1$；$\\tan\\theta=2$：$h=2\\left(\\tfrac{1}{\\sqrt5}\\right)^3+\\left(\\tfrac{2}{\\sqrt5}\\right)^3=\\tfrac{2}{5\\sqrt5}+\\tfrac{8}{5\\sqrt5}=\\tfrac{2\\sqrt5}{5}\\approx0.894$。",
+              "分析符号变化知临界点为局部极小值。比较三值 $2,1,\\tfrac{2\\sqrt5}{5}$，最大值为 $2$（点$(1,0)$），最小值为 $\\tfrac{2\\sqrt5}{5}$（点$(\\tfrac1{\\sqrt5},\\tfrac2{\\sqrt5})$）。"
+            ]
+          }
+        ],
+        "id": "kyoto-2021-80fb76336b-q03-practice-03",
+        "school": "京都大学",
+        "year": "2021"
+      },
+      {
+        "text": "用拉格朗日乘数法（不使用三角参数化）求 $f(x,y)=x^3+2y^3$ 在整个单位圆 $x^2+y^2=1$（不限定象限）上的最大值与最小值。",
+        "knowledge_points": [
+          "拉格朗日乘数法",
+          "方程组求解",
+          "极值比较"
+        ],
+        "question_type": "约束极值综合题",
+        "method": [
+          "拉格朗日乘数法",
+          "分类讨论求解方程组"
+        ],
+        "solution_steps": [
+          "建立拉格朗日方程",
+          "分类讨论求临界点",
+          "代入约束求坐标",
+          "比较所有候选点函数值"
+        ],
+        "math_structure": {
+          "type": "lagrange_multiplier_extremum",
+          "template": "\\nabla f=\\lambda\\nabla g,\\ f=x^3+2y^3,\\ g=x^2+y^2-1",
+          "variable_count": 2
+        },
+        "difficulty": 4,
+        "estimated_minutes": 15,
+        "answer": [
+          {
+            "label": "结果",
+            "steps": [
+              "拉格朗日条件：$3x^2=2\\lambda x$，$6y^2=2\\lambda y$，及约束 $x^2+y^2=1$。",
+              "若 $x\\ne0$，则 $\\lambda=\\tfrac{3x}{2}$；若 $y\\ne0$，则 $\\lambda=3y$。两者相等得 $\\tfrac{3x}{2}=3y\\Rightarrow x=2y$。代入约束：$4y^2+y^2=1\\Rightarrow y=\\pm\\tfrac{1}{\\sqrt5},\\ x=\\pm\\tfrac{2}{\\sqrt5}$（同号）。",
+              "此外还有边界候选点：$x=0,y=\\pm1$ 及 $y=0,x=\\pm1$（由 $x=0$ 或 $y=0$ 的退化情形）。",
+              "计算函数值：$(x,y)=(\\tfrac{2}{\\sqrt5},\\tfrac{1}{\\sqrt5})$：$f=\\tfrac{2\\sqrt5}{5}\\approx0.894$；$(-\\tfrac{2}{\\sqrt5},-\\tfrac{1}{\\sqrt5})$：$f=-\\tfrac{2\\sqrt5}{5}$；$(0,1)$：$f=2$；$(0,-1)$：$f=-2$；$(1,0)$：$f=1$；$(-1,0)$：$f=-1$。",
+              "比较全部候选值，最大值为 $2$（点$(0,1)$），最小值为 $-2$（点$(0,-1)$）。"
+            ]
+          }
+        ],
+        "id": "kyoto-2021-80fb76336b-q03-practice-04",
+        "school": "京都大学",
+        "year": "2021"
+      }
+    ],
+    "source_question": "F1-2 设问1(2)",
+    "source_pdf": "京都大学/情报学研究科/智能信息学/京都大学_情报学研究科_智能信息学_2021_数学过去问.pdf",
+    "source_type": "官方过去问",
+    "subject_category": "微积分"
+  },
+  {
+    "id": "kyoto-2021-80fb76336b-q04",
+    "school": "京都大学",
+    "year": "2021",
+    "subject": "情报学研究科_智能信息学",
+    "text": "地面上竖直放置一个半径为 $1\\,[\\mathrm{m}]$ 的圆柱形筒仓。一只山羊的脖子上系着一条长度为 $\\pi\\,[\\mathrm{m}]$、不可伸缩的绳子，绳子的另一端固定在圆柱表面上一点（与山羊脖子等高）。\n\n(1) 以圆柱的中心轴为原点，把绳子固定的圆柱表面点取为 $(-1,0)$，建立地面上的二维坐标系。当山羊在不松弛绳子的情况下站立于 $x\\ge-1,\\ y\\ge0$ 区域时，用绳子与圆柱面切点相对于 $x$ 轴的夹角 $\\theta$（$\\theta\\in[0,\\pi]$）表示山羊所在位置的二维坐标。\n\n(2) 求这只山羊在绳子始终保持拉直（不松弛）的情况下绕圆柱一周所走过的总路程。\n\n(3) 求这只山羊能够到达（活动）的地面总面积。",
+    "knowledge_points": [
+      "圆的渐开线",
+      "参数曲线弧长",
+      "面积微元积分",
+      "约束运动轨迹建模",
+      "定积分应用",
+      "几何对称性"
+    ],
+    "question_type": "参数曲线与弧长/面积综合题",
+    "method": [
+      "建立渐开线参数方程",
+      "弧长公式 $ds=|\\mathbf r'(\\theta)|d\\theta$ 求总路程",
+      "利用扇形微元面积公式求渐开线扫过面积（$L^3/(6r)$ 型公式）",
+      "利用对称性简化计算"
+    ],
+    "solution_steps": [
+      "分析绳子缠绕圆柱的几何关系，建立渐开线参数方程 $x(\\theta),y(\\theta)$",
+      "对参数方程求导得速度分量，计算弧长微元 $ds=\\theta\\,d\\theta$",
+      "积分求渐开线部分弧长，再结合绳子未缠绕时的大圆弧摆动部分，求总路程",
+      "利用大扇形面积公式与渐开线扫过面积公式 $L^3/(6r)$ 分别计算并求和，得到总活动面积"
+    ],
+    "math_structure": {
+      "type": "circle_involute_leash_problem",
+      "template": "半径 $r=1$ 圆柱，绳长 $L=\\pi r$ 的动物活动轨迹（渐开线）问题",
+      "variable_count": 2
+    },
+    "difficulty": 4,
+    "answer": [
+      {
+        "label": "(1)",
+        "steps": [
+          "设山羊行走使绳子沿圆柱表面缠绕，缠绕后绳子离开圆柱面的切点在圆周上对应角度记为 $\\theta$（自 $x$ 轴正方向量起），切点坐标为 $(\\cos\\theta,\\sin\\theta)$。",
+          "绳子从固定点 $(-1,0)$（对应角度 $\\pi$）沿圆周缠绕到切点所用弧长为 $s=\\pi-\\theta$（半径为1，弧长等于圆心角），故剩余（拉直伸出）的绳长为 $\\ell(\\theta)=\\pi-s=\\theta$。",
+          "剩余绳段沿该切点处圆的切线方向延伸，方向为 $(\\sin\\theta,-\\cos\\theta)$（验证：$\\theta=\\pi$时方向为$(0,1)$，对应山羊从初始水平拉直位置刚开始向上运动缠绕的情形）。",
+          "于是山羊坐标为：$x(\\theta)=\\cos\\theta+\\theta\\sin\\theta,\\quad y(\\theta)=\\sin\\theta-\\theta\\cos\\theta,\\ \\theta\\in[0,\\pi]$，这正是圆的渐开线。验证 $\\theta=\\pi$ 时坐标为 $(-1,\\pi)$，$\\theta=0$ 时坐标为 $(1,0)$，均满足 $x\\ge-1,y\\ge0$。"
+        ]
+      },
+      {
+        "label": "(2)",
+        "steps": [
+          "由对称性，山羊绕圆柱一周的完整路径由三部分组成：（i）绳子未缠绕、以固定点为圆心、半径为 $\\pi$ 摆动的大圆弧；（ii）上半部分渐开线（$\\theta$从$\\pi$到$0$）；（iii）下半部分渐开线（对称镜像）。",
+          "求导：$x'(\\theta)=-\\sin\\theta+\\sin\\theta+\\theta\\cos\\theta=\\theta\\cos\\theta$，$y'(\\theta)=\\cos\\theta-\\cos\\theta+\\theta\\sin\\theta=\\theta\\sin\\theta$，故弧长微元 $ds=\\sqrt{x'^2+y'^2}\\,d\\theta=\\theta\\,d\\theta$。",
+          "上半渐开线弧长：$\\int_0^\\pi\\theta\\,d\\theta=\\dfrac{\\pi^2}{2}$；由对称性下半部分弧长同为 $\\dfrac{\\pi^2}{2}$。",
+          "大圆弧部分：绳子以 $(-1,0)$ 为圆心、半径 $\\pi$，从下方完全伸直方向摆动经过最左端 $(-1-\\pi,0)$ 到上方完全伸直方向，共扫过 $\\pi$ 弧度（半圆），弧长为 $\\pi\\times\\pi=\\pi^2$。",
+          "总路程 $=\\dfrac{\\pi^2}{2}+\\dfrac{\\pi^2}{2}+\\pi^2=2\\pi^2\\,[\\mathrm{m}]$。"
+        ]
+      },
+      {
+        "label": "(3)",
+        "steps": [
+          "山羊活动区域由三部分构成：（i）以 $(-1,0)$ 为圆心、半径 $\\pi$ 的半圆；（ii）上方渐开线与圆柱之间扫过的区域；（iii）下方对称扫过的区域。",
+          "半圆面积：$\\dfrac12\\pi(\\pi)^2=\\dfrac{\\pi^3}{2}$。",
+          "渐开线扫过面积：绳子以剩余长度 $\\ell(\\theta)=\\theta$ 绕切点转过微小角 $d\\theta$（半径为1，圆心角变化与弧长变化相等）扫过的微小面积为 $\\dfrac12\\theta^2\\,d\\theta$，单侧总面积为 $\\int_0^\\pi\\dfrac12\\theta^2\\,d\\theta=\\dfrac12\\cdot\\dfrac{\\pi^3}{3}=\\dfrac{\\pi^3}{6}$。",
+          "由对称性下方渐开线面积同为 $\\dfrac{\\pi^3}{6}$，两侧合计 $\\dfrac{\\pi^3}{3}$。",
+          "总活动面积 $=\\dfrac{\\pi^3}{2}+\\dfrac{\\pi^3}{3}=\\dfrac{3\\pi^3+2\\pi^3}{6}=\\dfrac{5\\pi^3}{6}\\,[\\mathrm{m}^2]$。"
+        ]
+      }
+    ],
+    "practice_questions": [
+      {
+        "text": "求半径为 $R=2$ 的圆上圆心角为 $\\pi$ 的圆弧（半圆）的弧长。",
+        "knowledge_points": [
+          "弧长基本公式"
+        ],
+        "question_type": "基础计算题",
+        "method": [
+          "弧长公式 s=Rθ"
+        ],
+        "solution_steps": [
+          "套用公式计算"
+        ],
+        "math_structure": {
+          "type": "arc_length_basic",
+          "template": "s=R\\theta,\\ R=2,\\theta=\\pi",
+          "variable_count": 1
+        },
+        "difficulty": 1,
+        "estimated_minutes": 3,
+        "answer": [
+          {
+            "label": "结果",
+            "steps": [
+              "弧长公式 $s=R\\theta$，代入 $R=2,\\theta=\\pi$，得 $s=2\\pi$。"
+            ]
+          }
+        ],
+        "id": "kyoto-2021-80fb76336b-q04-practice-01",
+        "school": "京都大学",
+        "year": "2021"
+      },
+      {
+        "text": "计算定积分 $\\int_0^{2}\\theta\\,d\\theta$ 与 $\\int_0^{2}\\dfrac12\\theta^2\\,d\\theta$，并说明它们分别对应绳长为 $2$、圆柱半径为 $1$ 时渐开线弧长公式与渐开线扫过面积公式中的哪一项。",
+        "knowledge_points": [
+          "定积分计算",
+          "渐开线弧长与面积公式对应"
+        ],
+        "question_type": "计算与理解题",
+        "method": [
+          "直接积分计算"
+        ],
+        "solution_steps": [
+          "计算两个积分",
+          "对照弧长与面积公式说明对应关系"
+        ],
+        "math_structure": {
+          "type": "involute_integral_identification",
+          "template": "\\int_0^{L}\\theta\\,d\\theta \\text{ 与 } \\int_0^{L}\\tfrac12\\theta^2\\,d\\theta,\\ L=2",
+          "variable_count": 1
+        },
+        "difficulty": 2,
+        "estimated_minutes": 8,
+        "answer": [
+          {
+            "label": "结果",
+            "steps": [
+              "$\\int_0^2\\theta\\,d\\theta=\\left[\\dfrac{\\theta^2}{2}\\right]_0^2=2$，此即绳长为2时渐开线部分的总弧长（对应公式 $ds=\\theta\\,d\\theta$ 的积分）。",
+              "$\\int_0^2\\dfrac12\\theta^2\\,d\\theta=\\left[\\dfrac{\\theta^3}{6}\\right]_0^2=\\dfrac{8}{6}=\\dfrac43$，此即绳长为2时渐开线扫过的面积（对应公式 $L^3/6=8/6=4/3$，验证一致）。",
+              "因此第一个积分对应“弧长”，第二个积分对应“扫过面积”。"
+            ]
+          }
+        ],
+        "id": "kyoto-2021-80fb76336b-q04-practice-02",
+        "school": "京都大学",
+        "year": "2021"
+      },
+      {
+        "text": "若绳长改为 $L=2\\pi$（等于圆柱周长），圆柱半径仍为1，重复原题(1)(2)的思路，求山羊完全缠绕一整圈（$\\theta$从$2\\pi$到$0$）时渐开线部分的弧长与该过程扫过的面积。",
+        "knowledge_points": [
+          "渐开线参数方程推广",
+          "定积分应用"
+        ],
+        "question_type": "推广计算题",
+        "method": [
+          "套用弧长与面积积分公式，改变积分上限"
+        ],
+        "solution_steps": [
+          "写出弧长积分并计算",
+          "写出面积积分并计算"
+        ],
+        "math_structure": {
+          "type": "circle_involute_leash_problem",
+          "template": "半径1，绳长L=2\\pi时渐开线弧长与面积",
+          "variable_count": 1
+        },
+        "difficulty": 3,
+        "estimated_minutes": 10,
+        "answer": [
+          {
+            "label": "结果",
+            "steps": [
+              "渐开线弧长：$\\int_0^{2\\pi}\\theta\\,d\\theta=\\left[\\dfrac{\\theta^2}{2}\\right]_0^{2\\pi}=2\\pi^2$。",
+              "渐开线扫过面积：$\\int_0^{2\\pi}\\dfrac12\\theta^2\\,d\\theta=\\left[\\dfrac{\\theta^3}{6}\\right]_0^{2\\pi}=\\dfrac{8\\pi^3}{6}=\\dfrac{4\\pi^3}{3}$。",
+              "因此当绳长恰好等于圆柱周长时，缠绕一整圈的渐开线弧长为 $2\\pi^2$，扫过面积为 $\\dfrac{4\\pi^3}{3}$。"
+            ]
+          }
+        ],
+        "id": "kyoto-2021-80fb76336b-q04-practice-03",
+        "school": "京都大学",
+        "year": "2021"
+      },
+      {
+        "text": "一般地，设圆柱半径为 $r$，绳长恰好为半个周长 $L=\\pi r$。证明渐开线部分扫过的面积为 $\\dfrac{\\pi^3r^2}{6}$（提示：先证明一般公式 面积 $=L^3/(6r)$）。",
+        "knowledge_points": [
+          "一般化渐开线面积公式",
+          "定积分",
+          "量纲分析"
+        ],
+        "question_type": "一般化证明题",
+        "method": [
+          "利用弧长参数s，角度φ=s/r进行积分变换"
+        ],
+        "solution_steps": [
+          "设剩余长度ℓ(s)=L-s",
+          "建立面积微元公式并积分",
+          "代入L=πr得最终结果"
+        ],
+        "math_structure": {
+          "type": "general_involute_area_formula",
+          "template": "\\text{面积}=\\dfrac{L^3}{6r},\\ L=\\pi r",
+          "variable_count": 2
+        },
+        "difficulty": 4,
+        "estimated_minutes": 15,
+        "answer": [
+          {
+            "label": "证明",
+            "steps": [
+              "设缠绕弧长为 $s$（$0\\le s\\le L$），对应圆心角 $\\varphi=s/r$，剩余（未缠绕）绳长为 $\\ell(s)=L-s$。",
+              "当 $s$ 增加 $ds$ 时，切点转过角度 $d\\varphi=ds/r$，绳子扫过的微小面积近似为半径 $\\ell(s)$ 的扇形面积 $dA=\\dfrac12\\ell(s)^2\\,d\\varphi=\\dfrac12(L-s)^2\\cdot\\dfrac{ds}{r}$。",
+              "积分：$A=\\displaystyle\\int_0^L\\dfrac{1}{2r}(L-s)^2\\,ds=\\dfrac{1}{2r}\\left[-\\dfrac{(L-s)^3}{3}\\right]_0^L=\\dfrac{1}{2r}\\cdot\\dfrac{L^3}{3}=\\dfrac{L^3}{6r}$，一般公式得证。",
+              "代入 $L=\\pi r$，得 $A=\\dfrac{(\\pi r)^3}{6r}=\\dfrac{\\pi^3r^3}{6r}=\\dfrac{\\pi^3r^2}{6}$，与题目要求的结果一致（当 $r=1$ 时即为原题中的 $\\dfrac{\\pi^3}{6}$）。"
+            ]
+          }
+        ],
+        "id": "kyoto-2021-80fb76336b-q04-practice-04",
+        "school": "京都大学",
+        "year": "2021"
+      }
+    ],
+    "source_question": "F1-2 设问2",
+    "source_pdf": "京都大学/情报学研究科/智能信息学/京都大学_情报学研究科_智能信息学_2021_数学过去问.pdf",
+    "source_type": "官方过去问",
+    "subject_category": "微积分"
+  }
+]

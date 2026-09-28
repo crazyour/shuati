@@ -1,0 +1,36 @@
+[
+  {
+    "id": "tsukuba-2025-881b67c633-q01",
+    "school": "筑波大学",
+    "year": "2025",
+    "subject": "数理物質科学研究群_全专攻",
+    "text": "数学\n\n注意 C は複素数全体，R は実数全体，Q は有理数全体，Z は整数全体，N は自然数全\n体のなす集合を，それぞれ表すものとする．\n\n\n［1］ 以下の問いに答えよ．\n\n (1) 領域 D1 = {(x, y) ∈ R2 | 0 < x < π, 0 < y < π} における関数\n\n                            f (x, y) = cos x sin y + sin x\n\n    の極値を求めよ．\n\n (2) D2 = {(x, y) ∈ R2 | |y| ≤ x} とする．次の重積分を計算せよ．\n                                  ∫∫\n                                             x2\n                                                    5 dxdy\n                                          2   2\n                                     D2 (x + y + 1) 2\n\n\n (3) 次の極限を計算せよ．\n                                    ∑\n                                    n−1   ∫ k+1\n                                        k    n      dt\n                              lim\n                              n→∞\n                                    k=1\n                                          n   k\n                                              n\n                                                  1 + t2\n\n\n--- 下一页 ---\n\n                                           数学\n\n［5］ 次の（C），（D）の両方に解答せよ．\n\n（C）定数 a > 0 に対して C 上の関数 f を\n\n                                                   zeiaz\n                                       f (z) =\n                                                  z4 + 4\n    と定める．以下の問いに答えよ．\n\n     (1) 上半平面 Im z > 0 における f の極をすべて求め，かつ，各極における留数を\n         計算せよ．\n            √\n     (2) R > 2 とし，\n\n                         DR = { reiθ ∈ C | 0 ≤ r ≤ R, 0 ≤ θ ≤ π }\n                                           ∫\n        とする． DR の境界に反時計回りに向きをつけた曲線を CR とする．                                        f (z) dz\n                                                                              CR\n         を求めよ．\n             ∫ R\n                 x sin ax\n     (3) lim              dx を求めよ．\n         R→∞ −R x4 + 4\n\n（D） (1, ∞) 上の関数列 {fn }∞\n                      n=1 を\n\n                                       1\n                      fn (x) =         1              (n = 1, 2, 3, . . . )\n                                 n2 x(x n − 1)2\n\n    で定める．以下の問いに答えよ．\n        ∫ ∞\n                1\n    (1)               dx を求めよ．\n         e  x(log x)2\n     (2) 極限 lim fn (x) を求めよ．\n            n→∞\n                                                            1\n     (3) 正の整数 n と x ∈ (1, ∞) に対して不等式 n(x n − 1) ≥ log x を示せ．\n                ∫ ∞\n     (4) 極限 lim     fn (x) dx を求めよ．\n            n→∞   e\n\n\n--- 下一页 ---",
+    "knowledge_points": [
+      "微积分",
+      "极限与积分",
+      "函数极限",
+      "定积分与广义积分"
+    ],
+    "question_type": "证明与计算综合题",
+    "method": [
+      "识别函数与定义域",
+      "实施微分、积分或极限运算",
+      "检查收敛性及边界条件"
+    ],
+    "solution_steps": [
+      "识别函数与定义域",
+      "实施微分、积分或极限运算",
+      "检查收敛性及边界条件"
+    ],
+    "math_structure": {
+      "type": "multi_part_calculus",
+      "template": "$f:\\mathbb{R}^n\\to\\mathbb{R}$",
+      "variable_count": 1
+    },
+    "difficulty": 3,
+    "source_question": "原 PDF 中该科目对应题目",
+    "source_pdf": "微积分/筑波大学/数理物質科学研究群/2025_8月期_専門科目.pdf",
+    "source_type": "官方过去问",
+    "subject_category": "微积分"
+  }
+]

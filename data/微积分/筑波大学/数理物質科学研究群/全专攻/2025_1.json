@@ -1,0 +1,36 @@
+[
+  {
+    "id": "tsukuba-2025-a7bc42dc09-q01",
+    "school": "筑波大学",
+    "year": "2025",
+    "subject": "数理物質科学研究群_全专攻",
+    "text": "数学\n\n注意 C は複素数全体，R は実数全体，Q は有理数全体，Z は整数全体，N は自然数全\n体のなす集合を，それぞれ表すものとする．\n\n\n［1］ 0 < R < π/2 に対して，R2 の開集合 UR を\n\n                   UR = {(x, y) ∈ R2 | 0 < x2 + y 2 < R2 }\n                                                           √\nと定める．UR 上の関数 f : UR → R を f (x, y) = tan                    x2 + y 2 で定める．以下の問いに\n答えよ．\n\n (1) 点 (x, y) ∈ UR に対して\n                               {(                 )2       (               )2 } 21\n                                    ∂f                         ∂f\n                   g(x, y) =           (x, y)          +          (x, y)\n                                    ∂x                         ∂y\n\n    を求めよ．\n\n (2) 関数 f (x, y) は UR 上で極値をとらないことを示せ．\n\n (3) 定数 a, b (0 < a < b < R) に対して，UR の部分集合 Da,b を\n\n              Da,b = {(x, y) ∈ R2 | a2 ≤ x2 + y 2 ≤ b2 }\n                    ∫∫\n    と定める．このとき重積分           g(x, y) dxdy の値を a, b を用いて表せ．\n                               Da,b\n\n (4) 定数 ε (0 < ε < R) に対して，UR の部分集合 Uε を\n\n               Uε = {(x, y) ∈ R2 | 0 < x2 + y 2 < ε2 }\n              ∫∫\n    と定める．広義積分     g(x, y) dxdy の値を ε を用いて表し，極限値\n                          Uε\n                                        ∫∫\n                                   1\n                               lim                g(x, y) dxdy\n                               ε→0 ε2        Uε\n\n    を求めよ．\n\n\n--- 下一页 ---\n\n                                         数学\n\n［5］ 次の（C），（D）の両方に解答せよ．\n\n（C） C 上の関数 f を\n                                                 e2iz\n                                 f (z) =\n                                              ez + e−z\n    と定める．R > 0 に対して\n\n                     DR = {z ∈ C | | Re z | < R, 0 < Im z < π}\n\n    とし，その境界に反時計回りに向きをつけた曲線を CR とする．以下の問いに答\n    えよ．\n\n    （1） | Re z | = R のとき | ez + e−z | ≥ eR − e−R が成り立つことを示せ．\n    （2） DR に含まれる f の極をすべて求め，そこでの留数を計算せよ．\n              ∫\n    （3）複素積分     f (z) dz を考えることにより\n                CR\n                              ∫ ∞\n                                         cos 2x              π\n                                                   dx =\n                               −∞       ex + e−x          eπ + e−π\n\n        であることを示せ．\n\n（D）以下の問いに答えよ．\n        ∫ ∞\n            xe−x dx を求めよ．\n                2\n   （1 ）\n         0\n\n                       xn+1 e−x\n                                    2\n\n    （2） x ≥ 0 に対して lim          を求めよ．\n                  n→∞ 1 + xn\n              ∫ ∞ n+1 −x2\n                 x e\n    （3）極限 lim             dx を求めよ．\n          n→∞ 0   1 + xn\n\n\n--- 下一页 ---",
+    "knowledge_points": [
+      "微积分",
+      "极限与积分",
+      "函数极限",
+      "定积分与广义积分"
+    ],
+    "question_type": "证明与计算综合题",
+    "method": [
+      "识别函数与定义域",
+      "实施微分、积分或极限运算",
+      "检查收敛性及边界条件"
+    ],
+    "solution_steps": [
+      "识别函数与定义域",
+      "实施微分、积分或极限运算",
+      "检查收敛性及边界条件"
+    ],
+    "math_structure": {
+      "type": "multi_part_calculus",
+      "template": "$f:\\mathbb{R}^n\\to\\mathbb{R}$",
+      "variable_count": 1
+    },
+    "difficulty": 3,
+    "source_question": "原 PDF 中该科目对应题目",
+    "source_pdf": "微积分/筑波大学/数理物質科学研究群/2025_1-2月期_専門科目.pdf",
+    "source_type": "官方过去问",
+    "subject_category": "微积分"
+  }
+]

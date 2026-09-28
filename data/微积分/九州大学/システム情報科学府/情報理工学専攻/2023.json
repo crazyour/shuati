@@ -1,0 +1,164 @@
+[
+  {
+    "id": "kyushu-2023-ist-calculus",
+    "school": "九州大学",
+    "year": "2023",
+    "subject": "システム情報科学府_情報理工学専攻",
+    "text": "(1) 对 $f(x)=\\cos x$ 求 $f^{(k)}(0)$、Maclaurin 系数，并证明绝对收敛。(2) 求 $y^{(4)}-2y^{(3)}-y''-4y'+12y=0$ 的通解。(3) 对圆 $|z|=r$（$r>0,r\\ne1$）求 $\\oint_C1/[z(z^2-1)]\\,dz$。",
+    "knowledge_points": [
+      "Taylor 级数",
+      "常系数微分方程",
+      "留数定理"
+    ],
+    "question_type": "分析与微积分综合题",
+    "method": [
+      "Maclaurin 展开",
+      "特征方程",
+      "留数"
+    ],
+    "solution_steps": [
+      "由导数周期求级数系数",
+      "分解特征多项式",
+      "按半径判断曲线内极点"
+    ],
+    "math_structure": {
+      "type": "series_ode_residue",
+      "template": "$\\cos x=\\sum_{m\\ge0}(-1)^mx^{2m}/(2m)!$",
+      "variable_count": 3
+    },
+    "difficulty": 4,
+    "answer": [
+      {
+        "label": "(1)",
+        "steps": [
+          "思路：采用Maclaurin 展开、特征方程、留数，先由导数周期求级数系数。",
+          "$f^{(k)}(0)=\\cos(k\\pi/2)$，故 $a_k=\\cos(k\\pi/2)/k!$；",
+          "即 $a_{2m}=(-1)^m/(2m)!$、$a_{2m+1}=0$。",
+          "又 $\\sum|a_kx^k|\\le\\sum|x|^k/k!=e^{|x|}$，所以处处绝对收敛。"
+        ]
+      },
+      {
+        "label": "(2)",
+        "steps": [
+          "思路：采用Maclaurin 展开、特征方程、留数，先分解特征多项式。",
+          "特征多项式为 $(r-2)^2(r^2+2r+3)$，故 $$y=(C_1+C_2x)e^{2x}+e^{-x}[C_3\\cos(\\sqrt2x)+C_4\\sin(\\sqrt2x)].$$。",
+          "将所得函数及其导数代回原方程，可核对等式成立。"
+        ]
+      },
+      {
+        "label": "(3)",
+        "steps": [
+          "思路：采用Maclaurin 展开、特征方程、留数，先按半径判断曲线内极点。",
+          "若 $0<r<1$，只含极点 $0$，其留数为 $-1$，积分为 $-2\\pi i$。",
+          "若 $r>1$，三个有限极点全在圆内且留数和为零，积分为 $0$。"
+        ]
+      }
+    ],
+    "practice_questions": [
+      {
+        "id": "kyushu-2023-ist-calc-p1",
+        "school": "九州大学",
+        "year": "2023",
+        "text": "写出 $\\sin x$ 的 Maclaurin 级数，并说明收敛半径。",
+        "knowledge_points": [
+          "Taylor 级数"
+        ],
+        "question_type": "由导数求展开",
+        "method": [
+          "Maclaurin 公式"
+        ],
+        "solution_steps": [
+          "利用导数周期",
+          "用比值判别"
+        ],
+        "math_structure": {
+          "type": "sine_maclaurin",
+          "template": "$\\sin x=\\sum(-1)^mx^{2m+1}/(2m+1)!$",
+          "variable_count": 1
+        },
+        "difficulty": 1,
+        "estimated_minutes": 4,
+        "answer": [
+          {
+            "label": "答案",
+            "steps": [
+              "先围绕Taylor 级数采用Maclaurin 公式：利用导数周期。",
+              "$\\sin x=\\sum_{m=0}^{\\infty}(-1)^mx^{2m+1}/(2m+1)!$，比值判别给出收敛半径为 $\\infty$。",
+              "最后按题设的符号、范围和方向检查，得到所列结论。"
+            ]
+          }
+        ]
+      },
+      {
+        "id": "kyushu-2023-ist-calc-p2",
+        "school": "九州大学",
+        "year": "2023",
+        "text": "求特征根为 $2$（二重）与 $-1\\pm i$ 的常系数齐次微分方程通解形式。",
+        "knowledge_points": [
+          "常系数微分方程",
+          "重根",
+          "复根"
+        ],
+        "question_type": "由特征根写通解",
+        "method": [
+          "特征根模板"
+        ],
+        "solution_steps": [
+          "写重实根项",
+          "写共轭复根实形式"
+        ],
+        "math_structure": {
+          "type": "constant_coefficient_solution",
+          "template": "$(C_1+C_2x)e^{2x}+e^{-x}(C_3\\cos x+C_4\\sin x)$",
+          "variable_count": 1
+        },
+        "difficulty": 2,
+        "estimated_minutes": 4,
+        "answer": [
+          {
+            "label": "答案",
+            "steps": [
+              "先围绕常系数微分方程、重根采用特征根模板：写重实根项。",
+              "通解为 $(C_1+C_2x)e^{2x}+e^{-x}(C_3\\cos x+C_4\\sin x)$。",
+              "将所得函数及其导数代回原方程，可核对等式成立。"
+            ]
+          }
+        ]
+      },
+      {
+        "id": "kyushu-2023-ist-calc-p3",
+        "school": "九州大学",
+        "year": "2023",
+        "text": "求函数 $1/[z(z-1)]$ 在 $z=0$ 与 $z=1$ 的留数。",
+        "knowledge_points": [
+          "留数",
+          "简单极点"
+        ],
+        "question_type": "计算简单极点留数",
+        "method": [
+          "极限公式"
+        ],
+        "solution_steps": [
+          "分别乘去极点因子后取值"
+        ],
+        "math_structure": {
+          "type": "simple_residues",
+          "template": "$\\operatorname{Res}_{z=a}f=\\lim_{z\\to a}(z-a)f$",
+          "variable_count": 1
+        },
+        "difficulty": 1,
+        "estimated_minutes": 3,
+        "answer": [
+          {
+            "label": "答案",
+            "steps": [
+              "先围绕留数、简单极点采用极限公式：分别乘去极点因子后取值。",
+              "在 $0$ 的留数为 $-1$，在 $1$ 的留数为 $1$。",
+              "最后按题设的符号、范围和方向检查，得到所列结论。"
+            ]
+          }
+        ]
+      }
+    ]
+  }
+]

@@ -1,0 +1,905 @@
+[
+  {
+    "id": "kyoto-2024-a19745fad7-q01",
+    "school": "京都大学",
+    "year": "2024",
+    "subject": "情报学研究科_数理工学",
+    "text": "定义函数 $f:\\mathbb{R}\\to\\mathbb{R}$ 为：$f(x)=0$（$x$ 为无理数）；$f(x)=\\dfrac{1}{q}$（$x=\\dfrac{p}{q}$ 为有理数且 $x\\ne 0$，其中 $p,q\\in\\mathbb{Z}$，$p\\ne 0$，$q>0$，且 $\\dfrac{p}{q}$ 为既约分数）；$f(0)=1$。问：函数 $f(x)$ 在有理数点是否连续？在无理数点是否连续？",
+    "knowledge_points": [
+      "连续性的$\\varepsilon$-$\\delta$定义",
+      "有理数稠密性",
+      "无理数稠密性",
+      "Thomae函数",
+      "分母有界的有理数个数"
+    ],
+    "question_type": "函数连续性判定",
+    "method": [
+      "利用有理数附近存在无理数列构造反例",
+      "利用任一区间内分母不超过给定值的既约分数只有有限个来做$\\varepsilon$-$\\delta$估计"
+    ],
+    "solution_steps": [
+      "在任一有理点 $x=p/q$ 处，取一列无理数 $x_n\\to x$，则 $f(x_n)=0$ 但 $f(x)=1/q>0$，说明不连续",
+      "在无理点 $x_0$ 处，任给 $\\varepsilon>0$，取正整数 $N>1/\\varepsilon$，区间 $[x_0-1,x_0+1]$ 内分母 $q\\le N$ 的既约分数只有有限个，且都不等于 $x_0$（因 $x_0$ 无理）",
+      "取 $\\delta>0$ 小于 $x_0$ 到这有限个分数的最小距离且 $\\delta<1$，则当 $|y-x_0|<\\delta$ 时，$y$ 若为无理数 $f(y)=0<\\varepsilon$；若为有理数则其分母 $q>N$，故 $f(y)=1/q<\\varepsilon$",
+      "综上 $f$ 在每个无理点连续，在每个有理点（含 $x=0$）不连续"
+    ],
+    "math_structure": {
+      "type": "thomae_function_continuity",
+      "template": "f(x)=0\\ (x\\notin\\mathbb{Q}),\\ f(p/q)=1/q\\ (p/q\\ \\text{既约}),\\ f(0)=1",
+      "variable_count": 0
+    },
+    "difficulty": 3,
+    "answer": [
+      {
+        "label": "有理数点连续性",
+        "steps": [
+          "设 $x_0=p/q$（既约，$q>0$）为任意有理数，此时 $f(x_0)=1/q>0$ 或 $f(0)=1>0$",
+          "由无理数在 $\\mathbb{R}$ 中稠密，可取无理数列 $x_n\\to x_0$（例如 $x_n=x_0+\\sqrt2/n$），则对一切 $n$，$f(x_n)=0$",
+          "故 $\\lim_{n\\to\\infty}f(x_n)=0\\ne f(x_0)$，函数在 $x_0$ 处不连续",
+          "结论：$f$ 在每个有理数点（包括 $0$）都不连续"
+        ]
+      },
+      {
+        "label": "无理数点连续性",
+        "steps": [
+          "设 $x_0$ 为任意无理数，任给 $\\varepsilon>0$，取正整数 $N$ 使 $1/N<\\varepsilon$",
+          "在闭区间 $[x_0-1,x_0+1]$ 中，分母 $q\\le N$ 的既约分数 $p/q$ 只有有限多个（因为对每个 $q\\le N$，$p$ 的可能取值只有有限个），设这有限个点到 $x_0$ 的最小距离为 $d>0$（因 $x_0$ 为无理数，与这些有理点均不重合）",
+          "取 $\\delta=\\min(d,1)>0$，则当 $0<|y-x_0|<\\delta$ 时：若 $y$ 为无理数，$f(y)=0<\\varepsilon$；若 $y=p'/q'$ 为有理数，因其不在上述有限集合中，必有 $q'>N$，从而 $f(y)=1/q'<1/N<\\varepsilon$",
+          "又 $f(x_0)=0$，故 $|f(y)-f(x_0)|<\\varepsilon$ 对所有满足条件的 $y$ 成立，证明 $f$ 在 $x_0$ 处连续"
+        ]
+      }
+    ],
+    "practice_questions": [
+      {
+        "text": "用 $\\varepsilon$-$\\delta$ 语言证明函数 $g(x)=x^2$ 在任意点 $x_0\\in\\mathbb{R}$ 处连续。",
+        "knowledge_points": [
+          "连续性$\\varepsilon$-$\\delta$定义",
+          "多项式函数的连续性"
+        ],
+        "question_type": "连续性证明",
+        "method": [
+          "直接估计$|g(x)-g(x_0)|$"
+        ],
+        "solution_steps": [
+          "写出$|x^2-x_0^2|=|x-x_0||x+x_0|$",
+          "限制$|x-x_0|<1$控制$|x+x_0|$的界",
+          "选取合适$\\delta$完成证明"
+        ],
+        "math_structure": {
+          "type": "polynomial_continuity",
+          "template": "g(x)=x^2,\\ \\text{证明在}x_0\\text{处连续}",
+          "variable_count": 1
+        },
+        "difficulty": 1,
+        "estimated_minutes": 8,
+        "answer": [
+          {
+            "label": "证明",
+            "steps": [
+              "$|g(x)-g(x_0)|=|x-x_0||x+x_0|$",
+              "设 $|x-x_0|<1$，则 $|x+x_0|\\le|x-x_0|+2|x_0|<1+2|x_0|$",
+              "取 $\\delta=\\min\\left(1,\\dfrac{\\varepsilon}{1+2|x_0|}\\right)$，当 $|x-x_0|<\\delta$ 时 $|g(x)-g(x_0)|<\\varepsilon$，证毕"
+            ]
+          }
+        ],
+        "id": "kyoto-2024-a19745fad7-q01-practice-01",
+        "school": "京都大学",
+        "year": "2024"
+      },
+      {
+        "text": "考虑 Dirichlet 函数 $D(x)=1$（$x\\in\\mathbb{Q}$），$D(x)=0$（$x\\notin\\mathbb{Q}$）。证明 $D(x)$ 在 $\\mathbb{R}$ 上处处不连续。",
+        "knowledge_points": [
+          "Dirichlet函数",
+          "稠密性",
+          "连续性反证"
+        ],
+        "question_type": "不连续性证明",
+        "method": [
+          "用有理/无理数列逼近同一点得到不同极限"
+        ],
+        "solution_steps": [
+          "任取$x_0$，构造有理数列与无理数列都趋于$x_0$",
+          "计算$D$在两列上极限不同",
+          "得出不连续结论"
+        ],
+        "math_structure": {
+          "type": "dirichlet_function_discontinuity",
+          "template": "D(x)=1_{\\mathbb{Q}}(x)",
+          "variable_count": 0
+        },
+        "difficulty": 2,
+        "estimated_minutes": 8,
+        "answer": [
+          {
+            "label": "证明",
+            "steps": [
+              "任取 $x_0\\in\\mathbb{R}$，由有理数稠密性取有理数列 $q_n\\to x_0$，此时 $D(q_n)=1\\to 1$",
+              "由无理数稠密性取无理数列 $r_n\\to x_0$，此时 $D(r_n)=0\\to 0$",
+              "两个极限不相等，说明 $\\lim_{x\\to x_0}D(x)$ 不存在，故 $D$ 在 $x_0$ 处不连续；由 $x_0$ 任意性，$D$ 处处不连续"
+            ]
+          }
+        ],
+        "id": "kyoto-2024-a19745fad7-q01-practice-02",
+        "school": "京都大学",
+        "year": "2024"
+      },
+      {
+        "text": "直接验证 Thomae 型函数 $f$（定义同原题）在 $x_0=\\sqrt{2}$ 处连续：给定 $\\varepsilon=1/5$，具体写出可用的 $\\delta$。",
+        "knowledge_points": [
+          "Thomae函数",
+          "具体$\\varepsilon$-$\\delta$估计"
+        ],
+        "question_type": "连续性验证（具体数值）",
+        "method": [
+          "枚举分母$\\le5$落在$[\\sqrt2-1,\\sqrt2+1]$内的既约分数"
+        ],
+        "solution_steps": [
+          "取$N=5$列出分母不超过5的分数落在区间内的情形",
+          "求这些分数到$\\sqrt2$的最小距离",
+          "确定$\\delta$"
+        ],
+        "math_structure": {
+          "type": "thomae_function_epsilon_delta_example",
+          "template": "x_0=\\sqrt2,\\ \\varepsilon=1/5",
+          "variable_count": 0
+        },
+        "difficulty": 2,
+        "estimated_minutes": 10,
+        "answer": [
+          {
+            "label": "求$\\delta$",
+            "steps": [
+              "$\\sqrt2\\approx1.41421$，区间为$[0.41421,2.41421]$",
+              "分母 $q\\le5$ 的既约分数中落在此区间的有：$1/2,1,3/2,2,5/2,4/3,5/3,5/4,7/5,8/5,9/5,7/4,9/4,\\dots$（列出后计算与$\\sqrt2$的距离，最近的是 $1.4=7/5$，距离$\\approx0.01421$）",
+              "取 $\\delta=0.01$（小于该最小距离），则对满足 $|y-\\sqrt2|<0.01$ 的 $y$：若为无理数 $f(y)=0<1/5$；若为有理数其分母必大于5，故 $f(y)\\le1/6<1/5$，条件满足"
+            ]
+          }
+        ],
+        "id": "kyoto-2024-a19745fad7-q01-practice-03",
+        "school": "京都大学",
+        "year": "2024"
+      },
+      {
+        "text": "设 $h(x)=x\\cdot f(x)$，其中 $f$ 为原题中的 Thomae 型函数。判断 $h$ 在 $x_0=0$ 处的连续性。",
+        "knowledge_points": [
+          "函数乘积的连续性",
+          "Thomae函数",
+          "夹逼准则"
+        ],
+        "question_type": "连续性判定（复合/乘积函数）",
+        "method": [
+          "利用$0\\le f(x)\\le1$进行夹逼估计"
+        ],
+        "solution_steps": [
+          "估计$|h(x)-h(0)|=|x||f(x)|\\le|x|$",
+          "利用夹逼准则得极限为0",
+          "对照$h(0)=0$确认连续"
+        ],
+        "math_structure": {
+          "type": "product_with_thomae_function",
+          "template": "h(x)=x f(x),\\ \\text{判断在}x_0=0\\text{处连续性}",
+          "variable_count": 0
+        },
+        "difficulty": 2,
+        "estimated_minutes": 6,
+        "answer": [
+          {
+            "label": "结论",
+            "steps": [
+              "因为 $0\\le f(x)\\le1$ 对一切 $x$ 成立，所以 $|h(x)-h(0)|=|x f(x)|\\le|x|$",
+              "当 $x\\to0$ 时 $|x|\\to0$，由夹逼准则 $h(x)\\to0$",
+              "又 $h(0)=0\\cdot f(0)=0\\cdot1=0$，所以 $\\lim_{x\\to0}h(x)=h(0)$，$h$ 在 $x_0=0$ 处连续"
+            ]
+          }
+        ],
+        "id": "kyoto-2024-a19745fad7-q01-practice-04",
+        "school": "京都大学",
+        "year": "2024"
+      }
+    ],
+    "source_question": "第1問(i)",
+    "source_pdf": "京都大学/情报学研究科/数理工学/京都大学_情报学研究科_数理工学_2024_数学过去问.pdf",
+    "source_type": "官方过去问",
+    "subject_category": "微积分"
+  },
+  {
+    "id": "kyoto-2024-a19745fad7-q02",
+    "school": "京都大学",
+    "year": "2024",
+    "subject": "情报学研究科_数理工学",
+    "text": "求函数 $\\dfrac{1}{x^4-1}$ 的原函数。",
+    "knowledge_points": [
+      "有理函数积分",
+      "部分分式分解",
+      "反正切函数积分",
+      "对数函数积分"
+    ],
+    "question_type": "不定积分计算",
+    "method": [
+      "因式分解$x^4-1=(x^2-1)(x^2+1)$",
+      "对$x^2$做部分分式分解",
+      "再对$1/(x^2-1)$做部分分式分解"
+    ],
+    "solution_steps": [
+      "分解 $x^4-1=(x^2-1)(x^2+1)$",
+      "设 $\\dfrac{1}{(x^2-1)(x^2+1)}=\\dfrac{A}{x^2-1}+\\dfrac{B}{x^2+1}$，求出 $A=1/2,B=-1/2$",
+      "对 $1/(x^2-1)$ 再分解为 $\\dfrac{1}{2}\\left(\\dfrac{1}{x-1}-\\dfrac{1}{x+1}\\right)$",
+      "逐项积分并合并结果"
+    ],
+    "math_structure": {
+      "type": "rational_function_integral",
+      "template": "\\int \\dfrac{1}{x^4-1}\\,dx",
+      "variable_count": 0
+    },
+    "difficulty": 2,
+    "answer": [
+      {
+        "label": "原函数",
+        "steps": [
+          "先将 $\\dfrac{1}{x^4-1}=\\dfrac{1}{(x^2-1)(x^2+1)}$ 按 $x^2$ 部分分式：设 $\\dfrac{1}{(x^2-1)(x^2+1)}=\\dfrac{A}{x^2-1}+\\dfrac{B}{x^2+1}$，通分得 $A(x^2+1)+B(x^2-1)=1$；令 $x^2=1$ 得 $2A=1\\Rightarrow A=1/2$；令 $x^2=-1$ 得 $-2B=1\\Rightarrow B=-1/2$",
+          "于是 $\\dfrac{1}{x^4-1}=\\dfrac{1}{2}\\cdot\\dfrac{1}{x^2-1}-\\dfrac{1}{2}\\cdot\\dfrac{1}{x^2+1}$；再将 $\\dfrac{1}{x^2-1}=\\dfrac{1}{2}\\left(\\dfrac{1}{x-1}-\\dfrac{1}{x+1}\\right)$代入，得 $\\dfrac{1}{x^4-1}=\\dfrac{1}{4}\\left(\\dfrac{1}{x-1}-\\dfrac{1}{x+1}\\right)-\\dfrac{1}{2}\\cdot\\dfrac{1}{x^2+1}$",
+          "逐项积分：$\\int\\dfrac{1}{x-1}dx=\\ln|x-1|$，$\\int\\dfrac{1}{x+1}dx=\\ln|x+1|$，$\\int\\dfrac{1}{x^2+1}dx=\\arctan x$",
+          "合并得原函数：$\\dfrac{1}{4}\\ln\\left|\\dfrac{x-1}{x+1}\\right|-\\dfrac{1}{2}\\arctan x+C$。验算：对结果求导，$\\dfrac{d}{dx}\\left[\\dfrac14\\ln|x-1|-\\dfrac14\\ln|x+1|-\\dfrac12\\arctan x\\right]=\\dfrac{1}{4(x-1)}-\\dfrac{1}{4(x+1)}-\\dfrac{1}{2(x^2+1)}=\\dfrac{1}{2(x^2-1)}-\\dfrac{1}{2(x^2+1)}=\\dfrac{(x^2+1)-(x^2-1)}{2(x^4-1)}=\\dfrac{2}{2(x^4-1)}=\\dfrac{1}{x^4-1}$，与被积函数一致，验证正确"
+        ]
+      }
+    ],
+    "practice_questions": [
+      {
+        "text": "求 $\\displaystyle\\int \\dfrac{1}{x^2-1}\\,dx$。",
+        "knowledge_points": [
+          "部分分式分解",
+          "对数积分"
+        ],
+        "question_type": "不定积分计算",
+        "method": [
+          "部分分式分解"
+        ],
+        "solution_steps": [
+          "分解为$1/(x-1)-1/(x+1)$除以2",
+          "分别积分"
+        ],
+        "math_structure": {
+          "type": "rational_function_integral_basic",
+          "template": "\\int\\dfrac{1}{x^2-1}dx",
+          "variable_count": 0
+        },
+        "difficulty": 1,
+        "estimated_minutes": 5,
+        "answer": [
+          {
+            "label": "结果",
+            "steps": [
+              "$\\dfrac{1}{x^2-1}=\\dfrac{1}{2}\\left(\\dfrac{1}{x-1}-\\dfrac{1}{x+1}\\right)$",
+              "积分得 $\\dfrac{1}{2}\\ln|x-1|-\\dfrac{1}{2}\\ln|x+1|+C=\\dfrac{1}{2}\\ln\\left|\\dfrac{x-1}{x+1}\\right|+C$",
+              "求导验算：$\\dfrac{1}{2}\\left(\\dfrac1{x-1}-\\dfrac1{x+1}\\right)=\\dfrac{1}{x^2-1}$，正确"
+            ]
+          }
+        ],
+        "id": "kyoto-2024-a19745fad7-q02-practice-01",
+        "school": "京都大学",
+        "year": "2024"
+      },
+      {
+        "text": "求 $\\displaystyle\\int \\dfrac{1}{x^2+1}\\,dx$。",
+        "knowledge_points": [
+          "反正切函数积分"
+        ],
+        "question_type": "不定积分计算",
+        "method": [
+          "标准积分公式"
+        ],
+        "solution_steps": [
+          "直接使用$\\arctan$的导数公式"
+        ],
+        "math_structure": {
+          "type": "arctan_integral",
+          "template": "\\int\\dfrac{1}{x^2+1}dx",
+          "variable_count": 0
+        },
+        "difficulty": 1,
+        "estimated_minutes": 3,
+        "answer": [
+          {
+            "label": "结果",
+            "steps": [
+              "由标准公式 $\\dfrac{d}{dx}\\arctan x=\\dfrac{1}{x^2+1}$",
+              "所以原函数为 $\\arctan x+C$",
+              "验算导数即为被积函数，正确"
+            ]
+          }
+        ],
+        "id": "kyoto-2024-a19745fad7-q02-practice-02",
+        "school": "京都大学",
+        "year": "2024"
+      },
+      {
+        "text": "求 $\\displaystyle\\int \\dfrac{1}{x^4-16}\\,dx$。",
+        "knowledge_points": [
+          "有理函数积分",
+          "因式分解",
+          "部分分式分解"
+        ],
+        "question_type": "不定积分计算",
+        "method": [
+          "因式分解$x^4-16=(x^2-4)(x^2+4)$，类比原题方法"
+        ],
+        "solution_steps": [
+          "分解$x^4-16=(x-2)(x+2)(x^2+4)$",
+          "按$x^2$做部分分式",
+          "对$1/(x^2-4)$继续分解",
+          "逐项积分"
+        ],
+        "math_structure": {
+          "type": "rational_function_integral_generalized",
+          "template": "\\int\\dfrac{1}{x^4-16}dx",
+          "variable_count": 0
+        },
+        "difficulty": 2,
+        "estimated_minutes": 10,
+        "answer": [
+          {
+            "label": "结果",
+            "steps": [
+              "设 $\\dfrac{1}{(x^2-4)(x^2+4)}=\\dfrac{A}{x^2-4}+\\dfrac{B}{x^2+4}$，得 $A(x^2+4)+B(x^2-4)=1$；令$x^2=4$得$8A=1\\Rightarrow A=1/8$；令$x^2=-4$得$-8B=1\\Rightarrow B=-1/8$",
+              "再分解 $\\dfrac{1}{x^2-4}=\\dfrac{1}{4}\\left(\\dfrac{1}{x-2}-\\dfrac{1}{x+2}\\right)$，故 $\\dfrac{1}{x^4-16}=\\dfrac{1}{32}\\left(\\dfrac{1}{x-2}-\\dfrac{1}{x+2}\\right)-\\dfrac{1}{8}\\cdot\\dfrac{1}{x^2+4}$",
+              "对最后一项，$\\int\\dfrac{1}{x^2+4}dx=\\dfrac{1}{2}\\arctan\\dfrac{x}{2}$",
+              "合并得：$\\dfrac{1}{32}\\ln\\left|\\dfrac{x-2}{x+2}\\right|-\\dfrac{1}{16}\\arctan\\dfrac{x}{2}+C$；求导验算可确认结果正确"
+            ]
+          }
+        ],
+        "id": "kyoto-2024-a19745fad7-q02-practice-03",
+        "school": "京都大学",
+        "year": "2024"
+      },
+      {
+        "text": "利用与原题相同方法，求 $\\displaystyle\\int\\dfrac{1}{x^4-1}\\,dx$ 在区间 $[2,3]$ 上的定积分值（保留 $\\ln$ 和 $\\arctan$ 形式）。",
+        "knowledge_points": [
+          "定积分计算",
+          "原函数代入"
+        ],
+        "question_type": "定积分计算",
+        "method": [
+          "利用原题求得的原函数代入端点"
+        ],
+        "solution_steps": [
+          "写出原函数",
+          "代入上下限相减"
+        ],
+        "math_structure": {
+          "type": "definite_integral_from_antiderivative",
+          "template": "\\int_2^3 \\dfrac{1}{x^4-1}dx",
+          "variable_count": 0
+        },
+        "difficulty": 2,
+        "estimated_minutes": 6,
+        "answer": [
+          {
+            "label": "结果",
+            "steps": [
+              "原函数为 $F(x)=\\dfrac14\\ln\\left|\\dfrac{x-1}{x+1}\\right|-\\dfrac12\\arctan x$（原题已求得）",
+              "$F(3)=\\dfrac14\\ln\\dfrac24-\\dfrac12\\arctan3=\\dfrac14\\ln\\dfrac12-\\dfrac12\\arctan3=-\\dfrac14\\ln2-\\dfrac12\\arctan3$",
+              "$F(2)=\\dfrac14\\ln\\dfrac13-\\dfrac12\\arctan2=-\\dfrac14\\ln3-\\dfrac12\\arctan2$",
+              "定积分 $=F(3)-F(2)=-\\dfrac14\\ln2+\\dfrac14\\ln3-\\dfrac12\\arctan3+\\dfrac12\\arctan2=\\dfrac14\\ln\\dfrac32+\\dfrac12(\\arctan2-\\arctan3)$"
+            ]
+          }
+        ],
+        "id": "kyoto-2024-a19745fad7-q02-practice-04",
+        "school": "京都大学",
+        "year": "2024"
+      }
+    ],
+    "source_question": "第1問(ii)",
+    "source_pdf": "京都大学/情报学研究科/数理工学/京都大学_情报学研究科_数理工学_2024_数学过去问.pdf",
+    "source_type": "官方过去问",
+    "subject_category": "微积分"
+  },
+  {
+    "id": "kyoto-2024-a19745fad7-q03",
+    "school": "京都大学",
+    "year": "2024",
+    "subject": "情报学研究科_数理工学",
+    "text": "设 $f(x,y)=x^2+4xy-y^2+3x+y+2$。求曲面 $z=f(x,y)$ 在点 $(x,y,z)=(1,2,12)$ 处的切平面方程。",
+    "knowledge_points": [
+      "多元函数偏导数",
+      "曲面的切平面方程",
+      "梯度向量"
+    ],
+    "question_type": "切平面方程求解",
+    "method": [
+      "计算偏导数$f_x,f_y$在给定点的值",
+      "代入切平面公式$z=f(x_0,y_0)+f_x(x_0,y_0)(x-x_0)+f_y(x_0,y_0)(y-y_0)$"
+    ],
+    "solution_steps": [
+      "验证给定点满足$z=f(x,y)$",
+      "求$f_x,f_y$并代入点",
+      "写出切平面方程"
+    ],
+    "math_structure": {
+      "type": "tangent_plane_to_surface",
+      "template": "z=f(x,y)=x^2+4xy-y^2+3x+y+2,\\ \\text{在}(x_0,y_0)\\text{处的切平面}",
+      "variable_count": 2
+    },
+    "difficulty": 2,
+    "answer": [
+      {
+        "label": "切平面方程",
+        "steps": [
+          "验证：$f(1,2)=1^2+4\\cdot1\\cdot2-2^2+3\\cdot1+2+2=1+8-4+3+2+2=12$，与给定 $z=12$ 一致",
+          "计算偏导数：$f_x=2x+4y+3$，$f_y=4x-2y+1$；代入 $(1,2)$：$f_x(1,2)=2+8+3=13$，$f_y(1,2)=4-4+1=1$",
+          "切平面公式：$z=f(1,2)+f_x(1,2)(x-1)+f_y(1,2)(y-2)=12+13(x-1)+1\\cdot(y-2)$",
+          "展开化简：$z=13x-13+y-2+12=13x+y-3$，即切平面方程为 $13x+y-z-3=0$。验算：在 $(1,2,12)$ 处，$13\\cdot1+2-12-3=13+2-12-3=0$，满足方程"
+        ]
+      }
+    ],
+    "practice_questions": [
+      {
+        "text": "求 $g(x,y)=x^2+y^2$ 在点 $(1,1)$ 处（$z=2$）的切平面方程。",
+        "knowledge_points": [
+          "偏导数",
+          "切平面基本公式"
+        ],
+        "question_type": "切平面方程求解",
+        "method": [
+          "直接套用切平面公式"
+        ],
+        "solution_steps": [
+          "求偏导",
+          "代入点",
+          "写方程"
+        ],
+        "math_structure": {
+          "type": "tangent_plane_basic",
+          "template": "z=x^2+y^2\\text{在}(1,1)\\text{处切平面}",
+          "variable_count": 2
+        },
+        "difficulty": 1,
+        "estimated_minutes": 5,
+        "answer": [
+          {
+            "label": "结果",
+            "steps": [
+              "$g_x=2x,g_y=2y$，在$(1,1)$处均为2",
+              "切平面：$z=2+2(x-1)+2(y-1)=2x+2y-2$",
+              "验算：代入$(1,1,2)$：$2+2-2=2$，成立"
+            ]
+          }
+        ],
+        "id": "kyoto-2024-a19745fad7-q03-practice-01",
+        "school": "京都大学",
+        "year": "2024"
+      },
+      {
+        "text": "求 $h(x,y)=x^2-xy+y^2$ 在点 $(2,1)$ 处的切平面方程。",
+        "knowledge_points": [
+          "偏导数计算",
+          "切平面公式"
+        ],
+        "question_type": "切平面方程求解",
+        "method": [
+          "套用公式"
+        ],
+        "solution_steps": [
+          "计算$h(2,1)$",
+          "求偏导数在该点的值",
+          "写出切平面"
+        ],
+        "math_structure": {
+          "type": "tangent_plane_quadratic",
+          "template": "z=x^2-xy+y^2\\text{在}(2,1)\\text{处切平面}",
+          "variable_count": 2
+        },
+        "difficulty": 2,
+        "estimated_minutes": 6,
+        "answer": [
+          {
+            "label": "结果",
+            "steps": [
+              "$h(2,1)=4-2+1=3$",
+              "$h_x=2x-y$，在$(2,1)$为$3$；$h_y=-x+2y$，在$(2,1)$为$0$",
+              "切平面：$z=3+3(x-2)+0\\cdot(y-1)=3x-3$；验算代入$(2,1,3)$：$3\\cdot2-3=3$，成立"
+            ]
+          }
+        ],
+        "id": "kyoto-2024-a19745fad7-q03-practice-02",
+        "school": "京都大学",
+        "year": "2024"
+      },
+      {
+        "text": "求 $f(x,y)=x^2+4xy-y^2$（去掉原题中的一次项和常数项）在点 $(1,2)$ 处切平面方程，并与原题结果比较偏导数部分的异同。",
+        "knowledge_points": [
+          "偏导数不受常数项影响",
+          "线性项对偏导的贡献",
+          "切平面公式"
+        ],
+        "question_type": "切平面方程对比分析",
+        "method": [
+          "直接计算并与原题比较"
+        ],
+        "solution_steps": [
+          "求出该函数在(1,2)的值和偏导数",
+          "写出切平面方程",
+          "对比原题偏导数值差异（差常数3和1，对应一次项系数）"
+        ],
+        "math_structure": {
+          "type": "tangent_plane_comparison",
+          "template": "z=x^2+4xy-y^2\\text{在}(1,2)\\text{处切平面，比较原题}",
+          "variable_count": 2
+        },
+        "difficulty": 2,
+        "estimated_minutes": 8,
+        "answer": [
+          {
+            "label": "结果与比较",
+            "steps": [
+              "函数值：$1+8-4=5$；偏导数：$f_x=2x+4y=2+8=10$，$f_y=4x-2y=4-4=0$",
+              "切平面：$z=5+10(x-1)+0\\cdot(y-2)=10x-5$",
+              "对比原题（含一次项 $3x+y$）：偏导数分别多出常数 $3$ 和 $1$（恰为一次项系数），即 $13=10+3$，$1=0+1$，说明线性项直接叠加到偏导数上而不影响二次项的偏导计算，这与偏导数的线性性质一致"
+            ]
+          }
+        ],
+        "id": "kyoto-2024-a19745fad7-q03-practice-03",
+        "school": "京都大学",
+        "year": "2024"
+      }
+    ],
+    "source_question": "第1問(iii)",
+    "source_pdf": "京都大学/情报学研究科/数理工学/京都大学_情报学研究科_数理工学_2024_数学过去问.pdf",
+    "source_type": "官方过去问",
+    "subject_category": "微积分"
+  },
+  {
+    "id": "kyoto-2024-a19745fad7-q04",
+    "school": "京都大学",
+    "year": "2024",
+    "subject": "情报学研究科_数理工学",
+    "text": "求函数 $f(x,y)=x^4+2x^2y^2+y^4+2xy$ 的所有极值。",
+    "knowledge_points": [
+      "多元函数极值",
+      "驻点求解",
+      "Hessian矩阵判别法",
+      "因式分解技巧"
+    ],
+    "question_type": "多元函数极值求解",
+    "method": [
+      "求偏导数并令其为零得驻点方程组",
+      "利用因式分解简化方程组求解",
+      "用Hessian矩阵二阶判别法判断极值类型"
+    ],
+    "solution_steps": [
+      "观察 $f(x,y)=(x^2+y^2)^2+2xy$，求偏导 $f_x,f_y$",
+      "解方程组 $f_x=0,f_y=0$，通过相减、相加因式分解求出所有驻点",
+      "计算Hessian矩阵在各驻点的值，判断极大/极小/鞍点",
+      "计算各极值点处的函数值"
+    ],
+    "math_structure": {
+      "type": "bivariate_extrema_quartic",
+      "template": "f(x,y)=x^4+2x^2y^2+y^4+2xy=(x^2+y^2)^2+2xy",
+      "variable_count": 2
+    },
+    "difficulty": 4,
+    "answer": [
+      {
+        "label": "所有极值",
+        "steps": [
+          "求偏导：$f_x=4x^3+4xy^2+2y$，$f_y=4y^3+4x^2y+2x$；令两者为0，即 $2x^3+2xy^2+y=0$ (A)，$2y^3+2x^2y+x=0$ (B)",
+          "(A)-(B)：$2(x^3-y^3)-2xy(x-y)+(y-x)=(x-y)[2(x^2+xy+y^2)-2xy-1]=(x-y)(2x^2+2y^2-1)=0$，故 $x=y$ 或 $x^2+y^2=1/2$",
+          "情形一 $x=y$：代入(A)得 $4x^3+x=0\\Rightarrow x(4x^2+1)=0\\Rightarrow x=0$（实数解），得驻点 $(0,0)$",
+          "情形二 $x^2+y^2=1/2$：(A)+(B)得 $2(x+y)(x^2+y^2)+(x+y)=(x+y)[2\\cdot\\tfrac12+1]=2(x+y)=0\\Rightarrow y=-x$；代入 $x^2+y^2=1/2$ 得 $2x^2=1/2\\Rightarrow x=\\pm\\tfrac12$，得驻点 $(\\tfrac12,-\\tfrac12)$ 和 $(-\\tfrac12,\\tfrac12)$",
+          "计算Hessian：$f_{xx}=12x^2+4y^2,\\ f_{yy}=4x^2+12y^2,\\ f_{xy}=8xy+2$。在$(0,0)$：$f_{xx}=f_{yy}=0,f_{xy}=2$，判别式$=0-4=-4<0$，为鞍点",
+          "在$(\\tfrac12,-\\tfrac12)$：$f_{xx}=12\\cdot\\tfrac14+4\\cdot\\tfrac14=4,\\ f_{yy}=4\\cdot\\tfrac14+12\\cdot\\tfrac14=4,\\ f_{xy}=8\\cdot(-\\tfrac14)+2=0$，判别式$=16-0=16>0$且$f_{xx}>0$，为极小点；同理$(-\\tfrac12,\\tfrac12)$也是极小点（对称性）",
+          "极小值：$f(\\tfrac12,-\\tfrac12)=(\\tfrac14+\\tfrac14)^2+2\\cdot(-\\tfrac14)=\\tfrac14-\\tfrac12=-\\tfrac14$，同理$f(-\\tfrac12,\\tfrac12)=-\\tfrac14$",
+          "结论：函数在 $(\\pm\\tfrac12,\\mp\\tfrac12)$ 处取极小值 $-\\tfrac14$；$(0,0)$ 为鞍点，不是极值点；无极大值"
+        ]
+      }
+    ],
+    "practice_questions": [
+      {
+        "text": "求函数 $g(x,y)=x^2+y^2-2xy$ 的所有临界点并判断类型。",
+        "knowledge_points": [
+          "偏导数求驻点",
+          "Hessian判别法"
+        ],
+        "question_type": "二元函数极值",
+        "method": [
+          "求偏导解方程组",
+          "Hessian判别"
+        ],
+        "solution_steps": [
+          "求偏导",
+          "解方程组",
+          "计算Hessian判别"
+        ],
+        "math_structure": {
+          "type": "bivariate_extrema_simple",
+          "template": "g(x,y)=x^2+y^2-2xy",
+          "variable_count": 2
+        },
+        "difficulty": 1,
+        "estimated_minutes": 6,
+        "answer": [
+          {
+            "label": "结果",
+            "steps": [
+              "$g_x=2x-2y=0,g_y=2y-2x=0$，得 $x=y$，为一条临界线 $\\{(t,t):t\\in\\mathbb{R}\\}$",
+              "Hessian：$g_{xx}=2,g_{yy}=2,g_{xy}=-2$，判别式$=4-4=0$，二阶判别法失效",
+              "注意到 $g(x,y)=(x-y)^2\\ge0$，在直线$x=y$上恒为最小值0，其余点函数值大于0，故这些点均为（非严格）极小值点"
+            ]
+          }
+        ],
+        "id": "kyoto-2024-a19745fad7-q04-practice-01",
+        "school": "京都大学",
+        "year": "2024"
+      },
+      {
+        "text": "求函数 $u(x,y)=x^4+y^4-4xy$ 的所有驻点并判断极值类型。",
+        "knowledge_points": [
+          "驻点方程组",
+          "对称性化简",
+          "Hessian判别"
+        ],
+        "question_type": "二元函数极值",
+        "method": [
+          "利用对称性$x=y$简化",
+          "Hessian判别法"
+        ],
+        "solution_steps": [
+          "求偏导得方程组",
+          "利用对称性求解",
+          "Hessian判定"
+        ],
+        "math_structure": {
+          "type": "bivariate_extrema_quartic_simple",
+          "template": "u(x,y)=x^4+y^4-4xy",
+          "variable_count": 2
+        },
+        "difficulty": 3,
+        "estimated_minutes": 12,
+        "answer": [
+          {
+            "label": "结果",
+            "steps": [
+              "$u_x=4x^3-4y=0\\Rightarrow y=x^3$；$u_y=4y^3-4x=0\\Rightarrow x=y^3$；代入得 $x=(x^3)^3=x^9\\Rightarrow x^9-x=0\\Rightarrow x(x^8-1)=0$",
+              "实数解：$x=0,1,-1$，对应驻点 $(0,0),(1,1),(-1,-1)$",
+              "Hessian：$u_{xx}=12x^2,u_{yy}=12y^2,u_{xy}=-4$。在$(0,0)$：判别式$=0-16=-16<0$，鞍点。在$(1,1)$：$u_{xx}=u_{yy}=12$，判别式$=144-16=128>0$，且$u_{xx}>0$，为极小点，值$=1+1-4=-2$。$(-1,-1)$同理也是极小点，值$=1+1-4=-2$"
+            ]
+          }
+        ],
+        "id": "kyoto-2024-a19745fad7-q04-practice-02",
+        "school": "京都大学",
+        "year": "2024"
+      },
+      {
+        "text": "求函数 $v(x,y)=x^4+2x^2y^2+y^4-2xy$（原题中把加号改为减号）的所有极值。",
+        "knowledge_points": [
+          "因式分解技巧",
+          "驻点方程组的对称分解",
+          "Hessian判别"
+        ],
+        "question_type": "二元函数极值",
+        "method": [
+          "类比原题方法：相加相减因式分解"
+        ],
+        "solution_steps": [
+          "求偏导方程组",
+          "相加减因式分解求驻点",
+          "Hessian判定极值"
+        ],
+        "math_structure": {
+          "type": "bivariate_extrema_quartic_variant",
+          "template": "v(x,y)=(x^2+y^2)^2-2xy",
+          "variable_count": 2
+        },
+        "difficulty": 4,
+        "estimated_minutes": 15,
+        "answer": [
+          {
+            "label": "结果",
+            "steps": [
+              "$v_x=4x^3+4xy^2-2y=0$即$2x^3+2xy^2-y=0$(A')；$v_y=4y^3+4x^2y-2x=0$即$2y^3+2x^2y-x=0$(B')",
+              "(A')-(B')：$2(x^3-y^3)+2xy(x-y)+(x-y)=(x-y)[2(x^2+xy+y^2)+2xy+1]$，注意此处系数与原题不同，需重新展开：$2x^3+2xy^2-y-2y^3-2x^2y+x=2(x^3-y^3)+2xy(y-x)+(x-y)$，整理为$(x-y)[2(x^2+xy+y^2)-2xy+1]=(x-y)(2x^2+2y^2+1)$。由于 $2x^2+2y^2+1>0$ 恒成立，必有 $x=y$",
+              "代入(A')：$2x^3+2x^3-x=0\\Rightarrow4x^3-x=0\\Rightarrow x(4x^2-1)=0\\Rightarrow x=0,\\pm\\tfrac12$，得驻点 $(0,0),(\\tfrac12,\\tfrac12),(-\\tfrac12,-\\tfrac12)$",
+              "Hessian：$v_{xx}=12x^2+4y^2,v_{yy}=4x^2+12y^2,v_{xy}=8xy-2$。在$(0,0)$：判别式$=0-4=-4<0$，鞍点。在$(\\tfrac12,\\tfrac12)$：$v_{xx}=v_{yy}=4,v_{xy}=8\\cdot\\tfrac14-2=0$，判别式$=16>0$，$v_{xx}>0$为极小点，值$=(\\tfrac14+\\tfrac14)^2-2\\cdot\\tfrac14=\\tfrac14-\\tfrac12=-\\tfrac14$；$(-\\tfrac12,-\\tfrac12)$同理也是极小点，值$-\\tfrac14$"
+            ]
+          }
+        ],
+        "id": "kyoto-2024-a19745fad7-q04-practice-03",
+        "school": "京都大学",
+        "year": "2024"
+      },
+      {
+        "text": "验证原题函数 $f(x,y)=x^4+2x^2y^2+y^4+2xy$ 在鞍点 $(0,0)$ 附近沿直线 $y=x$ 和 $y=-x$ 的一维函数表达式，说明为何该点不是极值点。",
+        "knowledge_points": [
+          "鞍点的直观理解",
+          "限制到直线上的一元函数分析"
+        ],
+        "question_type": "极值点性质验证",
+        "method": [
+          "代入直线参数化简为一元函数分析符号变化"
+        ],
+        "solution_steps": [
+          "代入$y=x$",
+          "代入$y=-x$",
+          "比较两个方向函数值符号，确认鞍点性质"
+        ],
+        "math_structure": {
+          "type": "saddle_point_directional_check",
+          "template": "f(x,y)=(x^2+y^2)^2+2xy,\\ \\text{沿}y=\\pm x\\text{方向分析}(0,0)",
+          "variable_count": 1
+        },
+        "difficulty": 2,
+        "estimated_minutes": 8,
+        "answer": [
+          {
+            "label": "验证",
+            "steps": [
+              "沿 $y=x$：$f(x,x)=(2x^2)^2+2x^2=4x^4+2x^2>0$（$x\\ne0$时），说明沿此方向 $(0,0)$ 附近函数值大于 $f(0,0)=0$",
+              "沿 $y=-x$：$f(x,-x)=(2x^2)^2-2x^2=4x^4-2x^2=2x^2(2x^2-1)$，当 $|x|$ 很小时 $2x^2-1<0$，故此值为负，即沿此方向函数值小于 $f(0,0)=0$",
+              "两个方向函数值一正一负，说明 $(0,0)$ 附近函数既有大于0又有小于0的取值，故 $(0,0)$ 不可能是极值点，是鞍点，与Hessian判别法结果一致"
+            ]
+          }
+        ],
+        "id": "kyoto-2024-a19745fad7-q04-practice-04",
+        "school": "京都大学",
+        "year": "2024"
+      }
+    ],
+    "source_question": "第1問(iv)",
+    "source_pdf": "京都大学/情报学研究科/数理工学/京都大学_情报学研究科_数理工学_2024_数学过去问.pdf",
+    "source_type": "官方过去问",
+    "subject_category": "微积分"
+  },
+  {
+    "id": "kyoto-2024-a19745fad7-q05",
+    "school": "京都大学",
+    "year": "2024",
+    "subject": "情报学研究科_数理工学",
+    "text": "设 $D=\\{(x,y)\\in\\mathbb{R}^2\\mid 0\\le y\\le x\\}$。求广义积分 $\\displaystyle\\iint_D \\dfrac{1}{(x^2+y^2+1)^2}\\,dx\\,dy$ 的值。",
+    "knowledge_points": [
+      "二重广义积分",
+      "极坐标变换",
+      "反常积分收敛性"
+    ],
+    "question_type": "二重广义积分计算",
+    "method": [
+      "转换为极坐标",
+      "确定角度范围与半径范围",
+      "分离变量分别积分"
+    ],
+    "solution_steps": [
+      "分析区域 $D$ 在极坐标下对应的角度范围",
+      "写出极坐标下的积分表达式，代入 $x^2+y^2=r^2$，面积元 $r\\,dr\\,d\\theta$",
+      "先对 $r$ 积分（广义积分到无穷），再对 $\\theta$ 积分"
+    ],
+    "math_structure": {
+      "type": "double_improper_integral_polar",
+      "template": "\\iint_{0\\le y\\le x} \\dfrac{1}{(x^2+y^2+1)^2}dxdy",
+      "variable_count": 2
+    },
+    "difficulty": 3,
+    "answer": [
+      {
+        "label": "积分值",
+        "steps": [
+          "区域 $D=\\{0\\le y\\le x\\}$ 在极坐标 $(r,\\theta)$（$x=r\\cos\\theta,y=r\\sin\\theta$）下对应 $r\\ge0$，$\\theta\\in[0,\\pi/4]$（因为 $y\\le x$ 且 $y\\ge0$ 恰好是第一象限内到 $45°$ 线以下的部分）",
+          "积分变为 $\\displaystyle\\int_0^{\\pi/4}\\int_0^\\infty \\dfrac{r}{(r^2+1)^2}\\,dr\\,d\\theta$（面积元为 $r\\,dr\\,d\\theta$）",
+          "计算内层积分：令 $u=r^2+1$，$du=2r\\,dr$，$\\displaystyle\\int_0^\\infty \\dfrac{r}{(r^2+1)^2}dr=\\dfrac12\\int_1^\\infty \\dfrac{du}{u^2}=\\dfrac12\\left[-\\dfrac1u\\right]_1^\\infty=\\dfrac12(0-(-1))=\\dfrac12$",
+          "外层对 $\\theta$ 积分：$\\displaystyle\\int_0^{\\pi/4} \\dfrac12\\,d\\theta=\\dfrac12\\cdot\\dfrac{\\pi}{4}=\\dfrac{\\pi}{8}$。故积分值为 $\\dfrac{\\pi}{8}$。验算：被积函数处处为正且随$r\\to\\infty$按$r^{-3}$衰减，积分收敛，结果为正数 $\\pi/8$，合理"
+        ]
+      }
+    ],
+    "practice_questions": [
+      {
+        "text": "计算 $\\displaystyle\\int_0^\\infty \\dfrac{r}{(r^2+1)^2}\\,dr$。",
+        "knowledge_points": [
+          "换元积分",
+          "广义积分"
+        ],
+        "question_type": "一元广义积分计算",
+        "method": [
+          "换元$u=r^2+1$"
+        ],
+        "solution_steps": [
+          "换元",
+          "求原函数",
+          "代入极限计算"
+        ],
+        "math_structure": {
+          "type": "improper_integral_substitution",
+          "template": "\\int_0^\\infty \\dfrac{r}{(r^2+1)^2}dr",
+          "variable_count": 0
+        },
+        "difficulty": 1,
+        "estimated_minutes": 5,
+        "answer": [
+          {
+            "label": "结果",
+            "steps": [
+              "令$u=r^2+1$，$du=2rdr$，积分变为$\\dfrac12\\int_1^\\infty u^{-2}du$",
+              "$=\\dfrac12\\left[-u^{-1}\\right]_1^\\infty=\\dfrac12(0+1)=\\dfrac12$",
+              "结果为$1/2$，收敛"
+            ]
+          }
+        ],
+        "id": "kyoto-2024-a19745fad7-q05-practice-01",
+        "school": "京都大学",
+        "year": "2024"
+      },
+      {
+        "text": "求区域 $E=\\{(x,y):x\\ge0,y\\ge0\\}$（第一象限）上 $\\displaystyle\\iint_E \\dfrac{1}{(x^2+y^2+1)^2}dxdy$ 的值。",
+        "knowledge_points": [
+          "极坐标变换",
+          "角度范围确定"
+        ],
+        "question_type": "二重广义积分计算",
+        "method": [
+          "极坐标变换，角度范围$[0,\\pi/2]$"
+        ],
+        "solution_steps": [
+          "确定角度范围",
+          "计算径向积分",
+          "乘以角度区间长度"
+        ],
+        "math_structure": {
+          "type": "double_improper_integral_quadrant",
+          "template": "\\iint_{x\\ge0,y\\ge0}\\dfrac{1}{(x^2+y^2+1)^2}dxdy",
+          "variable_count": 2
+        },
+        "difficulty": 2,
+        "estimated_minutes": 6,
+        "answer": [
+          {
+            "label": "结果",
+            "steps": [
+              "第一象限对应 $\\theta\\in[0,\\pi/2]$，径向积分同前为$1/2$",
+              "积分值$=\\dfrac{\\pi}{2}\\cdot\\dfrac12=\\dfrac{\\pi}{4}$",
+              "验算：第一象限是原题区域$D$的两倍（$D$为其一半，按对称性$y\\le x$与$y\\ge x$各占一半），故$\\pi/4=2\\times\\pi/8$，与原题答案吻合"
+            ]
+          }
+        ],
+        "id": "kyoto-2024-a19745fad7-q05-practice-02",
+        "school": "京都大学",
+        "year": "2024"
+      },
+      {
+        "text": "求 $\\displaystyle\\iint_D \\dfrac{1}{(x^2+y^2+1)}\\,dx\\,dy$（把指数由2改为1）在原题区域 $D=\\{0\\le y\\le x\\}$ 上是否收敛，若收敛求其值。",
+        "knowledge_points": [
+          "广义积分收敛性判定",
+          "极坐标下的收敛阶数分析"
+        ],
+        "question_type": "反常积分收敛性与计算",
+        "method": [
+          "极坐标变换后分析被积函数在$r\\to\\infty$时的阶数"
+        ],
+        "solution_steps": [
+          "写出极坐标表达式",
+          "分析径向积分$\\int r/(r^2+1)dr$的收敛性",
+          "得出发散结论"
+        ],
+        "math_structure": {
+          "type": "improper_integral_divergence_check",
+          "template": "\\iint_{0\\le y\\le x}\\dfrac{1}{x^2+y^2+1}dxdy",
+          "variable_count": 2
+        },
+        "difficulty": 2,
+        "estimated_minutes": 7,
+        "answer": [
+          {
+            "label": "结论",
+            "steps": [
+              "极坐标下积分为 $\\int_0^{\\pi/4}\\int_0^\\infty \\dfrac{r}{r^2+1}dr\\,d\\theta$",
+              "径向部分 $\\int_0^\\infty \\dfrac{r}{r^2+1}dr=\\dfrac12\\ln(r^2+1)\\Big|_0^\\infty\\to\\infty$，发散",
+              "因此该广义积分发散，不存在有限值，这与原题中指数为2时被积函数按$r^{-3}$衰减（可积）形成对比，指数为1时按$r^{-1}$衰减（不可积）"
+            ]
+          }
+        ],
+        "id": "kyoto-2024-a19745fad7-q05-practice-03",
+        "school": "京都大学",
+        "year": "2024"
+      }
+    ],
+    "source_question": "第1問(v)",
+    "source_pdf": "京都大学/情报学研究科/数理工学/京都大学_情报学研究科_数理工学_2024_数学过去问.pdf",
+    "source_type": "官方过去问",
+    "subject_category": "微积分"
+  }
+]

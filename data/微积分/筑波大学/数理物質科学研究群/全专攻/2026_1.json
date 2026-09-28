@@ -1,0 +1,35 @@
+[
+  {
+    "id": "tsukuba-2026-3c14ab583a-q01",
+    "school": "筑波大学",
+    "year": "2026",
+    "subject": "数理物質科学研究群_全专攻",
+    "text": "数学\n\n注意 C は複素数全体，R は実数全体，Q は有理数全体，Z は整数全体，N は自然数全\n体のなす集合を，それぞれ表すものとする．\n\n\n［1］ 以下の問いに答えよ．\n\n (1) 関数 f (x, y) = x2 + 2y + e−x−y の R2 における極値をすべて求めよ．\n\n (2) D = {(x, y) ∈ R2 | |x − 1| + |y| < 1} とする．次の重積分を計算せよ．\n                                        ∫∫\n                                              dxdy\n                                             √\n                                           D   x2 + y 2\n\n\n--- 下一页 ---\n\n                                       数学\n\n［5］ 次の（C），（D）の両方に解答せよ．\n                             √\n（C） C = {z ∈ C | |z − 1| = 2} とし，C の向きは反時計回りにとる．また，z 5 − 1 = 0\n                                                    1\n     の解で Re z > 0, Im z > 0 を満たすものを α とする．f (z) = 5   とする．以下\n                                                 z −1\n     の問いに答えよ．\n\n      (1) C で囲まれる円の内部にある f の 1 と異なる極をすべて求め， α を用いて\n          表せ．\n      (2) 以下を満たす整数 a, b, c で，1 ≤ a, b, c ≤ 10 を満たすものを求めよ．\n                               ∫                 √\n                             1                b+ c\n                                  f (z) dz =\n                            2πi C               a\n\n\n（D） [0, ∞) を定義域とする関数 fn (x) (n = 1, 2, 3, · · · ) および g(x) を次で定める．\n\n                                   nxn\n                        fn (x) =\n                                 1 + nxn\n                                 \n                                 1                   (0 ≤ x < 1)\n                         g(x) =           1\n                                                     (1 ≤ x)\n                                   x{1 + (log x)2 }\n\n     以下の問いに答えよ．\n\n      (1) lim fn (x) を求めよ．\n          n→∞\n          ∫ ∞\n      (2)     g(x) dx を求めよ．\n           0\n              ∫ ∞\n      (3) lim      fn (x)g(x) dx を求めよ．\n          n→∞   0\n\n\n--- 下一页 ---",
+    "knowledge_points": [
+      "微积分",
+      "极限与积分",
+      "定积分与广义积分"
+    ],
+    "question_type": "多问计算题",
+    "method": [
+      "识别函数与定义域",
+      "实施微分、积分或极限运算",
+      "检查收敛性及边界条件"
+    ],
+    "solution_steps": [
+      "识别函数与定义域",
+      "实施微分、积分或极限运算",
+      "检查收敛性及边界条件"
+    ],
+    "math_structure": {
+      "type": "multi_part_calculus",
+      "template": "$f:\\mathbb{R}^n\\to\\mathbb{R}$",
+      "variable_count": 1
+    },
+    "difficulty": 3,
+    "source_question": "原 PDF 中该科目对应题目",
+    "source_pdf": "微积分/筑波大学/数理物質科学研究群/2026_1-2月期_専門科目.pdf",
+    "source_type": "官方过去问",
+    "subject_category": "微积分"
+  }
+]

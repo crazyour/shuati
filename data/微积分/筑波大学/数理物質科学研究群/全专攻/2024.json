@@ -1,0 +1,34 @@
+[
+  {
+    "id": "tsukuba-2024-1939c0ad8e-q01",
+    "school": "筑波大学",
+    "year": "2024",
+    "subject": "数理物質科学研究群_全专攻",
+    "text": "数学\n\n注意 C は複素数全体，R は実数全体，Q は有理数全体，Z は整数全体，N は自然数全\n体のなす集合を，それぞれ表すものとする．\n\n\n［1］ 以下の問いに答えよ．ただし，O はランダウの記号である．\n\n (1) 関数 log(1 + x)1/x について\n                                       1\n                    log(1 + x)1/x = 1 − x + O(x2 )                  (x → 0)\n                                       2\n    が成り立つことを示せ．\n\n (2) 関数 f (x) = (1 + x)1/x − e について\n                                  e\n                         f (x) = − x + O(x2 )                 (x → 0)\n                                  2\n    が成り立つことを示せ．\n\n (3) t > 0 に対し，領域 Dt を\n\n                       Dt = {(x, y) ∈ R2 | t2 ≤ x2 + y 2 ≤ 4t2 }\n\n    で定め，また                                       (√         )\n                                   ∫∫        f     x2 + y 2\n                          I(t) =                                  dxdy\n                                        Dt       (x2 + y 2 )3/2\n    とおく．ここに f (x) = (1 + x)1/x − e である． lim I(t) を求めよ．\n                                                          t→+0\n\n\n--- 下一页 ---\n\n                                      数学\n\n［5］ 次の（C），（D）の両方に解答せよ．\n\n（C） C 上の関数 f を\n                                                  1\n                                f (z) =\n                                          (z 2 + 1)(z 4 + 1)\n    と定める．以下の問いに答えよ．\n\n     (1) 上半平面 Imz > 0 における f の極をすべて求め，かつ，各極における留数を\n         計算せよ．\n     (2) R > 1 とし，\n                                CR = {Reiθ ∈ C | 0 ≤ θ ≤ π}\n        とする．不等式             ∫\n                                                         πR\n                                   f (z) dz ≤\n                              CR                 (R2 − 1)(R4 − 1)\n         を示せ．\n         ∫ ∞\n     (3)     f (x) dx を求めよ．\n         −∞\n\n（D） R 上の関数列 {fn }∞\n                 n=1 を\n\n\n                                     e−x\n                                          2\n\n                        fn (x) =                (n = 1, 2, 3, . . . )\n                                   1 + e−nx\n    で定める．以下の問いに答えよ．\n\n     (1) lim fn (x) を求めよ．\n         n→∞\n             ∫ n\n     (2) lim      fn (x) dx を求めよ．\n        n→∞   −n\n\n\n--- 下一页 ---",
+    "knowledge_points": [
+      "微积分",
+      "极限与积分"
+    ],
+    "question_type": "证明与计算综合题",
+    "method": [
+      "识别函数与定义域",
+      "实施微分、积分或极限运算",
+      "检查收敛性及边界条件"
+    ],
+    "solution_steps": [
+      "识别函数与定义域",
+      "实施微分、积分或极限运算",
+      "检查收敛性及边界条件"
+    ],
+    "math_structure": {
+      "type": "multi_part_calculus",
+      "template": "$f:\\mathbb{R}^n\\to\\mathbb{R}$",
+      "variable_count": 1
+    },
+    "difficulty": 3,
+    "source_question": "原 PDF 中该科目对应题目",
+    "source_pdf": "微积分/筑波大学/数理物質科学研究群/2024_専門科目.pdf",
+    "source_type": "官方过去问",
+    "subject_category": "微积分"
+  }
+]

@@ -1,0 +1,153 @@
+[
+  {
+    "id": "kobe-2020-math-q03-2",
+    "school": "神户大学",
+    "year": "2020",
+    "subject": "理学研究科_数学専攻",
+    "text": "在闭圆盘 $x^2+y^2\\le2$ 上，求 $f(x,y)=xy(3-x^2-y^2)$ 的最大值和最小值及取得点。",
+    "knowledge_points": [
+      "闭圆盘上的最值",
+      "大学数学综合应用"
+    ],
+    "question_type": "闭圆盘上的最值",
+    "method": [
+      "详细推导"
+    ],
+    "solution_steps": [
+      "用极坐标 $x=r\\cos\\theta,y=r\\sin\\theta$，则 $f=\\frac12r^2(3-r^2)\\sin2\\theta$，$0\\le r^2\\le2$。",
+      "令 $s=r^2$，径向振幅为 $h(s)=s(3-s)/2$。$h'(s)=(3-2s)/2$，故在 $s=3/2$ 取最大值 $9/8$。",
+      "再取 $\\sin2\\theta=1$ 或 $-1$。最大值 $9/8$ 在 $(\\sqrt3/2,\\sqrt3/2)$ 与 $(-\\sqrt3/2,-\\sqrt3/2)$ 取得；最小值 $-9/8$ 在 $(\\sqrt3/2,-\\sqrt3/2)$ 与 $(-\\sqrt3/2,\\sqrt3/2)$ 取得。"
+    ],
+    "math_structure": {
+      "type": "reviewed_exam_question",
+      "template": "在闭圆盘 $x^2+y^2\\le2$ 上，求 $f(x,y)=xy(3-x^2-y^2)$ 的最大值和最小值及取得点。",
+      "variable_count": 3
+    },
+    "difficulty": 3,
+    "answer": [
+      {
+        "label": "步骤 1",
+        "steps": [
+          "用极坐标 $x=r\\cos\\theta,y=r\\sin\\theta$，则 $f=\\frac12r^2(3-r^2)\\sin2\\theta$，$0\\le r^2\\le2$。"
+        ]
+      },
+      {
+        "label": "步骤 2",
+        "steps": [
+          "令 $s=r^2$，径向振幅为 $h(s)=s(3-s)/2$。$h'(s)=(3-2s)/2$，故在 $s=3/2$ 取最大值 $9/8$。"
+        ]
+      },
+      {
+        "label": "步骤 3",
+        "steps": [
+          "再取 $\\sin2\\theta=1$ 或 $-1$。最大值 $9/8$ 在 $(\\sqrt3/2,\\sqrt3/2)$ 与 $(-\\sqrt3/2,-\\sqrt3/2)$ 取得；最小值 $-9/8$ 在 $(\\sqrt3/2,-\\sqrt3/2)$ 与 $(-\\sqrt3/2,\\sqrt3/2)$ 取得。"
+        ]
+      }
+    ],
+    "practice_questions": [
+      {
+        "id": "kobe-2020-math-q03-2-practice-01",
+        "school": "神户大学",
+        "year": "2020",
+        "text": "在 $x^2+y^2\\le1$ 上求 $xy$ 的最值。",
+        "knowledge_points": [
+          "闭圆盘上的最值",
+          "基础计算与证明"
+        ],
+        "question_type": "递进练习",
+        "method": [
+          "使用原题核心方法"
+        ],
+        "solution_steps": [
+          "识别结构",
+          "完成计算或证明"
+        ],
+        "math_structure": {
+          "type": "exclusive_practice",
+          "template": "在 $x^2+y^2\\le1$ 上求 $xy$ 的最值。",
+          "variable_count": 2
+        },
+        "difficulty": 2,
+        "estimated_minutes": 6,
+        "answer": [
+          {
+            "label": "解答",
+            "steps": [
+              "最大 $1/2$，最小 $-1/2$。"
+            ]
+          }
+        ]
+      },
+      {
+        "id": "kobe-2020-math-q03-2-practice-02",
+        "school": "神户大学",
+        "year": "2020",
+        "text": "在 $0\\le s\\le2$ 上最大化 $s(3-s)$。",
+        "knowledge_points": [
+          "闭圆盘上的最值",
+          "基础计算与证明"
+        ],
+        "question_type": "递进练习",
+        "method": [
+          "使用原题核心方法"
+        ],
+        "solution_steps": [
+          "识别结构",
+          "完成计算或证明"
+        ],
+        "math_structure": {
+          "type": "exclusive_practice",
+          "template": "在 $0\\le s\\le2$ 上最大化 $s(3-s)$。",
+          "variable_count": 2
+        },
+        "difficulty": 3,
+        "estimated_minutes": 8,
+        "answer": [
+          {
+            "label": "解答",
+            "steps": [
+              "$s=3/2$ 时取 $9/4$。"
+            ]
+          }
+        ]
+      },
+      {
+        "id": "kobe-2020-math-q03-2-practice-03",
+        "school": "神户大学",
+        "year": "2020",
+        "text": "在极坐标中表示 $xy$。",
+        "knowledge_points": [
+          "闭圆盘上的最值",
+          "基础计算与证明"
+        ],
+        "question_type": "递进练习",
+        "method": [
+          "使用原题核心方法"
+        ],
+        "solution_steps": [
+          "识别结构",
+          "完成计算或证明"
+        ],
+        "math_structure": {
+          "type": "exclusive_practice",
+          "template": "在极坐标中表示 $xy$。",
+          "variable_count": 2
+        },
+        "difficulty": 4,
+        "estimated_minutes": 10,
+        "answer": [
+          {
+            "label": "解答",
+            "steps": [
+              "$xy=r^2\\sin2\\theta/2$。"
+            ]
+          }
+        ]
+      }
+    ],
+    "source_question": "问题3(2)",
+    "source_pdf": "神户大学/理学研究科/数学専攻/神户大学_理学研究科_数学専攻_2020.pdf",
+    "source_type": "官方过去问",
+    "subject_category": "微积分"
+  }
+]

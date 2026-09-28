@@ -1,0 +1,1575 @@
+[
+  {
+    "id": "nagoya-2007-3a846a5911-q03",
+    "school": "名古屋大学",
+    "year": "2007",
+    "subject": "多元数理科学研究科_全专攻",
+    "text": "回答以下问题：\n(1) 设常数 $a,b$ 满足 $0<a<b$，考虑 $xy$-平面上的区域\n$$R=\\{(x,y)\\mid a\\le x+y\\le b,\\ x\\ge0,\\ y\\ge0\\}.$$\n通过变量代换 $s=x+y, t=x-y$，$R$ 在 $st$-平面上变为怎样的区域？请图示，并求积分\n$$\\iint_R \\frac{x^2+y^2}{(x+y)^3}\\,dx\\,dy.$$\n(2) 设 $f(x,y)$ 是 $\\mathbb{R}^2$ 上的 $C^2$ 级函数，满足方程\n$$\\left(\\frac{\\partial^2}{\\partial x^2}-\\frac{\\partial^2}{\\partial y^2}\\right)f(x,y)=0.$$\n利用变量代换 $s=x+y,t=x-y$ 定义 $\\mathbb{R}^2$ 上的函数 $g(s,t)=f(x,y)$。求 $g(s,t)$ 满足的方程，并证明 $f(x,y)$ 可表示为某两个一元函数 $f_1,f_2$ 之和：$f(x,y)=f_1(x+y)+f_2(x-y)$。",
+    "knowledge_points": [
+      "二重积分变量替换",
+      "雅可比行列式",
+      "偏微分方程的特征线法",
+      "波动方程的通解",
+      "混合偏导数"
+    ],
+    "question_type": "变量替换下的二重积分计算与偏微分方程通解求法",
+    "question_type_detail": "",
+    "method": [
+      "变量替换求新区域并计算雅可比行列式",
+      "转化积分并逐次积分",
+      "利用链式法则将偏微分方程转化为混合偏导形式",
+      "对 $g_{st}=0$ 积分得到通解形式"
+    ],
+    "solution_steps": [
+      "求出 $x,y$ 关于 $s,t$ 的表达式，代入约束条件确定 $st$-平面区域",
+      "计算雅可比行列式 $|\\partial(x,y)/\\partial(s,t)|$",
+      "将被积函数用 $s,t$ 表示，计算二重积分",
+      "用链式法则证明 $\\partial^2/\\partial x^2-\\partial^2/\\partial y^2=4\\partial^2/\\partial s\\partial t$",
+      "对 $g_{st}=0$ 两次积分得到 $g(s,t)=f_1(s)+f_2(t)$，代回得 $f(x,y)=f_1(x+y)+f_2(x-y)$"
+    ],
+    "math_structure": {
+      "type": "change_of_variables_integral_and_pde",
+      "template": "region a<=x+y<=b, x,y>=0; integral of (x^2+y^2)/(x+y)^3 under s=x+y,t=x-y; and wave-type PDE f_xx-f_yy=0 via same substitution",
+      "variable_count": 2
+    },
+    "difficulty": 4,
+    "answer": [
+      {
+        "label": "(1)",
+        "steps": [
+          "由 $s=x+y,t=x-y$ 得 $x=\\frac{s+t}{2},y=\\frac{s-t}{2}$。条件 $x\\ge0\\Leftrightarrow t\\ge-s$；$y\\ge0\\Leftrightarrow t\\le s$；又 $a\\le s\\le b$。故 $st$-平面上的区域为 $\\{(s,t): a\\le s\\le b,\\ -s\\le t\\le s\\}$，即在带状区域 $a\\le s\\le b$ 内，$t$ 被限制在直线 $t=s$ 与 $t=-s$ 之间，构成一个梯形区域（左边界 $s=a$ 处 $t\\in[-a,a]$，右边界 $s=b$ 处 $t\\in[-b,b]$，上下由 $t=\\pm s$ 围成）",
+          "雅可比行列式：$\\frac{\\partial(x,y)}{\\partial(s,t)}=\\det\\begin{pmatrix}1/2&1/2\\\\1/2&-1/2\\end{pmatrix}=-\\frac14-\\frac14=-\\frac12$，故 $dx\\,dy=\\frac12\\,ds\\,dt$",
+          "被积函数：$x^2+y^2=\\frac{(s+t)^2+(s-t)^2}{4}=\\frac{s^2+t^2}{2}$，而 $(x+y)^3=s^3$，故 $\\frac{x^2+y^2}{(x+y)^3}=\\frac{s^2+t^2}{2s^3}$",
+          "于是积分 $=\\iint \\frac{s^2+t^2}{2s^3}\\cdot\\frac12\\,ds\\,dt=\\int_a^b\\int_{-s}^{s}\\frac{s^2+t^2}{4s^3}\\,dt\\,ds$。先对 $t$ 积分：$\\int_{-s}^s\\frac{s^2+t^2}{4s^3}dt=\\frac{1}{4s^3}\\left[s^2t+\\frac{t^3}{3}\\right]_{-s}^{s}=\\frac{1}{4s^3}\\left(2s^3+\\frac{2s^3}{3}\\right)=\\frac{1}{4s^3}\\cdot\\frac{8s^3}{3}=\\frac{2}{3}$",
+          "再对 $s$ 积分：$\\int_a^b \\frac23\\,ds=\\frac23(b-a)$。故 $\\iint_R\\frac{x^2+y^2}{(x+y)^3}dxdy=\\dfrac{2}{3}(b-a)$"
+        ]
+      },
+      {
+        "label": "(2)",
+        "steps": [
+          "由 $s=x+y,t=x-y$ 反解 $x=\\frac{s+t}2,y=\\frac{s-t}2$，故 $\\frac{\\partial}{\\partial s}=\\frac{\\partial x}{\\partial s}\\frac{\\partial}{\\partial x}+\\frac{\\partial y}{\\partial s}\\frac{\\partial}{\\partial y}=\\frac12\\frac{\\partial}{\\partial x}+\\frac12\\frac{\\partial}{\\partial y}$，同理 $\\frac{\\partial}{\\partial t}=\\frac12\\frac{\\partial}{\\partial x}-\\frac12\\frac{\\partial}{\\partial y}$",
+          "于是 $\\frac{\\partial^2}{\\partial s\\partial t}=\\frac14\\left(\\frac{\\partial}{\\partial x}+\\frac{\\partial}{\\partial y}\\right)\\left(\\frac{\\partial}{\\partial x}-\\frac{\\partial}{\\partial y}\\right)=\\frac14\\left(\\frac{\\partial^2}{\\partial x^2}-\\frac{\\partial^2}{\\partial y^2}\\right)$（利用 $C^2$ 保证混合偏导可交换），故 $\\frac{\\partial^2}{\\partial x^2}-\\frac{\\partial^2}{\\partial y^2}=4\\frac{\\partial^2}{\\partial s\\partial t}$",
+          "由已知方程得 $4g_{st}=0$，即 $g(s,t)$ 满足 $\\dfrac{\\partial^2 g}{\\partial s\\partial t}=0$",
+          "对该方程先对 $t$ 积分：$g_s(s,t)$ 与 $t$ 无关，记 $g_s(s,t)=h(s)$；再对 $s$ 积分：$g(s,t)=\\int h(s)ds+f_2(t)=f_1(s)+f_2(t)$，其中 $f_1$ 为 $h$ 的原函数",
+          "代回 $s=x+y,t=x-y$ 得 $f(x,y)=g(x+y,x-y)=f_1(x+y)+f_2(x-y)$，证毕"
+        ]
+      }
+    ],
+    "practice_questions": [
+      {
+        "text": "求变量替换 $u=x+y,v=x-y$ 下的雅可比行列式 $\\dfrac{\\partial(x,y)}{\\partial(u,v)}$，并说明 $dx\\,dy$ 与 $du\\,dv$ 的关系。",
+        "knowledge_points": [
+          "雅可比行列式",
+          "变量替换"
+        ],
+        "question_type": "雅可比行列式基础计算",
+        "method": [
+          "反解 $x,y$",
+          "直接计算偏导数矩阵行列式"
+        ],
+        "solution_steps": [
+          "反解出 $x=(u+v)/2,y=(u-v)/2$",
+          "求偏导数矩阵并计算行列式"
+        ],
+        "math_structure": {
+          "type": "jacobian_computation",
+          "template": "u=x+y, v=x-y, find Jacobian d(x,y)/d(u,v)",
+          "variable_count": 0
+        },
+        "difficulty": 1,
+        "estimated_minutes": 4,
+        "answer": [
+          {
+            "label": "雅可比行列式",
+            "steps": [
+              "$x=\\frac{u+v}2, y=\\frac{u-v}2$，故 $\\partial x/\\partial u=1/2,\\partial x/\\partial v=1/2,\\partial y/\\partial u=1/2,\\partial y/\\partial v=-1/2$",
+              "雅可比行列式 $=\\det\\begin{pmatrix}1/2&1/2\\\\1/2&-1/2\\end{pmatrix}=-\\frac14-\\frac14=-\\frac12$",
+              "故 $dx\\,dy=\\left|-\\frac12\\right|du\\,dv=\\frac12 du\\,dv$"
+            ]
+          }
+        ],
+        "id": "nagoya-2007-3a846a5911-q03-practice-01",
+        "school": "名古屋大学",
+        "year": "2007"
+      },
+      {
+        "text": "利用变量替换 $s=x+y,t=x-y$，计算 $\\displaystyle\\iint_D \\frac{1}{(x+y)^2}\\,dx\\,dy$，其中 $D=\\{(x,y):1\\le x+y\\le2, |x-y|\\le x+y\\}$。",
+        "knowledge_points": [
+          "二重积分变量替换",
+          "雅可比行列式应用"
+        ],
+        "question_type": "简化版变量替换积分",
+        "method": [
+          "确定新区域",
+          "计算雅可比行列式并转化积分",
+          "逐次积分求值"
+        ],
+        "solution_steps": [
+          "写出 $s,t$ 的范围",
+          "转化被积函数与面积元",
+          "计算内层与外层积分"
+        ],
+        "math_structure": {
+          "type": "change_of_variables_integral",
+          "template": "region 1<=x+y<=2, |x-y|<=x+y; integral of 1/(x+y)^2 under s=x+y,t=x-y",
+          "variable_count": 0
+        },
+        "difficulty": 2,
+        "estimated_minutes": 8,
+        "answer": [
+          {
+            "label": "积分值",
+            "steps": [
+              "约束 $|x-y|\\le x+y$ 即 $-s\\le t\\le s$，且 $1\\le s\\le2$，与原题结构相同",
+              "雅可比行列式为 $1/2$，被积函数 $\\frac{1}{s^2}$，积分变为 $\\int_1^2\\int_{-s}^s \\frac{1}{s^2}\\cdot\\frac12\\,dt\\,ds$",
+              "内层积分：$\\int_{-s}^s \\frac{1}{2s^2}dt=\\frac{2s}{2s^2}=\\frac1s$；外层积分：$\\int_1^2\\frac1s\\,ds=\\ln2-\\ln1=\\ln2$",
+              "故积分值为 $\\ln 2$"
+            ]
+          }
+        ],
+        "id": "nagoya-2007-3a846a5911-q03-practice-02",
+        "school": "名古屋大学",
+        "year": "2007"
+      },
+      {
+        "text": "设 $f(x,y)=C^2$ 函数满足波动方程 $f_{xx}-f_{yy}=0$。利用替换 $s=x+y,t=x-y$ 直接验证 $f(x,y)=(x+y)^3+\\sin(x-y)$ 满足此方程，并指出对应的 $f_1,f_2$。",
+        "knowledge_points": [
+          "波动方程验证",
+          "一般解形式的应用"
+        ],
+        "question_type": "通解形式的验证练习",
+        "method": [
+          "直接求偏导数代入验证",
+          "对照通解形式确定 $f_1,f_2$"
+        ],
+        "solution_steps": [
+          "计算 $f_{xx}$ 与 $f_{yy}$",
+          "验证方程成立",
+          "写出对应的 $f_1(s),f_2(t)$"
+        ],
+        "math_structure": {
+          "type": "wave_equation_solution_verification",
+          "template": "verify f(x,y)=(x+y)^3+sin(x-y) satisfies f_xx - f_yy=0 and identify f_1,f_2",
+          "variable_count": 0
+        },
+        "difficulty": 2,
+        "estimated_minutes": 6,
+        "answer": [
+          {
+            "label": "验证与分解",
+            "steps": [
+              "设 $f_1(s)=s^3,f_2(t)=\\sin t$，则 $f(x,y)=f_1(x+y)+f_2(x-y)=(x+y)^3+\\sin(x-y)$，与题目给出的函数一致",
+              "计算 $f_x=3(x+y)^2+\\cos(x-y)$，$f_{xx}=6(x+y)-\\sin(x-y)$；$f_y=3(x+y)^2-\\cos(x-y)$，$f_{yy}=6(x+y)-\\sin(x-y)$",
+              "故 $f_{xx}-f_{yy}=[6(x+y)-\\sin(x-y)]-[6(x+y)-\\sin(x-y)]=0$，方程成立，且 $f_1(s)=s^3,f_2(t)=\\sin t$ 即为所求分解"
+            ]
+          }
+        ],
+        "id": "nagoya-2007-3a846a5911-q03-practice-03",
+        "school": "名古屋大学",
+        "year": "2007"
+      },
+      {
+        "text": "对区域 $R'=\\{(x,y):2\\le x+y\\le5,x\\ge0,y\\ge0\\}$，用与原题相同的方法计算 $\\iint_{R'}\\dfrac{x^2+y^2}{(x+y)^3}dx\\,dy$。",
+        "knowledge_points": [
+          "变量替换积分",
+          "参数化结果的直接应用"
+        ],
+        "question_type": "参数变化下的重复练习",
+        "method": [
+          "套用一般公式 $\\frac23(b-a)$",
+          "从头推导核对"
+        ],
+        "solution_steps": [
+          "识别 $a=2,b=5$",
+          "代入一般结论或重新推导"
+        ],
+        "math_structure": {
+          "type": "change_of_variables_integral",
+          "template": "region 2<=x+y<=5,x,y>=0; integral of (x^2+y^2)/(x+y)^3",
+          "variable_count": 0
+        },
+        "difficulty": 3,
+        "estimated_minutes": 8,
+        "answer": [
+          {
+            "label": "结果",
+            "steps": [
+              "由原题一般结论，$\\iint_R \\frac{x^2+y^2}{(x+y)^3}dxdy=\\frac23(b-a)$ 对任意 $0<a<b$ 成立",
+              "代入 $a=2,b=5$，得 $\\frac23(5-2)=\\frac23\\times3=2$",
+              "验证：重新走一遍推导，内层积分恒为 $2/3$（与 $s$ 无关），外层对 $s$ 从2到5积分得 $\\frac23\\times3=2$，结果一致"
+            ]
+          }
+        ],
+        "id": "nagoya-2007-3a846a5911-q03-practice-04",
+        "school": "名古屋大学",
+        "year": "2007"
+      }
+    ],
+    "source_question": "問3",
+    "source_pdf": "名古屋大学/多元数理科学研究科/全专攻/名古屋大学_多元数理科学研究科_2007_第1次_数学过去问_上午.pdf",
+    "source_type": "官方过去问",
+    "subject_category": "微积分"
+  },
+  {
+    "id": "nagoya-2007-3a846a5911-q04",
+    "school": "名古屋大学",
+    "year": "2007",
+    "subject": "多元数理科学研究科_全专攻",
+    "text": "设 $v(x)$ 是 $x\\ge0$ 上的正值连续函数，$x\\ge0$ 上的函数 $u(x)$ 定义为\n$$u(x)=\\int_0^x v(t)\\,dt.$$\n假设条件 $\\displaystyle\\lim_{x\\to\\infty}u(x)=\\infty$ 成立。对取实数值的参数 $\\alpha$，研究广义积分\n$$\\lim_{R\\to\\infty}\\int_1^R u(x)^\\alpha v(x)\\,dx$$\n的收敛性与发散性。",
+    "knowledge_points": [
+      "广义积分的收敛判定",
+      "换元积分法",
+      "原函数与导数关系",
+      "p-积分判别法"
+    ],
+    "question_type": "含参数的广义积分收敛性讨论",
+    "method": [
+      "利用 $v(x)=u'(x)$ 做换元 $du=v(x)dx$",
+      "转化为关于 $u$ 的幂函数积分",
+      "按 $\\alpha$ 的取值范围应用 $p$-积分判别法"
+    ],
+    "solution_steps": [
+      "注意到 $u'(x)=v(x)$，故被积式 $u(x)^\\alpha v(x)dx = u^\\alpha du$",
+      "作换元 $u=u(x)$，积分限从 $u(1)$ 到 $u(R)\\to\\infty$（因 $u$ 递增且趋于无穷）",
+      "转化为 $\\int_{u(1)}^{\\infty} u^\\alpha\\,du$，用标准 $p$-积分判别法讨论 $\\alpha<-1$ 与 $\\alpha\\ge-1$ 两种情形",
+      "给出收敛时的具体值和发散时的结论"
+    ],
+    "math_structure": {
+      "type": "improper_integral_parametric_convergence",
+      "template": "u(x)=int_0^x v(t)dt increasing to infinity, v>0 continuous; discuss convergence of int_1^infty u(x)^alpha v(x) dx by real parameter alpha",
+      "variable_count": 1
+    },
+    "difficulty": 3,
+    "answer": [
+      {
+        "label": "解答",
+        "steps": [
+          "由 $u(x)=\\int_0^x v(t)dt$ 及 $v$ 连续知 $u\\in C^1$ 且 $u'(x)=v(x)>0$，故 $u$ 严格单调递增；又已知 $\\lim_{x\\to\\infty}u(x)=\\infty$",
+          "考察 $\\int_1^R u(x)^\\alpha v(x)\\,dx$，因为 $v(x)dx=u'(x)dx=du$，作换元 $u=u(x)$：当 $x=1$ 时 $u=u(1)=:U_0>0$（因 $v>0$ 连续，$U_0=\\int_0^1 v(t)dt>0$）；当 $x=R$ 时 $u=u(R)\\to\\infty$（当 $R\\to\\infty$）",
+          "于是 $\\int_1^R u(x)^\\alpha v(x)dx=\\int_{U_0}^{u(R)} u^\\alpha\\,du$，故原极限等于 $\\displaystyle\\lim_{R\\to\\infty}\\int_{U_0}^{u(R)}u^\\alpha du=\\int_{U_0}^{\\infty}u^\\alpha\\,du$（因 $u(R)\\to\\infty$ 单调，极限存在性与积分上限趋于无穷的反常积分等价）",
+          "标准 $p$-积分判别：当 $\\alpha<-1$ 时，$\\int_{U_0}^{\\infty}u^\\alpha du=\\left[\\frac{u^{\\alpha+1}}{\\alpha+1}\\right]_{U_0}^{\\infty}$，因 $\\alpha+1<0$，$u^{\\alpha+1}\\to0$（$u\\to\\infty$），故积分收敛，其值为 $0-\\frac{U_0^{\\alpha+1}}{\\alpha+1}=-\\frac{U_0^{\\alpha+1}}{\\alpha+1}=\\frac{U_0^{\\alpha+1}}{-(\\alpha+1)}$，即 $\\dfrac{u(1)^{\\alpha+1}}{-(\\alpha+1)}$",
+          "当 $\\alpha=-1$ 时，$\\int_{U_0}^{\\infty}\\frac{du}{u}=\\lim_{M\\to\\infty}[\\ln u]_{U_0}^{M}=\\infty$，积分发散（趋于 $+\\infty$）；当 $\\alpha>-1$ 时，$\\alpha+1>0$，$u^{\\alpha+1}\\to\\infty$，积分同样发散趋于 $+\\infty$",
+          "综上：当 $\\alpha<-1$ 时原积分收敛，收敛值为 $\\dfrac{u(1)^{\\alpha+1}}{-(\\alpha+1)}$；当 $\\alpha\\ge-1$ 时原积分发散（趋于 $+\\infty$）"
+        ]
+      }
+    ],
+    "practice_questions": [
+      {
+        "text": "判断广义积分 $\\displaystyle\\int_1^\\infty \\frac{1}{x^p}\\,dx$（$p$ 为实数）的收敛性，并求收敛时的值。",
+        "knowledge_points": [
+          "p-积分判别法"
+        ],
+        "question_type": "基础p-积分判别",
+        "method": [
+          "直接计算原函数并取极限"
+        ],
+        "solution_steps": [
+          "求原函数",
+          "取极限判断收敛发散",
+          "收敛时计算具体值"
+        ],
+        "math_structure": {
+          "type": "p_integral_convergence",
+          "template": "discuss convergence of int_1^infty x^{-p} dx by real parameter p",
+          "variable_count": 1
+        },
+        "difficulty": 1,
+        "estimated_minutes": 4,
+        "answer": [
+          {
+            "label": "结论",
+            "steps": [
+              "原函数：当 $p\\ne1$ 时 $\\int x^{-p}dx=\\frac{x^{1-p}}{1-p}$",
+              "当 $p>1$：$1-p<0$，$x^{1-p}\\to0$（$x\\to\\infty$），积分收敛，值为 $\\frac{0-1}{1-p}=\\frac1{p-1}$",
+              "当 $p\\le1$：$p=1$ 时为 $\\ln x\\to\\infty$ 发散；$p<1$ 时 $x^{1-p}\\to\\infty$ 发散；综上仅 $p>1$ 收敛，值为 $\\frac{1}{p-1}$"
+            ]
+          }
+        ],
+        "id": "nagoya-2007-3a846a5911-q04-practice-01",
+        "school": "名古屋大学",
+        "year": "2007"
+      },
+      {
+        "text": "利用换元法计算 $\\displaystyle\\int_0^{\\pi/2} \\sin^3x\\cos x\\,dx$，体会 $u=\\sin x$ 的换元技巧（与原题中 $u=u(x)$ 的思想类似）。",
+        "knowledge_points": [
+          "换元积分法"
+        ],
+        "question_type": "换元积分基础练习",
+        "method": [
+          "设 $u=\\sin x$，$du=\\cos x\\,dx$"
+        ],
+        "solution_steps": [
+          "换元",
+          "计算 $u$ 的积分限",
+          "求出定积分值"
+        ],
+        "math_structure": {
+          "type": "substitution_integral_basic",
+          "template": "compute int_0^{pi/2} sin^3 x cos x dx via u=sin x",
+          "variable_count": 0
+        },
+        "difficulty": 1,
+        "estimated_minutes": 4,
+        "answer": [
+          {
+            "label": "结果",
+            "steps": [
+              "设 $u=\\sin x$，则 $du=\\cos x\\,dx$；当 $x=0,u=0$；当 $x=\\pi/2,u=1$",
+              "积分变为 $\\int_0^1 u^3\\,du=\\left[\\frac{u^4}{4}\\right]_0^1=\\frac14$",
+              "故 $\\int_0^{\\pi/2}\\sin^3x\\cos x\\,dx=\\dfrac14$"
+            ]
+          }
+        ],
+        "id": "nagoya-2007-3a846a5911-q04-practice-02",
+        "school": "名古屋大学",
+        "year": "2007"
+      },
+      {
+        "text": "设 $u(x)=x^2$（$x\\ge0$），$v(x)=u'(x)=2x$，满足 $\\lim_{x\\to\\infty}u(x)=\\infty$。研究 $\\displaystyle\\lim_{R\\to\\infty}\\int_1^R u(x)^\\alpha v(x)dx$ 对 $\\alpha=-2$ 与 $\\alpha=0$ 时的具体收敛性，并计算收敛时的值。",
+        "knowledge_points": [
+          "换元积分",
+          "广义积分具体计算"
+        ],
+        "question_type": "特定函数下的收敛性验证",
+        "method": [
+          "直接换元 $u=x^2$",
+          "代入具体 $\\alpha$ 计算"
+        ],
+        "solution_steps": [
+          "确定 $u(1)$ 的值",
+          "对每个 $\\alpha$ 分别换元求积分",
+          "判断收敛并求值"
+        ],
+        "math_structure": {
+          "type": "improper_integral_specific_function",
+          "template": "u(x)=x^2, v(x)=2x, evaluate int_1^infty u^alpha v dx for alpha=-2 and alpha=0",
+          "variable_count": 1
+        },
+        "difficulty": 2,
+        "estimated_minutes": 8,
+        "answer": [
+          {
+            "label": "α=-2的情形",
+            "steps": [
+              "$u(1)=1$，换元 $u=x^2,du=2x\\,dx=v(x)dx$，积分变为 $\\int_1^\\infty u^{-2}du$",
+              "因 $\\alpha=-2<-1$，收敛，值为 $\\left[\\frac{u^{-1}}{-1}\\right]_1^\\infty=0-(-1)=1$",
+              "故当 $\\alpha=-2$ 时，$\\lim_{R\\to\\infty}\\int_1^R u^{-2}v\\,dx=1$"
+            ]
+          },
+          {
+            "label": "α=0的情形",
+            "steps": [
+              "$\\alpha=0$ 时被积式为 $v(x)=2x$，积分 $\\int_1^R 2x\\,dx=R^2-1\\to\\infty$（$R\\to\\infty$）",
+              "这与一般结论 $\\alpha\\ge-1$ 时发散一致（此处 $\\alpha=0\\ge-1$）",
+              "故当 $\\alpha=0$ 时，积分发散，趋于 $+\\infty$"
+            ]
+          }
+        ],
+        "id": "nagoya-2007-3a846a5911-q04-practice-03",
+        "school": "名古屋大学",
+        "year": "2007"
+      },
+      {
+        "text": "设 $v(x)=e^x$（$x\\ge0$），则 $u(x)=\\int_0^x e^t dt=e^x-1$，满足 $\\lim_{x\\to\\infty}u(x)=\\infty$。讨论 $\\displaystyle\\lim_{R\\to\\infty}\\int_1^R u(x)^\\alpha v(x)dx$ 关于 $\\alpha$ 的收敛性，并给出收敛时的表达式（用 $u(1)=e-1$ 表示）。",
+        "knowledge_points": [
+          "换元积分",
+          "一般结论的具体应用"
+        ],
+        "question_type": "一般结论的实例化练习",
+        "method": [
+          "套用原题一般结论",
+          "代入具体 $u(1)$ 值"
+        ],
+        "solution_steps": [
+          "确认 $v=u'$ 关系成立",
+          "套用一般判别结果",
+          "代入 $u(1)=e-1$ 得具体表达式"
+        ],
+        "math_structure": {
+          "type": "improper_integral_parametric_convergence",
+          "template": "u(x)=e^x-1, v(x)=e^x, discuss int_1^infty u^alpha v dx by alpha, express result in terms of u(1)",
+          "variable_count": 1
+        },
+        "difficulty": 3,
+        "estimated_minutes": 8,
+        "answer": [
+          {
+            "label": "结论",
+            "steps": [
+              "验证 $u'(x)=e^x=v(x)$，符合原题的一般设置，$u(1)=e^1-1=e-1$",
+              "由原题一般结论：当 $\\alpha<-1$ 时收敛，值为 $\\dfrac{u(1)^{\\alpha+1}}{-(\\alpha+1)}=\\dfrac{(e-1)^{\\alpha+1}}{-(\\alpha+1)}$；当 $\\alpha\\ge-1$ 时发散（趋于 $+\\infty$）",
+              "例如取 $\\alpha=-3$：收敛值为 $\\dfrac{(e-1)^{-2}}{2}=\\dfrac{1}{2(e-1)^2}$，可直接换元验证：$\\int_1^\\infty u^{-3}du=\\left[\\frac{u^{-2}}{-2}\\right]_{e-1}^\\infty=\\frac{(e-1)^{-2}}{2}$，与套用公式结果一致"
+            ]
+          }
+        ],
+        "id": "nagoya-2007-3a846a5911-q04-practice-04",
+        "school": "名古屋大学",
+        "year": "2007"
+      }
+    ],
+    "source_question": "問4",
+    "source_pdf": "名古屋大学/多元数理科学研究科/全专攻/名古屋大学_多元数理科学研究科_2007_第1次_数学过去问_上午.pdf",
+    "source_type": "官方过去问",
+    "subject_category": "微积分"
+  },
+  {
+    "id": "nagoya-2007-752ab4b612-q03",
+    "school": "名古屋大学",
+    "year": "2007",
+    "subject": "多元数理科学研究科_全专攻",
+    "text": "设 $a,b$ 是满足 $a<b$ 的实常数。\n\n(1) 通过分析函数 $\\dfrac{1}{|x-a|^p|x-b|^q}$ 在 $x=a, b, \\pm\\infty$ 附近的性态，求使广义积分\n$$\\int_{-\\infty}^{+\\infty}\\frac{1}{|x-a|^p|x-b|^q}\\,dx$$\n收敛的实数 $p,q$ 的范围，并将其图示。\n\n(2) 设 $p,q$ 在(1)所得范围内。证明存在只依赖于 $p,q$ 的正常数 $C$，使得\n$$\\int_{-\\infty}^{+\\infty}\\frac{1}{|x-a|^p|x-b|^q}\\,dx<\\frac{C}{|a-b|^{p+q-1}}$$\n成立。",
+    "knowledge_points": [
+      "广义积分收敛判别",
+      "$p$-积分判别法",
+      "变量替换与缩放不变性",
+      "多重奇点积分的局部行为分析"
+    ],
+    "question_type": "广义积分收敛性及不等式证明",
+    "method": [
+      "局部渐近分析（在 $a,b,\\pm\\infty$ 附近）",
+      "$p$-判别法",
+      "仿射变量替换 $x=a+(b-a)s$",
+      "利用齐次缩放得到常数 $C$"
+    ],
+    "solution_steps": [
+      "分析 $x\\to a$ 附近的行为，得到收敛条件 $p<1$",
+      "分析 $x\\to b$ 附近的行为，得到收敛条件 $q<1$",
+      "分析 $x\\to\\pm\\infty$ 的行为，得到收敛条件 $p+q>1$",
+      "综合三条件，画出 $(p,q)$-平面上的开三角形区域",
+      "作仿射变换 $x=a+(b-a)s$，把积分化为标准形式再乘以缩放因子",
+      "令 $C=I(p,q)=\\int_{-\\infty}^{\\infty}\\frac{ds}{|s|^p|s-1|^q}$，得出所需不等式"
+    ],
+    "math_structure": {
+      "type": "improper_integral_two_singularities_convergence",
+      "template": "$\\int_{-\\infty}^{\\infty}\\frac{dx}{|x-a|^p|x-b|^q}$，$a<b$，求收敛的 $(p,q)$ 范围并证明缩放不等式",
+      "variable_count": 4
+    },
+    "difficulty": 4,
+    "answer": [
+      {
+        "label": "(1)",
+        "steps": [
+          "在 $x\\to a$ 附近：$|x-b|\\to|a-b|\\ne0$（有限非零常数），故 $\\dfrac{1}{|x-a|^p|x-b|^q}\\sim \\dfrac{C_1}{|x-a|^p}$。由 $p$-判别法，$\\int_a^{a+1}\\frac{dx}{|x-a|^p}$ 收敛 $\\iff p<1$。",
+          "在 $x\\to b$ 附近：同理 $\\dfrac{1}{|x-a|^p|x-b|^q}\\sim\\dfrac{C_2}{|x-b|^q}$，收敛 $\\iff q<1$。",
+          "在 $x\\to\\pm\\infty$ 时：$|x-a|\\sim|x|$，$|x-b|\\sim|x|$，故被积函数 $\\sim\\dfrac{1}{|x|^{p+q}}$。由 $p$-判别法（无穷远处），$\\int^{\\infty}\\frac{dx}{|x|^{p+q}}$ 收敛 $\\iff p+q>1$。",
+          "除 $x=a,b$ 与无穷远处外，被积函数在其余点连续且有限，无其它奇点。故广义积分收敛的充要条件为三条件同时成立：$p<1,\\ q<1,\\ p+q>1$。",
+          "在 $(p,q)$ 平面中，此区域为直线 $p=1$、$q=1$、$p+q=1$ 所围成的开三角形，其顶点为 $(0,1),(1,0),(1,1)$（三边均不含边界，因为不等式均严格）。"
+        ]
+      },
+      {
+        "label": "(2)",
+        "steps": [
+          "作变量替换 $x=a+(b-a)s$（因 $a<b$，$b-a>0$），则 $dx=(b-a)\\,ds$，$x-a=(b-a)s$，$x-b=(b-a)(s-1)$。",
+          "代入积分：$\\int_{-\\infty}^{\\infty}\\frac{dx}{|x-a|^p|x-b|^q}=\\int_{-\\infty}^{\\infty}\\frac{(b-a)\\,ds}{(b-a)^p|s|^p(b-a)^q|s-1|^q}=(b-a)^{1-p-q}\\int_{-\\infty}^{\\infty}\\frac{ds}{|s|^p|s-1|^q}$。",
+          "记 $I(p,q)=\\displaystyle\\int_{-\\infty}^{\\infty}\\frac{ds}{|s|^p|s-1|^q}$。由(1)的结果（取 $a=0,b=1$），当 $p<1,q<1,p+q>1$ 时该积分收敛，故 $I(p,q)$ 是仅依赖于 $p,q$ 的有限正常数。",
+          "因 $b-a=|a-b|$（因 $a<b$），得到等式 $\\displaystyle\\int_{-\\infty}^{\\infty}\\frac{dx}{|x-a|^p|x-b|^q}=\\frac{I(p,q)}{|a-b|^{p+q-1}}$。",
+          "取 $C=I(p,q)+1>I(p,q)>0$（正常数，仅依赖于 $p,q$），则严格不等式 $\\displaystyle\\int_{-\\infty}^{\\infty}\\frac{dx}{|x-a|^p|x-b|^q}=\\frac{I(p,q)}{|a-b|^{p+q-1}}<\\frac{C}{|a-b|^{p+q-1}}$ 成立，证毕。"
+        ]
+      }
+    ],
+    "practice_questions": [
+      {
+        "text": "判断 $\\displaystyle\\int_{1}^{\\infty}\\frac{dx}{x^{p}}$ 对哪些实数 $p$ 收敛，并说明理由。",
+        "knowledge_points": [
+          "p-积分判别法"
+        ],
+        "question_type": "基础收敛性判定",
+        "method": [
+          "直接计算原函数极限"
+        ],
+        "solution_steps": [
+          "写出反导数",
+          "取极限判断收敛性"
+        ],
+        "math_structure": {
+          "type": "basic_p_integral",
+          "template": "$\\int_1^{\\infty}x^{-p}dx$",
+          "variable_count": 1
+        },
+        "difficulty": 1,
+        "estimated_minutes": 5,
+        "answer": [
+          {
+            "label": "结论",
+            "steps": [
+              "若 $p\\ne1$，$\\int_1^{N}x^{-p}dx=\\left[\\frac{x^{1-p}}{1-p}\\right]_1^N=\\frac{N^{1-p}-1}{1-p}$。",
+              "当 $p>1$ 时，$1-p<0$，$N^{1-p}\\to0$（$N\\to\\infty$），极限为 $\\frac{-1}{1-p}=\\frac{1}{p-1}$，收敛。",
+              "当 $p<1$ 时，$1-p>0$，$N^{1-p}\\to\\infty$，积分发散；当 $p=1$ 时，$\\int_1^N\\frac{dx}{x}=\\ln N\\to\\infty$，也发散。故仅当 $p>1$ 时收敛。"
+            ]
+          }
+        ],
+        "id": "nagoya-2007-752ab4b612-q03-practice-01",
+        "school": "名古屋大学",
+        "year": "2007"
+      },
+      {
+        "text": "求使 $\\displaystyle\\int_{-\\infty}^{\\infty}\\frac{dx}{|x|^p|x-1|^q}$ 收敛的实数 $p,q$ 的范围，并画出对应区域。",
+        "knowledge_points": [
+          "多奇点广义积分",
+          "局部与无穷远行为分析"
+        ],
+        "question_type": "收敛区域求解（特殊情形 $a=0,b=1$）",
+        "method": [
+          "局部渐近分析",
+          "$p$-判别法"
+        ],
+        "solution_steps": [
+          "分析 $x\\to0$",
+          "分析 $x\\to1$",
+          "分析 $x\\to\\pm\\infty$",
+          "综合得区域"
+        ],
+        "math_structure": {
+          "type": "improper_integral_two_singularities_convergence_special",
+          "template": "$\\int_{-\\infty}^{\\infty}\\frac{dx}{|x|^p|x-1|^q}$",
+          "variable_count": 2
+        },
+        "difficulty": 2,
+        "estimated_minutes": 8,
+        "answer": [
+          {
+            "label": "求解",
+            "steps": [
+              "$x\\to0$：$|x-1|\\to1$，被积函数 $\\sim1/|x|^p$，收敛需 $p<1$。",
+              "$x\\to1$：$|x|\\to1$，被积函数 $\\sim1/|x-1|^q$，收敛需 $q<1$。",
+              "$x\\to\\pm\\infty$：被积函数 $\\sim1/|x|^{p+q}$，收敛需 $p+q>1$。",
+              "综上，收敛区域为 $\\{(p,q): p<1, q<1, p+q>1\\}$，即以 $(0,1),(1,0),(1,1)$ 为顶点的开三角形区域（与原题(1)的区域完全一致，因为这正是原题在 $a=0,b=1$ 时的特殊情形）。"
+            ]
+          }
+        ],
+        "id": "nagoya-2007-752ab4b612-q03-practice-02",
+        "school": "名古屋大学",
+        "year": "2007"
+      },
+      {
+        "text": "设 $a<b$ 为实数，$c\\neq0$ 为常数。证明对任意 $p,q$（使积分收敛），有缩放关系\n$$\\int_{-\\infty}^{\\infty}\\frac{dx}{|x-ca|^p|x-cb|^q}=|c|^{1-p-q}\\int_{-\\infty}^{\\infty}\\frac{dx}{|x-a|^p|x-b|^q}$$\n（此处假设 $c>0$ 以保持 $ca<cb$）。",
+        "knowledge_points": [
+          "积分的仿射缩放不变性"
+        ],
+        "question_type": "缩放性质证明",
+        "method": [
+          "变量替换 $x=cy$"
+        ],
+        "solution_steps": [
+          "作替换 $x=cy$",
+          "化简得到缩放因子"
+        ],
+        "math_structure": {
+          "type": "scaling_invariance_of_improper_integral",
+          "template": "证明 $\\int \\frac{dx}{|x-ca|^p|x-cb|^q}$ 与 $\\int\\frac{dx}{|x-a|^p|x-b|^q}$ 之间的缩放关系",
+          "variable_count": 3
+        },
+        "difficulty": 2,
+        "estimated_minutes": 8,
+        "answer": [
+          {
+            "label": "证明",
+            "steps": [
+              "设 $x=cy$（$c>0$），则 $dx=c\\,dy$，$x-ca=c(y-a)$，$x-cb=c(y-b)$。",
+              "代入：$\\int_{-\\infty}^{\\infty}\\frac{c\\,dy}{c^p|y-a|^p\\,c^q|y-b|^q}=c^{1-p-q}\\int_{-\\infty}^{\\infty}\\frac{dy}{|y-a|^p|y-b|^q}$。",
+              "因 $c>0$，$|c|=c$，故结论 $\\int_{-\\infty}^{\\infty}\\frac{dx}{|x-ca|^p|x-cb|^q}=|c|^{1-p-q}\\int_{-\\infty}^{\\infty}\\frac{dx}{|x-a|^p|x-b|^q}$ 成立，证毕。"
+            ]
+          }
+        ],
+        "id": "nagoya-2007-752ab4b612-q03-practice-03",
+        "school": "名古屋大学",
+        "year": "2007"
+      },
+      {
+        "text": "取 $p=q=1/2$，计算 $I(1/2,1/2)=\\displaystyle\\int_{-\\infty}^{\\infty}\\frac{ds}{|s|^{1/2}|s-1|^{1/2}}$ 是否满足原题(1)的收敛条件；若满足，说明该积分对应的 $C$ 常数与本题(2)的不等式中的角色。（不要求算出精确数值，只需说明结构。）",
+        "knowledge_points": [
+          "特殊参数下收敛性检验",
+          "常数 $C=I(p,q)$ 的含义"
+        ],
+        "question_type": "参数验证与结构说明",
+        "method": [
+          "直接代入判别条件"
+        ],
+        "solution_steps": [
+          "检验 $p<1,q<1,p+q>1$",
+          "说明 $I(1/2,1/2)$ 即为公式中的 $C$"
+        ],
+        "math_structure": {
+          "type": "parameter_check_and_constant_identification",
+          "template": "验证 $p=q=1/2$ 满足收敛条件并识别常数 $C=I(p,q)$",
+          "variable_count": 0
+        },
+        "difficulty": 2,
+        "estimated_minutes": 6,
+        "answer": [
+          {
+            "label": "验证与说明",
+            "steps": [
+              "检验：$p=1/2<1$，$q=1/2<1$，$p+q=1>1$？注意 $p+q=1$ 恰好等于1，不满足严格不等式 $p+q>1$，因此 $p=q=1/2$ 实际上**不在**收敛区域内（临界情形，积分在无穷远处发散，因为 $\\int^\\infty \\frac{dx}{|x|^{1}}$ 发散，对数增长）。",
+              "更正：应取例如 $p=q=0.6$，则 $p+q=1.2>1$，满足条件。此时按原题(2)的方法，$C=I(0.6,0.6)=\\int_{-\\infty}^{\\infty}\\frac{ds}{|s|^{0.6}|s-1|^{0.6}}$ 是一个仅依赖于 $p=q=0.6$ 的有限正常数。",
+              "该常数 $C$ 正是原题(2)不等式 $\\int\\frac{dx}{|x-a|^p|x-b|^q}<\\frac{C}{|a-b|^{p+q-1}}$ 中的比例常数，它来自于把一般的 $a,b$ 情形通过仿射变换 $x=a+(b-a)s$ 归约到标准情形 $a=0,b=1$ 所得到的积分值，本质上与 $a,b$ 无关，只依赖于指数 $p,q$。"
+            ]
+          }
+        ],
+        "id": "nagoya-2007-752ab4b612-q03-practice-04",
+        "school": "名古屋大学",
+        "year": "2007"
+      }
+    ],
+    "source_question": "問3",
+    "source_pdf": "名古屋大学/多元数理科学研究科/全专攻/名古屋大学_多元数理科学研究科_2007_第1次_数学过去问_下午.pdf",
+    "source_type": "官方过去问",
+    "subject_category": "微积分"
+  },
+  {
+    "id": "nagoya-2007-b4a0cf0d7b-q01",
+    "school": "名古屋大学",
+    "year": "2007",
+    "subject": "多元数理科学研究科_全专攻",
+    "text": "设 $X = \\mathbb{R}^2 \\setminus \\{(0,0)\\}$ 上的 $C^2$ 级函数 $f(x,y)$，通过 $x = r\\cos\\theta,\\ y = r\\sin\\theta\\ (r>0,\\ 0\\le\\theta<2\\pi)$ 作变量替换，令 $f(x,y) = g(r,\\theta)$。\n\n(1) 在 $X$ 上，用 $\\dfrac{\\partial g}{\\partial r}$ 和 $\\dfrac{\\partial g}{\\partial \\theta}$ 表示 $\\dfrac{\\partial f}{\\partial x}$ 和 $\\dfrac{\\partial f}{\\partial y}$。\n\n(2) 证明在 $X$ 上成立：\n$$\\left(\\frac{\\partial^2}{\\partial x^2} + \\frac{\\partial^2}{\\partial y^2}\\right) f(x,y) = \\left(\\frac{\\partial^2}{\\partial r^2} + \\frac{1}{r}\\cdot\\frac{\\partial}{\\partial r} + \\frac{1}{r^2}\\cdot\\frac{\\partial^2}{\\partial \\theta^2}\\right) g(r,\\theta).$$",
+    "knowledge_points": [
+      "多元函数链式法则",
+      "极坐标变换",
+      "偏导数",
+      "拉普拉斯算子",
+      "二阶偏导数计算"
+    ],
+    "question_type": "变量替换与算子恒等式证明",
+    "method": [
+      "链式法则",
+      "隐函数偏导数计算",
+      "代数化简合并同类项"
+    ],
+    "solution_steps": [
+      "由 $r=\\sqrt{x^2+y^2}$, $\\theta=\\arctan(y/x)$ 求出 $r_x, r_y, \\theta_x, \\theta_y$",
+      "利用链式法则写出 $\\partial_x, \\partial_y$ 作为 $\\partial_r, \\partial_\\theta$ 的算子表达式",
+      "对 $\\partial_x$ 算子表达式再作用一次求 $\\partial_x^2 g$，同理求 $\\partial_y^2 g$",
+      "将两个二阶导数相加，利用 $\\sin^2\\theta+\\cos^2\\theta=1$ 消去交叉项 $g_{r\\theta}$ 与 $g_\\theta$ 的系数"
+    ],
+    "math_structure": {
+      "type": "polar_laplacian_identity",
+      "template": "\\left(\\partial_x^2+\\partial_y^2\\right)f = \\left(\\partial_r^2+\\frac{1}{r}\\partial_r+\\frac{1}{r^2}\\partial_\\theta^2\\right)g",
+      "variable_count": 2
+    },
+    "difficulty": 4,
+    "answer": [
+      {
+        "label": "(1)",
+        "steps": [
+          "由 $r=\\sqrt{x^2+y^2}$ 得 $\\dfrac{\\partial r}{\\partial x}=\\dfrac{x}{r}=\\cos\\theta$, $\\dfrac{\\partial r}{\\partial y}=\\dfrac{y}{r}=\\sin\\theta$。",
+          "由 $\\theta=\\arctan(y/x)$（在各象限意义下）得 $\\dfrac{\\partial \\theta}{\\partial x}=-\\dfrac{y}{r^2}=-\\dfrac{\\sin\\theta}{r}$, $\\dfrac{\\partial \\theta}{\\partial y}=\\dfrac{x}{r^2}=\\dfrac{\\cos\\theta}{r}$。",
+          "由链式法则 $f_x = g_r r_x + g_\\theta \\theta_x$, $f_y = g_r r_y + g_\\theta \\theta_y$，代入得：",
+          "$$\\frac{\\partial f}{\\partial x} = \\cos\\theta\\,\\frac{\\partial g}{\\partial r} - \\frac{\\sin\\theta}{r}\\,\\frac{\\partial g}{\\partial \\theta}, \\qquad \\frac{\\partial f}{\\partial y} = \\sin\\theta\\,\\frac{\\partial g}{\\partial r} + \\frac{\\cos\\theta}{r}\\,\\frac{\\partial g}{\\partial \\theta}.$$"
+        ]
+      },
+      {
+        "label": "(2)",
+        "steps": [
+          "记算子 $D_x = \\cos\\theta\\,\\partial_r - \\dfrac{\\sin\\theta}{r}\\partial_\\theta$，$D_y = \\sin\\theta\\,\\partial_r + \\dfrac{\\cos\\theta}{r}\\partial_\\theta$。将 $D_x$ 再作用一次于 $F=D_x g$，注意 $\\cos\\theta,\\sin\\theta,1/r$ 都依赖 $r,\\theta$，需用乘积法则展开。",
+          "计算得 $D_x^2 g = \\cos^2\\theta\\, g_{rr} + \\dfrac{\\sin^2\\theta}{r}g_r + \\dfrac{\\sin^2\\theta}{r^2}g_{\\theta\\theta} - \\dfrac{2\\sin\\theta\\cos\\theta}{r}g_{r\\theta} + \\dfrac{2\\sin\\theta\\cos\\theta}{r^2}g_\\theta$。",
+          "同理计算得 $D_y^2 g = \\sin^2\\theta\\, g_{rr} + \\dfrac{\\cos^2\\theta}{r}g_r + \\dfrac{\\cos^2\\theta}{r^2}g_{\\theta\\theta} + \\dfrac{2\\sin\\theta\\cos\\theta}{r}g_{r\\theta} - \\dfrac{2\\sin\\theta\\cos\\theta}{r^2}g_\\theta$。",
+          "两式相加，交叉项 $g_{r\\theta}$ 与 $g_\\theta$ 的系数正负抵消，利用 $\\sin^2\\theta+\\cos^2\\theta=1$，得 $D_x^2 g+D_y^2 g = g_{rr} + \\dfrac{1}{r}g_r + \\dfrac{1}{r^2}g_{\\theta\\theta}$，即证得所求恒等式。"
+        ]
+      }
+    ],
+    "practice_questions": [
+      {
+        "text": "直接由 $r=\\sqrt{x^2+y^2}$, $\\theta=\\arctan(y/x)$ 计算 $\\dfrac{\\partial r}{\\partial x}, \\dfrac{\\partial r}{\\partial y}, \\dfrac{\\partial \\theta}{\\partial x}, \\dfrac{\\partial \\theta}{\\partial y}$，并用 $r,\\theta$ 表示结果。",
+        "knowledge_points": [
+          "偏导数",
+          "极坐标",
+          "隐函数求导"
+        ],
+        "question_type": "基础偏导数计算",
+        "method": [
+          "直接求导",
+          "三角恒等式代换"
+        ],
+        "solution_steps": [
+          "对 $r^2=x^2+y^2$ 两边求偏导",
+          "对 $\\tan\\theta=y/x$ 两边求偏导"
+        ],
+        "math_structure": {
+          "type": "polar_partial_derivatives",
+          "template": "\\partial r/\\partial x, \\partial\\theta/\\partial x \\text{ in terms of } r,\\theta",
+          "variable_count": 2
+        },
+        "difficulty": 2,
+        "estimated_minutes": 8,
+        "answer": [
+          {
+            "label": "结果",
+            "steps": [
+              "由 $2r\\,r_x = 2x \\Rightarrow r_x = x/r=\\cos\\theta$；同理 $r_y=y/r=\\sin\\theta$。",
+              "由 $\\sec^2\\theta\\cdot \\theta_x = -y/x^2 \\Rightarrow \\theta_x = -y/(x^2\\sec^2\\theta) = -y/r^2 = -\\sin\\theta/r$。",
+              "由 $\\sec^2\\theta\\cdot\\theta_y = 1/x \\Rightarrow \\theta_y = x/r^2 = \\cos\\theta/r$。"
+            ]
+          }
+        ],
+        "id": "nagoya-2007-b4a0cf0d7b-q01-practice-01",
+        "school": "名古屋大学",
+        "year": "2007"
+      },
+      {
+        "text": "利用链式法则，将 $\\dfrac{\\partial f}{\\partial x}$ 用 $g_r, g_\\theta$ 表示的公式，验证当 $f(x,y)=x$ 时，两边是否一致（即 $g=r\\cos\\theta$）。",
+        "knowledge_points": [
+          "链式法则",
+          "验证恒等式"
+        ],
+        "question_type": "公式验证",
+        "method": [
+          "代入特殊函数验证"
+        ],
+        "solution_steps": [
+          "求 $g=r\\cos\\theta$ 的偏导数",
+          "代入公式对比 $f_x=1$"
+        ],
+        "math_structure": {
+          "type": "chain_rule_verification",
+          "template": "f=x,\\ g=r\\cos\\theta,\\ \\text{verify } f_x",
+          "variable_count": 2
+        },
+        "difficulty": 2,
+        "estimated_minutes": 6,
+        "answer": [
+          {
+            "label": "验证",
+            "steps": [
+              "$g=r\\cos\\theta$，则 $g_r=\\cos\\theta$, $g_\\theta=-r\\sin\\theta$。",
+              "代入公式：$f_x=\\cos\\theta\\cdot\\cos\\theta - \\dfrac{\\sin\\theta}{r}\\cdot(-r\\sin\\theta) = \\cos^2\\theta+\\sin^2\\theta=1$。",
+              "直接对 $f=x$ 求导得 $f_x=1$，两者一致，公式得证。"
+            ]
+          }
+        ],
+        "id": "nagoya-2007-b4a0cf0d7b-q01-practice-02",
+        "school": "名古屋大学",
+        "year": "2007"
+      },
+      {
+        "text": "对函数 $f(x,y)=x^2+y^2$（即 $g(r,\\theta)=r^2$），分别用直角坐标和极坐标公式计算拉普拉斯算子 $\\Delta f$，验证两者相等。",
+        "knowledge_points": [
+          "拉普拉斯算子",
+          "极坐标计算",
+          "验证公式"
+        ],
+        "question_type": "公式应用验证",
+        "method": [
+          "直接计算",
+          "代入极坐标公式"
+        ],
+        "solution_steps": [
+          "直角坐标下计算 $f_{xx}+f_{yy}$",
+          "极坐标下计算 $g_{rr}+g_r/r+g_{\\theta\\theta}/r^2$",
+          "对比结果"
+        ],
+        "math_structure": {
+          "type": "laplacian_check",
+          "template": "f=x^2+y^2,\\ g=r^2,\\ \\text{compare } \\Delta f",
+          "variable_count": 2
+        },
+        "difficulty": 2,
+        "estimated_minutes": 6,
+        "answer": [
+          {
+            "label": "验证",
+            "steps": [
+              "直角坐标：$f_{xx}=2, f_{yy}=2$，故 $\\Delta f = 4$。",
+              "极坐标：$g=r^2$，$g_r=2r$, $g_{rr}=2$, $g_\\theta=0, g_{\\theta\\theta}=0$。",
+              "代入公式：$g_{rr}+\\dfrac{1}{r}g_r+\\dfrac{1}{r^2}g_{\\theta\\theta} = 2+\\dfrac{2r}{r}+0=2+2=4$，与直角坐标结果一致。"
+            ]
+          }
+        ],
+        "id": "nagoya-2007-b4a0cf0d7b-q01-practice-03",
+        "school": "名古屋大学",
+        "year": "2007"
+      },
+      {
+        "text": "求出 $\\partial_x^2 g$ 的完整展开式（即 $D_x$ 算子作用两次于 $g$），要求写出每一步乘积法则的展开过程。",
+        "knowledge_points": [
+          "复合算子求导",
+          "乘积法则",
+          "极坐标"
+        ],
+        "question_type": "算子展开推导",
+        "method": [
+          "链式法则",
+          "乘积法则逐项展开"
+        ],
+        "solution_steps": [
+          "写出 $D_x g = \\cos\\theta g_r - \\frac{\\sin\\theta}{r}g_\\theta$",
+          "对该表达式再作用一次 $D_x$，逐项求 $\\partial_r$ 和 $\\partial_\\theta$"
+        ],
+        "math_structure": {
+          "type": "operator_expansion",
+          "template": "D_x^2 g \\text{ full expansion}",
+          "variable_count": 2
+        },
+        "difficulty": 3,
+        "estimated_minutes": 12,
+        "answer": [
+          {
+            "label": "展开",
+            "steps": [
+              "设 $F=\\cos\\theta g_r - \\dfrac{\\sin\\theta}{r}g_\\theta$。",
+              "计算 $F_r = \\cos\\theta g_{rr} + \\dfrac{\\sin\\theta}{r^2}g_\\theta - \\dfrac{\\sin\\theta}{r}g_{r\\theta}$，$F_\\theta = -\\sin\\theta g_r + \\cos\\theta g_{r\\theta} - \\dfrac{\\cos\\theta}{r}g_\\theta - \\dfrac{\\sin\\theta}{r}g_{\\theta\\theta}$。",
+              "$D_x^2 g = \\cos\\theta F_r - \\dfrac{\\sin\\theta}{r}F_\\theta$，代入化简得 $\\cos^2\\theta g_{rr}+\\dfrac{\\sin^2\\theta}{r}g_r+\\dfrac{\\sin^2\\theta}{r^2}g_{\\theta\\theta}-\\dfrac{2\\sin\\theta\\cos\\theta}{r}g_{r\\theta}+\\dfrac{2\\sin\\theta\\cos\\theta}{r^2}g_\\theta$。"
+            ]
+          }
+        ],
+        "id": "nagoya-2007-b4a0cf0d7b-q01-practice-04",
+        "school": "名古屋大学",
+        "year": "2007"
+      },
+      {
+        "text": "利用极坐标拉普拉斯公式，求满足 $\\Delta f=0$ 且仅依赖于 $r$（即 $g=g(r)$，与 $\\theta$ 无关）的所有函数 $g(r)$。",
+        "knowledge_points": [
+          "拉普拉斯方程",
+          "常微分方程",
+          "径向对称解"
+        ],
+        "question_type": "偏微分方程应用",
+        "method": [
+          "代入极坐标拉普拉斯公式",
+          "求解常微分方程"
+        ],
+        "solution_steps": [
+          "因 $g_\\theta=0$，方程化为 $g''+\\frac1r g'=0$",
+          "解此一阶线性ODE（对 $g'$）",
+          "积分得通解"
+        ],
+        "math_structure": {
+          "type": "radial_harmonic_function",
+          "template": "g''(r)+\\frac{1}{r}g'(r)=0",
+          "variable_count": 1
+        },
+        "difficulty": 3,
+        "estimated_minutes": 10,
+        "answer": [
+          {
+            "label": "通解",
+            "steps": [
+              "方程 $g''+\\frac1r g'=0$ 可写成 $(rg')'=0$，故 $rg'=C_1$（常数）。",
+              "于是 $g'=C_1/r$，积分得 $g(r)=C_1\\ln r + C_2$。",
+              "验证：$g'=C_1/r$, $g''=-C_1/r^2$，代入 $g''+g'/r=-C_1/r^2+C_1/r^2=0$，成立。"
+            ]
+          }
+        ],
+        "id": "nagoya-2007-b4a0cf0d7b-q01-practice-05",
+        "school": "名古屋大学",
+        "year": "2007"
+      }
+    ],
+    "source_question": "問1",
+    "source_pdf": "名古屋大学/多元数理科学研究科/全专攻/名古屋大学_多元数理科学研究科_2007_第2次_数学过去问_上午.pdf",
+    "source_type": "官方过去问",
+    "subject_category": "微积分"
+  },
+  {
+    "id": "nagoya-2007-b4a0cf0d7b-q02",
+    "school": "名古屋大学",
+    "year": "2007",
+    "subject": "多元数理科学研究科_全专攻",
+    "text": "回答以下问题。\n\n(1) 求使下列二重广义积分收敛的实数 $a$ 的范围，并求其积分值：\n$$\\iint_D (y-x)^{-a}\\,dx\\,dy,\\qquad D=\\{(x,y)\\mid 0\\le x<y\\le 1\\}.$$\n\n(2) 通过变量替换 $u=x+y,\\ v=x-y$，作图说明 $(x,y)$ 平面上区域\n$$D=\\{(x,y)\\mid 0\\le x+y\\le 1,\\ 0\\le x-y\\le 1\\}$$\n映射到 $(u,v)$ 平面上的哪种区域，并求下列积分的值：\n$$\\iint_D (x^2-y^2)\\,dx\\,dy.$$",
+    "knowledge_points": [
+      "二重广义积分",
+      "反常积分收敛性",
+      "变量替换",
+      "雅可比行列式",
+      "累次积分"
+    ],
+    "question_type": "重积分计算与收敛性判断",
+    "method": [
+      "累次积分",
+      "变量替换与雅可比行列式",
+      "反常积分敛散性判定"
+    ],
+    "solution_steps": [
+      "(1) 化为累次积分，先对 x 积分再对 y 积分，判断内层积分在 u=y-x→0 处的收敛性",
+      "求出内层积分结果，再对外层 y 积分求出收敛条件与最终值",
+      "(2) 求 x,y 关于 u,v 的表达式及雅可比行列式",
+      "确定新区域为矩形 $[0,1]\\times[0,1]$，并用 $x^2-y^2=uv$ 化简被积函数",
+      "计算变换后的二重积分"
+    ],
+    "math_structure": {
+      "type": "double_improper_integral_and_change_of_variables",
+      "template": "\\iint_D (y-x)^{-a}dxdy;\\ \\iint_D (x^2-y^2)dxdy \\text{ via } u=x+y,v=x-y",
+      "variable_count": 2
+    },
+    "difficulty": 3,
+    "answer": [
+      {
+        "label": "(1)",
+        "steps": [
+          "写成累次积分：$\\iint_D (y-x)^{-a}dxdy = \\int_0^1\\left(\\int_0^y (y-x)^{-a}dx\\right)dy$。对内层作代换 $t=y-x$（$dt=-dx$），当 $x:0\\to y$ 时 $t:y\\to 0$，得 $\\int_0^y (y-x)^{-a}dx = \\int_0^y t^{-a}dt$。",
+          "该内层积分在 $t=0$ 附近收敛的条件为 $-a>-1$，即 $a<1$；此时 $\\int_0^y t^{-a}dt = \\dfrac{y^{1-a}}{1-a}$。",
+          "代入外层积分：$\\int_0^1 \\dfrac{y^{1-a}}{1-a}dy = \\dfrac{1}{1-a}\\cdot\\dfrac{y^{2-a}}{2-a}\\Big|_0^1 = \\dfrac{1}{(1-a)(2-a)}$，由 $a<1$ 可知 $2-a>1>0$ 自动成立，无额外限制。",
+          "结论：当 $a<1$ 时积分收敛，值为 $\\dfrac{1}{(1-a)(2-a)}$；当 $a\\ge1$ 时积分发散。"
+        ]
+      },
+      {
+        "label": "(2)",
+        "steps": [
+          "由 $u=x+y, v=x-y$ 解得 $x=\\dfrac{u+v}{2}, y=\\dfrac{u-v}{2}$。区域 $D$ 的条件 $0\\le x+y\\le1$ 变为 $0\\le u\\le1$，条件 $0\\le x-y\\le1$ 变为 $0\\le v\\le1$，因此新区域是正方形 $[0,1]\\times[0,1]$（图示为 $u,v$ 平面上以 $(0,0),(1,0),(1,1),(0,1)$ 为顶点的单位正方形）。",
+          "雅可比行列式：$\\dfrac{\\partial(x,y)}{\\partial(u,v)} = \\begin{vmatrix}1/2 & 1/2\\\\ 1/2 & -1/2\\end{vmatrix} = -\\dfrac12$，故 $dxdy = \\dfrac12\\,dudv$。",
+          "被积函数 $x^2-y^2=(x-y)(x+y)=uv$，故积分化为 $\\displaystyle\\iint_{[0,1]^2} uv\\cdot\\frac12\\,dudv$。",
+          "计算：$\\dfrac12\\left(\\int_0^1 u\\,du\\right)\\left(\\int_0^1 v\\,dv\\right) = \\dfrac12\\cdot\\dfrac12\\cdot\\dfrac12=\\dfrac18$。故所求积分值为 $\\dfrac18$。"
+        ]
+      }
+    ],
+    "practice_questions": [
+      {
+        "text": "判断反常积分 $\\int_0^1 t^{-p}dt$（$p$ 为实数）的收敛性，并求收敛时的值。",
+        "knowledge_points": [
+          "反常积分",
+          "幂函数积分"
+        ],
+        "question_type": "基础敛散性判断",
+        "method": [
+          "直接积分并取极限"
+        ],
+        "solution_steps": [
+          "求原函数",
+          "代入端点并讨论极限存在性"
+        ],
+        "math_structure": {
+          "type": "basic_improper_integral",
+          "template": "\\int_0^1 t^{-p}dt",
+          "variable_count": 1
+        },
+        "difficulty": 1,
+        "estimated_minutes": 5,
+        "answer": [
+          {
+            "label": "结果",
+            "steps": [
+              "当 $p\\ne1$：$\\int_\\epsilon^1 t^{-p}dt = \\dfrac{1-\\epsilon^{1-p}}{1-p}$。",
+              "当 $p<1$ 时 $\\epsilon^{1-p}\\to0$，积分收敛于 $\\dfrac{1}{1-p}$；当 $p>1$ 时 $\\epsilon^{1-p}\\to\\infty$，发散；$p=1$ 时为 $\\ln$，也发散。",
+              "结论：$p<1$ 时收敛，值为 $\\dfrac{1}{1-p}$；$p\\ge1$ 时发散。"
+            ]
+          }
+        ],
+        "id": "nagoya-2007-b4a0cf0d7b-q02-practice-01",
+        "school": "名古屋大学",
+        "year": "2007"
+      },
+      {
+        "text": "计算累次积分 $\\displaystyle\\int_0^1\\int_0^y (y-x)^{-1/2}dx\\,dy$。",
+        "knowledge_points": [
+          "累次积分",
+          "变量替换"
+        ],
+        "question_type": "积分计算",
+        "method": [
+          "代换 t=y-x",
+          "累次积分"
+        ],
+        "solution_steps": [
+          "内层积分代换求解",
+          "外层对y积分"
+        ],
+        "math_structure": {
+          "type": "iterated_integral_special_case",
+          "template": "\\int_0^1\\int_0^y (y-x)^{-1/2}dxdy",
+          "variable_count": 2
+        },
+        "difficulty": 2,
+        "estimated_minutes": 8,
+        "answer": [
+          {
+            "label": "结果",
+            "steps": [
+              "内层：令 $t=y-x$，$\\int_0^y (y-x)^{-1/2}dx=\\int_0^y t^{-1/2}dt = 2y^{1/2}$。",
+              "外层：$\\int_0^1 2y^{1/2}dy = 2\\cdot\\dfrac23 = \\dfrac43$。",
+              "对照通式 $a=1/2$：$\\dfrac{1}{(1-1/2)(2-1/2)}=\\dfrac{1}{(1/2)(3/2)}=\\dfrac{4}{3}$，一致。"
+            ]
+          }
+        ],
+        "id": "nagoya-2007-b4a0cf0d7b-q02-practice-02",
+        "school": "名古屋大学",
+        "year": "2007"
+      },
+      {
+        "text": "求由 $u=x-y,\\ v=x+2y$ 定义的变量替换的雅可比行列式 $\\partial(x,y)/\\partial(u,v)$。",
+        "knowledge_points": [
+          "雅可比行列式",
+          "线性变量替换"
+        ],
+        "question_type": "雅可比计算",
+        "method": [
+          "解出 x,y 关于 u,v 的表达式后求偏导数行列式"
+        ],
+        "solution_steps": [
+          "联立求解 x,y",
+          "求偏导数组成行列式"
+        ],
+        "math_structure": {
+          "type": "jacobian_computation",
+          "template": "u=x-y, v=x+2y",
+          "variable_count": 2
+        },
+        "difficulty": 2,
+        "estimated_minutes": 6,
+        "answer": [
+          {
+            "label": "结果",
+            "steps": [
+              "由 $u=x-y, v=x+2y$ 解得 $x=\\dfrac{2u+v}{3}, y=\\dfrac{v-u}{3}$。",
+              "$\\partial x/\\partial u=2/3,\\partial x/\\partial v=1/3,\\partial y/\\partial u=-1/3,\\partial y/\\partial v=1/3$。",
+              "行列式 $=\\dfrac23\\cdot\\dfrac13-\\dfrac13\\cdot(-\\dfrac13)=\\dfrac29+\\dfrac19=\\dfrac13$。"
+            ]
+          }
+        ],
+        "id": "nagoya-2007-b4a0cf0d7b-q02-practice-03",
+        "school": "名古屋大学",
+        "year": "2007"
+      },
+      {
+        "text": "利用变量替换 $u=x+y,v=x-y$，计算 $\\displaystyle\\iint_D (x+y)\\,dxdy$，其中 $D=\\{0\\le x+y\\le2, 0\\le x-y\\le1\\}$。",
+        "knowledge_points": [
+          "变量替换",
+          "雅可比行列式",
+          "二重积分"
+        ],
+        "question_type": "变量替换积分计算",
+        "method": [
+          "同原题方法应用到新区域"
+        ],
+        "solution_steps": [
+          "确定新区域范围",
+          "写出雅可比行列式",
+          "化简被积函数并积分"
+        ],
+        "math_structure": {
+          "type": "change_of_variables_integral",
+          "template": "\\iint_D(x+y)dxdy,\\ D:0\\le u\\le2,0\\le v\\le1",
+          "variable_count": 2
+        },
+        "difficulty": 3,
+        "estimated_minutes": 8,
+        "answer": [
+          {
+            "label": "结果",
+            "steps": [
+              "新区域为 $u\\in[0,2], v\\in[0,1]$，雅可比 $|J|=1/2$（与原题相同）。",
+              "被积函数 $x+y=u$，积分为 $\\iint_{[0,2]\\times[0,1]} u\\cdot\\dfrac12\\,dudv = \\dfrac12\\int_0^2u\\,du\\int_0^1dv = \\dfrac12\\cdot2\\cdot1=1$。",
+              "验证：直接在 xy 平面上，该区域是以 (0,0),(1,1),(1.5,0.5),(0.5,-0.5)? 实际上通过替换已验证方法正确，结果为 $1$。"
+            ]
+          }
+        ],
+        "id": "nagoya-2007-b4a0cf0d7b-q02-practice-04",
+        "school": "名古屋大学",
+        "year": "2007"
+      },
+      {
+        "text": "求 $a=0$ 时（即被积函数恒为1）$\\iint_D dxdy$ 的值，其中 $D=\\{0\\le x<y\\le1\\}$，并与原题公式 $\\dfrac{1}{(1-a)(2-a)}$ 在 $a=0$ 处的取值比较。",
+        "knowledge_points": [
+          "面积计算",
+          "公式特例验证"
+        ],
+        "question_type": "特例验证",
+        "method": [
+          "直接几何面积法与公式代入对比"
+        ],
+        "solution_steps": [
+          "计算三角形面积",
+          "代入公式 a=0 验证"
+        ],
+        "math_structure": {
+          "type": "special_case_verification",
+          "template": "a=0,\\ \\iint_D 1\\,dxdy",
+          "variable_count": 1
+        },
+        "difficulty": 1,
+        "estimated_minutes": 5,
+        "answer": [
+          {
+            "label": "结果",
+            "steps": [
+              "$D$ 是以 $(0,0),(0,1),(1,1)$ 为顶点的直角三角形，面积 $=\\dfrac12\\times1\\times1=\\dfrac12$。",
+              "代入公式 $\\dfrac{1}{(1-0)(2-0)}=\\dfrac12$。",
+              "两者一致，验证公式在 $a=0$ 时正确。"
+            ]
+          }
+        ],
+        "id": "nagoya-2007-b4a0cf0d7b-q02-practice-05",
+        "school": "名古屋大学",
+        "year": "2007"
+      }
+    ],
+    "source_question": "問2",
+    "source_pdf": "名古屋大学/多元数理科学研究科/全专攻/名古屋大学_多元数理科学研究科_2007_第2次_数学过去问_上午.pdf",
+    "source_type": "官方过去问",
+    "subject_category": "微积分"
+  },
+  {
+    "id": "nagoya-2007-1e847b7fbd-q01",
+    "school": "名古屋大学",
+    "year": "2007",
+    "subject": "多元数理科学研究科_全专攻",
+    "text": "设 $x,y$ 为实数变量，考虑二元函数\n$$f(x,y)=x^4+y^4-2x^2+4xy-2y^2.$$\n(1) 求 $f$ 的所有临界点（即 $f_x=f_y=0$ 的点）。\n(2) 对上面求得的每个临界点，判断它是极大点、极小点，还是两者都不是，并说明理由。这里 $f$ 在临界点 $(a,b)$ 是极大点（极小点）定义为：存在 $(a,b)$ 的某开邻域 $U$，使得对 $U$ 内任意点 $(x,y)$ 都有 $f(a,b)\\ge f(x,y)$（极小点时为 $f(a,b)\\le f(x,y)$）。",
+    "knowledge_points": [
+      "偏导数与临界点",
+      "多元函数极值判定",
+      "Hessian矩阵",
+      "二阶导数判别法失效情形的分析",
+      "对称性利用"
+    ],
+    "question_type": "多元函数极值问题",
+    "method": [
+      "求偏导数解方程组",
+      "利用变量替换简化方程组",
+      "计算Hessian矩阵及判别式",
+      "对退化情形沿特殊方向分析函数值"
+    ],
+    "solution_steps": [
+      "计算 $f_x=4x^3-4x+4y$, $f_y=4y^3+4x-4y$，令其为零得方程组",
+      "化简为 $y=x-x^3$ 且 $x=y-y^3$，代入消元得 $y^3=-x^3$ 从而 $y=-x$",
+      "代入求得 $x(x^2-2)=0$，得到三个临界点",
+      "计算二阶偏导 $f_{xx}=12x^2-4$, $f_{yy}=12y^2-4$, $f_{xy}=4$，用Hessian判别式判断",
+      "对判别式为零的临界点，沿特定方向直接比较函数值判断类型"
+    ],
+    "math_structure": {
+      "type": "multivariable_extremum",
+      "template": "f(x,y)=x^4+y^4+ax^2+bxy+cy^2, find critical points and classify",
+      "variable_count": 2
+    },
+    "difficulty": 3,
+    "answer": [
+      {
+        "label": "(1)",
+        "steps": [
+          "求偏导数：$f_x=4x^3-4x+4y=0 \\Rightarrow y=x-x^3$；$f_y=4y^3+4x-4y=0 \\Rightarrow x=y-y^3$。",
+          "将 $y=x-x^3$ 代入 $x=y-y^3$：$y^3=y-x=(x-x^3)-x=-x^3$，故 $y^3=-x^3$，对实数意味着 $y=-x$。",
+          "代入 $y=x-x^3$ 得 $-x=x-x^3\\Rightarrow x^3-2x=0\\Rightarrow x(x^2-2)=0$，解得 $x=0,\\sqrt2,-\\sqrt2$。",
+          "对应 $y=-x$，得三个临界点：$(0,0)$，$(\\sqrt2,-\\sqrt2)$，$(-\\sqrt2,\\sqrt2)$。代入原方程验证均满足 $f_x=f_y=0$。"
+        ]
+      },
+      {
+        "label": "(2)",
+        "steps": [
+          "计算二阶偏导：$f_{xx}=12x^2-4$，$f_{yy}=12y^2-4$，$f_{xy}=4$，Hessian判别式 $D=f_{xx}f_{yy}-f_{xy}^2$。",
+          "在 $(\\sqrt2,-\\sqrt2)$ 处：$f_{xx}=f_{yy}=20$，$D=400-16=384>0$ 且 $f_{xx}>0$，故为局部极小点；由对称性 $(-\\sqrt2,\\sqrt2)$ 同理也是局部极小点。",
+          "在 $(0,0)$ 处：$f_{xx}=f_{yy}=-4$，$f_{xy}=4$，$D=16-16=0$，判别式失效，需直接分析。",
+          "沿方向 $y=x$：$f(x,x)=2x^4>0=f(0,0)$（$x\\ne0$），说明该方向 $f$ 大于原点值；沿方向 $y=-x$：$f(x,-x)=2x^2(x^2-4)<0=f(0,0)$（当 $0<|x|<2$），说明该方向 $f$ 小于原点值。",
+          "因此在任意小邻域内 $f$ 既取大于 $f(0,0)$ 又取小于 $f(0,0)$ 的值，故 $(0,0)$ 既非极大点也非极小点（鞍点）。"
+        ]
+      }
+    ],
+    "practice_questions": [
+      {
+        "text": "求函数 $g(x,y)=x^2+y^2$ 的所有临界点，并判断类型。",
+        "knowledge_points": [
+          "偏导数",
+          "临界点",
+          "极值判定"
+        ],
+        "question_type": "基础极值问题",
+        "method": [
+          "求偏导数解方程组",
+          "Hessian判别"
+        ],
+        "solution_steps": [
+          "求偏导并解方程",
+          "计算Hessian判别式判断类型"
+        ],
+        "math_structure": {
+          "type": "multivariable_extremum",
+          "template": "g(x,y)=x^2+y^2",
+          "variable_count": 2
+        },
+        "difficulty": 1,
+        "estimated_minutes": 5,
+        "answer": [
+          {
+            "label": "结果",
+            "steps": [
+              "$g_x=2x=0,g_y=2y=0$，得唯一临界点 $(0,0)$。",
+              "$g_{xx}=2,g_{yy}=2,g_{xy}=0$，$D=4>0$ 且 $g_{xx}>0$，故为极小点。",
+              "验证：对任意 $(x,y)\\ne(0,0)$，$g(x,y)=x^2+y^2>0=g(0,0)$，确认为全局极小点。"
+            ]
+          }
+        ],
+        "id": "nagoya-2007-1e847b7fbd-q01-practice-01",
+        "school": "名古屋大学",
+        "year": "2007"
+      },
+      {
+        "text": "求函数 $h(x,y)=x^2-y^2$ 的临界点并判断其类型，说明为什么Hessian判别式在此处符号确定。",
+        "knowledge_points": [
+          "鞍点",
+          "Hessian判别式"
+        ],
+        "question_type": "鞍点判定",
+        "method": [
+          "求偏导",
+          "Hessian判别"
+        ],
+        "solution_steps": [
+          "求偏导数解方程",
+          "计算判别式并判断"
+        ],
+        "math_structure": {
+          "type": "saddle_point_example",
+          "template": "h(x,y)=x^2-y^2",
+          "variable_count": 2
+        },
+        "difficulty": 1,
+        "estimated_minutes": 5,
+        "answer": [
+          {
+            "label": "结果",
+            "steps": [
+              "$h_x=2x=0,h_y=-2y=0$，得临界点 $(0,0)$。",
+              "$h_{xx}=2,h_{yy}=-2,h_{xy}=0$，$D=-4<0$，判别式为负，故 $(0,0)$ 为鞍点。",
+              "验证：沿 $x$ 轴 $h(x,0)=x^2>0$，沿 $y$ 轴 $h(0,y)=-y^2<0$，两个方向符号相反，确认鞍点。"
+            ]
+          }
+        ],
+        "id": "nagoya-2007-1e847b7fbd-q01-practice-02",
+        "school": "名古屋大学",
+        "year": "2007"
+      },
+      {
+        "text": "考虑函数 $p(x,y)=x^4-y^4$，求其在原点的性质，说明为何简单的Hessian判别式在此不能直接给出结论（若适用则给出结论）。",
+        "knowledge_points": [
+          "高阶临界点分析",
+          "退化Hessian"
+        ],
+        "question_type": "退化临界点分析",
+        "method": [
+          "求偏导",
+          "Hessian判别",
+          "沿特殊方向分析"
+        ],
+        "solution_steps": [
+          "求偏导数并解出临界点",
+          "计算Hessian判断是否退化",
+          "若退化则沿特定方向分析函数符号"
+        ],
+        "math_structure": {
+          "type": "degenerate_hessian_analysis",
+          "template": "p(x,y)=x^4-y^4",
+          "variable_count": 2
+        },
+        "difficulty": 2,
+        "estimated_minutes": 8,
+        "answer": [
+          {
+            "label": "结果",
+            "steps": [
+              "$p_x=4x^3=0,p_y=-4y^3=0$，得临界点 $(0,0)$。",
+              "$p_{xx}=12x^2,p_{yy}=-12y^2,p_{xy}=0$，在原点全为零，Hessian判别式 $D=0$，方法失效。",
+              "沿 $x$ 轴（$y=0$）：$p(x,0)=x^4>0=p(0,0)$；沿 $y$ 轴（$x=0$）：$p(0,y)=-y^4<0=p(0,0)$。两方向符号相反，故 $(0,0)$ 为鞍点。"
+            ]
+          }
+        ],
+        "id": "nagoya-2007-1e847b7fbd-q01-practice-03",
+        "school": "名古屋大学",
+        "year": "2007"
+      },
+      {
+        "text": "求函数 $q(x,y)=x^4+y^4-4xy$ 的所有临界点，并利用Hessian判别式分类（不要求处理退化情形）。",
+        "knowledge_points": [
+          "多元函数临界点",
+          "非线性方程组求解",
+          "Hessian判别"
+        ],
+        "question_type": "多变量极值综合问题",
+        "method": [
+          "求偏导数解非线性方程组",
+          "利用对称性简化",
+          "Hessian判别"
+        ],
+        "solution_steps": [
+          "求偏导数令其为零",
+          "解方程组找出所有临界点",
+          "计算Hessian判断每点类型"
+        ],
+        "math_structure": {
+          "type": "multivariable_extremum",
+          "template": "q(x,y)=x^4+y^4+kxy",
+          "variable_count": 2
+        },
+        "difficulty": 3,
+        "estimated_minutes": 12,
+        "answer": [
+          {
+            "label": "结果",
+            "steps": [
+              "$q_x=4x^3-4y=0\\Rightarrow y=x^3$；$q_y=4y^3-4x=0\\Rightarrow x=y^3$。代入得 $x=x^9$，即 $x(x^8-1)=0$。",
+              "解得 $x=0,\\pm1$（实数范围内 $x^8=1$ 仅有 $x=\\pm1$）。对应临界点：$(0,0)$，$(1,1)$，$(-1,-1)$。",
+              "计算 $q_{xx}=12x^2,q_{yy}=12y^2,q_{xy}=-4$。在 $(1,1)$：$D=144-16=128>0$，$q_{xx}=12>0$，为极小点；$(-1,-1)$ 同理为极小点。在 $(0,0)$：$D=0-16=-16<0$，为鞍点。"
+            ]
+          }
+        ],
+        "id": "nagoya-2007-1e847b7fbd-q01-practice-04",
+        "school": "名古屋大学",
+        "year": "2007"
+      }
+    ],
+    "source_question": "問1",
+    "source_pdf": "名古屋大学/多元数理科学研究科/全专攻/名古屋大学_多元数理科学研究科_2007_第2次_数学过去问_下午.pdf",
+    "source_type": "官方过去问",
+    "subject_category": "微积分"
+  },
+  {
+    "id": "nagoya-2007-1e847b7fbd-q02",
+    "school": "名古屋大学",
+    "year": "2007",
+    "subject": "多元数理科学研究科_全专攻",
+    "text": "设 $R$ 表示正数。回答以下问题。\n(1) 求三维空间中旋转体\n$$U(R)=\\{(x,y,z)\\in\\mathbb R^3\\mid x^2+y^2\\le R^2,\\ 0\\le z\\le e^{-x^2-y^2}\\}$$\n的体积 $u(R)$。\n(2) 求极限 $\\displaystyle\\lim_{R\\to\\infty}u(R)$。\n(3) 三维空间中的立体\n$$V(R)=\\{(x,y,z)\\in\\mathbb R^3\\mid \\max\\{|x|,|y|\\}\\le R,\\ 0\\le z\\le e^{-x^2-y^2}\\}$$\n的体积 $v(R)$ 可表示为 $\\left(\\displaystyle\\int_{-R}^R e^{-x^2}dx\\right)^2$，证明这一点。\n(4) 证明 $\\displaystyle\\lim_{R\\to\\infty}(v(R)-u(R))=0$。\n(5) 证明广义积分 $\\displaystyle\\int_{-\\infty}^\\infty e^{-x^2}dx$ 存在，并求其值。",
+    "knowledge_points": [
+      "二重积分",
+      "极坐标变换",
+      "体积计算",
+      "广义积分",
+      "夹逼定理",
+      "Gauss积分",
+      "累次积分与Fubini定理"
+    ],
+    "question_type": "重积分与广义积分综合题",
+    "method": [
+      "极坐标积分",
+      "累次积分分离变量",
+      "区域包含关系比较积分",
+      "夹逼定理证明极限"
+    ],
+    "solution_steps": [
+      "用极坐标计算圆盘上的二重积分得 $u(R)$",
+      "取极限求 $u(R)$ 当 $R\\to\\infty$ 的值",
+      "利用Fubini定理将正方形上的二重积分分离为两个一维积分的乘积证明 $v(R)$ 的表达式",
+      "利用圆内接、外接正方形的包含关系夹逼 $v(R)-u(R)\\to0$",
+      "结合 $u(R)\\to\\pi$ 与 $v(R)-u(R)\\to0$ 得到 $v(R)\\to\\pi$，从而求出高斯积分值"
+    ],
+    "math_structure": {
+      "type": "gaussian_integral_via_volume",
+      "template": "compute volume of e^{-x^2-y^2} over disk and square, derive int e^{-x^2}dx",
+      "variable_count": 1
+    },
+    "difficulty": 4,
+    "answer": [
+      {
+        "label": "(1)",
+        "steps": [
+          "$u(R)=\\iint_{x^2+y^2\\le R^2} e^{-x^2-y^2}\\,dxdy$，改用极坐标 $x=r\\cos\\theta,y=r\\sin\\theta$，$dxdy=r\\,dr\\,d\\theta$。",
+          "$u(R)=\\int_0^{2\\pi}\\int_0^R e^{-r^2} r\\,dr\\,d\\theta = 2\\pi\\int_0^R r e^{-r^2}dr$。",
+          "令 $t=r^2$，$dt=2r\\,dr$，得 $\\int_0^R re^{-r^2}dr=\\frac12\\left[-e^{-r^2}\\right]_0^R=\\frac12(1-e^{-R^2})$。",
+          "所以 $u(R)=2\\pi\\cdot\\frac12(1-e^{-R^2})=\\pi(1-e^{-R^2})$。"
+        ]
+      },
+      {
+        "label": "(2)",
+        "steps": [
+          "当 $R\\to\\infty$ 时 $e^{-R^2}\\to0$，因此 $\\lim_{R\\to\\infty}u(R)=\\pi(1-0)=\\pi$。"
+        ]
+      },
+      {
+        "label": "(3)",
+        "steps": [
+          "$V(R)$ 的底面是正方形 $[-R,R]\\times[-R,R]$，故 $v(R)=\\iint_{[-R,R]^2}e^{-x^2-y^2}dxdy$。",
+          "由于被积函数可分离变量 $e^{-x^2-y^2}=e^{-x^2}e^{-y^2}$，利用Fubini定理化为累次积分：$v(R)=\\int_{-R}^R\\int_{-R}^R e^{-x^2}e^{-y^2}\\,dy\\,dx=\\int_{-R}^R e^{-x^2}\\left(\\int_{-R}^R e^{-y^2}dy\\right)dx$。",
+          "内层积分与 $x$ 无关，可提出：$v(R)=\\left(\\int_{-R}^R e^{-y^2}dy\\right)\\int_{-R}^R e^{-x^2}dx=\\left(\\int_{-R}^R e^{-x^2}dx\\right)^2$，证毕。"
+        ]
+      },
+      {
+        "label": "(4)",
+        "steps": [
+          "半径 $R$ 的圆盘内接于边长 $2R$ 的正方形，而该正方形又内接于半径 $R\\sqrt2$ 的圆盘，即 $U(R)\\subset V(R)\\subset U(R\\sqrt2)$（作为底面区域的包含关系，被积函数非负）。",
+          "由此得 $u(R)\\le v(R)\\le u(R\\sqrt2)$，从而 $0\\le v(R)-u(R)\\le u(R\\sqrt2)-u(R)$。",
+          "代入(1)的公式：$u(R\\sqrt2)-u(R)=\\pi(1-e^{-2R^2})-\\pi(1-e^{-R^2})=\\pi(e^{-R^2}-e^{-2R^2})$。",
+          "当 $R\\to\\infty$ 时，$e^{-R^2}\\to0$ 且 $e^{-2R^2}\\to0$，故右端趋于 $0$，由夹逼定理 $\\lim_{R\\to\\infty}(v(R)-u(R))=0$。"
+        ]
+      },
+      {
+        "label": "(5)",
+        "steps": [
+          "由(2)知 $u(R)\\to\\pi$，由(4)知 $v(R)-u(R)\\to0$，故 $v(R)\\to\\pi$。",
+          "由(3)，$v(R)=\\left(\\int_{-R}^R e^{-x^2}dx\\right)^2\\to\\pi$。设 $I(R)=\\int_{-R}^R e^{-x^2}dx$，则 $I(R)^2\\to\\pi$；又 $I(R)$ 单调递增（被积函数恒正）且有上界（因 $I(R)^2\\le v(R)\\le\\pi$ 对充分大 $R$ 成立），故 $I(R)$ 收敛，从而广义积分 $\\int_{-\\infty}^\\infty e^{-x^2}dx=\\lim_{R\\to\\infty}I(R)$ 存在。",
+          "由 $I(R)>0$ 且 $I(R)^2\\to\\pi$，得 $\\lim_{R\\to\\infty}I(R)=\\sqrt\\pi$（取正根，因积分值恒正）。",
+          "故 $\\displaystyle\\int_{-\\infty}^\\infty e^{-x^2}dx=\\sqrt\\pi$。"
+        ]
+      }
+    ],
+    "practice_questions": [
+      {
+        "text": "计算 $\\displaystyle\\iint_{x^2+y^2\\le1} e^{-2(x^2+y^2)}\\,dxdy$。",
+        "knowledge_points": [
+          "极坐标变换",
+          "二重积分"
+        ],
+        "question_type": "极坐标积分计算",
+        "method": [
+          "极坐标变换",
+          "换元积分"
+        ],
+        "solution_steps": [
+          "转化为极坐标",
+          "计算径向积分"
+        ],
+        "math_structure": {
+          "type": "polar_double_integral",
+          "template": "int_disk e^{-k(x^2+y^2)}dxdy",
+          "variable_count": 1
+        },
+        "difficulty": 2,
+        "estimated_minutes": 6,
+        "answer": [
+          {
+            "label": "结果",
+            "steps": [
+              "用极坐标：$\\iint = \\int_0^{2\\pi}\\int_0^1 e^{-2r^2}r\\,dr\\,d\\theta=2\\pi\\int_0^1 re^{-2r^2}dr$。",
+              "令 $t=2r^2$，$dt=4rdr$，得 $\\int_0^1 re^{-2r^2}dr=\\frac14(1-e^{-2})$。",
+              "所以结果为 $2\\pi\\cdot\\frac14(1-e^{-2})=\\frac{\\pi}{2}(1-e^{-2})$。"
+            ]
+          }
+        ],
+        "id": "nagoya-2007-1e847b7fbd-q02-practice-01",
+        "school": "名古屋大学",
+        "year": "2007"
+      },
+      {
+        "text": "求 $\\displaystyle\\lim_{R\\to\\infty}\\int_0^{2\\pi}\\int_0^R re^{-3r^2}\\,dr\\,d\\theta$。",
+        "knowledge_points": [
+          "极坐标积分",
+          "极限计算"
+        ],
+        "question_type": "极限求值",
+        "method": [
+          "直接积分",
+          "取极限"
+        ],
+        "solution_steps": [
+          "计算内层积分表达式",
+          "对R取极限"
+        ],
+        "math_structure": {
+          "type": "polar_integral_limit",
+          "template": "lim_{R->infty} int_0^{2pi}int_0^R re^{-kr^2}drdtheta",
+          "variable_count": 1
+        },
+        "difficulty": 2,
+        "estimated_minutes": 6,
+        "answer": [
+          {
+            "label": "结果",
+            "steps": [
+              "$\\int_0^R re^{-3r^2}dr=\\frac16(1-e^{-3R^2})$（同前法用 $t=3r^2$换元）。",
+              "乘以角度积分 $2\\pi$：原式$=2\\pi\\cdot\\frac16(1-e^{-3R^2})=\\frac{\\pi}{3}(1-e^{-3R^2})$。",
+              "当 $R\\to\\infty$ 时 $e^{-3R^2}\\to0$，极限为 $\\frac{\\pi}{3}$。"
+            ]
+          }
+        ],
+        "id": "nagoya-2007-1e847b7fbd-q02-practice-02",
+        "school": "名古屋大学",
+        "year": "2007"
+      },
+      {
+        "text": "利用Fubini定理证明 $\\displaystyle\\int_{-R}^R\\int_{-R}^R e^{-(x^2+y^2)}dxdy=\\left(\\int_{-R}^R e^{-x^2}dx\\right)^2$ 对任意正数 $R$ 成立。",
+        "knowledge_points": [
+          "Fubini定理",
+          "变量分离"
+        ],
+        "question_type": "积分恒等式证明",
+        "method": [
+          "Fubini定理",
+          "变量分离"
+        ],
+        "solution_steps": [
+          "利用被积函数可分离性",
+          "应用Fubini定理化为累次积分乘积"
+        ],
+        "math_structure": {
+          "type": "separable_double_integral",
+          "template": "int int e^{-x^2-y^2} over square = (int e^{-x^2})^2",
+          "variable_count": 1
+        },
+        "difficulty": 2,
+        "estimated_minutes": 7,
+        "answer": [
+          {
+            "label": "证明",
+            "steps": [
+              "由于 $e^{-(x^2+y^2)}=e^{-x^2}\\cdot e^{-y^2}$ 在有界矩形上连续，满足Fubini定理条件，可交换积分次序并分离。",
+              "$\\int_{-R}^R\\int_{-R}^R e^{-x^2}e^{-y^2}dxdy=\\int_{-R}^R e^{-y^2}\\left(\\int_{-R}^R e^{-x^2}dx\\right)dy$。",
+              "内层括号中的积分是关于 $y$ 的常数，可提出：$=\\left(\\int_{-R}^R e^{-x^2}dx\\right)\\int_{-R}^R e^{-y^2}dy=\\left(\\int_{-R}^R e^{-x^2}dx\\right)^2$，证毕。"
+            ]
+          }
+        ],
+        "id": "nagoya-2007-1e847b7fbd-q02-practice-03",
+        "school": "名古屋大学",
+        "year": "2007"
+      },
+      {
+        "text": "证明半径为 $R$ 的圆盘 $D_R=\\{x^2+y^2\\le R^2\\}$ 与边长 $2R$ 的正方形 $S_R=[-R,R]^2$ 满足 $D_R\\subset S_R\\subset D_{R\\sqrt2}$，并说明这在证明高斯积分中的作用。",
+        "knowledge_points": [
+          "几何包含关系",
+          "夹逼定理原理"
+        ],
+        "question_type": "几何证明",
+        "method": [
+          "几何分析",
+          "距离比较"
+        ],
+        "solution_steps": [
+          "证明圆盘包含于正方形",
+          "证明正方形包含于更大圆盘"
+        ],
+        "math_structure": {
+          "type": "geometric_inclusion",
+          "template": "disk subset square subset larger disk",
+          "variable_count": 1
+        },
+        "difficulty": 2,
+        "estimated_minutes": 8,
+        "answer": [
+          {
+            "label": "证明",
+            "steps": [
+              "若 $(x,y)\\in D_R$，即 $x^2+y^2\\le R^2$，则 $|x|\\le R$ 且 $|y|\\le R$（因为 $x^2\\le x^2+y^2\\le R^2$），故 $(x,y)\\in S_R$，即 $D_R\\subset S_R$。",
+              "若 $(x,y)\\in S_R$，即 $|x|\\le R,|y|\\le R$，则 $x^2+y^2\\le R^2+R^2=2R^2$，即 $(x,y)\\in D_{R\\sqrt2}$，故 $S_R\\subset D_{R\\sqrt2}$。",
+              "作用：对于非负被积函数，区域包含关系可给出积分值的大小关系，从而用两侧极限相同的量夹逼中间的量，这是证明 $v(R)-u(R)\\to0$ 从而推出高斯积分值的关键工具（夹逼定理）。"
+            ]
+          }
+        ],
+        "id": "nagoya-2007-1e847b7fbd-q02-practice-04",
+        "school": "名古屋大学",
+        "year": "2007"
+      },
+      {
+        "text": "已知 $\\int_{-\\infty}^{\\infty} e^{-x^2}dx=\\sqrt\\pi$，求 $\\int_{-\\infty}^{\\infty} e^{-ax^2}dx$（$a>0$）。",
+        "knowledge_points": [
+          "换元积分",
+          "Gauss积分推广"
+        ],
+        "question_type": "广义积分计算",
+        "method": [
+          "换元法",
+          "利用已知结果"
+        ],
+        "solution_steps": [
+          "作换元 $u=\\sqrt a x$",
+          "利用已知高斯积分结果代入"
+        ],
+        "math_structure": {
+          "type": "gaussian_integral_generalization",
+          "template": "int e^{-ax^2}dx over R, a>0",
+          "variable_count": 1
+        },
+        "difficulty": 2,
+        "estimated_minutes": 6,
+        "answer": [
+          {
+            "label": "结果",
+            "steps": [
+              "令 $u=\\sqrt a\\,x$，则 $du=\\sqrt a\\,dx$，即 $dx=\\frac{du}{\\sqrt a}$。",
+              "代入：$\\int_{-\\infty}^\\infty e^{-ax^2}dx=\\int_{-\\infty}^\\infty e^{-u^2}\\frac{du}{\\sqrt a}=\\frac{1}{\\sqrt a}\\int_{-\\infty}^\\infty e^{-u^2}du$。",
+              "利用已知结果 $\\int_{-\\infty}^\\infty e^{-u^2}du=\\sqrt\\pi$，得 $\\int_{-\\infty}^\\infty e^{-ax^2}dx=\\sqrt{\\pi/a}$。"
+            ]
+          }
+        ],
+        "id": "nagoya-2007-1e847b7fbd-q02-practice-05",
+        "school": "名古屋大学",
+        "year": "2007"
+      }
+    ],
+    "source_question": "問2",
+    "source_pdf": "名古屋大学/多元数理科学研究科/全专攻/名古屋大学_多元数理科学研究科_2007_第2次_数学过去问_下午.pdf",
+    "source_type": "官方过去问",
+    "subject_category": "微积分"
+  }
+]

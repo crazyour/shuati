@@ -1,0 +1,652 @@
+[
+  {
+    "id": "kyoto-2025-0964b49f99-q01",
+    "school": "京都大学",
+    "year": "2025",
+    "subject": "情报学研究科_数理工学",
+    "text": "求 $f(x)=\\sqrt{1+\\sin x}$ 在 $x=0$ 处的泰勒展开 $f(x)=\\sum_{n=0}^{\\infty} a_n x^n$ 中的常数 $a_0, a_1, a_2, a_3$。",
+    "knowledge_points": [
+      "泰勒展开",
+      "复合函数展开",
+      "三角恒等式",
+      "二项级数"
+    ],
+    "question_type": "泰勒展开系数求解",
+    "method": [
+      "利用恒等式 $1+\\sin x=(\\sin(x/2)+\\cos(x/2))^2$ 化简为初等函数之和后展开",
+      "直接二项级数展开法作为验证"
+    ],
+    "solution_steps": [
+      "利用二倍角公式 $(\\sin(x/2)+\\cos(x/2))^2=1+2\\sin(x/2)\\cos(x/2)=1+\\sin x$，得 $f(x)=\\cos(x/2)+\\sin(x/2)$（在 $x=0$ 附近取正值）",
+      "分别写出 $\\cos(x/2)$ 与 $\\sin(x/2)$ 的麦克劳林级数到 $x^3$ 项",
+      "两式相加合并同类项得到 $a_0,a_1,a_2,a_3$",
+      "用直接对 $u=\\sin x$ 做二项级数 $\\sqrt{1+u}=1+u/2-u^2/8+u^3/16-\\cdots$ 展开验证结果一致"
+    ],
+    "math_structure": {
+      "type": "taylor_expansion_composite",
+      "template": "f(x)=\\sqrt{1+\\sin x}=\\sum_{n=0}^{\\infty}a_n x^n, 求 a_0,a_1,a_2,a_3",
+      "variable_count": 4
+    },
+    "difficulty": 3,
+    "answer": [
+      {
+        "label": "a0,a1,a2,a3",
+        "steps": [
+          "由 $1+\\sin x=(\\cos(x/2)+\\sin(x/2))^2$，且当 $x$ 靠近 $0$ 时 $\\cos(x/2)+\\sin(x/2)>0$，故 $f(x)=\\cos(x/2)+\\sin(x/2)$",
+          "$\\cos(x/2)=1-\\dfrac{x^2}{8}+O(x^4)$，$\\sin(x/2)=\\dfrac{x}{2}-\\dfrac{x^3}{48}+O(x^5)$",
+          "相加：$f(x)=1+\\dfrac{x}{2}-\\dfrac{x^2}{8}-\\dfrac{x^3}{48}+O(x^4)$",
+          "验证：令 $u=\\sin x=x-\\dfrac{x^3}{6}+O(x^5)$，$\\sqrt{1+u}=1+\\dfrac{u}{2}-\\dfrac{u^2}{8}+\\dfrac{u^3}{16}-\\cdots$，代入得同样结果 $1+\\dfrac{x}{2}-\\dfrac{x^2}{8}-\\dfrac{x^3}{48}$",
+          "结论：$a_0=1,\\ a_1=\\dfrac12,\\ a_2=-\\dfrac18,\\ a_3=-\\dfrac{1}{48}$"
+        ]
+      }
+    ],
+    "practice_questions": [
+      {
+        "text": "求 $\\sqrt{1+x}$ 在 $x=0$ 处泰勒展开到 $x^3$ 项的系数。",
+        "knowledge_points": [
+          "二项级数展开"
+        ],
+        "question_type": "泰勒展开",
+        "method": [
+          "二项级数公式 $(1+x)^{1/2}=\\sum \\binom{1/2}{n}x^n$"
+        ],
+        "solution_steps": [
+          "写出二项系数 $\\binom{1/2}{0},\\binom{1/2}{1},\\binom{1/2}{2},\\binom{1/2}{3}$",
+          "代入求各项系数"
+        ],
+        "math_structure": {
+          "type": "taylor_expansion_basic",
+          "template": "\\sqrt{1+x}=\\sum a_n x^n",
+          "variable_count": 4
+        },
+        "difficulty": 1,
+        "estimated_minutes": 5,
+        "answer": [
+          {
+            "label": "系数",
+            "steps": [
+              "$(1+x)^{1/2}=1+\\dfrac12 x+\\dfrac{(1/2)(-1/2)}{2}x^2+\\dfrac{(1/2)(-1/2)(-3/2)}{6}x^3+\\cdots$",
+              "计算：$1+\\dfrac12 x-\\dfrac18 x^2+\\dfrac{1}{16}x^3+O(x^4)$",
+              "结论：$a_0=1,a_1=1/2,a_2=-1/8,a_3=1/16$"
+            ]
+          }
+        ],
+        "id": "kyoto-2025-0964b49f99-q01-practice-01",
+        "school": "京都大学",
+        "year": "2025"
+      },
+      {
+        "text": "求 $\\sin(x/2)$ 在 $x=0$ 处泰勒展开到 $x^3$ 项。",
+        "knowledge_points": [
+          "正弦函数麦克劳林展开",
+          "复合变量替换"
+        ],
+        "question_type": "泰勒展开",
+        "method": [
+          "将 $\\sin t=t-t^3/6+\\cdots$ 中 $t=x/2$ 代入"
+        ],
+        "solution_steps": [
+          "写出 $\\sin t$ 的展开式",
+          "令 $t=x/2$ 代入并化简"
+        ],
+        "math_structure": {
+          "type": "taylor_expansion_substitution",
+          "template": "\\sin(x/2)=\\sum a_n x^n",
+          "variable_count": 2
+        },
+        "difficulty": 1,
+        "estimated_minutes": 4,
+        "answer": [
+          {
+            "label": "结果",
+            "steps": [
+              "$\\sin t=t-\\dfrac{t^3}{6}+O(t^5)$，令 $t=x/2$",
+              "$\\sin(x/2)=\\dfrac{x}{2}-\\dfrac{x^3}{48}+O(x^5)$",
+              "结论：系数为 $\\dfrac12$（一次项），$-\\dfrac{1}{48}$（三次项）"
+            ]
+          }
+        ],
+        "id": "kyoto-2025-0964b49f99-q01-practice-02",
+        "school": "京都大学",
+        "year": "2025"
+      },
+      {
+        "text": "利用恒等式 $1+\\sin x=(\\sin(x/2)+\\cos(x/2))^2$，求 $\\sqrt{1+\\sin x}$ 展开到 $x^2$ 项（即只需 $a_0,a_1,a_2$）。",
+        "knowledge_points": [
+          "三角恒等变形",
+          "泰勒展开的加法"
+        ],
+        "question_type": "泰勒展开（部分）",
+        "method": [
+          "利用恒等式化简为 $\\cos(x/2)+\\sin(x/2)$ 再展开"
+        ],
+        "solution_steps": [
+          "化简 $f(x)=\\cos(x/2)+\\sin(x/2)$",
+          "展开到 $x^2$ 项",
+          "合并同类项"
+        ],
+        "math_structure": {
+          "type": "taylor_expansion_composite_partial",
+          "template": "\\sqrt{1+\\sin x}=\\sum a_n x^n (n\\le 2)",
+          "variable_count": 3
+        },
+        "difficulty": 2,
+        "estimated_minutes": 6,
+        "answer": [
+          {
+            "label": "a0,a1,a2",
+            "steps": [
+              "$\\cos(x/2)=1-x^2/8+O(x^4)$, $\\sin(x/2)=x/2+O(x^3)$",
+              "相加：$1+x/2-x^2/8+O(x^3)$",
+              "结论：$a_0=1,a_1=1/2,a_2=-1/8$"
+            ]
+          }
+        ],
+        "id": "kyoto-2025-0964b49f99-q01-practice-03",
+        "school": "京都大学",
+        "year": "2025"
+      },
+      {
+        "text": "继续求 $\\sqrt{1+\\sin x}$ 泰勒展开中的 $a_4$（四次项系数）。",
+        "knowledge_points": [
+          "高阶泰勒展开",
+          "三角函数展开合并"
+        ],
+        "question_type": "泰勒展开系数求解",
+        "method": [
+          "延续原题方法，展开 $\\cos(x/2)$ 与 $\\sin(x/2)$ 到 $x^4$ 项"
+        ],
+        "solution_steps": [
+          "写出 $\\cos(x/2)$ 到 $x^4$ 项：$1-x^2/8+x^4/384$",
+          "$\\sin(x/2)$ 无 $x^4$ 项",
+          "相加得 $a_4$"
+        ],
+        "math_structure": {
+          "type": "taylor_expansion_composite_extended",
+          "template": "\\sqrt{1+\\sin x}=\\sum a_n x^n, 求 a_4",
+          "variable_count": 1
+        },
+        "difficulty": 3,
+        "estimated_minutes": 7,
+        "answer": [
+          {
+            "label": "a4",
+            "steps": [
+              "$\\cos(x/2)=1-\\dfrac{(x/2)^2}{2}+\\dfrac{(x/2)^4}{24}=1-\\dfrac{x^2}{8}+\\dfrac{x^4}{384}$",
+              "$\\sin(x/2)=x/2-x^3/48+O(x^5)$，无 $x^4$ 项",
+              "求和后 $x^4$ 系数即为 $\\cos(x/2)$ 贡献：$a_4=\\dfrac{1}{384}$"
+            ]
+          }
+        ],
+        "id": "kyoto-2025-0964b49f99-q01-practice-04",
+        "school": "京都大学",
+        "year": "2025"
+      }
+    ],
+    "source_question": "問1(i)",
+    "source_pdf": "京都大学/情报学研究科/数理工学/京都大学_情报学研究科_数理工学_2025_数学过去问.pdf",
+    "source_type": "官方过去问",
+    "subject_category": "微积分"
+  },
+  {
+    "id": "kyoto-2025-0964b49f99-q02",
+    "school": "京都大学",
+    "year": "2025",
+    "subject": "情报学研究科_数理工学",
+    "text": "求定积分 $\\displaystyle\\int_{\\pi/3}^{\\pi/2}\\dfrac{1}{\\sin x}dx$。",
+    "knowledge_points": [
+      "三角函数积分",
+      "csc x 的原函数",
+      "半角公式"
+    ],
+    "question_type": "定积分计算",
+    "method": [
+      "利用 $\\int \\csc x\\,dx=\\ln|\\tan(x/2)|+C$"
+    ],
+    "solution_steps": [
+      "写出 $\\csc x$ 的原函数",
+      "代入上下限计算",
+      "化简对数结果"
+    ],
+    "math_structure": {
+      "type": "definite_integral_trig",
+      "template": "\\int_{\\pi/3}^{\\pi/2}\\dfrac{1}{\\sin x}dx",
+      "variable_count": 2
+    },
+    "difficulty": 2,
+    "answer": [
+      {
+        "label": "结果",
+        "steps": [
+          "$\\int \\csc x\\,dx=\\ln\\left|\\tan\\dfrac{x}{2}\\right|+C$",
+          "在 $x=\\pi/2$：$\\tan(\\pi/4)=1$，$\\ln 1=0$；在 $x=\\pi/3$：$\\tan(\\pi/6)=1/\\sqrt3$，$\\ln(1/\\sqrt3)=-\\dfrac12\\ln 3$",
+          "积分值 $=0-\\left(-\\dfrac12\\ln3\\right)=\\dfrac12\\ln 3$",
+          "验证：数值上 $\\dfrac12\\ln3\\approx0.549$，与直接数值积分估计一致"
+        ]
+      }
+    ],
+    "practice_questions": [
+      {
+        "text": "求 $\\displaystyle\\int \\dfrac{1}{\\sin x}dx$ 的一般原函数表达式。",
+        "knowledge_points": [
+          "csc x 积分公式推导"
+        ],
+        "question_type": "不定积分",
+        "method": [
+          "用 $u=\\tan(x/2)$ 代换"
+        ],
+        "solution_steps": [
+          "令 $u=\\tan(x/2)$，化 $\\sin x=2u/(1+u^2)$",
+          "代入积分并化简",
+          "还原变量"
+        ],
+        "math_structure": {
+          "type": "indefinite_integral_csc",
+          "template": "\\int \\dfrac{1}{\\sin x}dx",
+          "variable_count": 1
+        },
+        "difficulty": 1,
+        "estimated_minutes": 6,
+        "answer": [
+          {
+            "label": "结果",
+            "steps": [
+              "令 $u=\\tan(x/2)$，则 $dx=\\dfrac{2}{1+u^2}du$，$\\sin x=\\dfrac{2u}{1+u^2}$",
+              "$\\int\\dfrac{1}{\\sin x}dx=\\int\\dfrac{1+u^2}{2u}\\cdot\\dfrac{2}{1+u^2}du=\\int\\dfrac{du}{u}=\\ln|u|+C$",
+              "还原：$\\ln|\\tan(x/2)|+C$"
+            ]
+          }
+        ],
+        "id": "kyoto-2025-0964b49f99-q02-practice-01",
+        "school": "京都大学",
+        "year": "2025"
+      },
+      {
+        "text": "求 $\\displaystyle\\int_{\\pi/4}^{\\pi/2}\\dfrac{1}{\\sin x}dx$ 的值。",
+        "knowledge_points": [
+          "csc x 积分公式应用"
+        ],
+        "question_type": "定积分计算",
+        "method": [
+          "直接套用 $\\ln|\\tan(x/2)|$"
+        ],
+        "solution_steps": [
+          "计算上下限对应的 $\\tan(x/2)$ 值",
+          "求对数差"
+        ],
+        "math_structure": {
+          "type": "definite_integral_trig",
+          "template": "\\int_{\\pi/4}^{\\pi/2}\\dfrac{1}{\\sin x}dx",
+          "variable_count": 2
+        },
+        "difficulty": 2,
+        "estimated_minutes": 5,
+        "answer": [
+          {
+            "label": "结果",
+            "steps": [
+              "$x=\\pi/2$：$\\tan(\\pi/4)=1,\\ln1=0$",
+              "$x=\\pi/4$：$\\tan(\\pi/8)=\\sqrt2-1$，故 $\\ln(\\sqrt2-1)$",
+              "积分值 $=0-\\ln(\\sqrt2-1)=\\ln\\dfrac{1}{\\sqrt2-1}=\\ln(\\sqrt2+1)$"
+            ]
+          }
+        ],
+        "id": "kyoto-2025-0964b49f99-q02-practice-02",
+        "school": "京都大学",
+        "year": "2025"
+      },
+      {
+        "text": "求 $\\displaystyle\\int_{\\pi/6}^{\\pi/3}\\dfrac{1}{\\sin x}dx$ 的值，并与原题 $\\int_{\\pi/3}^{\\pi/2}$ 的结果比较大小。",
+        "knowledge_points": [
+          "csc x 积分公式应用",
+          "积分区间比较"
+        ],
+        "question_type": "定积分计算与比较",
+        "method": [
+          "套用原函数计算两积分值再比较"
+        ],
+        "solution_steps": [
+          "计算 $\\int_{\\pi/6}^{\\pi/3}$ 的值",
+          "与 $\\frac12\\ln3$ 比较"
+        ],
+        "math_structure": {
+          "type": "definite_integral_comparison",
+          "template": "\\int_{\\pi/6}^{\\pi/3}\\dfrac{1}{\\sin x}dx \\text{ vs } \\int_{\\pi/3}^{\\pi/2}\\dfrac{1}{\\sin x}dx",
+          "variable_count": 2
+        },
+        "difficulty": 3,
+        "estimated_minutes": 8,
+        "answer": [
+          {
+            "label": "结果与比较",
+            "steps": [
+              "$x=\\pi/3$：$\\tan(\\pi/6)=1/\\sqrt3$，$\\ln(1/\\sqrt3)=-\\frac12\\ln3$",
+              "$x=\\pi/6$：$\\tan(\\pi/12)=2-\\sqrt3$，$\\ln(2-\\sqrt3)$",
+              "积分值 $=-\\frac12\\ln3-\\ln(2-\\sqrt3)$；数值约为 $-0.549-(-1.317)=0.768$",
+              "比较：$0.768>0.549=\\frac12\\ln3$，说明 $[\\pi/6,\\pi/3]$ 上积分值更大，因 $\\sin x$ 在此区间更小使 $1/\\sin x$ 更大"
+            ]
+          }
+        ],
+        "id": "kyoto-2025-0964b49f99-q02-practice-03",
+        "school": "京都大学",
+        "year": "2025"
+      }
+    ],
+    "source_question": "問1(ii)",
+    "source_pdf": "京都大学/情报学研究科/数理工学/京都大学_情报学研究科_数理工学_2025_数学过去问.pdf",
+    "source_type": "官方过去问",
+    "subject_category": "微积分"
+  },
+  {
+    "id": "kyoto-2025-0964b49f99-q03",
+    "school": "京都大学",
+    "year": "2025",
+    "subject": "情报学研究科_数理工学",
+    "text": "设 $x,y$ 为实数，在约束 $2x^2+3y^2=1$ 下，求 $x-y$ 的最大值与最小值。",
+    "knowledge_points": [
+      "拉格朗日乘数法",
+      "柯西-施瓦茨不等式",
+      "条件极值"
+    ],
+    "question_type": "条件极值问题",
+    "method": [
+      "拉格朗日乘数法求极值点",
+      "柯西-施瓦茨不等式验证"
+    ],
+    "solution_steps": [
+      "设拉格朗日函数并求偏导方程",
+      "解出 $x,y$ 关于 $\\lambda$ 的表达式",
+      "代入约束求 $\\lambda$",
+      "求出 $x-y$ 的极值并用柯西不等式验证"
+    ],
+    "math_structure": {
+      "type": "constrained_extremum_quadratic",
+      "template": "\\max/\\min\\ x-y \\text{ s.t. } 2x^2+3y^2=1",
+      "variable_count": 2
+    },
+    "difficulty": 3,
+    "answer": [
+      {
+        "label": "最大值与最小值",
+        "steps": [
+          "拉格朗日条件：$\\nabla(x-y)=\\lambda\\nabla(2x^2+3y^2)$，即 $1=4\\lambda x,\\ -1=6\\lambda y$，得 $x=\\dfrac{1}{4\\lambda},y=-\\dfrac{1}{6\\lambda}$",
+          "代入约束：$2\\cdot\\dfrac{1}{16\\lambda^2}+3\\cdot\\dfrac{1}{36\\lambda^2}=\\dfrac{1}{8\\lambda^2}+\\dfrac{1}{12\\lambda^2}=\\dfrac{5}{24\\lambda^2}=1$，得 $\\lambda^2=\\dfrac{5}{24}$",
+          "$x-y=\\dfrac{1}{4\\lambda}+\\dfrac{1}{6\\lambda}=\\dfrac{5}{12\\lambda}$，代入 $\\lambda=\\pm\\sqrt{5/24}$ 得 $x-y=\\pm\\dfrac{\\sqrt{30}}{6}$",
+          "验证用柯西-施瓦茨：$x-y=\\sqrt2x\\cdot\\dfrac{1}{\\sqrt2}+\\sqrt3y\\cdot\\left(-\\dfrac{1}{\\sqrt3}\\right)$，故 $(x-y)^2\\le(2x^2+3y^2)\\left(\\dfrac12+\\dfrac13\\right)=\\dfrac56$，即 $|x-y|\\le\\sqrt{5/6}=\\dfrac{\\sqrt{30}}{6}$，等号可达",
+          "结论：最大值 $\\dfrac{\\sqrt{30}}{6}$，最小值 $-\\dfrac{\\sqrt{30}}{6}$"
+        ]
+      }
+    ],
+    "practice_questions": [
+      {
+        "text": "在约束 $x^2+y^2=1$ 下，求 $x+y$ 的最大值。",
+        "knowledge_points": [
+          "拉格朗日乘数法基础"
+        ],
+        "question_type": "条件极值",
+        "method": [
+          "拉格朗日乘数法"
+        ],
+        "solution_steps": [
+          "建立方程组",
+          "求解并代入约束"
+        ],
+        "math_structure": {
+          "type": "constrained_extremum_circle",
+          "template": "\\max\\ x+y \\text{ s.t. } x^2+y^2=1",
+          "variable_count": 2
+        },
+        "difficulty": 1,
+        "estimated_minutes": 4,
+        "answer": [
+          {
+            "label": "最大值",
+            "steps": [
+              "$1=2\\lambda x,1=2\\lambda y \\Rightarrow x=y$",
+              "代入约束 $2x^2=1\\Rightarrow x=1/\\sqrt2$",
+              "最大值 $x+y=\\sqrt2$"
+            ]
+          }
+        ],
+        "id": "kyoto-2025-0964b49f99-q03-practice-01",
+        "school": "京都大学",
+        "year": "2025"
+      },
+      {
+        "text": "在约束 $4x^2+y^2=1$ 下，求 $x-y$ 的最大值与最小值。",
+        "knowledge_points": [
+          "拉格朗日乘数法",
+          "柯西不等式"
+        ],
+        "question_type": "条件极值",
+        "method": [
+          "拉格朗日乘数法或柯西不等式"
+        ],
+        "solution_steps": [
+          "建立方程组求出极值点",
+          "求出 $x-y$ 的表达式",
+          "用柯西不等式验证"
+        ],
+        "math_structure": {
+          "type": "constrained_extremum_quadratic",
+          "template": "\\max/\\min\\ x-y \\text{ s.t. } 4x^2+y^2=1",
+          "variable_count": 2
+        },
+        "difficulty": 2,
+        "estimated_minutes": 6,
+        "answer": [
+          {
+            "label": "结果",
+            "steps": [
+              "$1=8\\lambda x,-1=2\\lambda y\\Rightarrow x=1/(8\\lambda),y=-1/(2\\lambda)$",
+              "代入约束：$4/(64\\lambda^2)+1/(4\\lambda^2)=1/(16\\lambda^2)+1/(4\\lambda^2)=5/(16\\lambda^2)=1\\Rightarrow \\lambda^2=5/16$",
+              "$x-y=1/(8\\lambda)+1/(2\\lambda)=5/(8\\lambda)$，代入 $\\lambda=\\pm\\sqrt{5}/4$ 得 $x-y=\\pm\\sqrt5/2 \\cdot(4/8)=\\pm\\sqrt5/2$",
+              "验证：柯西不等式 $(x-y)^2\\le(4x^2+y^2)(1/4+1)=5/4$，故最大值 $\\sqrt5/2$，最小值 $-\\sqrt5/2$，一致"
+            ]
+          }
+        ],
+        "id": "kyoto-2025-0964b49f99-q03-practice-02",
+        "school": "京都大学",
+        "year": "2025"
+      },
+      {
+        "text": "在约束 $2x^2+3y^2=1$ 下，求 $2x+y$ 的最大值与最小值（作为原题方法的进一步练习）。",
+        "knowledge_points": [
+          "拉格朗日乘数法",
+          "柯西不等式",
+          "条件极值"
+        ],
+        "question_type": "条件极值问题",
+        "method": [
+          "拉格朗日乘数法与柯西不等式对照使用"
+        ],
+        "solution_steps": [
+          "建立拉格朗日方程",
+          "求 $\\lambda$ 及极值",
+          "柯西不等式验证"
+        ],
+        "math_structure": {
+          "type": "constrained_extremum_quadratic",
+          "template": "\\max/\\min\\ 2x+y \\text{ s.t. } 2x^2+3y^2=1",
+          "variable_count": 2
+        },
+        "difficulty": 3,
+        "estimated_minutes": 8,
+        "answer": [
+          {
+            "label": "结果",
+            "steps": [
+              "$2=4\\lambda x,1=6\\lambda y\\Rightarrow x=1/(2\\lambda),y=1/(6\\lambda)$",
+              "代入约束：$2/(4\\lambda^2)+3/(36\\lambda^2)=1/(2\\lambda^2)+1/(12\\lambda^2)=7/(12\\lambda^2)=1\\Rightarrow\\lambda^2=7/12$",
+              "$2x+y=1/\\lambda+1/(6\\lambda)=7/(6\\lambda)$，代入 $\\lambda=\\pm\\sqrt{7/12}$ 得 $2x+y=\\pm\\dfrac{7}{6}\\sqrt{12/7}=\\pm\\dfrac{7}{6}\\cdot\\dfrac{2\\sqrt3}{\\sqrt7}=\\pm\\dfrac{7\\sqrt3}{3\\sqrt7}=\\pm\\dfrac{\\sqrt{21}}{3}$",
+              "验证：柯西不等式 $(2x+y)^2\\le(2x^2+3y^2)(2+1/3)=7/3$，即 $|2x+y|\\le\\sqrt{7/3}=\\sqrt{21}/3$，一致，最大值 $\\sqrt{21}/3$，最小值 $-\\sqrt{21}/3$"
+            ]
+          }
+        ],
+        "id": "kyoto-2025-0964b49f99-q03-practice-03",
+        "school": "京都大学",
+        "year": "2025"
+      }
+    ],
+    "source_question": "問1(iii)",
+    "source_pdf": "京都大学/情报学研究科/数理工学/京都大学_情报学研究科_数理工学_2025_数学过去问.pdf",
+    "source_type": "官方过去问",
+    "subject_category": "微积分"
+  },
+  {
+    "id": "kyoto-2025-0964b49f99-q04",
+    "school": "京都大学",
+    "year": "2025",
+    "subject": "情报学研究科_数理工学",
+    "text": "设 $D=\\{(x,y)\\in\\mathbb{R}^2\\mid x^2\\le y\\le 2\\}$，求二重积分 $\\displaystyle\\iint_D x^2 y\\,dxdy$ 的值。",
+    "knowledge_points": [
+      "二重积分",
+      "累次积分",
+      "偶函数对称性",
+      "区域描述"
+    ],
+    "question_type": "二重积分计算",
+    "method": [
+      "先对 $y$ 积分再对 $x$ 积分（累次积分法）",
+      "利用被积函数的偶对称性简化计算"
+    ],
+    "solution_steps": [
+      "确定 $x$ 的取值范围（使 $x^2\\le2$）",
+      "对固定 $x$，$y$ 从 $x^2$ 到 $2$ 积分",
+      "再对 $x$ 从 $-\\sqrt2$ 到 $\\sqrt2$ 积分，利用偶函数性质化简计算"
+    ],
+    "math_structure": {
+      "type": "double_integral_region",
+      "template": "\\iint_{x^2\\le y\\le 2} x^2 y\\,dxdy",
+      "variable_count": 2
+    },
+    "difficulty": 2,
+    "answer": [
+      {
+        "label": "结果",
+        "steps": [
+          "$x$ 的范围：由 $x^2\\le2$ 得 $-\\sqrt2\\le x\\le\\sqrt2$，对固定 $x$，$y\\in[x^2,2]$",
+          "内层积分：$\\int_{x^2}^{2} x^2 y\\,dy = x^2\\cdot\\dfrac{y^2}{2}\\Big|_{x^2}^{2}=x^2\\left(2-\\dfrac{x^4}{2}\\right)=2x^2-\\dfrac{x^6}{2}$",
+          "外层积分（偶函数，区间对称）：$\\int_{-\\sqrt2}^{\\sqrt2}\\left(2x^2-\\dfrac{x^6}{2}\\right)dx=2\\int_0^{\\sqrt2}\\left(2x^2-\\dfrac{x^6}{2}\\right)dx$",
+          "$=2\\left[\\dfrac{2x^3}{3}-\\dfrac{x^7}{14}\\right]_0^{\\sqrt2}=2\\left(\\dfrac{4\\sqrt2}{3}-\\dfrac{4\\sqrt2}{7}\\right)=2\\cdot4\\sqrt2\\left(\\dfrac13-\\dfrac17\\right)=8\\sqrt2\\cdot\\dfrac{4}{21}=\\dfrac{32\\sqrt2}{21}$",
+          "结论：$\\displaystyle\\iint_D x^2y\\,dxdy=\\dfrac{32\\sqrt2}{21}$"
+        ]
+      }
+    ],
+    "practice_questions": [
+      {
+        "text": "求 $\\displaystyle\\iint_D x\\,dxdy$，其中 $D=\\{(x,y)\\mid 0\\le x\\le1, x\\le y\\le1\\}$。",
+        "knowledge_points": [
+          "二重积分基础",
+          "累次积分"
+        ],
+        "question_type": "二重积分计算",
+        "method": [
+          "累次积分法"
+        ],
+        "solution_steps": [
+          "写出内外层积分限",
+          "先对 $y$ 积分再对 $x$ 积分"
+        ],
+        "math_structure": {
+          "type": "double_integral_basic",
+          "template": "\\iint_{x\\le y\\le1,0\\le x\\le1} x\\,dxdy",
+          "variable_count": 1
+        },
+        "difficulty": 1,
+        "estimated_minutes": 5,
+        "answer": [
+          {
+            "label": "结果",
+            "steps": [
+              "内层：$\\int_x^1 x\\,dy=x(1-x)$",
+              "外层：$\\int_0^1 x(1-x)dx=\\int_0^1(x-x^2)dx=1/2-1/3=1/6$",
+              "结论：积分值为 $1/6$"
+            ]
+          }
+        ],
+        "id": "kyoto-2025-0964b49f99-q04-practice-01",
+        "school": "京都大学",
+        "year": "2025"
+      },
+      {
+        "text": "求 $\\displaystyle\\iint_D y\\,dxdy$，其中 $D=\\{(x,y)\\mid x^2\\le y\\le1\\}$。",
+        "knowledge_points": [
+          "二重积分",
+          "对称区域"
+        ],
+        "question_type": "二重积分计算",
+        "method": [
+          "累次积分与对称性"
+        ],
+        "solution_steps": [
+          "确定 $x$ 范围",
+          "内层对 $y$ 积分",
+          "外层对 $x$ 积分并利用偶函数性质"
+        ],
+        "math_structure": {
+          "type": "double_integral_region",
+          "template": "\\iint_{x^2\\le y\\le1} y\\,dxdy",
+          "variable_count": 1
+        },
+        "difficulty": 2,
+        "estimated_minutes": 6,
+        "answer": [
+          {
+            "label": "结果",
+            "steps": [
+              "$x\\in[-1,1]$，内层：$\\int_{x^2}^1 y\\,dy=\\dfrac{1-x^4}{2}$",
+              "外层：$\\int_{-1}^1\\dfrac{1-x^4}{2}dx=\\int_0^1(1-x^4)dx=1-1/5=4/5$",
+              "结论：积分值为 $4/5$"
+            ]
+          }
+        ],
+        "id": "kyoto-2025-0964b49f99-q04-practice-02",
+        "school": "京都大学",
+        "year": "2025"
+      },
+      {
+        "text": "求 $\\displaystyle\\iint_D x^2\\,dxdy$，其中 $D=\\{(x,y)\\mid x^2\\le y\\le2\\}$（与原题同区域但不同被积函数）。",
+        "knowledge_points": [
+          "二重积分",
+          "累次积分",
+          "偶函数对称性"
+        ],
+        "question_type": "二重积分计算",
+        "method": [
+          "累次积分法"
+        ],
+        "solution_steps": [
+          "确定 $x$ 范围为 $[-\\sqrt2,\\sqrt2]$",
+          "内层对 $y$ 积分（被积函数不含 $y$，直接乘以区间长度）",
+          "外层对 $x$ 积分"
+        ],
+        "math_structure": {
+          "type": "double_integral_region",
+          "template": "\\iint_{x^2\\le y\\le2} x^2\\,dxdy",
+          "variable_count": 1
+        },
+        "difficulty": 2,
+        "estimated_minutes": 6,
+        "answer": [
+          {
+            "label": "结果",
+            "steps": [
+              "内层：$\\int_{x^2}^2 x^2\\,dy = x^2(2-x^2)=2x^2-x^4$",
+              "外层：$\\int_{-\\sqrt2}^{\\sqrt2}(2x^2-x^4)dx=2\\int_0^{\\sqrt2}(2x^2-x^4)dx=2\\left[\\dfrac{2x^3}{3}-\\dfrac{x^5}{5}\\right]_0^{\\sqrt2}$",
+              "$=2\\left(\\dfrac{4\\sqrt2}{3}-\\dfrac{4\\sqrt2}{5}\\right)=2\\cdot4\\sqrt2\\left(\\dfrac13-\\dfrac15\\right)=8\\sqrt2\\cdot\\dfrac{2}{15}=\\dfrac{16\\sqrt2}{15}$",
+              "结论：积分值为 $\\dfrac{16\\sqrt2}{15}$"
+            ]
+          }
+        ],
+        "id": "kyoto-2025-0964b49f99-q04-practice-03",
+        "school": "京都大学",
+        "year": "2025"
+      }
+    ],
+    "source_question": "問1(iv)",
+    "source_pdf": "京都大学/情报学研究科/数理工学/京都大学_情报学研究科_数理工学_2025_数学过去问.pdf",
+    "source_type": "官方过去问",
+    "subject_category": "微积分"
+  }
+]

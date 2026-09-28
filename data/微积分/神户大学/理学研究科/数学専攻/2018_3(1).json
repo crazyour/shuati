@@ -1,0 +1,153 @@
+[
+  {
+    "id": "kobe-2018-math-q03-1",
+    "school": "神户大学",
+    "year": "2018",
+    "subject": "理学研究科_数学専攻",
+    "text": "求曲面 $xyz=1$ 上与原点距离最小的所有点，并求最小距离。",
+    "knowledge_points": [
+      "乘积约束下的最短距离",
+      "大学数学综合应用"
+    ],
+    "question_type": "乘积约束下的最短距离",
+    "method": [
+      "详细推导"
+    ],
+    "solution_steps": [
+      "最小化距离平方 $r^2=x^2+y^2+z^2$。由 AM-GM，$x^2+y^2+z^2\\ge3(|xyz|^2)^{1/3}=3$。",
+      "等号当且仅当 $x^2=y^2=z^2=1$。再结合 $xyz=1$，符号乘积必须为正。",
+      "因此最短距离为 $\\sqrt3$，取得点为 $(1,1,1),(1,-1,-1),(-1,1,-1),(-1,-1,1)$。"
+    ],
+    "math_structure": {
+      "type": "reviewed_exam_question",
+      "template": "求曲面 $xyz=1$ 上与原点距离最小的所有点，并求最小距离。",
+      "variable_count": 3
+    },
+    "difficulty": 3,
+    "answer": [
+      {
+        "label": "步骤 1",
+        "steps": [
+          "最小化距离平方 $r^2=x^2+y^2+z^2$。由 AM-GM，$x^2+y^2+z^2\\ge3(|xyz|^2)^{1/3}=3$。"
+        ]
+      },
+      {
+        "label": "步骤 2",
+        "steps": [
+          "等号当且仅当 $x^2=y^2=z^2=1$。再结合 $xyz=1$，符号乘积必须为正。"
+        ]
+      },
+      {
+        "label": "步骤 3",
+        "steps": [
+          "因此最短距离为 $\\sqrt3$，取得点为 $(1,1,1),(1,-1,-1),(-1,1,-1),(-1,-1,1)$。"
+        ]
+      }
+    ],
+    "practice_questions": [
+      {
+        "id": "kobe-2018-math-q03-1-practice-01",
+        "school": "神户大学",
+        "year": "2018",
+        "text": "求 $xy=1$ 上离原点最近的点。",
+        "knowledge_points": [
+          "乘积约束下的最短距离",
+          "基础计算与证明"
+        ],
+        "question_type": "递进练习",
+        "method": [
+          "使用原题核心方法"
+        ],
+        "solution_steps": [
+          "识别结构",
+          "完成计算或证明"
+        ],
+        "math_structure": {
+          "type": "exclusive_practice",
+          "template": "求 $xy=1$ 上离原点最近的点。",
+          "variable_count": 2
+        },
+        "difficulty": 2,
+        "estimated_minutes": 6,
+        "answer": [
+          {
+            "label": "解答",
+            "steps": [
+              "由 $x^2+y^2\\ge2|xy|=2$，点为 $(1,1),(-1,-1)$，距离 $\\sqrt2$。"
+            ]
+          }
+        ]
+      },
+      {
+        "id": "kobe-2018-math-q03-1-practice-02",
+        "school": "神户大学",
+        "year": "2018",
+        "text": "在 $xyz=8$ 上最小化 $x^2+y^2+z^2$。",
+        "knowledge_points": [
+          "乘积约束下的最短距离",
+          "基础计算与证明"
+        ],
+        "question_type": "递进练习",
+        "method": [
+          "使用原题核心方法"
+        ],
+        "solution_steps": [
+          "识别结构",
+          "完成计算或证明"
+        ],
+        "math_structure": {
+          "type": "exclusive_practice",
+          "template": "在 $xyz=8$ 上最小化 $x^2+y^2+z^2$。",
+          "variable_count": 2
+        },
+        "difficulty": 3,
+        "estimated_minutes": 8,
+        "answer": [
+          {
+            "label": "解答",
+            "steps": [
+              "最小值 $12$，当 $|x|=|y|=|z|=2$ 且乘积为正时取得。"
+            ]
+          }
+        ]
+      },
+      {
+        "id": "kobe-2018-math-q03-1-practice-03",
+        "school": "神户大学",
+        "year": "2018",
+        "text": "用拉格朗日乘子法复核原题。",
+        "knowledge_points": [
+          "乘积约束下的最短距离",
+          "基础计算与证明"
+        ],
+        "question_type": "递进练习",
+        "method": [
+          "使用原题核心方法"
+        ],
+        "solution_steps": [
+          "识别结构",
+          "完成计算或证明"
+        ],
+        "math_structure": {
+          "type": "exclusive_practice",
+          "template": "用拉格朗日乘子法复核原题。",
+          "variable_count": 2
+        },
+        "difficulty": 4,
+        "estimated_minutes": 10,
+        "answer": [
+          {
+            "label": "解答",
+            "steps": [
+              "驻点方程给出 $2x=\\lambda yz$ 等式，相乘比较得 $x^2=y^2=z^2$。"
+            ]
+          }
+        ]
+      }
+    ],
+    "source_question": "问题3(1)",
+    "source_pdf": "神户大学/理学研究科/数学専攻/神户大学_理学研究科_数学専攻_2018.pdf",
+    "source_type": "官方过去问",
+    "subject_category": "微积分"
+  }
+]

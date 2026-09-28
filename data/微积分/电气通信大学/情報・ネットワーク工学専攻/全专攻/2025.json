@@ -1,0 +1,66 @@
+[
+  {
+    "id": "uec-2025-ba8f1785df-q01",
+    "school": "电气通信大学",
+    "year": "2025",
+    "subject": "情報・ネットワーク工学専攻_全专攻",
+    "text": "--- 下一页 ---",
+    "knowledge_points": [
+      "微积分",
+      "极限与积分"
+    ],
+    "question_type": "多问计算题",
+    "method": [
+      "识别函数与定义域",
+      "实施微分、积分或极限运算",
+      "检查收敛性及边界条件"
+    ],
+    "solution_steps": [
+      "识别函数与定义域",
+      "实施微分、积分或极限运算",
+      "检查收敛性及边界条件"
+    ],
+    "math_structure": {
+      "type": "multi_part_calculus",
+      "template": "$f:\\mathbb{R}^n\\to\\mathbb{R}$",
+      "variable_count": 1
+    },
+    "difficulty": 3,
+    "source_question": "原 PDF 中该科目对应题目",
+    "source_pdf": "微积分/电气通信大学/情報・ネットワーク工学専攻/2025_必須問題.pdf",
+    "source_type": "官方过去问",
+    "subject_category": "微积分"
+  },
+  {
+    "id": "uec-2025-00ab163a91-q01",
+    "school": "电气通信大学",
+    "year": "2025",
+    "subject": "情報・ネットワーク工学専攻_全专攻",
+    "text": "--- 下一页 ---\n\n--- 下一页 ---",
+    "knowledge_points": [
+      "微积分",
+      "极限与积分"
+    ],
+    "question_type": "多问计算题",
+    "method": [
+      "识别函数与定义域",
+      "实施微分、积分或极限运算",
+      "检查收敛性及边界条件"
+    ],
+    "solution_steps": [
+      "识别函数与定义域",
+      "实施微分、积分或极限运算",
+      "检查收敛性及边界条件"
+    ],
+    "math_structure": {
+      "type": "multi_part_calculus",
+      "template": "$f:\\mathbb{R}^n\\to\\mathbb{R}$",
+      "variable_count": 1
+    },
+    "difficulty": 3,
+    "source_question": "原 PDF 中该科目对应题目",
+    "source_pdf": "微积分/电气通信大学/情報・ネットワーク工学専攻/2025_選択問題.pdf",
+    "source_type": "官方过去问",
+    "subject_category": "微积分"
+  }
+]

@@ -1,0 +1,232 @@
+[
+  {
+    "id": "chiba-2025-math-a2",
+    "school": "千叶大学",
+    "year": "2025",
+    "subject": "融合理工学府_数学・情報数理学コース",
+    "text": "A2 回答下列问题。\n(1) 设 $f:(-1,1)\\to\\mathbb{R}$ 在 $(-1,1)$ 上连续，并在 $(-1,0)\\cup(0,1)$ 上可微。进一步假设 $\\lim_{x\\to0}f'(x)$ 存在。证明 $f$ 在 $x=0$ 处可微，且\n$$f'(0)=\\lim_{x\\to0}f'(x).$$\n(2) 设 $g:\\mathbb{R}\\to\\mathbb{R}$ 在 $\\mathbb{R}$ 上可微，实数 $a,b$ 满足 $a<b$，但不假设 $g'$ 连续。若 $g'(a)<0<g'(b)$，证明存在 $c\\in(a,b)$ 使 $g'(c)=0$。\n(3) 设 $h:\\mathbb{R}\\to\\mathbb{R}$ 在 $\\mathbb{R}$ 上可微，实数 $a,b$ 满足 $a<b$，但不假设 $h'$ 连续。若 $h'(a)<h'(b)$，证明对任意 $C\\in(h'(a),h'(b))$，存在 $c\\in(a,b)$ 使 $h'(c)=C$。",
+    "knowledge_points": [
+      "导数",
+      "中值定理",
+      "Darboux 定理",
+      "可微性"
+    ],
+    "question_type": "导数性质证明题",
+    "method": [
+      "拉格朗日中值定理",
+      "辅助函数法",
+      "导数的介值性"
+    ],
+    "solution_steps": [
+      "利用中值定理证明原点处差商极限",
+      "构造辅助函数处理导数变号",
+      "将第二问推广到任意介于两端导数值之间的常数"
+    ],
+    "math_structure": {
+      "type": "derivative_darboux_problem",
+      "template": "$f'(a)<C<f'(b)\\Rightarrow\\exists c\\in(a,b):f'(c)=C$",
+      "variable_count": 3
+    },
+    "difficulty": 4,
+    "source_question": "2025年度专业科目试题",
+    "source_pdf": "微积分/千叶大学/融合理工学府/数学・情報数理学コース/2025_専門科目.pdf",
+    "source_type": "官方过去问",
+    "subject_category": "微积分",
+    "answer": [
+      {
+        "label": "(1) 原点处可微",
+        "steps": [
+          "记 $L=\\lim_{x\\to0}f'(x)$。对任意充分小的 $h\\ne0$，在端点 $0,h$ 之间应用拉格朗日中值定理，存在位于二者之间的 $\\xi_h$，使 $\\dfrac{f(h)-f(0)}{h}=f'(\\xi_h)$。",
+          "当 $h\\to0$ 时 $\\xi_h\\to0$，故差商趋于 $L$。因此 $f'(0)$ 存在且 $f'(0)=L$。"
+        ]
+      },
+      {
+        "label": "(2) 导数变号",
+        "steps": [
+          "由 $g'(a)<0$，存在靠近 $a$ 的 $u>a$ 使 $g(u)<g(a)$；由 $g'(b)>0$，存在靠近 $b$ 的 $v<b$ 使 $g(v)<g(b)$。",
+          "连续函数 $g$ 在闭区间 $[a,b]$ 上取得最小值。上述不等式说明最小值不在端点，只能在某个 $c\\in(a,b)$ 取得。由 Fermat 定理，$g'(c)=0$。"
+        ]
+      },
+      {
+        "label": "(3) 导数的介值性",
+        "steps": [
+          "任取 $C\\in(h'(a),h'(b))$，定义 $g(x)=h(x)-Cx$。则 $g'(a)=h'(a)-C<0$，$g'(b)=h'(b)-C>0$。",
+          "由第 (2) 问，存在 $c\\in(a,b)$ 使 $g'(c)=0$，即 $h'(c)=C$。这说明导数即使不连续也具有介值性。"
+        ]
+      }
+    ],
+    "practice_questions": [
+      {
+        "text": "设 $f$ 在 $0$ 的邻域连续、在去心邻域可微，且 $\\lim_{x\\to0}f'(x)=3$。求 $f'(0)$。",
+        "knowledge_points": [
+          "导数极限",
+          "中值定理"
+        ],
+        "question_type": "直接证明题",
+        "method": [
+          "拉格朗日中值定理"
+        ],
+        "solution_steps": [
+          "对差商使用中值定理",
+          "令增量趋于零"
+        ],
+        "math_structure": {
+          "type": "derivative_limit_extension",
+          "template": "$\\lim_{x\\to0}f'(x)=L$",
+          "variable_count": 1
+        },
+        "difficulty": 1,
+        "estimated_minutes": 5,
+        "answer": [
+          {
+            "label": "解",
+            "steps": [
+              "对 $h\\ne0$，存在 $\\xi_h$ 介于 $0$ 与 $h$ 之间，使 $[f(h)-f(0)]/h=f'(\\xi_h)$。",
+              "令 $h\\to0$ 得 $f'(0)=3$。"
+            ]
+          }
+        ],
+        "id": "chiba-2025-math-a2-practice-01",
+        "school": "千叶大学",
+        "year": "2025"
+      },
+      {
+        "text": "设可微函数 $g$ 在内点 $c$ 取得局部最小值，证明 $g'(c)=0$。",
+        "knowledge_points": [
+          "Fermat 定理",
+          "导数定义"
+        ],
+        "question_type": "证明题",
+        "method": [
+          "左右差商"
+        ],
+        "solution_steps": [
+          "考察正负增量",
+          "夹逼导数"
+        ],
+        "math_structure": {
+          "type": "fermat_stationary_point",
+          "template": "$c$ 为内点极值点",
+          "variable_count": 1
+        },
+        "difficulty": 2,
+        "estimated_minutes": 6,
+        "answer": [
+          {
+            "label": "证明",
+            "steps": [
+              "当 $h>0$ 时，$[g(c+h)-g(c)]/h\\ge0$；当 $h<0$ 时，该差商 $\\le0$。",
+              "两侧极限相等且导数存在，只能有 $g'(c)=0$。"
+            ]
+          }
+        ],
+        "id": "chiba-2025-math-a2-practice-02",
+        "school": "千叶大学",
+        "year": "2025"
+      },
+      {
+        "text": "设 $g$ 在 $[a,b]$ 连续、在 $(a,b)$ 可微，且 $g'(a)<0<g'(b)$（端点导数按相应单侧理解）。证明区间内存在驻点。",
+        "knowledge_points": [
+          "极值存在定理",
+          "Fermat 定理"
+        ],
+        "question_type": "存在性证明",
+        "method": [
+          "端点排除法"
+        ],
+        "solution_steps": [
+          "证明最小值不在端点",
+          "应用 Fermat 定理"
+        ],
+        "math_structure": {
+          "type": "stationary_point_sign_change",
+          "template": "$g'(a)<0<g'(b)$",
+          "variable_count": 1
+        },
+        "difficulty": 3,
+        "estimated_minutes": 10,
+        "answer": [
+          {
+            "label": "证明",
+            "steps": [
+              "端点导数的符号分别保证在 $a$ 右侧和 $b$ 左侧存在函数值更小的点。",
+              "闭区间最小值因此在内部某点取得，由 Fermat 定理该点导数为零。"
+            ]
+          }
+        ],
+        "id": "chiba-2025-math-a2-practice-03",
+        "school": "千叶大学",
+        "year": "2025"
+      },
+      {
+        "text": "设 $h'(a)=1$、$h'(b)=5$。证明存在 $c\\in(a,b)$ 使 $h'(c)=3$，不假设 $h'$ 连续。",
+        "knowledge_points": [
+          "Darboux 定理",
+          "辅助函数"
+        ],
+        "question_type": "存在性证明",
+        "method": [
+          "构造 $h(x)-3x$"
+        ],
+        "solution_steps": [
+          "构造辅助函数",
+          "利用导数变号"
+        ],
+        "math_structure": {
+          "type": "derivative_intermediate_value",
+          "template": "$h'(a)<C<h'(b)$",
+          "variable_count": 1
+        },
+        "difficulty": 3,
+        "estimated_minutes": 8,
+        "answer": [
+          {
+            "label": "证明",
+            "steps": [
+              "令 $g(x)=h(x)-3x$，则 $g'(a)=-2<0$、$g'(b)=2>0$。",
+              "由导数变号结论，存在 $c$ 使 $g'(c)=0$，故 $h'(c)=3$。"
+            ]
+          }
+        ],
+        "id": "chiba-2025-math-a2-practice-04",
+        "school": "千叶大学",
+        "year": "2025"
+      },
+      {
+        "text": "证明导数具有介值性：若 $h'(a)<h'(b)$，则每个介于二者之间的值都被 $h'$ 取到。",
+        "knowledge_points": [
+          "导数介值性",
+          "Darboux 定理"
+        ],
+        "question_type": "综合证明题",
+        "method": [
+          "参数化辅助函数"
+        ],
+        "solution_steps": [
+          "固定中间值",
+          "构造辅助函数",
+          "应用驻点存在性"
+        ],
+        "math_structure": {
+          "type": "darboux_theorem_derivatives",
+          "template": "$C\\in(h'(a),h'(b))$",
+          "variable_count": 2
+        },
+        "difficulty": 4,
+        "estimated_minutes": 15,
+        "answer": [
+          {
+            "label": "证明",
+            "steps": [
+              "固定 $C\\in(h'(a),h'(b))$，令 $g(x)=h(x)-Cx$。",
+              "$g'(a)<0<g'(b)$，故存在内部点 $c$ 使 $g'(c)=0$，于是 $h'(c)=C$。"
+            ]
+          }
+        ],
+        "id": "chiba-2025-math-a2-practice-05",
+        "school": "千叶大学",
+        "year": "2025"
+      }
+    ]
+  }
+]

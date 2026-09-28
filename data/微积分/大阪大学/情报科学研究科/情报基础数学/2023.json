@@ -1,0 +1,414 @@
+[
+  {
+    "id": "osaka-2023-09db4de9ee-q02",
+    "school": "大阪大学",
+    "year": "2023",
+    "subject": "情报科学研究科_情报基础数学",
+    "text": "设点 $\\mathrm{P}(x,y)$ 在 $\\mathbb{R}^2$ 平面上的曲线 $x^2+y^2+2axy=1$ 上运动,考虑函数\n$$f(x,y)=xy.$$\n回答以下问题:\n(1) 求 $a=-\\dfrac12$ 时 $f$ 的最大值与最小值。\n(2) 设 $a$ 为正实数,求此时 $f$ 的最大值与最小值。",
+    "knowledge_points": [
+      "拉格朗日乘数法",
+      "二次型正定性判别(椭圆/双曲线分类)",
+      "主轴变量替换 $u=x+y,v=x-y$",
+      "紧集上连续函数极值存在性",
+      "临界点求解与分类讨论"
+    ],
+    "question_type": "带约束条件的多元函数最值问题",
+    "method": [
+      "拉格朗日乘数法求临界点",
+      "主轴替换 $u=x+y,v=x-y$ 化简约束并直接表出 $f$ 作为一元函数验证"
+    ],
+    "solution_steps": [
+      "写出拉格朗日方程 $\\nabla f=\\lambda\\nabla g$ 并联立消去 $\\lambda$",
+      "得到两族临界点 $y=x$ 与 $y=-x$,分别代入约束求出坐标与对应 $f$ 值",
+      "判断约束曲线的类型(椭圆/双曲线/退化直线)以确定临界值是否为全局最值",
+      "用 $u=x+y,v=x-y$ 变量替换直接验证最值结论"
+    ],
+    "math_structure": {
+      "type": "constrained_extremum_quadratic_curve",
+      "template": "f(x,y)=xy \\text{ subject to } x^2+y^2+2axy=1",
+      "variable_count": 1
+    },
+    "difficulty": 4,
+    "answer": [
+      {
+        "label": "(1) a=-1/2",
+        "steps": [
+          "约束为 $g(x,y)=x^2+y^2-xy-1=0$,拉格朗日方程 $\\nabla f=\\lambda\\nabla g$ 给出 $y=\\lambda(2x-y),\\ x=\\lambda(2y-x)$。",
+          "由第一式 $y=\\dfrac{2\\lambda}{1+\\lambda}x$,由第二式 $x=\\dfrac{2\\lambda}{1+\\lambda}y$,联立得 $\\left(\\dfrac{2\\lambda}{1+\\lambda}\\right)^2=1$,解得 $\\dfrac{2\\lambda}{1+\\lambda}=1$(即 $\\lambda=1,\\,y=x$)或 $=-1$(即 $\\lambda=-\\tfrac13,\\,y=-x$)。",
+          "情形 $y=x$:代入约束 $x^2+x^2-x^2=x^2=1$,得 $(x,y)=(\\pm1,\\pm1)$,$f=xy=1$。",
+          "情形 $y=-x$:代入约束 $x^2+x^2-x(-x)=3x^2=1$,得 $x^2=\\tfrac13$,$f=xy=-x^2=-\\tfrac13$。",
+          "曲线 $x^2+y^2-xy=1$ 对应二次型矩阵 $\\begin{pmatrix}1&-1/2\\\\-1/2&1\\end{pmatrix}$,特征值为 $1/2,3/2$,均为正,故曲线为(有界闭)椭圆,$f$ 连续,必在此紧集上取得最大最小值,因此两个临界值即为全局最值:最大值为 $1$(在 $(\\pm1,\\pm1)$),最小值为 $-\\dfrac13$(在 $\\left(\\pm\\tfrac1{\\sqrt3},\\mp\\tfrac1{\\sqrt3}\\right)$)。"
+        ]
+      },
+      {
+        "label": "(2) a>0一般情形",
+        "steps": [
+          "对一般 $a$ 重复拉格朗日过程,同样得到 $y=\\dfrac{2\\lambda}{1-2a\\lambda}x$ 型关系,导出同样两族临界点 $y=x$ 与 $y=-x$。",
+          "情形 $y=x$:约束给出 $2x^2(1+a)=1$,即 $x^2=\\dfrac{1}{2(1+a)}$,对应 $f=x^2=\\dfrac{1}{2(1+a)}$;因 $a>0$,$1+a>0$,该临界点总存在。",
+          "情形 $y=-x$:约束给出 $2x^2(1-a)=1$。当 $0<a<1$ 时有解 $x^2=\\dfrac{1}{2(1-a)}$,对应 $f=-x^2=-\\dfrac{1}{2(1-a)}$;当 $a\\ge1$ 时 $1-a\\le0$,方程 $2x^2(1-a)=1>0$ 无实数解,此族临界点不存在。",
+          "令 $u=x+y,v=x-y$,约束化为 $\\dfrac{(1+a)u^2}{2}+\\dfrac{(1-a)v^2}{2}=1$,而 $f=xy=\\dfrac{u^2-v^2}{4}$;消去 $u^2$ 得 $f=\\dfrac{1-v^2}{2(1+a)}$,是 $v^2$ 的严格递减函数。",
+          "当 $0<a<1$:约束为椭圆,$v^2\\in\\left[0,\\dfrac{2}{1-a}\\right]$,故 $f$ 在 $v=0$ 取最大值 $\\dfrac{1}{2(1+a)}$,在 $v^2=\\dfrac{2}{1-a}$ 取最小值 $-\\dfrac{1}{2(1-a)}$,与临界点计算一致。当 $a\\ge1$:约束为双曲线(或 $a=1$ 时退化为两条直线 $x+y=\\pm1$),$v$ 可取任意大,$f=\\dfrac{1-v^2}{2(1+a)}\\to-\\infty$,故无最小值,但仍在 $v=0$ 取得最大值 $\\dfrac{1}{2(1+a)}$。",
+          "结论:当 $0<a<1$ 时,最大值 $=\\dfrac{1}{2(1+a)}$,最小值 $=-\\dfrac{1}{2(1-a)}$;当 $a\\ge1$ 时,最大值仍为 $\\dfrac{1}{2(1+a)}$,但不存在最小值(下确界为 $-\\infty$)。"
+        ]
+      }
+    ],
+    "practice_questions": [
+      {
+        "text": "求 $f(x,y)=xy$ 在单位圆 $x^2+y^2=1$ 上的最大值与最小值。",
+        "knowledge_points": [
+          "拉格朗日乘数法",
+          "紧集上连续函数最值存在性"
+        ],
+        "question_type": "基础约束极值题",
+        "method": [
+          "拉格朗日乘数法"
+        ],
+        "solution_steps": [
+          "列拉格朗日方程",
+          "解出临界点",
+          "比较函数值得最值"
+        ],
+        "math_structure": {
+          "type": "constrained_extremum_quadratic_curve",
+          "template": "f(x,y)=xy \\text{ subject to } x^2+y^2=1",
+          "variable_count": 0
+        },
+        "difficulty": 1,
+        "estimated_minutes": 8,
+        "answer": [
+          {
+            "label": "最值",
+            "steps": [
+              "拉格朗日方程:$y=2\\lambda x,\\ x=2\\lambda y$,联立得 $x=4\\lambda^2x$,故 $\\lambda=\\pm\\tfrac12$。",
+              "$\\lambda=\\tfrac12$ 给出 $y=x$,代入约束 $2x^2=1\\Rightarrow x=\\pm\\tfrac1{\\sqrt2}$,$f=x^2=\\tfrac12$;$\\lambda=-\\tfrac12$ 给出 $y=-x$,同理 $f=-x^2=-\\tfrac12$。",
+              "单位圆是紧集,故最大值为 $\\tfrac12$(在 $\\left(\\tfrac1{\\sqrt2},\\tfrac1{\\sqrt2}\\right)$ 等点),最小值为 $-\\tfrac12$(在 $\\left(\\tfrac1{\\sqrt2},-\\tfrac1{\\sqrt2}\\right)$ 等点),与本题 $a=0$ 时的一般公式 $\\pm\\tfrac{1}{2(1\\pm0)}$ 吻合。"
+            ]
+          }
+        ],
+        "id": "osaka-2023-09db4de9ee-q02-practice-01",
+        "school": "大阪大学",
+        "year": "2023"
+      },
+      {
+        "text": "求 $f(x,y)=xy$ 在曲线 $x^2+y^2+xy=1$ 上的最大值与最小值。",
+        "knowledge_points": [
+          "拉格朗日乘数法",
+          "二次型正定性判别"
+        ],
+        "question_type": "含交叉项的约束极值题",
+        "method": [
+          "拉格朗日乘数法",
+          "二次型特征值判断曲线类型"
+        ],
+        "solution_steps": [
+          "列拉格朗日方程解出 $y=\\pm x$ 两族临界点",
+          "分别代入约束求出函数值",
+          "判断曲线为椭圆,确认为全局最值"
+        ],
+        "math_structure": {
+          "type": "constrained_extremum_quadratic_curve",
+          "template": "f(x,y)=xy \\text{ subject to } x^2+y^2+2axy=1,\\ a=\\tfrac12",
+          "variable_count": 0
+        },
+        "difficulty": 2,
+        "estimated_minutes": 10,
+        "answer": [
+          {
+            "label": "最值",
+            "steps": [
+              "此为 $a=\\tfrac12$ 情形。$y=x$:约束 $x^2+x^2+x^2=3x^2=1\\Rightarrow x^2=\\tfrac13$,$f=\\tfrac13$。",
+              "$y=-x$:约束 $x^2+x^2-x^2=x^2=1\\Rightarrow x^2=1$,$f=-1$。",
+              "二次型矩阵 $\\begin{pmatrix}1&1/2\\\\1/2&1\\end{pmatrix}$ 特征值为 $1/2,3/2$,均正,曲线为椭圆(紧集),故最大值为 $\\dfrac13$,最小值为 $-1$,与一般公式 $\\dfrac{1}{2(1+a)}=\\dfrac13$,$-\\dfrac{1}{2(1-a)}=-1$ 完全一致。"
+            ]
+          }
+        ],
+        "id": "osaka-2023-09db4de9ee-q02-practice-02",
+        "school": "大阪大学",
+        "year": "2023"
+      },
+      {
+        "text": "讨论 $f(x,y)=xy$ 在退化曲线 $x^2+y^2+2xy=1$(即 $a=1$)上是否存在最大值和最小值,若存在求出。",
+        "knowledge_points": [
+          "二次型退化(半正定)判别",
+          "无界约束集上的极值讨论"
+        ],
+        "question_type": "退化约束极值判定题",
+        "method": [
+          "先化简约束的几何形状",
+          "在参数化直线上分析一元函数的最值"
+        ],
+        "solution_steps": [
+          "化简约束为 $(x+y)^2=1$,得到两条直线",
+          "在直线上把 $f$ 表为一元函数",
+          "求最大值,并说明无最小值"
+        ],
+        "math_structure": {
+          "type": "constrained_extremum_quadratic_curve",
+          "template": "f(x,y)=xy \\text{ subject to } x^2+y^2+2axy=1,\\ a=1",
+          "variable_count": 0
+        },
+        "difficulty": 3,
+        "estimated_minutes": 10,
+        "answer": [
+          {
+            "label": "最值",
+            "steps": [
+              "约束化为 $(x+y)^2=1$,即 $x+y=1$ 或 $x+y=-1$,两条直线,约束集合无界。",
+              "在 $x+y=1$ 上,$y=1-x$,$f=x-x^2$,当 $x\\to\\pm\\infty$ 时 $f\\to-\\infty$,故无最小值;求导 $f'(x)=1-2x=0\\Rightarrow x=\\tfrac12$,得最大值 $f=\\tfrac12-\\tfrac14=\\tfrac14$。",
+              "在 $x+y=-1$ 上由对称性($x\\to-x,y\\to-y$ 使 $f$ 不变)同样得到最大值 $\\tfrac14$,也无最小值。故最大值为 $\\dfrac14$(与一般公式 $\\dfrac{1}{2(1+1)}=\\dfrac14$ 一致),不存在最小值,这与 $a\\ge1$ 时的一般结论相符。"
+            ]
+          }
+        ],
+        "id": "osaka-2023-09db4de9ee-q02-practice-03",
+        "school": "大阪大学",
+        "year": "2023"
+      },
+      {
+        "text": "求 $f(x,y)=xy$ 在曲线 $x^2+y^2+3xy=1$($a=\\tfrac32$)上的最大值,并说明为何不存在最小值。",
+        "knowledge_points": [
+          "二次型不定判别(双曲线)",
+          "无界约束集上极值不存在性论证"
+        ],
+        "question_type": "双曲线约束极值题",
+        "method": [
+          "拉格朗日乘数法求最大值",
+          "主轴替换说明无最小值"
+        ],
+        "solution_steps": [
+          "求 $y=x$ 型临界点得最大值",
+          "验证 $y=-x$ 型无实数解",
+          "用 $u=x+y,v=x-y$ 说明 $f\\to-\\infty$"
+        ],
+        "math_structure": {
+          "type": "constrained_extremum_quadratic_curve",
+          "template": "f(x,y)=xy \\text{ subject to } x^2+y^2+2axy=1,\\ a=\\tfrac32",
+          "variable_count": 0
+        },
+        "difficulty": 4,
+        "estimated_minutes": 12,
+        "answer": [
+          {
+            "label": "最大值与最小值不存在性",
+            "steps": [
+              "$y=x$:约束 $x^2+x^2+3x^2=5x^2=1\\Rightarrow x^2=\\tfrac15$,$f=\\tfrac15$,这是唯一的正型临界值。",
+              "$y=-x$:约束给出 $2x^2(1-\\tfrac32)=-x^2=1$,无实数解,说明曲线上不存在 $y=-x$ 的点。",
+              "令 $u=x+y,v=x-y$,约束化为 $\\dfrac{5u^2}{2}-\\dfrac{v^2}{2}=1$(双曲线),$f=\\dfrac{u^2-v^2}{4}=\\dfrac{1-v^2}{2(1+3/2)}=\\dfrac{1-v^2}{5}$,$v$ 可取任意实数,当 $|v|\\to\\infty$ 时 $f\\to-\\infty$,故无最小值;在 $v=0$ 处取最大值 $\\dfrac15$,与临界点结果一致,并与一般公式 $\\dfrac{1}{2(1+a)}=\\dfrac{1}{5}$ 吻合。"
+            ]
+          }
+        ],
+        "id": "osaka-2023-09db4de9ee-q02-practice-04",
+        "school": "大阪大学",
+        "year": "2023"
+      }
+    ],
+    "source_question": "2",
+    "source_pdf": "大阪大学/情报科学研究科/情报基础数学/大阪大学_情报科学研究科_情报基础数学_2023_数学过去问.pdf",
+    "source_type": "官方过去问",
+    "subject_category": "微积分"
+  },
+  {
+    "id": "osaka-2023-09db4de9ee-q05",
+    "school": "大阪大学",
+    "year": "2023",
+    "subject": "情报科学研究科_情报基础数学",
+    "text": "设 $m$ 为正实数,$\\mathbb{R}^2$ 上的函数 $f$ 定义为\n$$f(x,y)=\\frac{x^2-y^2}{1+(x^2+y^2)^m}.$$\n回答以下问题:\n(1) 求 $f$ 存在最大值的关于 $m$ 的必要充分条件。\n(2) 求下列积分收敛的关于 $m$ 的必要充分条件:\n$$\\iint_{\\mathbb{R}^2}|f(x,y)|\\,dx\\,dy.$$",
+    "knowledge_points": [
+      "极坐标变换",
+      "含参数最值存在性的分类讨论",
+      "反常二重积分收敛性的极坐标判别",
+      "一元函数临界点求解",
+      "渐近比较判别法(p-积分判别)"
+    ],
+    "question_type": "含参数二元函数的最值存在性与反常积分收敛性讨论题",
+    "method": [
+      "极坐标化简为一元函数 $g(r)$,再讨论其最值是否可达",
+      "极坐标下把二重积分化为角度积分乘以径向积分,用渐近展开结合 p-积分判别法判断收敛性"
+    ],
+    "solution_steps": [
+      "作极坐标变换,把 $f$ 表为 $r,\\theta$ 的函数,对固定 $r$ 求出关于 $\\theta$ 的最大值,化为一元函数 $g(r)$",
+      "分 $0<m<1,\\ m=1,\\ m>1$ 三种情形讨论 $g(r)$ 在 $r\\to\\infty$ 处及内部临界点处的行为,确定最大值是否可达",
+      "把二重积分在极坐标下分离为角度积分与径向积分,角度积分为有限正常数",
+      "分析径向积分在 $r\\to0$ 与 $r\\to\\infty$ 处的渐近阶数,用 p-积分判别法确定收敛的充要条件"
+    ],
+    "math_structure": {
+      "type": "parametric_radial_function_extremum_and_integrability",
+      "template": "f(x,y)=\\frac{x^2-y^2}{1+(x^2+y^2)^m}",
+      "variable_count": 1
+    },
+    "difficulty": 4,
+    "answer": [
+      {
+        "label": "(1)",
+        "steps": [
+          "作极坐标 $x=r\\cos\\theta,y=r\\sin\\theta$,则 $x^2-y^2=r^2\\cos2\\theta$,$x^2+y^2=r^2$,故 $f=\\dfrac{r^2\\cos2\\theta}{1+r^{2m}}$。对固定 $r\\ge0$,$\\cos2\\theta\\le1$,在 $\\theta=0$(即 $y=0,x=r$)取到最大,故 $f$ 的全局最大值(若存在)等于 $\\sup_{r\\ge0}g(r)$,其中 $g(r)=\\dfrac{r^2}{1+r^{2m}}$。",
+          "当 $0<m<1$ 时,$r\\to\\infty$ 时 $g(r)\\sim r^{2-2m}\\to\\infty$(因指数 $2-2m>0$),$g$ 无界,故 $f$ 无最大值。",
+          "当 $m=1$ 时,$g(r)=\\dfrac{r^2}{1+r^2}$,求导 $g'(r)=\\dfrac{2r}{(1+r^2)^2}>0$($r>0$),故 $g$ 严格单调递增,且恒有 $g(r)<1$,当 $r\\to\\infty$ 时 $g(r)\\to1$ 但从不等于1,上确界1不能取到,故 $f$ 无最大值。",
+          "当 $m>1$ 时,求导得 $g'(r)=\\dfrac{2r\\left[1+(1-m)r^{2m}\\right]}{(1+r^{2m})^2}$,令分子中括号为0,解得内部临界点 $r^*=\\left(\\dfrac{1}{m-1}\\right)^{1/(2m)}>0$。因 $g(0)=0,\\ g(\\infty)=0,\\ g(r)>0(r>0)$,该临界点即为 $g$ 在 $[0,\\infty)$ 上的全局最大点,最大值存在且可达。",
+          "结论:$f$ 存在最大值 $\\iff m>1$。"
+        ]
+      },
+      {
+        "label": "(2)",
+        "steps": [
+          "在极坐标下,$|f(x,y)|=\\dfrac{r^2|\\cos2\\theta|}{1+r^{2m}}$,$dx\\,dy=r\\,dr\\,d\\theta$,故\n$$\\iint_{\\mathbb{R}^2}|f|\\,dx\\,dy=\\left(\\int_0^{2\\pi}|\\cos2\\theta|\\,d\\theta\\right)\\int_0^\\infty\\frac{r^3}{1+r^{2m}}\\,dr,$$\n角度积分是与 $m$ 无关的有限正常数,故收敛性完全由径向积分 $\\displaystyle\\int_0^\\infty\\frac{r^3}{1+r^{2m}}\\,dr$ 决定。",
+          "在 $r\\to0$ 处,被积函数 $\\dfrac{r^3}{1+r^{2m}}\\sim r^3$,该端点对任意 $m>0$ 都可积,不影响收敛性判断。",
+          "在 $r\\to\\infty$ 处,被积函数 $\\sim r^{3-2m}$。由 p-积分判别法,$\\displaystyle\\int^\\infty r^{3-2m}\\,dr$ 收敛 $\\iff 3-2m<-1\\iff m>2$。",
+          "验算边界:取 $m=2$,被积函数 $\\sim r^{-1}$,而 $\\int^\\infty\\dfrac{dr}{r}$ 发散(对数发散),确认 $m=2$ 时积分不收敛,故必须严格 $m>2$。",
+          "结论:$\\iint_{\\mathbb{R}^2}|f(x,y)|\\,dx\\,dy$ 收敛 $\\iff m>2$。"
+        ]
+      }
+    ],
+    "practice_questions": [
+      {
+        "text": "求 $\\displaystyle\\iint_{\\mathbb{R}^2}\\frac{dx\\,dy}{(1+x^2+y^2)^p}$ 收敛的关于正实数 $p$ 的必要充分条件。",
+        "knowledge_points": [
+          "极坐标变换",
+          "反常积分收敛的p判别法"
+        ],
+        "question_type": "基础反常二重积分收敛性题",
+        "method": [
+          "极坐标化简,换元 $u=r^2$ 后用p-积分判别法"
+        ],
+        "solution_steps": [
+          "极坐标化简为径向积分",
+          "换元并求出原函数",
+          "判断收敛的条件"
+        ],
+        "math_structure": {
+          "type": "radial_integral_convergence",
+          "template": "\\iint_{\\mathbb{R}^2}\\frac{dxdy}{(1+x^2+y^2)^p}",
+          "variable_count": 1
+        },
+        "difficulty": 1,
+        "estimated_minutes": 8,
+        "answer": [
+          {
+            "label": "条件",
+            "steps": [
+              "极坐标下积分化为 $2\\pi\\displaystyle\\int_0^\\infty\\dfrac{r}{(1+r^2)^p}\\,dr$。",
+              "换元 $u=r^2,du=2r\\,dr$,积分化为 $\\pi\\displaystyle\\int_0^\\infty(1+u)^{-p}\\,du$。",
+              "该积分当 $p>1$ 时收敛,值为 $\\dfrac{\\pi}{p-1}$;当 $p\\le1$ 时发散($p=1$ 时为对数发散,$p<1$ 时幂次发散)。故收敛的必要充分条件是 $p>1$。"
+            ]
+          }
+        ],
+        "id": "osaka-2023-09db4de9ee-q05-practice-01",
+        "school": "大阪大学",
+        "year": "2023"
+      },
+      {
+        "text": "判断 $f(x,y)=\\dfrac{1}{1+(x^2+y^2)^m}$(无 $x^2-y^2$ 的符号变化因子)在 $\\mathbb{R}^2$ 上是否总存在最大值,并说明与原题(1)的区别。",
+        "knowledge_points": [
+          "径向单调函数的最值",
+          "对比分析(符号变化项对存在性的影响)"
+        ],
+        "question_type": "对比概念题",
+        "method": [
+          "直接观察分母在 $r=0$ 处取最小值"
+        ],
+        "solution_steps": [
+          "分析 $f$ 关于 $r$ 的单调性",
+          "找出最大值点",
+          "对比原题说明差异原因"
+        ],
+        "math_structure": {
+          "type": "radial_function_extremum",
+          "template": "f(x,y)=\\frac{1}{1+(x^2+y^2)^m}",
+          "variable_count": 1
+        },
+        "difficulty": 1,
+        "estimated_minutes": 5,
+        "answer": [
+          {
+            "label": "判断与说明",
+            "steps": [
+              "此 $f$ 只依赖于 $r=\\sqrt{x^2+y^2}$,且分母 $1+r^{2m}$ 关于 $r$ 严格单调递增(因 $m>0$),故 $f$ 关于 $r$ 严格单调递减。",
+              "分母的最小值在 $r=0$ 处取到,即 $f(0,0)=\\dfrac{1}{1+0}=1$,且该点是 $\\mathbb{R}^2$ 中合法的点,故最大值总是存在且等于1,对任意 $m>0$ 都成立。",
+              "区别在于:原题的分子 $x^2-y^2$ 在原点为0且随 $r$ 增大而增长(在 $\\theta=0$ 方向上为 $r^2$),与分母的增长速率相互竞争,才产生了关于 $m$ 的非平凡条件 $m>1$;而本题分子恒为正的常数1,不参与竞争,故最大值总是在原点简单取得。"
+            ]
+          }
+        ],
+        "id": "osaka-2023-09db4de9ee-q05-practice-02",
+        "school": "大阪大学",
+        "year": "2023"
+      },
+      {
+        "text": "对 $m=2$,求 $g(r)=\\dfrac{r^2}{1+r^4}$ 在 $r\\ge0$ 上的最大值及取得该最大值的 $r$,并据此写出 $f(x,y)=\\dfrac{x^2-y^2}{1+(x^2+y^2)^2}$ 的最大值与取得点。",
+        "knowledge_points": [
+          "一元函数临界点求解",
+          "极坐标下最值点还原为直角坐标"
+        ],
+        "question_type": "具体参数下的最值计算题",
+        "method": [
+          "对 $g(r)$ 求导找临界点,代入验证为最大值"
+        ],
+        "solution_steps": [
+          "求导并解临界点方程",
+          "验证为最大值",
+          "还原为 $(x,y)$ 坐标下的最大值信息"
+        ],
+        "math_structure": {
+          "type": "parametric_radial_function_extremum_and_integrability",
+          "template": "f(x,y)=\\frac{x^2-y^2}{1+(x^2+y^2)^2}",
+          "variable_count": 0
+        },
+        "difficulty": 3,
+        "estimated_minutes": 10,
+        "answer": [
+          {
+            "label": "最大值",
+            "steps": [
+              "$g(r)=\\dfrac{r^2}{1+r^4}$,求导:$g'(r)=\\dfrac{2r(1+r^4)-r^2\\cdot4r^3}{(1+r^4)^2}=\\dfrac{2r-2r^5}{(1+r^4)^2}=\\dfrac{2r(1-r^4)}{(1+r^4)^2}$。",
+              "令 $g'(r)=0$($r>0$)得 $r^4=1\\Rightarrow r=1$。因 $g(0)=0,\\ g(1)=\\dfrac12,\\ g(r)\\to0(r\\to\\infty)$,故 $r=1$ 是全局最大点,最大值为 $\\dfrac12$。",
+              "验算用一般公式:$m=2$ 时 $r^*=\\left(\\dfrac1{m-1}\\right)^{1/(2m)}=1^{1/4}=1$,最大值 $\\dfrac{m-1}{m}\\left(\\dfrac1{m-1}\\right)^{1/m}=\\dfrac12\\times1=\\dfrac12$,与直接计算一致。",
+              "还原为直角坐标:最大值点在 $\\theta=0$ 方向即 $y=0,x=r^*=1$,故 $f(x,y)=\\dfrac{x^2-y^2}{1+(x^2+y^2)^2}$ 的最大值为 $\\dfrac12$,在 $(x,y)=(\\pm1,0)$ 处取得(由 $\\cos2\\theta$ 在 $\\theta=0,\\pi$ 均取1)。"
+            ]
+          }
+        ],
+        "id": "osaka-2023-09db4de9ee-q05-practice-03",
+        "school": "大阪大学",
+        "year": "2023"
+      },
+      {
+        "text": "验证:当 $m=2$(临界值)时,$\\displaystyle\\iint_{\\mathbb{R}^2}|f(x,y)|\\,dx\\,dy$ 确实发散,写出具体的渐近估计过程。",
+        "knowledge_points": [
+          "渐近比较判别法",
+          "对数发散",
+          "边界情形验证"
+        ],
+        "question_type": "临界情形验证题",
+        "method": [
+          "极坐标化简后分析径向积分在 $r\\to\\infty$ 处的渐近阶数"
+        ],
+        "solution_steps": [
+          "写出径向积分表达式",
+          "分析大 $r$ 处的渐近行为",
+          "得出发散结论"
+        ],
+        "math_structure": {
+          "type": "radial_integral_convergence",
+          "template": "\\int_0^\\infty\\frac{r^3}{1+r^{2m}}\\,dr,\\ m=2",
+          "variable_count": 0
+        },
+        "difficulty": 4,
+        "estimated_minutes": 10,
+        "answer": [
+          {
+            "label": "发散验证",
+            "steps": [
+              "当 $m=2$ 时,径向积分为 $\\displaystyle\\int_0^\\infty\\dfrac{r^3}{1+r^4}\\,dr$。",
+              "在 $r\\to\\infty$ 处,$\\dfrac{r^3}{1+r^4}\\sim\\dfrac{r^3}{r^4}=\\dfrac1r$,而 $\\displaystyle\\int_1^\\infty\\dfrac{dr}{r}=\\lim_{R\\to\\infty}\\ln R=\\infty$ 发散(对数发散)。",
+              "更严格地,直接计算:$\\displaystyle\\int_0^R\\dfrac{r^3}{1+r^4}\\,dr=\\dfrac14\\ln(1+R^4)\\to\\infty$($R\\to\\infty$),证实该积分确实发散,从而 $\\iint_{\\mathbb{R}^2}|f|\\,dxdy$ 在 $m=2$ 时也发散,验证了原题结论中 $m>2$ 必须是严格不等号。"
+            ]
+          }
+        ],
+        "id": "osaka-2023-09db4de9ee-q05-practice-04",
+        "school": "大阪大学",
+        "year": "2023"
+      }
+    ],
+    "source_question": "5",
+    "source_pdf": "大阪大学/情报科学研究科/情报基础数学/大阪大学_情报科学研究科_情报基础数学_2023_数学过去问.pdf",
+    "source_type": "官方过去问",
+    "subject_category": "微积分"
+  }
+]

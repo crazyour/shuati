@@ -1,0 +1,153 @@
+[
+  {
+    "id": "utokyo-2021-math-ii-q14",
+    "school": "东京大学",
+    "year": "2021",
+    "subject": "数理科学研究科_数理科学専攻",
+    "text": "令 $x_j=a+j(b-a)/N$，$E_N(a,b;f)=|\\int_a^bf(x)dx-\\frac{b-a}{N}\\sum_{j=1}^Nf((x_{j-1}+x_j)/2)|$。(1) 证明 $f\\in C^2[a,b]$ 时 $E_N\\le\\frac{(b-a)^3}{24N^2}\\max|f''|$。(2) 对 $f=e^x\\cos x$ 给出一个使 $E_N(0,\\pi;f)\\le10^{-4}$ 的 $N$。(3) 对 $f=\\frac23(1-x)^{3/2}$ 给出一个使 $E_N(0,1;f)\\le10^{-4}$ 的 $N$。",
+    "knowledge_points": [
+      "中点积分公式误差",
+      "大学数学综合应用"
+    ],
+    "question_type": "中点积分公式误差",
+    "method": [
+      "详细推导"
+    ],
+    "solution_steps": [
+      "在每个小区间中点 $m_j$ 处作带余项的泰勒展开。一次项对称积分为零，二次余项的积分绝对值不超过 $Mh^3/24$，$h=(b-a)/N$。对 $N$ 个区间求和得所述不等式。",
+      "对 $e^x\\cos x$，$f''=-2e^x\\sin x$，在 $[0,\\pi]$ 上最大值为 $\\sqrt2e^{3\\pi/4}<15$。又 $\\pi^3<32$，故 $E_N<20/N^2$。取 $N=448$时 $20/N^2<10^{-4}$。",
+      "对第 (3) 题，$f'(x)=-\\sqrt{1-x}$ 满足 $|f'(x)-f'(y)|\\le|x-y|^{1/2}$。单个区间的中点误差不超过 $2h^{5/2}/(15\\sqrt2)$，求和得 $E_N\\le2/(15\\sqrt2 N^{3/2})$。取 $N=100$ 即得上界约 $9.43\\times10^{-5}$。"
+    ],
+    "math_structure": {
+      "type": "reviewed_exam_question",
+      "template": "令 $x_j=a+j(b-a)/N$，$E_N(a,b;f)=|\\int_a^bf(x)dx-\\frac{b-a}{N}\\sum_{j=1}^Nf((x_{j-1}+x_j)/2)|$。(1) 证明 $f\\in C^2[a,b]$ 时 $E_N\\le\\frac{(b-a)^3}{24N^2}\\max|f''|$。(2) 对 $f=e^x\\cos x$ 给出一个使 $E_N(0,\\pi;f)\\le10^{-4}$ 的 $N$。(3) 对 $f=\\frac23(1-x)^{3/2}$ 给出一个使 $E_N(0,1;f)\\le10^{-4}$ 的 $N$。",
+      "variable_count": 3
+    },
+    "difficulty": 3,
+    "answer": [
+      {
+        "label": "步骤 1",
+        "steps": [
+          "在每个小区间中点 $m_j$ 处作带余项的泰勒展开。一次项对称积分为零，二次余项的积分绝对值不超过 $Mh^3/24$，$h=(b-a)/N$。对 $N$ 个区间求和得所述不等式。"
+        ]
+      },
+      {
+        "label": "步骤 2",
+        "steps": [
+          "对 $e^x\\cos x$，$f''=-2e^x\\sin x$，在 $[0,\\pi]$ 上最大值为 $\\sqrt2e^{3\\pi/4}<15$。又 $\\pi^3<32$，故 $E_N<20/N^2$。取 $N=448$时 $20/N^2<10^{-4}$。"
+        ]
+      },
+      {
+        "label": "步骤 3",
+        "steps": [
+          "对第 (3) 题，$f'(x)=-\\sqrt{1-x}$ 满足 $|f'(x)-f'(y)|\\le|x-y|^{1/2}$。单个区间的中点误差不超过 $2h^{5/2}/(15\\sqrt2)$，求和得 $E_N\\le2/(15\\sqrt2 N^{3/2})$。取 $N=100$ 即得上界约 $9.43\\times10^{-5}$。"
+        ]
+      }
+    ],
+    "practice_questions": [
+      {
+        "id": "utokyo-2021-math-ii-q14-practice-01",
+        "school": "东京大学",
+        "year": "2021",
+        "text": "用中点公式近似 $\\int_0^1x^2dx$，写出误差上界。",
+        "knowledge_points": [
+          "中点积分公式误差",
+          "基础计算与证明"
+        ],
+        "question_type": "递进练习",
+        "method": [
+          "使用原题核心方法"
+        ],
+        "solution_steps": [
+          "识别结构",
+          "完成计算或证明"
+        ],
+        "math_structure": {
+          "type": "exclusive_practice",
+          "template": "用中点公式近似 $\\int_0^1x^2dx$，写出误差上界。",
+          "variable_count": 2
+        },
+        "difficulty": 2,
+        "estimated_minutes": 6,
+        "answer": [
+          {
+            "label": "解答",
+            "steps": [
+              "$f''=2$，故 $E_N\\le1/(12N^2)$。"
+            ]
+          }
+        ]
+      },
+      {
+        "id": "utokyo-2021-math-ii-q14-practice-02",
+        "school": "东京大学",
+        "year": "2021",
+        "text": "若 $\\max|f''|\\le6$ 且区间长为 $2$，写出中点误差上界。",
+        "knowledge_points": [
+          "中点积分公式误差",
+          "基础计算与证明"
+        ],
+        "question_type": "递进练习",
+        "method": [
+          "使用原题核心方法"
+        ],
+        "solution_steps": [
+          "识别结构",
+          "完成计算或证明"
+        ],
+        "math_structure": {
+          "type": "exclusive_practice",
+          "template": "若 $\\max|f''|\\le6$ 且区间长为 $2$，写出中点误差上界。",
+          "variable_count": 2
+        },
+        "difficulty": 3,
+        "estimated_minutes": 8,
+        "answer": [
+          {
+            "label": "解答",
+            "steps": [
+              "$E_N\\le2^3\\cdot6/(24N^2)=2/N^2$。"
+            ]
+          }
+        ]
+      },
+      {
+        "id": "utokyo-2021-math-ii-q14-practice-03",
+        "school": "东京大学",
+        "year": "2021",
+        "text": "为什么第 (3) 题不能直接用 $C^2$ 误差估计？",
+        "knowledge_points": [
+          "中点积分公式误差",
+          "基础计算与证明"
+        ],
+        "question_type": "递进练习",
+        "method": [
+          "使用原题核心方法"
+        ],
+        "solution_steps": [
+          "识别结构",
+          "完成计算或证明"
+        ],
+        "math_structure": {
+          "type": "exclusive_practice",
+          "template": "为什么第 (3) 题不能直接用 $C^2$ 误差估计？",
+          "variable_count": 2
+        },
+        "difficulty": 4,
+        "estimated_minutes": 10,
+        "answer": [
+          {
+            "label": "解答",
+            "steps": [
+              "$f''(x)=1/(2\\sqrt{1-x})$ 在 $x=1$ 无界，不满足 $C^2[0,1]$假设。"
+            ]
+          }
+        ]
+      }
+    ],
+    "source_question": "B第14问",
+    "source_pdf": "东京大学/数理科学研究科/数理科学専攻/东京大学_数理科学研究科_数理科学専攻_2021_专业科目II.pdf",
+    "source_type": "官方过去问",
+    "subject_category": "微积分"
+  }
+]
