@@ -3,6 +3,7 @@ import json
 
 import pytest
 
+import webapp.server as webapp_server
 from webapp.server import create_app, question_text
 from mqm import ALL_SUBJECTS, question_from_dict
 from pipeline.ocr import available_backends
@@ -50,6 +51,59 @@ def test_home_page_renders(client):
     assert 'id="browse-school"' in body                    # 题目库左侧的学校下拉
     assert 'id="browse-major"' in body                     # 题目库左侧的专攻下拉
     assert 'id="similar-drawer"' in body                   # 相似题结果使用共享抽屉
+
+
+def test_feedback_is_saved_to_formcarry(client, monkeypatch, tmp_path):
+    sent = {}
+
+    class Response:
+        status_code = 200
+        text = "ok"
+
+    def fake_post(url, **kwargs):
+        sent["url"] = url
+        sent.update(kwargs)
+        return Response()
+
+    feedback_log = tmp_path / "feedback.jsonl"
+    monkeypatch.setattr(webapp_server.requests, "post", fake_post)
+    monkeypatch.setattr(webapp_server, "FEEDBACK_LOG", feedback_log)
+
+    res = client.post("/api/feedback", json={
+        "suggestion": "希望增加更多题目",
+        "willingness": "1-5元",
+        "willingness_other": "",
+        "role": "备考",
+    })
+
+    assert res.status_code == 200
+    assert res.get_json() == {"ok": True, "storage": "formcarry"}
+    assert sent["url"] == webapp_server.DEFAULT_FORMCARRY_URL
+    assert sent["headers"] == {"Accept": "application/json"}
+    assert sent["json"]["suggestion"] == "希望增加更多题目"
+    assert "ip" not in sent["json"]
+    assert "ua" not in sent["json"]
+    assert json.loads(feedback_log.read_text(encoding="utf-8"))["role"] == "备考"
+
+
+def test_feedback_reports_formcarry_failure(client, monkeypatch, tmp_path):
+    class Response:
+        status_code = 503
+        text = "unavailable"
+
+    feedback_log = tmp_path / "feedback.jsonl"
+    monkeypatch.setattr(webapp_server.requests, "post", lambda *args, **kwargs: Response())
+    monkeypatch.setattr(webapp_server, "FEEDBACK_LOG", feedback_log)
+
+    res = client.post("/api/feedback", json={
+        "suggestion": "希望增加更多题目",
+        "willingness": "1-5元",
+        "willingness_other": "",
+        "role": "备考",
+    })
+
+    assert res.status_code == 502
+    assert not feedback_log.exists()
 
 
 def test_home_page_renders_filter_options_without_javascript(subject_app):
