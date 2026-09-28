@@ -7,8 +7,8 @@ const browseFacultyEl = el("browse-faculty");
 const browseFacultyBlockEl = el("browse-faculty-block");
 const browseMajorEl = el("browse-major");
 const browseMajorBlockEl = el("browse-major-block");
-const browseQuestionEl = el("browse-question");
-const browseQuestionBlockEl = el("browse-question-block");
+const browseYearEl = el("browse-year");
+const browseYearBlockEl = el("browse-year-block");
 const browseScopeEl = el("browse-scope");
 const browseCountEl = el("browse-count");
 const browseListEl = el("browse-list");
@@ -19,10 +19,10 @@ let browseSubject = "__all__";// 当前选中的科目（"__all__" 或科目名�
 let browseSchool = "";        // 当前选中的学校（"" = 全部）
 let browseFaculty = "";
 let browseMajor = "";
-let browseQuestion = "";
-let browseReady = false;      // 是否已经点过专攻（页面打开时默认 false，点了专攻才 fetch）
+let browseYear = "";
+let browseReady = false;      // 是否已经点过年份（页面打开时默认 false，点了年份才 fetch）
 
-// ?subject=线性代数/九州大学 可以直接带着范围打开
+// ?subject=线性代数/九州大学/... 可以直接带着范围打开
 const wanted = new URLSearchParams(location.search).get("subject");
 
 // ---------- 检索范围：科目按钮 + 学校二级按钮 ----------
@@ -79,9 +79,9 @@ function schoolExists(subjectValue, schoolLabel) {
 }
 
 function apiSubjectParam() {
-  // 拼成 API 接受的 subject 字符串：__all__ / 科目[/学校[/专攻]]
+  // 拼成 API 接受的 subject 字符串：__all__ / 科目[/学校[/学院[/专攻[/年份]]]]
   if (browseSubject === "__all__") return "__all__";
-  const parts = [browseSubject, browseSchool, browseFaculty, browseMajor, browseQuestion].filter((p) => p !== "");
+  const parts = [browseSubject, browseSchool, browseFaculty, browseMajor, browseYear].filter((p) => p !== "");
   return parts.join("/");
 }
 
@@ -110,10 +110,10 @@ function populateBrowseSubject() {
   browseSubjectEl.disabled = browseSubjectEl.options.length === 0;
 }
 
-// 四级下拉：学校 → 学院 → 专攻 → 题目
+// 四级下拉：学校 → 学院 → 专攻 → 年份
 function populateBrowseSchool() {
-  const levels = [[browseSchoolEl, browseSchoolBlockEl, "school"], [browseFacultyEl, browseFacultyBlockEl, "faculty"], [browseMajorEl, browseMajorBlockEl, "major"], [browseQuestionEl, browseQuestionBlockEl, "question"]];
-  const selected = [browseSchool, browseFaculty, browseMajor, browseQuestion];
+  const levels = [[browseSchoolEl, browseSchoolBlockEl, "school"], [browseFacultyEl, browseFacultyBlockEl, "faculty"], [browseMajorEl, browseMajorBlockEl, "major"], [browseYearEl, browseYearBlockEl, "year"]];
+  const selected = [browseSchool, browseFaculty, browseMajor, browseYear];
   let parent = findNode(browseSubject);
   let prefix = browseSubject;
   levels.forEach(([select, block], index) => {
@@ -132,7 +132,7 @@ function populateBrowseSchool() {
     parent = options.find((item) => item.value === `${prefix}/${select.value}`);
     prefix = parent?.value || `${prefix}/${select.value}`;
   });
-  [browseSchool, browseFaculty, browseMajor, browseQuestion] = selected;
+  [browseSchool, browseFaculty, browseMajor, browseYear] = selected;
 }
 
 // 用户没选完时，右侧显示提示而不调 API
@@ -140,18 +140,18 @@ function showBrowsePrompt(text) {
   browseListEl.replaceChildren();
   browseCountEl.textContent = "";
   browseScopeEl.textContent = "";
-  browseEmptyEl.textContent = text || "请从左侧选一个专攻查看题目。";
+  browseEmptyEl.textContent = text || "请从左侧选一个年份查看题目。";
   browseEmptyEl.hidden = false;
 }
 
 function selectBrowseSubject(value) {
   browseSubject = value;
   browseSchool = "";
-  browseFaculty = browseMajor = browseQuestion = "";
+  browseFaculty = browseMajor = browseYear = "";
   populateBrowseSchool();
   updateUrl();
-  // 选完科目后自动选中第一个专攻 → 立即 fetch
-  if (browseQuestion) {
+  // 选完科目后自动选中第一个年份 → 立即 fetch
+  if (browseYear) {
     browseReady = true;
     fetchBrowse();
   } else {
@@ -161,10 +161,10 @@ function selectBrowseSubject(value) {
 
 function selectBrowseSchool(value) {
   browseSchool = value;
-  browseFaculty = browseMajor = browseQuestion = "";
+  browseFaculty = browseMajor = browseYear = "";
   populateBrowseSchool();
   updateUrl();
-  if (browseQuestion) {
+  if (browseYear) {
     browseReady = true;
     fetchBrowse();
   } else {
@@ -174,24 +174,24 @@ function selectBrowseSchool(value) {
 
 function selectBrowseFaculty(value) {
   browseFaculty = value;
-  browseMajor = browseQuestion = "";
+  browseMajor = browseYear = "";
   populateBrowseSchool();
-  browseReady = Boolean(browseQuestion);
+  browseReady = Boolean(browseYear);
   updateUrl();
-  if (browseQuestion) fetchBrowse(); else showBrowsePrompt();
+  if (browseYear) fetchBrowse(); else showBrowsePrompt();
 }
 
 function selectBrowseMajor(value) {
   browseMajor = value;
-  browseQuestion = "";
+  browseYear = "";
   populateBrowseSchool();
-  browseReady = Boolean(browseQuestion);
+  browseReady = Boolean(browseYear);
   updateUrl();
-  if (browseQuestion) fetchBrowse(); else showBrowsePrompt();
+  if (browseYear) fetchBrowse(); else showBrowsePrompt();
 }
 
-function selectBrowseQuestion(value) {
-  browseQuestion = value;
+function selectBrowseYear(value) {
+  browseYear = value;
   browseReady = true;
   updateUrl();
   fetchBrowse();
@@ -587,15 +587,15 @@ async function openOriginalQuestion(match) {
   if (highlightQuestion(match.id)) return;
   if (!match.scope) return;
 
-  const [subject = "", school = "", faculty = "", major = "", question = ""] = match.scope.split("/");
+  const [subject = "", school = "", faculty = "", major = "", year = ""] = match.scope.split("/");
   browseSubject = subject;
   browseSchool = school;
   browseFaculty = faculty;
   browseMajor = major;
-  browseQuestion = question;
+  browseYear = year;
   populateBrowseSubject();
   populateBrowseSchool();
-  browseReady = Boolean(browseQuestion);
+  browseReady = Boolean(browseYear);
   updateUrl();
   if (!browseReady) return;
   await fetchBrowse();
@@ -697,7 +697,7 @@ function updateUrl() {
 const urlParams = new URLSearchParams(location.search);
 if (wanted) {
   {
-    // browse 模式：URL 里 `subject=科目/学习/专业/学校` 才视为已经点过学校（直接取数）；
+    // browse 模式：URL 里 `subject=科目/学校/学院/专攻/年份` 才视为已经点过学校（直接取数）；
     // 只有 `subject=科目` 没学校就只切科目不取数
     if (wanted.includes("/")) {
       const parts = wanted.split("/");
@@ -705,14 +705,14 @@ if (wanted) {
       const school = parts[1] || "";
       const faculty = parts[2] || "";
       const major = parts[3] || "";
-      const question = parts[4] || "";
+      const year = parts[4] || "";
       if (scopeTree.some((n) => n.value === subj)) {
         browseSubject = subj;
         browseSchool = school;
         browseFaculty = faculty;
         browseMajor = major;
-        browseQuestion = question;
-        if (question) browseReady = true;
+        browseYear = year;
+        if (year) browseReady = true;
       }
     } else if (scopeTree.some((n) => n.value === wanted)) {
       browseSubject = wanted;
@@ -720,20 +720,20 @@ if (wanted) {
   }
 }
 const wantedYear = urlParams.get("year");
-// 年份下拉已移除（按用户要求）；保留 wantedYear 变量占位
+// 年份下拉放在第 4 级；保留 wantedYear 变量占位兼容老 URL
 
 browseSubjectEl.addEventListener("change", () => selectBrowseSubject(browseSubjectEl.value));
 browseSchoolEl.addEventListener("change", () => selectBrowseSchool(browseSchoolEl.value));
 browseFacultyEl.addEventListener("change", () => selectBrowseFaculty(browseFacultyEl.value));
 browseMajorEl.addEventListener("change", () => selectBrowseMajor(browseMajorEl.value));
-browseQuestionEl.addEventListener("change", () => selectBrowseQuestion(browseQuestionEl.value));
+browseYearEl.addEventListener("change", () => selectBrowseYear(browseYearEl.value));
 
 populateBrowseSubject();
 populateBrowseSchool();
-// 页面打开时：上面会把每个下拉默认选到第一项，如果最深层（题目）有值就直接拉数据，
+// 页面打开时：上面会把每个下拉默认选到第一项，如果最深层（年份）有值就直接拉数据，
 // 否则再退回去显示提示。这样进来默认就有一道题，不会有空白页。
-browseReady = Boolean(browseQuestion);
-if (browseQuestion && browseReady) fetchBrowse(); else showBrowsePrompt();
+browseReady = Boolean(browseYear);
+if (browseYear && browseReady) fetchBrowse(); else showBrowsePrompt();
 updateUrl();
 
 // ---------- 反馈问卷：右下浮动按钮 + 模态框 ----------

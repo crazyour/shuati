@@ -5,15 +5,15 @@ const subjectEl = $("subject");
 const schoolEl = $("school");
 const facultyEl = $("faculty");
 const majorEl = $("major");
-const questionEl = $("question");
+const yearEl = $("year");
 const schoolWrap = $("school-wrap");
 const facultyWrap = $("faculty-wrap");
 const majorWrap = $("major-wrap");
-const questionWrap = $("question-wrap");
+const yearWrap = $("year-wrap");
 const questionList = $("questions");
 const cache = new Map();
 let tree = [];
-let current = { subject: "", school: "", faculty: "", major: "", question: "" };
+let current = { subject: "", school: "", faculty: "", major: "", year: "" };
 let selectedQuestionId = "";
 let lastSimilar = null;
 
@@ -22,7 +22,7 @@ function node(value) {
   return tree.find((item) => item.value === value) || null;
 }
 function subjectParam() {
-  return [current.subject, current.school, current.faculty, current.major, current.question].filter(Boolean).join("/");
+  return [current.subject, current.school, current.faculty, current.major, current.year].filter(Boolean).join("/");
 }
 function setOptions(select, values, selected) {
   select.replaceChildren(...values.map((item) => {
@@ -37,7 +37,7 @@ function populateFilters() {
   const subjects = tree.filter((item) => Array.isArray(item.children) && item.children.length);
   setOptions(subjectEl, subjects, current.subject);
   current.subject = subjectEl.value;
-  const levels = [[schoolEl, schoolWrap, "school"], [facultyEl, facultyWrap, "faculty"], [majorEl, majorWrap, "major"], [questionEl, questionWrap, "question"]];
+  const levels = [[schoolEl, schoolWrap, "school"], [facultyEl, facultyWrap, "faculty"], [majorEl, majorWrap, "major"], [yearEl, yearWrap, "year"]];
   let parent = node(current.subject);
   let prefix = current.subject;
   levels.forEach(([select, wrap, key]) => {
@@ -109,7 +109,6 @@ function renderSimilar(data, sourceId) {
   }));
 }
 async function init() {
-  if (!backend || backend.includes("你的后端域名")) throw new Error("请先在 frontend/config.js 设置后端地址。");
   const response = await fetch(api("/api/subjects"));
   if (!response.ok) throw new Error(`后端连接失败（HTTP ${response.status}）`);
   const data = await response.json();
@@ -117,11 +116,11 @@ async function init() {
   tree = data.tree || [];
   populateFilters(); await loadQuestions();
 }
-subjectEl.onchange = () => { current = { subject: subjectEl.value, school: "", faculty: "", major: "", question: "" }; populateFilters(); loadQuestions().catch(showError); };
-schoolEl.onchange = () => { current.school = schoolEl.value; current.faculty = ""; current.major = ""; current.question = ""; populateFilters(); loadQuestions().catch(showError); };
-facultyEl.onchange = () => { current.faculty = facultyEl.value; current.major = ""; current.question = ""; populateFilters(); loadQuestions().catch(showError); };
-majorEl.onchange = () => { current.major = majorEl.value; current.question = ""; populateFilters(); loadQuestions().catch(showError); };
-questionEl.onchange = () => { current.question = questionEl.value; loadQuestions().catch(showError); };
+subjectEl.onchange = () => { current = { subject: subjectEl.value, school: "", faculty: "", major: "", year: "" }; populateFilters(); loadQuestions().catch(showError); };
+schoolEl.onchange = () => { current.school = schoolEl.value; current.faculty = ""; current.major = ""; current.year = ""; populateFilters(); loadQuestions().catch(showError); };
+facultyEl.onchange = () => { current.faculty = facultyEl.value; current.major = ""; current.year = ""; populateFilters(); loadQuestions().catch(showError); };
+majorEl.onchange = () => { current.major = majorEl.value; current.year = ""; populateFilters(); loadQuestions().catch(showError); };
+yearEl.onchange = () => { current.year = yearEl.value; loadQuestions().catch(showError); };
 $("close").onclick = closeDrawer; $("backdrop").onclick = closeDrawer;
 $("rerun").onclick = () => { if (selectedQuestionId) findSimilar(selectedQuestionId); };
 $("reopen").onclick = () => { if (lastSimilar) { openDrawer(); renderSimilar(lastSimilar.data, lastSimilar.sourceId); } };

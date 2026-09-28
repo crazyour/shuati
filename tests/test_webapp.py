@@ -17,8 +17,26 @@ VALID_QUERY = {
 
 
 @pytest.fixture(scope="module")
-def client():
-    app = create_app()
+def client(tmp_path_factory):
+    """默认题库用一份临时文件（默认的 data/questions.sample.json 不在仓库里）。"""
+    import tempfile
+
+    db = tmp_path_factory.mktemp("db") / "questions.sample.json"
+    db.write_text(json.dumps([
+        {"id": "s-1", "text": "求最小值。", "knowledge_points": ["二次函数", "最值"], "question_type": "求最小值", "method": ["配方法", "顶点"]},
+        {"id": "s-2", "text": "求积分。", "knowledge_points": ["不定积分", "分部积分"], "question_type": "求积分", "method": ["分部积分法"]},
+        {"id": "s-3", "text": "求特征值。", "knowledge_points": ["特征值"], "question_type": "求特征值", "method": ["特征多项式"]},
+        {"id": "s-4", "text": "求矩阵幂。", "knowledge_points": ["矩阵幂"], "question_type": "求矩阵幂", "method": ["对角化"]},
+        {"id": "s-5", "text": "求矩阵秩。", "knowledge_points": ["矩阵秩"], "question_type": "求秩", "method": ["秩不等式"]},
+        {"id": "s-6", "text": "证明不等式。", "knowledge_points": ["矩阵秩"], "question_type": "证明不等式", "method": ["秩不等式"]},
+        {"id": "s-7", "text": "另一题。", "knowledge_points": ["二次函数"], "question_type": "求最小值", "method": ["配方法"]},
+        {"id": "s-8", "text": "再一题。", "knowledge_points": ["二次函数"], "question_type": "求最小值", "method": ["配方法"]},
+        {"id": "s-9", "text": "又一题。", "knowledge_points": ["二次函数"], "question_type": "求最小值", "method": ["配方法"]},
+        {"id": "s-10", "text": "最后。", "knowledge_points": ["二次函数"], "question_type": "求最小值", "method": ["配方法"]},
+        {"id": "s-11", "text": "倒数第二。", "knowledge_points": ["二次函数"], "question_type": "求最小值", "method": ["配方法"]},
+        {"id": "s-12", "text": "倒数第三。", "knowledge_points": ["二次函数"], "question_type": "求最小值", "method": ["配方法"]},
+    ], ensure_ascii=False), encoding="utf-8")
+    app = create_app(db_path=db)
     app.config.update(TESTING=True)
     return app.test_client()
 
@@ -32,6 +50,17 @@ def test_home_page_renders(client):
     assert 'id="browse-school"' in body                    # 题目库左侧的学校下拉
     assert 'id="browse-major"' in body                     # 题目库左侧的专攻下拉
     assert 'id="similar-drawer"' in body                   # 相似题结果使用共享抽屉
+
+
+def test_home_page_renders_filter_options_without_javascript(subject_app):
+    """脚本尚未加载或加载失败时，下拉框也应由服务端提供首屏内容。"""
+    res = subject_app.get("/")
+    body = res.get_data(as_text=True)
+    assert '<option value="线性代数">线性代数（3）</option>' in body
+    assert '<option value="九州大学">九州大学（1）</option>' in body
+    assert '<option value="理学院">理学院（1）</option>' in body
+    assert '<option value="情报理工">情报理工（1）</option>' in body
+    assert '<option value="2024">2024（1）</option>' in body
 
 
 def test_match_returns_question_metadata(client):
@@ -84,13 +113,13 @@ def test_practice_questions_are_browse_only(tmp_path):
         "answer": [{"label": "(1)", "steps": ["答案"]}],
         "practice_questions": [practice],
     }
-    filename = "2026_システム情報科学府_情報理工学専攻.json"
-    _write_subject(tmp_path, "线性代数", "九州大学", filename, source)
+    filename = "2026.json"
+    _write_subject(tmp_path, "线性代数", "九州大学", "システム情報科学府", "情報理工学専攻", filename, source)
     app = create_app(data_root=tmp_path)
     app.config.update(TESTING=True)
     test_client = app.test_client()
 
-    scope = f"线性代数/九州大学/システム情報科学府/情報理工学専攻/{filename[:-5]}"
+    scope = "线性代数/九州大学/システム情報科学府/情報理工学専攻/2026"
     body = test_client.get("/api/browse/questions", query_string={"subject": scope}).get_json()
     assert body["total"] == 1
     assert body["questions"][0]["practice_questions"] == [practice]
@@ -159,26 +188,21 @@ CALCULUS_Q = {   # 没写 school，来源退化成文件名「题库」
 
 @pytest.fixture(scope="module")
 def subject_app(tmp_path_factory):
-    """临时科目目录（新三级结构）：
+    """临时科目目录（新五级结构）：
 
     data/
-      线性代数/九州大学/
-        情报理工.json   （KYUSHU_1, KYUSHU_2）
-        东京大学_情报理工.json   （TOKYO_1）
-      微积分/九州大学/
-        情报理工.json   （CALCULUS_Q）
-      空科目/                       （无题库文件，应不出现）
+      线性代数/九州大学/理学院/情报理工/2024.json   （KYUSHU_1, KYUSHU_2）
+      线性代数/东京大学/理学院/情报理工/2024.json   （TOKYO_1）
+      微积分/九州大学/理学院/情报理工/2024.json     （CALCULUS_Q）
+      空科目/                                            （无题库文件，应不出现）
     """
     root = tmp_path_factory.mktemp("subjects")
-    # 线性代数
-    _write_subject(root, "线性代数", "九州大学", "情报理工.json",
+    _write_subject(root, "线性代数", "九州大学", "理学院", "情报理工", "2024.json",
                    [KYUSHU_1, KYUSHU_2])
-    _write_subject(root, "线性代数", "东京大学", "情报理工.json",
+    _write_subject(root, "线性代数", "东京大学", "理学院", "情报理工", "2024.json",
                    [TOKYO_1])
-    # 微积分
-    _write_subject(root, "微积分", "九州大学", "情报理工.json",
+    _write_subject(root, "微积分", "九州大学", "理学院", "情报理工", "2024.json",
                    [CALCULUS_Q])
-    # 空目录（无题库文件）
     (root / "空科目").mkdir()
     app = create_app(data_root=root)
     app.config.update(TESTING=True)
@@ -199,29 +223,36 @@ def test_home_page_renders_the_scope_chips(subject_app):
 
     tree = _scope_tree(subject_app)
     # 顶层：全部题目 + 各科目 + 默认题库
-    assert [(n["label"], n["count"]) for n in tree] == [
+    default_node = next(n for n in tree if n["label"].startswith("默认题库"))
+    assert [(n["label"], n["count"]) for n in tree if n is not default_node] == [
         ("全部题目", 4), ("微积分", 1), ("线性代数", 3),
-        ("默认题库（questions.sample.json）", 12),
     ]
-    # 线性代数：科目 → 学校 → 专攻（3 层）
+    # 默认题库存在与否取决于仓库根目录是否有 questions.sample.json
+    # 线性代数：科目 → 学校 → 学院 → 专攻 → 年份（5 层）
     linalg = next(n for n in tree if n["label"] == "线性代数")
-    assert [c["label"] for c in linalg["children"]] == ["全部", "九州大学", "东京大学"]
+    assert [c["label"] for c in linalg["children"]] == ["东京大学", "九州大学"]
     school = next(c for c in linalg["children"] if c["label"] == "九州大学")
-    assert [(c["label"], c["count"]) for c in school["children"]] == [("情报理工", 2)]
-    # 微积分：每个科目节点下含「全部」+ 学校节点
+    assert [(c["label"], c["count"]) for c in school["children"]] == [("理学院", 2)]
+    faculty = next(c for c in school["children"] if c["label"] == "理学院")
+    assert [(c["label"], c["count"]) for c in faculty["children"]] == [("情报理工", 2)]
+    major = next(c for c in faculty["children"] if c["label"] == "情报理工")
+    assert [(c["label"], c["count"]) for c in major["children"]] == [("2024", 2)]
+    # 微积分：每个科目节点下含学校节点
     calculus = next(n for n in tree if n["label"] == "微积分")
-    assert [c["label"] for c in calculus["children"]] == ["全部", "九州大学"]
+    assert [c["label"] for c in calculus["children"]] == ["九州大学"]
 
 
 def test_subjects_api(subject_app):
     body = subject_app.get("/api/subjects").get_json()
-    # 所有 scope key（按字母序，3 级）
+    # 所有 scope key（按字母序，5 级）
     values = [s["value"] for s in body["subjects"]]
+    # 「东京大学」<「九州大学」（按 Unicode），所以九大在后
     assert values == [
         ALL_SUBJECTS,
-        "微积分", "微积分/九州大学", "微积分/九州大学/情报理工",
-        "线性代数", "线性代数/东京大学", "线性代数/东京大学/情报理工",
-        "线性代数/九州大学", "线性代数/九州大学/情报理工",
+        "微积分", "微积分/九州大学", "微积分/九州大学/理学院", "微积分/九州大学/理学院/情报理工", "微积分/九州大学/理学院/情报理工/2024",
+        "线性代数",
+        "线性代数/东京大学", "线性代数/东京大学/理学院", "线性代数/东京大学/理学院/情报理工", "线性代数/东京大学/理学院/情报理工/2024",
+        "线性代数/九州大学", "线性代数/九州大学/理学院", "线性代数/九州大学/理学院/情报理工", "线性代数/九州大学/理学院/情报理工/2024",
         "",
     ]
     assert [n["value"] for n in body["tree"]] == [ALL_SUBJECTS, "微积分", "线性代数", ""]
@@ -244,7 +275,7 @@ def test_scope_limits_the_search(subject_app):
 def test_source_scope_narrows_to_one_school(subject_app):
     query = {k: v for k, v in KYUSHU_1.items() if k != "id"}
     res = subject_app.post(
-        "/api/match", json={"query": query, "subject": "线性代数/九州大学/情报理工"}
+        "/api/match", json={"query": query, "subject": "线性代数/九州大学/理学院/情报理工/2024"}
     )
     body = res.get_json()
     assert body["db_size"] == 2                      # 只有九州大学那两题
@@ -269,12 +300,11 @@ def test_unknown_subject_reports_choices(subject_app):
 
 # ---------- 题库热加载 ----------
 
-def _write_subject(root, subject, school, filename, questions):
-    """新三级结构：data/<科目>/<学校>/<filename>（filename 即专攻）"""
-    (root / subject / school).mkdir(parents=True, exist_ok=True)
-    (root / subject / school / filename).write_text(
-        json.dumps(questions, ensure_ascii=False), encoding="utf-8"
-    )
+def _write_subject(root, subject, school, faculty, major, filename, questions):
+    """新五级结构：data/<科目>/<学校>/<学院>/<专攻>/<filename>"""
+    path = root / subject / school / faculty / major
+    path.mkdir(parents=True, exist_ok=True)
+    (path / filename).write_text(json.dumps(questions, ensure_ascii=False), encoding="utf-8")
 
 
 def _scope_counts(client):
@@ -284,7 +314,7 @@ def _scope_counts(client):
 @pytest.fixture
 def live_client(tmp_path):
     """每个用例一份可改的题库目录。"""
-    _write_subject(tmp_path, "线性代数", "九州大学", "情报理工.json",
+    _write_subject(tmp_path, "线性代数", "九州大学", "理学院", "情报理工", "2024.json",
                    [{"id": "a1", "school": "九州大学", "text": "题 A", "knowledge_points": ["矩阵"]}])
     app = create_app(data_root=tmp_path)
     app.config.update(TESTING=True)
@@ -295,29 +325,31 @@ def test_new_file_shows_up_without_restart(live_client):
     client, root = live_client
     assert _scope_counts(client)["线性代数"] == 1
 
-    _write_subject(root, "线性代数", "东北大学", "情报理工.json", [
+    _write_subject(root, "线性代数", "东北大学", "理学院", "情报理工", "2024.json", [
         {"id": "b1", "school": "东北大学", "text": "题 B", "knowledge_points": ["秩"]},
         {"id": "b2", "school": "东北大学", "text": "题 C", "knowledge_points": ["核"]},
     ])
     counts = _scope_counts(client)
-    assert counts["线性代数"] == 3 and counts["线性代数/东北大学/情报理工"] == 2   # 新学校自己成一档
+    assert counts["线性代数"] == 3 and counts["线性代数/东北大学/理学院/情报理工/2024"] == 2   # 新学校自己成一档
 
     linalg = next(n for n in _scope_tree(client) if n["value"] == "线性代数")
-    # 找到东北大学 → 情报理工 子节点
+    # 找到东北大学 → 理学院 → 情报理工 → 2024 子节点
     school = next(c for c in linalg["children"] if c["value"] == "线性代数/东北大学")
-    assert ("情报理工", 2) in [(c["label"], c["count"]) for c in school["children"]]
+    faculty = next(c for c in school["children"] if c["value"] == "线性代数/东北大学/理学院")
+    major = next(c for c in faculty["children"] if c["value"] == "线性代数/东北大学/理学院/情报理工")
+    assert ("2024", 2) in [(c["label"], c["count"]) for c in major["children"]]
 
 
 def test_new_subject_folder_shows_up_without_restart(live_client):
     client, root = live_client
-    _write_subject(root, "微积分", "九州大学", "情报理工.json",
+    _write_subject(root, "微积分", "九州大学", "理学院", "情报理工", "2024.json",
                    [{"id": "c1", "text": "题 D", "knowledge_points": ["积分"]}])
     assert _scope_counts(client)["微积分"] == 1
 
 
 def test_edited_question_is_reindexed(live_client):
     client, root = live_client
-    _write_subject(root, "线性代数", "九州大学", "情报理工.json", [
+    _write_subject(root, "线性代数", "九州大学", "理学院", "情报理工", "2024.json", [
         {"id": "a1", "school": "九州大学", "text": "题 A 改过了", "knowledge_points": ["矩阵"]},
         {"id": "a2", "school": "九州大学", "text": "题 F", "knowledge_points": ["矩阵"]},
     ])
@@ -330,22 +362,22 @@ def test_edited_question_is_reindexed(live_client):
 
 def test_deleted_file_disappears(live_client):
     client, root = live_client
-    _write_subject(root, "线性代数", "东北大学", "情报理工.json",
+    _write_subject(root, "线性代数", "东北大学", "理学院", "情报理工", "2024.json",
                    [{"id": "b1", "school": "东北大学", "text": "题 B", "knowledge_points": ["秩"]}])
-    assert "线性代数/东北大学/情报理工" in _scope_counts(client)
+    assert "线性代数/东北大学/理学院/情报理工/2024" in _scope_counts(client)
 
-    (root / "线性代数" / "东北大学" / "情报理工.json").unlink()
-    assert "线性代数/东北大学/情报理工" not in _scope_counts(client)
+    (root / "线性代数" / "东北大学" / "理学院" / "情报理工" / "2024.json").unlink()
+    assert "线性代数/东北大学/理学院/情报理工/2024" not in _scope_counts(client)
 
 
 def test_watch_can_be_disabled(tmp_path):
-    _write_subject(tmp_path, "线性代数", "九州大学", "情报理工.json",
+    _write_subject(tmp_path, "线性代数", "九州大学", "理学院", "情报理工", "2024.json",
                    [{"id": "a1", "school": "九州大学", "text": "题 A", "knowledge_points": ["矩阵"]}])
     app = create_app(data_root=tmp_path, watch=False)
     app.config.update(TESTING=True)
     client = app.test_client()
 
-    _write_subject(tmp_path, "微积分", "九州大学", "情报理工.json",
+    _write_subject(tmp_path, "微积分", "九州大学", "理学院", "情报理工", "2024.json",
                    [{"id": "c1", "text": "题 D", "knowledge_points": ["积分"]}])
     assert "微积分" not in _scope_counts(client)          # 关掉就一直用启动时那份
 

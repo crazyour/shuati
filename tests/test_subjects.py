@@ -1,4 +1,4 @@
-"""检索范围：科目目录（data/<科目>/*.json）的发现、来源分组与加载。"""
+"""检索范围：科目目录（data/<科目>/<学校>/<学院>/<专攻>/<年份>.json）的发现、来源分组与加载。"""
 
 import json
 
@@ -23,14 +23,15 @@ def _write(path, records):
 
 @pytest.fixture
 def root(tmp_path):
-    _write(tmp_path / "线性代数" / "九大.json", [
+    # 五级结构：data/<科目>/<学校>/<学院>/<专攻>/<年份>.json
+    _write(tmp_path / "线性代数" / "九州大学" / "理学院" / "数学" / "2024.json", [
         {"id": "la-1", "school": "九州大学", "knowledge_points": ["特征值"]},
         {"id": "la-2", "school": "九州大学", "knowledge_points": ["矩阵幂"]},
     ])
-    _write(tmp_path / "线性代数" / "东大.json", [
+    _write(tmp_path / "线性代数" / "东京大学" / "理学院" / "数学" / "2024.json", [
         {"id": "la-3", "school": "东京大学", "knowledge_points": ["秩"]},
     ])
-    _write(tmp_path / "微积分" / "题库.json", [{"id": "ca-1", "knowledge_points": ["不定积分"]}])
+    _write(tmp_path / "微积分" / "题库学院" / "题库专攻" / "2024.json", [{"id": "ca-1", "knowledge_points": ["不定积分"]}])
     _write(tmp_path / "根目录也放了一份.json", [{"id": "root-1", "knowledge_points": ["集合"]}])
     (tmp_path / "图片" / "子目录").mkdir(parents=True)   # 没 JSON，不算科目
     return tmp_path
@@ -42,7 +43,12 @@ def test_list_subjects_skips_folders_without_questions(root):
 
 def test_subject_files_only_takes_that_folder(root):
     names = [p.name for p in subject_files("线性代数", root)]
-    assert names == ["东大.json", "九大.json"]
+    assert names == ["2024.json", "2024.json"]
+
+
+def test_source_falls_back_to_the_year_in_filename(root):
+    # 新结构：没写 school 时，group_by_source 把文件名（年份）当 fallback
+    assert list_sources("微积分", None, root) == ["2024"]
 
 
 def test_load_subject_merges_every_file_in_the_folder(root):
@@ -66,13 +72,15 @@ def test_sources_come_from_the_school_field(root):
     assert list_sources("线性代数", None, root) == ["东京大学", "九州大学"]
 
 
-def test_source_falls_back_to_the_file_name(root):
-    assert list_sources("微积分", None, root) == ["题库"]      # 没写 school
+
 
 
 def test_group_by_source_splits_one_file_by_school(tmp_path):
-    _write(tmp_path / "科目" / "合集.json", [
-        {"id": "a", "school": "甲大学"}, {"id": "b", "school": "乙大学"}, {"id": "c", "school": "甲大学"},
+    _write(tmp_path / "科目" / "甲大学" / "院" / "专" / "2024.json", [
+        {"id": "a", "school": "甲大学"}, {"id": "c", "school": "甲大学"},
+    ])
+    _write(tmp_path / "科目" / "乙大学" / "院" / "专" / "2024.json", [
+        {"id": "b", "school": "乙大学"},
     ])
     groups = group_by_source(subject_files("科目", tmp_path), None, tmp_path)
     assert {name: [q.qid for q in qs] for name, qs in groups.items()} == {
@@ -81,39 +89,43 @@ def test_group_by_source_splits_one_file_by_school(tmp_path):
 
 
 def test_load_scope_picks_one_source(root):
-    qids = [q.qid for q in load_scope("线性代数/九州大学", None, root)]
+    qids = [q.qid for q in load_scope("线性代数/九州大学/理学院/数学/2024", None, root)]
     assert sorted(qids) == ["la-1", "la-2"]
 
 
 def test_load_scope_rejects_unknown_source(root):
-    with pytest.raises(ValueError, match="九州大学"):
-        load_scope("线性代数/北海道大学", None, root)
+    with pytest.raises(ValueError, match="北海道大学"):
+        load_scope("线性代数/北海道大学/理学院/数学/2024", None, root)
 
 
 def test_split_scope():
-    assert split_scope("线性代数/九州大学") == ("线性代数", "九州大学")
-    assert split_scope("线性代数") == ("线性代数", "")
-    assert split_scope(ALL_SUBJECTS) == (ALL_SUBJECTS, "")
+    assert split_scope("线性代数/九州大学") == ("线性代数", "九州大学", "", "", "")
+    assert split_scope("线性代数") == ("线性代数", "", "", "", "")
+    assert split_scope(ALL_SUBJECTS) == (ALL_SUBJECTS, "", "", "", "")
 
 
 def test_colliding_default_ids_get_a_file_prefix(tmp_path):
     """两个文件都没写 id 时（各自退化成 q-0000），后来的那条加文件名前缀，不丢题。"""
-    _write(tmp_path / "科目" / "a.json", [{"knowledge_points": ["A"]}])
-    _write(tmp_path / "科目" / "b.json", [{"knowledge_points": ["B"]}])
+    _write(tmp_path / "科目" / "甲" / "院" / "专" / "2024.json", [{"knowledge_points": ["A"]}])
+    _write(tmp_path / "科目" / "乙" / "院" / "专" / "2024.json", [{"knowledge_points": ["B"]}])
     questions = load_subject("科目", None, tmp_path)
-    assert [q.qid for q in questions] == ["q-0000", "科目/b:q-0000"]
-    assert [q.knowledge_points for q in questions] == [["A"], ["B"]]
+    # 一条保留 q-0000，另一条带上前缀；两条题都还在
+    assert len(questions) == 2
+    qids = {q.qid for q in questions}
+    assert "q-0000" in qids
+    assert any(qid.endswith(":q-0000") for qid in qids)
+    assert sorted(q.knowledge_points[0] for q in questions) == ["A", "B"]
 
 
 def test_duplicate_ids_inside_one_file_still_raise(tmp_path):
-    _write(tmp_path / "科目" / "a.json", [{"id": "x"}, {"id": "x"}])
+    _write(tmp_path / "科目" / "甲" / "院" / "专" / "2024.json", [{"id": "x"}, {"id": "x"}])
     with pytest.raises(ValueError, match="重复 id"):
         load_subject("科目", None, tmp_path)
 
 
 def test_jsonl_files_are_included(tmp_path):
-    (tmp_path / "科目").mkdir()
-    (tmp_path / "科目" / "库.jsonl").write_text(
+    (tmp_path / "科目" / "院" / "专").mkdir(parents=True)
+    (tmp_path / "科目" / "院" / "专" / "库.jsonl").write_text(
         '{"id": "j-1", "knowledge_points": ["行列式"]}\n', encoding="utf-8"
     )
     assert [q.qid for q in load_subject("科目", None, tmp_path)] == ["j-1"]

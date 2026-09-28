@@ -3,7 +3,17 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>题库</title>
+  <title>{% block title %}日本大学院数学题库 · 按科目/学校/学院/专攻/年份检索{% endblock %}</title>
+  <meta name="description" content="日本大学院（修士）情报学专业的数学过去问题库，按科目、学校、学院、专攻、年份检索相似题目，覆盖线性代数、微积分、复变函数、微分方程、概率统计、向量解析。">
+  <meta name="keywords" content="日本大学院,修士,过去问,数学,情报学,线性代数,微积分,复变函数,微分方程,概率统计,向量解析,京大,东大,九大,阪大,名古屋大">
+  <link rel="canonical" href="{{ canonical_url or '' }}">
+  <meta property="og:title" content="日本大学院数学题库 · 按科目/学校/学院/专攻/年份检索">
+  <meta property="og:description" content="按科目、学校、学院、专攻、年份检索相似题目，支持图片识别+JSON 粘贴两种检索方式。">
+  <meta property="og:type" content="website">
+  <meta property="og:locale" content="zh_CN">
+  <meta name="twitter:card" content="summary">
+  <meta name="robots" content="index, follow">
+  <link rel="alternate" type="application/rss+xml" title="题库更新" href="/sitemap.xml">
   <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}?v={{ asset_version }}">
   <!-- 公式渲染：题目里的 $...$ / $$...$$ 交给 KaTeX；CDN 拿不到就原样显示 LaTeX -->
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.css">
@@ -25,23 +35,43 @@
         <aside class="panel browse-sidebar">
           <div class="field">
             <label for="browse-subject">科目</label>
-            <select id="browse-subject" disabled></select>
+            <select id="browse-subject">
+              {% for option in initial_filters.subject %}
+              <option value="{{ option.value }}">{{ option.label }}（{{ option.count }}）</option>
+              {% endfor %}
+            </select>
           </div>
-          <div class="field" id="browse-school-block" hidden>
+          <div class="field" id="browse-school-block"{% if not initial_filters.school %} hidden{% endif %}>
             <label for="browse-school">学校</label>
-            <select id="browse-school" disabled></select>
+            <select id="browse-school">
+              {% for option in initial_filters.school %}
+              <option value="{{ option.local_value }}">{{ option.label }}（{{ option.count }}）</option>
+              {% endfor %}
+            </select>
           </div>
-          <div class="field" id="browse-faculty-block" hidden>
+          <div class="field" id="browse-faculty-block"{% if not initial_filters.faculty %} hidden{% endif %}>
             <label for="browse-faculty">学院</label>
-            <select id="browse-faculty" disabled></select>
+            <select id="browse-faculty">
+              {% for option in initial_filters.faculty %}
+              <option value="{{ option.local_value }}">{{ option.label }}（{{ option.count }}）</option>
+              {% endfor %}
+            </select>
           </div>
-          <div class="field" id="browse-major-block" hidden>
+          <div class="field" id="browse-major-block"{% if not initial_filters.major %} hidden{% endif %}>
             <label for="browse-major">专攻</label>
-            <select id="browse-major" disabled></select>
+            <select id="browse-major">
+              {% for option in initial_filters.major %}
+              <option value="{{ option.local_value }}">{{ option.label }}（{{ option.count }}）</option>
+              {% endfor %}
+            </select>
           </div>
-          <div class="field" id="browse-question-block" hidden>
-            <label for="browse-question">题目</label>
-            <select id="browse-question" disabled></select>
+          <div class="field" id="browse-year-block"{% if not initial_filters.year %} hidden{% endif %}>
+            <label for="browse-year">年份</label>
+            <select id="browse-year">
+              {% for option in initial_filters.year %}
+              <option value="{{ option.local_value }}">{{ option.label }}（{{ option.count }}）</option>
+              {% endfor %}
+            </select>
           </div>
         </aside>
 

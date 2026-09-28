@@ -26,6 +26,7 @@ from pipeline.ocr import ocr_image
 
 
 SUBJECTS = {"线性代数", "微积分", "微分方程", "向量解析", "复变函数", "概率统计"}
+EXTERNAL_MODEL_CONFIRMATION = "I_ACCEPT_EXTERNAL_MODEL_CHARGES"
 CATEGORY_ALIASES = {
     "線形代数": "线性代数",
     "線型代数": "线性代数",
@@ -358,21 +359,45 @@ def process_pdf(
     return {"source": meta["source_pdf"], "extraction": extraction, "questions": len(prepared), "outputs": outputs}
 
 
-def main() -> int:
+def parse_cli_args(argv: Optional[list[str]] = None) -> argparse.Namespace:
     parser = argparse.ArgumentParser()
     parser.add_argument("--archive", type=Path, required=True)
     parser.add_argument("--project", type=Path, required=True)
     parser.add_argument("--school")
     parser.add_argument("--contains")
     parser.add_argument("--limit", type=int)
-    parser.add_argument("--provider", choices=("claude", "minimax"), default="claude")
+    parser.add_argument(
+        "--provider",
+        choices=("claude", "minimax"),
+        required=True,
+        help="External paid model provider. There is deliberately no default.",
+    )
+    parser.add_argument(
+        "--confirm-external-model-charges",
+        metavar="CONFIRMATION",
+        help=(
+            "Required acknowledgement before any external model request. "
+            f"Pass exactly: {EXTERNAL_MODEL_CONFIRMATION}"
+        ),
+    )
     parser.add_argument("--claude-model", default="sonnet")
     parser.add_argument("--claude-effort", choices=("low", "medium", "high"), default="medium")
     parser.add_argument("--only-category", choices=sorted(SUBJECTS))
     parser.add_argument("--state", type=Path)
     parser.add_argument("--retry-errors", action="store_true")
     parser.add_argument("--apply", action="store_true")
-    args = parser.parse_args()
+    args = parser.parse_args(argv)
+    if args.confirm_external_model_charges != EXTERNAL_MODEL_CONFIRMATION:
+        parser.error(
+            "Refusing to call an external model. To acknowledge that the selected provider "
+            "may use a third-party account and incur charges, pass "
+            f"--confirm-external-model-charges {EXTERNAL_MODEL_CONFIRMATION}"
+        )
+    return args
+
+
+def main(argv: Optional[list[str]] = None) -> int:
+    args = parse_cli_args(argv)
 
     pdfs = sorted(args.archive.rglob("*.pdf"))
     if args.school:

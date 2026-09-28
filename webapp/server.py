@@ -26,6 +26,18 @@ ROOT = Path(__file__).resolve().parent.parent
 if str(ROOT) not in sys.path:  # 允许 python webapp/server.py 直接跑
     sys.path.insert(0, str(ROOT))
 
+# 顺手加载项目根目录的 .env；已有同名环境变量优先（不覆盖，比如 shell 里 export 过的）
+_env_path = ROOT / ".env"
+if _env_path.exists():
+    for line in _env_path.read_text(encoding="utf-8").splitlines():
+        line = line.strip()
+        if not line or line.startswith("#") or "=" not in line:
+            continue
+        k, _, v = line.partition("=")
+        k = k.strip()
+        v = v.strip().strip('"').strip("'")
+        os.environ.setdefault(k, v)
+
 from flask import Flask, jsonify, render_template, request  # noqa: E402
 
 import requests  # noqa: E402  — 反馈转发到 Notion 用
@@ -38,7 +50,6 @@ from mqm import (  # noqa: E402
     aliases_from_config,
     group_by_source,
     list_senkou,
-    list_schools,
     list_subjects,
     load_config,
     load_question_files,
@@ -77,6 +88,15 @@ FEEDBACK_SUGGESTION_MIN = 2
 FEEDBACK_SUGGESTION_MAX = 2000
 NOTION_VERSION = "2022-06-28"
 NOTION_API_URL = "https://api.notion.com/v1/pages"
+
+
+def _absolute_url(req, path: str, base: str = "") -> str:
+    """算 canonical / sitemap 用的绝对 URL：有 SITE_BASE_URL 就用它，否则从请求头推断。"""
+    if base:
+        return f"{base}{path}"
+    host = req.host
+    proto = req.headers.get("X-Forwarded-Proto", req.scheme)
+    return f"{proto}://{host}{path}"
 
 
 def forward_feedback_to_notion(record: Dict[str, Any], token: str, database_id: str) -> None:
@@ -136,17 +156,7 @@ def parse_feedback_payload(payload: Dict[str, Any]) -> Optional[Dict[str, Any]]:
     }
 
 
-def filename_hierarchy(path: Path) -> tuple[str, str, str]:
-    """从 `年份_一级专攻_二级专攻_题目.json` 提取三级文件名分类。"""
-    stem = path.stem
-    parts = stem.split("_")
-    if parts and parts[0].isdigit() and len(parts) >= 3:
-        primary = parts[1]
-        secondary = parts[2]
-        question = "_".join(parts[3:]) or stem
-        return primary, secondary, question
-    # 不符合新命名法的文件仍可浏览，不把它们丢掉。
-    return stem, "", stem
+
 
 
 def question_text(q: Question) -> str:
@@ -230,7 +240,10 @@ class Library:
         return list(scope.questions) if scope else []
 
     def detail_scope(self, qid: str, subject: str = "") -> str:
-        """返回一道题所在的最深浏览范围，供“打开原题”跨文件跳转。"""
+        """返回一道题所在的最深浏览范围，供“打开原题”跨文件跳转。
+
+        最深 = 「科目/学校/学院/专攻/年份」5 段（共 4 个 '/'）。
+        """
         top_subject = str(subject or "").split("/")[0]
         prefix = f"{top_subject}/" if top_subject else ""
         candidates = [
@@ -269,11 +282,13 @@ class Library:
         """给页面上的按钮组用：
 
         顶层 = [全部题目, *科目, 默认题库]
-        科目下 = [全部, *学习]
-        学习下 = [全部, *专业]
-        专业下 = [全部, *学校]
+        科目下 = [全部, *学校]
+        学校下 = [学院]
+        学院下 = [专攻]
+        专攻下 = [年份]
 
-        每个 scope 都按 (科目, 学习, 专业, 学校) 4 段标识，scope.group 是「同一科目」标签。
+        scope key 用 `/` 分段，最多 5 段（科目/学校/学院/专攻/年份）；scope.group
+        是「同一科目」标签，便于前端按科目分组。
         """
         tree: List[Dict[str, Any]] = []
         for scope in self._state[0]:
@@ -320,8 +335,13 @@ class Library:
 
     def reload(self) -> None:
         self._stamp = self.stamp()
-        self.subjects = [s for s in list_subjects(self.data_root) if s not in self.hidden]
-        scopes = self._build_scopes()
+        files = [
+            (parts, path)
+            for parts, path in structured_files(ALL_SUBJECTS, self.data_root)
+            if parts[0] not in self.hidden
+        ]
+        self.subjects = sorted({subject for (subject, *_), _ in files})
+        scopes = self._build_scopes(files)
         self._state = (scopes, {s.key: s for s in scopes})
         self._indexes = {}  # 题目换了，索引跟着作废（新建字典，不动别人正在读的那个）
 
@@ -334,14 +354,13 @@ class Library:
 
     # ---------- 构建 ----------
 
-    def _build_scopes(self) -> List[Scope]:
-        """顺序 = 全部题目 -> 每科目的层级树（全部 → 学校 → 专攻）-> 默认题库。"""
-        # StructuredPath = (subject, school, filename)，取第一项比较 hidden
-        all_files = [p for (subj, _, _), p in structured_files(ALL_SUBJECTS, self.data_root)
-                     if subj not in self.hidden]
+    def _build_scopes(self, files: List[tuple]) -> List[Scope]:
+        """顺序 = 全部题目 -> 每科目的层级树（全部 → 学校 → 学院 → 专攻 → 年份）-> 默认题库。"""
+        all_files = [path for _, path in files]
         scopes = [self._load_scope(ALL_SUBJECTS, "全部题目", all_files)]
         for subject in self.subjects:
-            scopes.extend(self._subject_scopes(subject))
+            subject_files = [(parts, path) for parts, path in files if parts[0] == subject]
+            scopes.extend(self._subject_scopes(subject, subject_files))
         scopes.append(
             self._load_scope(
                 DEFAULT_SUBJECT_KEY,
@@ -351,9 +370,9 @@ class Library:
         )
         return scopes
 
-    def _subject_scopes(self, subject: str) -> List[Scope]:
-        """一个科目 -> 学校 -> 一级专攻 -> 二级专攻 -> 题目。"""
-        paths = [p for _, p in structured_files(subject, self.data_root)]
+    def _subject_scopes(self, subject: str, files: List[tuple]) -> List[Scope]:
+        """一个科目 -> 学校 -> 学院 -> 专攻 -> 年份。"""
+        paths = [path for _, path in files]
         if not paths:
             return []
         scopes: List[Scope] = []
@@ -364,26 +383,39 @@ class Library:
             return [Scope(subject, f"{subject} · 全部", subject, [], str(exc))]
         scopes.append(Scope(subject, f"{subject} · 全部", subject, all_q))
 
-        for school in list_schools(subject, self.data_root):
-            school_paths = [p for ((_, sc, _), p) in structured_files(subject, self.data_root) if sc == school]
+        schools = sorted({parts[1] for parts, _ in files})
+        for school in schools:
+            school_files = [(parts, path) for parts, path in files if parts[1] == school]
+            school_paths = [path for _, path in school_files]
             school_q = load_question_files(school_paths, self.aliases, base=self.data_root)
-            scopes.append(Scope(f"{subject}/{school}", f"{school}", subject, school_q))
-            grouped: Dict[tuple[str, str], List[Path]] = {}
-            for path in school_paths:
-                primary, secondary, _ = filename_hierarchy(path)
-                grouped.setdefault((primary, secondary), []).append(path)
-            for (primary, secondary), category_paths in sorted(grouped.items()):
-                primary_key = f"{subject}/{school}/{primary}"
-                scopes.append(Scope(primary_key, primary, subject,
-                                    load_question_files(category_paths, self.aliases, base=self.data_root)))
-                secondary_key = f"{primary_key}/{secondary or primary}"
-                scopes.append(Scope(secondary_key, secondary or primary, subject,
-                                    load_question_files(category_paths, self.aliases, base=self.data_root)))
-                for path in sorted(category_paths):
-                    _, _, question = filename_hierarchy(path)
-                    question_key = f"{secondary_key}/{question}"
-                    scopes.append(Scope(question_key, question, subject,
-                                        load_question_files([path], self.aliases, base=self.data_root)))
+            scopes.append(Scope(f"{subject}/{school}", school, subject, school_q))
+
+            # 学院 -> 专攻 -> 年份 三层再下钻
+            # 兼容新旧结构：新结构 = 3 段（学院/专攻/<年份>.json）；
+            # 旧结构 = 1 段（<file>.json），学院/专攻/年份从 JSON 内容里读。
+            by_faculty: Dict[str, Dict[str, List[tuple[str, Path]]]] = {}
+            for (_, _, faculty, major, year), path in school_files:
+                by_faculty.setdefault(faculty, {}).setdefault(major, []).append((year, path))
+
+            for faculty in sorted(by_faculty):
+                faculty_items = [p for paths in by_faculty[faculty].values() for p in paths]
+                faculty_paths = [p for _, p in faculty_items]
+                faculty_key = f"{subject}/{school}/{faculty}"
+                scopes.append(Scope(faculty_key, faculty, subject,
+                                    load_question_files(faculty_paths, self.aliases, base=self.data_root)))
+
+                for major in sorted(by_faculty[faculty]):
+                    year_files = by_faculty[faculty][major]
+                    major_paths = [p for _, p in year_files]
+                    major_key = f"{faculty_key}/{major}"
+                    scopes.append(Scope(major_key, major, subject,
+                                        load_question_files(major_paths, self.aliases, base=self.data_root)))
+
+                    # 年份层级：每 (年份, file) 是一个 scope（兼容旧结构下一年份=多个文件）
+                    for year, path in sorted(year_files, key=lambda item: item[0]):
+                        year_key = f"{major_key}/{year}"
+                        scopes.append(Scope(year_key, year, subject,
+                                            load_question_files([path], self.aliases, base=self.data_root)))
         return scopes
 
     def _load_scope(self, key: str, label: str, paths: List[Path]) -> Scope:
@@ -435,6 +467,9 @@ def create_app(
 
     # FEEDBACK_ENABLED=false 临时关闭：FAB 不渲染、/api/feedback 不注册；不填默认开
     feedback_enabled = os.environ.get("FEEDBACK_ENABLED", "true").strip().lower() not in ("false", "0", "no", "off")
+
+    # 公网基础 URL：用于 sitemap / canonical。不填就从请求头推断（Vercel 会带 x-forwarded-proto/host）
+    site_base_url = os.environ.get("SITE_BASE_URL", "").strip().rstrip("/")
 
     example = EXAMPLE_QUERY.read_text(encoding="utf-8") if EXAMPLE_QUERY.exists() else "{}"
 
@@ -534,6 +569,21 @@ def create_app(
     def home():
         from pipeline import available_backends  # 延迟导入：没装 OCR 也要能开页面
 
+        scope_tree = library.chip_tree()
+        subjects = [node for node in scope_tree if node.get("children")]
+        initial_filters: Dict[str, List[Dict[str, Any]]] = {"subject": subjects}
+        parent = subjects[0] if subjects else None
+        for key in ("school", "faculty", "major", "year"):
+            options = [
+                child for child in (parent.get("children", []) if parent else [])
+                if child.get("label") != "全部"
+            ]
+            initial_filters[key] = [
+                {**option, "local_value": option["value"].rsplit("/", 1)[-1]}
+                for option in options
+            ]
+            parent = options[0] if options else None
+
         # 静态资源用文件 mtime 做版本号：模板 / 前端代码改了刷新就生效，
         # 不用再清缓存或硬刷新（数据热加载靠 stamp() 单独处理）
         static_dir = Path(__file__).resolve().parent / "static"
@@ -542,7 +592,8 @@ def create_app(
         ) * 1000) if static_dir.exists() else 0
         return render_template(
             "index.html",
-            scope_tree=library.chip_tree(),
+            scope_tree=scope_tree,
+            initial_filters=initial_filters,
             data_root=str(library.data_root),
             subject_count=len(library.subjects),
             total_count=library.size(ALL_SUBJECTS),
@@ -556,7 +607,38 @@ def create_app(
             model_name=config.get("llm", {}).get("model", "MiniMax-M2.7"),
             asset_version=version,
             feedback_enabled=feedback_enabled,
+            canonical_url=_absolute_url(request, "/", site_base_url),
         )
+
+    @app.get("/robots.txt")
+    def robots_txt():
+        body = (
+            "User-agent: *\n"
+            "Allow: /\n"
+            "Disallow: /api/\n"
+            f"Sitemap: {_absolute_url(request, '/sitemap.xml', site_base_url)}\n"
+        )
+        return body, 200, {"Content-Type": "text/plain; charset=utf-8"}
+
+    @app.get("/sitemap.xml")
+    def sitemap_xml():
+        from xml.sax.saxutils import escape as xml_escape
+        base = _absolute_url(request, "/", site_base_url)
+        urls = [base]
+        # browse 模式是 SPA（同一个 URL 通过 query 参数切换），Googlebot 看到的是这同一个页面；
+        # sitemap 列关键科目入口足够，搜索引擎会跟着内部链接继续抓
+        for subj in library.subjects:
+            urls.append(f"{base}?subject={xml_escape(subj)}")
+        body = (
+            '<?xml version="1.0" encoding="UTF-8"?>\n'
+            '<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">\n'
+            + "".join(
+                f"  <url><loc>{xml_escape(u)}</loc><changefreq>weekly</changefreq></url>\n"
+                for u in urls
+            )
+            + "</urlset>\n"
+        )
+        return body, 200, {"Content-Type": "application/xml; charset=utf-8"}
 
     @app.get("/api/subjects")
     def api_subjects():
